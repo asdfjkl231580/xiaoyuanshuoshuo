@@ -6,7 +6,7 @@
 <title>生财有术线下组局根源场</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=Ma+Shan+Zheng&family=ZCOOL+XiaoWei&family=JetBrains+Mono:wght@400;500;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 /* ===================================================================
    CSS VARIABLES — THEME SYSTEM
@@ -16,6 +16,7 @@
   --max-w: 1200px;
 }
 
+/* 夜 · 暗金 — dark */
 [data-theme="dark"] {
   --bg: #0a0a08;
   --bg-subtle: #0e0d0a;
@@ -36,6 +37,7 @@
   --status-pending-bg: #1a1510;
   --status-pending-text: #5a5040;
   --footer-border: #1a1510;
+  --top-bar-bg: rgba(10,10,8,0.88);
   --hero-gradient: linear-gradient(160deg, #12100a 0%, #0a0a08 40%, #0d0b06 100%);
   --hero-texture: radial-gradient(ellipse at 70% 30%, rgba(212,160,74,0.04) 0%, transparent 60%);
   --number-color: rgba(212,160,74,0.06);
@@ -45,37 +47,117 @@
   --toggle-hover: rgba(212,160,74,0.15);
   --search-focus: rgba(212,160,74,0.2);
   --topic-icon: rgba(212,160,74,0.25);
+  --pop-bg: rgba(16,15,11,0.97);
+  --pop-border: rgba(212,160,74,0.35);
+  --pop-shadow: 0 18px 50px rgba(0,0,0,0.6);
 }
 
+/* 昼 · 翠 — light (更深的墨绿) */
 [data-theme="light"] {
-  --bg: #f5faf8;
-  --bg-subtle: #eef5f2;
-  --accent: #1a8a7d;
-  --accent-dim: rgba(26,138,125,0.08);
-  --text: #1a2e28;
-  --text-muted: #7a9a90;
-  --text-dim: #a0b8b0;
+  --bg: #f4f8f5;
+  --bg-subtle: #e9f1ec;
+  --accent: #0b6157;
+  --accent-dim: rgba(11,97,87,0.1);
+  --text: #0e1f1a;
+  --text-muted: #4e6b64;
+  --text-dim: #7a9189;
   --card-bg: #ffffff;
-  --card-border: #c8ddd6;
-  --card-hover: #eaf4f0;
-  --rule: #c8ddd6;
+  --card-border: #b8d3cc;
+  --card-hover: #e4efea;
+  --rule: #acc6be;
   --input-bg: #ffffff;
-  --tag-bg: #eaf4f0;
-  --status-ready-bg: rgba(26,138,125,0.08);
-  --status-ready-border: rgba(26,138,125,0.25);
+  --tag-bg: #e2ede8;
+  --status-ready-bg: rgba(11,97,87,0.1);
+  --status-ready-border: rgba(11,97,87,0.35);
   --status-ready-text: var(--accent);
-  --status-pending-bg: #eaf4f0;
-  --status-pending-text: #a0b8b0;
-  --footer-border: #c8ddd6;
-  --hero-gradient: linear-gradient(160deg, #e8f2ee 0%, #f5faf8 40%, #edf6f2 100%);
-  --hero-texture: radial-gradient(ellipse at 70% 30%, rgba(26,138,125,0.04) 0%, transparent 60%);
-  --number-color: rgba(26,138,125,0.06);
-  --number-stroke: rgba(26,138,125,0.12);
-  --toggle-bg: rgba(26,138,125,0.06);
-  --toggle-border: rgba(26,138,125,0.18);
-  --toggle-hover: rgba(26,138,125,0.12);
-  --search-focus: rgba(26,138,125,0.2);
-  --topic-icon: rgba(26,138,125,0.2);
+  --status-pending-bg: #e2ede8;
+  --status-pending-text: #7a9189;
+  --footer-border: #b8d3cc;
+  --top-bar-bg: rgba(244,248,245,0.9);
+  --hero-gradient: linear-gradient(160deg, #dfece6 0%, #f4f8f5 40%, #e6f1eb 100%);
+  --hero-texture: radial-gradient(ellipse at 70% 30%, rgba(11,97,87,0.06) 0%, transparent 60%);
+  --number-color: rgba(11,97,87,0.08);
+  --number-stroke: rgba(11,97,87,0.18);
+  --toggle-bg: rgba(11,97,87,0.08);
+  --toggle-border: rgba(11,97,87,0.28);
+  --toggle-hover: rgba(11,97,87,0.16);
+  --search-focus: rgba(11,97,87,0.25);
+  --topic-icon: rgba(11,97,87,0.28);
+  --pop-bg: rgba(255,255,255,0.98);
+  --pop-border: rgba(11,97,87,0.35);
+  --pop-shadow: 0 18px 40px rgba(11,97,87,0.18);
+}
+
+/* 纸 · 墨朱 — paper (宣纸底 + 墨色字 + 朱砂点) */
+[data-theme="paper"] {
+  --bg: #f1ead9;
+  --bg-subtle: #ebe2c9;
+  --accent: #a83226;
+  --accent-dim: rgba(168,50,38,0.1);
+  --text: #2a231a;
+  --text-muted: #7a6b52;
+  --text-dim: #b0a080;
+  --card-bg: #f7f1de;
+  --card-border: #d8c89c;
+  --card-hover: #ede2bc;
+  --rule: #c7b58a;
+  --input-bg: #faf4e2;
+  --tag-bg: #eee2b8;
+  --status-ready-bg: rgba(168,50,38,0.1);
+  --status-ready-border: rgba(168,50,38,0.35);
+  --status-ready-text: var(--accent);
+  --status-pending-bg: #eee2b8;
+  --status-pending-text: #a89472;
+  --footer-border: #d8c89c;
+  --top-bar-bg: rgba(241,234,217,0.9);
+  --hero-gradient: linear-gradient(160deg, #ede2c2 0%, #f1ead9 40%, #ead9b2 100%);
+  --hero-texture: radial-gradient(ellipse at 70% 30%, rgba(168,50,38,0.06) 0%, transparent 60%);
+  --number-color: rgba(168,50,38,0.09);
+  --number-stroke: rgba(168,50,38,0.2);
+  --toggle-bg: rgba(168,50,38,0.08);
+  --toggle-border: rgba(168,50,38,0.3);
+  --toggle-hover: rgba(168,50,38,0.16);
+  --search-focus: rgba(168,50,38,0.25);
+  --topic-icon: rgba(168,50,38,0.3);
+  --pop-bg: rgba(247,241,222,0.98);
+  --pop-border: rgba(168,50,38,0.4);
+  --pop-shadow: 0 18px 40px rgba(86,55,25,0.22);
+}
+
+/* 海 · 深蓝 — ocean (明显的海军蓝底 + 青瓷光，和夜的近黑完全分开) */
+[data-theme="ocean"] {
+  --bg: #0e2147;
+  --bg-subtle: #132b59;
+  --accent: #4fd1c5;
+  --accent-dim: rgba(79,209,197,0.14);
+  --text: #e8eef9;
+  --text-muted: #8aa5c7;
+  --text-dim: #4d6b94;
+  --card-bg: #162f63;
+  --card-border: #204080;
+  --card-hover: #1c3a74;
+  --rule: #274c8f;
+  --input-bg: #142d5f;
+  --tag-bg: #1a3870;
+  --status-ready-bg: rgba(79,209,197,0.14);
+  --status-ready-border: rgba(79,209,197,0.4);
+  --status-ready-text: var(--accent);
+  --status-pending-bg: #1a3870;
+  --status-pending-text: #4d6b94;
+  --footer-border: #204080;
+  --top-bar-bg: rgba(14,33,71,0.9);
+  --hero-gradient: linear-gradient(160deg, #143063 0%, #0e2147 40%, #11285a 100%);
+  --hero-texture: radial-gradient(ellipse at 70% 30%, rgba(79,209,197,0.1) 0%, transparent 60%);
+  --number-color: rgba(79,209,197,0.08);
+  --number-stroke: rgba(79,209,197,0.2);
+  --toggle-bg: rgba(79,209,197,0.1);
+  --toggle-border: rgba(79,209,197,0.3);
+  --toggle-hover: rgba(79,209,197,0.18);
+  --search-focus: rgba(79,209,197,0.28);
+  --topic-icon: rgba(79,209,197,0.32);
+  --pop-bg: rgba(20,45,95,0.97);
+  --pop-border: rgba(79,209,197,0.4);
+  --pop-shadow: 0 18px 50px rgba(3,10,30,0.6);
 }
 
 /* ===================================================================
@@ -172,15 +254,17 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   justify-content: space-between;
   padding: 1rem 2.5rem;
-  background: rgba(10,10,8,0.85);
+  background: var(--top-bar-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--rule);
   transition: background var(--transition), border-color var(--transition);
 }
 
-[data-theme="light"] .top-bar {
-  background: rgba(245,250,248,0.88);
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 .site-name {
@@ -189,8 +273,90 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600;
   letter-spacing: 0.15em;
   color: var(--text);
+  white-space: nowrap;
 }
 
+.layout-switcher {
+  display: flex;
+  gap: 0.2rem;
+  padding: 0.25rem;
+  border: 1px solid var(--toggle-border);
+  background: var(--toggle-bg);
+  border-radius: 999px;
+}
+
+.layout-chip {
+  padding: 0.3rem 0.9rem;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: 999px;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  white-space: nowrap;
+}
+
+.layout-chip:hover { color: var(--text); }
+
+.layout-chip.active {
+  background: var(--accent);
+  color: var(--bg);
+  box-shadow: 0 2px 8px var(--accent-dim);
+}
+
+@media (max-width: 720px) {
+  .top-bar-left { gap: 0.6rem; }
+  .site-name { font-size: 0.78rem; letter-spacing: 0.08em; }
+  .layout-chip { padding: 0.25rem 0.6rem; font-size: 0.68rem; }
+}
+
+.theme-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem;
+  border: 1px solid var(--toggle-border);
+  background: var(--toggle-bg);
+  border-radius: 999px;
+  transition: all var(--transition);
+}
+
+.theme-chip {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  letter-spacing: 0;
+  padding: 0;
+}
+
+.theme-chip:hover {
+  color: var(--text);
+  transform: scale(1.08);
+}
+
+.theme-chip.active {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+  box-shadow: 0 2px 10px var(--accent-dim);
+}
+
+/* 兼容旧单按钮类名（如果内部有遗留） */
 .theme-toggle {
   width: 40px;
   height: 40px;
@@ -205,7 +371,6 @@ a { color: inherit; text-decoration: none; }
   justify-content: center;
   transition: all var(--transition);
 }
-
 .theme-toggle:hover {
   background: var(--toggle-hover);
   transform: scale(1.08);
@@ -400,14 +565,24 @@ a { color: inherit; text-decoration: none; }
 /* ===================================================================
    TOPICS SECTION
    =================================================================== */
+.topics-hint {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  margin-top: 0.6rem;
+  font-style: italic;
+}
+
 .topics-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1.2rem;
 }
 
 .topic-tag {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -416,13 +591,121 @@ a { color: inherit; text-decoration: none; }
   border-radius: 2px;
   background: var(--card-bg);
   transition: all var(--transition);
-  cursor: default;
+  cursor: pointer;
 }
 
 .topic-tag:hover {
   border-color: var(--accent);
   transform: translateY(-2px);
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  z-index: 5;
+}
+
+.topic-tag:hover .topic-pop {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.topic-pop {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateY(6px);
+  width: 280px;
+  max-width: 90vw;
+  margin-left: -140px;
+  padding: 0.9rem 1rem 1rem;
+  background: var(--pop-bg);
+  border: 1px solid var(--pop-border);
+  border-radius: 4px;
+  box-shadow: var(--pop-shadow);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.25,0.46,0.45,0.94);
+  z-index: 50;
+}
+
+.topic-pop::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background: var(--pop-bg);
+  border-left: 1px solid var(--pop-border);
+  border-top: 1px solid var(--pop-border);
+}
+
+.topic-pop-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.topic-pop-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+.topic-pop a {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  padding: 0.5rem 0.4rem;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 0.88rem;
+  color: var(--text);
+  border-radius: 3px;
+  transition: background 0.2s ease, color 0.2s ease;
+  line-height: 1.5;
+}
+
+.topic-pop a:hover {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+.topic-pop a .pop-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 1.8em;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+.topic-pop a .pop-title {
+  flex: 1;
+}
+
+.topic-pop-empty {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  padding: 0.3rem 0.4rem;
+  font-style: italic;
+}
+
+@media (max-width: 720px) {
+  .topic-pop {
+    display: none; /* 移动端不显示浮层，topic 仍作为视觉标签 */
+  }
+  .topic-tag {
+    cursor: default;
+  }
 }
 
 .topic-icon {
@@ -813,6 +1096,786 @@ a { color: inherit; text-decoration: none; }
     grid-template-columns: 1fr;
   }
 }
+
+/* ===================================================================
+   LAYOUT SWITCHING — 切换 magazine / timeline
+   =================================================================== */
+.layout { min-height: 100vh; }
+[hidden] { display: none !important; }
+
+/* ===================================================================
+   LAYOUT B — TIMELINE (时间线版)
+   =================================================================== */
+.layout-timeline {
+  padding-top: 60px;
+  background: var(--bg);
+  position: relative;
+}
+
+/* --- Timeline Hero --- */
+.tl-hero {
+  min-height: calc(100vh - 60px);
+  display: grid;
+  place-items: center;
+  padding: 6rem 2rem 8rem;
+  background: var(--hero-gradient);
+  position: relative;
+  overflow: hidden;
+}
+.tl-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--hero-texture);
+  pointer-events: none;
+}
+.tl-hero-inner {
+  text-align: center;
+  max-width: 760px;
+  position: relative;
+  z-index: 2;
+}
+.tl-eyebrow {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  position: relative;
+  display: inline-block;
+  padding: 0 3rem;
+}
+.tl-eyebrow::before,
+.tl-eyebrow::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 2rem;
+  height: 1px;
+  background: var(--text-dim);
+}
+.tl-eyebrow::before { left: 0; }
+.tl-eyebrow::after { right: 0; }
+
+.tl-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(3rem, 7.5vw, 6rem);
+  font-weight: 900;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+.tl-title em {
+  font-style: italic;
+  font-family: 'Playfair Display', 'Noto Serif SC', serif;
+  font-weight: 400;
+  color: var(--accent);
+}
+
+.tl-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  margin-bottom: 3rem;
+}
+
+.tl-hero-meta {
+  display: flex;
+  justify-content: center;
+}
+.tl-meta-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.4rem;
+  padding: 1.2rem 2rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 2px;
+}
+.tl-meta-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.4rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+.tl-meta-sep {
+  width: 1px;
+  height: 40px;
+  background: var(--rule);
+}
+.tl-meta-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.tl-hero-line {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 1px;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent 0%, var(--accent) 100%);
+  transform: translateX(-50%);
+  z-index: 3;
+}
+.tl-hero-hint {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateX(20px);
+  font-family: 'Playfair Display', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  z-index: 3;
+  white-space: nowrap;
+}
+
+/* --- Timeline Body --- */
+.tl-body { padding: 0 0 4rem; background: var(--bg); }
+.tl-wrap {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.tl-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--rule);
+  transform: translateX(-50%);
+}
+.tl-nodes {
+  position: relative;
+  padding: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.tl-node {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 56px 1fr;
+  align-items: center;
+}
+.tl-dot {
+  grid-column: 2;
+  justify-self: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+  position: relative;
+  z-index: 2;
+  transition: all var(--transition);
+}
+.tl-node:hover .tl-dot {
+  background: var(--accent);
+  box-shadow: 0 0 0 6px var(--accent-dim);
+  transform: scale(1.15);
+}
+
+.tl-card {
+  padding: 1.3rem 1.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  cursor: pointer;
+  transition: all var(--transition);
+  position: relative;
+  border-radius: 2px;
+}
+.tl-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.tl-node.left .tl-card {
+  grid-column: 1;
+  text-align: right;
+  margin-right: 28px;
+}
+.tl-node.right .tl-card {
+  grid-column: 3;
+  text-align: left;
+  margin-left: 28px;
+}
+.tl-node.left .tl-card::after,
+.tl-node.right .tl-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 28px;
+  height: 1px;
+  background: var(--rule);
+}
+.tl-node.left .tl-card::after { right: -28px; }
+.tl-node.right .tl-card::after { left: -28px; }
+
+.tl-card-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin-bottom: 0.6rem;
+  justify-content: inherit;
+}
+.tl-node.left .tl-card-head { flex-direction: row-reverse; }
+.tl-card-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.tl-card-date {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+.tl-card-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.005em;
+}
+.tl-card-tags {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+/* 线的尾端 */
+.tl-line-end {
+  position: relative;
+  text-align: center;
+  padding-top: 2rem;
+}
+.tl-line-end-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin: 0 auto 1rem;
+  position: relative;
+  z-index: 2;
+}
+.tl-line-end-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+}
+
+/* --- Timeline About --- */
+.tl-about {
+  background: var(--bg-subtle);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 5rem 2rem;
+  margin-top: 3rem;
+}
+.tl-about-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.tl-about-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.tl-about-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+.tl-about-text {
+  font-size: 1rem;
+  line-height: 2;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  font-family: 'Noto Serif SC', serif;
+}
+.tl-about-text:last-child { margin-bottom: 0; }
+
+/* --- Timeline Footer --- */
+.tl-footer {
+  text-align: center;
+  padding: 3rem 2rem 4rem;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+}
+.tl-footer-line {
+  width: 40px;
+  height: 1px;
+  background: var(--accent);
+  margin: 0 auto 2rem;
+}
+
+/* --- Timeline Mobile --- */
+@media (max-width: 720px) {
+  .tl-hero { padding: 4rem 1.2rem 6rem; }
+  .tl-eyebrow { padding: 0 2rem; }
+  .tl-eyebrow::before,
+  .tl-eyebrow::after { width: 1.2rem; }
+  .tl-meta-box { padding: 0.9rem 1.3rem; gap: 0.8rem; }
+  .tl-meta-num { font-size: 2.4rem; }
+  .tl-meta-label { font-size: 0.72rem; }
+  .tl-hero-hint { transform: translateX(-50%); }
+
+  .tl-wrap { padding: 0 1.2rem; }
+  .tl-line { left: 24px; }
+  .tl-line-end { text-align: left; padding-left: 16px; }
+  .tl-line-end-dot { margin: 0 0 1rem 0; }
+
+  .tl-node {
+    grid-template-columns: 48px 1fr;
+    gap: 0;
+  }
+  .tl-dot { grid-column: 1; }
+  .tl-node.left .tl-card,
+  .tl-node.right .tl-card {
+    grid-column: 2;
+    text-align: left;
+    margin: 0 0 0 20px;
+  }
+  .tl-node.left .tl-card-head { flex-direction: row; }
+  .tl-node.left .tl-card::after { right: auto; left: -20px; width: 20px; }
+  .tl-node.right .tl-card::after { left: -20px; width: 20px; }
+  .tl-card { padding: 1rem 1.2rem; }
+  .tl-card-title { font-size: 1.1rem; }
+  .tl-about { padding: 3.5rem 1.2rem; }
+}
+
+/* ===================================================================
+   THEME STRUCTURAL OVERRIDES — 不只是改颜色，字体/装饰/纹理都不同
+   =================================================================== */
+
+/* ---------- 夜 · LUXE EDITORIAL (默认，保持原样) ---------- */
+/* 已在上方常规样式中定义：Playfair Display + Noto Serif SC */
+
+/* ---------- 昼 · CLASSIC EDITORIAL (Cormorant 古典衬线) ---------- */
+[data-theme="light"] body {
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', 'Songti SC', serif;
+  font-weight: 500;
+}
+[data-theme="light"] .hero-title,
+[data-theme="light"] .about-heading,
+[data-theme="light"] .archive-title {
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+  font-weight: 700;
+  letter-spacing: 0.005em;
+}
+[data-theme="light"] .hero-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-style: italic;
+}
+[data-theme="light"] .section-label,
+[data-theme="light"] .card-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+}
+
+/* ---------- 纸 · 宣纸墨笺 (毛笔/手写) ---------- */
+[data-theme="paper"] body {
+  font-family: 'Noto Serif SC', 'Songti SC', serif;
+  position: relative;
+}
+/* 纸纹理：淡淡的噪点 + 斜纹 */
+[data-theme="paper"] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(168,50,38,0.018) 0 1px, transparent 1px 16px),
+    radial-gradient(circle at 20% 30%, rgba(168,50,38,0.04) 0, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(42,35,26,0.05) 0, transparent 40%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.54  0 0 0 0 0.38  0 0 0 0 0.22  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: multiply;
+}
+[data-theme="paper"] .hero-title,
+[data-theme="paper"] .about-heading,
+[data-theme="paper"] .archive-title {
+  font-family: 'Ma Shan Zheng', 'Kaiti SC', 'STKaiti', 'Noto Serif SC', serif;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+}
+[data-theme="paper"] .hero-title {
+  font-size: clamp(3.2rem, 6.5vw, 5.6rem);
+}
+[data-theme="paper"] .hero-number {
+  font-family: 'Ma Shan Zheng', 'Kaiti SC', serif;
+  font-weight: 400;
+  transform: rotate(-4deg);
+  -webkit-text-stroke: 0;
+  color: var(--number-color);
+}
+[data-theme="paper"] .hero-subtitle::before {
+  content: '「 ';
+  color: var(--accent);
+}
+[data-theme="paper"] .hero-subtitle::after {
+  content: ' 」';
+  color: var(--accent);
+}
+/* 朱印章式的 section-label */
+[data-theme="paper"] .section-label {
+  font-family: 'Ma Shan Zheng', 'Kaiti SC', serif;
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--accent);
+  color: var(--bg);
+  letter-spacing: 0.1em;
+  text-transform: none;
+  font-size: 0.85rem;
+}
+[data-theme="paper"] .section-label::before {
+  display: none;
+}
+[data-theme="paper"] .hr-rule {
+  background: transparent;
+  border-top: 1px dashed var(--rule);
+  height: 0;
+}
+[data-theme="paper"] .hr-rule.hr-thick {
+  border-top: 2px double var(--accent);
+}
+[data-theme="paper"] .about-heading::after {
+  content: ' 　·　';
+  color: var(--accent);
+  font-size: 0.7em;
+}
+[data-theme="paper"] .event-card {
+  border-radius: 0;
+  border-left: 3px solid var(--accent);
+}
+[data-theme="paper"] .card-number {
+  font-family: 'Ma Shan Zheng', 'Kaiti SC', serif;
+  font-weight: 400;
+}
+
+/* ---------- 海 · 赛博青瓷 (Mono / 终端 / 网格) ---------- */
+[data-theme="ocean"] body {
+  font-family: 'JetBrains Mono', 'Noto Sans SC', -apple-system, sans-serif;
+  font-weight: 400;
+}
+/* 网格背景 + 微辉光 */
+[data-theme="ocean"] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(79,209,197,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79,209,197,0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+[data-theme="ocean"] .hero-title,
+[data-theme="ocean"] .about-heading,
+[data-theme="ocean"] .archive-title {
+  font-family: 'JetBrains Mono', 'Noto Sans SC', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+[data-theme="ocean"] .hero-title .line2 {
+  display: inline-block;
+}
+[data-theme="ocean"] .hero-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  -webkit-text-stroke: 2px var(--accent);
+  color: transparent;
+  text-shadow: 0 0 40px rgba(79,209,197,0.35);
+}
+[data-theme="ocean"] .hero-number::before {
+  content: 'NO.';
+  display: block;
+  font-size: 0.18em;
+  letter-spacing: 0.4em;
+  color: var(--accent);
+  -webkit-text-stroke: 0;
+  margin-bottom: 0.2em;
+  text-shadow: none;
+}
+[data-theme="ocean"] .hero-subtitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+[data-theme="ocean"] .hero-subtitle::before {
+  content: '> ';
+  color: var(--accent);
+}
+[data-theme="ocean"] .section-label {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.25em;
+  color: var(--accent);
+}
+[data-theme="ocean"] .section-label::before {
+  content: '[ ';
+  color: var(--accent);
+}
+[data-theme="ocean"] .section-label::after {
+  content: ' ]';
+  color: var(--accent);
+  margin-left: 0.3em;
+}
+[data-theme="ocean"] .hr-rule {
+  background: transparent;
+  height: 1px;
+  background-image: repeating-linear-gradient(90deg, var(--accent) 0 6px, transparent 6px 14px);
+  opacity: 0.5;
+}
+[data-theme="ocean"] .hr-rule.hr-thick {
+  height: 2px;
+  background-image: repeating-linear-gradient(90deg, var(--accent) 0 10px, transparent 10px 20px);
+  opacity: 0.8;
+}
+[data-theme="ocean"] .event-card {
+  border-radius: 0;
+  position: relative;
+}
+[data-theme="ocean"] .event-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 12px; height: 12px;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+}
+[data-theme="ocean"] .event-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 12px; height: 12px;
+  border-bottom: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+}
+[data-theme="ocean"] .card-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+}
+[data-theme="ocean"] .card-title {
+  font-family: 'JetBrains Mono', 'Noto Sans SC', sans-serif;
+}
+[data-theme="ocean"] .card-date {
+  font-family: 'JetBrains Mono', monospace;
+}
+[data-theme="ocean"] .about-content p {
+  font-family: 'Noto Sans SC', sans-serif;
+  line-height: 1.9;
+}
+
+/* 让所有主要内容层级在纹理之上 */
+body > * { position: relative; z-index: 1; }
+
+/* 主题切换过渡（仅对部分属性，避免闪烁） */
+[data-theme] .hero-title,
+[data-theme] .hero-number,
+[data-theme] .about-heading,
+[data-theme] .section-label,
+[data-theme] .hr-rule,
+[data-theme] .tl-title,
+[data-theme] .tl-card-title,
+[data-theme] .tl-meta-num {
+  transition: font-family 0.4s ease, letter-spacing 0.4s ease, color var(--transition);
+}
+
+/* ===================================================================
+   THEME × TIMELINE LAYOUT — 每个主题在 timeline 排版下的特化
+   =================================================================== */
+
+/* ---------- 昼 · Cormorant 古典衬线 ---------- */
+[data-theme="light"] .tl-title,
+[data-theme="light"] .tl-card-title {
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+  font-weight: 700;
+}
+[data-theme="light"] .tl-title em {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+}
+[data-theme="light"] .tl-meta-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* ---------- 纸 · 毛笔手写 ---------- */
+[data-theme="paper"] .tl-title,
+[data-theme="paper"] .tl-card-title {
+  font-family: 'Ma Shan Zheng', 'Kaiti SC', 'STKaiti', 'Noto Serif SC', serif;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+[data-theme="paper"] .tl-title em {
+  font-family: 'Ma Shan Zheng', 'Kaiti SC', serif;
+  font-style: normal;
+  color: var(--accent);
+}
+[data-theme="paper"] .tl-meta-num {
+  font-family: 'Ma Shan Zheng', 'Kaiti SC', serif;
+  transform: rotate(-3deg);
+  display: inline-block;
+}
+[data-theme="paper"] .tl-eyebrow {
+  font-family: 'Noto Serif SC', serif;
+  letter-spacing: 0.3em;
+}
+[data-theme="paper"] .tl-hero-hint {
+  font-family: 'Noto Serif SC', serif;
+}
+[data-theme="paper"] .tl-about-label {
+  font-family: 'Ma Shan Zheng', 'Kaiti SC', serif;
+  background: var(--accent);
+  color: var(--bg);
+  padding: 4px 12px;
+  display: inline-block;
+  letter-spacing: 0.08em;
+  text-transform: none;
+  border-radius: 0;
+  align-self: flex-start;
+}
+[data-theme="paper"] .tl-about-label::after { display: none; }
+[data-theme="paper"] .tl-line {
+  background: repeating-linear-gradient(to bottom, var(--rule) 0 4px, transparent 4px 10px);
+}
+[data-theme="paper"] .tl-dot {
+  border-radius: 0;
+  transform: rotate(45deg);
+  border-width: 1px;
+  background: var(--accent);
+}
+[data-theme="paper"] .tl-card {
+  border-radius: 0;
+  border-left: 3px solid var(--accent);
+}
+[data-theme="paper"] .tl-node.left .tl-card {
+  border-left: none;
+  border-right: 3px solid var(--accent);
+}
+[data-theme="paper"] .tl-card-num {
+  font-family: 'Ma Shan Zheng', 'Kaiti SC', serif;
+  letter-spacing: 0.05em;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* ---------- 海 · JetBrains Mono 终端 ---------- */
+[data-theme="ocean"] .tl-title,
+[data-theme="ocean"] .tl-card-title {
+  font-family: 'JetBrains Mono', 'Noto Sans SC', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+[data-theme="ocean"] .tl-title em {
+  font-style: normal;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 400;
+  color: var(--accent);
+}
+[data-theme="ocean"] .tl-title em::before { content: '<'; color: var(--accent); opacity: 0.6; }
+[data-theme="ocean"] .tl-title em::after { content: '/>'; color: var(--accent); opacity: 0.6; }
+[data-theme="ocean"] .tl-meta-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  text-shadow: 0 0 20px rgba(79,209,197,0.4);
+}
+[data-theme="ocean"] .tl-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.3em;
+}
+[data-theme="ocean"] .tl-subtitle::before { content: '> '; color: var(--accent); }
+[data-theme="ocean"] .tl-hero-hint {
+  font-family: 'JetBrains Mono', monospace;
+}
+[data-theme="ocean"] .tl-about-label {
+  font-family: 'JetBrains Mono', monospace;
+}
+[data-theme="ocean"] .tl-about-label::before {
+  content: '[';
+  color: var(--accent);
+  margin-right: 0.3em;
+}
+[data-theme="ocean"] .tl-about-label::after {
+  content: ' ]';
+  background: none;
+  flex: 0;
+  height: auto;
+  color: var(--accent);
+  margin-left: 0.3em;
+  margin-right: 0.8em;
+}
+[data-theme="ocean"] .tl-line {
+  background: repeating-linear-gradient(to bottom, var(--accent) 0 4px, transparent 4px 10px);
+  opacity: 0.5;
+}
+[data-theme="ocean"] .tl-dot {
+  border-radius: 0;
+  border-width: 2px;
+  box-shadow: 0 0 12px rgba(79,209,197,0.4);
+}
+[data-theme="ocean"] .tl-card {
+  border-radius: 0;
+  position: relative;
+}
+[data-theme="ocean"] .tl-card::before,
+[data-theme="ocean"] .tl-card > .tl-corner {
+  display: none;
+}
+[data-theme="ocean"] .tl-card {
+  border-color: var(--accent);
+  background: rgba(22, 47, 99, 0.5);
+}
+[data-theme="ocean"] .tl-card-num {
+  font-family: 'JetBrains Mono', monospace;
+}
+[data-theme="ocean"] .tl-card-date {
+  font-family: 'JetBrains Mono', monospace;
+}
+[data-theme="ocean"] .tl-card-tags {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+}
+[data-theme="ocean"] .tl-about-text {
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+/* 纸和海的全局 body::before 纹理，也要覆盖到 timeline 布局 */
 </style>
 </head>
 <body>
@@ -821,11 +1884,25 @@ a { color: inherit; text-decoration: none; }
      TOP BAR
      ============================================================ -->
 <nav class="top-bar anim-fade anim-d1">
-  <div class="site-name">生财有术 · 根源场</div>
-  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换明暗模式">
-    <span id="themeIcon">&#9790;</span>
-  </button>
+  <div class="top-bar-left">
+    <div class="site-name">生财有术 · 根源场</div>
+    <div class="layout-switcher" role="group" aria-label="排版切换">
+      <button class="layout-chip" data-layout-chip="magazine" onclick="setLayout('magazine')" title="杂志版">杂志</button>
+      <button class="layout-chip" data-layout-chip="timeline" onclick="setLayout('timeline')" title="时间线版">时间线</button>
+    </div>
+  </div>
+  <div class="theme-switcher" role="group" aria-label="主题切换">
+    <button class="theme-chip" data-theme-chip="dark"  onclick="setTheme('dark')"  title="夜 · 暗金">夜</button>
+    <button class="theme-chip" data-theme-chip="light" onclick="setTheme('light')" title="昼 · 翠">昼</button>
+    <button class="theme-chip" data-theme-chip="paper" onclick="setTheme('paper')" title="纸 · 墨朱">纸</button>
+    <button class="theme-chip" data-theme-chip="ocean" onclick="setTheme('ocean')" title="海 · 青瓷">海</button>
+  </div>
 </nav>
+
+<!-- ============================================================
+     LAYOUT A — 杂志版 (Magazine)
+     ============================================================ -->
+<main class="layout layout-magazine">
 
 <!-- ============================================================
      HERO SECTION
@@ -840,13 +1917,13 @@ a { color: inherit; text-decoration: none; }
       <p class="hero-subtitle anim-fade anim-d3">每周一场深度对话 · 从真实经验中提炼认知精华</p>
     </div>
     <div class="hero-right">
-      <div class="hero-number">15</div>
+      <div class="hero-number" id="heroNumber">16</div>
     </div>
   </div>
   <div class="hero-stats anim-fade anim-d4">
     <div class="stats-inner">
       <div class="stat-item">
-        <div class="stat-value">15</div>
+        <div class="stat-value" id="statCount">16</div>
         <div class="stat-label">场活动</div>
       </div>
       <div class="stat-item">
@@ -878,7 +1955,7 @@ a { color: inherit; text-decoration: none; }
       <div class="deco-line"></div>
     </div>
     <div class="about-content">
-      <p>林根源，朋友都叫他根源。87年生，台湾台北人，现居杭州。拥有14年销售咨询与带团队经验，同时是独立开发者与AI实践者，目前主要赛道为旅游。</p>
+      <p>林根源，朋友都叫他根源。87 年生，中国台湾台北人，现居杭州。两个孩子的爸，一个老婆，家里养了 9 只猫。拥有 14 年销售咨询与带团队经验，同时是独立开发者与 AI 实践者，目前主要赛道为旅游。</p>
       <p>2024年8月起，根源开始在杭州组织每周一场的线下深度交流。不备课、不录播，用最真实的状态分享。每场活动产出超过5万字的逐字稿，涵盖销售方法、AI工具、个人成长、财商思维、表达训练等主题。</p>
       <p>这个网站是所有活动内容的精华归档——每场活动的核心观点、实战方法、参与者提问，都被系统整理成可反复阅读的知识档案。</p>
     </div>
@@ -892,39 +1969,9 @@ a { color: inherit; text-decoration: none; }
      ============================================================ -->
 <section class="section anim-fade anim-d6">
   <div class="section-label">Topics</div>
-  <div class="topics-grid">
-    <div class="topic-tag">
-      <div class="topic-icon">&#9878;</div>
-      <div class="topic-name">销售方法</div>
-    </div>
-    <div class="topic-tag">
-      <div class="topic-icon">&#9881;</div>
-      <div class="topic-name">AI工具</div>
-    </div>
-    <div class="topic-tag">
-      <div class="topic-icon">&#9650;</div>
-      <div class="topic-name">个人成长</div>
-    </div>
-    <div class="topic-tag">
-      <div class="topic-icon">&#9733;</div>
-      <div class="topic-name">五大基本功</div>
-    </div>
-    <div class="topic-tag">
-      <div class="topic-icon">&#9670;</div>
-      <div class="topic-name">财商思维</div>
-    </div>
-    <div class="topic-tag">
-      <div class="topic-icon">&#9998;</div>
-      <div class="topic-name">表达训练</div>
-    </div>
-    <div class="topic-tag">
-      <div class="topic-icon">&#9776;</div>
-      <div class="topic-name">知识库建设</div>
-    </div>
-    <div class="topic-tag">
-      <div class="topic-icon">&#10038;</div>
-      <div class="topic-name">超级个体</div>
-    </div>
+  <p class="topics-hint">鼠标悬停查看每个主题推荐的活动场次</p>
+  <div class="topics-grid" id="topicsGrid">
+    <!-- 由 JS 生成 -->
   </div>
 </section>
 
@@ -956,24 +2003,122 @@ a { color: inherit; text-decoration: none; }
   生财有术线下组局根源场 · 由根源整理，AI辅助排版 · 持续更新中
 </footer>
 
+</main><!-- /layout-magazine -->
+
+<!-- ============================================================
+     LAYOUT B — 时间线版 (Timeline)
+     ============================================================ -->
+<main class="layout layout-timeline" hidden>
+
+  <!-- Hero: 全屏居中 -->
+  <section class="tl-hero">
+    <div class="tl-hero-inner">
+      <div class="tl-eyebrow">生财有术 · 根源场</div>
+      <h1 class="tl-title">每周一场<br><em>深度对话</em></h1>
+      <p class="tl-subtitle">从真实经验中提炼认知精华</p>
+      <div class="tl-hero-meta">
+        <div class="tl-meta-box">
+          <span class="tl-meta-num" id="tlHeroNum">16</span>
+          <span class="tl-meta-sep"></span>
+          <span class="tl-meta-label">场已记录<br>2025 至今</span>
+        </div>
+      </div>
+    </div>
+    <div class="tl-hero-line" aria-hidden="true"></div>
+    <div class="tl-hero-hint">向下 · 沿时间线漫步</div>
+  </section>
+
+  <!-- 垂直时间线主体 -->
+  <section class="tl-body">
+    <div class="tl-wrap">
+      <div class="tl-line" aria-hidden="true"></div>
+      <div class="tl-nodes" id="tlNodes">
+        <!-- 由 JS 渲染 -->
+      </div>
+      <div class="tl-line-end" aria-hidden="true">
+        <div class="tl-line-end-dot"></div>
+        <div class="tl-line-end-label">始于 2025.08.11</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 关于根源 · 嵌入式小卡 -->
+  <section class="tl-about">
+    <div class="tl-about-inner">
+      <div class="tl-about-label">关于根源</div>
+      <p class="tl-about-text">林根源，朋友都叫他根源。87 年生，中国台湾台北人，现居杭州。两个孩子的爸，一个老婆，家里养了 9 只猫。拥有 14 年销售咨询与带团队经验，同时是独立开发者与 AI 实践者，目前主要赛道为旅游。</p>
+      <p class="tl-about-text">2024 年起，根源在杭州组织每周一场的线下深度交流。不备课、不录播，用最真实的状态分享。每场产出超过 5 万字的逐字稿，涵盖销售方法、AI 工具、个人成长、财商思维、表达训练等主题。</p>
+    </div>
+  </section>
+
+  <footer class="tl-footer">
+    <div class="tl-footer-line"></div>
+    生财有术线下组局根源场 · 由根源整理，AI辅助排版 · 持续更新中
+  </footer>
+
+</main><!-- /layout-timeline -->
+
 <script>
 // ===================================================================
-// THEME TOGGLE — syncs across pages via localStorage
+// THEME SYSTEM — 4 themes, syncs across pages via localStorage
+// 夜 dark · 昼 light · 纸 paper · 海 ocean
 // ===================================================================
+const THEMES = ['dark', 'light', 'paper', 'ocean'];
+
 function getTheme() {
-  return localStorage.getItem('sc-theme') || 'dark';
+  const saved = localStorage.getItem('sc-theme');
+  return THEMES.includes(saved) ? saved : 'dark';
 }
+
 function applyTheme(t) {
   document.documentElement.setAttribute('data-theme', t);
-  document.getElementById('themeIcon').innerHTML = t === 'dark' ? '&#9790;' : '&#9728;';
+  document.querySelectorAll('.theme-chip').forEach(chip => {
+    chip.classList.toggle('active', chip.dataset.themeChip === t);
+  });
 }
+
+function setTheme(t) {
+  if (!THEMES.includes(t)) return;
+  localStorage.setItem('sc-theme', t);
+  applyTheme(t);
+}
+
+// 兼容旧入口：原 toggleTheme 现在循环切下一套
 function toggleTheme() {
-  const next = getTheme() === 'dark' ? 'light' : 'dark';
-  localStorage.setItem('sc-theme', next);
-  applyTheme(next);
+  const cur = getTheme();
+  const next = THEMES[(THEMES.indexOf(cur) + 1) % THEMES.length];
+  setTheme(next);
 }
-// 页面加载时应用已保存的主题
+
 applyTheme(getTheme());
+
+// ===================================================================
+// LAYOUT SYSTEM — 2 layouts: magazine · timeline
+// ===================================================================
+const LAYOUTS = ['magazine', 'timeline'];
+
+function getLayout() {
+  const saved = localStorage.getItem('sc-layout');
+  return LAYOUTS.includes(saved) ? saved : 'magazine';
+}
+
+function applyLayout(l) {
+  document.documentElement.setAttribute('data-layout', l);
+  document.querySelectorAll('.layout-chip').forEach(chip => {
+    chip.classList.toggle('active', chip.dataset.layoutChip === l);
+  });
+  document.querySelectorAll('.layout').forEach(m => {
+    m.hidden = !m.classList.contains('layout-' + l);
+  });
+  // 切换到 timeline 时滚动到顶
+  if (l === 'timeline' && window.scrollY > 100) window.scrollTo({top: 0, behavior: 'instant'});
+}
+
+function setLayout(l) {
+  if (!LAYOUTS.includes(l)) return;
+  localStorage.setItem('sc-layout', l);
+  applyLayout(l);
+}
 
 // ===================================================================
 // EVENT DATA
@@ -1034,8 +2179,84 @@ function filterEvents() {
   renderEvents(filtered);
 }
 
+// ===================================================================
+// TOPICS — 每个主题推荐的活动场次（人工策划 + 最相关）
+// ===================================================================
+const TOPICS = [
+  { icon: '&#9878;', name: '销售方法',   sessions: [16, 10, 8, 6, 4] },
+  { icon: '&#9881;', name: 'AI 工具',    sessions: [16, 13, 12] },
+  { icon: '&#9650;', name: '个人成长',   sessions: [14, 13, 7] },
+  { icon: '&#9733;', name: '五大基本功', sessions: [16, 15] },
+  { icon: '&#9670;', name: '财商思维',   sessions: [14, 11, 2] },
+  { icon: '&#9998;', name: '表达训练',   sessions: [15, 13, 6] },
+  { icon: '&#9776;', name: '知识库建设', sessions: [16, 12] },
+  { icon: '&#10038;', name: '超级个体',  sessions: [16, 10, 9] },
+];
+
+function renderTopics() {
+  const grid = document.getElementById('topicsGrid');
+  if (!grid) return;
+  const byNum = Object.fromEntries(events.map(e => [e.num, e]));
+  grid.innerHTML = TOPICS.map(topic => {
+    const items = topic.sessions
+      .map(n => byNum[n])
+      .filter(Boolean)
+      .map(e => `<a href="${e.link}"><span class="pop-num">No.${String(e.num).padStart(2,'0')}</span><span class="pop-title">${e.title}</span></a>`)
+      .join('');
+    const body = items || '<div class="topic-pop-empty">暂无推荐场次</div>';
+    return `
+      <div class="topic-tag">
+        <div class="topic-icon">${topic.icon}</div>
+        <div class="topic-name">${topic.name}</div>
+        <div class="topic-pop" role="tooltip">
+          <div class="topic-pop-title">推荐场次</div>
+          ${body}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ===================================================================
+// 动态 hero 数字与场次计数（来源于 events.length）
+// ===================================================================
+function syncCounts() {
+  const n = events.length;
+  ['heroNumber', 'statCount', 'tlHeroNum'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = n;
+  });
+}
+
+// ===================================================================
+// TIMELINE RENDER — 垂直时间线节点，左右交替
+// ===================================================================
+function renderTimeline() {
+  const nodes = document.getElementById('tlNodes');
+  if (!nodes) return;
+  nodes.innerHTML = events.map((e, i) => {
+    const side = i % 2 === 0 ? 'right' : 'left';
+    const tags = e.tags.slice(0, 4).join(' · ');
+    return `
+      <div class="tl-node ${side}" onclick="window.location.href='${e.link}'">
+        <div class="tl-card">
+          <div class="tl-card-head">
+            <span class="tl-card-num">No.${String(e.num).padStart(2,'0')}</span>
+            <span class="tl-card-date">${e.date}</span>
+          </div>
+          <div class="tl-card-title">${e.title}</div>
+          <div class="tl-card-tags">${tags}</div>
+        </div>
+        <div class="tl-dot"></div>
+      </div>`;
+  }).join('');
+}
+
 // 初始渲染
 renderEvents(events);
+renderTopics();
+renderTimeline();
+syncCounts();
+applyLayout(getLayout());
 </script>
 </body>
 </html>

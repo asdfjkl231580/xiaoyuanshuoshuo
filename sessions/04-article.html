@@ -670,7 +670,7 @@
 <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&uarr;</button>
 
 <script>
-function getTheme(){return localStorage.getItem('sc-theme')||'dark'}
+function getTheme(){var t=localStorage.getItem('sc-theme')||'dark';return (t==='light'||t==='paper')?'light':'dark'}
 function applyTheme(t){
   document.documentElement.setAttribute('data-theme',t);
   document.getElementById('themeIcon').innerHTML=t==='dark'?'&#9790;':'&#9728;';
