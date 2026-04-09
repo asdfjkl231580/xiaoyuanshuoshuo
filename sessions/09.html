@@ -1,22 +1,35 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>第09场 · 混圈与沉淀 — 生财有术线下活动</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
-:root{
+:root{--t:0.3s ease}
+[data-theme="dark"]{
   --bg:#0a0a0a;--bg-1:#111;--bg-2:#1a1a1a;
   --fg:#f5f5f5;--fg-dim:#a8a8a8;--fg-mute:#666;
   --accent:#00d9a3;--accent-2:#00b4d8;
   --line:rgba(255,255,255,.08);--card:rgba(255,255,255,.03);
 }
-html.light{
+[data-theme="light"]{
   --bg:#f5f2ec;--bg-1:#ebe6dc;--bg-2:#ffffff;
   --fg:#1a2b28;--fg-dim:#4a5957;--fg-mute:#8a9694;
   --accent:#2d8a7a;--accent-2:#4a9b8e;
   --line:rgba(45,138,122,.12);--card:rgba(255,255,255,.6);
+}
+[data-theme="paper"]{
+  --bg:#f1ead9;--bg-1:#ebe3cd;--bg-2:#f1ead9;
+  --fg:#3a2818;--fg-dim:#5a4030;--fg-mute:#8a6f5a;
+  --accent:#a83226;--accent-2:#c94a3a;
+  --line:rgba(168,50,38,.16);--card:rgba(168,50,38,.04);
+}
+[data-theme="ocean"]{
+  --bg:#0e2147;--bg-1:#132a55;--bg-2:#16305a;
+  --fg:#d6e6ff;--fg-dim:#a2bde0;--fg-mute:#7a93b8;
+  --accent:#4fd1c5;--accent-2:#63e0d6;
+  --line:rgba(79,209,197,.16);--card:rgba(79,209,197,.04);
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden}
@@ -38,6 +51,14 @@ body{
 .topbar .toggle:hover{color:var(--accent);border-color:var(--accent)}
 .topbar .theme-btn{background:none;border:1px solid var(--line);color:var(--fg-dim);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
 .topbar .theme-btn:hover{color:var(--accent);border-color:var(--accent)}
+.theme-switcher{display:inline-flex;gap:4px;padding:3px;background:var(--card);border:1px solid var(--line);border-radius:14px;transition:all var(--t)}
+.theme-switcher .chip{width:20px;height:20px;border-radius:50%;border:1px solid transparent;cursor:pointer;font-size:0;padding:0;transition:all 0.2s}
+.theme-switcher .chip[data-t="dark"]{background:#0a0a0a;border-color:#333}
+.theme-switcher .chip[data-t="light"]{background:#f5f2ec;border-color:#c8b896}
+.theme-switcher .chip[data-t="paper"]{background:#f1ead9;border-color:#d4c8a8}
+.theme-switcher .chip[data-t="ocean"]{background:#0e2147;border-color:#1e3a66}
+.theme-switcher .chip:hover{transform:scale(1.15)}
+.theme-switcher .chip.active{box-shadow:0 0 0 2px var(--accent)}
 
 .tabs{
   position:fixed;top:52px;left:0;right:0;height:44px;
@@ -193,7 +214,12 @@ body{
   <a href="../index.html" class="back">← 返回</a>
   <div class="title">第09场 · 混圈与沉淀</div>
   <a href="09-article.html" class="toggle">长文</a>
-  <button class="theme-btn" onclick="toggleTheme()">☾</button>
+  <div class="theme-switcher" id="themeSwitcher">
+    <button class="chip" data-t="dark" onclick="setTheme('dark')" title="夜">夜</button>
+    <button class="chip" data-t="light" onclick="setTheme('light')" title="昼">昼</button>
+    <button class="chip" data-t="paper" onclick="setTheme('paper')" title="纸">纸</button>
+    <button class="chip" data-t="ocean" onclick="setTheme('ocean')" title="海">海</button>
+  </div>
 </div>
 
 <div class="tabs" id="tabs"></div>
@@ -362,11 +388,17 @@ function goToSection(si){
   const idx = flatSlides.findIndex(s=>s.si===si);
   if(idx>=0){globalIndex=idx;update()}
 }
-function toggleTheme(){
-  document.documentElement.classList.toggle("light");
-  const btn = document.querySelector(".theme-btn");
-  btn.textContent = document.documentElement.classList.contains("light") ? "☀" : "☾";
+// ====== THEME ======
+const THEMES=['dark','light','paper','ocean'];
+function getTheme(){var t=localStorage.getItem('sc-theme')||'dark';return THEMES.includes(t)?t:'dark'}
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  document.querySelectorAll('#themeSwitcher .chip').forEach(c=>{
+    c.classList.toggle('active',c.getAttribute('data-t')===t);
+  });
 }
+function setTheme(t){localStorage.setItem('sc-theme',t);applyTheme(t)}
+applyTheme(getTheme());
 
 document.addEventListener("keydown",e=>{
   if(e.key==="ArrowLeft") go(-1);

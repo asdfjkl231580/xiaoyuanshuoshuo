@@ -60,6 +60,57 @@
     --bq-bg: rgba(26,138,125,0.05);
   }
 
+  /* === Paper theme (纸卷 · 朱砂) === */
+  [data-theme="paper"] {
+    --bg: #f1ead9;
+    --bg-bar: rgba(241,234,217,0.92);
+    --bg-hero-a: #ebe3cd;
+    --bg-hero-b: #f1ead9;
+    --bg-glow: rgba(168,50,38,0.08);
+    --bg-toc: #ebe3cd;
+    --bg-card: #ebe3cd;
+    --bg-info: #ebe3cd;
+    --border: #d4c8a8;
+    --accent: #a83226;
+    --accent-bg: rgba(168,50,38,0.08);
+    --accent-bg2: rgba(168,50,38,0.18);
+    --accent-border: rgba(168,50,38,0.2);
+    --accent-border2: rgba(168,50,38,0.3);
+    --text: #5a4030;
+    --text-heading: #3a2818;
+    --text-sub: #4a3420;
+    --text-quote: #4a3420;
+    --text-muted: #8a6f5a;
+    --text-dim: #a08f76;
+    --bq-bg: rgba(168,50,38,0.05);
+  }
+
+  /* === Ocean theme (深海 · 青光) === */
+  [data-theme="ocean"] {
+    --bg: #0e2147;
+    --bg-bar: rgba(14,33,71,0.92);
+    --bg-hero-a: #16305a;
+    --bg-hero-b: #0e2147;
+    --bg-glow: rgba(79,209,197,0.1);
+    --bg-toc: #132a55;
+    --bg-card: #16305a;
+    --bg-info: #132a55;
+    --border: #1e3a66;
+    --accent: #4fd1c5;
+    --accent-bg: rgba(79,209,197,0.1);
+    --accent-bg2: rgba(79,209,197,0.2);
+    --accent-border: rgba(79,209,197,0.2);
+    --accent-border2: rgba(79,209,197,0.3);
+    --text: #a2bde0;
+    --text-heading: #d6e6ff;
+    --text-sub: #b8cfee;
+    --text-quote: #b8cfee;
+    --text-muted: #7a93b8;
+    --text-dim: #5a7290;
+    --bq-bg: rgba(79,209,197,0.06);
+  }
+
+
   body {
     font-family: 'Noto Sans SC', -apple-system, sans-serif;
     background: var(--bg);
@@ -123,6 +174,28 @@
     transition: all var(--t);
   }
   .theme-btn:hover { transform: scale(1.1); }
+
+  /* === 4-theme switcher === */
+  .theme-switcher{
+    display:inline-flex;gap:4px;padding:3px;
+    background:var(--bg-card,var(--bg));
+    border:1px solid var(--border);border-radius:14px;
+    transition:background var(--t),border-color var(--t);
+  }
+  .theme-switcher .chip{
+    width:20px;height:20px;border-radius:50%;border:1px solid transparent;
+    cursor:pointer;font-size:0;padding:0;
+    transition:all 0.2s;
+  }
+  .theme-switcher .chip[data-t="dark"]{background:#0a0a08;border-color:#2a2218}
+  .theme-switcher .chip[data-t="light"]{background:#f5faf8;border-color:#c8ddd6}
+  .theme-switcher .chip[data-t="paper"]{background:#f1ead9;border-color:#d4c8a8}
+  .theme-switcher .chip[data-t="ocean"]{background:#0e2147;border-color:#1e3a66}
+  .theme-switcher .chip:hover{transform:scale(1.15)}
+  .theme-switcher .chip.active{
+    box-shadow:0 0 0 2px var(--accent);
+  }
+
 
   /* === Hero === */
   .hero {
@@ -425,7 +498,12 @@
   <span class="session-title">第12场 · 私域转化与个人产品</span>
   <div class="right-btns">
     <a href="../downloads/第12场-精华整理.md" download class="download-btn">下载 .md</a>
-    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="切换明暗模式"><span id="themeIcon"></span></button>
+    <div class="theme-switcher" id="themeSwitcher">
+      <button class="chip" data-t="dark" onclick="setTheme('dark')" title="夜">夜</button>
+      <button class="chip" data-t="light" onclick="setTheme('light')" title="昼">昼</button>
+      <button class="chip" data-t="paper" onclick="setTheme('paper')" title="纸">纸</button>
+      <button class="chip" data-t="ocean" onclick="setTheme('ocean')" title="海">海</button>
+    </div>
   </div>
 </div>
 
@@ -764,16 +842,15 @@
 
 <script>
 // ====== THEME ======
-function getTheme(){var t=localStorage.getItem('sc-theme')||'dark';return (t==='light'||t==='paper')?'light':'dark'}
+const THEMES=['dark','light','paper','ocean'];
+function getTheme(){var t=localStorage.getItem('sc-theme')||'dark';return THEMES.includes(t)?t:'dark'}
 function applyTheme(t){
   document.documentElement.setAttribute('data-theme',t);
-  document.getElementById('themeIcon').innerHTML = t==='dark'?'&#9790;':'&#9728;';
+  document.querySelectorAll('#themeSwitcher .chip').forEach(c=>{
+    c.classList.toggle('active',c.getAttribute('data-t')===t);
+  });
 }
-function toggleTheme(){
-  const next=getTheme()==='dark'?'light':'dark';
-  localStorage.setItem('sc-theme',next);
-  applyTheme(next);
-}
+function setTheme(t){localStorage.setItem('sc-theme',t);applyTheme(t)}
 applyTheme(getTheme());
 
 // Back to top visibility
