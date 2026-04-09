@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>第05场 · 个体创业与私域转化 — 生财有术线下活动</title>
+<meta name="description" content="生财有术第05场线下活动精华：自我介绍与社交、关系哲学、个体创业能力、流量转名单、线上仪表、收费规则、陪诊案例、销售框架">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+
+  :root{--t:0.35s ease}
+
+  /* === Dark theme === */
+  [data-theme="dark"]{
+    --bg:#0a0a08;
+    --bg-bar:rgba(10,10,8,0.95);
+    --bg-tabs:rgba(18,16,12,0.95);
+    --bg-cover-a:#1a1510;--bg-cover-b:#0a0a08;
+    --bg-glow:rgba(212,160,74,0.08);
+    --bg-card:#12100c;
+    --border:#2a2218;--border-tab:#1a1510;
+    --accent:#d4a04a;
+    --accent-bg:rgba(212,160,74,0.12);
+    --accent-border:rgba(212,160,74,0.2);
+    --accent-bg2:rgba(212,160,74,0.15);
+    --accent-border2:rgba(212,160,74,0.3);
+    --text:#f0e6d6;
+    --text-quote:#d8cfc0;
+    --text-list:#c8c0b0;
+    --text-muted:#8a7d6d;
+    --text-dim:#5a5040;
+    --text-hint:#3a3020;
+    --quote-mark:rgba(212,160,74,0.2);
+    --dot-bg:#2a2218;
+    --toggle-icon:'\263E';
+  }
+
+  /* === Light theme === */
+  [data-theme="light"]{
+    --bg:#f5faf8;
+    --bg-bar:rgba(245,250,248,0.95);
+    --bg-tabs:rgba(234,244,240,0.95);
+    --bg-cover-a:#e4f0ec;--bg-cover-b:#f5faf8;
+    --bg-glow:rgba(26,138,125,0.06);
+    --bg-card:#ffffff;
+    --border:#c8ddd6;--border-tab:#d0e0da;
+    --accent:#1a8a7d;
+    --accent-bg:rgba(26,138,125,0.08);
+    --accent-border:rgba(26,138,125,0.18);
+    --accent-bg2:rgba(26,138,125,0.1);
+    --accent-border2:rgba(26,138,125,0.25);
+    --text:#1a2e28;
+    --text-quote:#2a4a42;
+    --text-list:#3a5a52;
+    --text-muted:#7a9a90;
+    --text-dim:#a0b8b0;
+    --text-hint:#c0d4cc;
+    --quote-mark:rgba(26,138,125,0.15);
+    --dot-bg:#b8d0c8;
+    --toggle-icon:'\2600';
+  }
+
+  html,body{height:100%;overflow:hidden;font-family:'Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--text);transition:background var(--t),color var(--t)}
+
+  /* === Top bar === */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:var(--bg-bar);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 1.2rem;height:44px;
+    transition:background var(--t),border-color var(--t);
+  }
+  .topbar .back{color:var(--text-muted);font-size:0.82rem;text-decoration:none;display:flex;align-items:center;gap:4px;transition:color var(--t)}
+  .topbar .back:hover{color:var(--accent)}
+  .topbar .title{color:var(--text);font-size:0.82rem;font-weight:600;transition:color var(--t)}
+  .topbar .right-btns{display:flex;align-items:center;gap:8px}
+  .topbar .mode-toggle{
+    font-size:0.72rem;padding:4px 12px;border-radius:5px;
+    background:var(--accent-bg);color:var(--accent);
+    border:1px solid var(--accent-border);cursor:pointer;text-decoration:none;
+    transition:all var(--t);
+  }
+  .topbar .mode-toggle:hover{background:var(--accent-bg2)}
+  .theme-btn{
+    width:30px;height:30px;border-radius:50%;
+    background:var(--accent-bg);border:1px solid var(--accent-border);
+    color:var(--accent);font-size:0.95rem;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:all var(--t);
+  }
+  .theme-btn:hover{transform:scale(1.1)}
+
+  /* === Section tabs === */
+  .tabs{
+    position:fixed;top:44px;left:0;right:0;z-index:90;
+    background:var(--bg-tabs);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border-tab);
+    display:flex;overflow-x:auto;padding:0 0.8rem;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    transition:background var(--t),border-color var(--t);
+  }
+  .tabs::-webkit-scrollbar{display:none}
+  .tabs button{
+    flex-shrink:0;padding:10px 14px;font-size:0.72rem;
+    background:none;border:none;color:var(--text-dim);
+    cursor:pointer;font-family:inherit;white-space:nowrap;
+    border-bottom:2px solid transparent;transition:all 0.2s;
+  }
+  .tabs button.active{color:var(--accent);border-bottom-color:var(--accent)}
+  .tabs button:hover{color:var(--text-muted)}
+
+  /* === Slide viewport === */
+  .viewport{position:fixed;top:82px;left:0;right:0;bottom:60px;overflow:hidden}
+  .slide-track{display:flex;height:100%;transition:transform 0.4s cubic-bezier(0.25,0.1,0.25,1)}
+
+  /* === Each slide === */
+  .slide{
+    flex-shrink:0;width:100vw;height:100%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:2rem 2.5rem;text-align:center;position:relative;
+    background:var(--bg);transition:background var(--t);
+  }
+  .slide.cover{
+    background:linear-gradient(160deg,var(--bg-cover-a) 0%,var(--bg-cover-b) 60%);
+  }
+  .slide.cover::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 50% 80%,var(--bg-glow) 0%,transparent 55%);
+    pointer-events:none;
+  }
+
+  .slide-inner{max-width:640px;width:100%;position:relative;z-index:1}
+  .slide-num{font-size:0.65rem;color:var(--text-dim);letter-spacing:3px;margin-bottom:0.8rem;font-weight:500;transition:color var(--t)}
+  .part-label{
+    display:inline-block;font-size:0.7rem;padding:5px 16px;border-radius:20px;
+    background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent-border);
+    margin-bottom:1.2rem;letter-spacing:2px;transition:all var(--t);
+  }
+  .slide-title{font-size:1.6rem;font-weight:900;color:var(--text);line-height:1.4;margin-bottom:1rem;transition:color var(--t)}
+  @media(min-width:768px){.slide-title{font-size:2rem}}
+  .slide-title .accent{color:var(--accent);transition:color var(--t)}
+
+  .slide-quote{
+    font-size:1.15rem;line-height:1.9;color:var(--text-quote);
+    margin-bottom:1.2rem;position:relative;padding:0 0.5rem;transition:color var(--t);
+  }
+  @media(min-width:768px){.slide-quote{font-size:1.3rem}}
+  .slide-quote::before{
+    content:'\201C';position:absolute;top:-1.2rem;left:-0.3rem;
+    font-size:3rem;color:var(--quote-mark);font-family:Georgia,serif;line-height:1;transition:color var(--t);
+  }
+  .slide-quote strong{color:var(--accent);font-weight:700}
+
+  .slide-context{font-size:0.82rem;line-height:1.8;color:var(--text-muted);max-width:520px;margin:0 auto;transition:color var(--t)}
+
+  .slide-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:1.2rem}
+  .slide-tags span{font-size:0.72rem;padding:5px 14px;border-radius:6px;background:var(--bg-cover-a);color:var(--text-muted);border:1px solid var(--border);transition:all var(--t)}
+
+  .slide-products{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:1rem auto 0;max-width:520px;text-align:left}
+  .slide-products .sp{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;transition:all var(--t)}
+  .slide-products .sp .sp-name{font-size:0.82rem;font-weight:700;color:var(--accent);margin-bottom:2px;transition:color var(--t)}
+  .slide-products .sp .sp-desc{font-size:0.7rem;color:var(--text-muted);line-height:1.5;transition:color var(--t)}
+  @media(max-width:480px){.slide-products{grid-template-columns:1fr}}
+
+  .slide-list{text-align:left;max-width:480px;margin:0.8rem auto 0;list-style:none}
+  .slide-list li{font-size:0.92rem;color:var(--text-list);line-height:1.8;padding-left:1.4rem;position:relative;margin-bottom:0.3rem;transition:color var(--t)}
+  .slide-list li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-weight:700}
+  .slide-list li strong{color:var(--accent)}
+
+  .slide-steps{text-align:left;max-width:500px;margin:0.8rem auto 0}
+  .slide-steps .step{display:flex;gap:12px;margin-bottom:0.8rem;align-items:flex-start}
+  .slide-steps .step-num{
+    flex-shrink:0;width:28px;height:28px;border-radius:50%;
+    background:var(--accent-bg2);border:1px solid var(--accent-border2);
+    color:var(--accent);font-size:0.78rem;font-weight:700;
+    display:flex;align-items:center;justify-content:center;margin-top:2px;transition:all var(--t);
+  }
+  .slide-steps .step-text{font-size:0.88rem;color:var(--text-list);line-height:1.7;transition:color var(--t)}
+  .slide-steps .step-text strong{color:var(--accent)}
+
+  .questioner-badge{
+    display:inline-block;font-size:0.7rem;padding:3px 12px;border-radius:4px;
+    background:var(--accent-bg);color:var(--accent);margin-bottom:0.8rem;transition:all var(--t);
+  }
+
+  /* === Bottom bar === */
+  .bottombar{
+    position:fixed;bottom:0;left:0;right:0;height:60px;
+    background:var(--bg-bar);backdrop-filter:blur(8px);
+    border-top:1px solid var(--border-tab);
+    display:flex;align-items:center;justify-content:center;
+    gap:1.5rem;z-index:90;padding:0 1rem;
+    transition:background var(--t),border-color var(--t);
+  }
+  .nav-btn{
+    width:40px;height:40px;border-radius:50%;
+    background:var(--accent-bg);border:1px solid var(--accent-border);
+    color:var(--accent);font-size:1.1rem;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:all 0.2s;flex-shrink:0;
+  }
+  .nav-btn:hover{background:var(--accent-bg2)}
+  .nav-btn:disabled{opacity:0.3;cursor:default}
+  .dots{display:flex;gap:6px;align-items:center;overflow-x:auto;max-width:calc(100vw - 160px);scrollbar-width:none}
+  .dots::-webkit-scrollbar{display:none}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--dot-bg);flex-shrink:0;transition:all 0.3s;cursor:pointer}
+  .dot.active{background:var(--accent);width:24px;border-radius:4px}
+  .slide-counter{font-size:0.72rem;color:var(--text-dim);flex-shrink:0;min-width:50px;text-align:center;transition:color var(--t)}
+
+  .key-hint{position:fixed;bottom:68px;left:50%;transform:translateX(-50%);font-size:0.65rem;color:var(--text-hint);pointer-events:none;transition:color var(--t)}
+  @media(max-width:768px){.key-hint{display:none}}
+  @media(max-width:640px){.topbar .title{display:none}.topbar{padding:0 0.8rem}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html" class="back">&larr; 目录</a>
+  <span class="title">第05场 · 个体创业与私域转化</span>
+  <div class="right-btns">
+    <a href="05-article.html" class="mode-toggle">文章版</a>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="切换明暗模式"><span id="themeIcon"></span></button>
+  </div>
+</div>
+
+<div class="tabs" id="tabs"></div>
+
+<div class="viewport" id="viewport">
+  <div class="slide-track" id="track"></div>
+</div>
+
+<div class="bottombar">
+  <button class="nav-btn" id="prevBtn" onclick="go(-1)">&larr;</button>
+  <div class="dots" id="dots"></div>
+  <span class="slide-counter" id="counter"></span>
+  <button class="nav-btn" id="nextBtn" onclick="go(1)">&rarr;</button>
+</div>
+<div class="key-hint">&larr; &rarr; 方向键翻页 &nbsp;|&nbsp; 数字键切换章节</div>
+
+<script>
+// ====== THEME ======
+function getTheme(){return localStorage.getItem('sc-theme')||'dark'}
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('themeIcon').innerHTML = t==='dark'?'&#9790;':'&#9728;';
+}
+function toggleTheme(){
+  const next=getTheme()==='dark'?'light':'dark';
+  localStorage.setItem('sc-theme',next);
+  applyTheme(next);
+}
+applyTheme(getTheme());
+
+// ====== SLIDE DATA ======
+const sections = [
+  {
+    id:'part01', label:'社交原则',
+    slides:[
+      {type:'cover',title:'自我介绍<br>与<span class="accent">线下社交</span>',quote:'参加活动得带两个东西回去：两个人和一件事。',context:'第05场 · 2024年10月'},
+      {title:'自我介绍<span class="accent">三要素</span>',quote:'一分钟之内要说精准，里面得包含几个东西。',list:['<strong>名字</strong> — 微信名、本名、朋友怎么称呼你的，三个统一最好','<strong>年纪和老家</strong> — 像我87年的，台湾来的。老家不能说"江西的"，要说到哪个市','<strong>项目</strong> — 3到5句话快速说完，越精准越好']},
+      {title:'外表<span class="accent">记忆点</span>',quote:'大多数人是视觉型动物，外表是独一无二的。如果你的外表让别人一听就发现"我记得了"，之后聊天就能产生很好的共鸣。',context:'20秒之内说完——别人怎么称呼你，以及身上有什么记忆点。可以是发型、眼镜、衣服颜色，什么都好。'},
+      {title:'名字要<span class="accent">念三次</span>',quote:'大家好，我叫苏荣坤，我的微信名挺特别的——叫苏荣坤，朋友都叫我荣坤。名字念了六次，大家就记住了。',context:'如果你的微信名是英文，要习惯性拼一下。如果有特别寓意，说一下会让别人印象很深刻。'},
+      {title:'带两个人<br>带<span class="accent">一件事</span>',quote:'一次学到10件事，最后回到家发现没有一件事可以拿来用。所以拿一个就够——我觉得可以马上实用的、马上落地的。',context:'第一个带两个人——左边跟右边。第二个带回一件事。太多等于没有。'}
+    ]
+  },
+  {
+    id:'part02', label:'关系哲学',
+    slides:[
+      {type:'cover',title:'关系是<br><span class="accent">人生的定义</span>',quote:'关系越好，你会发现人生是会越幸福的。'},
+      {title:'生命的定义<br>在于<span class="accent">关系</span>',quote:'关系有可能是我跟爸妈的关系、跟孩子的关系、跟另一半的关系、跟朋友的关系。好的关系可以让未来人生的开心程度完全不一样。',context:'我的对标是我爷爷——人际关系特别差，每天心情不好。我爸做生意，人际关系特别好。这个比对让我知道我要什么样的人生。'},
+      {title:'人生需要<span class="accent">平衡</span>',quote:'最后能够成为优秀的那个人，一定是平衡的。精神力到了1000分，体力只有50分，就晋升不了更高。',list:['<strong>自己的时间</strong> — 有属于自己的独处时光','<strong>正反馈</strong> — 工作中有人报名、有人回应就很快乐','<strong>爱情与家庭</strong> — 但凡少一个就像缺了个器官','<strong>社交与分享</strong> — 有人可以聊天、分享']},
+      {title:'处理<span class="accent">不好搞</span>的人',quote:'格局高跟格局低的定义是你能不能包容他。练的样板越多，你就越知道怎么跟不同的人相处。',steps:[{n:'1',text:'<strong>当练习</strong> — 遇到不好搞的人，就是练习的开始'},{n:'2',text:'<strong>提高认知</strong> — 无法接受他的行为，可能是我的认知不够'},{n:'3',text:'<strong>格局提升</strong> — 当你比他高的时候，不顺眼就不见了'}]}
+    ]
+  },
+  {
+    id:'part03', label:'个体创业',
+    slides:[
+      {type:'cover',title:'个体创业者<br>的<span class="accent">四大能力</span>',quote:'博主跟生意是不同的东西。会输出知识跟会卖知识是不一样的。',questioner:'闪闪问：有涨粉能力但不知道怎么变现'},
+      {title:'IP ≠ <span class="accent">变现</span>',quote:'IP得拆成两块——一块叫IP，一块叫变现。所有只要进到生意这个环节，就一定是买卖。',context:'红利期可以无脑接商单，但过了一年两年，商单一定会给那些更专业的人。'},
+      {title:'四大<span class="accent">必备能力</span>',steps:[{n:'1',text:'<strong>流量能力</strong> — 必须能在互联网平台让大家看见你有某项能力'},{n:'2',text:'<strong>转化能力</strong> — 有人来问的时候，要知道怎么把东西卖给他'},{n:'3',text:'<strong>持续输出</strong> — 主题有第一二三阶段，不能交付完就不做了'},{n:'4',text:'<strong>服务能力</strong> — 最少要知道怎么跟用户沟通和聊天'}]},
+      {title:'个体创业者<br>的<span class="accent">最大好处</span>',quote:'自由——我可以决定什么时候干事情，什么时候休息。五六日三天我不工作，这就是我的自由度。',context:'没有办公室成本、人员成本。多数案子找学生一起分成，钱进来之后再分——不属于先投的成本。'},
+      {title:'母婴赛道<br><span class="accent">变现思路</span>',quote:'你可以在群里分享从今天到这一天，每天的备孕心得。如果你在备孕过程最好保持运动——运动是为了在怀孕过程中身体有足够力量撑住孩子。',context:'怀孕妈妈在公司没几个人可以分享。如果你是最懂她的闺蜜，养8个月客户就是你的忠实客户。'}
+    ]
+  },
+  {
+    id:'part04', label:'流量转名单',
+    slides:[
+      {type:'cover',title:'流量到名单<br>的<span class="accent">转化路径</span>',quote:'进到微信通讯录里面还不叫名单。终于进来了，你不理他，那你那么认真把人搞进来干啥呢？'},
+      {title:'写一本<span class="accent">名单本</span>',quote:'当你把名字写下来，你的印象会比纯用电脑打更深刻。当你对名字深刻了，就会不断告诉自己，接下来要开启什么话题。',context:'假设豌豆在墨西哥，我后面写了地区。看到墨西哥相关文章就给他发——跟他就产生了关联。'},
+      {title:'筛选名单<br><span class="accent">四步流程</span>',steps:[{n:'1',text:'<strong>问名字</strong> — "我能知道怎么称呼你吗？"连怎么喊都不知道，挺怪的'},{n:'2',text:'<strong>问来源</strong> — "你是看哪一篇文章来的？"能说出来才是真有兴趣'},{n:'3',text:'<strong>提供两种选择</strong> — 付费群9.9筛选 or 免费资料，分类名单'},{n:'4',text:'<strong>第二天追踪</strong> — 确认看了没，再做一次触达'}]},
+      {title:'三种人<br>三种<span class="accent">处理方式</span>',quote:'筛选出三种人：资料也不要的、领了资料但不进群的、既领资料又进群的。我一定经营第三种。',context:'第一种领了就算了。第二种可能隔天追踪。第三种进群后可以多一层运营——从3个到4个到5个到10个，群到30人停，开二群。'},
+      {title:'一天处理量<br>的<span class="accent">极限</span>',quote:'50个以内是我可以处理的基本量。不要一次性处理——早上干十个，下午干十个，晚上再干十个。',context:'就像带孩子，从早到晚你会烦。早上带1小时、下午1小时、晚上2小时，就不会觉得那么烦。'},
+      {title:'与其搞流量<br>不如翻<span class="accent">通讯录</span>',quote:'你还不如把通讯录里没聊过天的人一个个拉出来。他好歹进到你的微信里了不是吗？',context:'跟他说"我发现我们是去年2月加的好友，很抱歉没好好经营你。可以给我个机会重新认识你一次吗？"这批人转化率20%。'}
+    ]
+  },
+  {
+    id:'part05', label:'线上仪表',
+    slides:[
+      {type:'cover',title:'线上仪表<br>与<span class="accent">信任感建设</span>',quote:'线下的信任感是仪表、专业度、讨人喜欢。线上也有仪表——头像、名字、个性签名、朋友圈。'},
+      {title:'头像要有<span class="accent">故事</span>',quote:'一个女生的头像是一只猫在阳台看天空。她说"另一半是一只鲸鱼，我截掉了——我不想让大家知道我是有野心的人。"我一次就记住她了。',context:'颜色尽量亮一点，最少会让对方好奇。头像太普通，线上就白瞎了。'},
+      {title:'朋友圈<br>不要只发<span class="accent">业务</span>',quote:'那个人想跟你做生意，是因为"我发现你的生活是我所期待的"。他们想找的是一个可以跟随的人，而不是一个纯粹的保险人。',context:'做保险、微商、贷款的人，朋友圈天天发业务——利率下调了、单子快过期了。一天七条全是保险的，谁理你？'},
+      {title:'聊天要有<span class="accent">前戏</span>',quote:'如果你的聊天没有前戏，怎么让对方觉得你这个人是对的人？所有的前情提要，就是让对方可以对你有印象。',steps:[{n:'1',text:'<strong>了解对方</strong> — 先问名字、头像故事，让他感觉被尊重'},{n:'2',text:'<strong>建立交情</strong> — 每天聊三五句，持续一周'},{n:'3',text:'<strong>小忙请求</strong> — "你可以帮我朋友圈点个赞吗？"有交情就点了'}]}
+    ]
+  },
+  {
+    id:'part06', label:'收费规则',
+    slides:[
+      {type:'cover',title:'收费规则<br>与<span class="accent">交付体系</span>',quote:'当我把规则讲清楚的那一刻，我们之间的关系就是平等的。'},
+      {title:'谈钱可以快<br>收钱要<span class="accent">慢</span>',quote:'我一定会发一段确认词——产品是什么、交付机制是什么、开始和结束时间。这叫收钱的规则。',context:'不是所有客户都要接。一开始就进高单价，如果这个人不对，你交付三个月会觉得很烦。'},
+      {title:'产品<span class="accent">分六层</span>',list:['<strong>三百多</strong> — 仅提供内容输出，给认知就足够了','<strong>四五千</strong> — 完整解决方案，直播交付','<strong>三万多</strong> — 年度交付加陪伴，文字到语音到直播','<strong>十万+</strong> — 一对一交付','<strong>二十五万</strong> — 高端教练，客户一年找我四次'],context:'金额越低天天烦你，金额越高不耽误你时间。能做高单价肯定做高单价好。'},
+      {title:'不退费<span class="accent">原则</span>',quote:'我的所有费用不退费，一开始就说清楚。你要能接受你就付。收20万的产品我都不退费的。',context:'规则说得越清晰，交付就越踏实。如果对方的过失不退；如果是我的过失，我一定退——第一次开课有16人我没拉群进来，我就给每个人退了。'},
+      {title:'付小钱与付大钱<br><span class="accent">逻辑不同</span>',quote:'有些人付几百块就是为了结交你这个人，不是为了买课。他们寻求的是——当我有需要找你的时候，你要在。',context:'我的高端产品有50%是这类用户。他们一年找我四次，每次关系到几百万的生意。从义务关系慢慢变成朋友关系。'}
+    ]
+  },
+  {
+    id:'part07', label:'陪诊案例',
+    slides:[
+      {type:'cover',title:'陪诊项目<br><span class="accent">案例分析</span>',quote:'不要小看副业每月创造3000或5000的纯利润。一个月5000，一年就是6万。',questioner:'糯米问：陪诊项目怎么做大'},
+      {title:'务实的<span class="accent">目标设定</span>',quote:'很多人副业做不稳定，是因为不知道这个钱赚来干嘛。目的越明确，越能稳定赚到。',context:'一个妈妈说多一万会先留孩子学费。她们明确知道钱的去处——所以越能稳定赚到。年轻人运气好多赚一万，还是花光了。'},
+      {title:'算清楚<span class="accent">数据</span>',quote:'目标每月5000，一单赚20块，等于需要250单。250单就得算流量——写文章能进多少人，不够就再写小红书、抖音。',context:'先清晰到年，再清晰到月。最怕数据模糊——"一年赚50到70万"差了20万。'},
+      {title:'服务<span class="accent">分三档</span>',quote:'就跟按脚一样——199技师、399名牌技师、599明星技师。陪诊也可以分60的、100的、300的。',context:'陪诊的重点不是跑完医院流程，而是陪着家人聊天，让他心情好，让他觉得"这年轻人真不错"。'},
+      {title:'千万不要<br>轻易辞<span class="accent">主业</span>',quote:'主业辞了就没安全感了，赚的钱反而少了。主业一天8小时，副业一天3小时你会很珍惜。主业一砍掉还有11小时——你就不珍惜了。',context:'但凡今年明年谁砍主业，除非家里存款够多。做副业有安全感，着急就容易出错。'}
+    ]
+  },
+  {
+    id:'part08', label:'销售框架',
+    slides:[
+      {type:'cover',title:'销售的系统<br>与<span class="accent">框架思维</span>',quote:'所有的问题在解决之前，一定先归类到它属于什么架构。没有架构，我们就有情绪。'},
+      {title:'销售的<span class="accent">六个阶段</span>',quote:'最怕他没有名单，结果问"老师你告诉我怎么成交"。我不会这么解——一定先问你的名单在哪里。',steps:[{n:'1',text:'<strong>列名单</strong> — 你要聊哪十个人，不能随机找'},{n:'2',text:'<strong>邀约</strong> — 主动触达，经营关系'},{n:'3',text:'<strong>商品展示</strong> — 先确认预算和需求再介绍产品'},{n:'4',text:'<strong>成交</strong> — 不要直接回答客户问题，先问两句'}]},
+      {title:'确认预算<br>再<span class="accent">介绍产品</span>',quote:'如果对方阈值是1000，你开口就3000，尴尬了。如果他的阈值是3000，我的产品5000——"预算得往上拉高一点，你介意我介绍一下吗？"',context:'就像去买衣服，带着优衣库的预算走进名牌店，他怎么可能花钱？所以得先确认预算。'},
+      {title:'7到8次<span class="accent">开口法则</span>',quote:'一个人的成交你要开口7到8次。如果8次都没成交，这个人放弃，一辈子当朋友。',context:'100个名单先跑完一轮，全跑完一定会有20到30个聊得不错的。如果不跑完，这20到30个你找不出来。'},
+      {title:'经营关系<br>是<span class="accent">必然的</span>',quote:'但凡要卖你就得经营关系，这变得是必然的。个体创业者就必须得会。我们的工作相对自由，结果还不主动——连门口揽客都不做，谁进去消费？',context:'一天十个触达，最多三个跟你聊。聊天不需要花很多时间——经过你在的城市，发个讯息聊两分钟就够了。'}
+    ]
+  }
+];
+
+// ====== STATE ======
+let currentSection=0, currentSlide=0;
+
+function renderTabs(){
+  document.getElementById('tabs').innerHTML=sections.map((s,i)=>
+    `<button class="${i===currentSection?'active':''}" onclick="switchSection(${i})">${s.label}</button>`
+  ).join('');
+}
+
+function renderSlides(){
+  const s=sections[currentSection];
+  document.getElementById('track').innerHTML=s.slides.map((sl,i)=>{
+    let cls='slide '+(sl.type==='cover'?'cover':'content');
+    let h=`<div class="${cls}"><div class="slide-inner">`;
+    h+=`<div class="slide-num">${s.label} · ${i+1}/${s.slides.length}</div>`;
+    if(sl.type==='cover') h+=`<div class="part-label">PART 0${currentSection+1}</div>`;
+    if(sl.questioner) h+=`<div class="questioner-badge">${sl.questioner}</div>`;
+    if(sl.title) h+=`<h2 class="slide-title">${sl.title}</h2>`;
+    if(sl.quote) h+=`<div class="slide-quote">${sl.quote}</div>`;
+    if(sl.list) h+=`<ul class="slide-list">${sl.list.map(l=>`<li>${l}</li>`).join('')}</ul>`;
+    if(sl.steps) h+=`<div class="slide-steps">${sl.steps.map(st=>`<div class="step"><div class="step-num">${st.n}</div><div class="step-text">${st.text}</div></div>`).join('')}</div>`;
+    if(sl.products) h+=`<div class="slide-products">${sl.products.map(p=>`<div class="sp"><div class="sp-name">${p.name}</div><div class="sp-desc">${p.desc}</div></div>`).join('')}</div>`;
+    if(sl.context) h+=`<p class="slide-context">${sl.context}</p>`;
+    return h+`</div></div>`;
+  }).join('');
+  document.getElementById('dots').innerHTML=s.slides.map((_,i)=>
+    `<div class="dot ${i===currentSlide?'active':''}" onclick="goTo(${i})"></div>`
+  ).join('');
+  updatePosition(false);
+}
+
+function updatePosition(anim=true){
+  const t=document.getElementById('track');
+  t.style.transition=anim?'transform 0.4s cubic-bezier(0.25,0.1,0.25,1)':'none';
+  t.style.transform=`translateX(-${currentSlide*100}vw)`;
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));
+  const total=sections[currentSection].slides.length;
+  document.getElementById('counter').textContent=`${currentSlide+1} / ${total}`;
+  document.getElementById('prevBtn').disabled=(currentSlide===0&&currentSection===0);
+  document.getElementById('nextBtn').disabled=(currentSlide===total-1&&currentSection===sections.length-1);
+  const ad=document.querySelector('.dot.active');if(ad)ad.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+}
+
+function switchSection(i){currentSection=i;currentSlide=0;renderTabs();renderSlides()}
+
+function go(dir){
+  const total=sections[currentSection].slides.length, next=currentSlide+dir;
+  if(next>=0&&next<total){currentSlide=next;updatePosition()}
+  else if(dir>0&&currentSection<sections.length-1){currentSection++;currentSlide=0;renderTabs();renderSlides();const at=document.querySelector('.tabs button.active');if(at)at.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}
+  else if(dir<0&&currentSection>0){currentSection--;currentSlide=sections[currentSection].slides.length-1;renderTabs();renderSlides();const at=document.querySelector('.tabs button.active');if(at)at.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}
+}
+function goTo(i){currentSlide=i;updatePosition()}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown')go(1);
+  else if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1);
+  else if(e.key>='1'&&e.key<='8')switchSection(parseInt(e.key)-1);
+});
+
+let touchX=0,swiping=false;
+const vp=document.getElementById('viewport');
+vp.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX;swiping=true},{passive:true});
+vp.addEventListener('touchmove',e=>{if(swiping&&Math.abs(e.touches[0].clientX-touchX)>10)e.preventDefault()},{passive:false});
+vp.addEventListener('touchend',e=>{if(!swiping)return;swiping=false;const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>50)go(dx<0?1:-1)});
+
+renderTabs();renderSlides();
+</script>
+</body>
+</html>

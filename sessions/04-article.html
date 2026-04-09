@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第04场 · 私域转化与销售基本功 — 生财有术线下活动</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root { --t: 0.35s ease; }
+
+  /* === Dark theme === */
+  [data-theme="dark"] {
+    --bg: #0a0a08;
+    --bg-bar: rgba(10,10,8,0.92);
+    --bg-hero-a: #1a1510;
+    --bg-hero-b: #0a0a08;
+    --bg-glow: rgba(212,160,74,0.1);
+    --bg-toc: #12100c;
+    --bg-card: #1a1510;
+    --bg-info: #12100c;
+    --border: #2a2218;
+    --accent: #d4a04a;
+    --accent-bg: rgba(212,160,74,0.12);
+    --accent-bg2: rgba(212,160,74,0.25);
+    --accent-border: rgba(212,160,74,0.2);
+    --accent-border2: rgba(212,160,74,0.3);
+    --text: #c8c0b0;
+    --text-heading: #f0e6d6;
+    --text-sub: #e8dcc8;
+    --text-quote: #d8cfc0;
+    --text-muted: #8a7d6d;
+    --text-dim: #5a5040;
+    --bq-bg: rgba(212,160,74,0.06);
+  }
+
+  /* === Light theme === */
+  [data-theme="light"] {
+    --bg: #f5faf8;
+    --bg-bar: rgba(245,250,248,0.92);
+    --bg-hero-a: #e4f0ec;
+    --bg-hero-b: #f5faf8;
+    --bg-glow: rgba(26,138,125,0.08);
+    --bg-toc: #eaf4f0;
+    --bg-card: #e4f0ec;
+    --bg-info: #eaf4f0;
+    --border: #c8ddd6;
+    --accent: #1a8a7d;
+    --accent-bg: rgba(26,138,125,0.08);
+    --accent-bg2: rgba(26,138,125,0.15);
+    --accent-border: rgba(26,138,125,0.18);
+    --accent-border2: rgba(26,138,125,0.25);
+    --text: #3a5a52;
+    --text-heading: #1a2e28;
+    --text-sub: #2a4a42;
+    --text-quote: #2a4a42;
+    --text-muted: #7a9a90;
+    --text-dim: #a0b8b0;
+    --bq-bg: rgba(26,138,125,0.05);
+  }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.85;
+    transition: background var(--t), color var(--t);
+  }
+  a { color: var(--accent); text-decoration: none; transition: color var(--t); }
+  a:hover { text-decoration: underline; }
+
+  /* === Top bar === */
+  .top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-bar);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background var(--t), border-color var(--t);
+  }
+  .top-bar .back {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color var(--t);
+  }
+  .top-bar .back:hover { color: var(--accent); text-decoration: none; }
+  .top-bar .session-title {
+    font-size: 0.85rem;
+    color: var(--text-heading);
+    font-weight: 600;
+    transition: color var(--t);
+  }
+  .top-bar .right-btns { display: flex; align-items: center; gap: 8px; }
+  .top-bar .download-btn {
+    font-size: 0.78rem;
+    padding: 5px 14px;
+    border-radius: 6px;
+    background: var(--accent-bg);
+    color: var(--accent);
+    border: 1px solid var(--accent-border2);
+    cursor: pointer;
+    transition: all var(--t);
+  }
+  .top-bar .download-btn:hover {
+    background: var(--accent-bg2);
+    text-decoration: none;
+  }
+  .theme-btn {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--accent-bg); border: 1px solid var(--accent-border);
+    color: var(--accent); font-size: 0.95rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all var(--t);
+  }
+  .theme-btn:hover { transform: scale(1.1); }
+
+  /* === Hero === */
+  .hero {
+    text-align: center;
+    padding: 4rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--bg-hero-a) 0%, var(--bg-hero-b) 100%);
+    transition: background var(--t);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, var(--bg-glow) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .hero .badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    padding: 4px 14px;
+    border-radius: 20px;
+    background: var(--accent-bg);
+    color: var(--accent);
+    border: 1px solid var(--accent-border);
+    margin-bottom: 1rem;
+    position: relative;
+    transition: all var(--t);
+  }
+  .hero h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--text-heading);
+    position: relative;
+    margin-bottom: 0.3rem;
+    transition: color var(--t);
+  }
+  .hero .accent { color: var(--accent); transition: color var(--t); }
+  .hero .meta-line {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    position: relative;
+    margin-top: 0.8rem;
+    transition: color var(--t);
+  }
+  .hero .stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+    position: relative;
+  }
+  .hero .stat .n { font-size: 1.3rem; font-weight: 900; color: var(--accent); transition: color var(--t); }
+  .hero .stat .l { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; transition: color var(--t); }
+
+  /* === Nav / TOC === */
+  .toc-bar {
+    background: var(--bg-toc);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 2rem;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 42px;
+    z-index: 90;
+    transition: background var(--t), border-color var(--t);
+  }
+  .toc-bar a {
+    font-size: 0.75rem;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-muted);
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .toc-bar a:hover, .toc-bar a.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* === Article === */
+  .article {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 4rem;
+  }
+
+  .section-header {
+    margin: 3rem 0 1.5rem;
+    padding-left: 14px;
+    border-left: 3px solid var(--accent);
+    transition: border-color var(--t);
+  }
+  .section-header:first-child { margin-top: 0; }
+  .section-header .sec-num {
+    font-size: 0.68rem;
+    letter-spacing: 3px;
+    color: var(--accent);
+    font-weight: 500;
+    transition: color var(--t);
+  }
+  .section-header h2 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-heading);
+    margin-top: 2px;
+    transition: color var(--t);
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-sub);
+    margin: 2rem 0 0.8rem;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+    transition: color var(--t), border-color var(--t);
+  }
+
+  p { margin-bottom: 1rem; }
+  strong { color: var(--text-sub); transition: color var(--t); }
+
+  blockquote {
+    background: var(--bq-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1rem 0 1.2rem;
+    color: var(--text-quote);
+    font-size: 0.92rem;
+    transition: all var(--t);
+  }
+
+  ul, ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  li {
+    margin-bottom: 0.4rem;
+  }
+  li::marker { color: var(--accent); }
+
+  .questioner {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-bg);
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    transition: all var(--t);
+  }
+
+  .highlight-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin: 1.2rem 0;
+    transition: all var(--t);
+  }
+  .highlight-box .hl-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    transition: color var(--t);
+  }
+
+  .info-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 2rem;
+    font-size: 0.88rem;
+    transition: all var(--t);
+  }
+  .info-box .info-row {
+    display: flex;
+    gap: 0.5rem;
+    padding: 4px 0;
+    color: var(--text-muted);
+    transition: color var(--t);
+  }
+  .info-box .info-label {
+    color: var(--accent);
+    font-weight: 600;
+    flex-shrink: 0;
+    width: 70px;
+    transition: color var(--t);
+  }
+  .info-box .info-val { color: var(--text); transition: color var(--t); }
+
+  .divider {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    margin: 2.5rem 0;
+    transition: background var(--t);
+  }
+
+  .article-footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    border-top: 1px solid var(--border);
+    transition: all var(--t);
+  }
+  .article-footer a { color: var(--text-muted); }
+
+  .back-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--accent-bg2);
+    border: 1px solid var(--accent-border2);
+    color: var(--accent);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s, background var(--t), border-color var(--t), color var(--t);
+    z-index: 50;
+  }
+  .back-top.show { opacity: 1; }
+  .back-top:hover { background: var(--accent-bg2); }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.5rem; }
+    .hero .stats { gap: 1.2rem; }
+    .article { padding: 1.5rem 1rem; }
+    .top-bar { padding: 8px 1rem; }
+    .toc-bar { padding: 10px 1rem; justify-content: flex-start; }
+    .top-bar .session-title { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="top-bar">
+  <a href="../index.html" class="back">&larr; 返回目录</a>
+  <span class="session-title">第04场 · 私域转化与销售基本功</span>
+  <div class="right-btns">
+    <a href="../downloads/第04场-精华整理.md" download class="download-btn">下载 .md</a>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="切换明暗模式"><span id="themeIcon"></span></button>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="badge">第 04 场 · 2024年9月</div>
+  <h1>私域转化<span class="accent">与销售基本功</span></h1>
+  <p class="meta-line">杭州 · 线下茶空间 &nbsp;|&nbsp; 根源（林根源）主讲</p>
+  <div class="stats">
+    <div class="stat"><div class="n">8</div><div class="l">核心主题</div></div>
+    <div class="stat"><div class="n">2.5h+</div><div class="l">活动时长</div></div>
+    <div class="stat"><div class="n">4万+</div><div class="l">字逐字稿</div></div>
+    <div class="stat"><div class="n">16</div><div class="l">人参与</div></div>
+  </div>
+</div>
+
+<!-- TOC -->
+<nav class="toc-bar">
+  <a href="#part01">自我介绍与记忆术</a>
+  <a href="#part02">高客单入圈</a>
+  <a href="#part03">销售名单分层</a>
+  <a href="#part04">知识付费转化</a>
+  <a href="#part05">个体创业路径</a>
+  <a href="#part06">经营用户</a>
+  <a href="#part07">销售七层问话</a>
+  <a href="#part08">销售心态与系统</a>
+</nav>
+
+<!-- Article -->
+<article class="article">
+
+  <!-- Activity info -->
+  <div class="info-box">
+    <div class="info-row"><span class="info-label">日期</span><span class="info-val">2024年9月（周一）</span></div>
+    <div class="info-row"><span class="info-label">地点</span><span class="info-val">杭州·线下茶空间</span></div>
+    <div class="info-row"><span class="info-label">主讲人</span><span class="info-val">根源（林根源）</span></div>
+    <div class="info-row"><span class="info-label">编号</span><span class="info-val">第04场（自2024年8月起，每周一场）</span></div>
+    <div class="info-row"><span class="info-label">参与者</span><span class="info-val">闪闪、小吉、米粒、荣坤、灰婴、杨洋、逍遥、蛋挞、逸尘、Echo、胡说（启奋）、思域、静雯、毛毛等16人</span></div>
+  </div>
+
+  <!-- ==================== PART 01 ==================== -->
+  <div class="section-header" id="part01">
+    <div class="sec-num">PART 01</div>
+    <h2>自我介绍与记忆术</h2>
+  </div>
+
+  <h3>自我介绍四要素</h3>
+  <p>我们每次活动第一个环节是自我介绍，有几个条件。第一个一分钟之内一定要说完，有四个东西是必须得说的：</p>
+  <p><strong>第一个是名字。</strong>名字分三种——本名、微信名、平常大家怎么称呼你。如果都一样你就讲都一样。讲名字的时候可以讲怎么写——"方是方思域的方，思是方思域的思"——这样别人更有具象的画面。</p>
+  <p><strong>第二个是年纪。</strong>可以说"我是几几年的"。</p>
+  <p><strong>第三个是老家。</strong>要说清楚是哪里的，不能太笼统。</p>
+  <p><strong>第四个是目前做什么项目。</strong>用一句话精简带过就行，不用在项目上赘述太多。如果有两个项目，一定有分主跟次，把主的那个放大说出去。</p>
+
+  <h3>第二轮：让别人记住你</h3>
+  <p>第二轮自我介绍只有20秒，必须说：你的名字（朋友怎么称呼你）、老家、以及你身上的某一个特点——外貌上别人看到你之后印象最深刻的地方。</p>
+  <blockquote>你得说今天你身上的哪一个东西是你觉得很特别的。像胡说可以说"全场就我戴帽子"，思域可以说"我头发有一朵白的"。</blockquote>
+
+  <h3>记名字的诀窍</h3>
+  <p>为什么要记住名字？假设隔了三个月没见面，我在商场见到你说"蛋蛋你来了"，你会有什么感觉？——"你怎么还记得我的名字？"你会让对方有一种被重视的感觉。</p>
+  <p>方法很简单：<strong>提早到场。</strong>人一个一个进来，每进来一个人，我就把前面所有人的名字重复念一遍。第一个人来，念一次。第二个人来，两个名字念十次也忘不了。第三个人来，三个名字念。16个人到齐，等于所有名字我全部重新记了一次。</p>
+  <p>如果忘了，我就跟他说"对不起，你的名字我没有记住，可以再跟我说一次吗？"——我就会觉得亏欠，他一跟我说我反而更忘不了，印象更深刻。</p>
+  <p>回到家之后，我会把名单再过一轮，把名字跟微信号对上。第二天私下打招呼——每打一次招呼，名字就又对上一次。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 02 ==================== -->
+  <div class="section-header" id="part02">
+    <div class="sec-num">PART 02</div>
+    <h2>高客单产品入圈策略</h2>
+  </div>
+
+  <p class="questioner">逍遥问：天珠这类高客单产品，如何在小红书和公众号精准引流？</p>
+
+  <h3>先了解，再变现</h3>
+  <p>我一定要先问自己：这个产品我到底了不了解？什么样的人会喜欢？因为如果我不懂这个产品，我就无法知道为什么有人会买。</p>
+  <blockquote>现阶段不要去思考怎么获得流量。你得先去找——大量地刷小红书、视频，了解买天珠的群体跟它是什么材质，为什么那么贵，不同价格区别在哪。</blockquote>
+
+  <h3>找到敲门砖</h3>
+  <p>花了20万买天珠的人，但凡有人问，他会愿意告诉你。因为他花了大钱，没有人来问，心里就想"你们都没眼光"。你一问他就开始讲——"我跟你讲，我当时这个东西是去哪里求来的"——这是人性。</p>
+  <p>当你开始大量搜寻相关文章，一定可以找到很多使用者。找到20个用户，每个都加好友，一定会有2-3个愿意跟你聊。你不要说你是卖这个的，你要说"我想入这个圈子"。</p>
+  <blockquote>找到了他，你就等于一个圈子。所有人的圈子都从一个人开始的。</blockquote>
+
+  <h3>给自己三个月</h3>
+  <p>"我要做这项目"跟"我要了解这项目"是不同的维度。先让自己当一个玩家——一天花3个小时，三个月你应该可以有一定的成绩。</p>
+  <p>手上得带一串。你不带你不会有感觉。小红书就抄——点赞高的抄，边更新边了解。</p>
+  <p>别急着变现。如果不小心在短期卖出一串有点利润——完了，你会误以为项目就是这么做的。</p>
+
+  <h3>背书的陷阱</h3>
+  <blockquote>请老师陪谈，你会有幸福感，但你不会有尊严感。客户就会发现你的老师比较好——"我去找你这些小屁孩干嘛？"</blockquote>
+  <p>天珠没有大厂。你不可能说"这是我老师的名片"——他们不会认识的。先用产品的媒介去认识更高端的人脉，这些人脉才是最大的价值。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 03 ==================== -->
+  <div class="section-header" id="part03">
+    <div class="sec-num">PART 03</div>
+    <h2>销售名单六层分级</h2>
+  </div>
+
+  <p class="questioner">蛋挞问：跟客户沟通很真诚，但不会很自然地成交，怎么办？</p>
+
+  <h3>做销售的初期只有一个原则</h3>
+  <blockquote>大量的聊。你说只聊了5个——那个数据不够客观。不是因为你的成交率不高，是5个的数据太少。</blockquote>
+
+  <h3>名单六级分类</h3>
+  <div class="highlight-box">
+    <div class="hl-title">名单分级体系</div>
+    <p><strong>一级名单</strong> — 加了好友，聊天不超过5句。跟陌生人一样。</p>
+    <p><strong>二级名单</strong> — 聊过5句以上，有过10-15分钟的对话。从一级到二级的过程，不谈成交。</p>
+    <p><strong>三级名单</strong> — 付过费的。三百、五百、七百、一千都算。只要这关没过，就永远是一二级名单。</p>
+    <p><strong>四到六级</strong> — 持续经营、二次转化、高单价成交的深度关系。</p>
+  </div>
+
+  <h3>八访表</h3>
+  <p>名单就写姓名、微信号、手机号、区域、分类。至少要有一张纸上面有100个不同的人名，然后就得聊。</p>
+  <p>聊完之后还得做一件事——第一次他只要回你5句以上，就在旁边写下日期。不足5句的，日期不能写，代表你们压根没算聊过天。</p>
+  <blockquote>日本人统计的数据：一个人你只要跟他谈7又3分之2次他都没答应，这辈子你就成交不了他。所以我叫它八访表。</blockquote>
+
+  <h3>好感不等于会买</h3>
+  <p>对方对你有好感，跟对方欣赏你，跟对方愿意花钱买你的东西——是不一样的。每个人需求不一样，预算不一样。</p>
+  <p>做销售最怕的误会就是：他不买就代表他不喜欢我，然后你就不跟他联系了。</p>
+
+  <h3>销售80%是学会被拒绝</h3>
+  <blockquote>初期做销售的前一年，所有单子全是捧场的——爸爸妈妈、舅舅姑姑，全是亲戚。这没办法。找名单不是找关系好的，是找有钱的。</blockquote>
+  <p>我从这三周来，一天一个，谈了17个，拒绝我3个。这数据多牛你知道吗？被拒绝很正常，你不用觉得意外。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 04 ==================== -->
+  <div class="section-header" id="part04">
+    <div class="sec-num">PART 04</div>
+    <h2>知识付费转化路径</h2>
+  </div>
+
+  <h3>知识 vs 付费</h3>
+  <p>知识付费是两个赛道：</p>
+  <p><strong>知识</strong>是文人干的事。谁都能做课，给他一个AI，一天都可以产出两堂课。</p>
+  <p><strong>付费</strong>是做生意。我敢开口收钱，这叫生意。很多人没有学生意，他们只学知识，就以为自己是知识付费赛道了——不是的。</p>
+  <blockquote>现在的知识付费，你得知道怎么把产品卖出去。你内容做的再好都没用。</blockquote>
+
+  <h3>主动式 vs 被动式销售</h3>
+  <p>假设同样100万五年期保单，在保险业务员那里佣金大概能拿20万；在银行柜台那里，佣金可能只有2000。</p>
+  <p>主动式和被动式销售的价值完全不一样。个体创业者没有公司背景，一定得当主动式销售。只要你不主动找他，他就找别人——跟追女生一样。</p>
+
+  <h3>低价筛选策略</h3>
+  <blockquote>快速收钱有一个好处——你能够更快地筛选那些对你有兴趣的人。没有通过收钱，你就无法把他们的关注点拉到你的身上。</blockquote>
+  <p>付费群里，他们不是觉得你能力多强。他们真正看重的是你是否是一个说到并且能做到的人。到了第二年如果你依旧在成长，他们就会更信任你。</p>
+
+  <h3>陪伴群策略</h3>
+  <p>我目前有两个陪伴群，价格都是三位数。每天每个群分享十分钟，大概3000-4000字。一天光是陪伴群的输出就打底8000字以上。</p>
+  <p>这个群的好处：第一，强迫你输出，赚钱是其次。第二，你可以从输出过程中找到敏锐感——分享到一半发现有主题大家有共鸣，就再开一堂课。第三，300块的考虑成本低，先让他们进来再说。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 05 ==================== -->
+  <div class="section-header" id="part05">
+    <div class="sec-num">PART 05</div>
+    <h2>个体创业者路径与心态</h2>
+  </div>
+
+  <h3>爆款的陷阱</h3>
+  <blockquote>我曾经写过一篇公众号三十多万阅读，三天加了230个好友——全是没用的。来230个我成交了一个，我是在搞笑吗？</blockquote>
+  <p>个体创业者不适合走爆款的路。爆款可以来大量流量，但一个人的转化和经营人数是有限的。进来之后聊天特别吃力，能量就低，就不想做事了。</p>
+  <p>除非你是一人公司有助理帮你处理——那叫一人公司，不叫个体创业者。</p>
+
+  <h3>三个部门缺一不可</h3>
+  <div class="highlight-box">
+    <div class="hl-title">个体创业三要素</div>
+    <p><strong>流量</strong> — 我一个人就可以做，数据决定好不好。</p>
+    <p><strong>内容</strong> — 一个人就可以搞定，AI可以协助。</p>
+    <p><strong>转化</strong> — 唯独销售不行，需要有人跟你练习。</p>
+  </div>
+  <p>三个都具足，在个体创业这条路上你可以做得相对轻松。但凡有一个不会，你大概就完了，无法做一个长期的生意。</p>
+
+  <h3>主业 + 三小时副业</h3>
+  <p>初期对于刚从大学毕业不久的年轻人，我都建议让自己有两份工作——找一份主业，同时一天花3小时做副业。</p>
+  <p>有人进了主业之后，一个月只有十天能努力3个小时，其他时间"回到家好累想睡觉"——那你就不适合做副业。70%以上的人没有副业都能活得很好。不是坏事——最少你不会再付费继续投更多的钱。</p>
+
+  <h3>赚钱没有捷径</h3>
+  <blockquote>所有的项目初期，你不能喊累。你能给的就是劳力，没有诀窍。</blockquote>
+  <p>我倒过一次，起步是从负债开始的。那两年见了快3000人，活动参加不下100场。每天回到家就吵架，没钱，孩子的钱得付，每月只能借钱——能借到两三千块已经不得了了。</p>
+  <p>你们去看所有的自传，没有一个前面写"赚钱太简单了"的。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 06 ==================== -->
+  <div class="section-header" id="part06">
+    <div class="sec-num">PART 06</div>
+    <h2>经营用户核心逻辑</h2>
+  </div>
+
+  <h3>了解你的用户</h3>
+  <p>进到你的群、加到你的微信，就代表他们对你的产品有兴趣吗？不一定。现代人有一种病——看到码就想扫。扫进去也不会鸟你的。</p>
+  <blockquote>关键在于你愿意花多少时间了解你的用户。这一两年已经不缺获取流量的方法了，方法太多了。可是为什么大多数人不愿意转化？因为流量一个人就能做，但转化不行。</blockquote>
+
+  <h3>聊天的切入点</h3>
+  <p>所有的话题都能切入，就看后面怎么聊。大原则就是：<strong>夸。</strong></p>
+  <p>拆头像、姓名、个性签名、性别、居住地——这些都是可以聊的。像我昨天认识一个女生，一加好友我就说"你的个性签名真特别"——"一年四季春困夏倦秋眠冬什么的"，全是想睡觉。那顿饭帮我省了62块，她给我打了8折。</p>
+
+  <h3>预约成交法</h3>
+  <p>上周五早上出门前，我聊了三个人。一个是朋友圈一发完马上点赞的，一个是公众号点赞最多的。</p>
+  <p>我说"特别来跟你说声谢谢"，他说"我第一次知道点赞会有人来说谢谢"。聊了三分钟，我问"你是否有花钱买课的习惯？如果之后有几百块的，你介意我推荐吗？"三个里面两个说可以。</p>
+  <blockquote>这两个人近三天内我一定成交。因为我在聊之前已经放下了一个钩子，告诉他们"我会再找你"。</blockquote>
+
+  <h3>200人的经营</h3>
+  <p class="questioner">毛毛问：做水晶代理但不认同产品，手上有200个粉丝，该继续还是转做私域电商？</p>
+  <p>200人不多，设定20个为一批。私下问——如果我是你，可能用这种话术：</p>
+  <blockquote>"你好，挺抱歉的，当时加到你好友之后我从来都没有认真经营过你，我觉得这是我的不应该。"</blockquote>
+  <p>一开始先抱歉放在前头，对方就会说"那要不我听你说说看"。这个方法是回复率最高的。然后问他三个方向哪个有兴趣，认真一个一个聊。如果200人里有90个人对水晶有兴趣，那你水晶就继续做。不能说问了90个人对水晶有兴趣，你最后去卖百货，那不傻了吗？</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 07 ==================== -->
+  <div class="section-header" id="part07">
+    <div class="sec-num">PART 07</div>
+    <h2>销售七层问话体系</h2>
+  </div>
+
+  <h3>问题库七大类</h3>
+  <p>我的销售流程里有一个叫"问题库"——从家庭到第一次到经历，到得意的事，到失意的事，再到贵人与未来展望。</p>
+  <div class="highlight-box">
+    <div class="hl-title">七层问话</div>
+    <p><strong>1. 家庭</strong> — 父母做什么的、兄弟姐妹</p>
+    <p><strong>2. 第一次</strong> — 第一次创业、第一次赚钱</p>
+    <p><strong>3. 经历</strong> — 过去几年做了什么</p>
+    <p><strong>4. 得意的事</strong> — 最开心最有成就感的</p>
+    <p><strong>5. 失意的事</strong> — 最痛苦最难的时候</p>
+    <p><strong>6. 贵人</strong> — 谁对你影响最大</p>
+    <p><strong>7. 未来展望</strong> — 接下来想做什么</p>
+  </div>
+  <blockquote>但凡进到聊伤心的事情，我就可以切入高单价。因为他愿意跟你聊失意的事，就代表信任感到了一定的阶段。</blockquote>
+  <p>如果两个人第一次见面，你就跟对方讲"2018年我好惨那年我破产"——很怪。之所以会聊这个，代表我们的信任感到了一定阶段。到了这个节点，你就有机会下一次见面切入更高端的产品。</p>
+
+  <h3>高单价成交的三个前提</h3>
+  <p>价格不便宜的课，我一定会先问三个问题：</p>
+  <ol>
+    <li><strong>迫切性</strong> — "你的问题是否很迫切想被解决？"</li>
+    <li><strong>时间</strong> — "这个课最少你得留给我四个月，每天1-1.5小时"</li>
+    <li><strong>预算</strong> — "5000的预算你是有的"</li>
+  </ol>
+  <p>这三个东西我没问到，我压根不推荐课程。这个过程就足够跟他聊30分钟了，你会特别了解他。</p>
+
+  <h3>所有高单价都来自转介绍</h3>
+  <blockquote>从22年到现在成交六位数以上的大概53位，从6万到25万。没有一个是一级名单，都是第三代到第七代转介绍。</blockquote>
+  <p>第一阶段的人不会买高单价的。但第三代名单怎么来？认真经营第一代名单。你但凡不认真经营，第二代名单就不会出现。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 08 ==================== -->
+  <div class="section-header" id="part08">
+    <div class="sec-num">PART 08</div>
+    <h2>销售心态与系统建设</h2>
+  </div>
+
+  <h3>销售三个词</h3>
+  <p>荣坤补充了一段非常精彩的分享（他的公司有35人，销售出身，做了十多年）：</p>
+  <blockquote>销售就三个词：第一个坚持，第二个不要脸，第三个坚持不要脸。但凡从销售做到销冠，销冠做到主管，主管做到负责人，最后出来创业——这条链路能跑出来的人，韧性非常强。</blockquote>
+  <p>他分享了他们团队的漏斗原理：三个意向客户能产生一个待收费客户，三个待收费客户能产生一个愿意付款的客户。所以要成交一个客户，你倒推需要九个意向客户。</p>
+
+  <h3>销售的三个层次</h3>
+  <div class="highlight-box">
+    <div class="hl-title">从底层到顶层</div>
+    <p><strong>销售习惯</strong> — 每一天固定做，已不是技法的问题</p>
+    <p><strong>销售技法</strong> — 有了习惯才有技法，怎么接话、怎么判断用户</p>
+    <p><strong>销售价值观</strong> — 你为什么要赚这个钱？有了价值观才斩钉截铁</p>
+  </div>
+
+  <h3>先自己跑，再招人</h3>
+  <p class="questioner">米粒问：用户量一个人cover不住了，需要找人来做</p>
+  <blockquote>先让自己跑三个月。你能把进来的流量成交率拉到20%，一天服务30个人——这个数据没办法做到，你再找人进来只是多花钱。</blockquote>
+  <p>做销售跟做管理是两条不同的路。所有的管理者都是从销售干起来的，没有没干过销售就能当好管理者的。自己的SOP一定要自己跑出来——给理论没用，得是实际跑通的打法。</p>
+
+  <h3>经营用户是最大红利</h3>
+  <blockquote>我一直把经营用户当成这两年最红利的赛道——因为现在大多数的人不尊重用户。你但凡认真去经营，半年之后一定可以卖出万元以上的产品。</blockquote>
+  <p>赚钱难是趋势，没办法。但不能因为赚钱难，就不去做该做的事情。我们是个体，没有那么多成本要付，所以能给出更多的时间，换来更大的价值——这是我们最美丽的地方。</p>
+
+</article>
+
+<div class="article-footer">
+  <p>生财有术线下活动 · 第04场精华整理</p>
+  <p><a href="04.html">切换PPT版</a> &nbsp;|&nbsp; <a href="../index.html">返回目录</a></p>
+</div>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&uarr;</button>
+
+<script>
+function getTheme(){return localStorage.getItem('sc-theme')||'dark'}
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('themeIcon').innerHTML=t==='dark'?'&#9790;':'&#9728;';
+}
+function toggleTheme(){
+  const next=getTheme()==='dark'?'light':'dark';
+  localStorage.setItem('sc-theme',next);
+  applyTheme(next);
+}
+applyTheme(getTheme());
+
+window.addEventListener('scroll',()=>{
+  document.getElementById('backTop').classList.toggle('show',window.scrollY>400);
+});
+</script>
+</body>
+</html>

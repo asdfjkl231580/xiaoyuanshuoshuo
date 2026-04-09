@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>第16场 · 超级个体与销售 — 生财有术线下活动</title>
+<meta name="description" content="生财有术第16场线下活动精华：线下社交技巧、五大基本功、AI工具实战、销售方法与表达训练">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+
+  :root{--t:0.35s ease}
+
+  /* === Dark theme === */
+  [data-theme="dark"]{
+    --bg:#0a0a08;
+    --bg-bar:rgba(10,10,8,0.95);
+    --bg-tabs:rgba(18,16,12,0.95);
+    --bg-cover-a:#1a1510;--bg-cover-b:#0a0a08;
+    --bg-glow:rgba(212,160,74,0.08);
+    --bg-card:#12100c;
+    --border:#2a2218;--border-tab:#1a1510;
+    --accent:#d4a04a;
+    --accent-bg:rgba(212,160,74,0.12);
+    --accent-border:rgba(212,160,74,0.2);
+    --accent-bg2:rgba(212,160,74,0.15);
+    --accent-border2:rgba(212,160,74,0.3);
+    --text:#f0e6d6;
+    --text-quote:#d8cfc0;
+    --text-list:#c8c0b0;
+    --text-muted:#8a7d6d;
+    --text-dim:#5a5040;
+    --text-hint:#3a3020;
+    --quote-mark:rgba(212,160,74,0.2);
+    --dot-bg:#2a2218;
+    --toggle-icon:'\\263E';
+  }
+
+  /* === Light theme === */
+  [data-theme="light"]{
+    --bg:#f5faf8;
+    --bg-bar:rgba(245,250,248,0.95);
+    --bg-tabs:rgba(234,244,240,0.95);
+    --bg-cover-a:#e4f0ec;--bg-cover-b:#f5faf8;
+    --bg-glow:rgba(26,138,125,0.06);
+    --bg-card:#ffffff;
+    --border:#c8ddd6;--border-tab:#d0e0da;
+    --accent:#1a8a7d;
+    --accent-bg:rgba(26,138,125,0.08);
+    --accent-border:rgba(26,138,125,0.18);
+    --accent-bg2:rgba(26,138,125,0.1);
+    --accent-border2:rgba(26,138,125,0.25);
+    --text:#1a2e28;
+    --text-quote:#2a4a42;
+    --text-list:#3a5a52;
+    --text-muted:#7a9a90;
+    --text-dim:#a0b8b0;
+    --text-hint:#c0d4cc;
+    --quote-mark:rgba(26,138,125,0.15);
+    --dot-bg:#b8d0c8;
+    --toggle-icon:'\\2600';
+  }
+
+  html,body{height:100%;overflow:hidden;font-family:'Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--text);transition:background var(--t),color var(--t)}
+
+  /* === Top bar === */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:var(--bg-bar);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 1.2rem;height:44px;
+    transition:background var(--t),border-color var(--t);
+  }
+  .topbar .back{color:var(--text-muted);font-size:0.82rem;text-decoration:none;display:flex;align-items:center;gap:4px;transition:color var(--t)}
+  .topbar .back:hover{color:var(--accent)}
+  .topbar .title{color:var(--text);font-size:0.82rem;font-weight:600;transition:color var(--t)}
+  .topbar .right-btns{display:flex;align-items:center;gap:8px}
+  .topbar .mode-toggle{
+    font-size:0.72rem;padding:4px 12px;border-radius:5px;
+    background:var(--accent-bg);color:var(--accent);
+    border:1px solid var(--accent-border);cursor:pointer;text-decoration:none;
+    transition:all var(--t);
+  }
+  .topbar .mode-toggle:hover{background:var(--accent-bg2)}
+  .theme-btn{
+    width:30px;height:30px;border-radius:50%;
+    background:var(--accent-bg);border:1px solid var(--accent-border);
+    color:var(--accent);font-size:0.95rem;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:all var(--t);
+  }
+  .theme-btn:hover{transform:scale(1.1)}
+
+  /* === Section tabs === */
+  .tabs{
+    position:fixed;top:44px;left:0;right:0;z-index:90;
+    background:var(--bg-tabs);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border-tab);
+    display:flex;overflow-x:auto;padding:0 0.8rem;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    transition:background var(--t),border-color var(--t);
+  }
+  .tabs::-webkit-scrollbar{display:none}
+  .tabs button{
+    flex-shrink:0;padding:10px 14px;font-size:0.72rem;
+    background:none;border:none;color:var(--text-dim);
+    cursor:pointer;font-family:inherit;white-space:nowrap;
+    border-bottom:2px solid transparent;transition:all 0.2s;
+  }
+  .tabs button.active{color:var(--accent);border-bottom-color:var(--accent)}
+  .tabs button:hover{color:var(--text-muted)}
+
+  /* === Slide viewport === */
+  .viewport{position:fixed;top:82px;left:0;right:0;bottom:60px;overflow:hidden}
+  .slide-track{display:flex;height:100%;transition:transform 0.4s cubic-bezier(0.25,0.1,0.25,1)}
+
+  /* === Each slide === */
+  .slide{
+    flex-shrink:0;width:100vw;height:100%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:2rem 2.5rem;text-align:center;position:relative;
+    background:var(--bg);transition:background var(--t);
+  }
+  .slide.cover{
+    background:linear-gradient(160deg,var(--bg-cover-a) 0%,var(--bg-cover-b) 60%);
+  }
+  .slide.cover::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 50% 80%,var(--bg-glow) 0%,transparent 55%);
+    pointer-events:none;
+  }
+
+  .slide-inner{max-width:640px;width:100%;position:relative;z-index:1}
+  .slide-num{font-size:0.65rem;color:var(--text-dim);letter-spacing:3px;margin-bottom:0.8rem;font-weight:500;transition:color var(--t)}
+  .part-label{
+    display:inline-block;font-size:0.7rem;padding:5px 16px;border-radius:20px;
+    background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent-border);
+    margin-bottom:1.2rem;letter-spacing:2px;transition:all var(--t);
+  }
+  .slide-title{font-size:1.6rem;font-weight:900;color:var(--text);line-height:1.4;margin-bottom:1rem;transition:color var(--t)}
+  @media(min-width:768px){.slide-title{font-size:2rem}}
+  .slide-title .accent{color:var(--accent);transition:color var(--t)}
+
+  .slide-quote{
+    font-size:1.15rem;line-height:1.9;color:var(--text-quote);
+    margin-bottom:1.2rem;position:relative;padding:0 0.5rem;transition:color var(--t);
+  }
+  @media(min-width:768px){.slide-quote{font-size:1.3rem}}
+  .slide-quote::before{
+    content:'\201C';position:absolute;top:-1.2rem;left:-0.3rem;
+    font-size:3rem;color:var(--quote-mark);font-family:Georgia,serif;line-height:1;transition:color var(--t);
+  }
+  .slide-quote strong{color:var(--accent);font-weight:700}
+
+  .slide-context{font-size:0.82rem;line-height:1.8;color:var(--text-muted);max-width:520px;margin:0 auto;transition:color var(--t)}
+
+  .slide-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:1.2rem}
+  .slide-tags span{font-size:0.72rem;padding:5px 14px;border-radius:6px;background:var(--bg-cover-a);color:var(--text-muted);border:1px solid var(--border);transition:all var(--t)}
+
+  .slide-products{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:1rem auto 0;max-width:520px;text-align:left}
+  .slide-products .sp{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;transition:all var(--t)}
+  .slide-products .sp .sp-name{font-size:0.82rem;font-weight:700;color:var(--accent);margin-bottom:2px;transition:color var(--t)}
+  .slide-products .sp .sp-desc{font-size:0.7rem;color:var(--text-muted);line-height:1.5;transition:color var(--t)}
+  @media(max-width:480px){.slide-products{grid-template-columns:1fr}}
+
+  .slide-list{text-align:left;max-width:480px;margin:0.8rem auto 0;list-style:none}
+  .slide-list li{font-size:0.92rem;color:var(--text-list);line-height:1.8;padding-left:1.4rem;position:relative;margin-bottom:0.3rem;transition:color var(--t)}
+  .slide-list li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-weight:700}
+  .slide-list li strong{color:var(--accent)}
+
+  .slide-steps{text-align:left;max-width:500px;margin:0.8rem auto 0}
+  .slide-steps .step{display:flex;gap:12px;margin-bottom:0.8rem;align-items:flex-start}
+  .slide-steps .step-num{
+    flex-shrink:0;width:28px;height:28px;border-radius:50%;
+    background:var(--accent-bg2);border:1px solid var(--accent-border2);
+    color:var(--accent);font-size:0.78rem;font-weight:700;
+    display:flex;align-items:center;justify-content:center;margin-top:2px;transition:all var(--t);
+  }
+  .slide-steps .step-text{font-size:0.88rem;color:var(--text-list);line-height:1.7;transition:color var(--t)}
+  .slide-steps .step-text strong{color:var(--accent)}
+
+  .questioner-badge{
+    display:inline-block;font-size:0.7rem;padding:3px 12px;border-radius:4px;
+    background:var(--accent-bg);color:var(--accent);margin-bottom:0.8rem;transition:all var(--t);
+  }
+
+  /* === Bottom bar === */
+  .bottombar{
+    position:fixed;bottom:0;left:0;right:0;height:60px;
+    background:var(--bg-bar);backdrop-filter:blur(8px);
+    border-top:1px solid var(--border-tab);
+    display:flex;align-items:center;justify-content:center;
+    gap:1.5rem;z-index:90;padding:0 1rem;
+    transition:background var(--t),border-color var(--t);
+  }
+  .nav-btn{
+    width:40px;height:40px;border-radius:50%;
+    background:var(--accent-bg);border:1px solid var(--accent-border);
+    color:var(--accent);font-size:1.1rem;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:all 0.2s;flex-shrink:0;
+  }
+  .nav-btn:hover{background:var(--accent-bg2)}
+  .nav-btn:disabled{opacity:0.3;cursor:default}
+  .dots{display:flex;gap:6px;align-items:center;overflow-x:auto;max-width:calc(100vw - 160px);scrollbar-width:none}
+  .dots::-webkit-scrollbar{display:none}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--dot-bg);flex-shrink:0;transition:all 0.3s;cursor:pointer}
+  .dot.active{background:var(--accent);width:24px;border-radius:4px}
+  .slide-counter{font-size:0.72rem;color:var(--text-dim);flex-shrink:0;min-width:50px;text-align:center;transition:color var(--t)}
+
+  .key-hint{position:fixed;bottom:68px;left:50%;transform:translateX(-50%);font-size:0.65rem;color:var(--text-hint);pointer-events:none;transition:color var(--t)}
+  @media(max-width:768px){.key-hint{display:none}}
+  @media(max-width:640px){.topbar .title{display:none}.topbar{padding:0 0.8rem}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html" class="back">&larr; 目录</a>
+  <span class="title">第16场 · 超级个体与销售</span>
+  <div class="right-btns">
+    <a href="16-article.html" class="mode-toggle">文章版</a>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="切换明暗模式"><span id="themeIcon"></span></button>
+  </div>
+</div>
+
+<div class="tabs" id="tabs"></div>
+
+<div class="viewport" id="viewport">
+  <div class="slide-track" id="track"></div>
+</div>
+
+<div class="bottombar">
+  <button class="nav-btn" id="prevBtn" onclick="go(-1)">&larr;</button>
+  <div class="dots" id="dots"></div>
+  <span class="slide-counter" id="counter"></span>
+  <button class="nav-btn" id="nextBtn" onclick="go(1)">&rarr;</button>
+</div>
+<div class="key-hint">&larr; &rarr; 方向键翻页 &nbsp;|&nbsp; 数字键切换章节</div>
+
+<script>
+// ====== THEME ======
+function getTheme(){return localStorage.getItem('sc-theme')||'dark'}
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('themeIcon').innerHTML = t==='dark'?'&#9790;':'&#9728;';
+}
+function toggleTheme(){
+  const next=getTheme()==='dark'?'light':'dark';
+  localStorage.setItem('sc-theme',next);
+  applyTheme(next);
+}
+applyTheme(getTheme());
+
+// ====== SLIDE DATA ======
+const sections = [
+  {
+    id:'part01', label:'线下社交',
+    slides:[
+      {type:'cover',title:'线下活动组织<br>与<span class="accent">社交技巧</span>',quote:'所有的链接都是从第二次见面开始的。第一次见面就是见过你，没了。',context:'第16场 · 2025年4月7日'},
+      {title:'自我介绍<span class="accent">四要素</span>',quote:'第一轮，每个人只有一分钟，必须讲四个东西。',list:['<strong>名字</strong> — 本名、微信名、别人怎么称呼你的，三者统一最好','<strong>年纪</strong> — 像我是87年的','<strong>老家</strong> — 不能说"我是安徽的"，要说"安徽哪里的"','<strong>项目</strong> — 快速带过核心工作']},
+      {title:'让别人<span class="accent">记住你</span>',quote:'出门身上一定有一个别人会记住的东西。我的头发一般都会有颜色——黄色、绿色、蓝色、紫色、红色，什么颜色大概都染过。',context:'春春每次出门带黄色笔记本；Flora带了10岁做小红书的女儿——一定会被记住。回到家加微信就说"我是那天拿着粉色麦克风的"。'},
+      {title:'提早到场<br>认识<span class="accent">组局官</span>',quote:'参加线下活动，认识谁最有效率？<strong>认识组局官。</strong>他既然能组局，代表他跟现场多数人的关系一定比较好。',context:'提早30分钟到。有了这个核心链接者，你后续的任何诉求都可以更好地得到。'},
+      {title:'线下<span class="accent">礼仪</span>四件事',list:['<strong>手机静音</strong> — 手机一亮就偷能量，见面时习惯性盖着','<strong>准时到场</strong> — 迟到开门那一刻，别人就对你有坏印象','<strong>帮别人倒茶</strong> — 回家加微信说"我是那个帮你倒茶的"，一次就记得','<strong>尊重规矩</strong> — 主持人说两分钟就两分钟，除非你真的很强']},
+      {title:'第二次见面<span class="accent">才是开始</span>',quote:'所有的链接都是从第二次见面开始的。第一次见面就是见过你，没了。但只要没有第二次见面，或者线上没有任何话题，这个见面就很可惜。',context:'名字一定要讲清楚——"叫淘淘还是英飞？"给选择困难的人一个明确答案。'}
+    ]
+  },
+  {
+    id:'part02', label:'五大基本功',
+    slides:[
+      {type:'cover',title:'五大基本功<br><span class="accent">AI取代不了的能力</span>',quote:'基本功的底子会决定这个项目你可以做得多高。'},
+      {title:'<span class="accent">五大</span>基本功',list:['<strong>沟通销售</strong> — 跟人聊天是最需要的基本能力','<strong>时间管理</strong> — 一套属于自己的自律系统','<strong>爱情经营</strong> — 关系经营不好，事业不会太好','<strong>情绪控制</strong> — 不能在不该发脾气的地方发脾气','<strong>财商知识</strong> — 最少能记账，知道钱花去哪'],context:'这五个能力跟做什么项目无关，任何项目只要基本功在，都能做到一定成绩。'},
+      {title:'<span class="accent">坚韧</span>的定义',quote:'一个坚韧的人，就算心情不好、事情烦躁、当下没心情面对，依旧可以按部就班地把该做的事完成。',context:'王潇《小日常大奇迹》：人经历三阶段——生存困境→健康平凡→卓越自我实现。没走过第一阶段，第二阶段也会往下掉。坚韧是价值观，不是技术。'},
+      {title:'工具越好用<br>人<span class="accent">越废</span>？',quote:'基本功不稳，工具越好用，这个人就越废。当有一天停电，你就毁了。',context:'AI就是负责记录、总结、整理。AI取代不了基本能力。能少用AI就少用AI，尤其是基本能力的部分。'}
+    ]
+  },
+  {
+    id:'part03', label:'个人影响力',
+    slides:[
+      {type:'cover',title:'个人影响力<br>与<span class="accent">持续办局</span>',quote:'当你的价值变得很丰富的时候，别人就会愿意想来。',questioner:'春春问：怎么提升影响力，让更多人来？'},
+      {title:'<span class="accent">反向</span>思考',quote:'与其问"怎么让他们来"，不如问"什么样的人会让我愿意去见他？"',list:['背景真的很强','很热情','赚的钱比我多','某项能力我完全不懂','这个人很特别，我想结交'],context:'那我就问自己，我具不具备这些特质的其中之一？'},
+      {title:'零报名<span class="accent">怎么办</span>',quote:'有一次真的没人报名。我就做了一件事：<strong>打电话</strong>。邀请了四位，最后来了两位。',context:'还有一次祭出绝招——私下说"明天讲八字来吗？"原本零报名，最后来了九个。一个人有一个人的开法，我从来不担心人少。我一小时咨询3000块，来一个人他赚到啊。'},
+      {title:'多元能力<span class="accent">不是散</span>',quote:'这些东西我全部可以跟你深聊，不是聊浅的。我很早期就被一个人很系统性地带过。',context:'跟了老师十年当导师助理——音控、PPT、主持人、逐字稿、邀约客户、点菜、开车。他说"当我的助理以后就是要当老板的，你没在成功者身边待过，你不可能当老板。"'},
+      {title:'持续扩大<span class="accent">圈子</span>',quote:'我不太发朋友圈，业务更多是一对一。私下给你发消息，让你感觉到我重视你。',context:'互动吧、维恋创投、豆瓣同城、探探、陌陌——我都开过。先扩大圈子，持续办活动输出量才大。每次讲两小时，五万字，一个月二十万字。'}
+    ]
+  },
+  {
+    id:'part04', label:'AI工具',
+    slides:[
+      {type:'cover',title:'AI工具<br><span class="accent">实战分享</span>',quote:'AI时代，花钱可以搞定的事情都不要省。'},
+      {title:'Typeless<br><span class="accent">语音输入法</span>',quote:'昨天在上厕所，蹲着按住念了十分钟，文章就发出去了。念完自动排版、换行、断句，全部做好。',context:'国外APP，苹果需要美区ID。电脑端按CTRL键收音。三天8000字免费额度就满了。跟豆包对比：豆包一停就跳走，Typeless可以解决段落问题。'},
+      {title:'四款<span class="accent">录音卡</span>评测',products:[{name:'飞书录音豆',desc:'799元 · 最方便 · 直进飞书'},{name:'钉钉录音卡',desc:'我用最多 · Type-C · 有转写+AI纪要'},{name:'得到（盖得笔记）',desc:'899元 · 最轻 · 磁吸充电（退货了）'},{name:'TakeNote（听懂）',desc:'999元 · 精准度最高 · 转线上会员'}],context:'像找健身房一样，一周把附近十二间全部买体验课，上午一间下午一间，上完选最喜欢的。'},
+      {title:'YouMind<br><span class="accent">生图工具</span>',quote:'我取了个中文名叫"你妈"——你妈是真好用。文字转图片的精准度，YouMind是我用过最强的。',context:'背后用Claude Opus 4.6大模型。MAX会员200美金20万积分，可生成520多张图，我三天用光了。每次生成5张，都有一张是我喜欢的。'},
+      {title:'付费原则<br><span class="accent">只买一个月</span>',quote:'你永远不知道下个月会有什么东西干过它。更新太快了。',list:['<strong>固定付费</strong> — GPT、Kimi、Claude、YouMind','<strong>云端不能省</strong> — 阿里云 + iCloud + 百度云 + 绿联NAS(20T)','<strong>手机一定1T</strong> — 微信聊天量大，每次换手机多十几二十G']}
+    ]
+  },
+  {
+    id:'part05', label:'AI编程',
+    slides:[
+      {type:'cover',title:'AI编程与<br><span class="accent">个人化AI系统</span>',quote:'AI这东西已经不是AI本身的问题了，而是谁用这个AI。'},
+      {title:'AI搜索 vs<br><span class="accent">AI编程</span>',quote:'AI搜索——我要什么，它给方案。<strong>AI编程不是</strong>——你告诉它你要什么，它就做给你。',context:'就像小说里的"言出法随"——我告诉你写出这个，它就写出来了。你什么都不用懂。'},
+      {title:'<span class="accent">Skills</span>概念',quote:'有了Skills，代表里面已经拥有一套制作技能的逻辑链路。当我要制作图片，它就按照一二三四五帮你做。',context:'新的Skill可以先问你20-30个问题确定需求，做出来的东西就很符合你要的。AI时代会进到AI的个人定制化。'},
+      {title:'省钱策略<br><span class="accent">GPT + Claude</span>',quote:'先问GPT完善需求，调完之后再把内容发给Claude执行。因为Claude比较贵，GPT比较便宜。'},
+      {title:'1600万字<br><span class="accent">个人知识库</span>',quote:'我的云咨询室跑的不是大模型，而是我自己的数据库。从2022年讲课到现在，1600多万字全部放进知识库。',context:'如果你问的是你信任的咨询师的专属AI，得到属于他的价值观——你用起来就觉得"我信任他"。'},
+      {title:'逐字稿<span class="accent"> ≠ </span>AI纪要',quote:'逐字稿里有我的语助词、幽默、个人特质。你把逐字稿丢给AI，等于用AI创造另一个<strong>带有你特质</strong>的AI系统。',context:'AI纪要只是总结，没有你任何个人特质。'},
+      {title:'6分钟<br><span class="accent">写出一个程序</span>',quote:'跟他聊天聊到第六分钟，我就写出来了。',context:'朋友请我帮做香港升学系统——学生填资料，程序判定最适合的五间学校。收了2000块，我的咨询都不止这个数。这不是我想走的路，只是发现这东西一个人就能干成。'}
+    ]
+  },
+  {
+    id:'part06', label:'记录与知识库',
+    slides:[
+      {type:'cover',title:'记录的习惯<br>与<span class="accent">知识库建设</span>',quote:'每个超级个体卖的都是自己。你卖的是你，绝对不是AI。'},
+      {title:'为什么<span class="accent">要记录</span>',quote:'当你能记录你讲过的所有的话——不是"看了一篇文章存起来"，那不是我的。而是我真的输出了我的观点，这就是我。',context:'平均一天起床到送孩子，群里分享就超过六千字。假设佳木的投资成功经验变成知识库，可能让他从卖699变成卖3000、4000。'},
+      {title:'录音卡诀窍<br><span class="accent">早上开，晚上关</span>',quote:'你不用管说不说话——说话一定记住，没说话它就不记。你可以用这个检视你每天到底说多少话。',questioner:'淘淘问：我口喷输出场景少，跟AI报流水账很难坚持。',context:'把工作变成生活。你那天在干啥，全记录下来。复盘很可怕的，最后只看总结就好。'}
+    ]
+  },
+  {
+    id:'part07', label:'选项目与赚钱',
+    slides:[
+      {type:'cover',title:'选项目、目标感<br>与<span class="accent">赚钱逻辑</span>',quote:'赚钱跟项目本身无关，而是你做事的习惯只要在那，任何项目嫁接进来，你就能回到这个收入。',questioner:'春春问：没有清晰的产品，该怎么办？'},
+      {title:'<span class="accent">三条路</span>',steps:[{n:'1',text:'<strong>方向确定</strong> — 回到一线市场大量表达，找到一套"他们爱听"的话术'},{n:'2',text:'<strong>方向不确定</strong> — 坦白说"你能不能给我建议？"'},{n:'3',text:'<strong>找人</strong> — 不是找项目，是找人。这个人我欣赏他，你干啥我跟你一起干'}],context:'选对的人之后，项目就一定会对。重点不是项目，而是人的对错决定项目的好坏。'},
+      {title:'坚持<span class="accent">半年</span>原则',quote:'选定一个项目，前期认真干半年，这半年不要换。半年之后再做节点——这项目要不要继续？',context:'你没做出成绩，一定不是项目的问题——遇到困难就习惯躲，卖不出去就觉得"产品不好"，明明是你不好。'},
+      {title:'<span class="accent">刚性支出</span>理论',quote:'你的刚性支出是多少，你的能力范围就在哪里。逼出来的刚性支出越大，赚钱能力就越稳定。',context:'年轻人多赚6000会花掉；团队里的妈妈说"儿子结婚要用，孙子奶粉钱怎么办"——她有目的性。与其找项目，不如先问"我要多这么多钱干嘛？"'},
+      {title:'年收入<span class="accent">50万</span>基准线',quote:'至少先维持50万。没到之前什么都不要想——你的工作就是问自己"怎样让这一年到50万？"',context:'这个满了之后，情绪才是真情绪。不然都是假情绪——你只是为了逃避赚钱。两个孩子的家庭，50万一年，房贷还光了，很足够。'},
+      {title:'主业 +<br>每天<span class="accent">三小时</span>副业',quote:'很多人副业做不好，是他没安全感。着急，容易出错，动作就变了。',context:'就像健身房新手想赶快上大重量，第一天硬拉一拉腰就受伤了。'}
+    ]
+  },
+  {
+    id:'part08', label:'销售与表达',
+    slides:[
+      {type:'cover',title:'销售差异<br>讨人喜欢与<span class="accent">表达训练</span>',quote:'转C端最困难的就是——讨不讨人喜欢。',questioner:'佳木问：ToB和ToC销售有什么区别？'},
+      {title:'ToB vs <span class="accent">ToC</span>',quote:'C端会比B端难卖。一个能把C端金额做高的人，去做B端是很快的。',context:'ToB靠公司背景——"我是字节的"。ToC你得了解他的喜好、他的过去、给他什么效果。你要么创造新需求，要么把旧需求放大。'},
+      {title:'讨人喜欢<br>可以<span class="accent">量化</span>',list:['<strong>味道</strong> — 男生穿内衣隔臭，备口喷，体香剂是神器','<strong>仪表</strong> — 鼻毛要修、眉毛要修、衣服不能太皱、包包整齐','<strong>专业展示</strong> — 问到专业随时能拿出相应展示','<strong>表达</strong> — 初期多听多问，习惯性先夸一两句'],context:'第一眼感受好的人，你就对他有莫名的信任感。'},
+      {title:'口喷能力<br><span class="accent">三阶段</span>训练',questioner:'淘淘问：怎么才能拥有这种口喷能力？',steps:[{n:'1',text:'<strong>先念完再改</strong> — 语音念出文章，发现是灾难片，初期一小时变两小时'},{n:'2',text:'<strong>念完直接发</strong> — 一个段落念完，改好字就发，边念边换行'},{n:'3',text:'<strong>追求精准</strong> — 说话变慢，一句就要过。随时念出六七千字不带中断'}],context:'两个月禁止用键盘，只能语音转文字。这是不习惯，跟能力没关系。你发了也不一定有人看，所以不用怕。'},
+      {title:'不备课<br>不录播<span class="accent">十四年</span>',quote:'我要求自己不能备课，因为我想用当下最真实的状态表达。不卖录播课，只卖直播课——当下的我是最真实的。',context:'老师也是随性分享，我很羡慕，所以逼了自己。我以为练一年就好了——结果练了十四年。'}
+    ]
+  }
+];
+
+// ====== STATE ======
+let currentSection=0, currentSlide=0;
+
+function renderTabs(){
+  document.getElementById('tabs').innerHTML=sections.map((s,i)=>
+    `<button class="${i===currentSection?'active':''}" onclick="switchSection(${i})">${s.label}</button>`
+  ).join('');
+}
+
+function renderSlides(){
+  const s=sections[currentSection];
+  document.getElementById('track').innerHTML=s.slides.map((sl,i)=>{
+    let cls='slide '+(sl.type==='cover'?'cover':'content');
+    let h=`<div class="${cls}"><div class="slide-inner">`;
+    h+=`<div class="slide-num">${s.label} · ${i+1}/${s.slides.length}</div>`;
+    if(sl.type==='cover') h+=`<div class="part-label">PART 0${currentSection+1}</div>`;
+    if(sl.questioner) h+=`<div class="questioner-badge">${sl.questioner}</div>`;
+    if(sl.title) h+=`<h2 class="slide-title">${sl.title}</h2>`;
+    if(sl.quote) h+=`<div class="slide-quote">${sl.quote}</div>`;
+    if(sl.list) h+=`<ul class="slide-list">${sl.list.map(l=>`<li>${l}</li>`).join('')}</ul>`;
+    if(sl.steps) h+=`<div class="slide-steps">${sl.steps.map(st=>`<div class="step"><div class="step-num">${st.n}</div><div class="step-text">${st.text}</div></div>`).join('')}</div>`;
+    if(sl.products) h+=`<div class="slide-products">${sl.products.map(p=>`<div class="sp"><div class="sp-name">${p.name}</div><div class="sp-desc">${p.desc}</div></div>`).join('')}</div>`;
+    if(sl.context) h+=`<p class="slide-context">${sl.context}</p>`;
+    return h+`</div></div>`;
+  }).join('');
+  document.getElementById('dots').innerHTML=s.slides.map((_,i)=>
+    `<div class="dot ${i===currentSlide?'active':''}" onclick="goTo(${i})"></div>`
+  ).join('');
+  updatePosition(false);
+}
+
+function updatePosition(anim=true){
+  const t=document.getElementById('track');
+  t.style.transition=anim?'transform 0.4s cubic-bezier(0.25,0.1,0.25,1)':'none';
+  t.style.transform=`translateX(-${currentSlide*100}vw)`;
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));
+  const total=sections[currentSection].slides.length;
+  document.getElementById('counter').textContent=`${currentSlide+1} / ${total}`;
+  document.getElementById('prevBtn').disabled=(currentSlide===0&&currentSection===0);
+  document.getElementById('nextBtn').disabled=(currentSlide===total-1&&currentSection===sections.length-1);
+  const ad=document.querySelector('.dot.active');if(ad)ad.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+}
+
+function switchSection(i){currentSection=i;currentSlide=0;renderTabs();renderSlides()}
+
+function go(dir){
+  const total=sections[currentSection].slides.length, next=currentSlide+dir;
+  if(next>=0&&next<total){currentSlide=next;updatePosition()}
+  else if(dir>0&&currentSection<sections.length-1){currentSection++;currentSlide=0;renderTabs();renderSlides();const at=document.querySelector('.tabs button.active');if(at)at.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}
+  else if(dir<0&&currentSection>0){currentSection--;currentSlide=sections[currentSection].slides.length-1;renderTabs();renderSlides();const at=document.querySelector('.tabs button.active');if(at)at.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}
+}
+function goTo(i){currentSlide=i;updatePosition()}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown')go(1);
+  else if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1);
+  else if(e.key>='1'&&e.key<='8')switchSection(parseInt(e.key)-1);
+});
+
+let touchX=0,swiping=false;
+const vp=document.getElementById('viewport');
+vp.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX;swiping=true},{passive:true});
+vp.addEventListener('touchmove',e=>{if(swiping&&Math.abs(e.touches[0].clientX-touchX)>10)e.preventDefault()},{passive:false});
+vp.addEventListener('touchend',e=>{if(!swiping)return;swiping=false;const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>50)go(dx<0?1:-1)});
+
+renderTabs();renderSlides();
+</script>
+</body>
+</html>

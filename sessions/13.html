@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>第13场 · 咨询师的复合能力与人生基本功 — 生财有术线下活动</title>
+<meta name="description" content="生财有术第13场线下活动精华：咨询师复合能力、时间管理七代论、平衡人生、AI使用边界、语音写作、爱情经营、销售必修、产品定价">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+
+  :root{--t:0.35s ease}
+
+  /* === Dark theme === */
+  [data-theme="dark"]{
+    --bg:#0a0a08;
+    --bg-bar:rgba(10,10,8,0.95);
+    --bg-tabs:rgba(18,16,12,0.95);
+    --bg-cover-a:#1a1510;--bg-cover-b:#0a0a08;
+    --bg-glow:rgba(212,160,74,0.08);
+    --bg-card:#12100c;
+    --border:#2a2218;--border-tab:#1a1510;
+    --accent:#d4a04a;
+    --accent-bg:rgba(212,160,74,0.12);
+    --accent-border:rgba(212,160,74,0.2);
+    --accent-bg2:rgba(212,160,74,0.15);
+    --accent-border2:rgba(212,160,74,0.3);
+    --text:#f0e6d6;
+    --text-quote:#d8cfc0;
+    --text-list:#c8c0b0;
+    --text-muted:#8a7d6d;
+    --text-dim:#5a5040;
+    --text-hint:#3a3020;
+    --quote-mark:rgba(212,160,74,0.2);
+    --dot-bg:#2a2218;
+    --toggle-icon:'\263E';
+  }
+
+  /* === Light theme === */
+  [data-theme="light"]{
+    --bg:#f5faf8;
+    --bg-bar:rgba(245,250,248,0.95);
+    --bg-tabs:rgba(234,244,240,0.95);
+    --bg-cover-a:#e4f0ec;--bg-cover-b:#f5faf8;
+    --bg-glow:rgba(26,138,125,0.06);
+    --bg-card:#ffffff;
+    --border:#c8ddd6;--border-tab:#d0e0da;
+    --accent:#1a8a7d;
+    --accent-bg:rgba(26,138,125,0.08);
+    --accent-border:rgba(26,138,125,0.18);
+    --accent-bg2:rgba(26,138,125,0.1);
+    --accent-border2:rgba(26,138,125,0.25);
+    --text:#1a2e28;
+    --text-quote:#2a4a42;
+    --text-list:#3a5a52;
+    --text-muted:#7a9a90;
+    --text-dim:#a0b8b0;
+    --text-hint:#c0d4cc;
+    --quote-mark:rgba(26,138,125,0.15);
+    --dot-bg:#b8d0c8;
+    --toggle-icon:'\2600';
+  }
+
+  html,body{height:100%;overflow:hidden;font-family:'Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--text);transition:background var(--t),color var(--t)}
+
+  /* === Top bar === */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:var(--bg-bar);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 1.2rem;height:44px;
+    transition:background var(--t),border-color var(--t);
+  }
+  .topbar .back{color:var(--text-muted);font-size:0.82rem;text-decoration:none;display:flex;align-items:center;gap:4px;transition:color var(--t)}
+  .topbar .back:hover{color:var(--accent)}
+  .topbar .title{color:var(--text);font-size:0.82rem;font-weight:600;transition:color var(--t)}
+  .topbar .right-btns{display:flex;align-items:center;gap:8px}
+  .topbar .mode-toggle{
+    font-size:0.72rem;padding:4px 12px;border-radius:5px;
+    background:var(--accent-bg);color:var(--accent);
+    border:1px solid var(--accent-border);cursor:pointer;text-decoration:none;
+    transition:all var(--t);
+  }
+  .topbar .mode-toggle:hover{background:var(--accent-bg2)}
+  .theme-btn{
+    width:30px;height:30px;border-radius:50%;
+    background:var(--accent-bg);border:1px solid var(--accent-border);
+    color:var(--accent);font-size:0.95rem;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:all var(--t);
+  }
+  .theme-btn:hover{transform:scale(1.1)}
+
+  /* === Section tabs === */
+  .tabs{
+    position:fixed;top:44px;left:0;right:0;z-index:90;
+    background:var(--bg-tabs);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border-tab);
+    display:flex;overflow-x:auto;padding:0 0.8rem;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    transition:background var(--t),border-color var(--t);
+  }
+  .tabs::-webkit-scrollbar{display:none}
+  .tabs button{
+    flex-shrink:0;padding:10px 14px;font-size:0.72rem;
+    background:none;border:none;color:var(--text-dim);
+    cursor:pointer;font-family:inherit;white-space:nowrap;
+    border-bottom:2px solid transparent;transition:all 0.2s;
+  }
+  .tabs button.active{color:var(--accent);border-bottom-color:var(--accent)}
+  .tabs button:hover{color:var(--text-muted)}
+
+  /* === Slide viewport === */
+  .viewport{position:fixed;top:82px;left:0;right:0;bottom:60px;overflow:hidden}
+  .slide-track{display:flex;height:100%;transition:transform 0.4s cubic-bezier(0.25,0.1,0.25,1)}
+
+  /* === Each slide === */
+  .slide{
+    flex-shrink:0;width:100vw;height:100%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:2rem 2.5rem;text-align:center;position:relative;
+    background:var(--bg);transition:background var(--t);
+  }
+  .slide.cover{
+    background:linear-gradient(160deg,var(--bg-cover-a) 0%,var(--bg-cover-b) 60%);
+  }
+  .slide.cover::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 50% 80%,var(--bg-glow) 0%,transparent 55%);
+    pointer-events:none;
+  }
+
+  .slide-inner{max-width:640px;width:100%;position:relative;z-index:1}
+  .slide-num{font-size:0.65rem;color:var(--text-dim);letter-spacing:3px;margin-bottom:0.8rem;font-weight:500;transition:color var(--t)}
+  .part-label{
+    display:inline-block;font-size:0.7rem;padding:5px 16px;border-radius:20px;
+    background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent-border);
+    margin-bottom:1.2rem;letter-spacing:2px;transition:all var(--t);
+  }
+  .slide-title{font-size:1.6rem;font-weight:900;color:var(--text);line-height:1.4;margin-bottom:1rem;transition:color var(--t)}
+  @media(min-width:768px){.slide-title{font-size:2rem}}
+  .slide-title .accent{color:var(--accent);transition:color var(--t)}
+
+  .slide-quote{
+    font-size:1.15rem;line-height:1.9;color:var(--text-quote);
+    margin-bottom:1.2rem;position:relative;padding:0 0.5rem;transition:color var(--t);
+  }
+  @media(min-width:768px){.slide-quote{font-size:1.3rem}}
+  .slide-quote::before{
+    content:'\201C';position:absolute;top:-1.2rem;left:-0.3rem;
+    font-size:3rem;color:var(--quote-mark);font-family:Georgia,serif;line-height:1;transition:color var(--t);
+  }
+  .slide-quote strong{color:var(--accent);font-weight:700}
+
+  .slide-context{font-size:0.82rem;line-height:1.8;color:var(--text-muted);max-width:520px;margin:0 auto;transition:color var(--t)}
+
+  .slide-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:1.2rem}
+  .slide-tags span{font-size:0.72rem;padding:5px 14px;border-radius:6px;background:var(--bg-cover-a);color:var(--text-muted);border:1px solid var(--border);transition:all var(--t)}
+
+  .slide-products{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:1rem auto 0;max-width:520px;text-align:left}
+  .slide-products .sp{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;transition:all var(--t)}
+  .slide-products .sp .sp-name{font-size:0.82rem;font-weight:700;color:var(--accent);margin-bottom:2px;transition:color var(--t)}
+  .slide-products .sp .sp-desc{font-size:0.7rem;color:var(--text-muted);line-height:1.5;transition:color var(--t)}
+  @media(max-width:480px){.slide-products{grid-template-columns:1fr}}
+
+  .slide-list{text-align:left;max-width:480px;margin:0.8rem auto 0;list-style:none}
+  .slide-list li{font-size:0.92rem;color:var(--text-list);line-height:1.8;padding-left:1.4rem;position:relative;margin-bottom:0.3rem;transition:color var(--t)}
+  .slide-list li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-weight:700}
+  .slide-list li strong{color:var(--accent)}
+
+  .slide-steps{text-align:left;max-width:500px;margin:0.8rem auto 0}
+  .slide-steps .step{display:flex;gap:12px;margin-bottom:0.8rem;align-items:flex-start}
+  .slide-steps .step-num{
+    flex-shrink:0;width:28px;height:28px;border-radius:50%;
+    background:var(--accent-bg2);border:1px solid var(--accent-border2);
+    color:var(--accent);font-size:0.78rem;font-weight:700;
+    display:flex;align-items:center;justify-content:center;margin-top:2px;transition:all var(--t);
+  }
+  .slide-steps .step-text{font-size:0.88rem;color:var(--text-list);line-height:1.7;transition:color var(--t)}
+  .slide-steps .step-text strong{color:var(--accent)}
+
+  .questioner-badge{
+    display:inline-block;font-size:0.7rem;padding:3px 12px;border-radius:4px;
+    background:var(--accent-bg);color:var(--accent);margin-bottom:0.8rem;transition:all var(--t);
+  }
+
+  /* === Bottom bar === */
+  .bottombar{
+    position:fixed;bottom:0;left:0;right:0;height:60px;
+    background:var(--bg-bar);backdrop-filter:blur(8px);
+    border-top:1px solid var(--border-tab);
+    display:flex;align-items:center;justify-content:center;
+    gap:1.5rem;z-index:90;padding:0 1rem;
+    transition:background var(--t),border-color var(--t);
+  }
+  .nav-btn{
+    width:40px;height:40px;border-radius:50%;
+    background:var(--accent-bg);border:1px solid var(--accent-border);
+    color:var(--accent);font-size:1.1rem;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:all 0.2s;flex-shrink:0;
+  }
+  .nav-btn:hover{background:var(--accent-bg2)}
+  .nav-btn:disabled{opacity:0.3;cursor:default}
+  .dots{display:flex;gap:6px;align-items:center;overflow-x:auto;max-width:calc(100vw - 160px);scrollbar-width:none}
+  .dots::-webkit-scrollbar{display:none}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--dot-bg);flex-shrink:0;transition:all 0.3s;cursor:pointer}
+  .dot.active{background:var(--accent);width:24px;border-radius:4px}
+  .slide-counter{font-size:0.72rem;color:var(--text-dim);flex-shrink:0;min-width:50px;text-align:center;transition:color var(--t)}
+
+  .key-hint{position:fixed;bottom:68px;left:50%;transform:translateX(-50%);font-size:0.65rem;color:var(--text-hint);pointer-events:none;transition:color var(--t)}
+  @media(max-width:768px){.key-hint{display:none}}
+  @media(max-width:640px){.topbar .title{display:none}.topbar{padding:0 0.8rem}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html" class="back">&larr; 目录</a>
+  <span class="title">第13场 · 咨询师的复合能力与人生基本功</span>
+  <div class="right-btns">
+    <a href="13-article.html" class="mode-toggle">文章版</a>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="切换明暗模式"><span id="themeIcon"></span></button>
+  </div>
+</div>
+
+<div class="tabs" id="tabs"></div>
+
+<div class="viewport" id="viewport">
+  <div class="slide-track" id="track"></div>
+</div>
+
+<div class="bottombar">
+  <button class="nav-btn" id="prevBtn" onclick="go(-1)">&larr;</button>
+  <div class="dots" id="dots"></div>
+  <span class="slide-counter" id="counter"></span>
+  <button class="nav-btn" id="nextBtn" onclick="go(1)">&rarr;</button>
+</div>
+<div class="key-hint">&larr; &rarr; 方向键翻页 &nbsp;|&nbsp; 数字键切换章节</div>
+
+<script>
+// ====== THEME ======
+function getTheme(){return localStorage.getItem('sc-theme')||'dark'}
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('themeIcon').innerHTML = t==='dark'?'&#9790;':'&#9728;';
+}
+function toggleTheme(){
+  const next=getTheme()==='dark'?'light':'dark';
+  localStorage.setItem('sc-theme',next);
+  applyTheme(next);
+}
+applyTheme(getTheme());
+
+// ====== SLIDE DATA ======
+const sections = [
+  {
+    id:'part01', label:'咨询师复合能力',
+    slides:[
+      {type:'cover',title:'咨询师的<br><span class="accent">复合能力</span>',quote:'咨询师是一个复合式的技能行业。你不止爱情得有经验，还得懂时间管理、懂赚钱、懂销售、懂沟通。',context:'第13场 · 2025年2月'},
+      {title:'不同阶段<span class="accent">不同问题</span>',list:['<strong>大学前</strong> — 学业、健康、爱情','<strong>毕业后</strong> — 天赋、工作方向','<strong>35岁</strong> — 家庭教育、转型','<strong>50岁后</strong> — 健康、第二春'],context:'这些问题你真的可以只用一个工具解决吗？解决不了的。'},
+      {title:'经历决定<span class="accent">咨询价码</span>',quote:'一个经历越不丰富、只走理论的咨询师，最后只能接三四百、五六百的案子，永远接不高。',context:'给的解决方法是书上看到的、案例看到的，但没有一个是他经历的。客户听完好像有听跟没听一样。'},
+      {title:'咨询师前身<br>一定是<span class="accent">销售</span>',quote:'销售是一个你必须得强迫自己去见人的行业。你见的人如果少，当了咨询师之后，就不知道有什么案例可以给别人经验。',context:'毕业之后建议你去做个半年到一年的销售。卖房、卖保险、卖快消品都行。跑半年之后再问自己：继续深挖还是转型。'}
+    ]
+  },
+  {
+    id:'part02', label:'时间管理',
+    slides:[
+      {type:'cover',title:'时间管理<br><span class="accent">七代论</span>',quote:'不是每个人都需要时间管理。在你没有需求的时候，硬练会很痛苦。'},
+      {title:'第一代<br><span class="accent">便条式</span>',quote:'黄色便条纸，写一个贴墙上，完成了就拿掉。原则：不忘事、今日事今日毕。',context:'只要做到便条式管理，一年赚30万没有问题。'},
+      {title:'第二代<br><span class="accent">优先次序</span>',quote:'事情的顺序决定于你的年度目标。如果每天做的多数事情都跟赚钱没关系，目标就完成不了。',context:'优先次序不是排时间，而是排重要。赚钱重要就把赚钱放第一。遇到冲突，重要的事优先。'},
+      {title:'第三代<br><span class="accent">重要不紧急</span>',quote:'运动重要吗？重要。现在不做有关系吗？没关系。时间拉长到五年十年，你不运动，你的身体就比别人差。',list:['<strong>运动</strong> — 保持好体态','<strong>记账</strong> — 知道钱花去哪','<strong>写复盘</strong> — 检视每天的成长','<strong>学习沟通</strong> — 经营关系的基础','<strong>阅读</strong> — 读了五年就比别人厉害']},
+      {title:'第四到七代<br><span class="accent">进阶管理</span>',steps:[{n:'4',text:'<strong>行程表管理</strong> — 周行程、月行程、年行程'},{n:'5',text:'<strong>角色扮演</strong> — 老师、爸爸、老公、学生的身份切换'},{n:'6',text:'<strong>习惯管理</strong> — 养成好习惯、改掉坏习惯'},{n:'7',text:'<strong>能量管理</strong> — 控制情绪的高低节奏'}],context:'目前你只要做一到两代就好了。时间管理一定要手写，没有手写都没用。'},
+      {title:'滴答清单<br><span class="accent">分色管理</span>',list:['<strong>红色</strong> — 赚钱相关','<strong>蓝色</strong> — 固定事项（讲课、见面）','<strong>黄色</strong> — 运动','<strong>紫色</strong> — 爱情','<strong>绿色</strong> — 自我（玩手机、刷小说、看电视）'],context:'事情一多就回到时间管理系统。不一定要用，但一定要会。'}
+    ]
+  },
+  {
+    id:'part03', label:'平衡人生',
+    slides:[
+      {type:'cover',title:'平衡人生<br>与<span class="accent">价值观排序</span>',quote:'当一件事情只要过度偏激，人就会生病。只有工作人会生病，只有运动人会生病。'},
+      {title:'我的<span class="accent">价值观排序</span>',steps:[{n:'1',text:'<strong>爱情</strong> — 每天会有1-2小时陪老婆'},{n:'2',text:'<strong>赚钱</strong> — 目前排前三，因为需要养家'},{n:'3',text:'<strong>自我</strong> — 玩手机刷小说看电视'}],context:'爱情的时间如果是晚上10点到12点，假设有人约我咨询，我大概率会拒绝。排序会随时间调整，但不会因为调整就完全不做。'},
+      {title:'神经链<span class="accent">理论</span>',quote:'用右手拿筷子做了100天，神经链就有100条。要改成左手，得过100天才能把旧习惯换掉。',context:'一年不陪孩子讲话，到了第二年你也不会跟孩子讲话。不能说挽回不了，但你要再花六年才能把关系挽回。'},
+      {title:'做得少<br>但<span class="accent">不能不做</span>',quote:'每天挪出半小时陪另一半，这到底是意愿还是能力的问题？是意愿的问题。',context:'我的目标是一年赚100万左右。每天工作四五个小时，很轻松。我觉得人生是需要平衡的。'}
+    ]
+  },
+  {
+    id:'part04', label:'AI使用边界',
+    slides:[
+      {type:'cover',title:'AI使用边界<br>与<span class="accent">基本功</span>',quote:'AI用得好的那些人，把AI拿掉，他们还是很强。没有AI也很强，有了AI只会更强。'},
+      {title:'基本功不稳<br>AI越好用<span class="accent">人越废</span>',quote:'在你的基本功不稳的情况下，AI就是帮我排版而已，我不会让AI帮我写任何的东西。',context:'当有一天停电的时候，没有AI你就跟智障一样。但我没有任何AI，依旧可以自己写作、自己排版、自己销售。'},
+      {title:'什么时候<span class="accent">能用</span>AI',list:['<strong>AI编程</strong> — 可以用，没底子真做不了','<strong>聊思路</strong> — 可以跟AI讨论方向','<strong>业务提效</strong> — 商业模式上用AI提效没问题'],context:'但如果是练基本功——写作、表达、沟通——能不用就不要用。'},
+      {title:'<span class="accent">50万</span>门槛论',quote:'年收入纯利润不足50万之前，能不用AI的事情就不要用AI做。过了这个门槛，你才有权利说"我要用AI提效"。',context:'一个没有解决问题能力的人，AI给的所有答案都没有用。你不会做菜，给你几百个菜谱也没有用。'}
+    ]
+  },
+  {
+    id:'part05', label:'语音写作',
+    slides:[
+      {type:'cover',title:'语音写作<br>与<span class="accent">刻意练习</span>',quote:'一分钟385字，十分钟3850字。20分钟写完一篇8000字的文章。'},
+      {title:'语音写作<br><span class="accent">三阶段</span>',steps:[{n:'1',text:'<strong>先念完再改</strong> — 语音念出文章，发现是灾难片，初期一小时变两小时'},{n:'2',text:'<strong>念完直接发</strong> — 段落在念的时候就直接改好，边念边换行'},{n:'3',text:'<strong>追求精准</strong> — 说话变慢，一句就要过。随时念出六七千字不带中断'}],context:'两个月禁止用键盘，只能语音转文字。这不是能力问题，是习惯问题。'},
+      {title:'为什么练<br><span class="accent">语音写作</span>',quote:'发现如果忘了带电脑，那天的工作就做不了。这不符合我对未来工作的想法。',context:'逼自己一周只能带手机处理所有工作。从家门口走到地铁口15分钟，一篇文章就写完了。'},
+      {title:'排版<span class="accent">也要手动练</span>',quote:'AI帮你改语气、删赘词的时候，你听不出自己的表达有什么问题。打过自己的逐字稿，你就会发现原来我的表达有这么多问题。',context:'连排版这个事情，我都知道我的表达段落在哪里。跟别人聊天时，就知道什么时候停、什么时候继续。'}
+    ]
+  },
+  {
+    id:'part06', label:'爱情经营',
+    slides:[
+      {type:'cover',title:'爱情经营<br><span class="accent">阶段论</span>',quote:'追求跟性别没有关系。你如果觉得这个人不错，时机可以了，就主动问。'},
+      {title:'从<span class="accent">交朋友</span>开始',quote:'当你有过5到6次的相处，就会对这个人有一定的画面。如果未来的另一半是这个样子，这种相处感觉我觉得还可以。',context:'不是每周要住在一起，好歹见一次面。跟选老师、选社群、选环境是一件事。'},
+      {title:'婚前<span class="accent">三件必做</span>',steps:[{n:'1',text:'<strong>一定要同居过</strong> — 没有同居就结婚是灾难片。生活习惯你不会展现给别人知道的'},{n:'2',text:'<strong>一定要上过床</strong> — 60%的婚姻因为性关系不和谐离婚'},{n:'3',text:'<strong>共同学习环境</strong> — 有共同的老师或社群，一起学习才有话题，吵架时也有人当裁判'}],context:'我跟老婆认识同一个老师。我们的爱情出了问题会找人解决。'},
+      {title:'择偶条件<br><span class="accent">不能情绪化</span>',quote:'不能因为上一个很活泼的男生伤害过你，就要找文静的。这叫情绪化改变条件。',context:'要有基本盘——孝顺、上进心。不能因为曾经被伤害就全盘翻转条件。需求越明确，就会只关注到想要的那个人。'}
+    ]
+  },
+  {
+    id:'part07', label:'销售必修',
+    slides:[
+      {type:'cover',title:'销售是<br><span class="accent">必修课</span>',quote:'一个连一对一都卖不了东西的人，更别想一对多的直播可以成交。',questioner:'孙太太问：被动成交之后怎么主动破冰？'},
+      {title:'主动销售<span class="accent">流程</span>',steps:[{n:'1',text:'<strong>闲聊破冰</strong> — 聊头像、昵称、个性签名、朋友圈'},{n:'2',text:'<strong>六七分钟后切入</strong> — "给我三分钟聊一下我的产品，可以吗？"'},{n:'3',text:'<strong>被拒绝很正常</strong> — 确认不要就好，问未来有没有可能'},{n:'4',text:'<strong>有礼貌收尾</strong> — 关系不会因为不成交而变差'}],context:'你不主动说，凭什么要求对方主动找你？销售本来就是主动性的行为。'},
+      {title:'SPIN<br><span class="accent">提问四阶段</span>',steps:[{n:'1',text:'<strong>情境式</strong> — 你老家是哪？吃饱了吗？对方回答就是对不对'},{n:'2',text:'<strong>探究式</strong> — 当时怎么会选择来杭州？那么多城市怎么那么有眼光？'},{n:'3',text:'<strong>暗示式</strong> — 五年后你都不经营关系，遇到的风险是什么？把危机放大'},{n:'4',text:'<strong>解决式</strong> — 你觉得现在该补充什么能力？让对方自己给出答案'}]},
+      {title:'发消息<span class="accent">原则</span>',list:['<strong>半屏原则</strong> — 一段内容超过半屏就过多','<strong>三段止步</strong> — 发三段不回就停，不能发超过三段','<strong>朋友圈是本分</strong> — 不是为了成交，是让人知道你还活着','<strong>加人不发自介</strong> — 先聊几句再交换，一加就发谁看'],context:'你看到小红书三篇写得很好，你会直接下单吗？不会。先加微信看谁回得好再买。'}
+    ]
+  },
+  {
+    id:'part08', label:'产品定价',
+    slides:[
+      {type:'cover',title:'产品体系<br>与<span class="accent">定价策略</span>',quote:'你要知道你的价值在哪里。对于我来讲，我的价值就是陪伴。',questioner:'孙太太问：产品体系定价策略是什么？'},
+      {title:'产品<span class="accent">金额分层</span>',steps:[{n:'1',text:'<strong>三位数</strong>（499以内）— 流量不稳定时的核心产品，只有文字/语音交付'},{n:'2',text:'<strong>千元</strong>（999-3000）— 转化率30-40%后再开，小型打卡+训练'},{n:'3',text:'<strong>四位数</strong>（5000左右）— 直播课，完整销售路径+答疑'},{n:'4',text:'<strong>万元课</strong> — 年度目标陪伴，平衡人生四大基本功'},{n:'5',text:'<strong>私教</strong>（5万-25万）— 一对一人生教练'}]},
+      {title:'定价<span class="accent">原则</span>',list:['<strong>新课便宜+交付长</strong> — 第一次开的课一定便宜且交付时间长','<strong>每期涨价</strong> — 涨100-200，因为自己在不断成长','<strong>不冲突</strong> — 低价和高价的交付不能有冲突','<strong>先做量</strong> — 低价群做到100份以上再开高阶'],context:'不能把原本的产品涨到四位数，要创一个新产品。'},
+      {title:'五大<span class="accent">基本功</span>',list:['<strong>销售沟通</strong> — 学会表达、有逻辑、精准地说','<strong>时间管理</strong> — 有一套属于自己的自律系统','<strong>情绪管理</strong> — 了解人性的工具','<strong>爱情经营</strong> — 关系经营不好，事业不会太好','<strong>财商知识</strong> — 钱怎么存、怎么留、怎么花'],context:'这五个能力如果都具备了，你做什么都会有一定的成绩。基本功只要有，所有项目进来都可以快速回到好状态。'}
+    ]
+  }
+];
+
+// ====== STATE ======
+let currentSection=0, currentSlide=0;
+
+function renderTabs(){
+  document.getElementById('tabs').innerHTML=sections.map((s,i)=>
+    `<button class="${i===currentSection?'active':''}" onclick="switchSection(${i})">${s.label}</button>`
+  ).join('');
+}
+
+function renderSlides(){
+  const s=sections[currentSection];
+  document.getElementById('track').innerHTML=s.slides.map((sl,i)=>{
+    let cls='slide '+(sl.type==='cover'?'cover':'content');
+    let h=`<div class="${cls}"><div class="slide-inner">`;
+    h+=`<div class="slide-num">${s.label} · ${i+1}/${s.slides.length}</div>`;
+    if(sl.type==='cover') h+=`<div class="part-label">PART 0${currentSection+1}</div>`;
+    if(sl.questioner) h+=`<div class="questioner-badge">${sl.questioner}</div>`;
+    if(sl.title) h+=`<h2 class="slide-title">${sl.title}</h2>`;
+    if(sl.quote) h+=`<div class="slide-quote">${sl.quote}</div>`;
+    if(sl.list) h+=`<ul class="slide-list">${sl.list.map(l=>`<li>${l}</li>`).join('')}</ul>`;
+    if(sl.steps) h+=`<div class="slide-steps">${sl.steps.map(st=>`<div class="step"><div class="step-num">${st.n}</div><div class="step-text">${st.text}</div></div>`).join('')}</div>`;
+    if(sl.products) h+=`<div class="slide-products">${sl.products.map(p=>`<div class="sp"><div class="sp-name">${p.name}</div><div class="sp-desc">${p.desc}</div></div>`).join('')}</div>`;
+    if(sl.context) h+=`<p class="slide-context">${sl.context}</p>`;
+    return h+`</div></div>`;
+  }).join('');
+  document.getElementById('dots').innerHTML=s.slides.map((_,i)=>
+    `<div class="dot ${i===currentSlide?'active':''}" onclick="goTo(${i})"></div>`
+  ).join('');
+  updatePosition(false);
+}
+
+function updatePosition(anim=true){
+  const t=document.getElementById('track');
+  t.style.transition=anim?'transform 0.4s cubic-bezier(0.25,0.1,0.25,1)':'none';
+  t.style.transform=`translateX(-${currentSlide*100}vw)`;
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));
+  const total=sections[currentSection].slides.length;
+  document.getElementById('counter').textContent=`${currentSlide+1} / ${total}`;
+  document.getElementById('prevBtn').disabled=(currentSlide===0&&currentSection===0);
+  document.getElementById('nextBtn').disabled=(currentSlide===total-1&&currentSection===sections.length-1);
+  const ad=document.querySelector('.dot.active');if(ad)ad.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+}
+
+function switchSection(i){currentSection=i;currentSlide=0;renderTabs();renderSlides()}
+
+function go(dir){
+  const total=sections[currentSection].slides.length, next=currentSlide+dir;
+  if(next>=0&&next<total){currentSlide=next;updatePosition()}
+  else if(dir>0&&currentSection<sections.length-1){currentSection++;currentSlide=0;renderTabs();renderSlides();const at=document.querySelector('.tabs button.active');if(at)at.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}
+  else if(dir<0&&currentSection>0){currentSection--;currentSlide=sections[currentSection].slides.length-1;renderTabs();renderSlides();const at=document.querySelector('.tabs button.active');if(at)at.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}
+}
+function goTo(i){currentSlide=i;updatePosition()}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown')go(1);
+  else if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1);
+  else if(e.key>='1'&&e.key<='8')switchSection(parseInt(e.key)-1);
+});
+
+let touchX=0,swiping=false;
+const vp=document.getElementById('viewport');
+vp.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX;swiping=true},{passive:true});
+vp.addEventListener('touchmove',e=>{if(swiping&&Math.abs(e.touches[0].clientX-touchX)>10)e.preventDefault()},{passive:false});
+vp.addEventListener('touchend',e=>{if(!swiping)return;swiping=false;const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>50)go(dx<0?1:-1)});
+
+renderTabs();renderSlides();
+</script>
+</body>
+</html>

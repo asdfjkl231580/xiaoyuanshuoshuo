@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第13场 · 咨询师的复合能力与人生基本功 — 生财有术线下活动</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root { --t: 0.35s ease; }
+
+  [data-theme="dark"] {
+    --bg: #0a0a08;
+    --bg-bar: rgba(10,10,8,0.92);
+    --bg-hero-a: #1a1510;
+    --bg-hero-b: #0a0a08;
+    --bg-glow: rgba(212,160,74,0.1);
+    --bg-toc: #12100c;
+    --bg-card: #1a1510;
+    --bg-info: #12100c;
+    --border: #2a2218;
+    --accent: #d4a04a;
+    --accent-bg: rgba(212,160,74,0.12);
+    --accent-bg2: rgba(212,160,74,0.25);
+    --accent-border: rgba(212,160,74,0.2);
+    --accent-border2: rgba(212,160,74,0.3);
+    --text: #c8c0b0;
+    --text-heading: #f0e6d6;
+    --text-sub: #e8dcc8;
+    --text-quote: #d8cfc0;
+    --text-muted: #8a7d6d;
+    --text-dim: #5a5040;
+    --bq-bg: rgba(212,160,74,0.06);
+  }
+
+  [data-theme="light"] {
+    --bg: #f5faf8;
+    --bg-bar: rgba(245,250,248,0.92);
+    --bg-hero-a: #e4f0ec;
+    --bg-hero-b: #f5faf8;
+    --bg-glow: rgba(26,138,125,0.08);
+    --bg-toc: #eaf4f0;
+    --bg-card: #e4f0ec;
+    --bg-info: #eaf4f0;
+    --border: #c8ddd6;
+    --accent: #1a8a7d;
+    --accent-bg: rgba(26,138,125,0.08);
+    --accent-bg2: rgba(26,138,125,0.15);
+    --accent-border: rgba(26,138,125,0.18);
+    --accent-border2: rgba(26,138,125,0.25);
+    --text: #3a5a52;
+    --text-heading: #1a2e28;
+    --text-sub: #2a4a42;
+    --text-quote: #2a4a42;
+    --text-muted: #7a9a90;
+    --text-dim: #a0b8b0;
+    --bq-bg: rgba(26,138,125,0.05);
+  }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.85;
+    transition: background var(--t), color var(--t);
+  }
+  a { color: var(--accent); text-decoration: none; transition: color var(--t); }
+  a:hover { text-decoration: underline; }
+
+  .top-bar {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg-bar); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 2rem; display: flex; align-items: center; justify-content: space-between;
+    transition: background var(--t), border-color var(--t);
+  }
+  .top-bar .back { font-size: 0.85rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px; transition: color var(--t); }
+  .top-bar .back:hover { color: var(--accent); text-decoration: none; }
+  .top-bar .session-title { font-size: 0.85rem; color: var(--text-heading); font-weight: 600; transition: color var(--t); }
+  .top-bar .right-btns { display: flex; align-items: center; gap: 8px; }
+  .top-bar .download-btn {
+    font-size: 0.78rem; padding: 5px 14px; border-radius: 6px;
+    background: var(--accent-bg); color: var(--accent);
+    border: 1px solid var(--accent-border2); cursor: pointer; transition: all var(--t);
+  }
+  .top-bar .download-btn:hover { background: var(--accent-bg2); text-decoration: none; }
+  .theme-btn {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--accent-bg); border: 1px solid var(--accent-border);
+    color: var(--accent); font-size: 0.95rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; transition: all var(--t);
+  }
+  .theme-btn:hover { transform: scale(1.1); }
+
+  .hero {
+    text-align: center; padding: 4rem 2rem 3rem; position: relative; overflow: hidden;
+    background: linear-gradient(180deg, var(--bg-hero-a) 0%, var(--bg-hero-b) 100%);
+    transition: background var(--t);
+  }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 100%, var(--bg-glow) 0%, transparent 55%); pointer-events: none; }
+  .hero .badge { display: inline-block; font-size: 0.72rem; padding: 4px 14px; border-radius: 20px; background: var(--accent-bg); color: var(--accent); border: 1px solid var(--accent-border); margin-bottom: 1rem; position: relative; transition: all var(--t); }
+  .hero h1 { font-size: 2.2rem; font-weight: 900; color: var(--text-heading); position: relative; margin-bottom: 0.3rem; transition: color var(--t); }
+  .hero .accent { color: var(--accent); transition: color var(--t); }
+  .hero .meta-line { color: var(--text-muted); font-size: 0.85rem; position: relative; margin-top: 0.8rem; transition: color var(--t); }
+  .hero .stats { display: flex; gap: 2rem; justify-content: center; margin-top: 1.5rem; position: relative; }
+  .hero .stat .n { font-size: 1.3rem; font-weight: 900; color: var(--accent); transition: color var(--t); }
+  .hero .stat .l { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; transition: color var(--t); }
+
+  .toc-bar {
+    background: var(--bg-toc); border-bottom: 1px solid var(--border);
+    padding: 12px 2rem; display: flex; gap: 8px; overflow-x: auto; justify-content: center; flex-wrap: wrap;
+    position: sticky; top: 42px; z-index: 90; transition: background var(--t), border-color var(--t);
+  }
+  .toc-bar a {
+    font-size: 0.75rem; padding: 6px 14px; border-radius: 6px;
+    border: 1px solid var(--border); background: var(--bg-card);
+    color: var(--text-muted); white-space: nowrap; transition: all 0.2s;
+  }
+  .toc-bar a:hover, .toc-bar a.active { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+  .article { max-width: 780px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+
+  .section-header { margin: 3rem 0 1.5rem; padding-left: 14px; border-left: 3px solid var(--accent); transition: border-color var(--t); }
+  .section-header:first-child { margin-top: 0; }
+  .section-header .sec-num { font-size: 0.68rem; letter-spacing: 3px; color: var(--accent); font-weight: 500; transition: color var(--t); }
+  .section-header h2 { font-size: 1.3rem; font-weight: 800; color: var(--text-heading); margin-top: 2px; transition: color var(--t); }
+
+  h3 { font-size: 1.05rem; font-weight: 700; color: var(--text-sub); margin: 2rem 0 0.8rem; padding-bottom: 6px; border-bottom: 1px solid var(--border); transition: color var(--t), border-color var(--t); }
+  p { margin-bottom: 1rem; }
+  strong { color: var(--text-sub); transition: color var(--t); }
+
+  blockquote {
+    background: var(--bq-bg); border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem; border-radius: 0 8px 8px 0;
+    margin: 1rem 0 1.2rem; color: var(--text-quote); font-size: 0.92rem; transition: all var(--t);
+  }
+
+  ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+  li { margin-bottom: 0.4rem; }
+  li::marker { color: var(--accent); }
+
+  .questioner { display: inline-block; font-size: 0.78rem; font-weight: 700; color: var(--accent); background: var(--accent-bg); padding: 2px 10px; border-radius: 4px; margin-bottom: 6px; transition: all var(--t); }
+
+  .highlight-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem 1.4rem; margin: 1.2rem 0; transition: all var(--t); }
+  .highlight-box .hl-title { font-size: 0.75rem; font-weight: 700; color: var(--accent); letter-spacing: 1px; margin-bottom: 0.5rem; transition: color var(--t); }
+
+  .info-box { background: var(--bg-info); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem 1.4rem; margin-bottom: 2rem; font-size: 0.88rem; transition: all var(--t); }
+  .info-box .info-row { display: flex; gap: 0.5rem; padding: 4px 0; color: var(--text-muted); transition: color var(--t); }
+  .info-box .info-label { color: var(--accent); font-weight: 600; flex-shrink: 0; width: 70px; transition: color var(--t); }
+  .info-box .info-val { color: var(--text); transition: color var(--t); }
+
+  .divider { border: none; height: 1px; background: var(--border); margin: 2.5rem 0; transition: background var(--t); }
+
+  .article-footer { text-align: center; padding: 2rem; color: var(--text-dim); font-size: 0.78rem; border-top: 1px solid var(--border); transition: all var(--t); }
+  .article-footer a { color: var(--text-muted); }
+
+  .back-top {
+    position: fixed; bottom: 2rem; right: 2rem; width: 42px; height: 42px; border-radius: 50%;
+    background: var(--accent-bg2); border: 1px solid var(--accent-border2);
+    color: var(--accent); font-size: 1.1rem; display: flex; align-items: center;
+    justify-content: center; cursor: pointer; opacity: 0;
+    transition: opacity 0.3s, background var(--t), border-color var(--t), color var(--t); z-index: 50;
+  }
+  .back-top.show { opacity: 1; }
+  .back-top:hover { background: var(--accent-bg2); }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.5rem; }
+    .hero .stats { gap: 1.2rem; }
+    .article { padding: 1.5rem 1rem; }
+    .top-bar { padding: 8px 1rem; }
+    .toc-bar { padding: 10px 1rem; justify-content: flex-start; }
+    .top-bar .session-title { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="../index.html" class="back">&larr; 返回目录</a>
+  <span class="session-title">第13场 · 咨询师的复合能力与人生基本功</span>
+  <div class="right-btns">
+    <a href="../downloads/第13场-精华整理.md" download class="download-btn">下载 .md</a>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="切换明暗模式"><span id="themeIcon"></span></button>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="badge">第 13 场 · 2025年2月</div>
+  <h1>咨询师的复合能力<span class="accent">与人生基本功</span></h1>
+  <p class="meta-line">杭州 &nbsp;|&nbsp; 根源（林根源）主讲</p>
+  <div class="stats">
+    <div class="stat"><div class="n">8</div><div class="l">核心主题</div></div>
+    <div class="stat"><div class="n">3h</div><div class="l">活动时长</div></div>
+    <div class="stat"><div class="n">5万+</div><div class="l">字逐字稿</div></div>
+    <div class="stat"><div class="n">6</div><div class="l">人参与</div></div>
+  </div>
+</div>
+
+<nav class="toc-bar">
+  <a href="#part01">咨询师复合能力</a>
+  <a href="#part02">时间管理</a>
+  <a href="#part03">平衡人生</a>
+  <a href="#part04">AI使用边界</a>
+  <a href="#part05">语音写作</a>
+  <a href="#part06">爱情经营</a>
+  <a href="#part07">销售必修</a>
+  <a href="#part08">产品定价</a>
+</nav>
+
+<article class="article">
+
+  <div class="info-box">
+    <div class="info-row"><span class="info-label">日期</span><span class="info-val">2025年2月</span></div>
+    <div class="info-row"><span class="info-label">地点</span><span class="info-val">杭州</span></div>
+    <div class="info-row"><span class="info-label">主讲人</span><span class="info-val">根源（林根源）</span></div>
+    <div class="info-row"><span class="info-label">编号</span><span class="info-val">第13场（自2024年8月起，每周一场）</span></div>
+    <div class="info-row"><span class="info-label">参与者</span><span class="info-val">润贝、小龙、飞跃、呱呱、孙太太</span></div>
+  </div>
+
+  <!-- ==================== PART 01 ==================== -->
+  <div class="section-header" id="part01">
+    <div class="sec-num">PART 01</div>
+    <h2>咨询师是复合型职业</h2>
+  </div>
+
+  <h3>咨询不是单一技能</h3>
+  <p>咨询是大多数人会误会的行业。他们会认为当好一个咨询师，只要会一项技能就够了。但其实不是，咨询师是一个复合式的技能行业。</p>
+  <p>不同阶段的人会有不同的问题。大学之前问学业、健康、爱情；毕业之后问天赋、工作方向；35岁问家庭教育、转型；50岁之后问健康、第二春。这些问题你真的可以只用一个工具解决吗？解决不了的。解决方案只有两个：你的个人历练，以及你的经历到底丰不丰富。</p>
+  <blockquote>一个经历越不丰富、只走理论的咨询师，最后只能接三四百、五六百的案子，永远接不高。因为客户来问的问题他可能都没有经历过。给的解决方法是书上看到的、案例看到的，但没有一个是他经历的。</blockquote>
+
+  <h3>咨询师的前身一定是销售</h3>
+  <p>你不止爱情得有一定的经验，还得懂时间管理、懂赚钱、懂销售。你甚至得知道怎么让自己完成目标。你不会沟通就不知道怎么跟对方表达。还得有分析人心的工具——可能是盖洛普、星座，这些全部整合起来才叫咨询师。</p>
+  <blockquote>销售是一个你必须强迫自己去见人的行业。你见的人如果少，当了咨询师之后就不知道有什么案例可以给别人经验。毕业之后，我建议你去做个半年到一年的销售。卖房、卖保险、卖快消品都行。跑半年之后再问自己：继续深挖还是转型。</blockquote>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 02 ==================== -->
+  <div class="section-header" id="part02">
+    <div class="sec-num">PART 02</div>
+    <h2>时间管理七代论</h2>
+  </div>
+
+  <h3>不是每个人都需要时间管理</h3>
+  <p class="questioner">飞跃问：我的时间管理特别简单，写个周计划画一条完成一条，但分不清重要紧急的排序。</p>
+  <p>是不是每个人都需要时间管理？不一定。80%的人手机一定曾经下载过某种时间管理APP，但最终不用。原因是他的人生不需要管理——每件事情简单到不需要管理，每天的行程已经固定到不用管理也能过好。</p>
+  <blockquote>当你知道不用管理的时候，你就不会内耗了。一听到别人在管理你就恐慌，你就焦虑——干嘛有那么多焦虑呢？我不记也活得好好的。</blockquote>
+
+  <h3>第一代：便条式</h3>
+  <p>黄色便条纸，写一个贴墙上，完成了就拿掉、揉一揉丢掉。目的在于<strong>不忘事</strong>和<strong>今日事今日毕</strong>——我的事情不隔夜，没处理完我就不睡觉。</p>
+  <blockquote>只要做到便条式管理，一年赚30万没有问题。</blockquote>
+
+  <h3>第二代：优先次序</h3>
+  <p>从便条式进到优先次序，得把事情排哪个重要哪个不重要。<strong>优先次序不是时间顺序，而是排重要。</strong>赚钱重要就把赚钱放第一。遇到冲突时，重要的事优先——可能叫出租车帮忙送孩子，自己去处理紧急的订单。</p>
+  <p>事情的顺序决定于你的年度目标。如果你说赚钱是最重要的目标，但每天的便条没几个跟赚钱有关，赚钱的事每天只做半个小时，那赚不到钱活该。</p>
+
+  <h3>第三代：重要不紧急（四象限）</h3>
+  <p>运动重要吗？重要。现在不做有关系吗？没关系。记账重不重要？重要。现在不记有关系吗？没关系。学习沟通重不重要？重要。但现在不学有关系吗？也没关系。</p>
+  <blockquote>这些事短期不做都没事。时间拉长到五年十年，你不运动身体就比别人差，不经营关系关系就比别人差，不学习经验就比别人弱。90%的成功者，每天会有90%的时间花在重要不紧急的事情上面。</blockquote>
+  <p>我每天写作、经营关系、讲课、经营爱情、运动——当下不做都没关系，但长期不做未来就麻烦了。越年轻做越好。</p>
+
+  <h3>第四到七代</h3>
+  <p><strong>第四代：行程表管理</strong> — 规划周行程、月行程、年行程。</p>
+  <p><strong>第五代：角色扮演</strong> — 老师、爸爸、老公、学生的身份切换。很多人回到家对孩子凶，不是孩子惹他不开心，是老板弄他不爽，回家杀气没切换。</p>
+  <p><strong>第六代：习惯管理</strong> — 养成什么好习惯、改掉什么坏习惯。</p>
+  <p><strong>第七代：能量管理</strong> — 控制什么时候情绪好、什么时候不好。</p>
+  <blockquote>目前你只要做一到两代就好了。时间管理一定要手写，没有手写都没用。</blockquote>
+
+  <h3>滴答清单分色管理</h3>
+  <p>红色是赚钱，蓝色是固定事项（讲课、见面），黄色是运动，紫色是爱情，绿色是自我（玩手机、刷小说、看电视）。每天什么颜色都会有。事情一多就回到时间管理系统——不一定要用，但一定要会。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 03 ==================== -->
+  <div class="section-header" id="part03">
+    <div class="sec-num">PART 03</div>
+    <h2>平衡人生与价值观排序</h2>
+  </div>
+
+  <h3>人生价值观排序</h3>
+  <p>在便条式和优先次序之前，有一个叫人生价值观排序。可能有人觉得爱情重要，有人认为赚钱重要——爱情、赚钱、家庭、健康、自我，你得排。</p>
+  <p>对我来讲：<strong>爱情第一，赚钱第二，自我第三。</strong>每天会安排时间陪老婆——可能看电视、按摩、看电影、聊天。爱情的时间如果是晚上10点到12点，假设有人约我咨询，我大概率会拒绝。</p>
+  <blockquote>排序会随时间调整。两年之后赚钱可能变第三，再过两年变第四。但不会因为调整就完全不做某件事。</blockquote>
+
+  <h3>神经链理论</h3>
+  <p>用右手拿筷子做了100天，神经链就有100条。要改成左手，得过100天才能把旧习惯换掉。习惯越早养成，坏习惯就越难拿掉。</p>
+  <blockquote>你一天不做、两天不做、十天不做，你就不会做了。一年不陪孩子讲话，到了第二年你也不会跟孩子讲话。因为身体已经告诉自己"不这么做也没关系"。</blockquote>
+
+  <h3>偏激会生病</h3>
+  <p>当一件事情过度偏激，人就会生病。只有工作人会生病，只有运动人会生病。人生是多元的。</p>
+  <p>健身房有个女生每天做6小时有氧，只吃水煮，瘦到不健康。教练劝不听，她说"我的方法是对的"——这叫偏激。</p>
+  <blockquote>我们可以做得少，但不能不做。每天挪出半小时陪另一半，这到底是意愿还是能力的问题？是意愿的问题。</blockquote>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 04 ==================== -->
+  <div class="section-header" id="part04">
+    <div class="sec-num">PART 04</div>
+    <h2>AI使用的边界与基本功</h2>
+  </div>
+
+  <h3>基本功不稳，AI越好用人越废</h3>
+  <p>在你的基本功不稳的情况下，AI就是帮我排版而已，我不会让AI帮我写任何的东西。没有任何AI，我依旧可以自己写作、自己排版、自己销售、自己卖、自己交付。一个人可以做所有的事情，AI只是帮我加分。</p>
+  <blockquote>你会发现AI用得好的那些人，把AI拿掉，他们还是很强。他们没有AI也很强，有了AI只会更强。</blockquote>
+
+  <h3>什么时候能用、什么时候不能用</h3>
+  <ul>
+    <li><strong>AI编程</strong> — 可以用，因为没底子真做不了</li>
+    <li><strong>聊思路</strong> — 可以跟AI讨论方向</li>
+    <li><strong>业务提效</strong> — 商业模式上用AI提效没问题</li>
+    <li><strong>基本功的部分</strong> — 能不用就不要用</li>
+  </ul>
+  <p>越年轻越熟悉AI，当有一天AI故障的时候，人生就慌了。你所有的能力都掌握在AI手上，不是掌握在你手上。</p>
+
+  <h3>50万门槛论</h3>
+  <blockquote>年收入纯利润不足50万之前，能不用AI的事情就不要用AI做。过了这个门槛，你才有权利说"我要用AI提效"。</blockquote>
+  <p>一个没有解决问题能力的人，AI给的所有答案都没有用。你不会做菜，给你几百个菜谱也没有用。做出来还不是难吃得要死。一定要先培养解决问题的能力。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 05 ==================== -->
+  <div class="section-header" id="part05">
+    <div class="sec-num">PART 05</div>
+    <h2>语音写作与刻意练习</h2>
+  </div>
+
+  <h3>语音写作三阶段</h3>
+  <p><strong>第一阶段：先念完再改。</strong> 语音念出文章，发现是灾难片。初期一小时的事情变两小时，全在删那些有的没的。</p>
+  <p><strong>第二阶段：念完直接发。</strong> 段落在念的时候就直接改好，边念边换行。一个段落念完，改好字就发。</p>
+  <p><strong>第三阶段：追求精准。</strong> 说话变慢，一句就要过。随时可以念出六七千字不带中断。</p>
+  <blockquote>两个月禁止用键盘，只能语音转文字。这不是能力问题，是习惯问题。你发了也不一定有人看，所以不用怕。</blockquote>
+
+  <h3>为什么逼自己练语音写作</h3>
+  <p>发现如果忘了带电脑，那天的工作就做不了。这不符合我对未来工作的想法。逼自己一周出门只能带手机，所有工作用手机处理。从家门口走到地铁口15分钟，一篇文章就写完了。</p>
+  <p>现在一分钟可以念385字，十分钟就是3850字。20分钟可以写完一篇8000字的文章。</p>
+
+  <h3>排版也要手动练</h3>
+  <p>如果表达和排版是弱的，连AI排版都不要做，手动排版。因为AI帮你改语气、删赘词的时候，你听不出自己的表达有什么问题。</p>
+  <blockquote>打过自己的逐字稿吗？打过之后你就会发现：我讲的什么鬼东西，一堆赘词。文章写1个小时，怎么改？3个小时全在删那些有的没的字。</blockquote>
+  <p>连排版这个事情都知道段落在哪里，跟别人聊天时就知道什么时候停、什么时候继续。这个能力如果用AI，你压根就练不到。</p>
+
+  <h3>刻意练习的残酷</h3>
+  <p>百问百答那个群，七天我总共回答了252个问题，文档加起来接近40万字。都是边开车边走路的时候搞定。回答问题的速度是把问题贴到群里，边看边回答。</p>
+  <blockquote>刻意练习你得有人逼。没有人逼你，在能力不足的情况下，谁愿意练？刻意练习很累的。</blockquote>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 06 ==================== -->
+  <div class="section-header" id="part06">
+    <div class="sec-num">PART 06</div>
+    <h2>爱情经营的阶段论</h2>
+  </div>
+
+  <h3>从交朋友开始</h3>
+  <p class="questioner">润贝问：你怎么追人？正常恋爱是怎么样的？</p>
+  <p>交朋友是爱情之前一个很重要的基础。你要知道怎么跟异性聊天、怎么跟同性聊天、怎么跟人群相处。当有这样的交际习惯之后，就能从中找到"我更喜欢这种性格的人"。</p>
+  <blockquote>当你有过5到6次的相处，就会对这个人有一定的画面。追求跟性别没有关系。你如果觉得这个人不错，就主动问。</blockquote>
+  <p>你不能因为上一个很活泼的男生伤害过你，就要找文静的——这叫情绪化改变条件。要有基本盘：孝顺、上进心。不能因为被伤害就全盘翻转。</p>
+
+  <h3>进入婚姻前三件必做的事</h3>
+  <p><strong>第一，一定要同居过。</strong> 没有同居就结婚是灾难片。因为生活习惯你不会展现给别人知道——袜子乱丢、卫生习惯，住一起才会发现。</p>
+  <p><strong>第二，一定要上过床。</strong> 有60%的婚姻是因为性关系不和谐离婚的。如果多做点事可以让婚姻稳定度提高，为什么不去做？</p>
+  <p><strong>第三，最好有共同的学习环境。</strong> 有共同的老师或社群，一起学习才有话题。吵架的时候也有人当裁判——你说你对他说他对，得有人帮你们下台。</p>
+  <blockquote>我跟老婆认识同一个老师。我们的爱情出了问题会找人解决。这个角色如果没有，很多坎过不了。</blockquote>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 07 ==================== -->
+  <div class="section-header" id="part07">
+    <div class="sec-num">PART 07</div>
+    <h2>销售是必修课</h2>
+  </div>
+
+  <h3>主动销售的完整流程</h3>
+  <p class="questioner">孙太太问：我现在都是被动成交，怎么主动破冰？</p>
+  <p>破冰得闲聊，不能一上来就谈产品。聊头像、聊昵称、聊个性签名、聊朋友圈都可以。聊个六七分钟再切入。</p>
+  <blockquote>"是这样的，我的小红书更新主要是AI提效产品。我不知道你有没有购买需求？如果有的话，给我三分钟聊一下我的产品，可以吗？"</blockquote>
+  <p>被拒绝很正常。确认不要就好。但问一句"未来有没有可能？"他说明年可能有——"到时候给我个机会"，他肯定说好。有礼貌就好。不成交关系也还可以。</p>
+
+  <h3>SPIN提问四阶段</h3>
+  <p><strong>情境式：</strong> 你老家是哪？吃饱了吗？——对方回答就是"对不对"。但你问多了对方会觉得很烦。</p>
+  <p><strong>探究式：</strong> 你当时怎么会选择来杭州？那么多城市怎么那么有眼光？——开始可以深入提问。</p>
+  <p><strong>暗示式：</strong> 你都不去经营关系，五年之后遇到的风险是什么？——把危机放大，他就会有兴趣。</p>
+  <p><strong>解决式：</strong> 你觉得现在该补充什么能力？——让对方自己给出答案。通过聊天让对方被动达成成交。</p>
+
+  <h3>发消息的原则</h3>
+  <ul>
+    <li><strong>半屏原则</strong> — 一段内容发出去超过半屏就过多</li>
+    <li><strong>三段止步</strong> — 发三段对方不回就要停，不能发超过三段</li>
+    <li><strong>加人不发自介</strong> — 先聊几句再交换，一加就发自我介绍谁看</li>
+  </ul>
+
+  <h3>朋友圈是本分，不是销售</h3>
+  <blockquote>发朋友圈叫本分，你本来就应该做。但发朋友圈根本不是为了成交，而是为了让那个人知道你还活着。你还在，你还在做——这就够了。</blockquote>
+  <p>你看到小红书三篇写得很好，你会直接下单吗？不会。先加微信看谁回得好再买。连你自己都这么买，结果今天自己卖东西时却不这么想。</p>
+  <blockquote>一个连一对一都卖不了东西的人，更别想一对多的直播可以成交。先会一对一卖，才能一对多卖，再到会场销售——循序渐进。</blockquote>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 08 ==================== -->
+  <div class="section-header" id="part08">
+    <div class="sec-num">PART 08</div>
+    <h2>产品体系与定价策略</h2>
+  </div>
+
+  <h3>产品金额分层</h3>
+  <p class="questioner">孙太太问：你的产品体系定价策略是什么？</p>
+  <div class="highlight-box">
+    <div class="hl-title">我的产品体系</div>
+    <p><strong>365元（三位数）</strong> — 引流群。只有文字或语音交付，不私下回答，群里回答可匿名。</p>
+    <p><strong>4999元（四位数）</strong> — 销售课。直播42场，完整销售路径+答疑。每期重讲一次，不卖录播。</p>
+    <p><strong>万元课</strong> — 年度目标陪伴。平衡人生四大基本功——情绪、爱情、销售、时间管理。</p>
+    <p><strong>5万-25万（私教）</strong> — 一对一人生教练。一年或终身。</p>
+  </div>
+
+  <h3>定价原则</h3>
+  <p><strong>流量不稳定时，金额不要过三位数。</strong> 先有199、299、399的产品。转化率做到30-40%后再做千元产品。千元产品不要过3000。</p>
+  <p><strong>新课一定便宜且交付时间长。</strong> 我第一次开销售课才2699、交付半年。第二期3699、交付21天。然后4799、3899，一直涨到4999就不再涨了。每期涨100-200，因为自己在不断成长。</p>
+  <p><strong>不能把原产品涨到四位数。</strong> 要创一个新产品就是卖四位数，去看谁愿意买单。</p>
+
+  <h3>学员关系维护</h3>
+  <blockquote>你的群如果100个人，至少每个月要触达60%——60个人你要私下聊过天、讲讲话。这些如果不做，后续高阶产品没有人买单。</blockquote>
+
+  <h3>教练只能一个</h3>
+  <p>教练不能超过两个。不同教练给的价值观不一样，同样做销售，房产中介教你的和我教的逻辑不一样。教练一多就冲突——这个说你这么走对，那个说你那么走对，你不知道听谁的。</p>
+  <blockquote>花钱最快。预算多找好的老师，预算少就找目前遇到最好的。跟他说"老师我钱就这么多，你告诉我能怎么办"——就这样。</blockquote>
+
+  <hr class="divider">
+
+  <div class="highlight-box">
+    <div class="hl-title">五大基本功</div>
+    <p><strong>1. 销售沟通</strong> — 学会表达、有逻辑、精准地说</p>
+    <p><strong>2. 时间管理</strong> — 有一套属于自己的自律系统</p>
+    <p><strong>3. 情绪管理</strong> — 了解人性的工具（心理咨询）</p>
+    <p><strong>4. 爱情经营</strong> — 关系经营不好，事业不会太好</p>
+    <p><strong>5. 财商知识</strong> — 钱怎么存、怎么留、怎么花</p>
+  </div>
+  <blockquote>这五个能力如果都具备了，你做什么都会有一定的成绩。基本功只要有，所有项目进来都可以快速回到好状态。</blockquote>
+
+</article>
+
+<div class="article-footer">
+  <p>生财有术线下活动 · 第13场精华整理</p>
+  <p><a href="13.html">切换PPT版</a> &nbsp;|&nbsp; <a href="../index.html">返回目录</a></p>
+</div>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&uarr;</button>
+
+<script>
+function getTheme(){return localStorage.getItem('sc-theme')||'dark'}
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('themeIcon').innerHTML = t==='dark'?'&#9790;':'&#9728;';
+}
+function toggleTheme(){
+  const next=getTheme()==='dark'?'light':'dark';
+  localStorage.setItem('sc-theme',next);
+  applyTheme(next);
+}
+applyTheme(getTheme());
+
+window.addEventListener('scroll',()=>{
+  document.getElementById('backTop').classList.toggle('show',window.scrollY>400);
+  document.querySelectorAll('.toc-bar a').forEach(a=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t&&t.getBoundingClientRect().top<150) document.querySelectorAll('.toc-bar a').forEach(x=>x.classList.remove('active')),a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
