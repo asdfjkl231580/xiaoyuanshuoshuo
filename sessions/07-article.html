@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第07场 · 八字的科学之辩 — 生财有术线下活动</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root { --t: 0.35s ease; }
+
+  /* === Dark theme === */
+  [data-theme="dark"] {
+    --bg: #0a0a08;
+    --bg-bar: rgba(10,10,8,0.92);
+    --bg-hero-a: #1a1510;
+    --bg-hero-b: #0a0a08;
+    --bg-glow: rgba(212,160,74,0.1);
+    --bg-toc: #12100c;
+    --bg-card: #1a1510;
+    --bg-info: #12100c;
+    --border: #2a2218;
+    --accent: #d4a04a;
+    --accent-bg: rgba(212,160,74,0.12);
+    --accent-bg2: rgba(212,160,74,0.25);
+    --accent-border: rgba(212,160,74,0.2);
+    --accent-border2: rgba(212,160,74,0.3);
+    --text: #c8c0b0;
+    --text-heading: #f0e6d6;
+    --text-sub: #e8dcc8;
+    --text-quote: #d8cfc0;
+    --text-muted: #8a7d6d;
+    --text-dim: #5a5040;
+    --bq-bg: rgba(212,160,74,0.06);
+  }
+
+  /* === Light theme (松石绿) === */
+  [data-theme="light"] {
+    --bg: #f5faf8;
+    --bg-bar: rgba(245,250,248,0.92);
+    --bg-hero-a: #e4f0ec;
+    --bg-hero-b: #f5faf8;
+    --bg-glow: rgba(26,138,125,0.08);
+    --bg-toc: #eaf4f0;
+    --bg-card: #e4f0ec;
+    --bg-info: #eaf4f0;
+    --border: #c8ddd6;
+    --accent: #1a8a7d;
+    --accent-bg: rgba(26,138,125,0.08);
+    --accent-bg2: rgba(26,138,125,0.15);
+    --accent-border: rgba(26,138,125,0.18);
+    --accent-border2: rgba(26,138,125,0.25);
+    --text: #3a5a52;
+    --text-heading: #1a2e28;
+    --text-sub: #2a4a42;
+    --text-quote: #2a4a42;
+    --text-muted: #7a9a90;
+    --text-dim: #a0b8b0;
+    --bq-bg: rgba(26,138,125,0.05);
+  }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.85;
+    transition: background var(--t), color var(--t);
+  }
+  a { color: var(--accent); text-decoration: none; transition: color var(--t); }
+  a:hover { text-decoration: underline; }
+
+  /* === Top bar === */
+  .top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-bar);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background var(--t), border-color var(--t);
+  }
+  .top-bar .back {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color var(--t);
+  }
+  .top-bar .back:hover { color: var(--accent); text-decoration: none; }
+  .top-bar .session-title {
+    font-size: 0.85rem;
+    color: var(--text-heading);
+    font-weight: 600;
+    transition: color var(--t);
+  }
+  .top-bar .right-btns { display: flex; align-items: center; gap: 8px; }
+  .top-bar .download-btn {
+    font-size: 0.78rem;
+    padding: 5px 14px;
+    border-radius: 6px;
+    background: var(--accent-bg);
+    color: var(--accent);
+    border: 1px solid var(--accent-border2);
+    cursor: pointer;
+    transition: all var(--t);
+  }
+  .top-bar .download-btn:hover {
+    background: var(--accent-bg2);
+    text-decoration: none;
+  }
+  .theme-btn {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--accent-bg); border: 1px solid var(--accent-border);
+    color: var(--accent); font-size: 0.95rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all var(--t);
+  }
+  .theme-btn:hover { transform: scale(1.1); }
+
+  /* === Hero === */
+  .hero {
+    text-align: center;
+    padding: 4rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--bg-hero-a) 0%, var(--bg-hero-b) 100%);
+    transition: background var(--t);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, var(--bg-glow) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .hero .badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    padding: 4px 14px;
+    border-radius: 20px;
+    background: var(--accent-bg);
+    color: var(--accent);
+    border: 1px solid var(--accent-border);
+    margin-bottom: 1rem;
+    position: relative;
+    transition: all var(--t);
+  }
+  .hero h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--text-heading);
+    position: relative;
+    margin-bottom: 0.3rem;
+    transition: color var(--t);
+  }
+  .hero .accent { color: var(--accent); transition: color var(--t); }
+  .hero .meta-line {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    position: relative;
+    margin-top: 0.8rem;
+    transition: color var(--t);
+  }
+  .hero .stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+    position: relative;
+  }
+  .hero .stat .n { font-size: 1.3rem; font-weight: 900; color: var(--accent); transition: color var(--t); }
+  .hero .stat .l { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; transition: color var(--t); }
+
+  /* === Nav / TOC === */
+  .toc-bar {
+    background: var(--bg-toc);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 2rem;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 42px;
+    z-index: 90;
+    transition: background var(--t), border-color var(--t);
+  }
+  .toc-bar a {
+    font-size: 0.75rem;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-muted);
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .toc-bar a:hover, .toc-bar a.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* === Article === */
+  .article {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 4rem;
+  }
+
+  /* Section header */
+  .section-header {
+    margin: 3rem 0 1.5rem;
+    padding-left: 14px;
+    border-left: 3px solid var(--accent);
+    transition: border-color var(--t);
+  }
+  .section-header:first-child { margin-top: 0; }
+  .section-header .sec-num {
+    font-size: 0.68rem;
+    letter-spacing: 3px;
+    color: var(--accent);
+    font-weight: 500;
+    transition: color var(--t);
+  }
+  .section-header h2 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-heading);
+    margin-top: 2px;
+    transition: color var(--t);
+  }
+
+  /* Sub header */
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-sub);
+    margin: 2rem 0 0.8rem;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+    transition: color var(--t), border-color var(--t);
+  }
+
+  /* Paragraph */
+  p { margin-bottom: 1rem; }
+
+  /* Bold highlight */
+  strong { color: var(--text-sub); transition: color var(--t); }
+
+  /* Blockquote */
+  blockquote {
+    background: var(--bq-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1rem 0 1.2rem;
+    color: var(--text-quote);
+    font-size: 0.92rem;
+    transition: all var(--t);
+  }
+
+  /* List */
+  ul, ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  li {
+    margin-bottom: 0.4rem;
+  }
+  li::marker { color: var(--accent); }
+
+  /* Questioner tag */
+  .questioner {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-bg);
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    transition: all var(--t);
+  }
+
+  /* Highlight box */
+  .highlight-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin: 1.2rem 0;
+    transition: all var(--t);
+  }
+  .highlight-box .hl-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    transition: color var(--t);
+  }
+
+  /* Product card grid */
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 1rem 0;
+  }
+  .product-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all var(--t);
+  }
+  .product-card .pname {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+    transition: color var(--t);
+  }
+  .product-card .pdesc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    transition: color var(--t);
+  }
+
+  /* Activity info box */
+  .info-box {
+    background: var(--bg-info);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 2rem;
+    font-size: 0.88rem;
+    transition: all var(--t);
+  }
+  .info-box .info-row {
+    display: flex;
+    gap: 0.5rem;
+    padding: 4px 0;
+    color: var(--text-muted);
+    transition: color var(--t);
+  }
+  .info-box .info-label {
+    color: var(--accent);
+    font-weight: 600;
+    flex-shrink: 0;
+    width: 70px;
+    transition: color var(--t);
+  }
+  .info-box .info-val { color: var(--text); transition: color var(--t); }
+
+  /* Divider */
+  .divider {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    margin: 2.5rem 0;
+    transition: background var(--t);
+  }
+
+  /* Footer */
+  .article-footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    border-top: 1px solid var(--border);
+    transition: all var(--t);
+  }
+  .article-footer a { color: var(--text-muted); }
+
+  /* Back to top */
+  .back-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--accent-bg2);
+    border: 1px solid var(--accent-border2);
+    color: var(--accent);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s, background var(--t), border-color var(--t), color var(--t);
+    z-index: 50;
+  }
+  .back-top.show { opacity: 1; }
+  .back-top:hover { background: var(--accent-bg2); }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.5rem; }
+    .hero .stats { gap: 1.2rem; }
+    .article { padding: 1.5rem 1rem; }
+    .product-grid { grid-template-columns: 1fr; }
+    .top-bar { padding: 8px 1rem; }
+    .toc-bar { padding: 10px 1rem; justify-content: flex-start; }
+    .top-bar .session-title { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="top-bar">
+  <a href="../index.html" class="back">&larr; 返回目录</a>
+  <span class="session-title">第07场 · 八字的科学之辩</span>
+  <div class="right-btns">
+    <a href="../downloads/第07场-八字的科学之辩-精华整理.md" download class="download-btn">下载 .md</a>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="切换明暗模式"><span id="themeIcon"></span></button>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="badge">第 07 场 · 2025年9月22日</div>
+  <h1>八字的<span class="accent">科学之辩</span></h1>
+  <p class="meta-line">杭州 · 线下聚会 &nbsp;|&nbsp; 根源（林根源）主讲</p>
+  <div class="stats">
+    <div class="stat"><div class="n">6</div><div class="l">核心主题</div></div>
+    <div class="stat"><div class="n">3h+</div><div class="l">活动时长</div></div>
+    <div class="stat"><div class="n">5万+</div><div class="l">字逐字稿</div></div>
+    <div class="stat"><div class="n">2</div><div class="l">案例拆解</div></div>
+  </div>
+</div>
+
+<!-- TOC -->
+<nav class="toc-bar">
+  <a href="#part01">印象管理</a>
+  <a href="#part02">命越算越薄</a>
+  <a href="#part03">八字根基</a>
+  <a href="#part04">苏荣坤</a>
+  <a href="#part05">闪闪备孕</a>
+  <a href="#part06">心法收束</a>
+</nav>
+
+<!-- Article -->
+<article class="article">
+
+  <!-- Activity info -->
+  <div class="info-box">
+    <div class="info-row"><span class="info-label">日期</span><span class="info-val">2025年9月22日（周一）</span></div>
+    <div class="info-row"><span class="info-label">地点</span><span class="info-val">杭州·未涞茶空间</span></div>
+    <div class="info-row"><span class="info-label">主讲人</span><span class="info-val">根源（林根源）</span></div>
+    <div class="info-row"><span class="info-label">编号</span><span class="info-val">第07场（自2024年8月起，每周一场）</span></div>
+    <div class="info-row"><span class="info-label">参与者</span><span class="info-val">闪闪、苏荣坤、润贝（陆三）、蛋挞（周思浩）、Lina（伊娜）、依雅</span></div>
+    <div class="info-row"><span class="info-label">主题</span><span class="info-val">本场因中秋临近、人刚好到齐，临时改为八字专题</span></div>
+  </div>
+
+  <!-- ==================== PART 01 ==================== -->
+  <div class="section-header" id="part01">
+    <div class="sec-num">PART 01</div>
+    <h2>进场的印象管理</h2>
+  </div>
+
+  <h3>三种磅数的纸，三支不同颜色的笔</h3>
+  <p>今天有人一坐下来就拿了我的纸问：这纸怎么那么特别？这个地方刚好可以聊一个话题。</p>
+  <blockquote>这个纸是250磅的。我一般会买三种——<strong>150磅、180磅、250磅</strong>。因为我平时大多数是一对一、一对二的咨询，我咨询的时候习惯边讲边写，写完那张纸对方大概率会把纸拿走。见一个人两个小时我可以写十几张，见三个客户就得准备二十几到30张，所以包包里每天都补。</blockquote>
+  <p>我出门笔一定会带三支不同颜色，因为一张纸如果只有单色，一般来说回去对方不会看；但双色以上就会比较鲜艳，回去就会被拿起来。</p>
+  <p>再来一个原因是我很少用细的笔做笔记。为什么要用粗笔？你同样写一串话，写在纸上——</p>
+  <blockquote>用粗笔的笔触比较粗，你会习惯把字写大。<strong>字写得越小，这张纸你越不会想回看；写得越大，你越会想看。</strong>因为你会发现这张纸的内容不多，门槛低，就跟看小红书的感觉一样。</blockquote>
+  <p>所以粗的笔可以让你视觉不会疲劳。这是写笔记的关键。</p>
+
+  <h3>让别人印象深刻的钱，不能省</h3>
+  <p>想让别人对你印象深刻的这些东西，钱就不要省。</p>
+  <p>对方一拿纸就说"这纸怎么那么特别"——他瞬间就记住你了。这种东西很便宜，你买纸可能30块、40块就一叠一两百张。你出门带这个纸，再带白板笔——白板笔我还会带备用头，就跟带子弹一样，放在包包里。这些是我平时会主动做的事。</p>
+  <blockquote>我们参加活动的目的是让别人可以记住你，这件事情很重要。如果说你参加一场活动，你发现现场没有任何一个人让你印象深刻，或者你没有让现场的哪一个人对你深刻，这活动就是浪费时间。</blockquote>
+  <p>线下活动让人记住你的不是你说了什么，是你带着什么来——你的衣服拼色、你腰上的小挂件、你的鞋子是粉色的、你头发是紫灰色的。我这双鞋是2014年认识的一个牌子，是第一个皮鞋的品牌跟耐克鞋底合作，所以这双皮鞋可以跑步，出差不会脚酸。这就是我身上的记忆点。</p>
+
+  <h3>三个名字要统一</h3>
+  <p>我们做自我介绍的原则：<strong>三个名字——微信名、本名、朋友对我的称呼</strong>——最好可以一样。像我叫根源，我的微信名也叫根源，朋友也称呼我根源，我没有绰号跟名字的区别。</p>
+  <p>但有人可能微信名跟本名跟别人称呼是不一样的，那就很麻烦，你就会让别人认识你三次，然后他也不知道哪一个重要。记得在讲称呼的时候，一定要习惯性只讲一个。如果你说"你们好，我叫伊娜，你可以叫我娜娜，或者叫我伊娜"，这就不妥——别人见了面之后就不知道该叫哪一个。你要直接说"大家都称呼我娜娜"，只讲一个。</p>
+
+  <h3>星座只猜三种</h3>
+  <p>我有个习惯，我习惯问生日——不是因为我懂八字，是因为知道一个人的年纪和大概情况，我就可以知道很多东西。我一般只会猜三种星座：<strong>天蝎、摩羯、双子</strong>。为什么呀？</p>
+  <blockquote>因为我天蝎的，我老婆双子的，我家两个儿子摩羯的。他说他是天蝎，我下一句我都能接；他说不是我是处女的，下一句我就问他九月几号；他说他金牛，我问五月几号——这东西它不是那么重要，但是你可以快速地跟对方产生一个共鸣。</blockquote>
+  <p>你可以不用懂这星座是干啥的，但你要知道它在什么区间。如果你不知道那个星座是几月，你最好讲错——他说"处女是几月的"，你说"是不是一月的"，然后他会纠正你"不是9月"，这种反差反而会让你们话题接起来。星座是通用话题，任何场合你但凡谈到星座一定可以起到共鸣。</p>
+
+  <h3>点菜、倒茶、公筷</h3>
+  <p>越年轻越得劳动。这是以前我们做销售的时候老师教的——你越劳动别人就会对你印象越深刻，他内心会想"这个小年轻人可以，很勤劳"，你就会让别人记住你。</p>
+  <p>这时候有一个小诀窍——<strong>倒茶不要问</strong>。</p>
+  <blockquote>如果你说"要喝茶吗"这句话就多余了。直接倒完之后跟他说"诶，我茶帮你倒好了"——他也不尴尬，他就得接受。这是挺好玩的一个过程。所以什么倒茶夹菜都别问，直接给。</blockquote>
+  <p>但公筷你要习惯性问一下。第一次吃饭我会先问"你有用公筷的习惯吗？"——有人有有人没。<strong>分两种情况</strong>：如果关系还不错但第一次吃饭，他说有公筷习惯，我就说"对不起，我们家都没有，所以你只能配合我们"——直接帮他讲。但如果是很新的朋友关系很普通，我就得问清楚，然后配合他。更熟的就不用问，直接夹。</p>
+  <p>这些细节看起来很琐碎，但这才是真正的销售课——因为销售最终卖的不是产品，是你这个人值不值得被托付。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 02 ==================== -->
+  <div class="section-header" id="part02">
+    <div class="sec-num">PART 02</div>
+    <h2>命越算越薄？三重批驳</h2>
+  </div>
+
+  <p class="questioner">苏荣坤问：他们说命会越算越薄，是不是？我要不要频繁算命？</p>
+  <p>基本上来讲会讲这种话的人，就是这个叫坊间传说。我以三个不同的角度来跟你们解释。</p>
+
+  <h3>第一重：商业逻辑</h3>
+  <p>一个算命师这么说的目的只有一个——<strong>为了收更多的钱</strong>。</p>
+  <blockquote>他让你少算一次，却能收更多的钱。因为命越算越薄，你就不会想随便找人，你一年就算一次。一次我可以开3000；那反正你一年就算一次3000，你可以接受。但如果你可以天天找我，我跟你说每次300，你会觉得便宜。可是我要"只能算一次"，逻辑才合理。</blockquote>
+  <p>第二种叫"命不能随便算"、"天机不可泄露"，这都叫鬼话。这个只能说明这位算命师技艺不精——不是我已经看不了那么多东西，我只好说命会越算越薄，其实是我没东西可以说了。</p>
+
+  <h3>第二重：科学逻辑</h3>
+  <p>我们讲心理学分两种派系——西方心理学和东方心理学，就跟医学一样分中医和西医。东方心理学是什么？<strong>易经、奇门遁甲、风水、紫微斗数——这些都叫东方心理学，全部是统计学。</strong></p>
+  <p>就像盖洛普你写200题测完会得到一个数据，或者做MBTI 200题最后告诉你是ENTJ——这个叫统计学，是透过一些人的行为模式统计你的大概性格模式。</p>
+  <blockquote>八字本质上是一个时间编码系统。你看像"丁卯年"这个词好像很陌生，但它只是1987年而已。你放在几百年前没有1987这个数字，所以中国人就用天干地支来代替时间。丁属火、卯属木，卯是属兔——丁卯年就是兔年。从这里开始去找一个人性格的蛛丝马迹，然后成了一套体系。后来发现这个体系挺准，就有人把它变成一套学问。</blockquote>
+  <p>那你说它准不准？所有统计学都一定有不准的地方，我们只能说它的准确度相对高。你看八字带财的人跟八字不带财的人，同样遇到一件事情的反应模式和结果就不一样，这是从大自然衍生出来的逻辑。</p>
+  <p>所以命怎么会越算越薄呢？信息本身是中性的。你不会说天气预报越看越倒霉，那为什么算命就会越算越薄？</p>
+
+  <h3>第三重：人性逻辑</h3>
+  <p>这句话只适合灵魂层次不这么高的人。</p>
+  <blockquote>85%以上的人灵魂层次不这么高。你告诉他一个不是事实的东西——类似"你年底会有车关，容易出车祸"——你跟一个性格稳定的人讲，他听听就过了。可是你如果跟一个很脆弱的人讲，他就天天惦记在心里，最后那个惦记的恐惧就真的吸引了一台车过来撞他。
+  <br><br>
+  所以担忧、恐惧是最大的诅咒。不是每一个人都能够接受他生命里会有不好的东西，听一次还没事，三个人说他就动摇了。大多数人是习惯性动摇的。</blockquote>
+  <p>我建议：当你的稳定性不够高的时候，<strong>不要常看八字，你还不如学八字</strong>——因为学了之后你就能判断这件事情是对的还是错的，他说的话是合理的还是恐吓你的。</p>
+
+  <h3>算命师的两种生意</h3>
+  <blockquote>我这辈子最痛恨的两种人：一种是拿着命理去吓唬客户让客户反复花钱的，另一种是算完之后留一手让你必须回来继续付钱的。多数算命师的赚钱方式就是吓你——我用吓你告诉你命里有问题，你就能再为我付更多的钱。我觉得他没有不好，只是我不是这种方法。</blockquote>
+  <p>这也是为什么我会说：算命的人自己家族兴旺、事业越做越大。民国以来最顶级的命理师个个活得很好。我做八字咨询十四年，家里两个孩子一个老婆都好好的，事业越做越大。<strong>这就是"命越算越薄"最大的反证。</strong></p>
+
+  <h3>一命二运三风水</h3>
+  <p>我们有一个话叫<strong>"一命二运三风水，四积阴德五读书"</strong>。这是个顺序。</p>
+  <p>第一个叫命——就是我个人的性格。如果你一年赚30万，看命就够了，因为你要改的是你的个性跟习惯。如果你过30万以上，你可以看一点运，因为确实你会发现有一些年做什么事你就特别辛苦。我2017年一个月还赚20万，2018年就瞬间往下跌，现在回想就是运程不好。</p>
+  <blockquote>但凡谈到风水，尤其居住地的风水——<strong>存款没个500万你都不要随便看风水</strong>。随便一个大物件就让你倾家荡产。师傅说门口要放一个30万的石头，那一买国家破产了。可是大多数最爱看风水的，偏偏是一年赚十几万的人——因为他觉得透过外力可以让人生变得更好。这是很有趣的现象。</blockquote>
+  <p>奇门遁甲（风水之下的第二层）最有效的叫<strong>改名</strong>——因为名字天天念，越念能量越好。像台湾有个习俗叫戴尾戒防破财，那是因为以前现金支付，你皮包拿钱时总会看到戒指，一看到就想"师傅给我戴了尾戒，我不能乱花钱"——所以它在运程好的时候有用，在运程不好的时候——"妈的破戒指，我还破财"。一个人人格不够独立的时候，所有外物都只能短暂帮助。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 03 ==================== -->
+  <div class="section-header" id="part03">
+    <div class="sec-num">PART 03</div>
+    <h2>八字根基：最少要知道的几个字</h2>
+  </div>
+
+  <p>讲完理论部分，我们要看具体的案例。先让大家有个概念，后面的案例才听得懂。</p>
+  <p>整张八字里面，圈起来的这几个字最重要：<strong>命主、天干、身强身弱、十神格局</strong>。</p>
+
+  <h3>十天干与命主</h3>
+  <p>天干有十个——甲乙、丙丁、戊己、庚辛、壬癸。每个人的属性分五行：有人是属木的，有人是属金的，有人是属火的。属木又分甲乙木——大的跟小的，可以理解为阴阳。</p>
+  <blockquote>我是乙木。乙木就像<strong>藤蔓、爬山虎</strong>——它可以满地爬。所以乙木的人他成不了大事，但是他可以做二把手。他可以在一个环境里面快速跟所有的人能够产生好的链接，可是如果你要让乙木成大事，他成不了的。</blockquote>
+  <p>当时我的八字老师看我的第一眼就说："如果你要当这公司的负责人，公司一定倒。"这是我老师看我八字讲的第一句话，所以我过了半年就离开了老师的公司自己干。我没有办法承受那么大的压力，大压力反而会让我原本100分的实力只表现60分。</p>
+
+  <h3>身强身弱——不论好坏，只论性格</h3>
+  <p>你只要看到命主和某几个字的颜色是一样的，这个八字就叫<strong>身强格</strong>。</p>
+  <blockquote>强弱不论好坏，论的是性格模式强化。<strong>大多数运动员只要运动能力很强的，得名的99%都是身强格。大多数老板90%都是身强格</strong>——因为身强格的抗压力比别人来得更强。</blockquote>
+  <p>身强格的优点：体力好、执行力强、有勇气敢去做、存活能力比一般人强。缺点是——<strong>挺固执的，听不懂人话</strong>。你告诉他这个好，他回到家按照自己的方法来做，很有主见。所以身强格是一个透过错误的过程去得到教训的性格——同样的方法做五次得到同样结果，他才会告诉自己"我真的得变一下"。</p>
+  <p>如果是身弱格像我，我的医生说一遍我可能5次就变了；身强格可能得15次；劫财带伤官的可能得20次。每个性格在遇到一件事情改变的次数不一样。</p>
+
+  <h3>伤官格——聪明但骄傲</h3>
+  <blockquote>伤官格叫<strong>有质感、有想法、聪明</strong>，脑袋动得特别快。尤其是金水伤官是所有伤官里面最聪明最优秀的。但伤官格有一个特点是——<strong>他太聪明了，他看不起人</strong>。在他眼里在座的都是垃圾，你怎么连这都听不懂？所以他眼睛是长头顶上的。</blockquote>
+  <p>这就决定了伤官格不适合做一线服务——他耐性不足，做一半发现你怎么都教不会，时间一长他就不教了。他很适合去做一些看趋势、看红利、做标品的事——纯交付的工作。但他不适合做后端需要耐心给出时间的服务，他会觉得很别扭。</p>
+  <p>伤官格因为聪明导致的骄傲，最终会让他的人际关系很难维持得很长——这是他这辈子最大的功课。</p>
+
+  <h3>劫财格——对钱没感觉</h3>
+  <p>劫财格的人对于金钱是没有概念的。</p>
+  <blockquote>他不认为现金是现金——他认为<strong>现金流才是现金</strong>。他认为现金是没有价值的，如果这个钱不放在一个可以倍增的地方，他没有兴趣。一间公司如果找劫财格做投资，你就让他当风险部门——他投什么公司，反着投就会赚钱，这是他的用法。</blockquote>
+  <p>劫财格也不会想买保险——保险投报率太低了，放在那地方什么也不动，他宁愿放到风险更大但回报更高的场域里面。</p>
+
+  <h3>天干双合——人际的暧昧</h3>
+  <p>八字里有一些组合叫<strong>"合"</strong>——甲己、乙庚、丙辛、丁壬、戊癸。如果你的天干只出现一组，比如只有一组乙庚，代表你是一个好说话的人，不太会拒绝别人，在人际上比较知道怎么应对进退。</p>
+  <p>但如果合超过了一组变成两组，那就叫<strong>双合</strong>——</p>
+  <blockquote>我不太会拒绝别人，但是我太不会拒绝别人了——就会让别人感觉到暧昧。学长今天可以跟你一起吃饭吗？"好可以，要不今天去我家吃吧？"但他自己觉得吃个饭没关系——他只是不喜欢拒绝别人，可是却让别人误会他是不是有意思。
+  <br><br>
+  三合就会去当妈妈桑或酒店小姐——跟谁都能让对方感觉"我喜欢你"，可最后也没在一起。他知道怎么去做关系的建立。</blockquote>
+  <p>天干但凡出现双合以上，感情关系就很容易出现三角关系。这是后面两个案例都会提到的关键。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 04 ==================== -->
+  <div class="section-header" id="part04">
+    <div class="sec-num">PART 04</div>
+    <h2>案例一：苏荣坤的庚金伤官格</h2>
+  </div>
+
+  <p class="questioner">苏荣坤自我介绍：山东德州人，做互联网流量相关，从微信生态到抖音、小红书，累计做了一个多亿粉丝。</p>
+  <p>荣坤的八字——我得先说这个八字是真优秀，<strong>劫财带伤官特别的优秀</strong>，能力又行，脑子又行。只是这八字这一辈子都在动荡。</p>
+
+  <h3>庚金是刀剑之金</h3>
+  <p>荣坤属金。庚金叫"大金"——不是首饰之金，是刀剑之金，天生要走锋利的路，<strong>做流量正对口</strong>。流量就是和人性正面硬碰的生意。</p>
+  <blockquote>属金的人特别重义气，在朋友关系里整体来讲都挺好。然后讲话很直接——你但凡跟属金的人沟通，有话直说，他没有隔夜仇，他不会别扭的。</blockquote>
+  <p>荣坤的金是秋天生的——秋天的金特别旺。你看他的天干颜色，命主和月干颜色一样，这就叫身强格。</p>
+
+  <h3>伤官格的脑子与孤傲</h3>
+  <p>荣坤的八字最特别的是——日主底下有一个蓝色的字叫<strong>伤官</strong>。</p>
+  <blockquote>伤官格的理解力是有别于一般人的强，他对于一件事情的吸收度很强。金水伤官又是所有伤官里面最聪明最优秀的。但伤官格的特点是——因为他太聪明了，他挺看不起人的。所以你要荣坤去做一线销售很难。</blockquote>
+  <p>荣坤适合做纯交付，不适合做服务。做后端需要给出耐心、给出时间的服务他觉得很别扭。他的优点是看趋势、看红利——所以他适合做标品，靠脑子赚钱。</p>
+  <p>荣坤还有一个点是商官格的主动性——但凡朋友需要帮忙，他是有主动性说"我可以来帮你"的。但是他的耐性不足，做一半发现你怎么都教不会时间一长就不教了。这就是伤官格的人际关系难以长期维持的根本原因。</p>
+
+  <h3>乙庚合——女人缘好但不深入</h3>
+  <p>荣坤的天干有一组合叫<strong>乙庚合</strong>——这让他的女人缘特别好，人缘特别好，但是就是没有办法深入。</p>
+  <blockquote>男命八字但凡不带财，感情对他来讲就是一个新鲜感。男命论财就是论妻——财在天干代表表面尊重老婆、重视老婆，但当这个重视遇到了你的喜好和你这辈子的目标的时候，老婆的事情会瞬间放到第二或者第三顺位。</blockquote>
+  <p>荣坤的本命还有一个冲突叫<strong>子午冲</strong>。这个午是正官——正官格叫稳定，适合当公务员。所以荣坤在小时候应该挺乖的，就会让他这辈子都在矛盾"我到底应该乖乖按照一定路径来走，还是应该活出伤官格的自己"。</p>
+  <p>他的年柱还有一个字叫笔尖（比肩）——这种情况叫小时候家里穷，或者父母没时间带他，所以他很独立。<strong>这种独立会让贵人不知道怎么帮他</strong>——因为他习惯自己来，别人不用帮忙。但伤官格最需要的是善贵人。</p>
+
+  <h3>明年的大坎：子午冲三倍</h3>
+  <p>荣坤，我问你一个问题——你今年有没有做什么金钱相关的投资？</p>
+  <p class="questioner">荣坤：有，买了一百万美股基金（沪深300宽基指数），现在赚了十几万。</p>
+  <blockquote>明年丙午年——你的地支本来就有一个子，这里又来一个午，底下又来一个子——<strong>子午冲三倍</strong>。明年的坎比今年大，你要有心理准备。这不是事情的坎，是心态的坎。<br><br>
+  <strong>这句话你一定要记得，这句话就值十几万。</strong></blockquote>
+  <p>我的建议——你现在有十几万的获利，本金不动，先把获利的百分之三十、四十拿出来。放在一个既不能动、又不会不见的地方：定存两年、丢保险三年（三年现金价值不可能高于本金，保单借款还不损失权益），或者放在一个你信任的人身上。</p>
+  <blockquote>但身强劫财格不喜欢放定存——"这什么垃圾东西？我这能力还找不到比定存高两倍的投资产品？"这是身强格的优势，他对自己很有自信。但是只要这笔钱在你手上，你明年一定花掉，100%花掉，甚至不用明年——今年下半年就给你花掉。</blockquote>
+
+  <h3>身强劫财的大起大落</h3>
+  <p>这八字的财在天干上的乙木——但是这个乙被庚合走，乙庚合就叫合财。</p>
+  <blockquote>身强劫财的亏钱决定于你当下有多少钱乘以1.5倍——有100万大概可以赔150，然后他还有50万可以想办法弄回来。这是身强格最强的地方。有10万做10万的事，有100万做100万的事，有1000万就做1000万的事——因为他对金钱本身是没有敏锐度的，但他喜欢操作这笔钱让钱变大的感受。钱进了口袋他没感觉——他要的是"我这笔钱让我做对了一个决定，我的人生就是这个决定"的那个证明。</blockquote>
+  <p>荣坤自己承认——他之前比特币亏了一百多万，"我身上一点感觉都没有，一点都不痛苦"。但是那一年有一个女生背刺了他一下，他却哭了好多次。这就是身强劫财对钱的迟钝。</p>
+  <p>所以身强格这辈子一定要知道——<strong>给自己留一个底</strong>。就是我再怎么赔，我的底是在的。三套房子在那、房贷付清，最少每个月有房租。你的底越厚，前面怎么造都随便。</p>
+
+  <h3>不要制造恶贵人</h3>
+  <p>伤官格在运程不好的年份，最需要注意的一件事是<strong>恶贵人</strong>。</p>
+  <blockquote>恶贵人不是坏人，是看起来在帮你其实在拖你的人，或者是你过去在做某一件事情的时候没有关注到某个小细节，就把一个关系还可以的人转化成恶贵人。<strong>一个小人造成的伤害，远远大于那个对的人给你的帮助。</strong></blockquote>
+  <p>我举个例子：陆三你找我借钱我借你了，刚好那一年我也需要钱、你的情况也很差，我就找你要钱。你心里就想"你都知道我状况差还跟我要钱"——可明明借钱还钱是天经地义。过了两年我某间店开幕，你就带一桶油漆来，剪彩那一刻你就泼过来了。</p>
+  <p>这个举动不是我的错，只是我没关注到一个小细节。所以伤官格一定要关注人与人相处时的细节——<strong>对所有人最少保持60分的礼貌</strong>。这是伤官格在运程不好时最需要注意的事。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 05 ==================== -->
+  <div class="section-header" id="part05">
+    <div class="sec-num">PART 05</div>
+    <h2>案例二：闪闪的身强劫财与备孕建议</h2>
+  </div>
+
+  <p class="questioner">闪闪：95年11月22日凌晨3点半出生，做母婴小红书账号，今年在医院促排备孕。</p>
+  <p>我先说这个八字很特别——</p>
+  <blockquote>这八字像<strong>一只老虎——他有老虎的野心，但却做着家猫的举动</strong>。他是一个有目标、有远大目标的人，执行力也可以，可是他的本质性格是胆小的，他不会想做过于冲动的决定。这叫正官格带劫财。</blockquote>
+  <p>正官格就像公务员——可以保守可以稳定，在一间公司里稳稳当当干一辈子。但是底下的劫财又在不断推着你尝试、推着你反叛。这就是闪闪一辈子的内耗——"我到底要乖乖听话，还是要做自己的？"</p>
+
+  <h3>反应式心灵 vs 分析式心灵</h3>
+  <p>闪闪的特点是——<strong>反应式心灵特别强</strong>。</p>
+  <blockquote>反应式心灵就是我凭着当下的反应和过去所有经历，我会用那个经历出现一个类似反射动作的行为。分析式心灵就是我做所有决定的时候，我会知道我为什么这么做，我是理性的去判断。</blockquote>
+  <p>她爸爸脾气暴——所以她的反应式心灵硬痕就是"只要触犯到我的原则，我就应该用这种情绪或者声音来告诉你，老娘是对的，你是错的"。</p>
+  <p>劫财格的杠是一定杠到赢，他不会主动示弱。"在他世界里面没有'好对不起我示弱'这件事，我就得赢。"但是身强劫财的赢——有时候你面子赢了，里子输了，证明不了什么。最可怕的不是对外杠，是<strong>对自己杠——内心的冲突内耗到最后没有结果</strong>。</p>
+
+  <h3>正官格是假的温柔</h3>
+  <p>我第一次见闪闪的时候讲过一句话：这女人性格很悍。但荣坤第一次见她却说"她给人的第一印象是善解人意、川妹子很温柔"——这是因为<strong>她天干的正官格是假的</strong>。</p>
+  <blockquote>底下是她的主要核心性格。你想一个大火球跟一个小水球碰在一起，到底是水会把火熄灭，还是火会把水蒸发？她这辈子就是个火急火燎——火球比水球大得多，所以最后赢的一定是火的性格，不是水的性格。</blockquote>
+  <p>闪闪的八字地支还有一个<strong>巳亥冲</strong>——本命逢冲就是这辈子变来变去换来换去，不管地点还是工作。她读物流本科然后考研考新闻，裸辞大厂工作——"每次都是从零开始，我敢这样重启"。这是身强劫财的勇气和代价——<strong>一次打碎然后一次重塑，她的人生不断重来。</strong></p>
+
+  <h3>明年不适合备孕</h3>
+  <p class="questioner">闪闪：我快30了，想明年怀孕。</p>
+  <p>明年丙午年——你的八字本身火就旺，明年再来一个大火。</p>
+  <blockquote>火年就是你可以理解为<strong>你已经是个火山，明年来了九个太阳</strong>。那种燥会让你情绪爆发的时候更顾不及后果——你本来就是不顾一切的爆发，再加上火年，就像一个火烧森林，瞬间就全部烧起来了。备孕期的情绪暴躁孩子感受得到，生出来你也难带。</blockquote>
+  <p>备孕不是让身体好，是让情绪好。我们不要在情绪暴躁的年份备孕。</p>
+  <p>闪闪问："我34岁之前有算命师说我生不了孩子，是真的吗？"——那是他算不准。你26年、27年、28年、29年都有孩子进来，在八字里面你这四年都可以生。既然都能生，那我们选一个情绪稳的年份来生。</p>
+
+  <h3>推到后年冬天</h3>
+  <blockquote>我的建议：<strong>明年10月（阳历冬月）开始备孕，后年春秋生最好。</strong>冬月属水，可以灭一点火。水月备孕可以让你的状态更好。</blockquote>
+  <p>27年走桃花，你接下来就是走土、走金——你的八字正在泄，就是火很强有人抢走火的能量，这是好事。你的八字最不要走两种运程——走木跟走火。</p>
+  <p>从22年、23年、24年、25年这四年你其实整体来讲是不顺的，因为全是木年火年——森林大火一直在烧。但26年是你这十年运程的转折点，从27年往后走的四五年一定会比往前走的四五年更好。</p>
+
+  <h3>老公是弱命——你才是这个家的主导</h3>
+  <p class="questioner">闪闪：能看看我老公吗？他1996年2月13号生。</p>
+  <blockquote>你老公八字很弱，你100分的话他大概30分。<strong>你老公人挺好的</strong>——偏财格，幽默风趣好玩，性格不错。但是这家肯定是你说了算。</blockquote>
+  <p>我强烈建议：你们两个必须得有一个去找稳定的工作，而且建议是他。因为你现在对于自由职业跟副业这件事情是不擅长的，你是一个习惯性从上班获取金钱的人。</p>
+  <p>但我更建议你也找一份不累、能准时下班的工作——让你每天可以挪出两到三个小时做副业。</p>
+  <blockquote>你知道做副业最初期最怕什么吗？一早起来发现"今天要干嘛"，一整天就这么过了。但如果说你工作做完回到家剩两个小时，你会发现"我只剩两个小时，我如果不好好更新我睡觉就得晚"——这两个小时你就会很认真地专注去把它做好。这是工作的一种很特别的心理状态。</blockquote>
+
+  <h3>千万不要和父母同住</h3>
+  <blockquote>这种身强劫财八字——<strong>千万不能跟父母住，尤其是跟对方父母住。</strong>但凡掺杂父母就完了。最好是你跟你老公两个人住，不要掺杂别人。</blockquote>
+  <p>闪闪说她把自己爸爸拉黑了，婆婆公公都听她的。"嗯，是藏得很深。"——这种劫财格的掌控力她自己都不一定意识到。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 06 ==================== -->
+  <div class="section-header" id="part06">
+    <div class="sec-num">PART 06</div>
+    <h2>心法收束：反应式心灵与一师而学</h2>
+  </div>
+
+  <h3>四步改变路径</h3>
+  <p>讲完两个案例，我把主题拉回到一个更大的心法——<strong>反应式心灵 vs 分析式心灵</strong>。</p>
+  <p>身强格的习惯做法是事件一出现就直接去解决——但这中间没有停止，没有学问，没有架构，所以每次事件发生都无法学到东西，你天天在跟人干。</p>
+  <p>正确的路径应该是四步：</p>
+  <div class="highlight-box">
+    <div class="hl-title">四步改变路径</div>
+    <p><strong>1. 停止</strong> — 当情绪上来，先冷静，先不要回应对方。</p>
+    <p><strong>2. 找学问</strong> — 承认自己不懂，想想什么样的学问可以解决这个情境。比如你学过八字，就想想"劫财格习惯用情绪先解决问题——但情绪解决问题不代表它客观"。</p>
+    <p><strong>3. 架构</strong> — 有了学问，就知道情绪到底因何而来。通常这个原因不会是对方做错了一件事——比如可能是爸爸习惯对你大小声，所以你遇到大小声就会反抗。</p>
+    <p><strong>4. 环节解决</strong> — 架构出现之后，我目前的情况对应到架构的哪一个环节？这个环节的解决方法是什么？然后一块一块地推进。</p>
+  </div>
+
+  <h3>停止是最难的一步</h3>
+  <blockquote>停止最难，因为<strong>情绪来的时候你根本不想停</strong>。</blockquote>
+  <p>我有两种停止的方法——</p>
+  <p>第一种是我有一个好的学问——八字告诉我劫财格会先用情绪解决问题，知道这件事我就能先停住。</p>
+  <p>第二种是我有一个好的老师——所有事情发生以前，我会先问老师"我会这么做你觉得怎么样"。一开始他告诉我的方法，我也不会按照那个方法来做——大多数人不会听话真的照做。可是我每一次没按照他的方法去做得到的结果都不好，十次二十次过后我就会问自己"要不我换个方式吧，我听听老师的方法试试看"——一做发现反馈是好的，我就会慢慢调整我的逻辑。</p>
+
+  <h3>一师而学——不是迷信权威</h3>
+  <blockquote>你的原则是：如果你真的要学，<strong>你找的人不能超过两个，甚至我都说不能超过一个</strong>。</blockquote>
+  <p>为什么？因为不同的人给的建议的执行方法都不一样。当不一样的时候你能力不足，你就会想"听他的还是听他的？要不再问第三个人吧？"——第三个人一出现你就完了，不知道听谁的。</p>
+  <blockquote>有人会误会叫"取各家所长"——<strong>没有能力的你但凡有能力取各家所长，你自己就很长了。</strong>因为每个老师背后的价值观不同，他的方法论都是从价值观推导出来的。我可能认为家庭很重要，目标是五年之后可以自由；别人的目标可能是公司要做得很大。同样的技术在不同价值观下，得到的结果完全不一样。</blockquote>
+  <p>我举个例子——同样是"销售"这门学问，你听十种不同人讲销售，你会发现每个人说的又有点不一样，因为价值观决定技术怎么做。就像八字，很多人是用来恐吓你的，但我不是——我相信这辈子每个人都可以变好，这是我的价值观。</p>
+  <p>所以当你的主轴不够稳定的时候，你找过滤器的能力是零。别人的价值观进来是纯水，到你这里就变成尿味——</p>
+  <blockquote>"这个奇异果加火龙果再加什么——怎么调出这个酒的味道这么垃圾？"因为你不知道怎么把这些东西变成一个好喝的味道，所以这时候你不适合取各家所长。</blockquote>
+
+  <h3>跟一个人学最少三年</h3>
+  <blockquote>跟一个人学<strong>最少沉一口气三年</strong>，也就是起想换老师，第四年才能换。因为学不到位你就想换了——三个月想换是因为太难做不到；半年想换是因为"我不信他又在找一个"，可是你三个月前不是信的吗？</blockquote>
+  <p>每换一次老师你不是从20开始——你是从0再到20。身强格的人常常因为一个情绪把过去所有一切全部推翻，因为她有"老娘就不信我一个人不能从零开始"的自信和魄力。但这也是另一种诅咒——<strong>0到20，再0到20，再0到20</strong>——她的人生不断地重来，最后没有结果。</p>
+
+  <h3>找人不是找项目</h3>
+  <p>所以闪闪的建议是"清晰的目标，找一个人生教练"——然后从浅学到深学慢慢跟。</p>
+  <blockquote>你要找的不是项目教练，也不是赚钱教练——是<strong>人生教练</strong>。这个人的生活状态是你欣赏的，他未来的样子你挺喜欢——这叫找对人。而不是纯看能力看收入——那样大概率你一年不到就不想跟了，因为你发现他项目做那么大付出的代价是家庭会出问题。</blockquote>
+  <p>他只要现在能比你优秀，他的状态是你欣赏的。这就是你用感觉评估就够了——多观察一阵子，因为这个人是不是比你优秀，你一看就知道了。</p>
+
+  <h3>十四年只相信数据</h3>
+  <p>最后我想说的话是——</p>
+  <blockquote><strong>命理不是迷信，是统计。十四年看下来，我只相信数据。</strong></blockquote>
+  <p>八字是帮人解决问题的工具，不是用来制造焦虑的生意。你看今天讲的两个案例——荣坤的明年大坎、闪闪的备孕时间——我不是在告诉他们未来会发生什么，我是在告诉他们"哪个时间段你的心态会出问题"。知道心态会出问题，你就能提前准备。</p>
+  <p>这就是我对八字这门学问的全部态度。算得越多我家族越兴旺，事业越做越大——这就是"命越算越薄"这句话最大的反证。</p>
+
+  <hr class="divider">
+
+  <p style="text-align:center; color:#8a7d6d; font-size:0.82rem; margin-top:2rem;">
+    <em>整理说明：本文基于2025年9月22日线下活动逐字稿，以根源老师第一人称视角整理归类，保留命理术语与原始表达，未做改写扩写。</em>
+  </p>
+
+</article>
+
+<div class="article-footer">
+  <a href="../index.html">&larr; 返回活动目录</a>
+  <p style="margin-top:8px">生财有术 · 线下活动精华归档 &nbsp;|&nbsp; 由根源整理，AI辅助排版</p>
+</div>
+
+<!-- Back to top -->
+<div class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</div>
+
+<script>
+// ====== THEME ======
+function getTheme(){return localStorage.getItem('sc-theme')||'dark'}
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('themeIcon').innerHTML = t==='dark'?'&#9790;':'&#9728;';
+}
+function toggleTheme(){
+  const next=getTheme()==='dark'?'light':'dark';
+  localStorage.setItem('sc-theme',next);
+  applyTheme(next);
+}
+applyTheme(getTheme());
+
+// Back to top visibility
+window.addEventListener('scroll', () => {
+  document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
+});
+
+// TOC active state
+const sections = document.querySelectorAll('.section-header');
+const tocLinks = document.querySelectorAll('.toc-bar a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  tocLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+
+</body>
+</html>

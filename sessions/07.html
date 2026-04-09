@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>第07场 · 八字的科学之辩 — 生财有术线下活动</title>
+<meta name="description" content="生财有术第07场线下活动精华：命越算越薄的三重批驳、苏荣坤庚金伤官格、闪闪身强劫财备孕建议、反应式心灵与一师而学">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+
+  :root{--t:0.35s ease}
+
+  /* === Dark theme === */
+  [data-theme="dark"]{
+    --bg:#0a0a08;
+    --bg-bar:rgba(10,10,8,0.95);
+    --bg-tabs:rgba(18,16,12,0.95);
+    --bg-cover-a:#1a1510;--bg-cover-b:#0a0a08;
+    --bg-glow:rgba(212,160,74,0.08);
+    --bg-card:#12100c;
+    --border:#2a2218;--border-tab:#1a1510;
+    --accent:#d4a04a;
+    --accent-bg:rgba(212,160,74,0.12);
+    --accent-border:rgba(212,160,74,0.2);
+    --accent-bg2:rgba(212,160,74,0.15);
+    --accent-border2:rgba(212,160,74,0.3);
+    --text:#f0e6d6;
+    --text-quote:#d8cfc0;
+    --text-list:#c8c0b0;
+    --text-muted:#8a7d6d;
+    --text-dim:#5a5040;
+    --text-hint:#3a3020;
+    --quote-mark:rgba(212,160,74,0.2);
+    --dot-bg:#2a2218;
+    --toggle-icon:'\\263E';
+  }
+
+  /* === Light theme === */
+  [data-theme="light"]{
+    --bg:#f5faf8;
+    --bg-bar:rgba(245,250,248,0.95);
+    --bg-tabs:rgba(234,244,240,0.95);
+    --bg-cover-a:#e4f0ec;--bg-cover-b:#f5faf8;
+    --bg-glow:rgba(26,138,125,0.06);
+    --bg-card:#ffffff;
+    --border:#c8ddd6;--border-tab:#d0e0da;
+    --accent:#1a8a7d;
+    --accent-bg:rgba(26,138,125,0.08);
+    --accent-border:rgba(26,138,125,0.18);
+    --accent-bg2:rgba(26,138,125,0.1);
+    --accent-border2:rgba(26,138,125,0.25);
+    --text:#1a2e28;
+    --text-quote:#2a4a42;
+    --text-list:#3a5a52;
+    --text-muted:#7a9a90;
+    --text-dim:#a0b8b0;
+    --text-hint:#c0d4cc;
+    --quote-mark:rgba(26,138,125,0.15);
+    --dot-bg:#b8d0c8;
+    --toggle-icon:'\\2600';
+  }
+
+  html,body{height:100%;overflow:hidden;font-family:'Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--text);transition:background var(--t),color var(--t)}
+
+  /* === Top bar === */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:var(--bg-bar);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 1.2rem;height:44px;
+    transition:background var(--t),border-color var(--t);
+  }
+  .topbar .back{color:var(--text-muted);font-size:0.82rem;text-decoration:none;display:flex;align-items:center;gap:4px;transition:color var(--t)}
+  .topbar .back:hover{color:var(--accent)}
+  .topbar .title{color:var(--text);font-size:0.82rem;font-weight:600;transition:color var(--t)}
+  .topbar .right-btns{display:flex;align-items:center;gap:8px}
+  .topbar .mode-toggle{
+    font-size:0.72rem;padding:4px 12px;border-radius:5px;
+    background:var(--accent-bg);color:var(--accent);
+    border:1px solid var(--accent-border);cursor:pointer;text-decoration:none;
+    transition:all var(--t);
+  }
+  .topbar .mode-toggle:hover{background:var(--accent-bg2)}
+  .theme-btn{
+    width:30px;height:30px;border-radius:50%;
+    background:var(--accent-bg);border:1px solid var(--accent-border);
+    color:var(--accent);font-size:0.95rem;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:all var(--t);
+  }
+  .theme-btn:hover{transform:scale(1.1)}
+
+  /* === Section tabs === */
+  .tabs{
+    position:fixed;top:44px;left:0;right:0;z-index:90;
+    background:var(--bg-tabs);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border-tab);
+    display:flex;overflow-x:auto;padding:0 0.8rem;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    transition:background var(--t),border-color var(--t);
+  }
+  .tabs::-webkit-scrollbar{display:none}
+  .tabs button{
+    flex-shrink:0;padding:10px 14px;font-size:0.72rem;
+    background:none;border:none;color:var(--text-dim);
+    cursor:pointer;font-family:inherit;white-space:nowrap;
+    border-bottom:2px solid transparent;transition:all 0.2s;
+  }
+  .tabs button.active{color:var(--accent);border-bottom-color:var(--accent)}
+  .tabs button:hover{color:var(--text-muted)}
+
+  /* === Slide viewport === */
+  .viewport{position:fixed;top:82px;left:0;right:0;bottom:60px;overflow:hidden}
+  .slide-track{display:flex;height:100%;transition:transform 0.4s cubic-bezier(0.25,0.1,0.25,1)}
+
+  /* === Each slide === */
+  .slide{
+    flex-shrink:0;width:100vw;height:100%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:2rem 2.5rem;text-align:center;position:relative;
+    background:var(--bg);transition:background var(--t);
+  }
+  .slide.cover{
+    background:linear-gradient(160deg,var(--bg-cover-a) 0%,var(--bg-cover-b) 60%);
+  }
+  .slide.cover::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 50% 80%,var(--bg-glow) 0%,transparent 55%);
+    pointer-events:none;
+  }
+
+  .slide-inner{max-width:640px;width:100%;position:relative;z-index:1}
+  .slide-num{font-size:0.65rem;color:var(--text-dim);letter-spacing:3px;margin-bottom:0.8rem;font-weight:500;transition:color var(--t)}
+  .part-label{
+    display:inline-block;font-size:0.7rem;padding:5px 16px;border-radius:20px;
+    background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent-border);
+    margin-bottom:1.2rem;letter-spacing:2px;transition:all var(--t);
+  }
+  .slide-title{font-size:1.6rem;font-weight:900;color:var(--text);line-height:1.4;margin-bottom:1rem;transition:color var(--t)}
+  @media(min-width:768px){.slide-title{font-size:2rem}}
+  .slide-title .accent{color:var(--accent);transition:color var(--t)}
+
+  .slide-quote{
+    font-size:1.15rem;line-height:1.9;color:var(--text-quote);
+    margin-bottom:1.2rem;position:relative;padding:0 0.5rem;transition:color var(--t);
+  }
+  @media(min-width:768px){.slide-quote{font-size:1.3rem}}
+  .slide-quote::before{
+    content:'\201C';position:absolute;top:-1.2rem;left:-0.3rem;
+    font-size:3rem;color:var(--quote-mark);font-family:Georgia,serif;line-height:1;transition:color var(--t);
+  }
+  .slide-quote strong{color:var(--accent);font-weight:700}
+
+  .slide-context{font-size:0.82rem;line-height:1.8;color:var(--text-muted);max-width:520px;margin:0 auto;transition:color var(--t)}
+
+  .slide-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:1.2rem}
+  .slide-tags span{font-size:0.72rem;padding:5px 14px;border-radius:6px;background:var(--bg-cover-a);color:var(--text-muted);border:1px solid var(--border);transition:all var(--t)}
+
+  .slide-products{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:1rem auto 0;max-width:520px;text-align:left}
+  .slide-products .sp{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;transition:all var(--t)}
+  .slide-products .sp .sp-name{font-size:0.82rem;font-weight:700;color:var(--accent);margin-bottom:2px;transition:color var(--t)}
+  .slide-products .sp .sp-desc{font-size:0.7rem;color:var(--text-muted);line-height:1.5;transition:color var(--t)}
+  @media(max-width:480px){.slide-products{grid-template-columns:1fr}}
+
+  .slide-list{text-align:left;max-width:480px;margin:0.8rem auto 0;list-style:none}
+  .slide-list li{font-size:0.92rem;color:var(--text-list);line-height:1.8;padding-left:1.4rem;position:relative;margin-bottom:0.3rem;transition:color var(--t)}
+  .slide-list li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-weight:700}
+  .slide-list li strong{color:var(--accent)}
+
+  .slide-steps{text-align:left;max-width:500px;margin:0.8rem auto 0}
+  .slide-steps .step{display:flex;gap:12px;margin-bottom:0.8rem;align-items:flex-start}
+  .slide-steps .step-num{
+    flex-shrink:0;width:28px;height:28px;border-radius:50%;
+    background:var(--accent-bg2);border:1px solid var(--accent-border2);
+    color:var(--accent);font-size:0.78rem;font-weight:700;
+    display:flex;align-items:center;justify-content:center;margin-top:2px;transition:all var(--t);
+  }
+  .slide-steps .step-text{font-size:0.88rem;color:var(--text-list);line-height:1.7;transition:color var(--t)}
+  .slide-steps .step-text strong{color:var(--accent)}
+
+  .questioner-badge{
+    display:inline-block;font-size:0.7rem;padding:3px 12px;border-radius:4px;
+    background:var(--accent-bg);color:var(--accent);margin-bottom:0.8rem;transition:all var(--t);
+  }
+
+  /* === Bottom bar === */
+  .bottombar{
+    position:fixed;bottom:0;left:0;right:0;height:60px;
+    background:var(--bg-bar);backdrop-filter:blur(8px);
+    border-top:1px solid var(--border-tab);
+    display:flex;align-items:center;justify-content:center;
+    gap:1.5rem;z-index:90;padding:0 1rem;
+    transition:background var(--t),border-color var(--t);
+  }
+  .nav-btn{
+    width:40px;height:40px;border-radius:50%;
+    background:var(--accent-bg);border:1px solid var(--accent-border);
+    color:var(--accent);font-size:1.1rem;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:all 0.2s;flex-shrink:0;
+  }
+  .nav-btn:hover{background:var(--accent-bg2)}
+  .nav-btn:disabled{opacity:0.3;cursor:default}
+  .dots{display:flex;gap:6px;align-items:center;overflow-x:auto;max-width:calc(100vw - 160px);scrollbar-width:none}
+  .dots::-webkit-scrollbar{display:none}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--dot-bg);flex-shrink:0;transition:all 0.3s;cursor:pointer}
+  .dot.active{background:var(--accent);width:24px;border-radius:4px}
+  .slide-counter{font-size:0.72rem;color:var(--text-dim);flex-shrink:0;min-width:50px;text-align:center;transition:color var(--t)}
+
+  .key-hint{position:fixed;bottom:68px;left:50%;transform:translateX(-50%);font-size:0.65rem;color:var(--text-hint);pointer-events:none;transition:color var(--t)}
+  @media(max-width:768px){.key-hint{display:none}}
+  @media(max-width:640px){.topbar .title{display:none}.topbar{padding:0 0.8rem}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html" class="back">&larr; 目录</a>
+  <span class="title">第07场 · 八字的科学之辩</span>
+  <div class="right-btns">
+    <a href="07-article.html" class="mode-toggle">文章版</a>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="切换明暗模式"><span id="themeIcon"></span></button>
+  </div>
+</div>
+
+<div class="tabs" id="tabs"></div>
+
+<div class="viewport" id="viewport">
+  <div class="slide-track" id="track"></div>
+</div>
+
+<div class="bottombar">
+  <button class="nav-btn" id="prevBtn" onclick="go(-1)">&larr;</button>
+  <div class="dots" id="dots"></div>
+  <span class="slide-counter" id="counter"></span>
+  <button class="nav-btn" id="nextBtn" onclick="go(1)">&rarr;</button>
+</div>
+<div class="key-hint">&larr; &rarr; 方向键翻页 &nbsp;|&nbsp; 数字键切换章节</div>
+
+<script>
+// ====== THEME ======
+function getTheme(){return localStorage.getItem('sc-theme')||'dark'}
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('themeIcon').innerHTML = t==='dark'?'&#9790;':'&#9728;';
+}
+function toggleTheme(){
+  const next=getTheme()==='dark'?'light':'dark';
+  localStorage.setItem('sc-theme',next);
+  applyTheme(next);
+}
+applyTheme(getTheme());
+
+// ====== SLIDE DATA ======
+const sections = [
+  {
+    id:'part01', label:'印象管理',
+    slides:[
+      {type:'cover',title:'进场的<span class="accent">印象管理</span>',quote:'线下活动让人记住你的不是你说了什么，是你带着什么来。',context:'第07场 · 2025年9月22日 · 杭州未涞茶空间'},
+      {title:'三种<span class="accent">磅数的纸</span>',quote:'我一般会买三种纸：<strong>150磅、180磅、250磅</strong>。出门包包里常备二十几张。',context:'对方一拿纸就会说"这纸怎么那么特别"——他瞬间就记住你了。一叠一两百张也就三四十块钱，想让别人对你印象深刻的这些钱就不要省。'},
+      {title:'笔要<span class="accent">粗</span>，字要<span class="accent">大</span>',list:['<strong>粗笔触</strong> — 你会不自觉地把字写大','<strong>字写大</strong> — 一张纸内容不多，门槛低，回去才愿意重新看','<strong>双色以上</strong> — 单色的纸回去不会看，双色才会被拿起来','<strong>边讲边写</strong> — 对方大概率会把纸拿走'],context:'粗笔不会让视觉疲劳。细笔写出来字小又密，回去一眼就不想看了。'},
+      {title:'三个<span class="accent">名字</span>要统一',quote:'本名、微信名、别人怎么称呼你——最好是同一个。',context:'不然你就得让别人认识你三次。像我就叫根源，微信名叫根源，朋友也叫我根源，没有绰号跟本名的区别。'},
+      {title:'星座猜<span class="accent">三个</span>',quote:'我一般只会猜三种星座：<strong>天蝎、摩羯、双子</strong>。我天蝎，我老婆双子，我两个儿子都是摩羯。',context:'这不是超能力，是我在任何场合都可以快速跟对方产生一个共鸣，一到你们的话题就可以接。星座是通用话题。'},
+      {title:'点菜、倒茶、<span class="accent">公筷</span>',list:['<strong>越年轻越要劳动</strong> — 你越劳动别人越对你印象深刻','<strong>倒茶不要问</strong> — "要喝茶吗"是多余的，直接倒完说"茶帮你倒好了"','<strong>公筷分两种人</strong> — 不熟的先问配合他，熟的直接帮他夹','<strong>销售的本质</strong> — 真正卖的是你这个人值不值得被托付'],context:'这不是礼仪，这是最真实的销售课。'}
+    ]
+  },
+  {
+    id:'part02', label:'命越算越薄',
+    slides:[
+      {type:'cover',title:'命越算越薄？<br><span class="accent">三重批驳</span>',quote:'命不是越算越薄，是你遇到坏老师才越算越薄。',questioner:'苏荣坤问：命会越算越薄，是不是？要不要频繁算命？'},
+      {title:'第一重<br><span class="accent">商业</span>逻辑',quote:'说这种话的算命师，目的只有一个——<strong>为了让你只能找他一个人</strong>。',context:'你一年算一次我可能开3000，不然你天天找我就只能算300。"命只能算一次"这种说法，是让你不敢找别人，只能回来找他。'},
+      {title:'第二重<br><span class="accent">科学</span>逻辑',quote:'八字本质上是<strong>时间编码系统</strong>——丁卯年换到现代就是1987年。它只是透过天干地支去统计一个人的性格蛛丝马迹。',context:'东方心理学全部是统计学——易经、奇门遁甲、风水、紫微斗数。就像盖洛普、MBTI，都是用行为模式统计你的性格。它的准确度只能说相对高，但不会因为你多看一眼就变坏。'},
+      {title:'第三重<br><span class="accent">人性</span>逻辑',quote:'这句话只适合<strong>灵魂层次不够高的人</strong>。他只听不好的，所以才越算越倒霉。',context:'人只会被两三句不好的话连续说三天就崩溃，那是因为人格不够独立。当你自己懂一点八字，你就能判断这话是合理的还是恐吓你的。'},
+      {title:'算命师的<br><span class="accent">两种生意</span>',quote:'多数算命师的赚钱方式是——<strong>吓你</strong>。我用吓你来告诉你命里有问题，你就能再为我付更多的钱。',context:'这不是我想走的路。我做八字咨询十四年，家里两个孩子一个老婆都好好的，事业越做越大。算命的人自己家族兴旺事业越做越大，这就是最大的反证。'},
+      {title:'一命二运<br>三<span class="accent">风水</span>',quote:'一命二运三风水，四积阴德五读书。<strong>存款没个500万，所有风水你听听就好。</strong>',context:'最爱看风水的偏偏是一年赚十几万的人——他觉得透过外力可以让人生变好。但一块30万的石头买了家就破产了。'},
+      {title:'想改命？<br>只有<span class="accent">改名</span>最有效',quote:'奇门遁甲最有效的叫改名，因为名字天天念，越念能量越好。但手环这些，短暂有帮助而已。',context:'运程好的时候带尾戒防破财才有用；运程不好——"妈的破戒指，我还破财"。外物在你自己没有独立人格时，只能短暂有用。'}
+    ]
+  },
+  {
+    id:'part03', label:'八字根基',
+    slides:[
+      {type:'cover',title:'八字怎么看？<br><span class="accent">最少要知道的几个字</span>',quote:'这张图里圈起来的字最重要——命主、身强身弱、十神格局。',context:'先让大家有个概念，后面两个案例才听得懂。'},
+      {title:'命主 +<span class="accent">十天干</span>',quote:'天干有十个——<strong>甲乙、丙丁、戊己、庚辛、壬癸</strong>。每个人的属性不同，分阴阳。',context:'像我是乙木——藤蔓、爬山虎，根系很浅，成不了大事但适合做二把手。荣坤是庚金——刀剑之金。'},
+      {title:'<span class="accent">身强身弱</span>',quote:'不论好坏，只论性格模式强弱。<strong>大多数老板90%都是身强格。</strong>',list:['<strong>身强</strong> — 抗压强、执行力强、体力心力好','<strong>身强的缺点</strong> — 固执，听不懂人话，要错很多次才会调头','<strong>身弱</strong> — 顺从、能听话，5次就能调整'],context:'身强格要自觉众人相对。身弱格像我，我的医生说一遍我可能5次就变了。'},
+      {title:'<span class="accent">伤官格</span>',quote:'伤官格就是<strong>有质感、聪明、脑袋动得特别快</strong>——但他看不起人。',list:['眼睛长头顶上——太聪明导致骄傲','不适合一线服务——觉得对方笨','适合看趋势、看红利、做标品','金水伤官是所有伤官里最聪明的一种'],context:'伤官格这辈子的功课是学会如何去经营人际关系，因为他聪明导致的骄傲会让关系很难维持。'},
+      {title:'<span class="accent">劫财格</span>',quote:'劫财格的人对于<strong>金钱是没有概念的</strong>——他不认为现金是现金，现金流才是现金。',context:'一间公司找他做投资，你就让他当风险部门——他投什么，反着投就会赚钱。这是他的用法。'},
+      {title:'天干<span class="accent">双合</span>',quote:'八字出现甲己、乙庚、丙辛、丁壬、戊癸叫"合"。出现两组以上叫<strong>双合</strong>——人际上不太会拒绝人，但容易被误会成暧昧。',context:'三组合就会去当妈妈桑或酒店小姐——跟谁都能让对方感觉"我喜欢你"，但最后谁也没在一起。这是关系建立的一种天赋。'}
+    ]
+  },
+  {
+    id:'part04', label:'苏荣坤',
+    slides:[
+      {type:'cover',title:'苏荣坤的<br><span class="accent">庚金伤官格</span>',quote:'这八字真优秀——劫财带伤官，能力又行，脑子又行。只是这辈子都在动荡。',questioner:'苏荣坤：我做互联网流量相关，累计做了一个多亿粉丝。'},
+      {title:'庚金是<br><span class="accent">刀剑之金</span>',quote:'庚金属大金，不是首饰之金——<strong>天生要走锋利的路</strong>，做流量正对口。',context:'秋天生的庚金，天干颜色一样叫身强格。流量就是和人性正面硬碰的生意。'},
+      {title:'伤官格的<span class="accent">脑子</span>',quote:'金水伤官是所有伤官里最聪明最优秀的——<strong>他看不起人</strong>。',context:'适合做纯交付，不适合做后端服务。因为耐心不足，做一半发现你怎么都教不会，时间一长他就不教了。荣坤适合做标品、靠脑子赚钱。'},
+      {title:'<span class="accent">乙庚合</span>女人缘',quote:'乙庚合让荣坤女人缘特别好，人缘特别好——<strong>但没有办法深入</strong>。',context:'男命八字但凡不带财，感情就是新鲜感。男命论财就是论妻——财在天干代表表面尊重老婆，但一遇到自己的喜好和目标，老婆瞬间排到第二第三顺位。'},
+      {title:'明年的<span class="accent">大坎</span>',quote:'明年丙午年，<strong>地支子午冲三倍</strong>。子午冲就是心态的坎，不是事情的坎。',context:'这句话你一定要记得，这句话就值十几万。明年手边有钱你就想做点事，你一定会想加仓、想做大合作。'},
+      {title:'美股基金<br>要不要<span class="accent">取出来</span>',questioner:'荣坤：我买了一百万美股基金，赚了十几万，怎么办？',quote:'本金不动，获利的那一部分先取出来。<strong>或者定存，或者丢保险三年动不了</strong>。',context:'身强劫财格不喜欢放定存——"这什么垃圾东西，我能力还找不到比这高两倍的？"但明年只要钱在你手上，你今年下半年就能花光。'},
+      {title:'身强劫财的<br><span class="accent">人生节奏</span>',quote:'<strong>有10万做10万的事，有100万做100万的事，有1000万就做1000万的事</strong>——这辈子就是大起大落。',context:'身强格对金钱本身没有敏锐度，但他喜欢操作这笔钱让钱变大的感受。钱进了口袋没感觉，他要的是证明自己能力的那个决定。'},
+      {title:'不要制造<br><span class="accent">恶贵人</span>',quote:'伤官格反应力太快，常常忽略细节。<strong>你把一个关系还可以的人转化成恶贵人，伤害会远大于善贵人的帮助。</strong>',context:'恶贵人不是坏人，是看起来在帮你其实在拖你的人——或者是你过去某个小细节没照顾到，就变成敌人的人。对恶贵人最少保持60分的礼貌。'}
+    ]
+  },
+  {
+    id:'part05', label:'闪闪备孕',
+    slides:[
+      {type:'cover',title:'闪闪的<br><span class="accent">身强劫财</span>',quote:'你看这八字像一只老虎，有老虎的野心，却做着家猫的举动。',questioner:'闪闪：95年，做母婴小红书账号，今年在医院促排备孕。'},
+      {title:'老虎的身躯<br><span class="accent">家猫的行为</span>',quote:'有远大目标、执行力也可以——<strong>但本性胆小</strong>，不想做过于冲动的决定。',context:'这就是正官格带劫财的矛盾。正官想乖、想稳，可是劫财又推着你反叛，你会不断地自己跟自己冲突。'},
+      {title:'<span class="accent">反应式</span>心灵',quote:'八字火旺加巳亥冲——你做决定几乎全凭<strong>当下的反应和过去的硬痕</strong>。',context:'爸爸脾气暴，你的反应式心灵就是"只要触犯我的原则，我就必须声音更大来证明老娘是对的"。劫财格一定杠到赢，他不会主动示弱。'},
+      {title:'正官格是<br><span class="accent">假的温柔</span>',quote:'刚认识觉得她善解人意、川妹子温柔——<strong>那是正官格的性格作祟</strong>，她是好的。',context:'但那是天干上的假正官。底下是火急火燎的主核心性格——火球和水球对撞，最后赢的一定是火。你对老公是尊重的，但家里说了算的是你。'},
+      {title:'明年<span class="accent">不适合备孕</span>',quote:'明年丙午年，火再旺——<strong>你的情绪会让孩子留不住</strong>。',context:'火年就是你已经是个火山，明年来了九个太阳。备孕期的情绪暴躁孩子感受得到，生出来你也难带。备孕不是让身体好，是让情绪好。'},
+      {title:'推到<span class="accent">后年冬天</span>',quote:'27年才是桃花+孩子年。<strong>明年10月（阳历冬月）开始备孕，后年春秋生最好。</strong>',context:'冬月属水，可以灭一点火。水月备孕可以让你的状态更好。26、27、28、29这四年都有孩子，选一个情绪稳的年份来生。'},
+      {title:'老公是<span class="accent">弱命</span>',quote:'你老公八字30分，你100分——<strong>这家一定是你说了算</strong>。',context:'他偏财格，幽默风趣好玩，性格不错。但承担力有限。强烈建议他去找一份稳定工作——那是这个家的压舱石，而不是让他和你一起做自由职业。'},
+      {title:'不要和<span class="accent">父母同住</span>',quote:'这种身强劫财八字——<strong>千万不能跟父母住，尤其是对方父母</strong>。',context:'但凡掺杂父母就完了。最好是你和老公两个人住。闪闪回："我把我爸都拉黑了，我婆婆我公公都听我的。"是，藏得很深而已。'}
+    ]
+  },
+  {
+    id:'part06', label:'心法收束',
+    slides:[
+      {type:'cover',title:'反应式心灵<br>vs <span class="accent">分析式心灵</span>',quote:'遇到事情立刻有情绪、有判断、有动作——动作出去了你才发现自己后悔。'},
+      {title:'四步<br><span class="accent">改变路径</span>',steps:[{n:'1',text:'<strong>停止</strong> — 当情绪上来，先不要回应对方'},{n:'2',text:'<strong>找学问</strong> — 承认自己不懂，想想什么样的学问可以解决这个情境'},{n:'3',text:'<strong>架构</strong> — 把问题拆解成可以被处理的几块'},{n:'4',text:'<strong>环节解决</strong> — 对应架构的哪一环，一块一块推进'}],context:'身强格的做法是直接"事件解决"——中间没有停止、没有学问、没有架构，所以每次事件发生都无法学到东西。'},
+      {title:'<span class="accent">停止</span>是最难的',quote:'停止最难，因为<strong>情绪来的时候你根本不想停</strong>。',context:'我有两种停止方法：一种是我有一个好的学问——八字告诉我劫财格习惯用情绪先解决问题；另一种是我有一个好的老师，所有事情发生以前我先问他。'},
+      {title:'一师而学<br>不是<span class="accent">迷信权威</span>',quote:'<strong>取各家所长是自我欺骗</strong>——有能力取各家所长，你自己就够长了。',context:'你没有能力取各家所长的时候，每个人给的方法执行步骤都不一样，你越学越困惑。你需要过滤器，但你没有——所以纯水进来变成尿味。'},
+      {title:'跟一个人学<br>最少<span class="accent">三年</span>',quote:'跟一个人学最少沉一口气三年。<strong>第四年再考虑换老师。</strong>',context:'三个月想换是因为太难做不到；你每换一次老师，你不是从20开始，你是从0再到20。不断归零，你的人生就不断重来。'},
+      {title:'恶贵人<br><span class="accent">看起来在帮你</span>',quote:'恶贵人对一个人的影响，远远大于善贵人。<strong>一个小人造成的伤害，远大于那个对的人给你的帮助。</strong>',context:'所以对所有人都要保持60分的礼貌——你不知道哪一个细节会让一个普通的关系变成恶贵人。这是伤官格这辈子要反复练的功课。'},
+      {title:'十四年<br><span class="accent">只相信数据</span>',quote:'<strong>命理不是迷信，是统计。十四年看下来，我只相信数据。</strong>',context:'八字是帮人解决问题的工具，不是用来制造焦虑的生意。算得越多我家族越兴旺，这就是最大的反证。'}
+    ]
+  }
+];
+
+// ====== STATE ======
+let currentSection=0, currentSlide=0;
+
+function renderTabs(){
+  document.getElementById('tabs').innerHTML=sections.map((s,i)=>
+    `<button class="${i===currentSection?'active':''}" onclick="switchSection(${i})">${s.label}</button>`
+  ).join('');
+}
+
+function renderSlides(){
+  const s=sections[currentSection];
+  document.getElementById('track').innerHTML=s.slides.map((sl,i)=>{
+    let cls='slide '+(sl.type==='cover'?'cover':'content');
+    let h=`<div class="${cls}"><div class="slide-inner">`;
+    h+=`<div class="slide-num">${s.label} · ${i+1}/${s.slides.length}</div>`;
+    if(sl.type==='cover') h+=`<div class="part-label">PART 0${currentSection+1}</div>`;
+    if(sl.questioner) h+=`<div class="questioner-badge">${sl.questioner}</div>`;
+    if(sl.title) h+=`<h2 class="slide-title">${sl.title}</h2>`;
+    if(sl.quote) h+=`<div class="slide-quote">${sl.quote}</div>`;
+    if(sl.list) h+=`<ul class="slide-list">${sl.list.map(l=>`<li>${l}</li>`).join('')}</ul>`;
+    if(sl.steps) h+=`<div class="slide-steps">${sl.steps.map(st=>`<div class="step"><div class="step-num">${st.n}</div><div class="step-text">${st.text}</div></div>`).join('')}</div>`;
+    if(sl.products) h+=`<div class="slide-products">${sl.products.map(p=>`<div class="sp"><div class="sp-name">${p.name}</div><div class="sp-desc">${p.desc}</div></div>`).join('')}</div>`;
+    if(sl.context) h+=`<p class="slide-context">${sl.context}</p>`;
+    return h+`</div></div>`;
+  }).join('');
+  document.getElementById('dots').innerHTML=s.slides.map((_,i)=>
+    `<div class="dot ${i===currentSlide?'active':''}" onclick="goTo(${i})"></div>`
+  ).join('');
+  updatePosition(false);
+}
+
+function updatePosition(anim=true){
+  const t=document.getElementById('track');
+  t.style.transition=anim?'transform 0.4s cubic-bezier(0.25,0.1,0.25,1)':'none';
+  t.style.transform=`translateX(-${currentSlide*100}vw)`;
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));
+  const total=sections[currentSection].slides.length;
+  document.getElementById('counter').textContent=`${currentSlide+1} / ${total}`;
+  document.getElementById('prevBtn').disabled=(currentSlide===0&&currentSection===0);
+  document.getElementById('nextBtn').disabled=(currentSlide===total-1&&currentSection===sections.length-1);
+  const ad=document.querySelector('.dot.active');if(ad)ad.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+}
+
+function switchSection(i){currentSection=i;currentSlide=0;renderTabs();renderSlides()}
+
+function go(dir){
+  const total=sections[currentSection].slides.length, next=currentSlide+dir;
+  if(next>=0&&next<total){currentSlide=next;updatePosition()}
+  else if(dir>0&&currentSection<sections.length-1){currentSection++;currentSlide=0;renderTabs();renderSlides();const at=document.querySelector('.tabs button.active');if(at)at.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}
+  else if(dir<0&&currentSection>0){currentSection--;currentSlide=sections[currentSection].slides.length-1;renderTabs();renderSlides();const at=document.querySelector('.tabs button.active');if(at)at.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}
+}
+function goTo(i){currentSlide=i;updatePosition()}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown')go(1);
+  else if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1);
+  else if(e.key>='1'&&e.key<='6')switchSection(parseInt(e.key)-1);
+});
+
+let touchX=0,swiping=false;
+const vp=document.getElementById('viewport');
+vp.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX;swiping=true},{passive:true});
+vp.addEventListener('touchmove',e=>{if(swiping&&Math.abs(e.touches[0].clientX-touchX)>10)e.preventDefault()},{passive:false});
+vp.addEventListener('touchend',e=>{if(!swiping)return;swiping=false;const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>50)go(dx<0?1:-1)});
+
+renderTabs();renderSlides();
+</script>
+</body>
+</html>

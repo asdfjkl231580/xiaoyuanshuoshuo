@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第03场 · 销售是通才的生意 — 生财有术线下活动</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root { --t: 0.35s ease; }
+
+  /* === Dark theme === */
+  [data-theme="dark"] {
+    --bg: #0a0a08;
+    --bg-bar: rgba(10,10,8,0.92);
+    --bg-hero-a: #1a1510;
+    --bg-hero-b: #0a0a08;
+    --bg-glow: rgba(212,160,74,0.1);
+    --bg-toc: #12100c;
+    --bg-card: #1a1510;
+    --bg-info: #12100c;
+    --border: #2a2218;
+    --accent: #d4a04a;
+    --accent-bg: rgba(212,160,74,0.12);
+    --accent-bg2: rgba(212,160,74,0.25);
+    --accent-border: rgba(212,160,74,0.2);
+    --accent-border2: rgba(212,160,74,0.3);
+    --text: #c8c0b0;
+    --text-heading: #f0e6d6;
+    --text-sub: #e8dcc8;
+    --text-quote: #d8cfc0;
+    --text-muted: #8a7d6d;
+    --text-dim: #5a5040;
+    --bq-bg: rgba(212,160,74,0.06);
+  }
+
+  /* === Light theme (松石绿) === */
+  [data-theme="light"] {
+    --bg: #f5faf8;
+    --bg-bar: rgba(245,250,248,0.92);
+    --bg-hero-a: #e4f0ec;
+    --bg-hero-b: #f5faf8;
+    --bg-glow: rgba(26,138,125,0.08);
+    --bg-toc: #eaf4f0;
+    --bg-card: #e4f0ec;
+    --bg-info: #eaf4f0;
+    --border: #c8ddd6;
+    --accent: #1a8a7d;
+    --accent-bg: rgba(26,138,125,0.08);
+    --accent-bg2: rgba(26,138,125,0.15);
+    --accent-border: rgba(26,138,125,0.18);
+    --accent-border2: rgba(26,138,125,0.25);
+    --text: #3a5a52;
+    --text-heading: #1a2e28;
+    --text-sub: #2a4a42;
+    --text-quote: #2a4a42;
+    --text-muted: #7a9a90;
+    --text-dim: #a0b8b0;
+    --bq-bg: rgba(26,138,125,0.05);
+  }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.85;
+    transition: background var(--t), color var(--t);
+  }
+  a { color: var(--accent); text-decoration: none; transition: color var(--t); }
+  a:hover { text-decoration: underline; }
+
+  /* === Top bar === */
+  .top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-bar);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background var(--t), border-color var(--t);
+  }
+  .top-bar .back {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color var(--t);
+  }
+  .top-bar .back:hover { color: var(--accent); text-decoration: none; }
+  .top-bar .session-title {
+    font-size: 0.85rem;
+    color: var(--text-heading);
+    font-weight: 600;
+    transition: color var(--t);
+  }
+  .top-bar .right-btns { display: flex; align-items: center; gap: 8px; }
+  .top-bar .download-btn {
+    font-size: 0.78rem;
+    padding: 5px 14px;
+    border-radius: 6px;
+    background: var(--accent-bg);
+    color: var(--accent);
+    border: 1px solid var(--accent-border2);
+    cursor: pointer;
+    transition: all var(--t);
+  }
+  .top-bar .download-btn:hover {
+    background: var(--accent-bg2);
+    text-decoration: none;
+  }
+  .theme-btn {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--accent-bg); border: 1px solid var(--accent-border);
+    color: var(--accent); font-size: 0.95rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all var(--t);
+  }
+  .theme-btn:hover { transform: scale(1.1); }
+
+  /* === Hero === */
+  .hero {
+    text-align: center;
+    padding: 4rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--bg-hero-a) 0%, var(--bg-hero-b) 100%);
+    transition: background var(--t);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, var(--bg-glow) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .hero .badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    padding: 4px 14px;
+    border-radius: 20px;
+    background: var(--accent-bg);
+    color: var(--accent);
+    border: 1px solid var(--accent-border);
+    margin-bottom: 1rem;
+    position: relative;
+    transition: all var(--t);
+  }
+  .hero h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--text-heading);
+    position: relative;
+    margin-bottom: 0.3rem;
+    transition: color var(--t);
+  }
+  .hero .accent { color: var(--accent); transition: color var(--t); }
+  .hero .meta-line {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    position: relative;
+    margin-top: 0.8rem;
+    transition: color var(--t);
+  }
+  .hero .stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+    position: relative;
+  }
+  .hero .stat .n { font-size: 1.3rem; font-weight: 900; color: var(--accent); transition: color var(--t); }
+  .hero .stat .l { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; transition: color var(--t); }
+
+  /* === Nav / TOC === */
+  .toc-bar {
+    background: var(--bg-toc);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 2rem;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 42px;
+    z-index: 90;
+    transition: background var(--t), border-color var(--t);
+  }
+  .toc-bar a {
+    font-size: 0.75rem;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-muted);
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .toc-bar a:hover, .toc-bar a.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* === Article === */
+  .article {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 4rem;
+  }
+
+  /* Section header */
+  .section-header {
+    margin: 3rem 0 1.5rem;
+    padding-left: 14px;
+    border-left: 3px solid var(--accent);
+    transition: border-color var(--t);
+  }
+  .section-header:first-child { margin-top: 0; }
+  .section-header .sec-num {
+    font-size: 0.68rem;
+    letter-spacing: 3px;
+    color: var(--accent);
+    font-weight: 500;
+    transition: color var(--t);
+  }
+  .section-header h2 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-heading);
+    margin-top: 2px;
+    transition: color var(--t);
+  }
+
+  /* Sub header */
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-sub);
+    margin: 2rem 0 0.8rem;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+    transition: color var(--t), border-color var(--t);
+  }
+
+  /* Paragraph */
+  p { margin-bottom: 1rem; }
+
+  /* Bold highlight */
+  strong { color: var(--text-sub); transition: color var(--t); }
+
+  /* Blockquote */
+  blockquote {
+    background: var(--bq-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1rem 0 1.2rem;
+    color: var(--text-quote);
+    font-size: 0.92rem;
+    transition: all var(--t);
+  }
+
+  /* List */
+  ul, ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  li {
+    margin-bottom: 0.4rem;
+  }
+  li::marker { color: var(--accent); }
+
+  /* Questioner tag */
+  .questioner {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-bg);
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    transition: all var(--t);
+  }
+
+  /* Highlight box */
+  .highlight-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin: 1.2rem 0;
+    transition: all var(--t);
+  }
+  .highlight-box .hl-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    transition: color var(--t);
+  }
+
+  /* Product card grid */
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 1rem 0;
+  }
+  .product-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all var(--t);
+  }
+  .product-card .pname {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+    transition: color var(--t);
+  }
+  .product-card .pdesc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    transition: color var(--t);
+  }
+
+  /* Activity info box */
+  .info-box {
+    background: var(--bg-info);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 2rem;
+    font-size: 0.88rem;
+    transition: all var(--t);
+  }
+  .info-box .info-row {
+    display: flex;
+    gap: 0.5rem;
+    padding: 4px 0;
+    color: var(--text-muted);
+    transition: color var(--t);
+  }
+  .info-box .info-label {
+    color: var(--accent);
+    font-weight: 600;
+    flex-shrink: 0;
+    width: 70px;
+    transition: color var(--t);
+  }
+  .info-box .info-val { color: var(--text); transition: color var(--t); }
+
+  /* Divider */
+  .divider {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    margin: 2.5rem 0;
+    transition: background var(--t);
+  }
+
+  /* Footer */
+  .article-footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    border-top: 1px solid var(--border);
+    transition: all var(--t);
+  }
+  .article-footer a { color: var(--text-muted); }
+
+  /* Back to top */
+  .back-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--accent-bg2);
+    border: 1px solid var(--accent-border2);
+    color: var(--accent);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s, background var(--t), border-color var(--t), color var(--t);
+    z-index: 50;
+  }
+  .back-top.show { opacity: 1; }
+  .back-top:hover { background: var(--accent-bg2); }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.5rem; }
+    .hero .stats { gap: 1.2rem; }
+    .article { padding: 1.5rem 1rem; }
+    .product-grid { grid-template-columns: 1fr; }
+    .top-bar { padding: 8px 1rem; }
+    .toc-bar { padding: 10px 1rem; justify-content: flex-start; }
+    .top-bar .session-title { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="top-bar">
+  <a href="../index.html" class="back">&larr; 返回目录</a>
+  <span class="session-title">第03场 · 销售是通才的生意</span>
+  <div class="right-btns">
+    <a href="../downloads/第03场-销售是通才的生意-精华整理.md" download class="download-btn">下载 .md</a>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="切换明暗模式"><span id="themeIcon"></span></button>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="badge">第 03 场 · 2025年8月25日</div>
+  <h1>销售是<span class="accent">通才的生意</span></h1>
+  <p class="meta-line">杭州 · 线下聚会 &nbsp;|&nbsp; 根源（林根源）主讲</p>
+  <div class="stats">
+    <div class="stat"><div class="n">7</div><div class="l">核心主题</div></div>
+    <div class="stat"><div class="n">3h+</div><div class="l">活动时长</div></div>
+    <div class="stat"><div class="n">7万+</div><div class="l">字逐字稿</div></div>
+    <div class="stat"><div class="n">11</div><div class="l">人参与</div></div>
+  </div>
+</div>
+
+<!-- TOC -->
+<nav class="toc-bar">
+  <a href="#part01">场外细节</a>
+  <a href="#part02">复合能力</a>
+  <a href="#part03">售后服务</a>
+  <a href="#part04">收钱心态</a>
+  <a href="#part05">内容输出</a>
+  <a href="#part06">卖产品</a>
+  <a href="#part07">年轻销售</a>
+</nav>
+
+<!-- Article -->
+<article class="article">
+
+  <!-- Activity info -->
+  <div class="info-box">
+    <div class="info-row"><span class="info-label">日期</span><span class="info-val">2025年8月25日（周一）</span></div>
+    <div class="info-row"><span class="info-label">地点</span><span class="info-val">杭州 · 生财联合办公茶空间</span></div>
+    <div class="info-row"><span class="info-label">主讲人</span><span class="info-val">根源（林根源）</span></div>
+    <div class="info-row"><span class="info-label">编号</span><span class="info-val">第03场（每周一下午1点到3点半固定开局）</span></div>
+    <div class="info-row"><span class="info-label">参与者</span><span class="info-val">方世玉、崔翔、胥胥、盐焗小星球、阿璐、小吉、小雨哗啦、张江丽丽、苏荣坤、达布、米粒</span></div>
+  </div>
+
+  <!-- ==================== PART 01 ==================== -->
+  <div class="section-header" id="part01">
+    <div class="sec-num">PART 01</div>
+    <h2>场外细节：高端医疗卖宠物，一句话让所有人记住你</h2>
+  </div>
+
+  <h3>"我做高端医疗，卖宠物的"</h3>
+  <p>开场前丽丽做自我介绍——"我做高端医疗，卖宠物的"。大家一听都以为是卖猫卖狗，她一解释才知道是卖做实验的小白鼠、猪和猴子，而且是5万块三只那种生意。</p>
+  <blockquote>你出去跟人家做自我介绍，"我工作是做高端医疗，卖宠物的"。卖什么？卖小白鼠。我跟你讲，这一句话出去，就没有人会忘记你。</blockquote>
+  <p>"高端医疗卖宠物的"这句话，比"医疗销售"高出一百倍的辨识度。你有没有这种朋友？没有，对不对？第一次认识。这太厉害了。我听过好像有卖猴子的——对，猴子更贵。还有实验猪，猪是下一个趋势。这行业怎么这么牛的？</p>
+
+  <h3>参加线下活动最怕的是没有印象</h3>
+  <p>这个时代参加线下活动，最怕的就是别人对你没印象。让别人记住你最低成本的方法，就是把你的身份用一个反差感极强的短句说出来。</p>
+  <blockquote>把你的身份做成一个勾子，一说出来别人就想追问。别人一追问，你就有机会多聊两三句，多两三句就多一份记忆。</blockquote>
+  <p>这件事情是所有参加线下活动很特别的一点。我跟笑笑今天第一面，3点半我结束就走了，基本上不会有太多再一次聊天或者私下沟通的机会。一个活动三个小时结束，如果再有第二场效率一定会降低，因为人是有疲劳感的。所以我们真正的经营都会在晚上或者第二天过后。</p>
+  <p>那过了一个晚上之后，你要怎么让那个人在聊天的那一刻就说"唉，我记得你"？——"我忘了你名字，但我记得你那天怎么样。"我记得你是那个鼻子跟嘴巴一样宽的；我记得你是那天穿吊带的；我记得你是那天只有你戴发箍的；我记得你是那天穿粉色的；我记得你是那天衣品特别好的；我记得你发际线特别高；我记得你带了一个耳夹，因为你怕打耳洞。这些只要让对方能够记住，你们在第二次聊天就可以很好地唤醒线下场景的那个熟悉感。</p>
+
+  <h3>名字也可以强调</h3>
+  <p>方诗玉这个名字会让别人一听就深刻，所以你可以讲说"这是我的本名"——你懂这个意思吗？因为这个名字大多数人听会认为是笔名。</p>
+  <blockquote>有特色的东西你如果不强调，就很可惜。我可以跟你保证，你说一次，不会有人在这个场合忘记他的名字。</blockquote>
+  <p>达布的本名叫韦姜文——就可以说"韦是韦小宝的韦"。也就是我们要把我们的名字跟大多数人都能听到的公众词联合在一起，或者跟目前的红利词联合。像他做演唱会周边，就可以说"像之前一阵子我的业绩就特别好，因为谢霆锋在杭州的演唱会我们就能接上了"——你一接上，别人最少对你就会有第二层印象。</p>
+  <p>你看嘘嘘，他就可以说"你们好，大家都叫我嘘嘘，嘘嘘就是那个嘘嘘。"强调一些特殊词，或者让大家可以记住你的名字，你一延伸他就不会忘。</p>
+
+  <h3>带两个人回家，带一件学到的事</h3>
+  <p>我觉得参加所有的活动有两个原则：<strong>第一个，带走两个人——你的左边跟你的右边；第二，带一件今天活动学到的事情。</strong> 所有的活动只要有这两个原则，那个活动你就一定可以有学到。</p>
+  <p>2018年是我上一个团队崩盘特别惨的一年，负债然后重新开始，那时候就来了杭州。因为我是做线下销售的，不太理解怎么在互联网上认识人，所以就去参加线下活动。那时候红的是互动吧、维联创投、豆瓣同城。我一周参加四场活动，每场定在下午1点到5点之间。两年时间，线下实际见的人数超过3000人——不是活动上见的，而是见了之后再私下约出去喝咖啡。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 02 ==================== -->
+  <div class="section-header" id="part02">
+    <div class="sec-num">PART 02</div>
+    <h2>高客单的前提是复合能力，你什么都得会一点</h2>
+  </div>
+
+  <p class="questioner">达布问：如果自己售卖的产品是高客单的，怎么去做高客单的转介绍？</p>
+
+  <h3>低客单与高客单的交集</h3>
+  <p>要谈高客单的转介绍，得先谈一个前置条件：你会的东西决定了你能卖多贵的产品。</p>
+  <blockquote>你会多少东西，决定于你在跟别人聊天的过程中可以聊多少。低客单客户的交集浅，高客单客户的交集深，你避不开复合能力这件事。</blockquote>
+  <p>低客单客户跟你的交集浅，聊产品就够了。可是高客单客户付你十几万，一定会带你回家、一定会出去玩、一定会让你接触他的朋友和家人——这个时候你能聊什么，就决定了你在他心里是什么样的人。</p>
+
+  <h3>我会的东西</h3>
+  <p>我自己会的东西真挺多的：销售、培训、团队管理、八字——我做了13年；心理咨询，东西方心理学我大概率都精通，像盖洛普、NLP、催眠、教练技术、八字、风水、紫微斗数、MBTI。电视剧、综艺、电影我全看；我也看动画、看小说，每年看的字数大概3000～4000万。我大学学了7年魔术，大四的时候魔术课单堂课600块，别人英语家教才150。</p>
+  <p>我爱煮饭，能唱歌，能健身。穿搭、保养、医美、种睫毛、美甲我都懂一点。我懂一点茶。</p>
+  <blockquote>这不是炫耀——这是让自己成为一个"什么都能接上话"的人。</blockquote>
+
+  <h3>"这个人带得出手"</h3>
+  <p>你会做家事吗？你会做饭吗？假设今天大家出去玩，客户他们想自己烤串，他没请人来，你能不能去帮忙？如果你去帮忙，烤得又难吃，客户会怎么想？"你怎么连这都不会？要你有何用。"</p>
+  <p>但如果说主人回来之后发现你跟他朋友聊得特别的开心——你的客户会怎么想？</p>
+  <blockquote>这个人带得出手。</blockquote>
+  <p>车也懂一点，什么你都懂一点，你就会让别人感觉你是一个特别讨人喜欢的人。客户下次就会想再邀请你来他们家。如果他在忙，家里就一个3岁的孩子，我也知道怎么陪孩子玩。</p>
+
+  <h3>去客户家是我的主场</h3>
+  <blockquote>我真没骗你们，去客户家真的是我的主场。你要夸菜好吃我也会夸，上厨房帮忙我全都会，别讲洗碗，看我碗洗得超干净。</blockquote>
+  <p>所有手拿擦桌我都知道——<strong>擦桌子要擦三次</strong>：第一次把脏东西弄掉，第二次用一点清洁剂，第三次拿干的纸巾再擦，桌子才会干净。这些我也知道。那你要想客户看到，就会觉得"诶，你跟一般的人不一样"，他下次就会想再邀请你来他们家。</p>
+
+  <h3>身为业务，不能逃避</h3>
+  <p>身为一个想去做高单价产品的业务——因为现在其实没有所谓的交付者，所有的IP、所有的私域交付者本身就是业务——我们得自己会卖东西。所以我们不能去避免、不能去逃避哪些东西我不要学。</p>
+  <blockquote>但凡是一个你没接触过的，你都去听一点、去聊一点都好。除非你特别的会讲话——像我可以啥事都不干，也可以让对方喜欢我，但我练过。可是我啥事都会干。</blockquote>
+  <p>所以尽量不要去逃开一些生活的部分，我把那些称为"必备技能"。这些东西就是我们能不能够把售后服务做好的关键。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 03 ==================== -->
+  <div class="section-header" id="part03">
+    <div class="sec-num">PART 03</div>
+    <h2>售后不是讲产品，而是给产品之外的价值</h2>
+  </div>
+
+  <h3>售后 ≠ 本分</h3>
+  <p>大多数人把售后理解错了，以为售后就是交付产品、告诉客户怎么用、什么时候上课。这叫本分，不叫售后。</p>
+  <blockquote>售后服务你得提供产品以外的价值，产品以内的叫本分。</blockquote>
+
+  <h3>两种价值：情绪价值 + 劳动力价值</h3>
+  <p>产品之外的价值就两种：<strong>情绪价值</strong>和<strong>劳动力价值</strong>。</p>
+  <div class="highlight-box">
+    <div class="hl-title">情绪价值 vs 劳动力价值</div>
+    <p><strong>情绪价值</strong> — 你发现客户写的作业比别人好，你私下夸他一句"你的逻辑屌打他们"。他就记住你了。</p>
+    <p><strong>劳动力价值</strong> — 吃饭主动剥虾、倒茶、收桌；客户朋友圈写的忙，你主动接上。</p>
+  </div>
+
+  <h3>999红包的故事</h3>
+  <p>举一个极端的例子：假设达布买了我一个300多的产品。过几天我们要见面，我在见他之前——</p>
+  <blockquote>假设客户买了300多的产品，你第二天给他打999的红包，说"这份信任绝对值1000块"。客户瞬间就回本，他一辈子都会记得你。</blockquote>
+  <p>这个举动没花多少钱（其实相当于直接退钱了），但它的意义在于：他感觉到你在乎这份信任。这决定了他愿不愿意把他的朋友介绍给你。</p>
+
+  <h3>峰终效应</h3>
+  <p>人会记住体验过程中的<strong>峰值</strong>和<strong>结尾</strong>。所以交付的时候，最后一定要超出预期送一点东西。这些东西不花钱，但决定了客户会不会把他的朋友介绍给你。</p>
+  <blockquote>转介绍分两块：第一种叫"自我转介绍"——他买了300多的产品，过一个月又买了4999的产品；第二种是他把他的朋友转介绍给我。这两种都必须得让客户在售后服务这事上感觉到这个人是有价值的。如果他没有价值，我就不会把我的朋友转化给你。</blockquote>
+
+  <h3>线下的劳动力价值很容易给</h3>
+  <p>假设今天这一顿饭，但凡有虾，我每个人剥一只，我一定剥完放旁边，虾壳放一边。剥之前我都会说"我手洗了"。然后他们就会好奇——"没有，因为我们家吃饭习惯，有虾一定先剥完再吃，所以方便你们。"</p>
+  <blockquote>给所有人倒茶我会做，给所有的人夹菜我会做，帮忙干嘛我都会做。有些人这辈子没有人给他夹过菜呢。真的，我真没骗你们。</blockquote>
+  <p>没有人会主动服务他，因为他认为大多数人会觉得自己没有价值的。这个时代最少80%的人是觉得自己没有"配得感"的。当你多做一点，他就会发现"原来我值得被别人这样子服务"。</p>
+  <p><strong>这种价值没有成本的——你不过就多做一点而已。</strong></p>
+
+  <h3>线上的劳动力价值比较难给</h3>
+  <p>线上的劳动力价值比较难创造，线上最好就是给<strong>情绪价值</strong>。</p>
+  <p>如果一定要给线上的劳动力价值——主动看他朋友圈，他一定有一些内容提到什么诉求。主动找他说"我看到你这个朋友圈内容，你写到的这个忙我可以帮。"比如他朋友圈说想要一个记笔记的工具，你就把高松的文章转给他、私信给他，这就是线上的劳动力价值。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 04 ==================== -->
+  <div class="section-header" id="part04">
+    <div class="sec-num">PART 04</div>
+    <h2>收钱羞耻，这一关我走了三年</h2>
+  </div>
+
+  <p class="questioner">丽丽问：我朋友圈有很多我的目标用户，但我有一点收钱羞耻，该怎么开口？</p>
+
+  <h3>这不是技巧，是硬练</h3>
+  <blockquote>正常，太正常。这一关我走了三年。这不是技巧问题，是练出来的。</blockquote>
+  <p>方法有两种——一种叫慢，一种叫快。</p>
+  <p><strong>慢的方法：</strong>我给你一个目标，每一天你一定要跟三个人开口要钱。"这个产品你愿意给我付钱吗？"——很多时候就这一句话打不出去。真的，你就这句话打不出去，我特别懂。而且以前我是做线下销售，我得线下看着你的眼睛说，那时候有多难呐。</p>
+  <p><strong>快的方法：</strong>我们私下加个微信，然后你一天你如果没有给我截图三个你开口跟他要钱的对话讯息，罚1000块。</p>
+  <blockquote>这种事情没有诀窍，就是硬练这一关。所有的销售有70%过不了这一关，所以做销售本来就很难，但这却是一个普通人能够改命的机会。</blockquote>
+
+  <h3>销售最怕"想象"</h3>
+  <p>丽丽说她朋友圈有很多目标用户。我直接反问——他们真的是你的目标用户，还是你以为他们是你的目标用户？</p>
+  <blockquote>怎么确认他真的是目标用户呢？当你开口谈的产品你收了钱，代表你判断真的正确。你看像我撩了12个人，我成交了10个——这就代表我判断这个人是目标用户的概率是很客观的。</blockquote>
+  <p>我可以讲出理由，为什么他是我的目标用户。那我最终讲完理由之后，我讲10个，我成交率接近80%——所以我的判断是准的，我有一个很清晰的判断依据。<strong>但你目前是用感觉在判断。</strong></p>
+  <p>销售最怕想象。"我以为他是"，所以我就不断地经营他，一直经营，我也从来不开口。但这种经营是没有结果的。</p>
+
+  <h3>收钱是一种筛选</h3>
+  <blockquote>在我看来，收钱是一个对于彼此来讲最好用的一种筛选方式。</blockquote>
+  <p>任何没有付费的咨询都是没屁用的。我开一个免费群，我跟你讲这内容超好，你不会看的。真的，你不会看的。你收10万一个月之后他也不会看的。</p>
+  <p>我以前不懂，只会觉得"收钱太难了，要不就不收吧，群有进人，感觉我做了一点事"。但这是错的，收钱不别扭需要大量次数去练。</p>
+
+  <h3>熟人的学妹咨询400块</h3>
+  <p class="questioner">丽丽追问：我想收一个关系还不错的学妹的咨询费，400块，但我不知道如何开这个口。</p>
+  <p>第一个先问：为什么你觉得他有需求？是他找你的，还是你主动去找他的？</p>
+  <p>如果他找你，并且你确定"自己人不收钱"——就二话不说纯帮。但如果你跟他讲——</p>
+  <blockquote>虽然我们关系好，可是这个咨询我一定会收费，我可以给你打折，自己人的。</blockquote>
+  <p>两个选择，别卡在中间。卡在中间你就会一直别扭——想收又不好意思开口。</p>
+
+  <h3>最差成交 vs 最好成交</h3>
+  <p>成交分两种：</p>
+  <p><strong>最差的成交：</strong> "可以，我给你捧场一下，但你别烦我。"——这叫最差的。我的人生经历过很多年这种成交，没办法，能力确实不足，但是我得跟别人要钱，这是销售都要走过的一关。</p>
+  <p><strong>最好的成交：</strong> "老师，我特别谢谢你，特别谢谢你跟我讲这个产品，我因为这产品我的帮助特别的大。"甚至他主动地说"老师，我看你的朋友圈发这海报，你能不能够跟我介绍一下？因为我觉得这东西可能我目前是需要的。"</p>
+  <p>我也不是每个都可以做到最好的成交，我也有最坏的成交，现在也会发现有些我会去谈一些新人，我会去让自己练。就是"这个人我刚加好友，彼此啥也不熟，我就开口跟你硬切"——我也会这么做，目的就是为了练。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 05 ==================== -->
+  <div class="section-header" id="part05">
+    <div class="sec-num">PART 05</div>
+    <h2>我三年输出一千多万字，逼着自己练思考</h2>
+  </div>
+
+  <p class="questioner">小星球问：你每年输出那么多内容，质量是怎么迭代的？输入的习惯是什么？</p>
+
+  <h3>三年输出近千万字</h3>
+  <p>我今年是做知识付费的第三年八个月。我所有的输出——不管是讲课、咨询、还是群里分享——全部会有飞书的存档。存档之后都由我的学生帮我整理，而且整理的第一步是纯手打出逐字稿，这是我的要求——因为我得让他们练。</p>
+  <blockquote>我的所有的逐字稿记录的字数，前三年加起来在1000多万字。我一个人的输出从咨询到讲课，而且这些内容都是新的内容——我谈的都不是重复讲的，而是全新的。我三年平均每年输出三百多万字，这是我跟这个时代保持同步的方式。</blockquote>
+  <p>你要想，大多数的内容创作者，他们一年但凡可以输出个几十万字是极限。大多数都是一个课做出来我就小改这个课，再变到下次我再卖。但这个逻辑会让我们丧失了一个知识付费创作者最重要的点——输出太少，你就会让自己的脑袋停止思考。</p>
+
+  <h3>讲课不备课</h3>
+  <p>我给自己一个原则：<strong>讲课不能备课。</strong> 因为我想让自己可以随时处在一个在不断思考的状态。这事情我刻意练过，练过很多年，所以对于我来讲思考不是一件难事，思考对我来讲不是种压力。</p>
+  <blockquote>我的讲课就是用iPad打开飞书，然后直接投屏幕，我就讲了，然后边讲我就边写。所以我上课也没有PPT，就是纯写的。</blockquote>
+  <p>我的咨询更不备课——我哪知道你们要问什么呀？所以我就习惯让自己现场回答。</p>
+
+  <h3>多个付费群逼自己输出</h3>
+  <p>我开了多个付费群做成正反馈循环：</p>
+  <div class="highlight-box">
+    <div class="hl-title">我的输出机制</div>
+    <p><strong>销售认知群</strong> — 每天讲一个主题，一周讲4~5天，每次2000字以上</p>
+    <p><strong>百问百答</strong> — 每天回答一个问题，2000字左右（去年开过4次，每次7天收200~250个问题全部答完）</p>
+    <p><strong>心理培训群</strong> — 每天录一个十几分钟的视频</p>
+    <p><strong>八字中阶课、沟通中阶课、聊天成交训练营</strong> — 每天都有直播时间</p>
+  </div>
+  <p>我一天光直播就3个小时。加起来一天光输出的就4000字以上。</p>
+
+  <h3>罚就要罚1000以上</h3>
+  <blockquote>我有三个群没有做到是要罚1万以上的，那东西才有趣，你就会重视它。罚个两三百这种过家家别玩，没人会重视的。</blockquote>
+  <p>这个机制的目的不是赚钱，是倒逼自己不断输入不断思考。因为所有成长都反人性的，没有人喜欢成长，很无聊又很痛苦。但只要你躲不了，你的成长速度才会快。</p>
+  <p>你可以在江湖上把这个话放了：开个群，每天固定输入2000字，我但凡没做到就在群里发1000块的红包。你把二维码放了看谁进来，你的输出就会变成是"时间到了我就得输出"。</p>
+
+  <h3>一天聊10个人是基本功</h3>
+  <blockquote>假设现在让你去聊天，一天聊10个人可以没有压力，随时电脑开了讯息就发了——那你可牛了。</blockquote>
+  <p>我最早做知识付费时，第一个群平均一天2000个讯息，我秒回。我带过30多个学生，他们训练过一件事——每天跟两个人聊天+200字复盘。我手边最少有20个学生，随手可以拿出超过300个跟别人聊天的复盘记录。</p>
+  <p>我之前自己也下场玩过一次，开了一个群：30天每人聊300人。完成率85%，那群快40个人，30多个完成。最有趣的是——那30天我自己变现了40多万。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 06 ==================== -->
+  <div class="section-header" id="part06">
+    <div class="sec-num">PART 06</div>
+    <h2>高客单怎么谈、怎么收钱、怎么经营关系</h2>
+  </div>
+
+  <p class="questioner">达布问：卖演唱会前排票这种高客单产品，信任问题怎么解决？客户不愿意先付钱怎么办？</p>
+
+  <h3>定向产品：把规则讲清楚</h3>
+  <p>第一种是<strong>定向产品</strong>，像演唱会的门票。价格是固定的——要么699，要么3999。能找你的客户，一定是有确定的需求。</p>
+  <p>你要想，能讲"我要前排票"的，一定是有能力付大几千块的人。像周杰伦、邓紫棋、谢霆锋的前排票正价1699，黄牛价大概涨到4000~5000，周杰伦的甚至上万。这类客户的认知最少是3000以上——他们不会在乎钱是不是先给你，他会在乎的是能不能先拿到票。</p>
+  <blockquote>你好，我确实有这个票，但是跟我交易有个原则：钱要先付。理由是什么？讲清楚就好了。对方只要讲"不要"，就跟他说"那对不起，这个交易没有办法成"。</blockquote>
+  <p>如果他说"我钱能不能慢一点付"，就代表这个客户他的意识就到3999——他想要一个超出他当下能力的东西。这一类我会跟他说："你应该是第一次透过我们这种渠道去买票。我们的规则是——钱进来得先把票锁了，你会在演唱会前一两天才拿到实体票。我们唯一能承诺的点就是信任感上的承诺。如果你害怕这个钱不见，你可以考虑，也可以前两天再找我买，但那时候有可能票价会再高一点。"</p>
+  <p>把规则说得特别清楚，他能接受就能接受。如果他最终说不要，那就放下。不放下，他最后会跟你说"我要退费"——你就麻烦。</p>
+
+  <h3>虚拟产品：付款前的"确认词"</h3>
+  <p>第二种是<strong>虚拟产品</strong>，像课程。这种产品我不会签合约，但我有一段"确认词"。</p>
+  <blockquote>但凡我300多块或者4000多块的群，入群前都会有个确认词——这个产品是什么样的交付、付款之后是不退款的——我会把这些说清楚。然后如果你看完觉得没有问题，你打上你的名字并且打"确认没有问题"，我才会收钱。</blockquote>
+  <p>越小的金额我可能拉在10分钟。我会跟他说："看完这段话之后，如果你完全觉得没有问题，因为这是付款前的最后考虑。因为赚钱确实不容易嘛。所以如果看完之后你觉得可行、可以信任、确实有需求，你回复一个确认词之后再转钱。"</p>
+  <p>而像我25万的产品，我会给他一天的考虑。明天这个时候我会再跟他确认第二次是否确定要成为我的学生。</p>
+
+  <h3>谈成交要快，收钱要慢</h3>
+  <blockquote>我谈成交会快，但是我收钱会慢。不管这个产品的金额是大还是小。</blockquote>
+  <p>这谨慎不只对我，也对于客户。因为这是个虚拟产品，除非说签合约我都会谨慎。很多时候你花钱买的是当下的那份信任。所以我们能把规则定得越详细，能在收钱的过程中越严谨，这个成交就比较不会出问题。</p>
+
+  <h3>经营关系不需要很久</h3>
+  <p>很多人误会经营关系很难、要花很多时间，其实不用。</p>
+  <p>举个例子：假设今天活动结束了，我去了某一个茶馆，我在看茶的菜单的时候看到了信阳毛尖，我拍下来发给丽丽——"诶，你老家的茶。"再说一句"但我先去忙了"。三句话。</p>
+  <p>如果你是收到这个讯息的人，你会有什么想法？当我去了上虞，或者去了柯桥，我说"诶小星球，我在越城，在我朋友家，我记得你跟我讲你是绍兴的"——发完之后"但我先跟我朋友吃饭"。够了。</p>
+  <blockquote>如果每一周我们之间有两次像这样子的一分钟到两分钟的对话，关系就牵住了。</blockquote>
+
+  <h3>长聊天 vs 短聊天</h3>
+  <p>长聊天不会天天发生，你一个月能发生个一两次已经厉害了。但短聊天可以三天四天发生一次。</p>
+  <p>共鸣点是短聊天的关键——你看像店长叫19，我认识他第一天就跟他站着聊了两分钟："我跟你讲我的朋友圈里面可多你的姐妹了，1615、1413、1211我都有。一月、二月、三月、六月、八月、十月我都有。你看这叫共鸣点。"</p>
+  <p>你每打一次招呼，对方就会说"诶你还记得我"。可能分数从3分到4分，下一次过个三天再聊个两三句，4分又到了4.5分。有一天到了10分，你就告诉自己"差不多了"——可以切产品了。</p>
+
+  <h3>卖365的故事：12撩10</h3>
+  <p>我上周卖365陪伴群，因为现在我的工作就是每天卖一个——反正我就从朋友圈里面拉，我觉得谁可以我就去卖一个。</p>
+  <blockquote>目前我开口了12个人，成交了10个。这300多块还是没有很高的产品。</blockquote>
+  <p>其中一个女生是2022年年初就买了我第一次线上的沟通课的，我们认识三年半。她很特别，只买三位数的课，4位数的都不会来。她参加过我6个三位数的课，但我们已经有大概一年没有联系了。可我发现每次我发朋友圈她就点赞，我发公众号她就点赞——我就知道，关系应该还行。</p>
+  <p>我就去聊天了："诶好久不见，你还在深圳吗？"她说现在回山西教钢琴了。我就说："今天突然找你，是因为我发现我的公众号每次发你都点赞，朋友圈每次发你都点赞，我第一个来跟你表达一声感谢。第二个，我记得你应该对三位数的产品是有意愿的，我有一个这样子的新品，你想听听看吗？"她说："老师可以啊，如果说成本不高的话。"</p>
+  <p>这就是慢慢养到现在的结果——<strong>我知道每天我要找谁聊。</strong></p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 07 ==================== -->
+  <div class="section-header" id="part07">
+    <div class="sec-num">PART 07</div>
+    <h2>年轻销售的前三年要往低处走</h2>
+  </div>
+
+  <p class="questioner">丽丽问：我现在做医疗销售，年薪25到30万，基本上是一线销售的上限了。我希望两到三年内能赚到50到100万，请老师给一些建议。</p>
+
+  <h3>先泼一盆冷水：能力可以被取代</h3>
+  <p>丽丽一开始谈她的项目优势："我们是一个非常有技术壁垒的细分赛道，我会服务好大客户，特别低端的客户我都会跟他说'你没想清楚，不要来找我聊'，甚至在朋友圈劝退一些人。我把自己从乙方活成了甲方的心态。"</p>
+  <p>我先泼她一盆冷水——她潜意识里有骄傲。她说"客户除了我没有最优解"——</p>
+  <blockquote>能力和背景，一个月内就会有人可以取代你。</blockquote>
+  <p>任何销售的能力和背景，一个月内就会有人取代。这是第一件要放下的事。</p>
+
+  <h3>往低处走 ≠ 服务低端客户</h3>
+  <p>年轻销售的前三年，不管你是公司型还是野路子型，都要有一个觉悟——<strong>往低处走</strong>。</p>
+  <blockquote>年轻销售的前三年要往低处走，不是服务低端客户，是把劳动力的事情顶上。</blockquote>
+  <p>吃完饭第一个起来收桌，到客户公司帮忙倒茶夹菜，让客户觉得你"踏实"。东方社会有一个无意识的观念叫"长幼有序"——年纪比你大的客户就是会觉得年轻人应该这么做。你顺着这个无意识去做，就叫<strong>"坐实该有的角色"</strong>。</p>
+
+  <h3>骄傲只能骄傲10到20分钟</h3>
+  <p>但关键时刻你的专业必须站出来。</p>
+  <blockquote>骄傲只能骄傲10到20分钟，剩下的时间回到谦卑请教——这样客户会觉得你不止优秀，还尊重他。</blockquote>
+  <p>这个组合拳打出来，你才会被记住。</p>
+
+  <h3>想在公司里被看见，就做到断崖式第一</h3>
+  <p>丽丽说她的痛点是晋升渠道被堵——"我的业绩我不知道被谁看见，没有那个决定我晋升的人能看见我。"</p>
+  <p>如果你主业做的是销售，想被看见就一个原则——</p>
+  <blockquote>做到全公司销售第一名，你一定会被重视，10000%会被重视。而且不只做第一，你要做到跟第二名有一个断崖式的业绩区别，然后你可以蝉联三到四次。</blockquote>
+  <p>要么个人业绩超强，要么团队能力超强——这是两条最快让公司关注到你的路。我是做销售起家的，但我更擅长团队能力——我曾经带过快4万人的团队。所以对我来说团队培训的能力比销售能力更卓越。</p>
+
+  <h3>主业 + 副业，不要同一条路</h3>
+  <p>我很推崇大多数人能有一份主业——有一份上班的工作，然后每天挪三小时干副业。一天三小时，很多的。</p>
+  <p>但主业副业不要一样。</p>
+  <blockquote>主业跟副业如果都一样，你的人脉就一样，你接触的想法、圈子、内容都一样，你就不会因为你的副业而更成长，你会觉得副业是一个负担。但如果副业是一条完全不一样的路，可以相互反哺，这样你在主业又可以做得更轻松。</blockquote>
+  <p>副业是给人生再加一个避险的区块，上限是无限大的。但主业的上限就那样。</p>
+
+  <h3>主业一定要选最高收入的，别想着"双休不加班"</h3>
+  <p>另一位年轻朋友问："我副业很确定，但主业不确定——是找一份稳定双休不加班的，给副业留时间？还是找一份能锻炼销售能力的？"</p>
+  <blockquote>你目前的能力可以选到的那个最高收入的主业——我不管它的工作时间多长。因为副业是不稳定的。</blockquote>
+  <p>除非你的副业已经干过了一年，每个月可以为你提供一年10到15万的收入，那才可以说"以副业为主"。否则对你来说主业还是最重要的——主业是你但凡上岗了，就可以为你带来一笔特别稳定的现金流。</p>
+  <p>而且——</p>
+  <blockquote>主业你绝不能选，"我要找什么双休的什么的"。但凡你有这种想法，公司都不要你。我是个老板，我不用这种人的。</blockquote>
+  <p>真的，因为主业的学习是你必须得学，你如果不学，公司就会给我少钱。所以目前你的能力可以找到什么地方给你最高的薪水，就选它——不管它是否要双休、是否要加班。因为那个可以让你拥有一个更好的稳定性，副业不用花那么多时间，一天两个小时够你把副业做大了。我就不信再累的工作一天挪不出两个小时。</p>
+
+  <hr class="divider">
+
+  <p style="text-align:center; color:#8a7d6d; font-size:0.82rem; margin-top:2rem;">
+    <em>整理说明：本文基于2025年8月25日线下活动逐字稿，以根源老师第一人称视角整理归类，保留原始表达，未做改写扩写。</em>
+  </p>
+
+</article>
+
+<div class="article-footer">
+  <a href="../index.html">&larr; 返回活动目录</a>
+  <p style="margin-top:8px">生财有术 · 线下活动精华归档 &nbsp;|&nbsp; 由根源整理，AI辅助排版</p>
+</div>
+
+<!-- Back to top -->
+<div class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</div>
+
+<script>
+// ====== THEME ======
+function getTheme(){return localStorage.getItem('sc-theme')||'dark'}
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('themeIcon').innerHTML = t==='dark'?'&#9790;':'&#9728;';
+}
+function toggleTheme(){
+  const next=getTheme()==='dark'?'light':'dark';
+  localStorage.setItem('sc-theme',next);
+  applyTheme(next);
+}
+applyTheme(getTheme());
+
+// Back to top visibility
+window.addEventListener('scroll', () => {
+  document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
+});
+
+// TOC active state
+const sections = document.querySelectorAll('.section-header');
+const tocLinks = document.querySelectorAll('.toc-bar a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  tocLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+
+</body>
+</html>

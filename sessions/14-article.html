@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第14场 · 试错与主见 — 生财有术线下活动</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root { --t: 0.35s ease; }
+
+  /* === Dark theme === */
+  [data-theme="dark"] {
+    --bg: #0a0a08;
+    --bg-bar: rgba(10,10,8,0.92);
+    --bg-hero-a: #1a1510;
+    --bg-hero-b: #0a0a08;
+    --bg-glow: rgba(212,160,74,0.1);
+    --bg-toc: #12100c;
+    --bg-card: #1a1510;
+    --bg-info: #12100c;
+    --border: #2a2218;
+    --accent: #d4a04a;
+    --accent-bg: rgba(212,160,74,0.12);
+    --accent-bg2: rgba(212,160,74,0.25);
+    --accent-border: rgba(212,160,74,0.2);
+    --accent-border2: rgba(212,160,74,0.3);
+    --text: #c8c0b0;
+    --text-heading: #f0e6d6;
+    --text-sub: #e8dcc8;
+    --text-quote: #d8cfc0;
+    --text-muted: #8a7d6d;
+    --text-dim: #5a5040;
+    --bq-bg: rgba(212,160,74,0.06);
+  }
+
+  /* === Light theme (松石绿) === */
+  [data-theme="light"] {
+    --bg: #f5faf8;
+    --bg-bar: rgba(245,250,248,0.92);
+    --bg-hero-a: #e4f0ec;
+    --bg-hero-b: #f5faf8;
+    --bg-glow: rgba(26,138,125,0.08);
+    --bg-toc: #eaf4f0;
+    --bg-card: #e4f0ec;
+    --bg-info: #eaf4f0;
+    --border: #c8ddd6;
+    --accent: #1a8a7d;
+    --accent-bg: rgba(26,138,125,0.08);
+    --accent-bg2: rgba(26,138,125,0.15);
+    --accent-border: rgba(26,138,125,0.18);
+    --accent-border2: rgba(26,138,125,0.25);
+    --text: #3a5a52;
+    --text-heading: #1a2e28;
+    --text-sub: #2a4a42;
+    --text-quote: #2a4a42;
+    --text-muted: #7a9a90;
+    --text-dim: #a0b8b0;
+    --bq-bg: rgba(26,138,125,0.05);
+  }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.85;
+    transition: background var(--t), color var(--t);
+  }
+  a { color: var(--accent); text-decoration: none; transition: color var(--t); }
+  a:hover { text-decoration: underline; }
+
+  /* === Top bar === */
+  .top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-bar);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background var(--t), border-color var(--t);
+  }
+  .top-bar .back {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color var(--t);
+  }
+  .top-bar .back:hover { color: var(--accent); text-decoration: none; }
+  .top-bar .session-title {
+    font-size: 0.85rem;
+    color: var(--text-heading);
+    font-weight: 600;
+    transition: color var(--t);
+  }
+  .top-bar .right-btns { display: flex; align-items: center; gap: 8px; }
+  .top-bar .download-btn {
+    font-size: 0.78rem;
+    padding: 5px 14px;
+    border-radius: 6px;
+    background: var(--accent-bg);
+    color: var(--accent);
+    border: 1px solid var(--accent-border2);
+    cursor: pointer;
+    transition: all var(--t);
+  }
+  .top-bar .download-btn:hover {
+    background: var(--accent-bg2);
+    text-decoration: none;
+  }
+  .theme-btn {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--accent-bg); border: 1px solid var(--accent-border);
+    color: var(--accent); font-size: 0.95rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all var(--t);
+  }
+  .theme-btn:hover { transform: scale(1.1); }
+
+  /* === Hero === */
+  .hero {
+    text-align: center;
+    padding: 4rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--bg-hero-a) 0%, var(--bg-hero-b) 100%);
+    transition: background var(--t);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, var(--bg-glow) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .hero .badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    padding: 4px 14px;
+    border-radius: 20px;
+    background: var(--accent-bg);
+    color: var(--accent);
+    border: 1px solid var(--accent-border);
+    margin-bottom: 1rem;
+    position: relative;
+    transition: all var(--t);
+  }
+  .hero h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--text-heading);
+    position: relative;
+    margin-bottom: 0.3rem;
+    transition: color var(--t);
+  }
+  .hero .accent { color: var(--accent); transition: color var(--t); }
+  .hero .meta-line {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    position: relative;
+    margin-top: 0.8rem;
+    transition: color var(--t);
+  }
+  .hero .stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+    position: relative;
+  }
+  .hero .stat .n { font-size: 1.3rem; font-weight: 900; color: var(--accent); transition: color var(--t); }
+  .hero .stat .l { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; transition: color var(--t); }
+
+  /* === Nav / TOC === */
+  .toc-bar {
+    background: var(--bg-toc);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 2rem;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 42px;
+    z-index: 90;
+    transition: background var(--t), border-color var(--t);
+  }
+  .toc-bar a {
+    font-size: 0.75rem;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-muted);
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .toc-bar a:hover, .toc-bar a.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* === Article === */
+  .article {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 4rem;
+  }
+
+  /* Section header */
+  .section-header {
+    margin: 3rem 0 1.5rem;
+    padding-left: 14px;
+    border-left: 3px solid var(--accent);
+    transition: border-color var(--t);
+  }
+  .section-header:first-child { margin-top: 0; }
+  .section-header .sec-num {
+    font-size: 0.68rem;
+    letter-spacing: 3px;
+    color: var(--accent);
+    font-weight: 500;
+    transition: color var(--t);
+  }
+  .section-header h2 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-heading);
+    margin-top: 2px;
+    transition: color var(--t);
+  }
+
+  /* Sub header */
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-sub);
+    margin: 2rem 0 0.8rem;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+    transition: color var(--t), border-color var(--t);
+  }
+
+  /* Paragraph */
+  p { margin-bottom: 1rem; }
+
+  /* Bold highlight */
+  strong { color: var(--text-sub); transition: color var(--t); }
+
+  /* Blockquote */
+  blockquote {
+    background: var(--bq-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1rem 0 1.2rem;
+    color: var(--text-quote);
+    font-size: 0.92rem;
+    transition: all var(--t);
+  }
+
+  /* List */
+  ul, ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  li {
+    margin-bottom: 0.4rem;
+  }
+  li::marker { color: var(--accent); }
+
+  /* Questioner tag */
+  .questioner {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-bg);
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    transition: all var(--t);
+  }
+
+  /* Highlight box */
+  .highlight-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin: 1.2rem 0;
+    transition: all var(--t);
+  }
+  .highlight-box .hl-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    transition: color var(--t);
+  }
+
+  /* Product card grid */
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 1rem 0;
+  }
+  .product-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all var(--t);
+  }
+  .product-card .pname {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+    transition: color var(--t);
+  }
+  .product-card .pdesc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    transition: color var(--t);
+  }
+
+  /* Activity info box */
+  .info-box {
+    background: var(--bg-info);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 2rem;
+    font-size: 0.88rem;
+    transition: all var(--t);
+  }
+  .info-box .info-row {
+    display: flex;
+    gap: 0.5rem;
+    padding: 4px 0;
+    color: var(--text-muted);
+    transition: color var(--t);
+  }
+  .info-box .info-label {
+    color: var(--accent);
+    font-weight: 600;
+    flex-shrink: 0;
+    width: 70px;
+    transition: color var(--t);
+  }
+  .info-box .info-val { color: var(--text); transition: color var(--t); }
+
+  /* Divider */
+  .divider {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    margin: 2.5rem 0;
+    transition: background var(--t);
+  }
+
+  /* Footer */
+  .article-footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    border-top: 1px solid var(--border);
+    transition: all var(--t);
+  }
+  .article-footer a { color: var(--text-muted); }
+
+  /* Back to top */
+  .back-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--accent-bg2);
+    border: 1px solid var(--accent-border2);
+    color: var(--accent);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s, background var(--t), border-color var(--t), color var(--t);
+    z-index: 50;
+  }
+  .back-top.show { opacity: 1; }
+  .back-top:hover { background: var(--accent-bg2); }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.5rem; }
+    .hero .stats { gap: 1.2rem; }
+    .article { padding: 1.5rem 1rem; }
+    .product-grid { grid-template-columns: 1fr; }
+    .top-bar { padding: 8px 1rem; }
+    .toc-bar { padding: 10px 1rem; justify-content: flex-start; }
+    .top-bar .session-title { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="top-bar">
+  <a href="../index.html" class="back">&larr; 返回目录</a>
+  <span class="session-title">第14场 · 试错与主见</span>
+  <div class="right-btns">
+    <a href="../downloads/第14场-试错与主见-精华整理.md" download class="download-btn">下载 .md</a>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="切换明暗模式"><span id="themeIcon"></span></button>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="badge">第 14 场 · 2025年11月25日</div>
+  <h1>试错<span class="accent">与主见</span></h1>
+  <p class="meta-line">杭州 · 线下聚会 &nbsp;|&nbsp; 根源（林根源）主讲</p>
+  <div class="stats">
+    <div class="stat"><div class="n">8</div><div class="l">核心主题</div></div>
+    <div class="stat"><div class="n">2.5h</div><div class="l">活动时长</div></div>
+    <div class="stat"><div class="n">8万+</div><div class="l">字逐字稿</div></div>
+    <div class="stat"><div class="n">9</div><div class="l">人参与</div></div>
+  </div>
+</div>
+
+<!-- TOC -->
+<nav class="toc-bar">
+  <a href="#part01">试错成本</a>
+  <a href="#part02">销售四阶段</a>
+  <a href="#part03">三千名单</a>
+  <a href="#part04">主见与塞满</a>
+  <a href="#part05">八字与改名</a>
+  <a href="#part06">80岁的自己</a>
+  <a href="#part07">刚性支出</a>
+  <a href="#part08">塞满执行</a>
+</nav>
+
+<!-- Article -->
+<article class="article">
+
+  <!-- Activity info -->
+  <div class="info-box">
+    <div class="info-row"><span class="info-label">日期</span><span class="info-val">2025年11月25日（周二）</span></div>
+    <div class="info-row"><span class="info-label">地点</span><span class="info-val">杭州 · 线下茶空间</span></div>
+    <div class="info-row"><span class="info-label">主讲人</span><span class="info-val">根源（林根源）</span></div>
+    <div class="info-row"><span class="info-label">编号</span><span class="info-val">第14场（自2025年8月18日起，每周一场）</span></div>
+    <div class="info-row"><span class="info-label">参与者</span><span class="info-val">润蓓、瓜瓜、陈一、大熊、小邓、梅梅、小龙、杜富强等圈友</span></div>
+  </div>
+
+  <!-- ==================== PART 01 ==================== -->
+  <div class="section-header" id="part01">
+    <div class="sec-num">PART 01</div>
+    <h2>这个时代的试错成本几乎是零</h2>
+  </div>
+
+  <h3>淘宝七天无理由——二十件衣服全退</h3>
+  <p>我今天想跟你们讲一件很重要的事——这个时代的试错成本已经被压到几乎为零了。</p>
+  <blockquote>你想买一件衣服不确定好不好看，七天无理由退换加运费险，你买二十件回来试，不喜欢全退，你一分钱都不花。</blockquote>
+  <p>像我就讲这件毛衣，我就喜欢那种亮色的毛衣。我在一家店买了八件，最后退了六件留了两件，其他版型不好看呀。后来那家店的我又买了八件，退了七件留一件，袖子很大不好看，我又退了。这时代不就是给了我们这样子的便利吗？</p>
+  <p>前一阵子我在小红书看到"外卖清仓"，大概买了 30 个东西，全到之后全退了，东西烂的要死。我又没花钱。然后看到小红书卖茶具的，什么公司清仓，说得天花乱坠，我大概买了 40 个茶杯。到货我开了前 10 件，整箱退货了——里面都很垃圾。所以我就知道"这小红书清仓不能看"。你看，我的知识、我的经验又长了。</p>
+
+  <h3>没钱也去看房，看了五年</h3>
+  <p>我 2018 年的时候也想买房，那时候没钱。我的房子是 23 年才买的，但 18 年我就开始看了——我每一年每一个月都去看房。</p>
+  <blockquote>我跟中介说我现在没有钱买，但是我要看房。因为三年之后我觉得我可以买，所以你有空的话，各个地方的房子你带我去看。</blockquote>
+  <p>上城区、下城区、拱墅区、萧山区、富阳、下沙、良渚——什么房型我都看过了。毛坯的看，装修的也看，什么风格的都看，因为看照片跟看现场是不一样的。我还记得第一次看的是香港置地在萧山大江东的洋房，那房子太好了——带院子带地下室，层高 6 米，可以做个 loft。那时候 18 年我穷得见鬼，买不起，但后来所有的房子我就以这个角度去看。</p>
+  <p>看了五年之后我才知道——我要一个家里有立体感、有楼梯、太阳照得进来的房子。不能是单层，得有一个晒得到太阳的空间。我们家现在大概快 300 方，前面有山坡，后面有小河，旁边就是绿道，跑 10 公里没有阻碍。</p>
+
+  <h3>试驾所有的车——理想 ONE 我试过两次</h3>
+  <p>想买车？现在试驾都可以到家的。车开到你家，你下来试乘。一周去四个 4S 店。</p>
+  <p>什么智己、理想、蔚来、小米，你所有车就去试。大车小车都试，一般轿车开一台，SUV 再开一台。每一个品牌两台，你就会知道我要坐在什么样的车里面。</p>
+  <blockquote>2019 年我老婆认识一个朋友开理想 ONE，那时候理想 ONE 的内饰一整排屏幕，中轴一个、副座一个、主座仪表板，中轴下面还有一片——双屏，太高级了。我跟朋友借车开了两天一夜，我就告诉你这车一定是我的。</blockquote>
+  <p>隔了一年我就买了。我是 7 月 31 买的，8 月 1 号停产，我买到末代的理想 ONE。一开始我就告诉你我要这个车，所有车试过之后我还是告诉你我要这个车。</p>
+
+  <h3>零成本体验人生</h3>
+  <blockquote>这个时代把所有的体验都给你了，它在告诉你——先去试、先去摸、先去感受，然后你才知道你想要什么。不试的人永远不知道自己想要的是什么样子。</blockquote>
+  <p>想住什么房，找中介看。想摸新手机，去专柜玩半小时。想穿贵衣服，淘宝买 20 件回来全退。想吃好餐厅，人均 300 起，偶尔去一次。想开好车，4S 店全试驾。想体验专车，打一次短距的专车。</p>
+  <p>这个时代可以让你不用花钱体验好多好多的事情。你的人生就开始完整了。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 02 ==================== -->
+  <div class="section-header" id="part02">
+    <div class="sec-num">PART 02</div>
+    <h2>销售的四个阶段：人无我有→人廉我弃</h2>
+  </div>
+
+  <p class="questioner">大熊问：我在闲鱼和千寻上卖领英会员，积累了 3000 多个客户，不知道怎么去做二次销转以及拓展其他品。</p>
+
+  <h3>销售的四个阶段</h3>
+  <p>我先给你讲销售的四个阶段：</p>
+  <div class="highlight-box">
+    <div class="hl-title">销售四阶段</div>
+    <p><strong>1. 人无我有</strong> — 别人没有的你有。就像苹果手机，它有些东西别人无法取代。</p>
+    <p><strong>2. 人有我优</strong> — 别人也有了你得比他好。像华为出的 Fold X，它做得比别人优秀。</p>
+    <p><strong>3. 人优我廉</strong> — 别人也好了你就只能卖得比他便宜。像拼多多、小红书外货清仓。</p>
+    <p><strong>4. 人廉我弃</strong> — 便宜也比不赢，你只能放弃这个市场。</p>
+  </div>
+  <p>你得先定义你在什么阶段。你的开场做的就是闲鱼，势必进到了人优我廉。这个赛道是我自己不太碰的，因为拼到最后对方只会因为价格不理你。有人宁愿卖一个亏一块，他就是把你拉进私域，最后把名单卖出去，一个名单净利润 3 块他也赚。</p>
+
+  <h3>往回走，往第一阶段走</h3>
+  <blockquote>拼价格拼不动了，就往回走，往第一阶段走。你手里有三千个买过领英会员的名单，这三千个人就是人无我有的资源。</blockquote>
+  <p>你不要再卖会员了，你把这三千人沉淀成一个社群，让他们互相认识、互相交易，你就从第三阶段跳回到第一阶段了。<strong>三千个名单比三千块钱值钱一百倍。</strong></p>
+
+  <h3>价值怎么给</h3>
+  <p>进到群里之后，那个群你可以给出一些什么？</p>
+  <ul>
+    <li><strong>送资料</strong> — 一份能送的资料。自己做不出来就问 AI："帮我做一份 5000 字的领英使用者喜欢的内容"，生成出新手篇、老手篇、50 种必会能力，你就有 10 份 PDF 档。</li>
+    <li><strong>当交流中间人</strong> — 外贸还分不同领域，让每个进群的人写后缀"外贸·生活用品""外贸·XX产品"。你就可以去串联 a 跟 b 让他们交流。</li>
+    <li><strong>做社群收费</strong> — 进群 9.9 或 99，做一张海报写清楚进来能得到什么。</li>
+    <li><strong>卖课</strong> — 他们既然是销售就有销售的需求，你可以卖销售课、沟通课、转型课。</li>
+  </ul>
+  <blockquote>领英会员一买他的会员平均三四百。对于能付 400 的人，你让他付 100 他不考虑——我有能力付 400，让我付 100 我能接受呀。所以你把金额往下拉，变成是一个社群，然后你给出一个很明确的价值。</blockquote>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 03 ==================== -->
+  <div class="section-header" id="part03">
+    <div class="sec-num">PART 03</div>
+    <h2>大熊的三千名单怎么盘活——一个一个发，不能群发</h2>
+  </div>
+
+  <h3>话术模板——名字 + 日期</h3>
+  <p>接下来你要做的就是一个一个私信，不要群发。话术就这样——</p>
+  <blockquote>陈一你好，我记得你是今年三月份买过我的领英会员。我今天主要是来送你一份资料，这是我对老客户的回馈。然后我有一个群，里面提供几项福利，免费进，你有兴趣就回我有兴趣。</blockquote>
+  <p>加群的时间一定查得到，就查加好友时间就好了。企业场景不会出现"我 5 月买你东西 10 月加你好友"的情况，一定是当下买完立马加的。</p>
+  <p>你多一个名字和日期的后缀，一个人多 5 秒而已。一天发 50 个，平均每个人 30 秒到 1 分钟。</p>
+
+  <h3>发完必须坐在电脑前等回复</h3>
+  <p>你一定要记住——假设你在 1 点开始发，1 点半发完 50 个，<strong>你一定要最少预留一个小时坐在电脑前</strong>。</p>
+  <blockquote>最忌讳的就是你发完之后，对方过了 2 分钟回你，结果你去忙了。他再回来的时候就会觉得你在群发——你一定是用更好的工具群发的，虽然你打了名字。这件事情是大忌，你千万记住不能犯。</blockquote>
+  <p>他回的那一刻你要马上跟他说"特别谢谢你"，然后送资料。只送给有回的人。不回的就算了。</p>
+
+  <h3>20% 转化率 = 600 个活名单</h3>
+  <p>三千人你两个月可以跑完，一天 50 个，两个月下来大概 4000 次接触。只要能做到 15%～20% 回应，你就很牛了。</p>
+  <p>600 个活名单，开六个群，一个群限 100 人。为什么 100 人？因为过 100 人的群就不太讲话了，一个群 200 人你甚至都不敢讲话。50 人的群讲话的是那 5、6 个，100 人讲话的还是那 5、6 个。</p>
+  <div class="highlight-box">
+    <div class="hl-title">进群收费模型</div>
+    <p><strong>进群 9.9 或 99</strong> — 600 人 × 100 块 = 6 万，还不算后面的高客单价。</p>
+    <p><strong>活跃群员筛出 10 个</strong> — 从每个群里挑出可成交高客单的种子用户。</p>
+    <p><strong>后续讲课分享</strong> — 跟大家说"这个月我额外做一个项目让我多赚了 3 万，有兴趣进群听吗？"</p>
+    <p><strong>两个月集训</strong> — 这东西但凡没一次性跑完，后面就不想跑了，因为有惰性。</p>
+  </div>
+  <blockquote>这个事情做不做，我盯着你。</blockquote>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 04 ==================== -->
+  <div class="section-header" id="part04">
+    <div class="sec-num">PART 04</div>
+    <h2>没主见的人别问太多，塞满你的时间</h2>
+  </div>
+
+  <p class="questioner">瓜瓜问：我最近在看被讨厌的勇气，我身上的问题就是没有主体性、心理负担重。我习惯性遇到事就去问很多人，然后越问越乱，我也很难说清楚自己到底想要还是不想要。</p>
+
+  <h3>主体性 → 主见</h3>
+  <p>我们得先定义。我不太喜欢用一些通俗的名词，像什么"三观不合"，你会发现很多人根本说不出怎么定义三观。如果一个名词你没法做一个清晰的定义，这件事就没有讨论的必要。</p>
+  <p>你会发现"主见"比"主体性"要来得更好解释。你可以讲我是一个没有主见的人——我容易随波逐流，润蓓跟我讲这个事情，龙哥跟我讲那件事情，我就不知道我到底要听谁的。</p>
+  <blockquote>一个没有主见的人最忌讳的就是问太多人。我可以给你保证 10 个人给你的答案都是不一样的，因为每个人的价值观不一样。</blockquote>
+
+  <h3>问两个人就是两倍的混乱</h3>
+  <p>就谈销售吧，刚刚大熊问的那个问题，一定会有一派做流量的人说"群发，发就对了，不回的就算了"。但我的体系里面你群发你就完了——难得你想方设法进到了微信，结果你却随意地去对待他们，这是我的价值观。</p>
+  <p>所以同样销售，10 个人给的答案都不一样，都是对的，但是每个人都站在不同的价值观上。</p>
+  <blockquote>一个人在没有主见的时候，问一个人还可以，问两个人就是两倍的混乱，问三个人就是三倍的混乱，问四个人就是四倍的混乱——因为你会得到四个完全不一样的答案。</blockquote>
+  <p>你问润蓓跟问我有区别吗？肯定有。你会觉得润蓓说的对，我说的是错的，知道为什么吗？因为我的思维高你 5 倍，你的思维跟她一样。你只会觉得她说的你做得到，我说的你做不到——甚至我说的你反这么做就可以了吗？</p>
+
+  <h3>我那两年只听一个人的话</h3>
+  <p>我的成长过程比多数人幸运——那时候我身边就一个老师，我只听他的。原因有四个：第一，身边没有人比他厉害；第二，我是他的助理；第三，我给他付钱，我不听他的那我有病吗？第四，我认为他的东西有效。</p>
+  <p>老师当时跟我说——</p>
+  <blockquote>我会带你去见很多很厉害的人，他们会给你完全不一样的意见，但是你听听就好。不是他们讲的不对，而是他们不懂你，他们可能会给你一些当下你根本就做不到的建议。但是我很懂你。</blockquote>
+  <p>所以那两年我没有太多矛盾，我没有太多不知道下一步要干嘛。因为我知道这两年我只能听一个人的话。</p>
+  <p>当时我问老师："怎么做好一个销售？"老师说："很简单，一日三访，一天一定要见三个人，没见到不能回家。" 2012 年我就知道这件事了，我一直到 2018 年才做到一日三访。我认识老师那年，他已经连续 27 年都可以做到一日三访。当时我一个月才赚 3000，老师一年赚 800 多万——落差百倍。</p>
+
+  <h3>没事做才会关注情绪</h3>
+  <p>你得先塞满你的行程。</p>
+  <blockquote>为什么有些人可以有很多时间花在情绪上面？太闲了。没什么事做起来之后——弄一点 AI 代写吧，写一写；今天要不看点流量吧；天那么热，睡个午觉不更新了；晚上随便吃吃；吃完看个电视；一天就过了。</blockquote>
+  <p>然后你大把的时间都没事做，这时候人就可以开始关注自己——怎么都没成长、怎么我那么差劲、收入怎么又没提升——就天天关注你的情绪，然后人就抑郁了。</p>
+  <p>生病是这么来的。没事做你就得让你先有事情做。</p>
+
+  <h3>先找一份工作，最快</h3>
+  <p>你第一个要先塞满你的行程。因为目前的你，只能用工作塞满时间是最快的。其他东西你得额外花钱，意义不大。</p>
+  <ul>
+    <li><strong>先找一份工作</strong> — 最快。有工作一定有事做，打卡都算一件事。</li>
+    <li><strong>副业认真做</strong> — 有事做之后你会珍惜做副业的时光。</li>
+    <li><strong>学习不能断</strong> — 每天 1～2 小时学习，14 年不中断。</li>
+    <li><strong>找对标模仿</strong> — 找一个看得见摸得着的人去模仿——模仿她的生活情况、她跟她老公的状态、她的穿搭、她的气质。</li>
+  </ul>
+  <blockquote>初期你的样子很模糊，就是找一个模仿的样子。然后模仿之后你就会开始让自己有一个知道应该要做些什么。</blockquote>
+  <p>最好是你看得到、摸得着、见得到的——见不到的你猜不到。他真的会做的事情不会写在文章里面。</p>
+  <p>塞满之后主见不一定会建立，但最少你会有短期目标。有了短期目标，你可以再找个老师学怎么去设定长期目标。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 05 ==================== -->
+  <div class="section-header" id="part05">
+    <div class="sec-num">PART 05</div>
+    <h2>八字命理和改名——比水晶有效多了</h2>
+  </div>
+
+  <h3>水晶手串招个鬼</h3>
+  <p>有人问我水晶管不管用。</p>
+  <blockquote>你戴那个红色的水晶手串，说戴了会招财？招个鬼，招财。它就短期让你感觉有效果而已。</blockquote>
+  <p>台湾有一个戴尾戒防破财——原理是台湾现在还用现金，你左手拿钱包付钱时习惯性会看到右手小拇指的尾戒。师傅跟你说戴了防破财，你付钱那一刻就想到师傅的话："不行，乱花钱"。你就说"让我考虑一下，逛个街再回来买"——回来就不买了。</p>
+  <p>但现在支付宝、微信已经很发达了，手机一般是会挡住你尾戒的。所以就没用，瞬间就没用了。它只是你的心理印象，可能在 3～6 个月短期有点帮助。</p>
+
+  <h3>改名字是唯一有效的外力</h3>
+  <blockquote>在所有外力改变自己命运的里面，最好用的就是改名字——因为名字是念的。</blockquote>
+  <p>师傅可能讲说你改名叫"艺术家"，你就会更有艺术气息，你的人会更有气质。当你每一次出去喊一次这个名字，能量就进来了——</p>
+  <ul>
+    <li>因为这个名字我得讲话小声一点</li>
+    <li>因为这个名字我得穿着特别一点</li>
+    <li>因为这个名字我得跟别人讲话时在乎我的言行举止</li>
+  </ul>
+  <p>你每念一次就会有能量，别人每念一次你就又会有能量。那个比戴东西要来得更有效。</p>
+
+  <h3>改性格更有用</h3>
+  <blockquote>与其改这些，不如去改你的性格，这才有用。</blockquote>
+  <p>你八字可能缺财，代表你对金钱没感觉，精准度不够高。你是身弱格、偏印格，执行力就不够，所以你就得补执行力、补热情度。补性格会比戴什么有的没的要来得更有用。</p>
+
+  <h3>八字不是玄学，是数据模型</h3>
+  <p>我做八字命理十四年了。八字不是玄学，是几千年积下来的数据模型，它比一颗石头要可信得多。</p>
+  <p>我的小程序里有一个云咨询室。它跑的不是大模型，而是我自己的数据库——我对接了两百万字的我讲过课的内容，让它模仿我的口吻跟你聊。输入生日就可以算哪一年动情、哪一年驿马、哪一年运势不好。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 06 ==================== -->
+  <div class="section-header" id="part06">
+    <div class="sec-num">PART 06</div>
+    <h2>健身和生活状态是给八十岁的你做准备</h2>
+  </div>
+
+  <h3>70 公斤的小腹让我不能接受</h3>
+  <p>前一阵子我比较胖——73 公斤。两年前我突然发现我有小腹了。</p>
+  <blockquote>我照着镜子想说奇怪，我以前是 64 公斤维持了快 10 年。突然有一天照镜子发现自己怪怪的，肚子两边的肉有一点点，越看越不爽。一站秤，70 公斤。那 6 公斤哪来的？</blockquote>
+  <p>年纪一大代谢就变差，吃同样的东西它就变成赘肉。我的体重跟年龄一起增加，但我知道我以后的样子，所以又恢复了健身、跑步。我的三餐本来就挺正常，我不熬夜的，一般 11 点半睡 7 点起。每一天都是这样。</p>
+
+  <h3>我不能接受八十岁的我</h3>
+  <blockquote>我不能接受我 80 岁的时候驼背、弯腰、讲话没中气，然后这个发型又是微秃，没有造型。然后皮肤状态又不好，走起路来磕磕绊绊的，连山都不能爬——我没法接受这件事情。</blockquote>
+  <p>你们年轻人觉得这些事情跟现在没关系。我告诉你这些事情跟你 80 岁的样子有直接关系。</p>
+
+  <h3>想得越远，今天做的每件事都对得上</h3>
+  <p>我很早以前就在思考 80 岁我要成为的样子——住什么样的房子、什么样的地方、什么样的人际关系、什么样的身体状态。我想了 14 年。</p>
+  <blockquote>想得越远，你目前做的所有事情会跟你的未来是有关系的，你就不用每一年都给自己重新设目标。</blockquote>
+  <p>为什么要练习聊天、为什么要做销售？这都跟我 80 岁有关系。为什么要运动、为什么要健身？这也跟我 80 岁有关系——我没法接受一个坏的晚年。</p>
+
+  <h3>增肌才不会复胖</h3>
+  <p>你要改变吃的习惯很难，所以你要做的是增加代谢率，增加肌肉——<strong>只有肌肉提升才会增加代谢率。</strong></p>
+  <p>我老婆有一阵子减肥，纯少吃一个月瘦 8 斤，第二个月就复胖了。你掉的是水、是肌肉。前年我跟我老婆一起健身了一年，做了一年重训，然后她今年年初到现在停止运动，吃完全没变——饼干、甜食照吃，体重没任何改变。</p>
+  <blockquote>因为她用一年时间增加了肌肉量。你一定要增加肌肉量你就不会复胖，然后你的体态会好，尤其身越弱的人越应该去重视。</blockquote>
+  <p>不要自己练，去找个教练。乐刻或者个人工作室，一节课算下来 150～220 之间比较正常。商场里 500 一节的不要去。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 07 ==================== -->
+  <div class="section-header" id="part07">
+    <div class="sec-num">PART 07</div>
+    <h2>刚性支出理论与 50 万基准线</h2>
+  </div>
+
+  <h3>笔笔记账——对金钱的敏感度</h3>
+  <p>我 22 年开始记账，一直到现在。<strong>连 1 块 37 的红包我都记。</strong></p>
+  <p>你去年赚多少钱？你去年花多少钱？如果问这个数据你可以快速讲出来，那就代表你的记账是对的。我可以知道：今年到目前的收入是 81 万，去年是 97 万，前年是 111 万——底下会有明细，我去年还款、餐饮、交通各花多少我都抓得出来。</p>
+  <blockquote>用苹果的 iCost 或者鲨鱼，这两个是纯粹的记账软件。不要用 AI 记账——那个你用了对金钱也不会有感觉。记账不是为了效率，是为了让你知道你的钱花去哪里。</blockquote>
+  <p>我以前一个月也赚过 20 万，那时候钱花掉了。钱花去哪？你问我我也不知道，房也没买，就买了车。这收入维持了三年呢，钱花去哪我不知道。但 22 年到现在问我所有的钱花去哪，我知道，就算忘记了我也找得到。</p>
+
+  <h3>开销决定收入</h3>
+  <blockquote>你的刚性支出是多少，你的能力范围就在哪里。</blockquote>
+  <p>很多人收入就是多一个副业提升不了，两个副业也提升不了，因为他们的生活一个月就付 8000。你去问大多数稳定月入 3 万以上的人，他的开销也大概是 3 万以上。</p>
+  <p>我们家每个月固定开销 55000——房贷、车贷、带孩子一堆有的没的。所以我收入高是没办法，生活所需。</p>
+
+  <h3>年轻人 vs 妈妈——谁有目的性</h3>
+  <p>我做过两年半外汇投资。团队里大多数年轻人入一万美金，第一个月少说赚个三千美金。按理说该存，结果不是花掉就是赔掉。</p>
+  <p>我问年轻人："一个月多赚 6000 你会干嘛？""买东西啊、出去玩啊、买个包包手表。"</p>
+  <p>问团队里一个妈妈，她说："我得留着，儿子以后结婚要用，孙子出生了没奶粉钱怎么办？"</p>
+  <blockquote>她有目的性，年轻人没有。与其找项目，不如先问自己"我要多这么多钱干嘛？"这是重点。很多人不知道为何而战，所以他的钱也到不了那个阶段。</blockquote>
+  <p>想增加收入之前，你得先去增加你的开销。钱进来之后你不会存的——但凡过去没存钱的习惯，你多赚一万你不会存，你会花掉。因为你觉得这钱不是自己的。</p>
+
+  <h3>格局是花钱带出来的</h3>
+  <p>我以前带团队，领导人最需要做的不是带底下人的技能，而是带他们的格局。<strong>花钱不是让他们花钱，是带他们长见识。</strong></p>
+  <p>我那时候很多钱花在带他们去住我们民宿——包整栋，一栋五六万。吃饭，10 个人去吃一次牛肉面吃了 4000 多——一碗牛肉面快 400，他们五六口就吃完了。</p>
+  <blockquote>这是体验呐。哦，原来这个牛肉到这个金额的口味是这样子。从沙朗到菲力到西冷到肉眼再到和牛——和牛其实没有很好吃，真的，它太油了，超过三块你就会觉得恶心。</blockquote>
+  <p>肉眼跟西冷口味差不多，但肉眼比西冷便宜 100 块。这些都是你到了一定境界之后的选择权。并不是说体验到这个阶段就一定要成为这样子，而是你体验到这个阶段你会有更多的选择权利——我可以选择住好的，也能选择住普通的。</p>
+
+  <h3>危机比梦想更稳定</h3>
+  <blockquote>梦想驱动的人太少了，他们遇到苦难就退掉了。只有危机可以驱动一个没有经验的人往前走。</blockquote>
+  <p>有人怎么提升赚钱能力？年轻的时候不小心干个 P2P 投资，爆雷赔 300 万。他赚钱动力就来了——我得还款。这个人的动力一定比你强，因为他知道他的钱要花去哪。</p>
+  <p>然后 300 万一赚到之后，要么维持能力，要么就觉得够了回到原点。但最少他的格局打开过。当你格局打开到一定程度，一个月过 3 万以上的时候，你对所有东西的品质要求就会不一样。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 08 ==================== -->
+  <div class="section-header" id="part08">
+    <div class="sec-num">PART 08</div>
+    <h2>小邓的困境——心累没用，身体要累到想睡觉</h2>
+  </div>
+
+  <p class="questioner">小邓问：我现在在做金融贷款销售，底薪 4000-5000，但房租 3500，最近市场不好业绩差，压力大。想离职换个文职，又怕浪费时间，还有在做小红书虚拟资料副业但下班就想睡觉。</p>
+
+  <h3>有底薪的工作，死都不能放</h3>
+  <p>第一个，我不是很建议你继续做销售的工作，它可能不太适合这阶段的你。如果你能找到下一份，当然找到之前目前继续做贷款。</p>
+  <blockquote>如果你没有办法确定找到下一份更轻松的工作，没有找到以前这份工作留着你死都得留着。不然你的生活会瞬间断流，当你一断流，你就更没安全感。</blockquote>
+  <p>用信用卡过日子没关系的，因为人生哪有事事都顺利的？我也有负债的时候。我现在也有负债，只是还得比以前轻松。</p>
+
+  <h3>不要抱怨市场</h3>
+  <p>你说"整个市场都不太好"——这就是我们改的速度不够快。</p>
+  <blockquote>千万不要怪罪市场。因为怪市场的那一刻你就只会抱怨市场不好，然后你会觉得"我很认真了，可是没办法业绩没进来"。这想法很危险，会让你持续糟糕一直到过年。</blockquote>
+  <p>你要思考的方向只有两个：</p>
+  <div class="highlight-box">
+    <div class="hl-title">唯一要问的两个问题</div>
+    <p><strong>1. 我的贷款如何可以在这个月多成交一单？</strong></p>
+    <p><strong>2. 我的虚拟资料我这个月如何能够多卖出 5 份、10 份、50 份？</strong></p>
+  </div>
+  <p>你从来没问过这两个问题——你只在放大问题，我在给出解决方向。如果这个地方你没划上等号，你就会掉到一个死胡同——想赚钱但又赚不到。因为你想的不是想赚钱，你只是想让情绪有一个更好的释放。</p>
+
+  <h3>虚拟资料——一天发 50 篇的打法</h3>
+  <p>虚拟资料哪有什么诀窍？就是用量怼。量不够，用号来怼。</p>
+  <ul>
+    <li><strong>一天发 5 篇</strong> — 同一个产品的模板，让 AI 产出 50 种同样意思但不同说法的内容。</li>
+    <li><strong>办 15 个号</strong> — 中国移动 5 个、联通 5 个、电信 5 个。每个号一天 5 篇。</li>
+    <li><strong>一键更新</strong> — 有系统可以一键更新所有的号，都有现成的。</li>
+    <li><strong>一个月 150 篇</strong> — 连续发一个月，我不信你一个月赚不到 2000。</li>
+  </ul>
+  <blockquote>这时代这么美，有那么多方法。你要的是执行，不是思考"我的苦在哪里"。你目前虚拟资料几天更新一篇？这就是问题所在。一天让你平均更新 5 篇能做得到吗？</blockquote>
+
+  <h3>回到家要累到想睡觉</h3>
+  <p>我最怕的是你只是感觉到心累，但是你的身体没有累的感觉。</p>
+  <blockquote>这阶段就是累，没有其他诀窍。你可以检视每天回到家 10 点，你会不会累的想睡觉——如果没有这种感受，代表你还不够累。</blockquote>
+  <p>我在钱少的时候比谁都勤奋。我已经回到家没有失眠问题，我一躺就睡着了——太累了，地铁下还得转自行车，到了还得走路半个小时通勤。没有钱打车，只能骑自行车到下一个地方，累的要死全身流汗。夏天也得这么做。</p>
+
+  <h3>谁的苦比较重</h3>
+  <p>谁人生没有苦啊？我也有苦，大家都有苦的。比对了之后你发现你的苦好像没什么。</p>
+  <blockquote>如果把苦换成金钱——你自己一个月多 2000 就能搞定所有事情了，这没什么的。我的苦一个月要 6 万。我们来比谁的苦比较重？比发现——嘿，好像我的比较重。</blockquote>
+  <p>比着比着你就会有执行。快过年了，给自己再认真拼两个月，让自己好好过年。</p>
+  <blockquote>一天发 5 篇虚拟资料，一个月你只要认真发，不行就发 10 篇。这个行业你一个月想多赚几千块，我用的是"一定"两个字——因为能做到的都这么干。</blockquote>
+
+  <hr class="divider">
+
+  <p style="text-align:center; color:#8a7d6d; font-size:0.82rem; margin-top:2rem;">
+    <em>整理说明：本文基于 2025 年 11 月 25 日线下活动逐字稿，以根源老师第一人称视角整理归类，保留原始表达，未做改写扩写。</em>
+  </p>
+
+</article>
+
+<div class="article-footer">
+  <a href="../index.html">&larr; 返回活动目录</a>
+  <p style="margin-top:8px">生财有术 · 线下活动精华归档 &nbsp;|&nbsp; 由根源整理，AI 辅助排版</p>
+</div>
+
+<!-- Back to top -->
+<div class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</div>
+
+<script>
+// ====== THEME ======
+function getTheme(){return localStorage.getItem('sc-theme')||'dark'}
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('themeIcon').innerHTML = t==='dark'?'&#9790;':'&#9728;';
+}
+function toggleTheme(){
+  const next=getTheme()==='dark'?'light':'dark';
+  localStorage.setItem('sc-theme',next);
+  applyTheme(next);
+}
+applyTheme(getTheme());
+
+// Back to top visibility
+window.addEventListener('scroll', () => {
+  document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
+});
+
+// TOC active state
+const sections = document.querySelectorAll('.section-header');
+const tocLinks = document.querySelectorAll('.toc-bar a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  tocLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+
+</body>
+</html>

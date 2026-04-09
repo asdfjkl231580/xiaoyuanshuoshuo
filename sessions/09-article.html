@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第09场 · 混圈与沉淀 — 生财有术线下活动</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0a;--bg-1:#111;--bg-2:#1a1a1a;
+  --fg:#f5f5f5;--fg-dim:#bdbdbd;--fg-mute:#888;
+  --accent:#00d9a3;--accent-2:#00b4d8;
+  --line:rgba(255,255,255,.08);
+  --bg-hero-a:#0f1a17;--bg-hero-b:#0a0a0a;
+  --bg-toc:rgba(255,255,255,.03);
+  --bg-card:rgba(255,255,255,.03);
+  --bg-info:rgba(0,217,163,.06);
+  --bq-bg:rgba(0,217,163,.06);
+}
+html.light{
+  --bg:#f5f2ec;--bg-1:#ebe6dc;--bg-2:#ffffff;
+  --fg:#1a2b28;--fg-dim:#3d4c4a;--fg-mute:#6e7b79;
+  --accent:#2d8a7a;--accent-2:#4a9b8e;
+  --line:rgba(45,138,122,.14);
+  --bg-hero-a:#e8f1ee;--bg-hero-b:#f5f2ec;
+  --bg-toc:rgba(255,255,255,.5);
+  --bg-card:rgba(255,255,255,.55);
+  --bg-info:rgba(45,138,122,.06);
+  --bq-bg:rgba(45,138,122,.06);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Noto Sans SC",-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--bg);color:var(--fg);
+  font-weight:400;line-height:1.8;letter-spacing:.02em;
+  transition:background .3s,color .3s;
+}
+
+.top-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--bg);border-bottom:1px solid var(--line);
+  padding:14px 24px;display:flex;align-items:center;gap:16px;
+  backdrop-filter:blur(12px);
+}
+.top-bar .back{color:var(--fg-dim);text-decoration:none;font-size:14px}
+.top-bar .back:hover{color:var(--accent)}
+.top-bar .session-title{flex:1;font-size:14px;font-weight:500;color:var(--fg-dim);letter-spacing:.05em}
+.top-bar .download-btn,.top-bar .theme-btn{
+  background:none;border:1px solid var(--line);color:var(--fg-dim);
+  padding:6px 14px;border-radius:16px;font-size:12px;cursor:pointer;
+  text-decoration:none;display:inline-flex;align-items:center;gap:4px;
+  font-family:inherit;
+}
+.top-bar .theme-btn{width:32px;height:32px;border-radius:50%;padding:0;justify-content:center;font-size:14px}
+.top-bar .download-btn:hover,.top-bar .theme-btn:hover{color:var(--accent);border-color:var(--accent)}
+
+.hero{
+  padding:80px 24px 60px;
+  background:linear-gradient(180deg,var(--bg-hero-a) 0%,var(--bg-hero-b) 100%);
+  text-align:center;
+  border-bottom:1px solid var(--line);
+}
+.hero .badge{
+  display:inline-block;font-size:12px;color:var(--accent);
+  letter-spacing:.3em;padding:6px 16px;
+  border:1px solid var(--accent);border-radius:20px;margin-bottom:24px;
+}
+.hero h1{
+  font-size:52px;font-weight:900;line-height:1.2;
+  max-width:820px;margin:0 auto 20px;letter-spacing:-.02em;
+}
+.hero h1 .accent{color:var(--accent)}
+.hero .meta-line{
+  font-size:15px;color:var(--fg-dim);margin-bottom:40px;letter-spacing:.05em;
+}
+.hero .stats{
+  display:flex;justify-content:center;gap:48px;flex-wrap:wrap;
+  max-width:720px;margin:0 auto;
+}
+.hero .stat{text-align:center}
+.hero .stat .num{font-size:32px;font-weight:900;color:var(--accent);line-height:1}
+.hero .stat .lbl{font-size:12px;color:var(--fg-mute);margin-top:6px;letter-spacing:.1em}
+
+.toc-bar{
+  background:var(--bg-toc);border-bottom:1px solid var(--line);
+  padding:16px 24px;position:sticky;top:61px;z-index:99;
+  backdrop-filter:blur(12px);
+}
+.toc-bar .toc-inner{
+  max-width:1000px;margin:0 auto;
+  display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;
+}
+.toc-bar .toc-inner::-webkit-scrollbar{display:none}
+.toc-bar a{
+  flex-shrink:0;padding:6px 14px;font-size:12px;
+  color:var(--fg-mute);text-decoration:none;
+  border:1px solid transparent;border-radius:14px;white-space:nowrap;
+  transition:all .2s;
+}
+.toc-bar a:hover{color:var(--accent);border-color:var(--accent)}
+
+.article{
+  max-width:760px;margin:0 auto;padding:48px 24px 80px;
+}
+.info-box{
+  background:var(--bg-info);border:1px solid var(--line);
+  border-radius:12px;padding:24px 28px;margin-bottom:48px;
+}
+.info-box .row{
+  display:flex;padding:8px 0;border-bottom:1px dashed var(--line);
+  font-size:14px;
+}
+.info-box .row:last-child{border-bottom:none}
+.info-box .row .k{flex-shrink:0;width:90px;color:var(--fg-mute);letter-spacing:.1em}
+.info-box .row .v{flex:1;color:var(--fg);line-height:1.7}
+
+.article section{margin-bottom:56px;scroll-margin-top:120px}
+.article .section-header{
+  display:flex;align-items:baseline;gap:16px;margin-bottom:28px;
+  padding-bottom:16px;border-bottom:2px solid var(--line);
+}
+.article .sec-num{
+  font-size:14px;color:var(--accent);letter-spacing:.2em;font-weight:500;
+  flex-shrink:0;
+}
+.article h2{
+  font-size:26px;font-weight:900;line-height:1.4;letter-spacing:-.01em;
+}
+.article h3{
+  font-size:18px;font-weight:700;margin:28px 0 14px;color:var(--fg);
+}
+.article p{
+  font-size:15px;line-height:1.95;color:var(--fg-dim);
+  margin-bottom:18px;
+}
+.article p strong{color:var(--fg);font-weight:600}
+.article blockquote{
+  font-size:17px;line-height:1.8;color:var(--fg);font-weight:500;
+  padding:20px 24px;background:var(--bq-bg);
+  border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
+  margin:24px 0;
+}
+.article ul{margin:16px 0 20px;padding-left:0;list-style:none}
+.article ul li{
+  font-size:15px;line-height:1.9;color:var(--fg-dim);
+  padding:6px 0 6px 22px;position:relative;
+}
+.article ul li::before{
+  content:"";position:absolute;left:4px;top:16px;
+  width:6px;height:6px;border-radius:50%;background:var(--accent);
+}
+.article ul li strong{color:var(--fg);font-weight:600}
+
+.questioner{
+  display:inline-block;font-size:12px;padding:4px 12px;
+  background:var(--bg-card);border:1px solid var(--accent);
+  color:var(--accent);border-radius:12px;margin:8px 0 14px;
+}
+
+.highlight-box{
+  background:var(--bg-card);border:1px solid var(--line);
+  border-radius:12px;padding:24px 28px;margin:28px 0;
+}
+.highlight-box .h-label{
+  font-size:11px;color:var(--accent);letter-spacing:.2em;
+  text-transform:uppercase;margin-bottom:12px;font-weight:600;
+}
+.highlight-box h4{
+  font-size:18px;font-weight:700;margin-bottom:10px;color:var(--fg);
+}
+.highlight-box p{font-size:14px;line-height:1.85;margin-bottom:8px}
+.highlight-box p:last-child{margin-bottom:0}
+
+.product-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:14px;margin:20px 0;
+}
+.product-grid .p{
+  padding:18px;background:var(--bg-card);border:1px solid var(--line);
+  border-radius:10px;
+}
+.product-grid .p .n{
+  font-size:14px;color:var(--accent);font-weight:700;margin-bottom:6px;
+}
+.product-grid .p .d{
+  font-size:13px;color:var(--fg-mute);line-height:1.7;
+}
+
+.article-footer{
+  max-width:760px;margin:0 auto;padding:40px 24px 80px;
+  border-top:1px solid var(--line);text-align:center;
+}
+.article-footer p{font-size:13px;color:var(--fg-mute);line-height:1.9}
+.article-footer .sig{color:var(--accent);font-weight:500;margin-top:12px}
+
+.back-top{
+  position:fixed;bottom:32px;right:32px;
+  width:44px;height:44px;border-radius:50%;
+  background:var(--bg-1);border:1px solid var(--line);color:var(--fg-dim);
+  cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:all .3s;z-index:98;
+}
+.back-top.show{opacity:1}
+.back-top:hover{color:var(--accent);border-color:var(--accent)}
+
+@media(max-width:640px){
+  .hero{padding:60px 20px 48px}
+  .hero h1{font-size:36px}
+  .hero .stats{gap:28px}
+  .hero .stat .num{font-size:26px}
+  .article{padding:36px 20px 60px}
+  .article h2{font-size:22px}
+  .article .section-header{flex-direction:column;gap:8px;align-items:flex-start}
+  .info-box{padding:20px}
+  .info-box .row{flex-direction:column;gap:4px}
+  .info-box .row .k{width:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="../index.html" class="back">← 返回档案馆</a>
+  <div class="session-title">第09场 · 混圈与沉淀</div>
+  <a href="09.html" class="download-btn">幻灯片</a>
+  <button class="theme-btn" onclick="toggleTheme()">☾</button>
+</div>
+
+<div class="hero">
+  <div class="badge">第 09 场 · 2025年10月19日</div>
+  <h1>混圈<span class="accent">与沉淀</span></h1>
+  <div class="meta-line">杭州 · 线下聚会 | 根源（林根源）主讲</div>
+  <div class="stats">
+    <div class="stat"><div class="num">6</div><div class="lbl">核心主题</div></div>
+    <div class="stat"><div class="num">3h+</div><div class="lbl">活动时长</div></div>
+    <div class="stat"><div class="num">5万+</div><div class="lbl">字逐字稿</div></div>
+    <div class="stat"><div class="num">10+</div><div class="lbl">人参与</div></div>
+  </div>
+</div>
+
+<div class="toc-bar">
+  <div class="toc-inner">
+    <a href="#part01">01 B端 vs C端</a>
+    <a href="#part02">02 AI时代合伙</a>
+    <a href="#part03">03 沉住气一年</a>
+    <a href="#part04">04 劳动力即销售</a>
+    <a href="#part05">05 一天聊十人</a>
+    <a href="#part06">06 团队与代理</a>
+  </div>
+</div>
+
+<div class="article">
+
+  <div class="info-box">
+    <div class="row"><div class="k">日期</div><div class="v">2025年10月19日</div></div>
+    <div class="row"><div class="k">地点</div><div class="v">杭州 · 线下聚会</div></div>
+    <div class="row"><div class="k">主讲人</div><div class="v">根源（林根源）</div></div>
+    <div class="row"><div class="k">编号</div><div class="v">第09场 / 生财有术线下活动精华档案</div></div>
+    <div class="row"><div class="k">参与者</div><div class="v">林根源（根源老师）、大熊、润贝、小龙、陈一、瓜瓜等圈友</div></div>
+    <div class="row"><div class="k">核心一句</div><div class="v">跟老师学东西，第一年你就沉住气听他的，别东问西问。</div></div>
+  </div>
+
+  <section id="part01">
+    <div class="section-header">
+      <div class="sec-num">第一部分</div>
+      <h2>B端和C端完全是两种销售逻辑</h2>
+    </div>
+
+    <div class="questioner">◆ 泽泽（大厂ToB销售）提问</div>
+    <blockquote>我在大厂做的是B端，一个客户谈半年一年，现在想做C端副业，总找不到感觉。</blockquote>
+
+    <h3>两种生意，两套肌肉</h3>
+    <p>今天有个兄弟做知识付费总卖不动，我说很正常，你就没搞清楚你在卖给谁。<strong>B端和C端是两回事</strong>——B端是一对多，决策链长，你得伺候关键人，得陪，得耐得住；C端是一对一冲动消费，你得让他在十分钟之内把钱交了。</p>
+    <p>大多数人死在哪？死在<strong>用B端的姿势去打C端</strong>，或者反过来用C端的脾气去打B端。你B端那一套走到C端面前就是啰嗦，C端客户不会给你半年时间听你讲公司实力；你C端那一套走到B端面前就是油腻，老板一眼就看穿你是来割一波的。</p>
+
+    <h3>为什么知识付费这么难</h3>
+    <p>你卖知识付费为什么难？因为知识付费是C端里面最难的那一块——<strong>它不是刚需，它的效果还不可见</strong>。面包店为什么好做？因为面包是刚需、是眼前的、是确定的。消费降级的时候，人只会把钱花在确定的东西上，不确定的东西第一个砍掉。</p>
+
+    <blockquote>你得把知识付费做成像面包一样有确定性，不然你永远是在碰运气。</blockquote>
+
+    <p>我自己卖沟通课卖销售课，前两年也踩过这个坑，后来我想明白了——<strong>先把课变成一个可以复制的系统，再谈卖</strong>。系统化的东西才有确定性，散装的课只能碰运气。你今天能成交不代表明天能成交，你今天有十个学员不代表下个月还有十个，这种生意不是生意，是过山车。</p>
+
+    <div class="highlight-box">
+      <div class="h-label">核心观点</div>
+      <h4>确定性是C端的命根子</h4>
+      <p>面包店靠的是你进店就能买到、买到就能吃、吃了就满足——三步都是确定的。</p>
+      <p>知识付费难就难在：交钱之后看不见、看见之后不确定有用、有用了也不知道是不是课的功劳。</p>
+    </div>
+  </section>
+
+  <section id="part02">
+    <div class="section-header">
+      <div class="sec-num">第二部分</div>
+      <h2>AI时代，给老板当合伙人的正确姿势</h2>
+    </div>
+
+    <div class="questioner">◆ 柠檬（旅游定制 · 93年）提问</div>
+    <blockquote>根源老师，我现在想跟一个老板合作AI项目，对方是开公司的，我该怎么谈？</blockquote>
+
+    <h3>老板要的不是你的技术</h3>
+    <p>你先搞清楚<strong>老板要的是什么</strong>。老板不要你的技术，老板要的是你能帮他省掉多少麻烦。你以为你技术牛就能合伙？不，老板身边牛人多了，他缺的不是一个牛人，是一个能把麻烦接走的人。</p>
+    <p>你去谈合伙，你带的不是简历，是<strong>一个已经跑通的小模型、一个可以马上落地的方案</strong>。你一开口说"我能帮你搞AI"，老板心里想：能搞AI的人一抓一大把。你一开口说"我已经帮你把客服这块跑通了，这是数据"，老板立刻坐直了。</p>
+
+    <h3>先做出来，再谈分成</h3>
+    <p>我身边真正谈成合伙的，<strong>都是先把事情做出来、把数据摆出来、再谈分成</strong>。你上来就谈期权谈股份，老板心里想：这人连东西都没做出来就谈分钱，这合伙不了。你可能觉得谈分成是保护自己，其实是暴露自己——暴露你没底气、没东西、就想押上老板的盘子赌一把。</p>
+
+    <blockquote>先把自己变成一个可以创造价值的单位。这个单位小没关系，但它得能转起来。</blockquote>
+
+    <p>你想合伙，先把自己变成一个<strong>可以创造价值的单位</strong>。这个单位小没关系，它可以就是你一个人加一个工具，但它得能转起来——进来需求、出去结果、中间不卡壳。你能证明你自己能转，老板才会把他的盘子和你的盘子对接起来。你自己都转不起来，谁敢跟你对接？</p>
+  </section>
+
+  <section id="part03">
+    <div class="section-header">
+      <div class="sec-num">第三部分</div>
+      <h2>跟一个老师学，第一年就沉住气</h2>
+    </div>
+
+    <div class="questioner">◆ 润贝（微信问一问 · 06年）提问</div>
+    <blockquote>根源哥，我跟你学也有一段时间了，但我总忍不住去看别人说什么，怎么办？</blockquote>
+
+    <h3>我遇到我老师的时候</h3>
+    <p>我认识我老师的时候一个月赚三千，他一年赚八百多万，<strong>我俩差了一百多倍</strong>。我那两年就干一件事——只听他的，别人说什么都不听。</p>
+
+    <h3>为什么我一个字都不敢跑偏</h3>
+    <p>三个理由：</p>
+    <ul>
+      <li><strong>第一，身边没有人比他厉害。</strong>你听一个不如他的人的话，那不是给自己下台阶吗？</li>
+      <li><strong>第二，我给他付过钱。</strong>我付他钱了，我还不听他的，那我不是有病吗？</li>
+      <li><strong>第三，他的生活状态就是我未来想成为的样子。</strong>他现在过的日子，就是我想要的终点。跟着他走就是跟着地图走。</li>
+    </ul>
+
+    <h3>现在这帮年轻人的毛病</h3>
+    <blockquote>你们现在最大的毛病是问太多人，问润贝又问龙哥又问我，十个人十个答案，你越问越乱。</blockquote>
+
+    <p>没主见的时候最忌讳就是问太多人。你问A说这样好，问B说那样好，问C说都别干，你回头一想全乱了，最后还是原地不动。<strong>你不是在找答案，你是在用"问人"这件事逃避行动。</strong></p>
+
+    <h3>沉住气一年的节奏</h3>
+    <p>你要么就别跟老师，要跟了——就<strong>沉住气一年只听他的</strong>。一年之后你再去混，再去听别人的意见，那时候你有了底子，别人的话你才听得懂。没底子的时候听十个人的话，你只会被拉到十个方向去。</p>
+
+    <div class="highlight-box">
+      <div class="h-label">混圈的正确节奏</div>
+      <h4>第一年沉住气，第二年才有资格混</h4>
+      <p>第一年：只跟一个人学，只听一个人的，把基本功扎下去。</p>
+      <p>第二年：有了底子，再去圈子里听别人讲，听得懂、挑得清、不会被带偏。</p>
+      <p>第三年：你开始能反哺圈子，别人开始听你的。</p>
+    </div>
+  </section>
+
+  <section id="part04">
+    <div class="section-header">
+      <div class="sec-num">第四部分</div>
+      <h2>劳动力的细节才是销售的底层</h2>
+    </div>
+
+    <h3>我跟我老师那两年</h3>
+    <p>我跟我老师那两年干过最多的事情是什么？<strong>倒茶、递纸、拎包、记录</strong>。你们现在觉得这些没技术含量，可就是这些把我的嘴巴、眼睛、手都练出来了。</p>
+
+    <h3>客户进门那一刻，加分还是扣分</h3>
+    <p>一个客户进来——</p>
+    <ul>
+      <li><strong>你有没有第一时间站起来</strong>——坐着迎客户的人，客户进门前三秒已经开始扣分了。</li>
+      <li><strong>有没有主动给倒一杯水</strong>——不是等客户开口。</li>
+      <li><strong>水是不是温的</strong>——冬天给凉水、夏天给烫水，都是减分项。</li>
+      <li><strong>纸巾是不是就在他手边</strong>——不是让他伸手够。</li>
+      <li><strong>笔和纸有没有放好</strong>——客户一想记东西就能拿到，是在替他省脑子。</li>
+    </ul>
+
+    <p>这些细节加起来就是<strong>一个客户对你的第一印象</strong>。你技术再好，细节不到位，客户在心里已经给你扣分了。你可能觉得我这在讲鸡毛蒜皮，不是——这是你销售的底层代码，代码写错了，上层再花哨都崩。</p>
+
+    <blockquote>我今天能一对一成交到几万块钱，靠的不是话术，靠的是我从倒茶那一刻就开始经营这个人。</blockquote>
+
+    <p>所以<strong>劳动力不是丢人的事，是销售的地基</strong>。你连水都懒得倒，你还想卖他几万块的课，做梦。那些说"我不会做这些琐事"的，不是没时间，是心里瞧不上——瞧不上的那一刻，你销售这条路就堵死了。</p>
+  </section>
+
+  <section id="part05">
+    <div class="section-header">
+      <div class="sec-num">第五部分</div>
+      <h2>一天五到十个聊天，一年复盘三百个</h2>
+    </div>
+
+    <h3>我的笨方法</h3>
+    <p>你们问我怎么练沟通，我的方法最简单——<strong>一天聊五到十个人</strong>，每个人聊完写一段复盘，就两三句话：</p>
+    <ul>
+      <li>这个人是谁</li>
+      <li>我们聊了什么</li>
+      <li>我发现他在乎的是什么</li>
+      <li>下次我要怎么接</li>
+    </ul>
+
+    <h3>一年三百个真人模板</h3>
+    <p>一年下来你就有<strong>三百个案例</strong>，你的大脑里就装了三百个真人模板。你再去跟新客户聊，你会发现对方一开口，你脑子里就有五个类似的人浮出来，你就知道怎么接。</p>
+    <p>这就是所谓的"老销售感觉"——它不是玄学，它是你大脑里存的真人样本够多。样本少的人靠话术，样本多的人靠直觉，直觉比话术快十倍。</p>
+
+    <blockquote>这东西没有捷径，书上学不来，课上也学不全，只能一个一个聊出来。</blockquote>
+
+    <h3>我这十四年</h3>
+    <p>我这十四年就干这一件事，<strong>每天都在聊，每天都在复盘，复盘本厚得跟砖头一样</strong>。你现在翻我早年的复盘本，密密麻麻都是人名和短句，一页能塞下六七个人。这东西就是底子，底子没法速成，只能熬。</p>
+
+    <div class="highlight-box">
+      <div class="h-label">沟通的底层积累</div>
+      <h4>聊5人/天 × 60天 = 300个案例 = 一个新的你</h4>
+      <p>不是聊完就完事，关键在"聊完的三句话复盘"。</p>
+      <p>没有复盘的聊天是在消耗时间，带复盘的聊天是在积累资产。</p>
+    </div>
+  </section>
+
+  <section id="part06">
+    <div class="section-header">
+      <div class="sec-num">第六部分</div>
+      <h2>什么时候组团队？什么时候做代理？</h2>
+    </div>
+
+    <div class="questioner">◆ 泽泽追问</div>
+    <blockquote>根源哥，那我什么时候开始组团队比较合适？</blockquote>
+
+    <h3>自己没跑通，组了就是挖坑</h3>
+    <p>你自己还没跑通的时候<strong>千万别组</strong>，组了就是给自己挖坑。</p>
+    <p>团队不是解决你产能问题的，<strong>团队是解决你复制问题的</strong>。你自己一个月能稳定出二十万，这时候你再想怎么把这个流程写下来交给别人，别人能跑出十万就行。你自己一个月才出三万，你组十个人也不会变成三十万，只会变成十个人轮流亏。</p>
+
+    <h3>代理制同理</h3>
+    <blockquote>你自己还没验证过路径，你招代理就是让代理替你交学费。</blockquote>
+
+    <p>代理制这几年很多人在玩，玩得起来的极少。原因就一个——<strong>主理人自己都没跑通</strong>，就把"方法"打包卖给代理，代理拿了个空包装去市场上撞墙，撞完回头骂主理人。这种生意做一次就没下一次了。</p>
+
+    <h3>我的四步原则</h3>
+    <ol style="list-style:none;padding:0;margin:16px 0 20px">
+      <li style="padding:8px 0 8px 22px;position:relative;color:var(--fg-dim);line-height:1.9"><strong style="color:var(--fg)">第一步：自己先跑通三遍。</strong>不是一次偶然成功，是三次稳定复现。</li>
+      <li style="padding:8px 0 8px 22px;position:relative;color:var(--fg-dim);line-height:1.9"><strong style="color:var(--fg)">第二步：把流程写成SOP。</strong>每一步都能让别人照着做，而不是全靠你的手感。</li>
+      <li style="padding:8px 0 8px 22px;position:relative;color:var(--fg-dim);line-height:1.9"><strong style="color:var(--fg)">第三步：找一个人先复制。</strong>先试一个，不要一下子铺开，试错成本才可控。</li>
+      <li style="padding:8px 0 8px 22px;position:relative;color:var(--fg-dim);line-height:1.9"><strong style="color:var(--fg)">第四步：这个人能做到你六成效果。</strong>复制出六成，才有资格做代理做团队。</li>
+    </ol>
+
+    <blockquote>越急越坏事，越晚组反而越稳。</blockquote>
+
+    <p>我见过太多人，一看自己月入五万就着急组团队，结果三个月后团队散了自己也散了。原因就是<strong>太急</strong>——急着证明自己是个"老板"，急着从"干活的"变成"管人的"。可管人比干活难十倍，你干活都还没干明白，你凭什么管人？</p>
+
+    <div class="highlight-box">
+      <div class="h-label">收尾一句</div>
+      <h4>沉住气，是这一年最贵的底子</h4>
+      <p>混圈是为了让你有底子，不是让你替代底子。</p>
+      <p>没底子去混圈是浪费时间，有底子再混圈是如虎添翼。</p>
+      <p>第一年跟一个人学，第二年才有资格走进圈子。</p>
+    </div>
+  </section>
+
+</div>
+
+<div class="article-footer">
+  <p>生财有术线下活动精华档案 · 第09场</p>
+  <p>2025年10月19日 · 杭州</p>
+  <p class="sig">— 根源（林根源）</p>
+</div>
+
+<button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleTheme(){
+  document.documentElement.classList.toggle("light");
+  const btn = document.querySelector(".theme-btn");
+  btn.textContent = document.documentElement.classList.contains("light") ? "☀" : "☾";
+}
+window.addEventListener("scroll",()=>{
+  const btn = document.querySelector(".back-top");
+  btn.classList.toggle("show",window.scrollY>400);
+});
+</script>
+</body>
+</html>

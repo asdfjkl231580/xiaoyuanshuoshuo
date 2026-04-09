@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第06场 · 销售即沟通之道 — 生财有术线下活动</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root { --t: 0.35s ease; }
+
+  /* === Dark theme === */
+  [data-theme="dark"] {
+    --bg: #0a0a08;
+    --bg-bar: rgba(10,10,8,0.92);
+    --bg-hero-a: #1a1510;
+    --bg-hero-b: #0a0a08;
+    --bg-glow: rgba(212,160,74,0.1);
+    --bg-toc: #12100c;
+    --bg-card: #1a1510;
+    --bg-info: #12100c;
+    --border: #2a2218;
+    --accent: #d4a04a;
+    --accent-bg: rgba(212,160,74,0.12);
+    --accent-bg2: rgba(212,160,74,0.25);
+    --accent-border: rgba(212,160,74,0.2);
+    --accent-border2: rgba(212,160,74,0.3);
+    --text: #c8c0b0;
+    --text-heading: #f0e6d6;
+    --text-sub: #e8dcc8;
+    --text-quote: #d8cfc0;
+    --text-muted: #8a7d6d;
+    --text-dim: #5a5040;
+    --bq-bg: rgba(212,160,74,0.06);
+  }
+
+  /* === Light theme (松石绿) === */
+  [data-theme="light"] {
+    --bg: #f5faf8;
+    --bg-bar: rgba(245,250,248,0.92);
+    --bg-hero-a: #e4f0ec;
+    --bg-hero-b: #f5faf8;
+    --bg-glow: rgba(26,138,125,0.08);
+    --bg-toc: #eaf4f0;
+    --bg-card: #e4f0ec;
+    --bg-info: #eaf4f0;
+    --border: #c8ddd6;
+    --accent: #1a8a7d;
+    --accent-bg: rgba(26,138,125,0.08);
+    --accent-bg2: rgba(26,138,125,0.15);
+    --accent-border: rgba(26,138,125,0.18);
+    --accent-border2: rgba(26,138,125,0.25);
+    --text: #3a5a52;
+    --text-heading: #1a2e28;
+    --text-sub: #2a4a42;
+    --text-quote: #2a4a42;
+    --text-muted: #7a9a90;
+    --text-dim: #a0b8b0;
+    --bq-bg: rgba(26,138,125,0.05);
+  }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.85;
+    transition: background var(--t), color var(--t);
+  }
+  a { color: var(--accent); text-decoration: none; transition: color var(--t); }
+  a:hover { text-decoration: underline; }
+
+  /* === Top bar === */
+  .top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-bar);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background var(--t), border-color var(--t);
+  }
+  .top-bar .back {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color var(--t);
+  }
+  .top-bar .back:hover { color: var(--accent); text-decoration: none; }
+  .top-bar .session-title {
+    font-size: 0.85rem;
+    color: var(--text-heading);
+    font-weight: 600;
+    transition: color var(--t);
+  }
+  .top-bar .right-btns { display: flex; align-items: center; gap: 8px; }
+  .top-bar .download-btn {
+    font-size: 0.78rem;
+    padding: 5px 14px;
+    border-radius: 6px;
+    background: var(--accent-bg);
+    color: var(--accent);
+    border: 1px solid var(--accent-border2);
+    cursor: pointer;
+    transition: all var(--t);
+  }
+  .top-bar .download-btn:hover {
+    background: var(--accent-bg2);
+    text-decoration: none;
+  }
+  .theme-btn {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--accent-bg); border: 1px solid var(--accent-border);
+    color: var(--accent); font-size: 0.95rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all var(--t);
+  }
+  .theme-btn:hover { transform: scale(1.1); }
+
+  /* === Hero === */
+  .hero {
+    text-align: center;
+    padding: 4rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--bg-hero-a) 0%, var(--bg-hero-b) 100%);
+    transition: background var(--t);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, var(--bg-glow) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .hero .badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    padding: 4px 14px;
+    border-radius: 20px;
+    background: var(--accent-bg);
+    color: var(--accent);
+    border: 1px solid var(--accent-border);
+    margin-bottom: 1rem;
+    position: relative;
+    transition: all var(--t);
+  }
+  .hero h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--text-heading);
+    position: relative;
+    margin-bottom: 0.3rem;
+    transition: color var(--t);
+  }
+  .hero .accent { color: var(--accent); transition: color var(--t); }
+  .hero .meta-line {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    position: relative;
+    margin-top: 0.8rem;
+    transition: color var(--t);
+  }
+  .hero .stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+    position: relative;
+  }
+  .hero .stat .n { font-size: 1.3rem; font-weight: 900; color: var(--accent); transition: color var(--t); }
+  .hero .stat .l { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; transition: color var(--t); }
+
+  /* === Nav / TOC === */
+  .toc-bar {
+    background: var(--bg-toc);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 2rem;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 42px;
+    z-index: 90;
+    transition: background var(--t), border-color var(--t);
+  }
+  .toc-bar a {
+    font-size: 0.75rem;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-muted);
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .toc-bar a:hover, .toc-bar a.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* === Article === */
+  .article {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 4rem;
+  }
+
+  /* Section header */
+  .section-header {
+    margin: 3rem 0 1.5rem;
+    padding-left: 14px;
+    border-left: 3px solid var(--accent);
+    transition: border-color var(--t);
+  }
+  .section-header:first-child { margin-top: 0; }
+  .section-header .sec-num {
+    font-size: 0.68rem;
+    letter-spacing: 3px;
+    color: var(--accent);
+    font-weight: 500;
+    transition: color var(--t);
+  }
+  .section-header h2 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-heading);
+    margin-top: 2px;
+    transition: color var(--t);
+  }
+
+  /* Sub header */
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-sub);
+    margin: 2rem 0 0.8rem;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+    transition: color var(--t), border-color var(--t);
+  }
+
+  /* Paragraph */
+  p { margin-bottom: 1rem; }
+
+  /* Bold highlight */
+  strong { color: var(--text-sub); transition: color var(--t); }
+
+  /* Blockquote */
+  blockquote {
+    background: var(--bq-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1rem 0 1.2rem;
+    color: var(--text-quote);
+    font-size: 0.92rem;
+    transition: all var(--t);
+  }
+
+  /* List */
+  ul, ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  li {
+    margin-bottom: 0.4rem;
+  }
+  li::marker { color: var(--accent); }
+
+  /* Questioner tag */
+  .questioner {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-bg);
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    transition: all var(--t);
+  }
+
+  /* Highlight box */
+  .highlight-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin: 1.2rem 0;
+    transition: all var(--t);
+  }
+  .highlight-box .hl-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    transition: color var(--t);
+  }
+
+  /* Product card grid */
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 1rem 0;
+  }
+  .product-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all var(--t);
+  }
+  .product-card .pname {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+    transition: color var(--t);
+  }
+  .product-card .pdesc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    transition: color var(--t);
+  }
+
+  /* Activity info box */
+  .info-box {
+    background: var(--bg-info);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 2rem;
+    font-size: 0.88rem;
+    transition: all var(--t);
+  }
+  .info-box .info-row {
+    display: flex;
+    gap: 0.5rem;
+    padding: 4px 0;
+    color: var(--text-muted);
+    transition: color var(--t);
+  }
+  .info-box .info-label {
+    color: var(--accent);
+    font-weight: 600;
+    flex-shrink: 0;
+    width: 70px;
+    transition: color var(--t);
+  }
+  .info-box .info-val { color: var(--text); transition: color var(--t); }
+
+  /* Divider */
+  .divider {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    margin: 2.5rem 0;
+    transition: background var(--t);
+  }
+
+  /* Footer */
+  .article-footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    border-top: 1px solid var(--border);
+    transition: all var(--t);
+  }
+  .article-footer a { color: var(--text-muted); }
+
+  /* Back to top */
+  .back-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--accent-bg2);
+    border: 1px solid var(--accent-border2);
+    color: var(--accent);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s, background var(--t), border-color var(--t), color var(--t);
+    z-index: 50;
+  }
+  .back-top.show { opacity: 1; }
+  .back-top:hover { background: var(--accent-bg2); }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.5rem; }
+    .hero .stats { gap: 1.2rem; }
+    .article { padding: 1.5rem 1rem; }
+    .product-grid { grid-template-columns: 1fr; }
+    .top-bar { padding: 8px 1rem; }
+    .toc-bar { padding: 10px 1rem; justify-content: flex-start; }
+    .top-bar .session-title { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="top-bar">
+  <a href="../index.html" class="back">&larr; 返回目录</a>
+  <span class="session-title">第06场 · 销售即沟通之道</span>
+  <div class="right-btns">
+    <a href="06.html" class="download-btn">幻灯片版</a>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="切换明暗模式"><span id="themeIcon"></span></button>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="badge">第 06 场 · 2025年9月15日</div>
+  <h1>销售即<span class="accent">沟通之道</span></h1>
+  <p class="meta-line">杭州 · 线下聚会 &nbsp;|&nbsp; 根源（林根源）主讲</p>
+  <div class="stats">
+    <div class="stat"><div class="n">8</div><div class="l">核心主题</div></div>
+    <div class="stat"><div class="n">2.5h</div><div class="l">活动时长</div></div>
+    <div class="stat"><div class="n">6.8万</div><div class="l">字逐字稿</div></div>
+    <div class="stat"><div class="n">7</div><div class="l">人参与</div></div>
+  </div>
+</div>
+
+<!-- TOC -->
+<nav class="toc-bar">
+  <a href="#part01">线下礼仪</a>
+  <a href="#part02">销售即沟通</a>
+  <a href="#part03">流量到名单</a>
+  <a href="#part04">四阶段人生</a>
+  <a href="#part05">四交付层次</a>
+  <a href="#part06">100人名单</a>
+  <a href="#part07">信任感五阶段</a>
+  <a href="#part08">深度运营</a>
+</nav>
+
+<!-- Article -->
+<article class="article">
+
+  <!-- Activity info -->
+  <div class="info-box">
+    <div class="info-row"><span class="info-label">日期</span><span class="info-val">2025年9月15日（周一）</span></div>
+    <div class="info-row"><span class="info-label">地点</span><span class="info-val">杭州 · 线下茶空间</span></div>
+    <div class="info-row"><span class="info-label">主讲人</span><span class="info-val">根源（林根源）</span></div>
+    <div class="info-row"><span class="info-label">编号</span><span class="info-val">第06场（每周一固定线下聚会）</span></div>
+    <div class="info-row"><span class="info-label">参与者</span><span class="info-val">闪闪（蒋珊珊）、19（陈亚斐）、苏荣坤、米粒（张彤）、CY（陈莹）、方哥</span></div>
+  </div>
+
+  <!-- ==================== PART 01 ==================== -->
+  <div class="section-header" id="part01">
+    <div class="sec-num">PART 01</div>
+    <h2>线下活动的礼仪与边界</h2>
+  </div>
+
+  <h3>手机的能量学</h3>
+  <p>今天人数刚好，我就把一些过去我犯过的错也讲一下，因为我真的在我以为这个行为是对的，但后来去问过才发现不是。</p>
+  <p>如果参加活动，你的手机最好有支架，可以翻过来那种。没有支架的话，就尽量让手机盖着放桌面，除非你的手机有防窥屏。因为手机亮会影响到左右两边人的注意力——<strong>你把人家的能量偷走了。</strong></p>
+  <blockquote>手机是一个很容易偷能量的东西，一亮就偷能量。我的原则是加到所有好友第一件事情先把提醒关了。我是一个固定会看手机的人，所以就算没有提醒我也可以随时回复。</blockquote>
+  <p>再来一个点是，因为我一开始就定位我的项目跟我的生意不能是一个秒回的生意。但凡这生意是秒回生意的，本身是没有价值的——你随时想找我我随时都在，这是淘宝的概念，我不要做这种生意。所以我的讯息大概率是我会在固定时间回复。</p>
+  <p>你看像有些人每天是焦躁的，因为他随时都得回讯息、随时都得接电话。但这个东西是可以区分的，当你区分得够好，你就能够有很好的工作时间、休息时间、家庭或爱情的时间。我早上7点起来弄完孩子回到家，8点到10点是我的工作时间，10点到下午3点我的手机基本上不看微信。</p>
+
+  <h3>戴耳机是大忌</h3>
+  <p>有些人习惯性戴着苹果耳机，然后会说"我没有开音乐"。但是这个你会让别人感觉你不礼貌。</p>
+  <blockquote>线下见面真正要的并不是我们之间聊得有多开心，或者是聊的东西有多有用，而是<strong>你要让对方感觉到你特别地尊重我</strong>。信任感的前提就是这个。</blockquote>
+  <p>容易让别人觉得不尊重的举动就尽量少做。像刚才 CY 做了一个很好的示范——她有一个临时电话要接，她提前知道了，所以她一来就是说"那个根源对不起，等下可能会临时出去接个电话，因为什么理由"。但有一种人是突然就出去了，突然又进来了，一出去 20 分钟，坐了 5 分钟，又突然出去又突然进来。你也不知道他干嘛，虽然无伤大雅，可是这个举动会让敏感的人、让主办方觉得你不尊重他。</p>
+  <blockquote>最严重的一种是——如果刚好在场有一个特别厉害的人，他来参加活动的目的只有一个：我要找人才。你就这么被他忽略过，他会知道说这个人不行，以后我绝不用你。这是大忌中的大忌，因为一个很小的行为却让一个很优秀的人对你的印象是不好的。</blockquote>
+
+  <h3>自我介绍的四件事</h3>
+  <p>我们的自我介绍分两轮。第一轮一分钟之内，必须得说几项东西：</p>
+  <div class="highlight-box">
+    <div class="hl-title">第一轮自我介绍四要素</div>
+    <p><strong>第一件事：三个名字。</strong> 本名、微信名、别人怎么称呼我的。像我就叫根源，三个都一样没有其他的。荣坤也是身份证就叫苏荣坤，微信名也叫苏荣坤。这种就特别省事。</p>
+    <p><strong>第二件事：年纪。</strong> 像我是 87 年的。年纪可以更好地产生共鸣。</p>
+    <p><strong>第三件事：老家。</strong> 老家尽量说得细节一点——不能说"我是山东的"，要说"山东烟台"，不能说"我是河南的"，要说"河南郑州新密"。</p>
+    <p><strong>第四件事：目前在做的项目。</strong> 快速带过就行。</p>
+  </div>
+  <p>因为年龄和地点的共鸣是最好链接的几个原因，可以让活动结束之后，你们更愿意深入地链接。</p>
+  <p class="questioner">CY 说：岁数这个东西，女孩子其实有一点不想讲的……</p>
+  <p>我打岔一下。我们有些时候 16 个人、12 个人、14 个人，一卡在这里速度就快不了。在参加活动和线下认识人这个部分，我得讲在座没有人比我擅长，所以一些很小很小的事情千万不能犯。因为那个东西反而不会让人印象深刻，只会让人觉得"这事情有那么秘密吗？"</p>
+  <blockquote>你可以快速地说"我是 87 年的"。这个目的是为了让我们可以跟同年龄的人快速产生共鸣。当这个东西多一些事情描述的时候，别人会觉得你怎么那么难搞——说个年纪怎么有这么多的观点跟看法。</blockquote>
+
+  <h3>第二轮：视觉记忆点</h3>
+  <p>第二轮限制 20 秒，要讲朋友怎么称呼我，然后讲一个今天身上在外形上或配件上让所有人可以印象深刻的点——就是视觉感最深刻的。</p>
+  <p>像我可能会说"你们好，我是根源，今天全场唯一一个穿橘色衣服的"，或者"我是全场唯一一个别麦的"，或者"我今天多了一个粉红色的配件，是我们的麦克风"，这叫视觉感。</p>
+  <p><strong>闪闪</strong>说她今天戴了帽子，我就让她介绍帽子——因为大多数帽子都是长帽檐，她买了一个短帽檐的，而且这是今年最流行的款式。<strong>19 老师</strong>说他是今天全场唯一一个穿黑色衣服的，上面是一个梅花刺绣，蛮有记忆点。<strong>苏荣坤</strong>说他戴了半框眼镜，马化腾戴半框眼镜，张一鸣也戴半框眼镜。<strong>方哥</strong>说他是男生当中比较少的留长头发，代表创造力。</p>
+  <blockquote>这种自我介绍的印象深刻讲得特别好，因为他把自己身上一个平平无奇的事——硬是创造一个特点出来。这是不容易的。像短帽檐，下一句讲卡其色的帽子，你硬生生把一个东西变得很有特色。</blockquote>
+
+  <h3>中间不能有空位 · 尊重规则</h3>
+  <p>参加活动的原则，<strong>中间不能有空位。</strong> 你往那移一格，如果刚好他玻璃心就会想——为什么要离我远一点？所以尽量不要有空位。</p>
+  <p>再来一个点是规则，假设这个主办人经验比较丰富，就会有规则。我们总会觉得说表达很丰富的人他是一个优秀的人——没有的，不一定的。反而表达越丰富就代表他的匮乏感是越强的，因为他想透过更多的表达让所有人更记住他。</p>
+  <blockquote>规则特别重要，因为规则一定有它的原因跟它的目的。但凡他有他的活动，他也会习惯让这个时间控制出现的问题。能准时尽量准时，不能准时一定要提早在群里说。</blockquote>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 02 ==================== -->
+  <div class="section-header" id="part02">
+    <div class="sec-num">PART 02</div>
+    <h2>销售即沟通之道</h2>
+  </div>
+
+  <p class="questioner">苏荣坤问：我过去擅长做流量，微信做了几百个账号，抖音做了上千个账号，小红书几十上百个账号——我觉得相对来讲做流量对我来讲不太难，但是我觉得没有挣到我想要的那个比较大的钱。我过去擅长的是 ToC，但都是擅长吸引人来，没有就很难把东西卖给他们。我也很抵触销售，但我现在发现我又不得不做销售。这是我最近这至少 8 到 10 年的卡点，就一直迈不出去销售那一步，觉得非常痛苦。</p>
+
+  <h3>什么是销售？</h3>
+  <p>我们得先聊聊到底什么是销售，我最怕的是有人对销售有误解。10 个销售很厉害的人或 10 个销售老师对销售都有不同的定义。<strong>对于我来说，销售是一种沟通能力的进阶。</strong></p>
+  <p>我们先想象一个场景：如果今天你碰到一个销售员，假设他是做保险的，他跟你见三次面，你因为这三次面跟他买了一张一年存 100 万十年起的保单。有没有觉得这个销售真的特别厉害？</p>
+  <blockquote>一个人靠一张嘴在表达的过程，让你愿意给他支付 1000 万，甚至没有任何的文件，他就靠纸跟笔解释给你听——这样的人，他到底可以具备什么样的能力？如果他什么能力都没有，你不会愿意给他付钱的。如果我同时具备这个能力，但我干的工作跟销售没有任何的关系，你一定是个特别牛的人。</blockquote>
+
+  <h3>销售不单纯是卖东西</h3>
+  <p>第二个画面是，如果销售是沟通的最高级，就代表销售这个事情的本身，<strong>他不一定要把东西卖出去</strong>，销售不单纯只是卖东西。</p>
+  <p>假设今天我们加了好友，好友加了 3 天，我需要请你帮我朋友圈点赞——这也是一个销售行为。因为你要怎么让对方帮你点赞的过程，他不止不会觉得烦躁，还会给你回报"诶我点好了"。这个过程其实没有产生东西的买卖，但是却可以让我们的关系因为这个点赞变得更加地往上一点点。</p>
+  <p>我讲个真实的故事。上上周我收到了一个消息，那个人也是生财圈友，加了我好友但应该是下午 3 点多加的，我晚上 7 点才回复——因为今天上午在忙。我跟他说声抱歉以及跟他讲我的名字，他没有回我，对我来讲确实我回得慢所以你没回我我也能接受。然后过了半年他突然给我发一串消息："你好，我是做游艇俱乐部的，这个俱乐部目前在招募什么什么人，如果你对游艇有兴趣请扣一。"</p>
+  <blockquote>他这个消息不发还好，他一发我对他就没好感了。游艇俱乐部这么高端的东西，你用这么垃圾的方法来邀请我，第一个是我当时跟你打招呼的时候你也没理我，我凭什么回你呢？你可以说"根源你好，我加你主要的目的是什么，或者我就是看到你文章写得好，我们后续不聊天都行。"但是你在我主动做了一个沟通的时候你没有任何回应，下一次你就有目的性地想找我，这举动会让多数人觉得不舒服的。</blockquote>
+
+  <h3>关系才是人生最大的价值</h3>
+  <p>2014 年的时候，因为一本书我聊过一个话题——我们怎么定义生命？最终的答案是：<strong>生命定义是关系。</strong> 我跟父母的关系，我跟孩子的关系，我跟朋友的关系，我跟陌生人的关系，我跟同事跟主管的关系。</p>
+  <p>你会发现，一个人年纪越大他越开心，是因为他跟身边好关系的人越多。他随时一通电话就可以号召七八个大姑大爷大妈出来："走，我们一起出去玩。" 但有一些关系，是他只能去养老院，然后在养老院身边这么多老人，他就是不想交朋友。你会发现这类的人到了晚年，脸上的表情是不太开心的。</p>
+  <blockquote>所以我对于我的生命的最终的价值是——我希望我能够变成一个关系可以处理好的人，不管跟这个人没有交集，甚至你的做事方法我不喜欢，我最少都跟你维持 60% 的礼貌关系。这是我给我自己设定的人生目标。</blockquote>
+  <p>那如果说关系那么重要，什么样的能力是学习关系维护最重要的能力？<strong>销售。</strong> 因为销售跟流量不一样，流量是我把我的角色做好，不管投流、不管文章、不管干嘛都好。但但凡进到销售，一个人就干不了，你就得有人——你一定要跟某个人讲话，销售才会发生。</p>
+
+  <h3>销售是所有优秀的人的必备能力</h3>
+  <p>所有能做起来的公司，老板一定是先亲自干过销售。95% 以上的公司，老板比公司的所有人都知道"我要怎么卖"。当你要那些规模企业大的老板去做 IP，他们上镜去讲话没有人是讲不了的——因为他在干这个角色之前，他天天都得讲话，介绍公司、跟员工画大饼、跟陌生人讲我的公司有多牛。所有优秀公司的产品发布会都是谁上去讲？不是技术，是 CEO 上面讲。</p>
+  <blockquote>所以这能力代表所有的优秀的人都得具备，所有能够把钱赚得多的稳定的人都得具备。那就代表这个能力它一定很难，它一定特别地难，我只要会了，就是我踏往这个人的一条很重要的路。这是我对销售的观念。</blockquote>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 03 ==================== -->
+  <div class="section-header" id="part03">
+    <div class="sec-num">PART 03</div>
+    <h2>流量到名单到成交的链路</h2>
+  </div>
+
+  <h3>单一能力不是闭环</h3>
+  <p>像荣坤提到他的流量做得不错，但流量就很像是有人讲"我的写作挺好的、我的 AI 用得挺好的、我的产品运营逻辑做得挺好的、我的社群运营做得挺好的"——<strong>这个都叫单一能力。</strong></p>
+  <blockquote>如果说我只有一个人，但凡只有单一能力，这个事情他就不是闭环。上班族很多人转副业之所以做不好，就是因为他们只有单一能力——我是运营岗，我是产品岗，我是公关岗位，这叫单一能力。可是他们做了副业发现原来我得培养第二项能力。</blockquote>
+  <p>所有的个体创业者，跟公司不一样。公司就算一个人，他是有部门的——一个负责流量，一个负责销售，一个负责内容。但如果今天我们是个体创业者，就得一个人会这些东西。</p>
+
+  <h3>流量不变成名单就是废的</h3>
+  <p>荣坤提到："为什么我觉得我是一个擅长做流量的人，但是怎么做流量的过程我却换不到大钱？"</p>
+  <blockquote>因为流量进来之后，他只要没有变成名单，这流量就是废的。尤其在这两年。</blockquote>
+  <p>我有一个很好的朋友，他在 2013 还 2014 年的时候做了一个公众号的公司，那间公司就是去帮很多读者导流给他。他做了大概一年发现这个商机很好，有人就花了钱买了他的公司，他那一次就赚了快 500 万。但是那个时候的方法不适用于现在——因为那个时候的流量获取是稀缺的，流量获取的技能不是每个人都会。那个时候你只会流量你就能赚钱了，那是红利的问题。</p>
+  <p>但这个时代有了流量之后你会发现，很多人是有了流量之后就担忧"流量这么多干啥"。所以流量得变成名单，但凡流量不变成名单，这流量它就不是你的。</p>
+
+  <h3>流量变名单的关键：主动问一句</h3>
+  <p>那流量怎么变名单？你得知道这个人他到底需要什么？这个人的需求到底是什么？这个人是从什么渠道来认识我的？这些都叫名单。</p>
+  <p>我举个例子，假设今天我来这间茶馆，我来这个茶馆喝了一次茶，或者租了一次场地——我就能是茶馆的名单吗？<strong>不是。</strong> 但如果说结束之后 19 他特别跟我聊天说"我们茶馆就是，你能说我们哪里需要改进的吗？然后我送你一张喝茶的券"，然后聊完之后又问我"你们上办那个活动主题是什么呀，感觉你们挺热闹的，你可以给我介绍一下吗？"——这时候我就从流量变成了名单。</p>
+  <blockquote>但是很少人会主动做这件事，因为大多数人会觉得我发朋友圈就好了、我发小红书就好了，他们但凡没主动问我，我就放着。可是我们费尽了九牛二虎之力，把这个人从小红书、抖音、视频号终于搞到了微信，结果你不理他。这个逻辑很怪。</blockquote>
+
+  <h3>认真经营一个人的真实价值</h3>
+  <p>很多人不愿意花时间去经营每一个名单的理由只有一个——他不知道这么经营的过程能够得到什么样的价值，他会觉得说浪费时间。</p>
+  <p>我说一个故事。今年年初的时候，生财有个航海是讲时间管理的，我是那一次的主教练。航海就只有一个教练，那里面所有的问题、那几天的问题我都认真回答。航海结束大概过了三周，有一个人加我好友跟我说"老师我是你在航海里面的学员，我觉得你的课讲得挺不错的"，我们就聊天嘛，我就跟他聊了三次，他发现到我在群里面很认真地去解答所有人的问题。</p>
+  <blockquote>两个月之内他就给我付了 25 万。那流量有价值吗？有，认真经营人一定有价值。</blockquote>
+  <p>今年到现在我服务的人也就 200 个，多吗？我觉得不多。去年的这时候我服务的人应该有快 1000 人了，可去年跟现在这时候赚的钱一样，今年也快破百万了。那我觉得这样挺好的。</p>
+  <p>因为不是每一个人都有能力去一次性处理这么多的人。如果你是个体创业者，我都不建议人太多——因为人一多，交付者会有一种很特别的情绪叫做<strong>烦</strong>。一个群 60 个人跟 3 个 500 人的群，你的感受是不一样的。</p>
+
+  <h3>流量多反而想死</h3>
+  <blockquote>你试试看你的微信，每一天 50 个人加你好友，不用久，一周你就想死。真的，你真的会想烦。</blockquote>
+  <p>手机一打开看 20 个加我好友，一个小时再打开看又 10 个。你会发现你想死的不是人——来一堆鸟人发信息爱回不回，认真聊天他们又不太理你，讯息发了就扣一个、短短几个字。这感觉你们一定都体会过，可不舒服了。</p>
+  <p>但如果我们可以慢慢变成 50% 是转介绍流量，你会发现转介绍进来的人聊起天来可轻松了——因为已经被前一个人筛选过一轮了。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 04 ==================== -->
+  <div class="section-header" id="part04">
+    <div class="sec-num">PART 04</div>
+    <h2>四阶段人生与丰富交换</h2>
+  </div>
+
+  <p>我给你们画一个框架。每个人身上都是有色彩的，从这个红外线到红色线到橙色线分阶段，第一个阶段叫做：</p>
+
+  <h3>受难者：支出 &gt; 收入</h3>
+  <blockquote>受难者的特点就是——<strong>支出永远大于收入</strong>。每个月都得花 1 万我就赚 8000，每个月都得花 7000 我就赚 3000。</blockquote>
+  <p>那受难者之所以一直是受难者，是因为他从来都没有把事情做到公平交换。很多人领着 1 万的工资只做 6000 的事，天天摸鱼，然后把摸鱼当成以此为荣——有看过对不对？你就会想如果我是老板，遇到这种人我一定把他开了。</p>
+
+  <h3>幸存者：收入 = 支出</h3>
+  <p>第二个阶段叫幸存者——我终于能够想办法活下来。<strong>幸存者的特点叫做收入等于支出。</strong> 我赚一万花一万。</p>
+  <p>从受难者怎么进化到幸存者？得做到一个东西叫做<strong>公平交换</strong>。我领一万块的工资，我就做这一万块的事情。这是本分。</p>
+
+  <h3>劳动者：收入 &gt; 支出</h3>
+  <p>第三阶段叫劳动者。<strong>劳动者就是我的收入开始大于我的支出</strong>——这个月的需求是 1 万，但我可以赚 13000，每个月都可以存下 3000。</p>
+  <p>从幸存者进化到劳动者，得做到一个东西叫做<strong>丰富交换</strong>。丰富交换就是我领着 1 万的工资，但我做了 2 万块的事情。</p>
+
+  <div class="highlight-box">
+    <div class="hl-title">PPT 故事 · 三种员工</div>
+    <p>假设今天老板说"根源，你帮我做一份 PPT，这 PPT 我们是要拿来竞标用的"，节点设定是 9 月 16 号的中午 12 点前得上传。</p>
+    <p><strong>受难者</strong>会在 9 月 16 号的晚上 8 点说"啊老板对不起我迟到了"，把 PPT 给了老板，老板臭骂一顿，因为他就因为这样错过了竞标。</p>
+    <p><strong>幸存者</strong>会在 9 月 16 号的 12 点整准时把 PPT 交给老板——最少今天时间到了，我准时提交。</p>
+    <p><strong>劳动者</strong>会在 9 月 15 号的晚上 12 点就发给老板，说"老板我做完了，但是我做了两个版本，第一个版本是我觉得我喜欢的方式，因为我不知道这个竞标它是哪一种形式。第二个版本是按照老板你的想法来做的档案。我特别提早半天给你发，是因为如果中间哪里需要调整，我可以马上改。"</p>
+  </div>
+  <blockquote>你要想，如果你是老板，有三种不同的员工，你会把升迁机会交给谁？肯定是第三个。<strong>丰富交换就是我做得比原本的多。</strong></blockquote>
+  <p>很像我有一个群，每一天我的内容最少讲 1500 字，每天的交付都是 2000 字以上，还有图片还有整理——得到交付的人就会发现：原来今天我给你付钱，我总是能够得到更超额的东西。</p>
+  <blockquote>所以一个人想要让他的副业或他的收入可以提高，唯一的原则就是——<strong>我能不能够尽量让自己成为一个丰富交换的人</strong>。这是从 22 年开始我给自己设定的点。</blockquote>
+  <p>公平交换叫本分——我收 300 就给 300 的服务，本来就应该这么做。但我能不能做到丰富交换，这个是一个人从幸存者进到劳动者、开始可以存钱的最大价值观。那这个就不是技术，这就是价值观的问题。</p>
+
+  <h3>领导者：复制系统</h3>
+  <p>劳动者再往上是<strong>领导者</strong>。就是我开始可以改变别人。</p>
+  <blockquote>他需要做的点是你做的事情要能够复制——你得有一套完整的复制系统才可以变成领导者。</blockquote>
+  <p>这其实有七个阶段，好像叫"财富金字塔"——名字我有点忘记了。那再往上的阶段，就是那种大企业家的层级，今天就不聊这个细节了。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 05 ==================== -->
+  <div class="section-header" id="part05">
+    <div class="sec-num">PART 05</div>
+    <h2>四交付层次与商业规则</h2>
+  </div>
+
+  <p class="questioner">苏荣坤问：我可以卖增长相关的，我觉得如果卖 300 多或 4000 多就是贱卖了，我觉得应该是占他的股份，分他好多钱才合理。</p>
+
+  <p>这是多数交付者都会有的骄傲，这是对的，最少我对于我的内容是很认可的。但以交付来讲，我自己有分四种不同的阶段。同样的内容可以有不同的交付，不同交付对应不同的价值——但内容可以是一样的。</p>
+
+  <h3>第一阶：学习（三位数产品）</h3>
+  <blockquote>学习就很像是你们在我一个 365 的群——那个群我除了给内容之外，其他是不给的。但那内容对我来讲就是你每一天花 20 分钟看一个内容，它就跟看书一样。</blockquote>
+  <p>但这是我觉得我经历过并且有用的认知。那这内容你看了一年，对你的销售会有增长吗？不一定，甚至不会。可是你会知道说"哦，原来今天这个人做的这个举动，难怪他东西卖不出去"。你会开始知道说哪些事情是对的、哪些事情是错的。</p>
+
+  <h3>第二阶：练习（四位数产品）</h3>
+  <p>到了第二阶段就叫<strong>练习</strong>——他不止学，我会让他做笔记，我会让他做复盘，但是你写不写是你家的事。我只是告诉你能这么做，我可以把这个群的环境氛围弄得好一点，让每个人都愿意写。</p>
+  <p>这个可能就可以变成四位数的产品，但我内容是不变的——我一样是做增长，但是我开始让你有训练作业，我有一套训练的体系，你要按照我的步骤来做。可是我不管你做还是不做，这叫练习。</p>
+  <p>到这个阶段，它全部都属于对内——就是我自己看书、自己买课、自己学习、自己写笔记、自己复盘。</p>
+
+  <h3>第三阶：实习（近万元产品）</h3>
+  <blockquote>到了第三阶段就叫做实习。实习就是我开始实战了。</blockquote>
+  <p>假设米粒报了我的课，报了训练营，我就跟她讲说"你会不会希望这个训练营你花了这笔钱之后能够真正地把这个技能为你所用？"她说想，我说那我有另外一个群——如果作业没有写一次，只要可能 10 点下课，隔天中午之前没有交作业，你就在群里面打 500 的红包。</p>
+  <p>这就要实习了。然后你必须得实际地去跟你的用户聊天，每一天你都得找两个用户去聊天，我不管你聊什么，你可能没有目的，但是你要写 200 字的聊天复盘——这是不是开始对外了？</p>
+  <blockquote>我现在还有 1 万的群，一天没写就是 1 万。我最少有 10 个学生，他们一次作业没写就给我转 5000。他们随时可以拿出超过 500 篇以上的聊天复盘——一天聊三个，三个月下来 270 个。我最少有 10 个人，他们已经连续做了半年了。</blockquote>
+
+  <h3>第四阶：惯习（教不来）</h3>
+  <blockquote>惯习就是习惯——我的所学已经变成是我内化的本能。<strong>这东西教不来。</strong></blockquote>
+  <p>四交付层次对应不同价格。大部分做教育、做咨询的人搞不清楚自己的产品到底在哪一层——学习的价格卖练习的服务，或者实习的价格交付学习的内容，所以永远亏。</p>
+
+  <h3>商业交付的四件事</h3>
+  <p class="questioner">米粒问：我遇到过一个家长——消失的爸爸、焦虑的妈妈、抑郁的孩子，他又想让老师上门一对一辅导，我想帮又不敢帮，怕参与到别人的因果当中。</p>
+  <p>你想做成功案例还是想做交付，还是想赚钱？选一个。如果想赚钱，如果对方没有这样子的预算，就不要做——因为意愿跟预算他得一样。</p>
+  <p>但如果对方有预算又有意愿，这个时候我们就回到<strong>商业交付的本质</strong>了：</p>
+  <div class="highlight-box">
+    <div class="hl-title">商业交付四件事</div>
+    <p><strong>一、收多少钱</strong> — 价格说清楚</p>
+    <p><strong>二、定好规则</strong> — 我能给出什么，不能保证什么</p>
+    <p><strong>三、做多少事</strong> — 交付的内容边界明确</p>
+    <p><strong>四、退款条件</strong> — 达不到效果怎么退</p>
+  </div>
+  <p>但是你就跟他说，假设收费是 5000，我可以交付你一个月，这个月我能给出一些什么，但是我不能保证一定能完成。我只能说在我们过去的经验他应该可以得到一些好转。我会想尽办法帮助他，但是我希望你能配合，因为我们的交付最多只能做到 40%，60% 看他有没有意愿。</p>
+  <blockquote>你就跟他讲说假设达不到效果我就退钱。或者我会退 50%，如果你能接受这笔单子我们就成交。<strong>所有的交易只要在交易之前把规则说清楚</strong>，那最后就是一个两个人都很开心的交易行为。最怕的就是今天我所承诺的事情承诺太多但我没做到，对方要退费你还不退费——那这就是交付者的问题。</blockquote>
+
+  <h3>白嫖不是客户问题</h3>
+  <blockquote>白嫖这个词是一个假问题，<strong>没有白嫖这回事</strong>。而是交付者的规则不够清晰，你不敢跟他收钱，只好想说"要不我先讨好你"，然后如果你能付钱那我就赚到了——都是这种观点。</blockquote>
+  <p>所以没有白嫖这个事，是规则体系够清楚你就会知道。像我的交付体系就很明确——假设你是我训练营的学员，你私下提问我也不会私下回答你的，我会丢到群里给你解答。因为私下回答那是陪跑跟咨询的服务体系。所以他们就会知道这个提问我只能在群里回答。</p>
+  <p>那像 300 多的群，我群里就不答疑，我只负责输出，我可以解决输出内容相关的问题——它就是不同的体系。交付者你的体系就得明确，因为你体系如果不明确，就会让那些付更高单价的人讲说"原来给你付几千就可以一对一，那我给你付几万干嘛？"</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 06 ==================== -->
+  <div class="section-header" id="part06">
+    <div class="sec-num">PART 06</div>
+    <h2>100 人名单与四种问句</h2>
+  </div>
+
+  <h3>手写 100 人名单</h3>
+  <p>假设今天荣坤说"老师这事情我觉得可行，我想开始今年给自己一年认真练我的销售"——我会盯死他。所有的步骤你就照做。</p>
+  <blockquote>像我的训练营的第一节课程就是<strong>手写 100 个名单</strong>。我不管你写谁，写完之后交了钱。不写那你家的事。</blockquote>
+  <p>这 100 个不是你想到谁去聊谁，而是今天就得先把 100 个名字先全部写出来。写完之后你还得把他的手机号、区域、微信名写清楚，这叫名单。这还不是细细的名单，这是粗略的名单。</p>
+  <p>我们第一次这个还是上课简易版的，以前做销售第一天<strong>600 个人</strong>，半年跑完。</p>
+  <p class="questioner">苏荣坤问：我写不出来 100 个怎么办？</p>
+  <p>不可能的，你的微信通讯录多少人？早晚要 2000 人。但好多都没聊过？我不在乎的，什么人都可以想。</p>
+
+  <h3>每个人都要聊到成交</h3>
+  <blockquote>你的工作就是把这 100 个人全部聊完一轮之后，而且这个聊完一轮是<strong>每个人都得讲到成交</strong>。</blockquote>
+  <p>我不管你卖什么。纯聊天不算——纯聊天大家都会，又没有什么目的、谁都会聊天，你又没有什么压力。但是如果今天你必须得谈到成交，主动来找你的不算。第一波谈完，你就会知道成交率是多少，可能 5 个可能 10 个可能 15 个。</p>
+
+  <h3>销售的四种问句结构</h3>
+  <p>然后提问又分四种结构。厉害的销售一定会提问嘛——但那种"你老家是哪的？孩子多大？"问多了别人觉得烦。</p>
+  <div class="highlight-box">
+    <div class="hl-title">销售四种问句</div>
+    <p><strong>一、情境式问句</strong> — "你老家是哪的？""孩子多大？""最近工作还顺吗？"先了解对方当下的状态。</p>
+    <p><strong>二、探究式问句</strong> — "你怎么会选择来杭州？"深入一点聊背景和动机。</p>
+    <p><strong>三、暗示式问句</strong> — "如果说你觉得经营关系很重要，如果持续不经营，你觉得对于你的事业可能会造成什么样的风险？"我们就开始把风险放大。</p>
+    <p><strong>四、需求式问句</strong> — "如果说你目前的收入可以达到你想要的 500 万目标，你觉得怎么做可以完成？"他就会想一个解决方法。</p>
+  </div>
+  <p>然后我可能就会说"那我觉得这个东西你应该补些什么，我可以提供这个"。他说"那好老师我觉得可以"。四种不同的问句结构，四个问题走完，对方自己就会说出他的预算和意愿。</p>
+  <blockquote>这不是话术，<strong>这是结构，结构才能被复制、被迭代、被拆解。</strong></blockquote>
+
+  <h3>先成为好的客户</h3>
+  <p>我们回到另一个层次来谈——<strong>一个好的销售得先成为一个好的客户。</strong></p>
+  <blockquote>像我谈我自己，但凡有人找我卖东西，只要是 300 以内、400 以内的关系还不错，我一般废话不多说我就转钱了。我说的是真的。</blockquote>
+  <p>我不会有废话的，但前提是我认为这个人可以结交——他如果说平时也不礼貌、我们没有交集，那我不会的。但如果我们交集还可以，或者建议一两次发现你这个人不错，他但凡跟我开口，那时候经济没有什么问题，我一般都会支持一下。但我不一定会看——我如果不看我就会跟他讲"我不一定会看，但是我想看你怎么运营的"。</p>
+  <p>销售就是一个人情社会，我帮你一点你帮我一点交换又怎么样？这是销售过程必然的。当我们可以成为好的客户，很有趣的是——你就会容易遇到好的客户。</p>
+
+  <h3>前半年很痛苦</h3>
+  <p class="questioner">苏荣坤说：这前半年很痛苦是吗？我自己在做的过程中，可能第一个人把我拒绝了，我可能就会消沉两个月。</p>
+  <blockquote>很痛苦的，你会得到很多的负反馈。</blockquote>
+  <p>销售的业绩是<strong>逼出来的</strong>，销售的成交率都是逼出来的，环境逼出来。以前做销售，我们都有早会——每天早上 7 点半到 12 点固定早会，晚上还得做复盘。早会就是为了学东西去跟客户讲；复盘就是去讲今天我哪里说得不好。每天都得不断地训练复盘，学新东西马上用。</p>
+  <p>我们那时候做销售，每天都得做角色扮演，在销售里面叫 role play——就是我是客户你是业务，你得卖我东西，第二天交换。然后我们有固定的话术，每次话术就得改，因为每次你都会发现有更好的话术，不断迭代。</p>
+  <blockquote>所有的销售单位都是这样，目的就是因为销售是一个动态的过程——它不是看一本书你就能够马上实践然后得到结果的，做不到的。然后这个流程对了，最少还得花个半年——这是销售最难的地方，很多人熬不过这一关。</blockquote>
+  <p>以前我们那时候还得线下见人——对方开口就说不要，那人拿了包包拎了就走了。一个月都开不了一单，每天回到家就很痛苦，就想哭、想死。但没办法，销售就得走这个路。你光发个传单，别人不拿，你都觉得"哇这辈子我要灭亡了，拿一张纸这么难吗？"</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 07 ==================== -->
+  <div class="section-header" id="part07">
+    <div class="sec-num">PART 07</div>
+    <h2>信任感五阶段与讨人喜欢的量化</h2>
+  </div>
+
+  <p>我们知道信任感很重要，可是什么是信任感？我们如何量化信任感？它分五个阶段：</p>
+
+  <h3>第一阶：仪表</h3>
+  <p>如果我是一个外表穿得很邋遢，穿着拖鞋来，头发不整理，身上很臭——你会觉得这个人不靠谱。线下见面，或者我的微信头像也没有、朋友圈也没有、个性签名就是一个句号——你就会觉得你这个人不靠谱。</p>
+
+  <h3>第二阶：专业度</h3>
+  <p>以产品来讲，你的仪表做得可以了，产品的影片啥都做得很好，专业度也可以了。</p>
+  <blockquote>很多人会误以为专业度很关键——但如果能把专业度做好，一年 30 万差不多了。如果你想突破一年 30 万，专业度不够，你得做到讨人喜欢。</blockquote>
+  <p>除非说你的专业是已经强到没有人可以媲美，但你会发现当专业越强的人，他的人际关系越普通。</p>
+  <p>像我推荐：如果你是保险业务员，<strong>千万不要穿正装</strong>。看着很专业，别人觉得跟你有距离感。</p>
+
+  <h3>第三阶：讨人喜欢</h3>
+  <p>第三个阶段叫做讨人喜欢——这个比专业来得更重要。你到底是不是个讨喜的人？</p>
+  <blockquote>学习本身是一件很无聊的事情，成长很烦的——他们神经病没事花钱干嘛？成长真的很无聊，你还得去改变经营模式、改变一堆有的没的，最后还不一定有成绩。所以我们只能想办法做一些更好的方法，让对方愿意因为你去成长。</blockquote>
+
+  <p>那怎么讨人喜欢？<strong>夸奖就分五种：</strong></p>
+  <ul>
+    <li><strong>纯夸奖</strong>——"哦我觉得你太了不起了"。出奇好用，但夸多了别人觉得烦。</li>
+    <li><strong>举例夸奖</strong>——"诶荣坤，我觉得你的眼镜很特别，我上次看马化腾也是这类眼镜。"</li>
+    <li><strong>放大夸奖</strong>——"诶米粒，我发现每次见你都穿白色，穿白色衣服的人有一个特点，是一个特别真实跟特别直接的人，尤其白色特别适合你。"白色衣服他其实没什么，就是白色衣服，我把他放大。</li>
+    <li><strong>行为夸奖</strong>——针对对方做出的具体动作。</li>
+    <li><strong>结果夸奖</strong>——针对对方已完成的成绩。</li>
+  </ul>
+  <p>平时你聊天你会夸奖吗？你会认同吗？别人他才不听你多专业呢，你最少要让对方愿意跟你讲话吧。</p>
+
+  <h3>第四阶：价值观</h3>
+  <blockquote>就类似今天讲销售——我觉得我的销售跟别人讲的完全不一样，因为<strong>技法不是重点，而是我们怎么看待人生的关系</strong>。学销售目的是为了让你学会经营关系。</blockquote>
+  <p>所以销售的重点也不是技巧，就是你的价值观到底对不对，你的人生座右铭到底对不对。</p>
+
+  <h3>第五阶：谈话的高度</h3>
+  <p>第五个它比较难，它叫<strong>谈话的高度</strong>。最少做到前三项。大多数人只能做到专业度，少数人可以做到讨人喜欢。能做到谈话的高度的人，一定是对人生、对关系、对项目都有完整认知的人——这是最高阶的销售能力。</p>
+
+  <hr class="divider">
+
+  <!-- ==================== PART 08 ==================== -->
+  <div class="section-header" id="part08">
+    <div class="sec-num">PART 08</div>
+    <h2>深度运营与低转高的路径</h2>
+  </div>
+
+  <p class="questioner">米粒问：我做教培，客单价就这么高上不去，同样的精力我放在流量端收益更大。我跟你花一个小时可能增长率是 10%，但我用这一个小时去引流量，增长是 20%。</p>
+
+  <h3>不是能力问题，是目标问题</h3>
+  <blockquote>你的问题不是你的能力，也不是你想做什么——<strong>而是往后拉十年，如果说 50 岁的你会希望你能够是一个什么样子的生活状态？</strong></blockquote>
+  <p>像我们家是这样子，我很在乎爱情，我很清楚地知道我们之间的爱情如果要好，我们就不能够分隔两地——所以我们的工作一定不出差。我老婆在两年前有一个很好的机会，她的前老板是在美业里面特别强的一个讲师个体，一年可以赚 500 万。他希望我老婆能够去当他的助理，他想把我老婆带去。但我们一评估完之后我老婆就说不行——因为这个有违背我们的生活想要的那个样子。</p>
+  <blockquote>我看过 99% 以上的年利润可以过 300 万的人，他们的生活形态都不好——要么爱情不好，要么跟孩子关系普通，要么他根本没有时间。我发现那不是我要的。</blockquote>
+  <p>所以<strong>目标是什么才决定我要做什么</strong>，而不是没有了目标之后我就跟自己说"这个我能做，这个钱我想赚一赚"。你会发现，怎么好像事情跟我想的不太一样。</p>
+
+  <h3>交付这群人才对</h3>
+  <p>如果说你是这个目的，<strong>同样赚 100 万，服务 2000 人跟服务 20 人你选哪一个？</strong></p>
+  <p>所以这个是我们到底是想"我要干什么"，还是想"我未来想要什么，所以我现在得干什么"——这是不一样的东西。有一种叫做"我现在觉得我的客单价只有这样，我就是只能做 2000 的客单价"，这叫一种思维；可是我的思维是"我想要一年赚 100 万，这个 100 万可以让我很轻松"。</p>
+  <p>这时候我能做的只有一个——在目标不变的情况之下，<strong>改变产品结构跟产品逻辑</strong>。有没有可能从 2000 变成 4000？那就代表人数从 1000 变成 500。</p>
+  <blockquote>我 22 年的时候，我一天平均工作 10 个小时，换来一年 100 万。我现在一天平均工作也就 4 个半小时，周五六日还放假，一年也大概换来 100 万。<strong>我提升的价值可多了，这就是销售能够得到的价值所在。</strong></blockquote>
+
+  <h3>深度运营才能筛圈子</h3>
+  <p>我给你画一个家长等级的升级路径：</p>
+  <ul>
+    <li><strong>等级 1 家长</strong>——新流量，需要每天花 3 小时做新流量创造，每一单 200 元一小时，成交一个得花时间去做转化。</li>
+    <li><strong>等级 2 家长</strong>——如果等级 1 的家长发现你服务得太好了，他愿意帮你转介绍两个家长进来。介绍进来的家长就是等级 2，可以少掉二分之一的沟通成本，一样换来 200 块一小时。</li>
+    <li><strong>等级 3 家长</strong>——升到 400 块一小时。有这样的家长吗？有。我周三有一个家教班，三个姐姐她们都特别特别有钱，萧山本地人——他们的孩子学东西一小时 60 不学，120 才肯学。圈子不同收费结构就不同。</li>
+    <li><strong>等级 4 家长</strong>——3 年之后，你的群体都变成等级 4。</li>
+  </ul>
+  <blockquote>你会发现你可以为自己每一天最少省下 6 个小时以上的时间——你就不用这么累了。<strong>做那么多流量的目的，就是为了筛选出一个好的圈子。那圈子怎么筛？经营用户才可以筛选圈子，这是关键点。</strong></blockquote>
+
+  <h3>售后服务不是讲产品</h3>
+  <p>很多人会以为售后服务就是去跟他讲产品的成分、产品怎么使用——这哪叫售后服务呀？</p>
+  <blockquote><strong>售后服务叫给出产品以外的价值。</strong> 这叫售后服务的定义。</blockquote>
+  <p>你看很多保险业务员很烦的，见了面就跟你聊保险——重疾险买了下一次就聊医疗险，医疗险买了就问你朋友有没有车险需求，下一个又卖寿险。这种业务员很烦的，谁喜欢见你啊？</p>
+  <p>那你能不能给出保险以外的东西？聊聊带孩子、煮饭、变魔术、讲八字——这些都叫做价值。你越了解用户，你就越知道你的用户需要什么，然后边了解的过程你就可以从里面去延伸出更高单价的产品。</p>
+
+  <h3>老用户其实可以帮你传播</h3>
+  <p class="questioner">苏荣坤对米粒说：你的用户不学、不看课，那老师说他们会帮你转介绍，你就下意识否认——"我的用户都不来听课还怎么帮你传播？"</p>
+  <p>其实你的用户完全可以帮你传播。</p>
+  <blockquote>你不妨先把老师说的那个东西都承认了——"我不懂我的用户"你就先承认，而不是先否认。你真正去调研一下市面上做教培的这些类目，他们真的是在用非常大的精力去激发老用户来做二次传播。而且做二次传播需要注意到每一个用户用什么样的文案——<strong>成交的时候他一定会被你的某一个点打动</strong>，你的产品有 10 个卖点，有的人被 3 个打动，有的是 5 个，有的是 1 个。</blockquote>
+  <p>吃饭的时候我跟那朋友也聊过这个。我发现 2014、2015 年的时候我也有这个毛病。如果说我很清楚地知道今天给我意见的那个人一定比我优秀，可能赚的钱比我多、经验比我丰富——当他说了一个让我很诧异的答案的时候，我不要反驳，而是要说"好特别，怎么有这样的思路？你让我想一下。"</p>
+
+  <h3>认真服务每一个进来的人</h3>
+  <p>别小看一个一个地服务——像闪闪他刚想做孕妇这一块的赛道，不小心一服务几千的单就出来了。</p>
+  <blockquote>这就是高单价的转化方式——认真地去服务每一个进来的客户。就很像是你是一个衣服店的店员，客人进来你甭管他买不买，就跟他说"我看你的身材这边很适合你，买衣服就得试穿，但不用担心，不买没关系，穿看我给你评估一下。"<strong>最后他没有买有什么关系？这不就是以前做生意的最基本的原则吗？</strong></blockquote>
+  <p>客人进来我就好好服务他，我服务的目的不是为了要你买，而是要你可能会买、让买的几率增加——最后没增加有关系吗？没关系。这不就是我们做服务的人应该要做的吗？</p>
+  <p>当每一个都可以服务好，你会发现业绩自然就起来了，<strong>100% 会起来的</strong>。因为他们会感受到——"哎原来今天给你付几百你都那么认真，那我给你付几千还得了？"</p>
+
+  <h3>丰富交换是人生的心法</h3>
+  <blockquote>每天的交付都是 2000 字以上，还有图片还有整理，得到交付的人就会发现：<strong>原来今天我给你付钱，我总是能够得到更超额的东西。</strong> 所以一个人想要让他的副业或收入可以提高，唯一的原则就是——我能不能够尽量让自己成为一个丰富交换的人。</blockquote>
+  <p>这是从 22 年开始我给自己设定的点。最少要做到丰富交换。公平交换叫本分——我收 300 就给 300 的服务，本来就应该这么做。但我能不能做到丰富交换？这是一个人从幸存者进到劳动者、开始可以存钱、开始让别人看见的最大价值观。</p>
+  <p>那这个就不是技术，这就是<strong>价值观</strong>的问题。如果每一次我都可以让自己尽量做到丰富交换，那就代表说我一定可以比现在同年龄人比起来来得更好——因为你永远是那个被看见的，因为你做的永远比别人多，你想的永远比别人多。你想着想着你就可以真的成为那个比别人更多的人。</p>
+
+  <hr class="divider">
+
+  <p style="text-align:center; color:#8a7d6d; font-size:0.82rem; margin-top:2rem;">
+    <em>整理说明：本文基于 2025 年 9 月 15 日线下活动逐字稿，以根源老师第一人称视角整理归类，保留原始表达，未做改写扩写。</em>
+  </p>
+
+</article>
+
+<div class="article-footer">
+  <a href="../index.html">&larr; 返回活动目录</a>
+  <p style="margin-top:8px">生财有术 · 线下活动精华归档 &nbsp;|&nbsp; 由根源整理，AI 辅助排版</p>
+</div>
+
+<!-- Back to top -->
+<div class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</div>
+
+<script>
+// ====== THEME ======
+function getTheme(){return localStorage.getItem('sc-theme')||'dark'}
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('themeIcon').innerHTML = t==='dark'?'&#9790;':'&#9728;';
+}
+function toggleTheme(){
+  const next=getTheme()==='dark'?'light':'dark';
+  localStorage.setItem('sc-theme',next);
+  applyTheme(next);
+}
+applyTheme(getTheme());
+
+// Back to top visibility
+window.addEventListener('scroll', () => {
+  document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
+});
+
+// TOC active state
+const sections = document.querySelectorAll('.section-header');
+const tocLinks = document.querySelectorAll('.toc-bar a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  tocLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+
+</body>
+</html>

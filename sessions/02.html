@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>第02场 · 主动性是最稀缺的能力 — 生财有术线下活动</title>
+<meta name="description" content="生财有术第02场线下活动精华：主动性销售、高低客单、收入倒推法、造神计划、水晶销售案例、代理生意">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+
+  :root{--t:0.35s ease}
+
+  /* === Dark theme === */
+  [data-theme="dark"]{
+    --bg:#0a0a08;
+    --bg-bar:rgba(10,10,8,0.95);
+    --bg-tabs:rgba(18,16,12,0.95);
+    --bg-cover-a:#1a1510;--bg-cover-b:#0a0a08;
+    --bg-glow:rgba(212,160,74,0.08);
+    --bg-card:#12100c;
+    --border:#2a2218;--border-tab:#1a1510;
+    --accent:#d4a04a;
+    --accent-bg:rgba(212,160,74,0.12);
+    --accent-border:rgba(212,160,74,0.2);
+    --accent-bg2:rgba(212,160,74,0.15);
+    --accent-border2:rgba(212,160,74,0.3);
+    --text:#f0e6d6;
+    --text-quote:#d8cfc0;
+    --text-list:#c8c0b0;
+    --text-muted:#8a7d6d;
+    --text-dim:#5a5040;
+    --text-hint:#3a3020;
+    --quote-mark:rgba(212,160,74,0.2);
+    --dot-bg:#2a2218;
+    --toggle-icon:'\\263E';
+  }
+
+  /* === Light theme === */
+  [data-theme="light"]{
+    --bg:#f5faf8;
+    --bg-bar:rgba(245,250,248,0.95);
+    --bg-tabs:rgba(234,244,240,0.95);
+    --bg-cover-a:#e4f0ec;--bg-cover-b:#f5faf8;
+    --bg-glow:rgba(26,138,125,0.06);
+    --bg-card:#ffffff;
+    --border:#c8ddd6;--border-tab:#d0e0da;
+    --accent:#1a8a7d;
+    --accent-bg:rgba(26,138,125,0.08);
+    --accent-border:rgba(26,138,125,0.18);
+    --accent-bg2:rgba(26,138,125,0.1);
+    --accent-border2:rgba(26,138,125,0.25);
+    --text:#1a2e28;
+    --text-quote:#2a4a42;
+    --text-list:#3a5a52;
+    --text-muted:#7a9a90;
+    --text-dim:#a0b8b0;
+    --text-hint:#c0d4cc;
+    --quote-mark:rgba(26,138,125,0.15);
+    --dot-bg:#b8d0c8;
+    --toggle-icon:'\\2600';
+  }
+
+  html,body{height:100%;overflow:hidden;font-family:'Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--text);transition:background var(--t),color var(--t)}
+
+  /* === Top bar === */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:var(--bg-bar);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 1.2rem;height:44px;
+    transition:background var(--t),border-color var(--t);
+  }
+  .topbar .back{color:var(--text-muted);font-size:0.82rem;text-decoration:none;display:flex;align-items:center;gap:4px;transition:color var(--t)}
+  .topbar .back:hover{color:var(--accent)}
+  .topbar .title{color:var(--text);font-size:0.82rem;font-weight:600;transition:color var(--t)}
+  .topbar .right-btns{display:flex;align-items:center;gap:8px}
+  .topbar .mode-toggle{
+    font-size:0.72rem;padding:4px 12px;border-radius:5px;
+    background:var(--accent-bg);color:var(--accent);
+    border:1px solid var(--accent-border);cursor:pointer;text-decoration:none;
+    transition:all var(--t);
+  }
+  .topbar .mode-toggle:hover{background:var(--accent-bg2)}
+  .theme-btn{
+    width:30px;height:30px;border-radius:50%;
+    background:var(--accent-bg);border:1px solid var(--accent-border);
+    color:var(--accent);font-size:0.95rem;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:all var(--t);
+  }
+  .theme-btn:hover{transform:scale(1.1)}
+
+  /* === Section tabs === */
+  .tabs{
+    position:fixed;top:44px;left:0;right:0;z-index:90;
+    background:var(--bg-tabs);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border-tab);
+    display:flex;overflow-x:auto;padding:0 0.8rem;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    transition:background var(--t),border-color var(--t);
+  }
+  .tabs::-webkit-scrollbar{display:none}
+  .tabs button{
+    flex-shrink:0;padding:10px 14px;font-size:0.72rem;
+    background:none;border:none;color:var(--text-dim);
+    cursor:pointer;font-family:inherit;white-space:nowrap;
+    border-bottom:2px solid transparent;transition:all 0.2s;
+  }
+  .tabs button.active{color:var(--accent);border-bottom-color:var(--accent)}
+  .tabs button:hover{color:var(--text-muted)}
+
+  /* === Slide viewport === */
+  .viewport{position:fixed;top:82px;left:0;right:0;bottom:60px;overflow:hidden}
+  .slide-track{display:flex;height:100%;transition:transform 0.4s cubic-bezier(0.25,0.1,0.25,1)}
+
+  /* === Each slide === */
+  .slide{
+    flex-shrink:0;width:100vw;height:100%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:2rem 2.5rem;text-align:center;position:relative;
+    background:var(--bg);transition:background var(--t);
+  }
+  .slide.cover{
+    background:linear-gradient(160deg,var(--bg-cover-a) 0%,var(--bg-cover-b) 60%);
+  }
+  .slide.cover::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 50% 80%,var(--bg-glow) 0%,transparent 55%);
+    pointer-events:none;
+  }
+
+  .slide-inner{max-width:640px;width:100%;position:relative;z-index:1}
+  .slide-num{font-size:0.65rem;color:var(--text-dim);letter-spacing:3px;margin-bottom:0.8rem;font-weight:500;transition:color var(--t)}
+  .part-label{
+    display:inline-block;font-size:0.7rem;padding:5px 16px;border-radius:20px;
+    background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent-border);
+    margin-bottom:1.2rem;letter-spacing:2px;transition:all var(--t);
+  }
+  .slide-title{font-size:1.6rem;font-weight:900;color:var(--text);line-height:1.4;margin-bottom:1rem;transition:color var(--t)}
+  @media(min-width:768px){.slide-title{font-size:2rem}}
+  .slide-title .accent{color:var(--accent);transition:color var(--t)}
+
+  .slide-quote{
+    font-size:1.15rem;line-height:1.9;color:var(--text-quote);
+    margin-bottom:1.2rem;position:relative;padding:0 0.5rem;transition:color var(--t);
+  }
+  @media(min-width:768px){.slide-quote{font-size:1.3rem}}
+  .slide-quote::before{
+    content:'\201C';position:absolute;top:-1.2rem;left:-0.3rem;
+    font-size:3rem;color:var(--quote-mark);font-family:Georgia,serif;line-height:1;transition:color var(--t);
+  }
+  .slide-quote strong{color:var(--accent);font-weight:700}
+
+  .slide-context{font-size:0.82rem;line-height:1.8;color:var(--text-muted);max-width:520px;margin:0 auto;transition:color var(--t)}
+
+  .slide-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:1.2rem}
+  .slide-tags span{font-size:0.72rem;padding:5px 14px;border-radius:6px;background:var(--bg-cover-a);color:var(--text-muted);border:1px solid var(--border);transition:all var(--t)}
+
+  .slide-products{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:1rem auto 0;max-width:520px;text-align:left}
+  .slide-products .sp{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;transition:all var(--t)}
+  .slide-products .sp .sp-name{font-size:0.82rem;font-weight:700;color:var(--accent);margin-bottom:2px;transition:color var(--t)}
+  .slide-products .sp .sp-desc{font-size:0.7rem;color:var(--text-muted);line-height:1.5;transition:color var(--t)}
+  @media(max-width:480px){.slide-products{grid-template-columns:1fr}}
+
+  .slide-list{text-align:left;max-width:480px;margin:0.8rem auto 0;list-style:none}
+  .slide-list li{font-size:0.92rem;color:var(--text-list);line-height:1.8;padding-left:1.4rem;position:relative;margin-bottom:0.3rem;transition:color var(--t)}
+  .slide-list li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-weight:700}
+  .slide-list li strong{color:var(--accent)}
+
+  .slide-steps{text-align:left;max-width:500px;margin:0.8rem auto 0}
+  .slide-steps .step{display:flex;gap:12px;margin-bottom:0.8rem;align-items:flex-start}
+  .slide-steps .step-num{
+    flex-shrink:0;width:28px;height:28px;border-radius:50%;
+    background:var(--accent-bg2);border:1px solid var(--accent-border2);
+    color:var(--accent);font-size:0.78rem;font-weight:700;
+    display:flex;align-items:center;justify-content:center;margin-top:2px;transition:all var(--t);
+  }
+  .slide-steps .step-text{font-size:0.88rem;color:var(--text-list);line-height:1.7;transition:color var(--t)}
+  .slide-steps .step-text strong{color:var(--accent)}
+
+  .questioner-badge{
+    display:inline-block;font-size:0.7rem;padding:3px 12px;border-radius:4px;
+    background:var(--accent-bg);color:var(--accent);margin-bottom:0.8rem;transition:all var(--t);
+  }
+
+  /* === Bottom bar === */
+  .bottombar{
+    position:fixed;bottom:0;left:0;right:0;height:60px;
+    background:var(--bg-bar);backdrop-filter:blur(8px);
+    border-top:1px solid var(--border-tab);
+    display:flex;align-items:center;justify-content:center;
+    gap:1.5rem;z-index:90;padding:0 1rem;
+    transition:background var(--t),border-color var(--t);
+  }
+  .nav-btn{
+    width:40px;height:40px;border-radius:50%;
+    background:var(--accent-bg);border:1px solid var(--accent-border);
+    color:var(--accent);font-size:1.1rem;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:all 0.2s;flex-shrink:0;
+  }
+  .nav-btn:hover{background:var(--accent-bg2)}
+  .nav-btn:disabled{opacity:0.3;cursor:default}
+  .dots{display:flex;gap:6px;align-items:center;overflow-x:auto;max-width:calc(100vw - 160px);scrollbar-width:none}
+  .dots::-webkit-scrollbar{display:none}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--dot-bg);flex-shrink:0;transition:all 0.3s;cursor:pointer}
+  .dot.active{background:var(--accent);width:24px;border-radius:4px}
+  .slide-counter{font-size:0.72rem;color:var(--text-dim);flex-shrink:0;min-width:50px;text-align:center;transition:color var(--t)}
+
+  .key-hint{position:fixed;bottom:68px;left:50%;transform:translateX(-50%);font-size:0.65rem;color:var(--text-hint);pointer-events:none;transition:color var(--t)}
+  @media(max-width:768px){.key-hint{display:none}}
+  @media(max-width:640px){.topbar .title{display:none}.topbar{padding:0 0.8rem}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html" class="back">&larr; 目录</a>
+  <span class="title">第02场 · 主动性是最稀缺的能力</span>
+  <div class="right-btns">
+    <a href="02-article.html" class="mode-toggle">文章版</a>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="切换明暗模式"><span id="themeIcon"></span></button>
+  </div>
+</div>
+
+<div class="tabs" id="tabs"></div>
+
+<div class="viewport" id="viewport">
+  <div class="slide-track" id="track"></div>
+</div>
+
+<div class="bottombar">
+  <button class="nav-btn" id="prevBtn" onclick="go(-1)">&larr;</button>
+  <div class="dots" id="dots"></div>
+  <span class="slide-counter" id="counter"></span>
+  <button class="nav-btn" id="nextBtn" onclick="go(1)">&rarr;</button>
+</div>
+<div class="key-hint">&larr; &rarr; 方向键翻页 &nbsp;|&nbsp; 数字键切换章节</div>
+
+<script>
+// ====== THEME ======
+function getTheme(){return localStorage.getItem('sc-theme')||'dark'}
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  document.getElementById('themeIcon').innerHTML = t==='dark'?'&#9790;':'&#9728;';
+}
+function toggleTheme(){
+  const next=getTheme()==='dark'?'light':'dark';
+  localStorage.setItem('sc-theme',next);
+  applyTheme(next);
+}
+applyTheme(getTheme());
+
+// ====== SLIDE DATA ======
+const sections = [
+  {
+    id:'part01', label:'线下礼仪',
+    slides:[
+      {type:'cover',title:'线下礼仪<br>与<span class="accent">现场印象</span>',quote:'这个时代人与人的印象会放在业务之前，当你对这个人没有好感，他的业务你不会有兴趣。',context:'第02场 · 2025年8月18日'},
+      {title:'我习惯<span class="accent">提早到场</span>',quote:'参加任何活动我一定提早到，我今天 12 点就到了。这是我的习惯，因为今天我是主局的，慢一点 12 点半我一定到。',context:'到了之后每个人进来我就会去聊聊他的名字。你们一个一个进来我就一个一个念，十个进来我就等于名字念了十圈。'},
+      {title:'加微信一定要<br><span class="accent">主动扫对方</span>',quote:'我会跟对方说，诶我扫你，我不会让他找我。因为我扫你是一种尊重他的角色，我是放低的角色。',context:'扫完之后有一个更重要的环节：他只要没有点确认，我不会从他身边离开。我会跟他说我的名字是哪一个。'},
+      {title:'手机<span class="accent">一定要静音</span>',quote:'我的手机，加所有好友的那一刻我会先把提醒关了。震动太多别人也不好意思说，但这举动挺尴尬——一震动就可能会打乱别人的专注力。',context:'我手机但凡震动，一定是重要的事情。我会事先告诉别人「我等下手机可能会响，因为有个师傅要来我家」，把话说前头，他就不会觉得尴尬。'},
+      {title:'坐上菜位的<span class="accent">小诀窍</span>',quote:'如果这不是我的局，我却习惯性坐门边的位置——因为门边是上菜位，身份越资浅越要坐。',context:'假设我跟我老婆去参加别人的局，我们就会坐那个最不好的位置，把上菜位先坐走了，别人来就不用坐那个尴尬的位置。'},
+      {title:'空一格坐<br>会让别人<span class="accent">产生误会</span>',quote:'你一定不能坐他的隔一个或者两个位置，要么坐正对面，要么坐他正旁边。',context:'假设你坐那，我来了，我空一格坐这，你会有什么感觉？他会想说「你是不是觉得我怎么样？嫌弃我？」这就是误会。'}
+    ]
+  },
+  {
+    id:'part02', label:'主动性红利',
+    slides:[
+      {type:'cover',title:'这个时代<br>是<span class="accent">哀人多</span>',quote:'大多数人都是哀人。哀人越多，主动者的红利就越大。',questioner:'丽子问：水晶 168 一颗，我每天聊很多客户都不成交，是不是沟通成本太高了？'},
+      {title:'哀人<br>不是<span class="accent">害羞</span>',quote:'这个时代的哀人偏多。哀人不是害羞，哀人叫做<strong>主动性弱</strong>——天生习惯等别人主动来找我。',context:'只要大多数人都是哀人，主动者的红利就到了。'},
+      {title:'被拒绝<br>本来就是<span class="accent">销售的常态</span>',quote:'被拒绝就算了呀，被拒绝本来就是销售的常态。我们能不能有礼貌地主动一点？',context:'客户不买你东西不代表他看不起你，可能只是目前没有需求，或者手边没闲钱。不要把成交跟交情绑在一起，这样你才敢开口。'},
+      {title:'非必需品<br>意味着<span class="accent">主动性要更强</span>',quote:'水晶是非必需品。当人钱赚得少了，他一定先把非必要的东西砍掉——学乐器、出去玩、买水晶。',context:'房贷、孩子学费不能砍，那就只能砍那些「本来就可有可无」的东西。所以你要比过去更主动地去触达客户。'},
+      {title:'现在的消费者<br><span class="accent">更在乎过程</span>',quote:'如果你加我好友发现你不理我，我可能就不跟你买了。我会去找那个「我加好友他会主动说，我看到你加我好友，有没有什么事我可以帮上忙」的人。',context:'连我们是个消费者，我们买东西都会在乎这个过程。现在 90% 以上的副业都必须有销售行为，销售的前提就是沟通，沟通的前提就是主动。'}
+    ]
+  },
+  {
+    id:'part03', label:'收入倒推',
+    slides:[
+      {type:'cover',title:'收入倒推法<br><span class="accent">先算钱，再推动作</span>',quote:'大多数人做副业都会有个问题：他根本不知道这个副业要达到什么程度。'},
+      {title:'目标要乘<br><span class="accent">1.5 到 2 倍</span>',quote:'收入目标尽量在你曾经拥有过的收入上，乘个 1.5 到 2 倍是最合理的。',context:'最怕的就是以前一年赚 20 万，做了副业就说今年 100 万。就算做到了第二年一定往下掉，因为他过去没有过这个经验，不知道 100 万的人在想什么。'},
+      {title:'4万 一个月<br>倒推<span class="accent">每天该做的动作</span>',steps:[{n:'1',text:'<strong>一年 50 万</strong>，每月大概 4 万多'},{n:'2',text:'<strong>每天大概 1500</strong>，一条水晶利润 100'},{n:'3',text:'<strong>每天要卖 15 条</strong>，反推成交率和触达人数'}],context:'那我就得算我的成交率是多少。如果我推荐 10 个人成交 4 单，成交率 40%，我就知道每天要聊多少人。'},
+      {title:'驱动力<br>不是<span class="accent">梦想而是刚性支出</span>',quote:'这个时代能用梦想驱动的人只占 1%。更多的是刚性支出驱动，或者债务驱动。',context:'梦想驱动就是「我要有豪车，我要有好房」——今天这个时代这个占比很小。刚性支出就是你有孩子、有房贷、有债务。'},
+      {title:'我的<span class="accent">产品阶梯</span>',products:[{name:'365 元',desc:'年度陪伴群 · 入门产品'},{name:'4999 元',desc:'销售训练营 · 主力课程'},{name:'26800 元',desc:'进阶陪伴 · 1~12个月'},{name:'25 万元',desc:'终身人生教练 · 定制服务'}],context:'越高金额越不是标准化产品。365 是为了让陌生人进来体验，25 万是陪伴式终身服务。'},
+      {title:'我一天<br>就<span class="accent">谈一个</span>',quote:'最近我给自己也没压力，一天我就谈一个。目前 7 天我成交了 6 个，只有一个没成交。',context:'一天成交完这一个，今天这件事情我下班了。销售就是每天追踪一个具体的动作。'}
+    ]
+  },
+  {
+    id:'part04', label:'客群差异',
+    slides:[
+      {type:'cover',title:'高客单低客单<br><span class="accent">不是同一批人</span>',quote:'会花 99 的跟会花 9 万 9 的，他们本来就不是一个群体。'},
+      {title:'销售最有价值的<br>在于<span class="accent">他的圈子</span>',quote:'花 99 进这个群，跟花 3000 进这个群，得到的圈子是不一样的。',context:'如果你只是一年赚 10 万的人，混了一个要付 9 万才能进去的圈子，你会感觉很吃力——你经营不了他们，聊不上话。'},
+      {title:'水晶到顶<br>就是<span class="accent">身心灵</span>',quote:'水晶赛道的最高顶点是什么？身心灵。水晶谁都能卖，义乌批个货就是了，关键是他们买水晶是为了得到情绪价值。',context:'一个做水晶私域的人如果不知道怎么给对方情绪价值，怎么卖得动？这又回到一个点：你平时到底会不会关心你的客户？'},
+      {title:'低客单的<span class="accent">经营成本</span>',quote:'我接几百的单跟几千的单，运营成本是一样的。因为我经营客户代表的是「他付钱了之后怎么让他再付第二次」。',context:'如果这产品是非刚需的消费品，二转的时间不要拉太快。你得先抓到他的预算、了解他的需求，才能推下一个产品。'},
+      {title:'高客单客户<br><span class="accent">一定跟你走得近</span>',quote:'我的 25 万终身教练，我肯定要么跟他去过他家玩，要么一起待过两三天。因为这不再是标准化产品，是陪伴。',context:'录播课对我来讲就是「学了跟没学一样」。只有陪伴在这个时代才有成长的价值——但凡不做陪伴，成长是不会发生的。'}
+    ]
+  },
+  {
+    id:'part05', label:'报价流程',
+    slides:[
+      {type:'cover',title:'客户一上来问价<br><span class="accent">千万不能直接报</span>',quote:'但凡一开始就开口讲价格，客户走的可能性特别大。',questioner:'丽子问：客户一来就问价格，我不想聊太多，又怕他一听价格就走，怎么办？'},
+      {title:'反问<span class="accent">需求</span>',quote:'当客户问我产品的价格，我就会说，我能不能先知道一下你是什么样的需求？所以想找到我来问水晶？',context:'或者我会说，水晶价格从低到高都有，因应不同的需求会有不同的价位。所以我能知道一下你买水晶的场景吗？你的预算吗？'},
+      {title:'问需求<br>不是<span class="accent">套路</span>',quote:'你的预算越明确，我能够给你一些更好的建议和更精准的课程介绍。',context:'我担心的就是你预算 8000，我给你介绍 299 的，我多不好意思呀；或者你没那么高预算，我给你介绍几千的，你尴尬，我也尴尬。'},
+      {title:'客户消失的<br><span class="accent">五种情况</span>',list:['<strong>从没聊过</strong> — 你想主动切入话题','<strong>问完价格消失</strong> — 你报早了，没有铺垫','<strong>聊得好但报完价消失</strong> — 犹豫期没给台阶','<strong>成交后没复购</strong> — 经营不够，没给他下一个价值','<strong>谈代理最后不回</strong> — 一次性讲太多反而把他逼走']},
+      {title:'前面<span class="accent">一个小时</span><br>都在闲聊',quote:'一个两个小时的见面谈产品，最后 20 分钟才真的讲产品，中间一个小时 40 分钟都在闲聊。',context:'成交就是最后那 3 分钟付钱。所以一个沟通里面 2~3 分钟是产品加成交，前面的关系经营占很大很大的部分。'}
+    ]
+  },
+  {
+    id:'part06', label:'代理生意',
+    slides:[
+      {type:'cover',title:'代理生意的<br><span class="accent">造神计划</span>',quote:'代理项目的第一步是造一个神。',questioner:'蛋挞问：做代理生意，选代理该怎么选？'},
+      {title:'选听话的<br>不是<span class="accent">选能力强</span>',quote:'筛选代理的时候，不要筛选能力强的，筛选听话的。能力强的会跟别人跑，听话的你可以真地把他带出一点成绩。',context:'我的老师做保险时，她的原则一样：招人先看听不听话。听话的人你教他什么他做什么，三个月后你就有一个可复制的标准动作。'},
+      {title:'做代理第一步<br>是<span class="accent">造神</span>',quote:'做代理生意只有一个原则叫造神计划。这个神只要出来，它就是你的案例，只有它出来你才可以把项目做起来。',context:'别人会说，妈这小姑娘看起来啥也不是，怎么她也能把事业做起来？旁边的人就会说，哈，我比她漂亮那么多，我就不信我干不起来。'},
+      {title:'代理必须<br>先当<span class="accent">消费者</span>',quote:'代理项目必须具备个能力：我要能够把水晶卖出去。如果我都不想买，我就不会知道想买水晶的人是哪一些。',context:'所以我不会招只想做代理的人。一定是你先从买水晶开始，但凡没有买水晶你跟我谈代理，我一律不接。'},
+      {title:'培训权<br><span class="accent">一定抓在自己身上</span>',quote:'做代理生意的一定要把某一个培训抓在自己身上，你的人才有忠诚度。',context:'如果你的培训都是属于公司在做，你的人对你没有忠诚度。他会觉得「老师遇到什么都不会，问什么都说去问公司」，最终他就不会信服于你。'},
+      {title:'大团队<br>早会<span class="accent">4个半小时</span>',quote:'我们当时团队 4 万人，早上 7 点半开会到 12 点，一天早会 4 个半小时。啥都教：主持、音控、销售、培训、八字、心理咨询。',context:'我们的目的就一个——让他下午见客户有话题可以聊。教他电影欣赏、电视剧欣赏、怎么分析书，这些我们全教。'}
+    ]
+  },
+  {
+    id:'part07', label:'生活模式',
+    slides:[
+      {type:'cover',title:'项目要<br>结合<span class="accent">生活模式</span>',quote:'重点不是你想做什么项目，而是这个项目能不能让你完成你想要的生活模式。'},
+      {title:'我一年<span class="accent">赚 100 万</span><br>一周工作 4 天',quote:'我平均每天工作 4 到 4 个半小时，一周只工作 4 天。一年平均大概赚 100 万。',context:'周五放假，五六日我都放假。我有时间看电影、陪老婆陪孩子煮饭、刷手机、看电视。《斗罗大陆》《神印王座》全看完，脱口秀两季全看完。'},
+      {title:'<span class="accent">500 万</span>就不是我要的',quote:'如果我设定一年要赚 500 万以上，我的生活模式就不一定会是我想要的。不是我不喜欢钱——谁不喜欢多赚钱。',context:'我更想要一个生活模式去结合我怎么赚钱。所以选项目我就会有我的评估，而不是「这个项目好我就做」。'},
+      {title:'最好成交与<br><span class="accent">最差成交</span>',quote:'最好成交是「老师特别谢谢你跟我讲这个产品」，最差成交是「你别再烦我了，我付钱」——都是成交呀。',context:'我经历过太多这种单子。从最差成交到最好成交，中间每一个环节都是你可以练的东西。'},
+      {title:'我也是<br><span class="accent">苦来的</span>',quote:'2012 年我刚开始，所有活动只要台上说「谁要分享」，我们老师要求必须第一个举手。我举手那一刻脑袋是空白的，也不知道要讲什么。',context:'然后第一次主持活动，我上去说「你们好，我是根源」，老师的老公就说「下来重走一次」，我来来回回走了 60 趟，他说口气不对、步骤不对，我就乖乖一直上去下来，全都经历过。'},
+      {title:'这就是<br><span class="accent">风口</span>',quote:'这个时代要赚钱，你要不就是技术大佬，要不就是资源超级丰富，要不就是思维无可取代——不然你只能干销售。',context:'所以我一直觉得销售是风口。流量进来没有转化，它就只是流量——你得学怎么转化流量。会的人不多，这就是这条路的机会。'}
+    ]
+  }
+];
+
+// ====== STATE ======
+let currentSection=0, currentSlide=0;
+
+function renderTabs(){
+  document.getElementById('tabs').innerHTML=sections.map((s,i)=>
+    `<button class="${i===currentSection?'active':''}" onclick="switchSection(${i})">${s.label}</button>`
+  ).join('');
+}
+
+function renderSlides(){
+  const s=sections[currentSection];
+  document.getElementById('track').innerHTML=s.slides.map((sl,i)=>{
+    let cls='slide '+(sl.type==='cover'?'cover':'content');
+    let h=`<div class="${cls}"><div class="slide-inner">`;
+    h+=`<div class="slide-num">${s.label} · ${i+1}/${s.slides.length}</div>`;
+    if(sl.type==='cover') h+=`<div class="part-label">PART 0${currentSection+1}</div>`;
+    if(sl.questioner) h+=`<div class="questioner-badge">${sl.questioner}</div>`;
+    if(sl.title) h+=`<h2 class="slide-title">${sl.title}</h2>`;
+    if(sl.quote) h+=`<div class="slide-quote">${sl.quote}</div>`;
+    if(sl.list) h+=`<ul class="slide-list">${sl.list.map(l=>`<li>${l}</li>`).join('')}</ul>`;
+    if(sl.steps) h+=`<div class="slide-steps">${sl.steps.map(st=>`<div class="step"><div class="step-num">${st.n}</div><div class="step-text">${st.text}</div></div>`).join('')}</div>`;
+    if(sl.products) h+=`<div class="slide-products">${sl.products.map(p=>`<div class="sp"><div class="sp-name">${p.name}</div><div class="sp-desc">${p.desc}</div></div>`).join('')}</div>`;
+    if(sl.context) h+=`<p class="slide-context">${sl.context}</p>`;
+    return h+`</div></div>`;
+  }).join('');
+  document.getElementById('dots').innerHTML=s.slides.map((_,i)=>
+    `<div class="dot ${i===currentSlide?'active':''}" onclick="goTo(${i})"></div>`
+  ).join('');
+  updatePosition(false);
+}
+
+function updatePosition(anim=true){
+  const t=document.getElementById('track');
+  t.style.transition=anim?'transform 0.4s cubic-bezier(0.25,0.1,0.25,1)':'none';
+  t.style.transform=`translateX(-${currentSlide*100}vw)`;
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));
+  const total=sections[currentSection].slides.length;
+  document.getElementById('counter').textContent=`${currentSlide+1} / ${total}`;
+  document.getElementById('prevBtn').disabled=(currentSlide===0&&currentSection===0);
+  document.getElementById('nextBtn').disabled=(currentSlide===total-1&&currentSection===sections.length-1);
+  const ad=document.querySelector('.dot.active');if(ad)ad.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+}
+
+function switchSection(i){currentSection=i;currentSlide=0;renderTabs();renderSlides()}
+
+function go(dir){
+  const total=sections[currentSection].slides.length, next=currentSlide+dir;
+  if(next>=0&&next<total){currentSlide=next;updatePosition()}
+  else if(dir>0&&currentSection<sections.length-1){currentSection++;currentSlide=0;renderTabs();renderSlides();const at=document.querySelector('.tabs button.active');if(at)at.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}
+  else if(dir<0&&currentSection>0){currentSection--;currentSlide=sections[currentSection].slides.length-1;renderTabs();renderSlides();const at=document.querySelector('.tabs button.active');if(at)at.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}
+}
+function goTo(i){currentSlide=i;updatePosition()}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown')go(1);
+  else if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1);
+  else if(e.key>='1'&&e.key<='8')switchSection(parseInt(e.key)-1);
+});
+
+let touchX=0,swiping=false;
+const vp=document.getElementById('viewport');
+vp.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX;swiping=true},{passive:true});
+vp.addEventListener('touchmove',e=>{if(swiping&&Math.abs(e.touches[0].clientX-touchX)>10)e.preventDefault()},{passive:false});
+vp.addEventListener('touchend',e=>{if(!swiping)return;swiping=false;const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>50)go(dx<0?1:-1)});
+
+renderTabs();renderSlides();
+</script>
+</body>
+</html>
