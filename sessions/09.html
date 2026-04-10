@@ -178,18 +178,25 @@ body{
 }
 
 .bottombar{
-  position:fixed;bottom:0;left:0;right:0;height:56px;
+  position:fixed;bottom:0;left:0;right:0;height:64px;
   background:var(--bg);border-top:1px solid var(--line);
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 16px;z-index:100;
+  padding:0 20px;z-index:100;gap:12px;
 }
 .bottombar .nav{
-  background:none;border:1px solid var(--line);color:var(--fg-dim);
-  width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;
-  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,217,163,.08);border:1px solid var(--line);color:var(--accent);
+  min-width:92px;height:40px;border-radius:20px;cursor:pointer;font-size:13px;font-weight:600;
+  letter-spacing:1px;font-family:inherit;
+  display:flex;align-items:center;justify-content:center;gap:6px;padding:0 18px;
+  transition:all .2s;flex-shrink:0;
 }
-.bottombar .nav:hover{color:var(--accent);border-color:var(--accent)}
-.bottombar .nav:disabled{opacity:.3;cursor:not-allowed}
+.bottombar .nav .arrow{font-size:15px;line-height:1}
+.bottombar .nav:hover{background:rgba(0,217,163,.15);border-color:var(--accent);transform:translateY(-1px)}
+.bottombar .nav:disabled{opacity:.3;cursor:not-allowed;transform:none}
+@media(max-width:520px){
+  .bottombar .nav{min-width:44px;padding:0 10px}
+  .bottombar .nav .label{display:none}
+}
 .bottombar .dots{
   flex:1;display:flex;justify-content:center;gap:5px;
   max-width:60%;overflow-x:auto;scrollbar-width:none;
@@ -201,6 +208,22 @@ body{
 }
 .bottombar .dot.active{background:var(--accent);width:18px;border-radius:3px}
 .bottombar .count{font-size:12px;color:var(--fg-mute);min-width:40px;text-align:right}
+
+.key-hint{
+  position:fixed;bottom:76px;left:50%;transform:translateX(-50%);
+  font-size:11px;color:var(--fg-mute);pointer-events:none;
+  display:flex;align-items:center;gap:6px;
+  background:var(--bg);padding:5px 14px;border-radius:20px;
+  border:1px solid var(--line);backdrop-filter:blur(6px);
+  opacity:.85;z-index:99;
+}
+.key-hint kbd{
+  font-family:'SF Mono',Monaco,monospace;font-size:11px;
+  padding:1px 6px;border-radius:4px;
+  background:var(--card);border:1px solid var(--line);
+  color:var(--accent);line-height:1.4;
+}
+@media(max-width:768px){.key-hint{display:none}}
 
 @media(max-width:380px){
   .slide h1{font-size:24px}
@@ -229,11 +252,12 @@ body{
 </div>
 
 <div class="bottombar">
-  <button class="nav" id="prev" onclick="go(-1)">‹</button>
+  <button class="nav" id="prev" onclick="go(-1)"><span class="arrow">←</span><span class="label">上一页</span></button>
   <div class="dots" id="dots"></div>
   <div class="count" id="count">1 / 1</div>
-  <button class="nav" id="next" onclick="go(1)">›</button>
+  <button class="nav" id="next" onclick="go(1)"><span class="label">下一页</span><span class="arrow">→</span></button>
 </div>
+<div class="key-hint"><kbd>←</kbd><kbd>→</kbd> 翻页 &middot; 左右滑动</div>
 
 <script>
 const sections = [

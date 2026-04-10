@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root{--t:0.3s ease}
+html{font-size:clamp(15px,0.55vw + 12px,20px)}
 [data-theme="dark"]{
   --bg:#0a0a0a;--bg-1:#111;--bg-2:#1a1a1a;
   --fg:#f5f5f5;--fg-dim:#bdbdbd;--fg-mute:#888;
@@ -247,6 +248,41 @@ body{
   .info-box .row{flex-direction:column;gap:4px}
   .info-box .row .k{width:auto}
 }
+
+  /* PPT version button - prominent */
+  .top-bar .ppt-btn {
+    font-size: 0.78rem;
+    padding: 6px 14px;
+    border-radius: 16px;
+    background: var(--accent-bg2);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all var(--t);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .top-bar .ppt-btn:hover {
+    background: var(--accent);
+    color: var(--bg);
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+
+  /* Scroll-hide TOC */
+  .toc-bar {
+    transition: transform 0.3s ease, opacity 0.3s ease, background var(--t), border-color var(--t);
+    will-change: transform;
+  }
+  .toc-bar.hidden {
+    transform: translateY(-120%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
 </style>
 </head>
 <body>
@@ -254,7 +290,7 @@ body{
 <div class="top-bar">
   <a href="../index.html" class="back">← 返回档案馆</a>
   <div class="session-title">第09场 · 混圈与沉淀</div>
-  <a href="09.html" class="download-btn">幻灯片</a>
+  <a href="09.html" class="ppt-btn">&#9635; PPT版</a>
   <div class="theme-switcher" id="themeSwitcher">
     <button class="chip" data-t="dark" onclick="setTheme('dark')" title="夜">夜</button>
     <button class="chip" data-t="light" onclick="setTheme('light')" title="昼">昼</button>
@@ -502,6 +538,19 @@ function applyTheme(t){
 }
 function setTheme(t){localStorage.setItem('sc-theme',t);applyTheme(t)}
 applyTheme(getTheme());
+
+// Scroll-hide TOC bar
+(function(){
+  let lastY = 0, toc = document.querySelector('.toc-bar');
+  if(!toc) return;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > 200 && y > lastY) toc.classList.add('hidden');
+    else toc.classList.remove('hidden');
+    lastY = y;
+  }, {passive:true});
+})();
+
 window.addEventListener("scroll",()=>{
   const btn = document.querySelector(".back-top");
   btn.classList.toggle("show",window.scrollY>400);

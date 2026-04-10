@@ -9,6 +9,8 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root { --t: 0.35s ease; }
+  html { font-size: clamp(15px, 0.55vw + 12px, 20px); }
+
 
   /* === Dark theme === */
   [data-theme="dark"] {
@@ -488,6 +490,41 @@
     .toc-bar { padding: 10px 1rem; justify-content: flex-start; }
     .top-bar .session-title { display: none; }
   }
+
+  /* PPT version button - prominent */
+  .top-bar .ppt-btn {
+    font-size: 0.78rem;
+    padding: 6px 14px;
+    border-radius: 16px;
+    background: var(--accent-bg2);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all var(--t);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .top-bar .ppt-btn:hover {
+    background: var(--accent);
+    color: var(--bg);
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+
+  /* Scroll-hide TOC */
+  .toc-bar {
+    transition: transform 0.3s ease, opacity 0.3s ease, background var(--t), border-color var(--t);
+    will-change: transform;
+  }
+  .toc-bar.hidden {
+    transform: translateY(-120%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
 </style>
 </head>
 <body>
@@ -497,6 +534,7 @@
   <a href="../index.html" class="back">&larr; 返回目录</a>
   <span class="session-title">第03场 · 销售是通才的生意</span>
   <div class="right-btns">
+    <a href="03.html" class="ppt-btn">&#9635; PPT版</a>
     <a href="../downloads/第03场-销售是通才的生意-精华整理.md" download class="download-btn">下载 .md</a>
     <div class="theme-switcher" id="themeSwitcher">
       <button class="chip" data-t="dark" onclick="setTheme('dark')" title="夜">夜</button>
@@ -845,6 +883,19 @@ function applyTheme(t){
 }
 function setTheme(t){localStorage.setItem('sc-theme',t);applyTheme(t)}
 applyTheme(getTheme());
+
+// Scroll-hide TOC bar
+(function(){
+  let lastY = 0, toc = document.querySelector('.toc-bar');
+  if(!toc) return;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > 200 && y > lastY) toc.classList.add('hidden');
+    else toc.classList.remove('hidden');
+    lastY = y;
+  }, {passive:true});
+})();
+
 
 // Back to top visibility
 window.addEventListener('scroll', () => {
