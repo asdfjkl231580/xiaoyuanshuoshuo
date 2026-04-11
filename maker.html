@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Maker — 文档变精美网页</title>
+<style>
+/* ===== 基础变量 ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a08;--bg2:#12100c;--bg3:#1a1510;
+  --accent:#d4a04a;--accent-dim:rgba(212,160,74,0.12);--accent-border:rgba(212,160,74,0.28);
+  --text:#c8c0b0;--text-h:#f0e6d6;--text-m:#8a7d6d;--text-d:#5a5040;
+  --border:#2a2218;--card:#100f0b;--t:0.3s ease;
+  --max:860px;
+}
+body{font-family:-apple-system,'PingFang SC','Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:rgba(212,160,74,0.3);color:var(--text-h)}
+
+/* ===== 页面状态切换 ===== */
+.screen{display:none;min-height:100vh}
+.screen.active{display:flex}
+
+/* ===== 1. LANDING 落地页 ===== */
+#sLanding{flex-direction:column;align-items:center;justify-content:flex-start;padding:0}
+
+/* 顶栏 */
+.nav{width:100%;max-width:var(--max);margin:0 auto;padding:20px 24px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:15px;font-weight:700;color:var(--text-h);letter-spacing:0.5px}
+.nav-logo span{color:var(--accent)}
+.nav-cta{padding:9px 22px;background:linear-gradient(135deg,#d4a04a,#c4863a);color:#0a0a08;font-size:13px;font-weight:700;border:none;border-radius:8px;cursor:pointer;font-family:inherit;transition:all 0.3s}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px -4px rgba(212,160,74,0.5)}
+
+/* Hero */
+.hero{width:100%;text-align:center;padding:72px 24px 60px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(212,160,74,0.07) 0%,transparent 65%);pointer-events:none}
+.hero-badge{display:inline-block;padding:5px 14px;border:1px solid var(--accent-border);border-radius:100px;font-size:12px;color:var(--accent);letter-spacing:1px;margin-bottom:24px}
+.hero h1{font-size:clamp(36px,6vw,64px);font-weight:900;color:var(--text-h);line-height:1.15;margin-bottom:20px}
+.hero h1 .acc{color:var(--accent)}
+.hero .sub{font-size:clamp(15px,2vw,18px);color:var(--text-m);max-width:520px;margin:0 auto 44px;line-height:1.8}
+.hero-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 40px;background:linear-gradient(135deg,#d4a04a,#c4863a);color:#0a0a08;font-size:16px;font-weight:800;border:none;border-radius:12px;cursor:pointer;font-family:inherit;transition:all 0.3s;box-shadow:0 8px 32px -8px rgba(212,160,74,0.4)}
+.hero-btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px -8px rgba(212,160,74,0.55)}
+.hero-hint{margin-top:14px;font-size:12px;color:var(--text-d)}
+
+/* 演示样本 */
+.demo-strip{width:100%;max-width:var(--max);margin:0 auto;padding:0 24px 64px}
+.demo-strip-title{text-align:center;font-size:11px;letter-spacing:3px;color:var(--text-d);text-transform:uppercase;margin-bottom:20px}
+.demo-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.demo-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all 0.3s;cursor:pointer;text-decoration:none}
+.demo-card:hover{border-color:var(--accent-border);transform:translateY(-3px);box-shadow:0 12px 40px -8px rgba(0,0,0,0.4)}
+.demo-card-img{width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,#12100a,#1a1510);display:flex;align-items:center;justify-content:center;font-size:32px;border-bottom:1px solid var(--border)}
+.demo-card-body{padding:14px 16px}
+.demo-card-title{font-size:13px;font-weight:600;color:var(--text-h);margin-bottom:4px}
+.demo-card-desc{font-size:11px;color:var(--text-m)}
+
+/* 功能特性 */
+.features{width:100%;max-width:var(--max);margin:0 auto;padding:0 24px 80px}
+.section-label{font-size:11px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:32px;text-align:center}
+.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.feat-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px}
+.feat-icon{font-size:28px;margin-bottom:12px}
+.feat-title{font-size:15px;font-weight:700;color:var(--text-h);margin-bottom:8px}
+.feat-desc{font-size:13px;color:var(--text-m);line-height:1.7}
+
+/* 工作流说明 */
+.flow{width:100%;max-width:var(--max);margin:0 auto;padding:0 24px 80px}
+.flow-steps{display:flex;flex-direction:column;gap:0}
+.flow-step{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border)}
+.flow-step:last-child{border-bottom:none}
+.flow-num{width:40px;height:40px;min-width:40px;border:1px solid var(--accent-border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--accent)}
+.flow-content .fc-title{font-size:15px;font-weight:600;color:var(--text-h);margin-bottom:4px}
+.flow-content .fc-desc{font-size:13px;color:var(--text-m);line-height:1.7}
+
+/* 定价区 */
+.pricing{width:100%;max-width:var(--max);margin:0 auto;padding:0 24px 80px;text-align:center}
+.pricing h2{font-size:28px;font-weight:800;color:var(--text-h);margin-bottom:8px}
+.pricing .pricing-sub{font-size:15px;color:var(--text-m);margin-bottom:40px}
+.price-card{background:var(--bg2);border:1px solid var(--accent-border);border-radius:20px;padding:40px;max-width:420px;margin:0 auto;position:relative;overflow:hidden}
+.price-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(212,160,74,0.06) 0%,transparent 60%);pointer-events:none}
+.price-badge{display:inline-block;padding:4px 12px;background:var(--accent-dim);border:1px solid var(--accent-border);border-radius:100px;font-size:11px;color:var(--accent);letter-spacing:1px;margin-bottom:20px}
+.price-amount{font-size:56px;font-weight:900;color:var(--text-h);line-height:1;margin-bottom:6px}
+.price-amount span{font-size:20px;font-weight:400;color:var(--text-m)}
+.price-desc{font-size:14px;color:var(--text-m);margin-bottom:28px}
+.price-features{text-align:left;margin-bottom:32px;display:flex;flex-direction:column;gap:10px}
+.price-feature{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text)}
+.price-feature::before{content:'✓';color:var(--accent);font-weight:700;font-size:14px}
+.price-btn{width:100%;padding:15px;background:linear-gradient(135deg,#d4a04a,#c4863a);color:#0a0a08;font-size:16px;font-weight:800;border:none;border-radius:10px;cursor:pointer;font-family:inherit;transition:all 0.3s}
+.price-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px -6px rgba(212,160,74,0.5)}
+
+/* Footer */
+.footer{width:100%;border-top:1px solid var(--border);padding:28px 24px;text-align:center;font-size:12px;color:var(--text-d)}
+
+/* ===== 2. UPLOAD 上传页 ===== */
+#sUpload{flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;gap:0}
+.upload-header{margin-bottom:40px}
+.upload-header .uh-back{background:none;border:none;color:var(--text-m);font-size:13px;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px;margin:0 auto 24px;transition:color 0.2s}
+.upload-header .uh-back:hover{color:var(--accent)}
+.upload-header h2{font-size:28px;font-weight:800;color:var(--text-h);margin-bottom:8px}
+.upload-header p{font-size:14px;color:var(--text-m)}
+.upload-zone{width:100%;max-width:520px;border:2px dashed var(--border);border-radius:20px;padding:60px 40px;cursor:pointer;transition:all 0.3s;position:relative;margin-bottom:16px}
+.upload-zone:hover,.upload-zone.dragover{border-color:var(--accent);background:var(--accent-dim);transform:translateY(-2px);box-shadow:0 16px 40px -12px rgba(0,0,0,0.4)}
+.upload-zone .uz-icon{font-size:52px;margin-bottom:16px;display:block;transition:transform 0.3s}
+.upload-zone:hover .uz-icon{transform:scale(1.1)}
+.upload-zone .uz-title{font-size:18px;font-weight:700;color:var(--text-h);margin-bottom:8px}
+.upload-zone .uz-hint{font-size:13px;color:var(--text-m);line-height:1.7}
+.upload-zone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer}
+.file-info{display:none;width:100%;max-width:520px;background:var(--bg2);border:1px solid var(--accent-border);border-radius:12px;padding:16px 20px;margin-bottom:20px;text-align:left;align-items:center;gap:14px}
+.file-info.visible{display:flex}
+.fi-icon{font-size:28px;flex-shrink:0}
+.fi-text .fi-name{font-size:14px;font-weight:600;color:var(--accent)}
+.fi-text .fi-meta{font-size:12px;color:var(--text-m);margin-top:3px}
+.upload-btn{width:100%;max-width:520px;padding:15px;background:linear-gradient(135deg,#d4a04a,#c4863a);color:#0a0a08;font-size:16px;font-weight:800;border:none;border-radius:12px;cursor:pointer;font-family:inherit;transition:all 0.3s;display:none}
+.upload-btn.visible{display:block}
+.upload-btn:hover{transform:translateY(-1px);box-shadow:0 8px 28px -6px rgba(212,160,74,0.5)}
+.upload-formats{margin-top:20px;font-size:12px;color:var(--text-d)}
+
+/* ===== 3. PROCESSING 处理中 ===== */
+#sProcessing{flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;gap:0}
+.proc-title{font-size:22px;font-weight:700;color:var(--text-h);margin-bottom:8px}
+.proc-sub{font-size:14px;color:var(--text-m);margin-bottom:48px}
+.proc-steps{width:100%;max-width:420px;display:flex;flex-direction:column;gap:0;margin-bottom:48px}
+.proc-step{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--border);opacity:0.35;transition:all 0.5s}
+.proc-step:last-child{border-bottom:none}
+.proc-step.active{opacity:1}
+.proc-step.done{opacity:0.6}
+.proc-step-icon{width:36px;height:36px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;transition:all 0.3s}
+.proc-step.active .proc-step-icon{border-color:var(--accent);background:var(--accent-dim);animation:pulse-step 1.5s ease infinite}
+.proc-step.done .proc-step-icon{border-color:rgba(212,160,74,0.4);background:var(--accent-dim);font-size:14px}
+@keyframes pulse-step{0%,100%{box-shadow:0 0 0 0 rgba(212,160,74,0.4)}50%{box-shadow:0 0 0 6px rgba(212,160,74,0)}}
+.proc-step-text .pst-label{font-size:14px;font-weight:600;color:var(--text-h);margin-bottom:2px}
+.proc-step-text .pst-desc{font-size:12px;color:var(--text-m)}
+.proc-progress{width:100%;max-width:420px;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.proc-progress-fill{height:100%;width:0;background:linear-gradient(90deg,#d4a04a,#e8b860);border-radius:2px;transition:width 1.5s ease}
+
+/* ===== 4. RESULT 结果页 ===== */
+#sResult{flex-direction:column;height:100vh;overflow:hidden}
+.result-topbar{height:52px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 20px;flex-shrink:0}
+.rt-left{display:flex;align-items:center;gap:12px}
+.rt-back{background:none;border:none;color:var(--text-m);font-size:13px;cursor:pointer;font-family:inherit;transition:color 0.2s}
+.rt-back:hover{color:var(--accent)}
+.rt-title{font-size:14px;font-weight:600;color:var(--text-h)}
+.rt-right{display:flex;align-items:center;gap:10px}
+.rt-themes{display:flex;gap:4px}
+.rt-theme-btn{padding:5px 10px;background:none;border:1px solid var(--border);border-radius:6px;color:var(--text-m);font-size:11px;cursor:pointer;font-family:inherit;transition:all 0.2s}
+.rt-theme-btn:hover,.rt-theme-btn.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.rt-download{padding:9px 22px;background:linear-gradient(135deg,#d4a04a,#c4863a);color:#0a0a08;font-size:13px;font-weight:700;border:none;border-radius:8px;cursor:pointer;font-family:inherit;transition:all 0.3s}
+.rt-download:hover{transform:translateY(-1px);box-shadow:0 6px 20px -4px rgba(212,160,74,0.5)}
+.result-body{flex:1;overflow:hidden;background:#111;display:flex;align-items:stretch}
+.result-iframe{width:100%;border:none;background:#fff}
+
+/* ===== 通用 ===== */
+.btn-text{background:none;border:none;color:var(--accent);font-size:13px;cursor:pointer;font-family:inherit;text-decoration:underline}
+
+/* ===== 响应式 ===== */
+@media(max-width:640px){
+  .demo-cards{grid-template-columns:1fr}
+  .feat-grid{grid-template-columns:1fr}
+  .demo-strip{display:none}
+  .hero{padding:48px 20px 40px}
+}
+</style>
+</head>
+<body>
+
+<!-- ========== 1. LANDING ========== -->
+<div class="screen active" id="sLanding">
+  <div style="width:100%;display:flex;flex-direction:column">
+
+    <!-- 导航 -->
+    <nav style="width:100%;border-bottom:1px solid var(--border)">
+      <div class="nav">
+        <div class="nav-logo">Page<span>Maker</span></div>
+        <button class="nav-cta" onclick="goToUpload()">立即开始 →</button>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-badge">AI 一键生成</div>
+      <h1>文档变<span class="acc">精美网页</span></h1>
+      <p class="sub">上传 Word 或 PDF，AI 自动提取重点、章节、金句<br>生成与专业编辑排版质量相同的独立 HTML 网页</p>
+      <button class="hero-btn" onclick="goToUpload()">
+        <span>上传文档开始生成</span>
+        <span style="font-size:20px">→</span>
+      </button>
+      <div class="hero-hint">支持 .docx 和 .pdf · 生成约 30-60 秒 · 可直接分享部署</div>
+    </div>
+
+    <!-- 样本展示 -->
+    <div class="demo-strip">
+      <div class="demo-strip-title">生成样本</div>
+      <div class="demo-cards">
+        <a class="demo-card" href="sessions/01-article.html" target="_blank">
+          <div class="demo-card-img">📝</div>
+          <div class="demo-card-body">
+            <div class="demo-card-title">私域是关系的生意</div>
+            <div class="demo-card-desc">线下聚会 · 第01场 · 5.8万字稿</div>
+          </div>
+        </a>
+        <a class="demo-card" href="sessions/08-article.html" target="_blank">
+          <div class="demo-card-img">🎯</div>
+          <div class="demo-card-body">
+            <div class="demo-card-title">销售是关系的生意</div>
+            <div class="demo-card-desc">线下聚会 · 第08场 · 4.2万字稿</div>
+          </div>
+        </a>
+        <a class="demo-card" href="sessions/16-article.html" target="_blank">
+          <div class="demo-card-img">⚡</div>
+          <div class="demo-card-body">
+            <div class="demo-card-title">超级个体与销售</div>
+            <div class="demo-card-desc">线下聚会 · 第16场 · 最新一期</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 功能特性 -->
+    <div class="features">
+      <div class="section-label">核心功能</div>
+      <div class="feat-grid">
+        <div class="feat-item">
+          <div class="feat-icon">🧠</div>
+          <div class="feat-title">AI 四步深度处理</div>
+          <div class="feat-desc">洗稿提炼 → 章节识别 → 内容生成 → 金句提取，每一步专注做好一件事</div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-icon">📄</div>
+          <div class="feat-title">任何文档都能处理</div>
+          <div class="feat-desc">会议纪要、咨询记录、对话稿、个人文章、PPT 内容，一律可以</div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-icon">🎨</div>
+          <div class="feat-title">4 套精美主题</div>
+          <div class="feat-desc">夜·暗金 / 昼·翠绿 / 纸·朱砂 / 海·青瓷，生成后可随时切换</div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-icon">⚡</div>
+          <div class="feat-title">独立 HTML，随处部署</div>
+          <div class="feat-desc">单文件无依赖，可直接放到任何网站、发给任何人打开</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 工作流 -->
+    <div class="flow">
+      <div class="section-label">生成流程</div>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-num">01</div>
+          <div class="flow-content">
+            <div class="fc-title">洗稿提炼</div>
+            <div class="fc-desc">AI 读取全文，去掉寒暄、重复和废话，提炼出有价值的内容核心</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">02</div>
+          <div class="flow-content">
+            <div class="fc-title">识别章节结构</div>
+            <div class="fc-desc">自动判断 4-7 个主要话题，给每个章节拟标题，构建文章骨架</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">03</div>
+          <div class="flow-content">
+            <div class="fc-title">生成排版内容</div>
+            <div class="fc-desc">每章节生成段落、小标题、高亮框、引言块，套入专业排版模板</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">04</div>
+          <div class="flow-content">
+            <div class="fc-title">提取金句</div>
+            <div class="fc-desc">挑选 12-18 条可独立引用的精彩句子，自动填入滚动金句展示区</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 定价 -->
+    <div class="pricing" id="pricing">
+      <h2>简单定价</h2>
+      <p class="pricing-sub">一次付费，永久使用</p>
+      <div class="price-card">
+        <div class="price-badge">标准版</div>
+        <div class="price-amount"><span>¥</span>99</div>
+        <div class="price-desc">无限次生成 · 永久有效</div>
+        <div class="price-features">
+          <div class="price-feature">支持 Word (.docx) 和 PDF 上传</div>
+          <div class="price-feature">AI 四步深度处理</div>
+          <div class="price-feature">4 套精美主题随时切换</div>
+          <div class="price-feature">独立 HTML 文件下载</div>
+          <div class="price-feature">无限次生成，不限文档数量</div>
+        </div>
+        <button class="price-btn" onclick="goToUpload()">立即购买并开始使用</button>
+      </div>
+    </div>
+
+    <div class="footer">
+      © 2026 PageMaker · 由 <a href="https://yuaneightlife.com" style="color:var(--accent)">根源</a> 出品
+    </div>
+
+  </div>
+</div>
+
+<!-- ========== 2. UPLOAD ========== -->
+<div class="screen" id="sUpload">
+  <div style="width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center">
+
+    <div class="upload-header">
+      <button class="uh-back" onclick="goToLanding()">← 返回首页</button>
+      <h2>上传文档</h2>
+      <p>拖拽文件到下方区域，或点击选择文件</p>
+    </div>
+
+    <div class="upload-zone" id="uploadZone">
+      <span class="uz-icon">📄</span>
+      <div class="uz-title">拖拽文件到此处</div>
+      <div class="uz-hint">支持 Word (.docx) 和 PDF (.pdf)<br>文件大小不超过 20MB</div>
+      <input type="file" id="fileInput" accept=".docx,.pdf">
+    </div>
+
+    <div class="file-info" id="fileInfo">
+      <div class="fi-icon" id="fileIcon">📄</div>
+      <div class="fi-text">
+        <div class="fi-name" id="fileName"></div>
+        <div class="fi-meta" id="fileMeta"></div>
+      </div>
+    </div>
+
+    <button class="upload-btn" id="uploadBtn" onclick="startGenerate()">
+      开始生成 →
+    </button>
+
+    <div class="upload-formats">支持格式：.docx · .pdf · 最大 20MB</div>
+
+  </div>
+</div>
+
+<!-- ========== 3. PROCESSING ========== -->
+<div class="screen" id="sProcessing">
+  <div style="width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px">
+
+    <div class="proc-title">正在生成中</div>
+    <div class="proc-sub" id="procSubtitle">AI 正在处理你的文档，请稍等约 30-60 秒</div>
+
+    <div class="proc-steps">
+      <div class="proc-step" id="step0">
+        <div class="proc-step-icon" id="step0-icon">📖</div>
+        <div class="proc-step-text">
+          <div class="pst-label">读取与洗稿</div>
+          <div class="pst-desc">提炼文档核心内容</div>
+        </div>
+      </div>
+      <div class="proc-step" id="step1">
+        <div class="proc-step-icon" id="step1-icon">🗂</div>
+        <div class="proc-step-text">
+          <div class="pst-label">识别章节结构</div>
+          <div class="pst-desc">划定 4-7 个主题章节</div>
+        </div>
+      </div>
+      <div class="proc-step" id="step2">
+        <div class="proc-step-icon" id="step2-icon">✍️</div>
+        <div class="proc-step-text">
+          <div class="pst-label">生成排版内容</div>
+          <div class="pst-desc">每章节填充段落与高亮框</div>
+        </div>
+      </div>
+      <div class="proc-step" id="step3">
+        <div class="proc-step-icon" id="step3-icon">💬</div>
+        <div class="proc-step-text">
+          <div class="pst-label">提取精彩金句</div>
+          <div class="pst-desc">挑选 12-18 条可引用句</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proc-progress" style="max-width:420px;width:100%">
+      <div class="proc-progress-fill" id="procProgress"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ========== 4. RESULT ========== -->
+<div class="screen" id="sResult">
+  <div class="result-topbar">
+    <div class="rt-left">
+      <button class="rt-back" onclick="goToUpload()">← 重新上传</button>
+      <span class="rt-title" id="rtTitle">生成完成</span>
+    </div>
+    <div class="rt-right">
+      <div class="rt-themes">
+        <button class="rt-theme-btn active" onclick="setPreviewTheme('dark')">夜</button>
+        <button class="rt-theme-btn" onclick="setPreviewTheme('light')">昼</button>
+        <button class="rt-theme-btn" onclick="setPreviewTheme('paper')">纸</button>
+        <button class="rt-theme-btn" onclick="setPreviewTheme('ocean')">海</button>
+      </div>
+      <button class="rt-download" onclick="downloadResult()">下载 HTML ↓</button>
+    </div>
+  </div>
+  <div class="result-body">
+    <iframe class="result-iframe" id="resultFrame"></iframe>
+  </div>
+</div>
+
+<script>
+// ===== 全局状态 =====
+var _file = null
+var _resultHtml = ''
+var _resultMeta = {}
+
+const API = 'https://yuaneightlife.com/api/page-maker'
+
+// ===== 页面切换 =====
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(function(s) {
+    s.classList.remove('active')
+  })
+  var el = document.getElementById(id)
+  if (el) {
+    el.classList.add('active')
+    window.scrollTo(0, 0)
+  }
+}
+function goToLanding() { showScreen('sLanding') }
+function goToUpload() { showScreen('sUpload') }
+
+// ===== 上传逻辑 =====
+var uploadZone = document.getElementById('uploadZone')
+var fileInput = document.getElementById('fileInput')
+
+// 拖拽
+uploadZone.addEventListener('dragover', function(e) {
+  e.preventDefault()
+  uploadZone.classList.add('dragover')
+})
+uploadZone.addEventListener('dragleave', function() {
+  uploadZone.classList.remove('dragover')
+})
+uploadZone.addEventListener('drop', function(e) {
+  e.preventDefault()
+  uploadZone.classList.remove('dragover')
+  var f = e.dataTransfer.files[0]
+  if (f) handleFile(f)
+})
+fileInput.addEventListener('change', function() {
+  if (fileInput.files[0]) handleFile(fileInput.files[0])
+})
+
+function handleFile(f) {
+  var allowed = ['.docx', '.pdf']
+  var ext = f.name.toLowerCase().slice(f.name.lastIndexOf('.'))
+  if (!allowed.includes(ext)) {
+    alert('仅支持 .docx 和 .pdf 格式')
+    return
+  }
+  if (f.size > 20 * 1024 * 1024) {
+    alert('文件大小不能超过 20MB')
+    return
+  }
+  _file = f
+
+  // 显示文件信息
+  document.getElementById('fileIcon').textContent = ext === '.pdf' ? '📕' : '📝'
+  document.getElementById('fileName').textContent = f.name
+  document.getElementById('fileMeta').textContent = (f.size / 1024).toFixed(0) + ' KB · ' + ext.toUpperCase()
+  document.getElementById('fileInfo').classList.add('visible')
+  document.getElementById('uploadBtn').classList.add('visible')
+}
+
+// ===== 生成逻辑 =====
+function startGenerate() {
+  if (!_file) return
+  showScreen('sProcessing')
+  resetProcSteps()
+  runPipeline()
+}
+
+function resetProcSteps() {
+  for (var i = 0; i <= 3; i++) {
+    var s = document.getElementById('step' + i)
+    if (s) {
+      s.classList.remove('active', 'done')
+    }
+  }
+  document.getElementById('procProgress').style.width = '0'
+}
+
+// 进度动画（纯 UX，不代表真实进度）
+var procTimer = null
+var procStepIdx = 0
+var STEP_DURATIONS = [8000, 12000, 18000, 8000]  // 每步预估时长（ms）
+
+function startProcAnimation() {
+  procStepIdx = 0
+  activateStep(0)
+  advanceSteps()
+}
+
+function activateStep(idx) {
+  for (var i = 0; i < idx; i++) {
+    var s = document.getElementById('step' + i)
+    if (s) { s.classList.remove('active'); s.classList.add('done') }
+    var ic = document.getElementById('step' + i + '-icon')
+    if (ic) ic.textContent = '✓'
+  }
+  var cur = document.getElementById('step' + idx)
+  if (cur) cur.classList.add('active')
+  var progress = (idx / 4) * 85
+  document.getElementById('procProgress').style.width = progress + '%'
+}
+
+function advanceSteps() {
+  if (procStepIdx >= 3) return
+  procTimer = setTimeout(function() {
+    procStepIdx++
+    activateStep(procStepIdx)
+    advanceSteps()
+  }, STEP_DURATIONS[procStepIdx])
+}
+
+async function runPipeline() {
+  startProcAnimation()
+
+  try {
+    var formData = new FormData()
+    formData.append('file', _file)
+
+    var res = await fetch(API, { method: 'POST', body: formData })
+    var data = await res.json()
+
+    clearTimeout(procTimer)
+
+    if (!res.ok || data.error) {
+      showError(data.error || '生成失败，请重试')
+      return
+    }
+
+    _resultHtml = data.html
+    _resultMeta = data.meta || {}
+
+    // 全部步骤完成
+    for (var i = 0; i <= 3; i++) {
+      var s = document.getElementById('step' + i)
+      if (s) { s.classList.remove('active'); s.classList.add('done') }
+      var ic = document.getElementById('step' + i + '-icon')
+      if (ic) ic.textContent = '✓'
+    }
+    document.getElementById('procProgress').style.width = '100%'
+
+    setTimeout(showResult, 600)
+
+  } catch (err) {
+    clearTimeout(procTimer)
+    showError('网络错误，请检查连接后重试')
+    console.error(err)
+  }
+}
+
+function showResult() {
+  showScreen('sResult')
+
+  // 设置标题
+  var title = (_resultMeta && _resultMeta.titleHtml)
+    ? _resultMeta.titleHtml.replace(/<[^>]+>/g, '')
+    : '生成完成'
+  document.getElementById('rtTitle').textContent = title
+
+  // 注入 iframe
+  var iframe = document.getElementById('resultFrame')
+  var blob = new Blob([_resultHtml], { type: 'text/html' })
+  var url = URL.createObjectURL(blob)
+  iframe.src = url
+}
+
+function showError(msg) {
+  showScreen('sUpload')
+  alert('生成失败：' + msg)
+}
+
+// ===== 主题切换（控制预览 iframe）=====
+function setPreviewTheme(theme) {
+  // 更新按钮状态
+  document.querySelectorAll('.rt-theme-btn').forEach(function(btn) {
+    btn.classList.remove('active')
+  })
+  event.target.classList.add('active')
+
+  // 修改 iframe 内的 html 标签
+  var iframe = document.getElementById('resultFrame')
+  try {
+    iframe.contentDocument.documentElement.setAttribute('data-theme', theme)
+  } catch (e) {
+    // Blob URL 应该可以访问，但以防万一
+  }
+}
+
+// ===== 下载 =====
+function downloadResult() {
+  if (!_resultHtml) return
+  var title = (_resultMeta && _resultMeta.titleHtml)
+    ? _resultMeta.titleHtml.replace(/<[^>]+>/g, '').slice(0, 20)
+    : 'page-maker'
+  var blob = new Blob([_resultHtml], { type: 'text/html' })
+  var url = URL.createObjectURL(blob)
+  var a = document.createElement('a')
+  a.href = url
+  a.download = title + '-' + Date.now() + '.html'
+  a.click()
+  setTimeout(function() { URL.revokeObjectURL(url) }, 1000)
+}
+</script>
+
+</body>
+</html>
