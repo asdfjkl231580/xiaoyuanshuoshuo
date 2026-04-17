@@ -516,6 +516,75 @@
     .vault-pipe-out, .vault-pipe-back { animation: none; }
   }
 
+  /* ==== 第柒章 · 系统健康报告 ==== */
+  .report-card {
+    padding: 26px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.09);
+    transition: all .3s ease;
+  }
+  .report-card:hover {
+    border-color: rgba(212,175,55,0.38);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px -16px rgba(212,175,55,0.3);
+  }
+  .report-stat {
+    padding: 14px 10px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    text-align: center;
+  }
+  .report-stat-value {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 30px; font-weight: 700;
+    background: linear-gradient(180deg, #F5E6A8, #D4AF37);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    line-height: 1;
+  }
+  .report-stat-label { font-size: 11.5px; color: #CBD5E1; margin-top: 7px; font-weight: 500; }
+  .report-stat-hint { font-size: 10px; color: #64748B; margin-top: 3px; }
+  .report-bar { margin-bottom: 2px; }
+  .report-bar-track {
+    height: 8px; border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+    overflow: hidden;
+    position: relative;
+  }
+  .report-bar-fill {
+    height: 100%; border-radius: 999px;
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 8px currentColor;
+  }
+  .report-rec, .report-entry, .report-lane {
+    padding-bottom: 14px;
+    border-bottom: 1px dashed rgba(255,255,255,0.07);
+  }
+  .report-rec:last-child,
+  .report-entry:last-child,
+  .report-lane:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  /* light mode overrides for reports */
+  html[data-theme="light"] .report-card {
+    background: rgba(255,255,255,0.7);
+    border-color: rgba(30,41,59,0.1);
+  }
+  html[data-theme="light"] .report-stat {
+    background: rgba(30,41,59,0.03);
+    border-color: rgba(30,41,59,0.08);
+  }
+  html[data-theme="light"] .report-stat-label { color: #475569; }
+  html[data-theme="light"] .report-stat-hint { color: #64748B; }
+  html[data-theme="light"] .report-bar-track { background: rgba(30,41,59,0.08); }
+  html[data-theme="light"] .report-rec,
+  html[data-theme="light"] .report-entry,
+  html[data-theme="light"] .report-lane { border-color: rgba(30,41,59,0.1); }
+  html[data-theme="light"] .border-white\\/8 { border-color: rgba(30,41,59,0.12); }
+
   /* ==== 全局字号放大 ==== */
   html { font-size: 16.5px; }
   body { font-size: 15px; line-height: 1.65; }
@@ -671,6 +740,7 @@
   <a href="#products" data-label="产品明细"></a>
   <a href="#business" data-label="商业闭环"></a>
   <a href="#priority" data-label="优先级"></a>
+  <a href="#reports" data-label="健康报告"></a>
 </nav>
 
 <!-- Header -->
@@ -1122,6 +1192,25 @@
   </div>
 </section>
 
+<hr class="section-div" />
+
+<!-- CHAPTER 7: 系统健康报告 -->
+<section id="reports" class="max-w-7xl mx-auto px-6 pb-20">
+  <div class="flex items-start justify-between mb-10 gap-8 flex-wrap">
+    <div>
+      <div class="chapter-eyebrow">C H A P T E R · 柒</div>
+      <h2 class="chapter-title">系统健康报告</h2>
+      <p class="text-slate-400 mt-3 max-w-3xl leading-relaxed">
+        AI 定期扫描整个系统,给你四份报告:<span class="text-gold-400">分析 · 建议 · 更新 · 迭代</span>。
+        每次我改动链路数据,这四份报告会跟着刷新。
+      </p>
+    </div>
+    <div class="chapter-num select-none">柒</div>
+  </div>
+
+  <div id="reports-container" class="grid md:grid-cols-2 gap-6"></div>
+</section>
+
 <footer class="border-t border-white/5">
   <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
     <div class="flex items-center gap-2">
@@ -1529,51 +1618,52 @@ sections.forEach(s => io.observe(s));
 function renderSpider() {
   const svg = document.getElementById('spider-svg');
   if (!svg) return;
-  const cx = 600, cy = 450;
+  svg.setAttribute('viewBox', '0 0 1400 900');
+  const cx = 700, cy = 450;
 
   const nodes = [
-    { id: 'P3', x: cx, y: cy, r: 74, type: 'brain', label: 'AI 智能体', sub: '大 脑 · B R A I N' },
-    { id: 'P8', x: 600, y: 105, r: 54, type: 'input', label: 'Obsidian', sub: '知识输入层' },
-    { id: 'P1', x: 852, y: 202, r: 54, type: 'user', label: '微信小程序', sub: '核心用户端' },
-    { id: 'P2', x: 956, y: 450, r: 50, type: 'user', label: '网页八字', sub: '报告展示' },
-    { id: 'P10', x: 852, y: 698, r: 50, type: 'user', label: 'iOS App', sub: 'xyss 原生' },
-    { id: 'P4', x: 600, y: 800, r: 52, type: 'paid', label: 'Page Maker', sub: '¥29 付费' },
-    { id: 'P5', x: 348, y: 698, r: 50, type: 'tool', label: '行程报告', sub: 'Word → 网页' },
-    { id: 'P6', x: 244, y: 450, r: 50, type: 'traffic', label: '生财网站', sub: '流量入口' },
-    { id: 'P7', x: 348, y: 202, r: 50, type: 'traffic', label: '521 训练营', sub: '流量入口' },
-    { id: 'P9', x: 1060, y: 102, r: 38, type: 'dev', label: '禅卡', sub: '开发中' },
+    { id: 'P3',  x: cx,  y: cy,  r: 100, type: 'brain',   label: 'AI 智能体',   sub: '大 脑 · B R A I N' },
+    { id: 'P8',  x: 700, y: 110, r: 58,  type: 'input',   label: 'Obsidian',    sub: '知识输入层' },
+    { id: 'P1',  x: 940, y: 210, r: 58,  type: 'user',    label: '微信小程序',  sub: '核心用户端' },
+    { id: 'P2',  x: 1040,y: 450, r: 54,  type: 'user',    label: '网页八字',    sub: '报告展示端' },
+    { id: 'P10', x: 940, y: 690, r: 54,  type: 'user',    label: 'iOS App',     sub: 'xyss 原生' },
+    { id: 'P4',  x: 700, y: 790, r: 56,  type: 'paid',    label: 'Page Maker',  sub: '¥29 付费工具' },
+    { id: 'P5',  x: 460, y: 690, r: 54,  type: 'tool',    label: '行程报告',    sub: 'Word → 网页' },
+    { id: 'P6',  x: 360, y: 450, r: 54,  type: 'traffic', label: '生财网站',    sub: '流量入口' },
+    { id: 'P7',  x: 460, y: 210, r: 54,  type: 'traffic', label: '521 训练营',  sub: '流量入口' },
+    { id: 'P9',  x: 1150,y: 105, r: 42,  type: 'dev',     label: '禅卡',        sub: '开发中' },
   ];
 
   const links = [
-    { from: 'P1', to: 'P3', style: 'calls' },
-    { from: 'P2', to: 'P3', style: 'calls' },
-    { from: 'P10', to: 'P3', style: 'calls' },
-    { from: 'P4', to: 'P3', style: 'calls' },
-    { from: 'P5', to: 'P3', style: 'calls' },
-    { from: 'P8', to: 'P3', style: 'feeds' },
-    { from: 'P6', to: 'P1', style: 'drives' },
-    { from: 'P7', to: 'P1', style: 'drives' },
-    { from: 'P9', to: 'P1', style: 'child' },
+    { from: 'P1',  to: 'P3', style: 'calls',  label: '调用 API' },
+    { from: 'P2',  to: 'P3', style: 'calls',  label: '调用 API' },
+    { from: 'P10', to: 'P3', style: 'calls',  label: '调用 API' },
+    { from: 'P4',  to: 'P3', style: 'calls',  label: '调用 API' },
+    { from: 'P5',  to: 'P3', style: 'calls',  label: '调用 API' },
+    { from: 'P8',  to: 'P3', style: 'feeds',  label: '喂数据' },
+    { from: 'P6',  to: 'P1', style: 'drives', label: '引 流' },
+    { from: 'P7',  to: 'P1', style: 'drives', label: '引 流' },
+    { from: 'P9',  to: 'P1', style: 'child',  label: '子页' },
   ];
 
   const nodeMap = {};
   nodes.forEach(n => nodeMap[n.id] = n);
 
   const STYLE = {
-    brain:   { fill: 'url(#brainGrad)', stroke: '#E8C86A', label: '#0B1020', sub: '#0B1020' },
-    input:   { fill: '#111833', stroke: '#CBD5E1', label: '#E8EAF2', sub: '#94A3B8' },
-    user:    { fill: '#111833', stroke: '#818CF8', label: '#E8EAF2', sub: '#A5B4FC' },
-    paid:    { fill: '#111833', stroke: '#E8C86A', label: '#E8EAF2', sub: '#F5E6A8' },
-    tool:    { fill: '#111833', stroke: '#34D399', label: '#E8EAF2', sub: '#6EE7B7' },
-    traffic: { fill: '#111833', stroke: '#34D399', label: '#E8EAF2', sub: '#6EE7B7' },
-    dev:     { fill: '#111833', stroke: '#FB7185', label: '#E8EAF2', sub: '#FDA4AF' },
+    brain:   { fill: 'url(#brainGrad)', stroke: '#E8C86A', label: '#0B1020', sub: '#0B1020', nameColor: '#F5E6A8' },
+    input:   { fill: '#111833',         stroke: '#CBD5E1', label: '#E8EAF2', sub: '#94A3B8', nameColor: '#CBD5E1' },
+    user:    { fill: '#111833',         stroke: '#818CF8', label: '#E8EAF2', sub: '#A5B4FC', nameColor: '#A5B4FC' },
+    paid:    { fill: '#111833',         stroke: '#E8C86A', label: '#E8EAF2', sub: '#F5E6A8', nameColor: '#F5E6A8' },
+    tool:    { fill: '#111833',         stroke: '#34D399', label: '#E8EAF2', sub: '#6EE7B7', nameColor: '#6EE7B7' },
+    traffic: { fill: '#111833',         stroke: '#34D399', label: '#E8EAF2', sub: '#6EE7B7', nameColor: '#6EE7B7' },
+    dev:     { fill: '#111833',         stroke: '#FB7185', label: '#E8EAF2', sub: '#FDA4AF', nameColor: '#FDA4AF' },
   };
 
   const LINK = {
-    calls:  { stroke: '#E8C86A', w: 2.5, dash: '6 6', opacity: 0.78 },
-    feeds:  { stroke: '#CBD5E1', w: 2,   dash: '3 4', opacity: 0.55 },
-    drives: { stroke: '#34D399', w: 2,   dash: '5 5', opacity: 0.65 },
-    child:  { stroke: '#FB7185', w: 1.5, dash: '3 3', opacity: 0.55 },
+    calls:  { stroke: '#E8C86A', w: 2.8, dash: '7 6', opacity: 0.85 },
+    feeds:  { stroke: '#CBD5E1', w: 2.2, dash: '3 5', opacity: 0.65 },
+    drives: { stroke: '#34D399', w: 2.2, dash: '5 5', opacity: 0.7  },
+    child:  { stroke: '#FB7185', w: 1.8, dash: '3 3', opacity: 0.6  },
   };
 
   let html = `
@@ -1584,16 +1674,32 @@ function renderSpider() {
         <stop offset="100%" stop-color="#8A6914"/>
       </radialGradient>
       <filter id="brainGlow" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur stdDeviation="6" result="blur"/>
+        <feGaussianBlur stdDeviation="8" result="blur"/>
         <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
       </filter>
+      <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="rgba(232,200,106,0.22)"/>
+        <stop offset="100%" stop-color="rgba(232,200,106,0)"/>
+      </radialGradient>
     </defs>
-    <g opacity="0.55">
-      <circle cx="${cx}" cy="${cy}" r="130" fill="none" stroke="rgba(212,175,55,0.2)" stroke-dasharray="2 5"/>
-      <circle cx="${cx}" cy="${cy}" r="220" fill="none" stroke="rgba(212,175,55,0.14)" stroke-dasharray="2 5"/>
-      <circle cx="${cx}" cy="${cy}" r="310" fill="none" stroke="rgba(212,175,55,0.08)" stroke-dasharray="2 5"/>
+
+    <circle cx="${cx}" cy="${cy}" r="420" fill="url(#centerGlow)"/>
+
+    <g opacity="0.75">
+      <circle cx="${cx}" cy="${cy}" r="150" fill="none" stroke="rgba(212,175,55,0.26)" stroke-width="1" stroke-dasharray="2 6"/>
+      <circle cx="${cx}" cy="${cy}" r="235" fill="none" stroke="rgba(212,175,55,0.18)" stroke-width="1" stroke-dasharray="2 6"/>
+      <circle cx="${cx}" cy="${cy}" r="315" fill="none" stroke="rgba(212,175,55,0.13)" stroke-width="1" stroke-dasharray="2 6"/>
+      <circle cx="${cx}" cy="${cy}" r="390" fill="none" stroke="rgba(212,175,55,0.08)" stroke-width="1" stroke-dasharray="2 6"/>
     </g>
-  `;
+
+    <g fill="rgba(232,200,106,0.35)">`;
+
+  const starSeeds = [[90,70],[180,180],[1290,130],[1330,380],[1200,820],[90,820],[220,810],[110,420],[1320,680],[1360,230],[80,240],[150,640],[1280,540],[200,560],[1310,790],[100,520],[1340,460],[1220,60],[240,90],[1350,110]];
+  starSeeds.forEach(([sx, sy]) => {
+    const sr = (((sx * 13 + sy * 7) % 7) / 6) + 0.6;
+    html += `<circle cx="${sx}" cy="${sy}" r="${sr.toFixed(1)}"/>`;
+  });
+  html += `</g>`;
 
   links.forEach(l => {
     const a = nodeMap[l.from], b = nodeMap[l.to];
@@ -1604,24 +1710,40 @@ function renderSpider() {
     const x2 = b.x - ux * b.r, y2 = b.y - uy * b.r;
     const s = LINK[l.style];
     html += `<line class="spider-link link-${l.style}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${s.stroke}" stroke-width="${s.w}" stroke-dasharray="${s.dash}" stroke-linecap="round" opacity="${s.opacity}"/>`;
+
+    const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+    const labelW = l.label.length * 13 + 20;
+    html += `<g class="link-label" pointer-events="none">
+      <rect x="${mx - labelW/2}" y="${my - 12}" width="${labelW}" height="24" rx="12" fill="rgba(11,16,32,0.9)" stroke="${s.stroke}" stroke-width="1" stroke-opacity="0.55"/>
+      <text x="${mx}" y="${my + 5}" text-anchor="middle" fill="${s.stroke}" font-size="12" font-weight="600">${l.label}</text>
+    </g>`;
   });
 
   nodes.forEach(n => {
     const c = STYLE[n.type];
     const isBrain = n.type === 'brain';
     html += `<g class="spider-node" onclick="openProduct('${n.id}')">`;
+
     if (isBrain) {
-      html += `<circle cx="${n.x}" cy="${n.y}" r="${n.r + 22}" fill="none" stroke="rgba(212,175,55,0.18)" stroke-width="1.5"/>`;
-      html += `<circle cx="${n.x}" cy="${n.y}" r="${n.r + 10}" fill="none" stroke="rgba(212,175,55,0.32)" stroke-width="1"/>`;
-    }
-    html += `<circle cx="${n.x}" cy="${n.y}" r="${n.r}" fill="${c.fill}" stroke="${c.stroke}" stroke-width="2"${isBrain ? ' filter="url(#brainGlow)"' : ''}/>`;
-    html += `<text x="${n.x}" y="${n.y - (isBrain ? 6 : 4)}" text-anchor="middle" fill="${c.label}" font-size="${isBrain ? 16 : 13}" font-weight="700" font-family="Noto Serif SC">${n.id}</text>`;
-    html += `<text x="${n.x}" y="${n.y + (isBrain ? 16 : 12)}" text-anchor="middle" fill="${c.label}" font-size="${isBrain ? 12 : 10}" font-weight="500">${n.label}</text>`;
-    if (isBrain) {
-      html += `<text x="${n.x}" y="${n.y + 34}" text-anchor="middle" fill="${c.sub}" font-size="9" opacity="0.8" letter-spacing="3">${n.sub}</text>`;
+      html += `<circle cx="${n.x}" cy="${n.y}" r="${n.r + 36}" fill="none" stroke="rgba(212,175,55,0.1)" stroke-width="1"/>`;
+      html += `<circle cx="${n.x}" cy="${n.y}" r="${n.r + 22}" fill="none" stroke="rgba(212,175,55,0.2)" stroke-width="1.5"/>`;
+      html += `<circle cx="${n.x}" cy="${n.y}" r="${n.r + 10}" fill="none" stroke="rgba(212,175,55,0.38)" stroke-width="1"/>`;
     } else {
-      html += `<text x="${n.x}" y="${n.y + n.r + 18}" text-anchor="middle" fill="${c.sub}" font-size="11">${n.sub}</text>`;
+      html += `<circle cx="${n.x}" cy="${n.y}" r="${n.r + 9}" fill="none" stroke="${c.stroke}" stroke-opacity="0.2" stroke-width="1"/>`;
     }
+
+    html += `<circle cx="${n.x}" cy="${n.y}" r="${n.r}" fill="${c.fill}" stroke="${c.stroke}" stroke-width="${isBrain ? 2.5 : 2}"${isBrain ? ' filter="url(#brainGlow)"' : ''}/>`;
+
+    if (isBrain) {
+      html += `<text x="${n.x}" y="${n.y - 4}" text-anchor="middle" fill="${c.label}" font-size="32" font-weight="700" font-family="Noto Serif SC">${n.id}</text>`;
+      html += `<text x="${n.x}" y="${n.y + 22}" text-anchor="middle" fill="${c.label}" font-size="14" font-weight="600">${n.label}</text>`;
+      html += `<text x="${n.x}" y="${n.y + 42}" text-anchor="middle" fill="${c.sub}" font-size="10" opacity="0.8" letter-spacing="3">${n.sub}</text>`;
+    } else {
+      html += `<text x="${n.x}" y="${n.y + 4}" text-anchor="middle" fill="${c.label}" font-size="${n.r > 50 ? 22 : 18}" font-weight="700" font-family="Noto Serif SC">${n.id}</text>`;
+      html += `<text x="${n.x}" y="${n.y + n.r + 22}" text-anchor="middle" fill="${c.nameColor}" font-size="14" font-weight="700">${n.label}</text>`;
+      html += `<text x="${n.x}" y="${n.y + n.r + 40}" text-anchor="middle" fill="${c.sub}" font-size="11.5" opacity="0.88">${n.sub}</text>`;
+    }
+
     html += `</g>`;
   });
 
@@ -2426,11 +2548,211 @@ function renderDeepDive() {
   ].join('');
 }
 
+/* ============ DATA: 健康报告(改链路数据时,也要回来刷这几份报告) ============ */
+const REPORT_ANALYSIS = {
+  title: '分析报告',
+  subtitle: 'ANALYSIS · 现在的样子',
+  color: '#818CF8',
+  stats: [
+    { label: '产品总数',       value: '10', hint: '6 个模块 + 4 个工具站' },
+    { label: '已上线',         value: '7',  hint: 'P1 P2 P5 P6 P7 P8 + P3 核心' },
+    { label: '迭代 / 开发中',  value: '3',  hint: 'P3 V2 · P9 禅卡 · P10 iOS' },
+    { label: '未通断点',       value: '2',  hint: 'P4 微信支付 · P10 git init' },
+  ],
+  bars: [
+    { name: 'P1 · 微信小程序',       percent: 85, note: '支付链路断点扣分' },
+    { name: 'P10 · iOS App',         percent: 68, note: '未 git · 商业模式未定' },
+    { name: 'P8 · Obsidian 知识库',  percent: 92, note: '3 条管道 · 2 条活跃' },
+    { name: 'P3 · AI 智能体',        percent: 80, note: 'V2 未上线生产' },
+    { name: 'P2 · 网页八字',         percent: 78, note: 'Guide 页面重构中' },
+  ],
+};
+
+const REPORT_RECOMMENDATIONS = {
+  title: '建议报告',
+  subtitle: 'RECOMMENDATIONS · 我的分析',
+  color: '#E8C86A',
+  items: [
+    { level: 'P0', title: '立刻给 P10 做 git init',
+      reason: '单点设备 = 单点故障风险 · 5 分钟就能解决',
+      action: 'cd ~/Documents/GitHub/xyss && git init,然后推到 GitHub 私有仓库' },
+    { level: 'P0', title: 'P4 联系 95017 排查微信支付',
+      reason: '付费链路断 = 主要变现通道断 · 持续影响收入',
+      action: '拨打微信支付技术热线 95017,对齐具体错误码' },
+    { level: 'P1', title: 'P3 Agent V2 排期上线',
+      reason: '新版本能力更强,不上线就是浪费',
+      action: '本周完成风险评估,下周灰度发布' },
+    { level: 'P1', title: 'P10 iOS 商业模式决策',
+      reason: 'App Store 上架前必须拍板 IAP vs 引流小程序',
+      action: '算清 Apple 30% 抽成 vs 小程序直付的 ROI' },
+    { level: 'P2', title: 'P5 行程报告移动端响应式',
+      reason: '旅游场景用户多半在手机上看',
+      action: '加入下月迭代' },
+  ],
+};
+
+const REPORT_CHANGELOG = {
+  title: '更新报告',
+  subtitle: 'CHANGELOG · 改了什么',
+  color: '#34D399',
+  entries: [
+    { date: '2026-04-18', version: 'v3', items: [
+      '全站字号放大 · 标题更醒目',
+      '加入日 / 夜切换按钮 · localStorage 记忆',
+      'P1 小程序 / P10 iOS 改成六步漫画(和 P8 同款)',
+      '新增「P8 知识库全景俯瞰图」:8 分区 + 3 管道 + 输入输出全貌',
+      '第二章辐射图重画:viewBox 放大、能量场、连线带关系标签',
+      '新增第柒章「系统健康报告」',
+      '日期动态化:每次打开都显示今天',
+    ] },
+    { date: '2026-04-17', version: 'v2', items: [
+      'P8 链路从技术 lanes 改成给小白看的六步漫画',
+      '配手绘 SVG 插图 + 口语化说明',
+    ] },
+    { date: '2026-04-17', version: 'v1.5', items: [
+      '新增 DEEP DIVE 章节:P1 / P10 两条核心链路',
+      '产品卡加 IN / OUT / 依赖 / 被用 四行字段',
+    ] },
+    { date: '2026-04-17', version: 'v1', items: [
+      '首版上线:产品矩阵 · 三层架构 · 四条闭环 · 商业漏斗',
+      '键盘快捷键 1-9/0 直达 P1–P10',
+      '部署到 Vercel · xiaoyuanshuoshuo.vercel.app/matrix.html',
+    ] },
+  ],
+};
+
+const REPORT_ROADMAP = {
+  title: '迭代报告',
+  subtitle: 'ROADMAP · 下一步',
+  color: '#FB7185',
+  lanes: [
+    { when: '本周',    color: '#FB7185', items: [
+      'P10 git init + 推 GitHub 私有仓库',
+      'P4 联系微信支付 95017 排查 SYSTEM_ERROR',
+      'P10 Lunar.swift 编译验证 + LUNAR_INFO 数组校验',
+    ] },
+    { when: '本月',    color: '#E8C86A', items: [
+      'P2 Guide 页面重构收尾',
+      'P3 Agent V2 生产部署',
+      'P5 行程报告移动端响应式优化',
+    ] },
+    { when: '季度内',  color: '#34D399', items: [
+      'P9 禅卡子页面正式开发启动',
+      'P10 iOS App Store 审核合规文案准备',
+      'P10 IAP vs 引流商业模式最终决策',
+      '03_智能体派生 目录落地自动生成流程',
+    ] },
+  ],
+};
+
+/* ============ RENDER: 健康报告 ============ */
+function renderReportHeader(r) {
+  return `<div class="flex items-start justify-between mb-5 pb-4 border-b border-white/8" style="border-color: ${r.color}22;">
+    <div>
+      <div class="mono text-[10px] tracking-widest" style="color: ${r.color}; letter-spacing: 0.3em;">${r.subtitle}</div>
+      <h3 class="serif text-xl font-bold text-white mt-1">${r.title}</h3>
+    </div>
+    <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background: ${r.color}1F; border: 1px solid ${r.color}66;">
+      <span style="color: ${r.color}; font-weight: 700; font-family: 'Noto Serif SC', serif; font-size: 18px;">${r.title[0]}</span>
+    </div>
+  </div>`;
+}
+
+function renderAnalysis(r) {
+  const statsHtml = r.stats.map(s => `<div class="report-stat">
+    <div class="report-stat-value">${s.value}</div>
+    <div class="report-stat-label">${s.label}</div>
+    <div class="report-stat-hint">${s.hint}</div>
+  </div>`).join('');
+  const barsHtml = r.bars.map(b => {
+    const color = b.percent >= 85 ? '#34D399' : b.percent >= 75 ? '#E8C86A' : '#FB7185';
+    const gradient = b.percent >= 85 ? '#10B981, #34D399' : b.percent >= 75 ? '#B8921F, #E8C86A' : '#BE123C, #FB7185';
+    return `<div class="report-bar">
+      <div class="flex justify-between items-baseline mb-1.5">
+        <span class="text-xs text-slate-300 font-medium">${b.name}</span>
+        <span class="mono text-xs font-semibold" style="color: ${color};">${b.percent}%</span>
+      </div>
+      <div class="report-bar-track">
+        <div class="report-bar-fill" style="width: ${b.percent}%; background: linear-gradient(90deg, ${gradient}); color: ${color};"></div>
+      </div>
+      <div class="text-[10px] text-slate-500 mt-1">${b.note}</div>
+    </div>`;
+  }).join('');
+  return `<div class="report-card">
+    ${renderReportHeader(r)}
+    <div class="grid grid-cols-2 gap-3 mb-6">${statsHtml}</div>
+    <div class="text-[10px] text-slate-500 tracking-widest mb-3" style="letter-spacing: 0.3em;">各 链 路 健 康 度</div>
+    <div class="space-y-3">${barsHtml}</div>
+  </div>`;
+}
+
+function renderRecommendations(r) {
+  const items = r.items.map(it => {
+    const lvlCls = it.level === 'P0' ? 'chip-warn' : it.level === 'P1' ? 'chip-dev' : 'chip';
+    return `<div class="report-rec">
+      <div class="flex items-start gap-3 mb-2">
+        <span class="chip ${lvlCls} shrink-0">${it.level}</span>
+        <div class="text-sm font-semibold text-white flex-1 leading-relaxed">${it.title}</div>
+      </div>
+      <div class="text-xs text-slate-400 pl-12 mb-1.5 leading-relaxed"><span class="text-slate-500">原因 · </span>${it.reason}</div>
+      <div class="text-xs mono pl-12 leading-relaxed" style="color: ${r.color};">→ ${it.action}</div>
+    </div>`;
+  }).join('');
+  return `<div class="report-card">
+    ${renderReportHeader(r)}
+    <div class="space-y-4">${items}</div>
+  </div>`;
+}
+
+function renderChangelog(r) {
+  const items = r.entries.map(e => `<div class="report-entry">
+    <div class="flex items-baseline gap-3 mb-2">
+      <span class="mono text-xs text-slate-400">${e.date}</span>
+      <span class="chip" style="color: ${r.color}; border-color: ${r.color}55; background: ${r.color}0F;">${e.version}</span>
+    </div>
+    <ul class="space-y-1.5 pl-1">
+      ${e.items.map(x => `<li class="text-xs text-slate-300 flex gap-2 leading-relaxed"><span style="color: ${r.color}; flex-shrink: 0;">•</span><span>${x}</span></li>`).join('')}
+    </ul>
+  </div>`).join('');
+  return `<div class="report-card">
+    ${renderReportHeader(r)}
+    <div class="space-y-5">${items}</div>
+  </div>`;
+}
+
+function renderRoadmap(r) {
+  const items = r.lanes.map(l => `<div class="report-lane">
+    <div class="flex items-center gap-2 mb-2.5">
+      <div class="w-2.5 h-2.5 rounded-full" style="background: ${l.color}; box-shadow: 0 0 10px ${l.color};"></div>
+      <span class="serif text-base font-bold" style="color: ${l.color};">${l.when}</span>
+    </div>
+    <ul class="space-y-1.5 pl-5">
+      ${l.items.map(x => `<li class="text-xs text-slate-300 leading-relaxed list-disc">${x}</li>`).join('')}
+    </ul>
+  </div>`).join('');
+  return `<div class="report-card">
+    ${renderReportHeader(r)}
+    <div class="space-y-4">${items}</div>
+  </div>`;
+}
+
+function renderReports() {
+  const container = document.getElementById('reports-container');
+  if (!container) return;
+  container.innerHTML = [
+    renderAnalysis(REPORT_ANALYSIS),
+    renderRecommendations(REPORT_RECOMMENDATIONS),
+    renderChangelog(REPORT_CHANGELOG),
+    renderRoadmap(REPORT_ROADMAP),
+  ].join('');
+}
+
 renderFlow();
 renderSpider();
 renderDeepDive();
 renderLoops();
 renderCards();
+renderReports();
 </script>
 
 </body>
