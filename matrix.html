@@ -687,11 +687,12 @@
   <div class="flex items-start justify-between mb-10 gap-8 flex-wrap">
     <div>
       <div class="chapter-eyebrow">D E E P · D I V E · 核 心 深 潜</div>
-      <h2 class="chapter-title">最复杂两条链路</h2>
+      <h2 class="chapter-title">核心三条链路</h2>
       <p class="text-slate-400 mt-3 max-w-3xl leading-relaxed">
-        <span class="text-gold-400">P1 小程序</span> 和 <span class="text-gold-400">P10 iOS App</span> 是现阶段复杂度最高、也最需要补洞的两条产品线。
-        下面两张图把每一层的每个模块都标出来——终点都是 <span class="text-gold-400">P3 大脑</span>,
-        让你一眼看清哪里已通、哪里是断点、哪里还没开始。
+        <span class="text-gold-400">P1 小程序</span>(用户端,最复杂)、<span class="text-gold-400">P10 iOS App</span>(原生端,算法已 Swift 化)、
+        以及 <span class="text-gold-400">P8 Obsidian 知识库</span>(输入端,我的思考怎么变成 AI 素材)。
+        下面三张图把每一层每个模块都标出来——终点都是 <span class="text-gold-400">P3 大脑</span>,
+        一眼看清哪里已通、哪里是断点、哪里还没开始。
       </p>
       <div class="deep-legend">
         <span class="deep-legend-item"><span class="deep-legend-dot" style="background:#34D399;color:#34D399"></span><span>已通</span></span>
@@ -1517,6 +1518,80 @@ const LINK_P10 = {
   ],
 };
 
+const LINK_P8 = {
+  title: 'P8 · Obsidian 知识库 ↔ AI 智能体链路',
+  subtitle: '内容输入层 · 我写的每一段文字如何变成 AI 回答用户的素材',
+  badges: [
+    { label: '4047 文件阅读库', color: '#94A3B8' },
+    { label: '3 条同步管道', color: '#E8C86A' },
+    { label: 'launchd 每小时', color: '#34D399' },
+    { label: '8000+ KB 条目', color: '#818CF8' },
+  ],
+  lanes: [
+    { tag: 'INPUT', label: '我手动写稿 · 三个入口', color: '#94A3B8',
+      nodes: [
+        { label: '收件箱快速通道', status: 'live', note: '无需 frontmatter' },
+        { label: '05_工作台 · upload:true', status: 'live', core: true },
+        { label: '04_上新入口', status: 'live' },
+      ] },
+
+    { tag: 'VAULT', label: 'Obsidian Vault · 目录管理', color: '#818CF8',
+      nodes: [
+        { label: '01_原文主库 · 4047 文件', status: 'work', note: '仅阅读 · 不同步' },
+        { label: '02_人格语料 · 75 文件', status: 'live', note: '价值观 + 原话' },
+        { label: '04_上新入口', status: 'live' },
+        { label: '05_工作台 · upload:true', status: 'live', core: true },
+        { label: '收件箱', status: 'live', core: true },
+        { label: '90_历史镜像 · 导出目标', status: 'live' },
+        { label: '03_智能体派生 · 空壳', status: 'work' },
+        { label: '首页 / 使用指南 / 仪表板', status: 'live' },
+      ] },
+
+    { tag: 'SYNC', label: '三条同步管道 · scripts/', color: '#E8C86A',
+      nodes: [
+        { label: 'sync-inbox.mjs · 收件箱 → KB', status: 'live', core: true },
+        { label: 'upload-from-obsidian.mjs · 工作台 → KB', status: 'live', core: true },
+        { label: 'export-to-obsidian.mjs · KB → 本地镜像', status: 'live' },
+        { label: '一键命令 · sync-kb', status: 'live' },
+      ] },
+
+    { tag: 'TRIGGER', label: '触发机制 · 无须手动', color: '#34D399',
+      nodes: [
+        { label: 'launchd 每小时扫描', status: 'live', note: 'com.kenyuanlin.sync-kb.plist' },
+        { label: '手动 `sync-kb` 命令', status: 'live' },
+        { label: '日志 · docs/memory/sync-kb.log', status: 'live' },
+        { label: '无变更静默跳过', status: 'live' },
+      ] },
+
+    { tag: 'STORE', label: '知识库 · PostgreSQL', color: '#FB7185',
+      nodes: [
+        { label: 'PostgreSQL · 8000+ 条', status: 'live', core: true },
+        { label: '向量化 · pgvector', status: 'live' },
+        { label: 'frontmatter upload: done 标记', status: 'live' },
+      ] },
+
+    { tag: 'RAG', label: '消费层 · RAG 检索路由', color: '#E8C86A',
+      nodes: [
+        { label: 'lib/rag/router.ts', status: 'live', core: true },
+        { label: '根源老师 persona 拼装', status: 'live' },
+        { label: 'LLM 上下文组装', status: 'live' },
+      ] },
+
+    { tag: 'BRAIN', label: '大脑 · 共享给所有前端', color: '#E8C86A',
+      nodes: [
+        { label: 'P3 · AI 智能体', status: 'core', core: true },
+        { label: '→ P1 小程序', status: 'live' },
+        { label: '→ P2 网页八字', status: 'live' },
+        { label: '→ P10 iOS App', status: 'live' },
+      ] },
+  ],
+  trace: '我写一段「癸水女性情感特点」→ 放进 05_工作台(加 upload:true)→ launchd 每小时触发 → upload-from-obsidian.mjs → PostgreSQL 向量化 → 用户在 P1 问「我癸水的感情怎么看」→ P3 RAG 检索找到这段 → 根源老师 persona 拼装上下文 → LLM 生成回答 → 小程序气泡呈现',
+  warnings: [
+    { level: 'P1', label: '03_智能体派生 目录目前是空壳', note: '尚未落地自动生成流程' },
+    { level: 'P2', label: '01_原文主库 4047 文件不进同步', note: '仅作本地检索/阅读,未来若要喂 AI 需迁移至工作台' },
+  ],
+};
+
 /* ============ RENDER: DEEP-DIVE ============ */
 const STATUS_STYLE = {
   live:   { border: 'rgba(52,211,153,0.5)', bg: 'rgba(52,211,153,0.08)', dot: '#34D399', label: '#D1FAE5' },
@@ -1619,7 +1694,7 @@ function renderLinkDiagram(link) {
 function renderDeepDive() {
   const container = document.getElementById('deepdive-container');
   if (!container) return;
-  container.innerHTML = [LINK_P1, LINK_P10].map(renderLinkDiagram).join('');
+  container.innerHTML = [LINK_P1, LINK_P10, LINK_P8].map(renderLinkDiagram).join('');
 }
 
 renderFlow();
