@@ -7,7 +7,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Quicksand:wght@500;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
 <script>
   tailwind.config = {
     theme: {
@@ -726,6 +726,257 @@
     border-color: rgba(30,41,59,0.12);
   }
   html[data-theme="light"] .field-row { border-top-color: rgba(30,41,59,0.08); }
+
+  /* ==== 日间模式 · 金色字可读性修复 ==== */
+  html[data-theme="light"] .card-num {
+    background: linear-gradient(135deg, #B8921F, #78350F 55%, #5A2A07);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+  }
+  html[data-theme="light"] .chapter-title {
+    background: linear-gradient(180deg, #92400E, #78350F);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+  }
+  html[data-theme="light"] .chapter-num {
+    background: linear-gradient(180deg, rgba(120,53,15,0.22), rgba(184,146,31,0.05));
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+  }
+  html[data-theme="light"] .chapter-eyebrow { color: #92400E !important; font-weight: 600; }
+  html[data-theme="light"] .stat-value {
+    background: linear-gradient(180deg, #B8921F, #78350F);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+  }
+  html[data-theme="light"] .report-stat-value {
+    background: linear-gradient(180deg, #B8921F, #78350F);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+  }
+  html[data-theme="light"] .story-title { color: #7C2D12 !important; font-weight: 700; }
+  html[data-theme="light"] .text-gold-400 { color: #92400E !important; font-weight: 600; }
+  html[data-theme="light"] .text-gold-500 { color: #78350F !important; }
+  html[data-theme="light"] .text-gold-300 { color: #B8921F !important; }
+  html[data-theme="light"] .deep-trace { color: #7C2D12; font-weight: 500; }
+
+  /* ==== 可爱风 · kids 模式 ==== */
+  html[data-style="kids"] { color-scheme: light; }
+  html[data-style="kids"] body {
+    font-family: 'Fredoka', 'Quicksand', 'Noto Sans SC', sans-serif;
+    background:
+      radial-gradient(circle at 16% 18%, rgba(251,146,60,0.28), transparent 55%),
+      radial-gradient(circle at 84% 28%, rgba(236,72,153,0.25), transparent 55%),
+      radial-gradient(circle at 48% 85%, rgba(59,130,246,0.22), transparent 55%),
+      radial-gradient(circle at 88% 75%, rgba(52,211,153,0.2), transparent 50%),
+      #FFFAED;
+    color: #1F2937;
+    font-size: 16px;
+  }
+  html[data-style="kids"] .serif,
+  html[data-style="kids"] h1,
+  html[data-style="kids"] h2,
+  html[data-style="kids"] h3 {
+    font-family: 'Fredoka', 'Quicksand', 'Noto Sans SC', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+  html[data-style="kids"] .mono,
+  html[data-style="kids"] .story-tech { font-family: 'Fredoka', 'Quicksand', sans-serif; }
+
+  html[data-style="kids"] .glass {
+    background: rgba(255,255,255,0.88);
+    border: 3px solid rgba(251,146,60,0.25);
+    border-radius: 28px;
+    box-shadow: 0 14px 40px -10px rgba(236,72,153,0.2);
+    backdrop-filter: blur(12px);
+  }
+  html[data-style="kids"] .glass:hover { border-color: rgba(236,72,153,0.55); }
+  html[data-style="kids"] .rounded-2xl { border-radius: 22px !important; }
+  html[data-style="kids"] .rounded-3xl { border-radius: 32px !important; }
+
+  html[data-style="kids"] .chapter-title {
+    background: linear-gradient(135deg, #EC4899 0%, #F59E0B 45%, #3B82F6 95%);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    font-weight: 800;
+  }
+  html[data-style="kids"] .chapter-eyebrow {
+    color: #EC4899 !important; font-weight: 700;
+  }
+  html[data-style="kids"] .chapter-num {
+    background: linear-gradient(180deg, rgba(236,72,153,0.32), rgba(251,146,60,0.08));
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    font-weight: 800;
+  }
+  html[data-style="kids"] .card-num {
+    background: linear-gradient(135deg, #EC4899, #F59E0B 55%, #3B82F6);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    font-weight: 800;
+  }
+  html[data-style="kids"] .stat-value {
+    background: linear-gradient(135deg, #FB7185, #F59E0B);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+  }
+
+  html[data-style="kids"] .story-num {
+    background: linear-gradient(135deg, #FB7185, #EC4899);
+    color: white !important;
+    font-weight: 700;
+    box-shadow: 0 6px 18px -4px rgba(236,72,153,0.55);
+  }
+  html[data-style="kids"] .story-step {
+    border-radius: 26px;
+    border: 3px solid rgba(251,146,60,0.35);
+    background: linear-gradient(180deg, #FFFDF7, #FFF4D9);
+  }
+  html[data-style="kids"] .story-step:nth-of-type(4n+1) {
+    border-color: rgba(251,113,133,0.5);
+    background: linear-gradient(180deg, #FFF5F7, #FFE4E6);
+  }
+  html[data-style="kids"] .story-step:nth-of-type(4n+3) {
+    border-color: rgba(96,165,250,0.5);
+    background: linear-gradient(180deg, #F0F9FF, #DBEAFE);
+  }
+  html[data-style="kids"] .story-step:nth-of-type(4n+5) {
+    border-color: rgba(52,211,153,0.5);
+    background: linear-gradient(180deg, #F0FDF4, #D1FAE5);
+  }
+  html[data-style="kids"] .story-step:hover {
+    transform: translateY(-4px) rotate(-0.6deg);
+    box-shadow: 0 20px 48px -12px rgba(236,72,153,0.25);
+  }
+  html[data-style="kids"] .story-title {
+    color: #1F2937 !important;
+    font-weight: 800;
+    font-size: 18px;
+  }
+  html[data-style="kids"] .story-desc {
+    color: #374151 !important;
+    font-size: 14.5px;
+    line-height: 1.8;
+  }
+  html[data-style="kids"] .story-tech {
+    color: #F59E0B !important;
+    font-weight: 600;
+    font-size: 11px;
+    border-top-color: rgba(251,146,60,0.35);
+  }
+  html[data-style="kids"] .story-illust {
+    background: rgba(255,255,255,0.85);
+    border-radius: 20px;
+    padding: 6px;
+    box-shadow: inset 0 0 0 1px rgba(251,146,60,0.2);
+  }
+
+  html[data-style="kids"] .chip {
+    border-radius: 999px;
+    font-weight: 600;
+    border-width: 2px;
+  }
+  html[data-style="kids"] .chip-live { background: #DCFCE7; color: #166534 !important; border-color: #86EFAC; }
+  html[data-style="kids"] .chip-dev { background: #FEF3C7; color: #92400E !important; border-color: #FCD34D; }
+  html[data-style="kids"] .chip-warn { background: #FEE2E2; color: #991B1B !important; border-color: #FCA5A5; }
+
+  html[data-style="kids"] .product-card { border-radius: 24px; border-width: 3px; }
+  html[data-style="kids"] #product-grid > article:nth-of-type(5n+1) { border-color: rgba(251,113,133,0.55); }
+  html[data-style="kids"] #product-grid > article:nth-of-type(5n+2) { border-color: rgba(96,165,250,0.55); }
+  html[data-style="kids"] #product-grid > article:nth-of-type(5n+3) { border-color: rgba(52,211,153,0.55); }
+  html[data-style="kids"] #product-grid > article:nth-of-type(5n+4) { border-color: rgba(251,191,36,0.55); }
+  html[data-style="kids"] #product-grid > article:nth-of-type(5n+5) { border-color: rgba(167,139,250,0.55); }
+
+  html[data-style="kids"] .text-white { color: #1F2937 !important; }
+  html[data-style="kids"] .text-slate-200 { color: #1F2937 !important; }
+  html[data-style="kids"] .text-slate-300 { color: #374151 !important; }
+  html[data-style="kids"] .text-slate-400 { color: #4B5563 !important; }
+  html[data-style="kids"] .text-slate-500 { color: #6B7280 !important; }
+  html[data-style="kids"] .text-gold-400 { color: #EC4899 !important; font-weight: 700; }
+
+  @keyframes kidsWobble {
+    0%, 100% { transform: rotate(-2.5deg); }
+    50% { transform: rotate(2.5deg); }
+  }
+  html[data-style="kids"] .story-illust svg {
+    animation: kidsWobble 4.5s ease-in-out infinite;
+    transform-origin: center;
+  }
+  html[data-style="kids"] .story-step:nth-of-type(2n) .story-illust svg { animation-delay: 1.5s; }
+  @media (prefers-reduced-motion: reduce) {
+    html[data-style="kids"] .story-illust svg { animation: none; }
+  }
+
+  html[data-style="kids"] .report-card { border-radius: 26px; border-width: 3px; border-color: rgba(251,146,60,0.35); }
+  html[data-style="kids"] #reports-container > div:nth-of-type(1) { border-color: rgba(96,165,250,0.5); }
+  html[data-style="kids"] #reports-container > div:nth-of-type(2) { border-color: rgba(251,191,36,0.5); }
+  html[data-style="kids"] #reports-container > div:nth-of-type(3) { border-color: rgba(52,211,153,0.5); }
+  html[data-style="kids"] #reports-container > div:nth-of-type(4) { border-color: rgba(251,113,133,0.5); }
+  html[data-style="kids"] .report-stat {
+    background: linear-gradient(180deg, #FFF8E7, #FEF3C7);
+    border-color: rgba(251,146,60,0.4);
+    border-radius: 18px;
+  }
+  html[data-style="kids"] .report-stat-value {
+    background: linear-gradient(135deg, #FB7185, #F59E0B);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+  }
+  html[data-style="kids"] .report-stat-label { color: #4B5563 !important; font-weight: 600; }
+  html[data-style="kids"] .report-stat-hint { color: #6B7280 !important; }
+  html[data-style="kids"] .report-bar-track { background: rgba(251,146,60,0.15); }
+
+  html[data-style="kids"] h1.serif { font-family: 'Fredoka', 'Noto Sans SC', sans-serif; font-weight: 700; }
+
+  html[data-style="kids"] .keymap-bar {
+    background: rgba(255,255,255,0.92);
+    border-color: rgba(251,146,60,0.35);
+    color: #4B5563;
+    border-radius: 999px;
+  }
+  html[data-style="kids"] .keymap-bar kbd {
+    background: #FEF3C7; color: #92400E; border-color: #FCD34D;
+  }
+  html[data-style="kids"] .sidenav a { background: rgba(236,72,153,0.3); }
+  html[data-style="kids"] .sidenav a.active { background: #EC4899; box-shadow: 0 0 14px rgba(236,72,153,0.6); }
+
+  /* 风格切换按钮样式 */
+  .style-toggle {
+    position: relative;
+    width: 66px; height: 32px; border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    cursor: pointer; transition: all .3s ease;
+    display: inline-flex; align-items: center;
+    padding: 0 6px;
+  }
+  .style-toggle:hover { border-color: rgba(236,72,153,0.55); }
+  .style-toggle::before {
+    content: ''; position: absolute; left: 3px; top: 3px;
+    width: 24px; height: 24px; border-radius: 999px;
+    background: linear-gradient(135deg, #9CA3AF, #6B7280);
+    transition: all .3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+  html[data-style="kids"] .style-toggle::before {
+    transform: translateX(34px);
+    background: linear-gradient(135deg, #FB7185, #EC4899);
+    box-shadow: 0 2px 14px rgba(236,72,153,0.7);
+  }
+  .style-toggle .face {
+    font-size: 14px; z-index: 2; opacity: 0.55;
+    transition: opacity .3s ease;
+    pointer-events: none;
+  }
+  .style-toggle .face-adult { margin-left: 4px; }
+  .style-toggle .face-kids  { margin-left: auto; margin-right: 2px; }
+  html:not([data-style="kids"]) .style-toggle .face-adult { opacity: 1; }
+  html[data-style="kids"] .style-toggle .face-kids { opacity: 1; }
+  html[data-style="kids"] .style-toggle {
+    background: rgba(236,72,153,0.12);
+    border-color: rgba(236,72,153,0.35);
+  }
 </style>
 </head>
 <body class="antialiased">
@@ -763,6 +1014,10 @@
       <button class="theme-toggle" onclick="toggleTheme()" title="切换日夜模式" aria-label="切换日夜模式">
         <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+      <button class="style-toggle" onclick="toggleStyle()" title="切换可爱风(给小朋友看)" aria-label="切换可爱风">
+        <span class="face face-adult">🧑‍💻</span>
+        <span class="face face-kids">🧸</span>
       </button>
     </div>
   </div>
@@ -1233,10 +1488,12 @@
 </div>
 
 <script>
-/* ============ THEME (日夜切换) ============ */
+/* ============ THEME (日夜切换) + STYLE (可爱风切换) ============ */
 (function initTheme() {
-  const saved = localStorage.getItem('matrix-theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', saved);
+  const theme = localStorage.getItem('matrix-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+  const style = localStorage.getItem('matrix-style');
+  if (style === 'kids') document.documentElement.setAttribute('data-style', 'kids');
 })();
 function toggleTheme() {
   const cur = document.documentElement.getAttribute('data-theme') || 'dark';
@@ -1244,6 +1501,18 @@ function toggleTheme() {
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('matrix-theme', next);
   if (typeof toast === 'function') toast(next === 'light' ? '已切到白天模式' : '已切到夜间模式');
+}
+function toggleStyle() {
+  const cur = document.documentElement.getAttribute('data-style');
+  if (cur === 'kids') {
+    document.documentElement.removeAttribute('data-style');
+    localStorage.removeItem('matrix-style');
+    if (typeof toast === 'function') toast('已切回正式风格');
+  } else {
+    document.documentElement.setAttribute('data-style', 'kids');
+    localStorage.setItem('matrix-style', 'kids');
+    if (typeof toast === 'function') toast('已切到可爱风 · 小朋友也能看懂');
+  }
 }
 
 /* ============ 动态日期 · 让快照日期始终是今天 ============ */
