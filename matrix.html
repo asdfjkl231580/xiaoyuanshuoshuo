@@ -432,6 +432,82 @@
     margin-bottom: 6px;
     display: block;
   }
+
+  /* Story · 六步漫画图(给小白看的 P8 链路) */
+  .story-flow {
+    display: flex; align-items: stretch; gap: 0;
+    flex-wrap: wrap;
+  }
+  .story-step {
+    flex: 1 1 180px;
+    position: relative;
+    padding: 30px 16px 20px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+    transition: all .3s ease;
+    margin-top: 14px;
+  }
+  .story-step:hover {
+    transform: translateY(-3px);
+    border-color: rgba(212,175,55,0.4);
+    box-shadow: 0 10px 40px -12px rgba(212,175,55,0.25);
+  }
+  .story-num {
+    position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+    width: 36px; height: 36px; border-radius: 999px;
+    background: linear-gradient(135deg, #F5E6A8, #D4AF37 60%, #B8921F);
+    color: #0B1020;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 700; font-size: 15px;
+    box-shadow: 0 4px 20px -4px rgba(212,175,55,0.6);
+  }
+  .story-illust {
+    width: 84px; height: 84px;
+    margin: 6px auto 16px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .story-illust svg { width: 100%; height: 100%; }
+  .story-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px; font-weight: 700;
+    color: #F5E6A8;
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+  .story-desc {
+    font-size: 12.5px;
+    color: #CBD5E1;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .story-tech {
+    font-size: 10px;
+    color: #64748B;
+    font-family: 'JetBrains Mono', monospace;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(255,255,255,0.1);
+    letter-spacing: 0.04em;
+  }
+  .story-arrow {
+    flex: 0 0 32px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 2px;
+  }
+  .story-arrow svg {
+    width: 100%; height: auto; max-width: 36px;
+  }
+  @media (max-width: 960px) {
+    .story-flow { flex-direction: column; }
+    .story-step { flex: 1 1 auto; width: 100%; }
+    .story-arrow {
+      flex: 0 0 34px;
+      padding: 4px 0;
+    }
+    .story-arrow svg { transform: rotate(90deg); max-width: 32px; }
+  }
 </style>
 </head>
 <body class="antialiased">
@@ -1691,10 +1767,185 @@ function renderLinkDiagram(link) {
   </div>`;
 }
 
+/* ============ RENDER: P8 STORY (六步漫画版) ============ */
+function renderP8Story() {
+  const steps = [
+    {
+      num: '壹',
+      title: '我写下思考',
+      desc: '在 Obsidian 里用中文随手记:命理心得、客户原话、课程金句、个人思考。',
+      tech: 'Markdown · 本地笔记',
+      illust: `<svg viewBox="0 0 100 100" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="18" y="16" width="58" height="72" rx="4" fill="rgba(148,163,184,0.1)"/>
+        <line x1="28" y1="30" x2="68" y2="30"/>
+        <line x1="28" y1="40" x2="62" y2="40"/>
+        <line x1="28" y1="50" x2="66" y2="50"/>
+        <line x1="28" y1="60" x2="56" y2="60"/>
+        <line x1="28" y1="70" x2="50" y2="70"/>
+        <path d="M70 16 L86 30 L80 50 L64 36 Z" fill="rgba(232,200,106,0.3)" stroke="#E8C86A" stroke-width="2"/>
+        <line x1="70" y1="16" x2="86" y2="30" stroke="#E8C86A"/>
+        <circle cx="82" cy="26" r="1.5" fill="#E8C86A" stroke="none"/>
+      </svg>`,
+    },
+    {
+      num: '贰',
+      title: '放进对应抽屉',
+      desc: '在笔记顶部加一行「upload: true」,或丢进「收件箱」文件夹,自动排队等上传。',
+      tech: '05_工作台 · 收件箱',
+      illust: `<svg viewBox="0 0 100 100" fill="none" stroke="#818CF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="15" y="15" width="70" height="72" rx="5" fill="rgba(129,140,248,0.06)"/>
+        <rect x="15" y="15" width="70" height="22"/>
+        <rect x="15" y="37" width="70" height="22" fill="rgba(129,140,248,0.35)" stroke="#A5B4FC" stroke-width="2.5"/>
+        <rect x="15" y="59" width="70" height="28"/>
+        <circle cx="50" cy="26" r="2" fill="#818CF8" stroke="none"/>
+        <circle cx="50" cy="48" r="3" fill="#A5B4FC" stroke="none"/>
+        <circle cx="50" cy="73" r="2" fill="#818CF8" stroke="none"/>
+        <path d="M44 48 L48 52 L58 42" stroke="#0B1020" stroke-width="2.5"/>
+      </svg>`,
+    },
+    {
+      num: '叁',
+      title: '每小时自动搬运',
+      desc: '电脑后台默默值守,有新内容就定时传送到智能体那边。我不需要手动按按钮。',
+      tech: 'launchd · 定时任务',
+      illust: `<svg viewBox="0 0 100 100" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="32" cy="50" r="20" fill="rgba(52,211,153,0.1)"/>
+        <path d="M32 36 L32 50 L42 56"/>
+        <circle cx="32" cy="50" r="2" fill="#34D399" stroke="none"/>
+        <line x1="32" y1="28" x2="32" y2="32" stroke-width="2.5"/>
+        <line x1="32" y1="68" x2="32" y2="72" stroke-width="2.5"/>
+        <line x1="10" y1="50" x2="14" y2="50" stroke-width="2.5"/>
+        <line x1="54" y1="50" x2="50" y2="50" stroke-width="2.5"/>
+        <rect x="62" y="42" width="12" height="16" rx="1" fill="rgba(52,211,153,0.3)"/>
+        <path d="M63 47 L73 47 M63 51 L70 51" stroke-width="1"/>
+        <rect x="78" y="42" width="12" height="16" rx="1" fill="rgba(52,211,153,0.1)" opacity="0.6"/>
+        <path d="M58 78 L92 78" stroke-dasharray="3 3"/>
+        <path d="M86 74 L92 78 L86 82"/>
+      </svg>`,
+    },
+    {
+      num: '肆',
+      title: '存进大仓库',
+      desc: '8000+ 条素材被切成小段、贴标签、编索引——就像图书馆把每本书分类上架。',
+      tech: '数据库 · 向量索引',
+      illust: `<svg viewBox="0 0 100 100" fill="none" stroke="#FB7185" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="18" y="18" width="64" height="64" rx="5" fill="rgba(244,63,94,0.08)"/>
+        <circle cx="50" cy="50" r="16" fill="rgba(244,63,94,0.1)"/>
+        <circle cx="50" cy="50" r="4" fill="#FB7185" stroke="none"/>
+        <line x1="50" y1="32" x2="50" y2="26" stroke-width="2.5"/>
+        <line x1="68" y1="50" x2="74" y2="50" stroke-width="2.5"/>
+        <line x1="50" y1="68" x2="50" y2="74" stroke-width="2.5"/>
+        <line x1="32" y1="50" x2="26" y2="50" stroke-width="2.5"/>
+        <line x1="62" y1="38" x2="66" y2="34"/>
+        <line x1="62" y1="62" x2="66" y2="66"/>
+        <line x1="38" y1="62" x2="34" y2="66"/>
+        <line x1="38" y1="38" x2="34" y2="34"/>
+        <rect x="22" y="22" width="8" height="3" rx="1" fill="#FB7185" stroke="none" opacity="0.6"/>
+        <rect x="70" y="22" width="8" height="3" rx="1" fill="#FB7185" stroke="none" opacity="0.6"/>
+      </svg>`,
+    },
+    {
+      num: '伍',
+      title: 'AI 翻书思考',
+      desc: '用户一提问,AI 就到仓库挑最相关的几段,用「根源老师」的语气重新组织成答案。',
+      tech: 'RAG 检索 · persona',
+      illust: `<svg viewBox="0 0 100 100" fill="none" stroke="#E8C86A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M28 44 Q28 28 42 26 Q50 20 58 26 Q72 28 72 44 Q78 50 72 58 Q72 68 62 70 Q50 76 38 70 Q28 68 28 58 Q22 50 28 44 Z" fill="rgba(232,200,106,0.18)"/>
+        <path d="M50 32 L50 66" opacity="0.5"/>
+        <path d="M40 42 Q50 40 60 42" opacity="0.5"/>
+        <path d="M40 52 Q50 50 60 52" opacity="0.5"/>
+        <path d="M40 62 Q50 60 60 62" opacity="0.4"/>
+        <circle cx="74" cy="74" r="9" fill="rgba(11,16,32,0.8)" stroke="#E8C86A" stroke-width="2.5"/>
+        <line x1="81" y1="81" x2="90" y2="90" stroke-width="3"/>
+        <circle cx="74" cy="74" r="2" fill="#E8C86A" stroke="none"/>
+      </svg>`,
+    },
+    {
+      num: '陆',
+      title: '秒回给用户',
+      desc: '小程序、网页、iOS App 的用户看到的每一句回答,都是我那段笔记的回音。',
+      tech: 'P1 · P2 · P10',
+      illust: `<svg viewBox="0 0 100 100" fill="none" stroke="#E8C86A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="30" y="10" width="40" height="78" rx="7" fill="rgba(232,200,106,0.08)"/>
+        <line x1="44" y1="16" x2="56" y2="16" stroke-width="2.5"/>
+        <circle cx="50" cy="82" r="2" fill="#E8C86A" stroke="none"/>
+        <rect x="35" y="24" width="30" height="18" rx="6" fill="rgba(232,200,106,0.3)" stroke="#E8C86A" stroke-width="2"/>
+        <line x1="38" y1="30" x2="56" y2="30" opacity="0.6"/>
+        <line x1="38" y1="35" x2="52" y2="35" opacity="0.6"/>
+        <path d="M40 42 L44 46" stroke="#E8C86A" stroke-width="2"/>
+        <rect x="35" y="50" width="22" height="14" rx="5" stroke-dasharray="3 2" opacity="0.7"/>
+        <circle cx="40" cy="72" r="2" fill="#E8C86A" stroke="none" opacity="0.5"/>
+        <circle cx="50" cy="72" r="2" fill="#E8C86A" stroke="none" opacity="0.5"/>
+        <circle cx="60" cy="72" r="2" fill="#E8C86A" stroke="none" opacity="0.5"/>
+      </svg>`,
+    },
+  ];
+
+  const arrow = `<div class="story-arrow">
+    <svg viewBox="0 0 36 24" fill="none">
+      <line class="flow-line" x1="2" y1="12" x2="28" y2="12" stroke="rgba(212,175,55,0.5)" stroke-width="1.5" stroke-dasharray="3 4"/>
+      <path d="M26 6 L34 12 L26 18" stroke="rgba(212,175,55,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>`;
+
+  const stepsHtml = steps.map((s, i) => {
+    const arr = i < steps.length - 1 ? arrow : '';
+    return `<div class="story-step">
+      <div class="story-num">${s.num}</div>
+      <div class="story-illust">${s.illust}</div>
+      <div class="story-title">${s.title}</div>
+      <div class="story-desc">${s.desc}</div>
+      <div class="story-tech">${s.tech}</div>
+    </div>${arr}`;
+  }).join('');
+
+  return `<div class="glass rounded-3xl p-6 md:p-8 relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-15"></div>
+    <div class="relative">
+      <div class="flex items-start justify-between flex-wrap gap-4 mb-6 pb-5 border-b border-white/5">
+        <div>
+          <h3 class="serif text-xl md:text-2xl font-bold text-white">P8 · Obsidian 知识库如何连上 AI</h3>
+          <p class="text-sm text-slate-400 mt-1">我写的每一段思考,是怎么变成 AI 给用户的答案的 —— 六步漫画</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="chip" style="color: #E8C86A; border-color: rgba(212,175,55,0.35);">3 条自动管道</span>
+          <span class="chip" style="color: #34D399; border-color: rgba(52,211,153,0.35);">每小时同步</span>
+          <span class="chip" style="color: #818CF8; border-color: rgba(129,140,248,0.35);">8000+ 条素材</span>
+        </div>
+      </div>
+
+      <div class="story-flow">${stepsHtml}</div>
+
+      <div class="deep-trace">
+        <span class="deep-trace-label">一个真实例子 · 走完这 6 步</span>
+        我写下「癸水女性的感情特点」→ 保存到 05_工作台 → 下个整点 launchd 自动触发 → 内容入库、向量化 → 用户在小程序问「我癸水的感情怎么看」→ AI 挑出这段,用根源老师口吻回复 → 秒级返回到手机屏幕
+      </div>
+
+      <div class="deep-warn">
+        <div class="deep-warn-title">未 通 · 待 补</div>
+        <div class="grid md:grid-cols-2 gap-x-6 gap-y-1">
+          <div class="deep-warn-item">
+            <span class="chip chip-dev shrink-0">P1</span>
+            <span>03_智能体派生 目录还是空壳<span class="text-slate-500 ml-1">· 自动生成流程没落地</span></span>
+          </div>
+          <div class="deep-warn-item">
+            <span class="chip shrink-0">P2</span>
+            <span>01_原文主库 4047 文件只供本地阅读<span class="text-slate-500 ml-1">· 暂未进同步管道</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
 function renderDeepDive() {
   const container = document.getElementById('deepdive-container');
   if (!container) return;
-  container.innerHTML = [LINK_P1, LINK_P10, LINK_P8].map(renderLinkDiagram).join('');
+  container.innerHTML = [
+    renderLinkDiagram(LINK_P1),
+    renderLinkDiagram(LINK_P10),
+    renderP8Story(),
+  ].join('');
 }
 
 renderFlow();
