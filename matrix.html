@@ -508,6 +508,155 @@
     }
     .story-arrow svg { transform: rotate(90deg); max-width: 32px; }
   }
+
+  /* Vault 俯瞰图管道动画 */
+  .vault-pipe-out { animation: dashFlow 2.4s linear infinite; }
+  .vault-pipe-back { animation: dashFlow 3.2s linear infinite reverse; }
+  @media (prefers-reduced-motion: reduce) {
+    .vault-pipe-out, .vault-pipe-back { animation: none; }
+  }
+
+  /* ==== 全局字号放大 ==== */
+  html { font-size: 16.5px; }
+  body { font-size: 15px; line-height: 1.65; }
+  .chapter-eyebrow { font-size: 12px; }
+  .chapter-title { font-size: 42px; }
+  .chapter-num { font-size: 100px; }
+  .story-title { font-size: 17px; }
+  .story-desc { font-size: 13.5px; }
+  .story-tech { font-size: 11px; }
+  .deep-node { font-size: 13px; }
+  .deep-lane-label { font-size: 15px; }
+  .chip { font-size: 12px; }
+  .flow-step .text-xs { font-size: 12px; }
+  h1.serif { letter-spacing: -0.02em; }
+
+  /* ==== 主题切换按钮 ==== */
+  .theme-toggle {
+    position: relative;
+    width: 56px; height: 30px; border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    cursor: pointer; transition: all .3s ease;
+    display: inline-flex; align-items: center;
+    padding: 0 4px;
+  }
+  .theme-toggle:hover { border-color: rgba(212,175,55,0.5); }
+  .theme-toggle::before {
+    content: ''; position: absolute; left: 3px; top: 3px;
+    width: 22px; height: 22px; border-radius: 999px;
+    background: linear-gradient(135deg, #F5E6A8, #D4AF37);
+    transition: transform .3s ease;
+    box-shadow: 0 2px 8px rgba(212,175,55,0.5);
+  }
+  html[data-theme="light"] .theme-toggle::before { transform: translateX(26px); }
+  .theme-toggle svg { width: 12px; height: 12px; color: #94A3B8; }
+  .theme-toggle .moon { margin-left: 4px; }
+  .theme-toggle .sun { margin-left: auto; margin-right: 2px; }
+
+  /* ==== 日夜主题 · 浅色模式 ==== */
+  html[data-theme="light"] body {
+    color: #1E293B;
+    background:
+      radial-gradient(1200px 600px at 15% -10%, rgba(212,175,55,0.20), transparent 60%),
+      radial-gradient(1000px 600px at 90% 10%, rgba(129,140,248,0.15), transparent 55%),
+      radial-gradient(900px 500px at 50% 120%, rgba(236,72,153,0.08), transparent 60%),
+      #F5F3ED;
+  }
+  html[data-theme="light"] .glass {
+    background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.7));
+    border-color: rgba(30,41,59,0.1);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px -12px rgba(30,41,59,0.12);
+  }
+  html[data-theme="light"] .glass:hover { border-color: rgba(212,175,55,0.5); }
+  html[data-theme="light"] .text-white { color: #0F172A !important; }
+  html[data-theme="light"] .text-slate-200 { color: #1E293B !important; }
+  html[data-theme="light"] .text-slate-300 { color: #334155 !important; }
+  html[data-theme="light"] .text-slate-400 { color: #475569 !important; }
+  html[data-theme="light"] .text-slate-500 { color: #64748B !important; }
+  html[data-theme="light"] .text-slate-600 { color: #94A3B8 !important; }
+  html[data-theme="light"] .text-gold-400 { color: #B8921F !important; }
+  html[data-theme="light"] .text-emerald-400 { color: #059669 !important; }
+  html[data-theme="light"] .text-rose-400 { color: #E11D48 !important; }
+  html[data-theme="light"] .text-amber-300 { color: #D97706 !important; }
+  html[data-theme="light"] .chip {
+    background: rgba(30,41,59,0.04);
+    border-color: rgba(30,41,59,0.12);
+    color: #334155;
+  }
+  html[data-theme="light"] .chip-live { background: rgba(34,197,94,0.12); color: #15803D; border-color: rgba(34,197,94,0.4); }
+  html[data-theme="light"] .chip-dev { background: rgba(234,179,8,0.15); color: #A16207; border-color: rgba(234,179,8,0.4); }
+  html[data-theme="light"] .chip-warn { background: rgba(244,63,94,0.12); color: #BE123C; border-color: rgba(244,63,94,0.45); }
+  html[data-theme="light"] .grid-bg {
+    background-image:
+      linear-gradient(rgba(30,41,59,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(30,41,59,0.05) 1px, transparent 1px);
+  }
+  html[data-theme="light"] .flow-step,
+  html[data-theme="light"] .layer,
+  html[data-theme="light"] .node-pill,
+  html[data-theme="light"] .loop-card,
+  html[data-theme="light"] .deep-lane,
+  html[data-theme="light"] .story-step,
+  html[data-theme="light"] .funnel-step {
+    background: rgba(255,255,255,0.7);
+    border-color: rgba(30,41,59,0.1);
+  }
+  html[data-theme="light"] .loop-gold { background: linear-gradient(180deg, rgba(212,175,55,0.12), rgba(255,255,255,0.7)); }
+  html[data-theme="light"] .loop-indigo { background: linear-gradient(180deg, rgba(129,140,248,0.12), rgba(255,255,255,0.7)); }
+  html[data-theme="light"] .loop-emerald { background: linear-gradient(180deg, rgba(52,211,153,0.12), rgba(255,255,255,0.7)); }
+  html[data-theme="light"] .loop-rose { background: linear-gradient(180deg, rgba(251,113,133,0.12), rgba(255,255,255,0.7)); }
+  html[data-theme="light"] .loop-path {
+    background: rgba(30,41,59,0.06);
+    color: #334155;
+    border-color: rgba(30,41,59,0.1);
+  }
+  html[data-theme="light"] .deep-node { color: #1E293B; }
+  html[data-theme="light"] .story-desc { color: #334155; }
+  html[data-theme="light"] .story-tech { color: #64748B; border-top-color: rgba(30,41,59,0.15); }
+  html[data-theme="light"] .field-val .tag {
+    background: rgba(212,175,55,0.15);
+    color: #A16207;
+    border-color: rgba(212,175,55,0.35);
+  }
+  html[data-theme="light"] .card-num { filter: drop-shadow(0 1px 2px rgba(184,146,31,0.3)); }
+  html[data-theme="light"] .keymap-bar {
+    background: rgba(255,255,255,0.85);
+    border-color: rgba(30,41,59,0.1);
+    color: #475569;
+  }
+  html[data-theme="light"] .keymap-bar kbd {
+    background: rgba(30,41,59,0.06);
+    border-color: rgba(30,41,59,0.12);
+    color: #B8921F;
+  }
+  html[data-theme="light"] .sidenav a { background: rgba(30,41,59,0.2); }
+  html[data-theme="light"] .sidenav a::after {
+    background: rgba(255,255,255,0.95);
+    color: #475569;
+    border-color: rgba(30,41,59,0.12);
+  }
+  html[data-theme="light"] hr.section-div {
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent);
+  }
+  html[data-theme="light"] #toast {
+    background: rgba(255,255,255,0.97);
+    color: #B8921F;
+    border-color: rgba(212,175,55,0.5);
+  }
+  html[data-theme="light"] .deep-lane-tag { background: rgba(255,255,255,0.7); }
+  html[data-theme="light"] .deep-trace {
+    background: rgba(212,175,55,0.1);
+    color: #A16207;
+    border-color: rgba(212,175,55,0.35);
+  }
+  html[data-theme="light"] .kbd-badge {
+    background: rgba(30,41,59,0.08);
+    color: #475569;
+    border-color: rgba(30,41,59,0.12);
+  }
+  html[data-theme="light"] .field-row { border-top-color: rgba(30,41,59,0.08); }
 </style>
 </head>
 <body class="antialiased">
@@ -539,8 +688,12 @@
       </div>
     </div>
     <div class="hidden md:flex items-center gap-6 text-sm text-slate-400">
-      <span>2026-04-17</span>
+      <span class="today-date">2026-04-18</span>
       <span class="flex items-center gap-2"><span class="status-dot bg-emerald-500 pulse-ring"></span>AI 大脑在线</span>
+      <button class="theme-toggle" onclick="toggleTheme()" title="切换日夜模式" aria-label="切换日夜模式">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
     </div>
   </div>
 </header>
@@ -929,7 +1082,7 @@
       <div class="chapter-eyebrow">C H A P T E R · 陆</div>
       <h2 class="chapter-title">当前优先级</h2>
       <p class="text-slate-400 mt-3 max-w-2xl leading-relaxed">
-        2026-04-17 快照。红色=必须先处理,金色=本周内。
+        <span class="today-date">2026-04-18</span> 快照。红色=必须先处理,金色=本周内。
       </p>
     </div>
     <div class="chapter-num select-none">陆</div>
@@ -977,7 +1130,7 @@
       <span>13 年八字命理咨询</span>
     </div>
     <div class="flex items-center gap-4">
-      <span>snapshot · 2026-04-17</span>
+      <span>snapshot · <span class="today-date">2026-04-18</span></span>
       <span>yuaneightlife.com</span>
     </div>
   </div>
@@ -991,6 +1144,32 @@
 </div>
 
 <script>
+/* ============ THEME (日夜切换) ============ */
+(function initTheme() {
+  const saved = localStorage.getItem('matrix-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+})();
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('matrix-theme', next);
+  if (typeof toast === 'function') toast(next === 'light' ? '已切到白天模式' : '已切到夜间模式');
+}
+
+/* ============ 动态日期 · 让快照日期始终是今天 ============ */
+(function syncDate() {
+  const d = new Date();
+  const pad = n => String(n).padStart(2, '0');
+  const todayStr = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.today-date').forEach(el => el.textContent = todayStr);
+  });
+  if (document.readyState !== 'loading') {
+    document.querySelectorAll('.today-date').forEach(el => el.textContent = todayStr);
+  }
+})();
+
 /* ============ DATA ============ */
 
 const FLOW_STEPS = [
@@ -1767,7 +1946,140 @@ function renderLinkDiagram(link) {
   </div>`;
 }
 
-/* ============ RENDER: P8 STORY (六步漫画版) ============ */
+/* ============ RENDER: STORIES (P1 / P10 / P8 漫画模板) ============ */
+function buildStoryCard({ title, subtitle, badges, steps, trace, warnings }) {
+  const arrow = `<div class="story-arrow"><svg viewBox="0 0 36 24" fill="none"><line class="flow-line" x1="2" y1="12" x2="28" y2="12" stroke="rgba(212,175,55,0.5)" stroke-width="1.5" stroke-dasharray="3 4"/><path d="M26 6 L34 12 L26 18" stroke="rgba(212,175,55,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>`;
+
+  const stepsHtml = steps.map((s, i) => {
+    const arr = i < steps.length - 1 ? arrow : '';
+    return `<div class="story-step"><div class="story-num">${s.num}</div><div class="story-illust">${s.illust}</div><div class="story-title">${s.title}</div><div class="story-desc">${s.desc}</div><div class="story-tech">${s.tech}</div></div>${arr}`;
+  }).join('');
+
+  const traceHtml = trace ? `<div class="deep-trace"><span class="deep-trace-label">一个真实例子 · 走完这六步</span>${trace}</div>` : '';
+
+  const warnHtml = warnings && warnings.length ? `<div class="deep-warn"><div class="deep-warn-title">未 通 · 待 补</div><div class="grid md:grid-cols-2 gap-x-6 gap-y-1">${warnings.map(w => {
+    const lvlCls = w.level === 'P0' ? 'chip-warn' : w.level === 'P1' ? 'chip-dev' : 'chip';
+    const noteHtml = w.note ? `<span class="text-slate-500 ml-1">· ${w.note}</span>` : '';
+    return `<div class="deep-warn-item"><span class="chip ${lvlCls} shrink-0">${w.level}</span><span>${w.label}${noteHtml}</span></div>`;
+  }).join('')}</div></div>` : '';
+
+  const badgesHtml = badges.map(b => `<span class="chip" style="color: ${b.color}; border-color: ${b.color}55;">${b.label}</span>`).join('');
+
+  return `<div class="glass rounded-3xl p-6 md:p-8 relative overflow-hidden"><div class="absolute inset-0 grid-bg opacity-15"></div><div class="relative"><div class="flex items-start justify-between flex-wrap gap-4 mb-6 pb-5 border-b border-white/5"><div><h3 class="serif text-xl md:text-2xl font-bold text-white">${title}</h3><p class="text-sm text-slate-400 mt-1">${subtitle}</p></div><div class="flex flex-wrap gap-2">${badgesHtml}</div></div><div class="story-flow">${stepsHtml}</div>${traceHtml}${warnHtml}</div></div>`;
+}
+
+function renderP1Story() {
+  return buildStoryCard({
+    title: 'P1 · 微信小程序如何工作',
+    subtitle: '复杂度最高的产品 · 8 页面 + 8 lib + 7 云函数 · 但用户只要点几下',
+    badges: [
+      { label: '核心用户端', color: '#818CF8' },
+      { label: '已上线', color: '#22C55E' },
+      { label: '2 处断点', color: '#FB7185' },
+    ],
+    steps: [
+      {
+        num: '壹', title: '用户打开小程序',
+        desc: '在微信里搜「小源说说」,一点就进来,不用下载安装。',
+        tech: '微信小程序',
+        illust: `<svg viewBox="0 0 100 100" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="22" y="10" width="42" height="74" rx="6" fill="rgba(148,163,184,0.1)"/><line x1="36" y1="16" x2="50" y2="16" stroke-width="2.5"/><circle cx="43" cy="78" r="2" fill="#94A3B8" stroke="none"/><circle cx="43" cy="42" r="14" fill="rgba(34,197,94,0.22)" stroke="#22C55E" stroke-width="2"/><path d="M37 39 Q40 36 43 38 Q46 36 49 39" stroke="#22C55E" stroke-width="2"/><circle cx="39" cy="42" r="1" fill="#22C55E" stroke="none"/><circle cx="47" cy="42" r="1" fill="#22C55E" stroke="none"/><path d="M68 58 C74 56, 80 58, 82 64 L82 80 L72 80 L68 72 Z" fill="rgba(232,200,106,0.3)" stroke="#E8C86A" stroke-width="2"/></svg>`,
+      },
+      {
+        num: '贰', title: '输入生辰八字',
+        desc: '填年月日时 + 性别。档案记下来,下次不用再输。',
+        tech: 'pages/index · 档案缓存',
+        illust: `<svg viewBox="0 0 100 100" fill="none" stroke="#818CF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="18" y="20" width="64" height="60" rx="5" fill="rgba(129,140,248,0.1)"/><rect x="26" y="28" width="20" height="20" rx="3" fill="rgba(129,140,248,0.28)"/><line x1="30" y1="26" x2="30" y2="32" stroke-width="2.5"/><line x1="42" y1="26" x2="42" y2="32" stroke-width="2.5"/><line x1="26" y1="36" x2="46" y2="36" opacity="0.5"/><text x="36" y="44" font-size="8" fill="#A5B4FC" stroke="none" text-anchor="middle" font-weight="700">15</text><line x1="52" y1="32" x2="74" y2="32"/><line x1="52" y1="40" x2="70" y2="40" opacity="0.5"/><rect x="26" y="56" width="48" height="14" rx="4" fill="rgba(129,140,248,0.42)" stroke="#A5B4FC" stroke-width="2"/><text x="50" y="66" font-size="9" fill="#0B1020" stroke="none" text-anchor="middle" font-weight="700">排 盘</text></rect></svg>`,
+      },
+      {
+        num: '叁', title: '小程序本地排盘',
+        desc: '手机自己算——八字 / 大运 / 行运 / 合盘。全部本地算法,不联网。',
+        tech: 'lib/*.js · 8 个算法',
+        illust: `<svg viewBox="0 0 100 100" fill="none" stroke="#E8C86A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="50" cy="50" r="30" fill="rgba(232,200,106,0.15)"/><path d="M50 20 A30 30 0 0 1 50 80 A15 15 0 0 0 50 50 A15 15 0 0 1 50 20 Z" fill="rgba(232,200,106,0.48)" stroke="#E8C86A"/><circle cx="50" cy="35" r="3" fill="#0B1020" stroke="none"/><circle cx="50" cy="65" r="3" fill="rgba(232,200,106,0.8)" stroke="#E8C86A" stroke-width="1"/><line x1="20" y1="50" x2="80" y2="50" stroke-dasharray="2 3" opacity="0.45"/><rect x="74" y="74" width="12" height="12" rx="2" fill="rgba(232,200,106,0.35)"/><line x1="78" y1="74" x2="78" y2="70"/><line x1="82" y1="74" x2="82" y2="70"/><line x1="74" y1="78" x2="70" y2="78"/><line x1="74" y1="84" x2="70" y2="84"/></svg>`,
+      },
+      {
+        num: '肆', title: '想听解读 → 叫云函数',
+        desc: '用户点「听老师解读」,小程序就让云函数替自己去跑一趟 AI。',
+        tech: 'geminiChat · hepanChat',
+        illust: `<svg viewBox="0 0 100 100" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M28 54 C18 54, 16 42, 24 38 C24 26, 42 22, 48 30 C58 26, 70 32, 68 44 C80 44, 80 56, 68 58 L28 58 Z" fill="rgba(52,211,153,0.2)"/><path d="M46 38 L42 52 L48 52 L44 66 L56 48 L50 48 L54 36 Z" fill="rgba(232,200,106,0.8)" stroke="#E8C86A" stroke-width="1.5"/><line x1="50" y1="68" x2="50" y2="84" stroke-dasharray="2 3" opacity="0.7"/><path d="M44 80 L50 88 L56 80" stroke-width="2"/></svg>`,
+      },
+      {
+        num: '伍', title: '大脑(P3)回话',
+        desc: '云函数跑到 yuaneightlife.com,AI 检索知识库,用根源老师的口吻回复。',
+        tech: '/api/chat',
+        illust: `<svg viewBox="0 0 100 100" fill="none" stroke="#E8C86A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M30 48 Q30 32 42 30 Q50 24 58 30 Q70 32 70 48 Q76 54 70 60 Q70 68 62 70 Q50 76 38 70 Q30 68 30 60 Q24 54 30 48 Z" fill="rgba(232,200,106,0.25)"/><path d="M50 32 L50 66" opacity="0.55"/><path d="M42 42 Q50 40 58 42" opacity="0.55"/><path d="M42 52 Q50 50 58 52" opacity="0.55"/><path d="M42 62 Q50 60 58 62" opacity="0.4"/><circle cx="78" cy="28" r="9" fill="rgba(232,200,106,0.35)"/><path d="M75 34 L75 38 L81 38 L81 34"/><line x1="78" y1="12" x2="78" y2="16" stroke-width="1.5"/><line x1="68" y1="18" x2="71" y2="21" stroke-width="1.5"/><line x1="88" y1="18" x2="85" y2="21" stroke-width="1.5"/></svg>`,
+      },
+      {
+        num: '陆', title: '用户拿到答案',
+        desc: '命理报告 + AI 解读 + 付费解锁,一条龙呈现在小程序气泡里。',
+        tech: 'pages/result · pages/consult',
+        illust: `<svg viewBox="0 0 100 100" fill="none" stroke="#E8C86A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="28" y="8" width="44" height="82" rx="7" fill="rgba(232,200,106,0.1)"/><line x1="42" y1="14" x2="58" y2="14" stroke-width="2.5"/><circle cx="50" cy="84" r="2" fill="#E8C86A" stroke="none"/><rect x="34" y="22" width="32" height="18" rx="4" fill="rgba(232,200,106,0.42)" stroke="#E8C86A" stroke-width="2"/><text x="50" y="34" font-size="9" fill="#0B1020" stroke="none" text-anchor="middle" font-weight="700">甲子日</text><rect x="34" y="46" width="32" height="14" rx="5" fill="rgba(232,200,106,0.15)" stroke-dasharray="3 2"/><circle cx="40" cy="53" r="1.3" fill="#E8C86A" stroke="none"/><circle cx="46" cy="53" r="1.3" fill="#E8C86A" stroke="none"/><circle cx="52" cy="53" r="1.3" fill="#E8C86A" stroke="none"/><rect x="34" y="66" width="32" height="14" rx="4" fill="rgba(52,211,153,0.3)" stroke="#34D399" stroke-width="2"/><text x="50" y="76" font-size="8" fill="#065F46" stroke="none" text-anchor="middle" font-weight="700">解锁深度</text></svg>`,
+      },
+    ],
+    trace: '用户输入「1990-03-15 卯时」→ lib/index.js 算出甲子日、壬水为用 → 点「听老师解读」→ hepanChat 云函数 → 走 HTTPS 到 /api/chat → P3 检索 RAG 找出「壬水透干」相关片段 → 根源老师口吻生成 → 返回小程序,在 consult 气泡呈现 + 付费卡',
+    warnings: [
+      { level: 'P0', label: '微信支付 SYSTEM_ERROR', note: '需联系 95017 排查' },
+      { level: 'P1', label: '禅卡(P9)子页未开发', note: '骨架已建' },
+    ],
+  });
+}
+
+function renderP10Story() {
+  return buildStoryCard({
+    title: 'P10 · 苹果 App(xyss)如何工作',
+    subtitle: 'iOS 原生 · 算法 Swift 化完成 · AI 仍借用 P3 的大脑',
+    badges: [
+      { label: 'iOS 原生', color: '#818CF8' },
+      { label: '16 Bazi 模块', color: '#E8C86A' },
+      { label: '未 git init', color: '#FB7185' },
+    ],
+    steps: [
+      {
+        num: '壹', title: 'iOS 用户开 App',
+        desc: '在 iPhone 上点 xyss 图标,原生 SwiftUI 界面启动,不经过微信。',
+        tech: 'SwiftUI · iOS 26+',
+        illust: `<svg viewBox="0 0 100 100" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="22" y="10" width="42" height="74" rx="8" fill="rgba(148,163,184,0.1)"/><line x1="36" y1="16" x2="50" y2="16" stroke-width="2.5"/><circle cx="43" cy="78" r="2" fill="#94A3B8" stroke="none"/><path d="M42 32 C40 28, 44 26, 46 30 C48 26, 52 28, 50 32 C54 36, 54 44, 48 48 C42 44, 42 36, 42 32 Z" fill="rgba(148,163,184,0.45)" stroke="#CBD5E1" stroke-width="2"/><path d="M45 27 Q46 25, 48 25" stroke-width="2"/><text x="43" y="62" font-size="7" fill="#94A3B8" stroke="none" text-anchor="middle" letter-spacing="1">iOS 26</text><path d="M68 58 C74 56, 80 58, 82 64 L82 80 L72 80 L68 72 Z" fill="rgba(232,200,106,0.3)" stroke="#E8C86A" stroke-width="2"/></svg>`,
+      },
+      {
+        num: '贰', title: '填生辰(iOS 风格)',
+        desc: '原生的日期滚轮、SF Symbols 图标,比小程序更流畅。',
+        tech: 'BaziHomeView.swift',
+        illust: `<svg viewBox="0 0 100 100" fill="none" stroke="#818CF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="18" y="14" width="64" height="72" rx="6" fill="rgba(129,140,248,0.1)"/><rect x="24" y="22" width="36" height="4" rx="2" fill="rgba(129,140,248,0.45)" stroke="none"/><rect x="24" y="32" width="52" height="10" rx="3" fill="rgba(129,140,248,0.15)"/><line x1="72" y1="37" x2="74" y2="37" stroke-width="2.5"/><rect x="24" y="46" width="52" height="10" rx="3" fill="rgba(129,140,248,0.3)" stroke="#A5B4FC" stroke-width="2"/><line x1="72" y1="51" x2="74" y2="51" stroke-width="2.5"/><rect x="24" y="60" width="52" height="10" rx="3" fill="rgba(129,140,248,0.15)"/><circle cx="50" cy="78" r="1.5" fill="#818CF8" stroke="none"/><circle cx="44" cy="78" r="1" fill="#A5B4FC" stroke="none" opacity="0.5"/><circle cx="56" cy="78" r="1" fill="#A5B4FC" stroke="none" opacity="0.5"/></svg>`,
+      },
+      {
+        num: '叁', title: 'Swift 16 个算法',
+        desc: '所有算法从小程序 .js 翻成 Swift,在手机芯片上直接跑。',
+        tech: 'Bazi/*.swift · 本地计算',
+        illust: `<svg viewBox="0 0 100 100" fill="none" stroke="#E8C86A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><g fill="rgba(232,200,106,0.18)" stroke="#E8C86A"><rect x="16" y="16" width="13" height="13" rx="2"/><rect x="33" y="16" width="13" height="13" rx="2"/><rect x="50" y="16" width="13" height="13" rx="2"/><rect x="67" y="16" width="13" height="13" rx="2"/><rect x="16" y="33" width="13" height="13" rx="2"/><rect x="33" y="33" width="13" height="13" rx="2" fill="rgba(232,200,106,0.5)"/><rect x="50" y="33" width="13" height="13" rx="2" fill="rgba(232,200,106,0.5)"/><rect x="67" y="33" width="13" height="13" rx="2"/><rect x="16" y="50" width="13" height="13" rx="2"/><rect x="33" y="50" width="13" height="13" rx="2" fill="rgba(232,200,106,0.5)"/><rect x="50" y="50" width="13" height="13" rx="2" fill="rgba(232,200,106,0.5)"/><rect x="67" y="50" width="13" height="13" rx="2"/><rect x="16" y="67" width="13" height="13" rx="2"/><rect x="33" y="67" width="13" height="13" rx="2"/><rect x="50" y="67" width="13" height="13" rx="2"/><rect x="67" y="67" width="13" height="13" rx="2"/></g></svg>`,
+      },
+      {
+        num: '肆', title: '聊天接口出击',
+        desc: '要 AI 解读时,ChatAPIClient 发 HTTPS 请求去 yuaneightlife.com。',
+        tech: 'ChatAPIClient.swift',
+        illust: `<svg viewBox="0 0 100 100" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M50 14 C60 14, 66 30, 66 50 L66 66 L34 66 L34 50 C34 30, 40 14, 50 14 Z" fill="rgba(52,211,153,0.22)"/><circle cx="50" cy="36" r="6" fill="rgba(11,16,32,0.85)" stroke="#34D399" stroke-width="2"/><circle cx="50" cy="36" r="2" fill="#34D399" stroke="none"/><path d="M34 56 L24 70 L34 66 Z" fill="rgba(52,211,153,0.3)" stroke="#34D399"/><path d="M66 56 L76 70 L66 66 Z" fill="rgba(52,211,153,0.3)" stroke="#34D399"/><path d="M42 66 L46 80 L50 72 L54 80 L58 66 Z" fill="rgba(232,200,106,0.8)" stroke="#E8C86A" stroke-width="1.5"/><rect x="68" y="22" width="20" height="10" rx="3" fill="rgba(52,211,153,0.25)" stroke="#34D399"/><text x="78" y="30" font-size="7" fill="#065F46" stroke="none" text-anchor="middle" font-weight="700">API</text></svg>`,
+      },
+      {
+        num: '伍', title: '共用同一个大脑',
+        desc: '和小程序、网页版共用 P3——换端只换壳子,大脑是同一个。',
+        tech: '复用 source=miniprogram',
+        illust: `<svg viewBox="0 0 100 100" fill="none" stroke="#E8C86A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M34 46 Q34 32 46 30 Q50 24 54 30 Q66 32 66 46 Q72 52 66 58 Q66 66 58 68 Q50 74 42 68 Q34 66 34 58 Q28 52 34 46 Z" fill="rgba(232,200,106,0.28)"/><path d="M50 34 L50 64" opacity="0.5"/><path d="M42 42 Q50 40 58 42" opacity="0.5"/><path d="M42 52 Q50 50 58 52" opacity="0.5"/><g stroke-dasharray="3 2" opacity="0.6"><line x1="14" y1="22" x2="34" y2="38"/><line x1="86" y1="22" x2="66" y2="38"/><line x1="14" y1="78" x2="34" y2="62"/><line x1="86" y1="78" x2="66" y2="62"/></g><rect x="8" y="14" width="10" height="12" rx="1" fill="rgba(129,140,248,0.35)"/><rect x="82" y="14" width="10" height="12" rx="1" fill="rgba(129,140,248,0.35)"/><rect x="8" y="74" width="10" height="12" rx="1" fill="rgba(129,140,248,0.35)"/><rect x="82" y="74" width="10" height="12" rx="1" fill="rgba(129,140,248,0.35)"/></svg>`,
+      },
+      {
+        num: '陆', title: 'iOS 原生气泡呈现',
+        desc: 'ConsultView 里显示回答,用苹果原生的气泡动效 + Liquid Glass。',
+        tech: 'ConsultView.swift',
+        illust: `<svg viewBox="0 0 100 100" fill="none" stroke="#E8C86A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="28" y="8" width="44" height="82" rx="7" fill="rgba(232,200,106,0.1)"/><line x1="42" y1="14" x2="58" y2="14" stroke-width="2.5"/><circle cx="50" cy="84" r="2" fill="#E8C86A" stroke="none"/><rect x="32" y="20" width="36" height="4" rx="2" fill="rgba(232,200,106,0.3)" stroke="none"/><path d="M46 30 L66 30 Q70 30, 70 34 L70 40 Q70 44, 66 44 L46 44 Q42 44, 42 40 L42 36 L38 40 L40 36 L40 34 Q40 30, 46 30 Z" fill="rgba(129,140,248,0.32)" stroke="#A5B4FC" stroke-width="1.5"/><path d="M34 52 L54 52 Q58 52, 58 56 L58 64 Q58 68, 54 68 L60 72 L56 68 L34 68 Q30 68, 30 64 L30 56 Q30 52, 34 52 Z" fill="rgba(232,200,106,0.3)" stroke="#E8C86A" stroke-width="1.5"/><circle cx="38" cy="60" r="1.2" fill="#E8C86A" stroke="none"/><circle cx="44" cy="60" r="1.2" fill="#E8C86A" stroke="none"/><circle cx="50" cy="60" r="1.2" fill="#E8C86A" stroke="none"/></svg>`,
+      },
+    ],
+    trace: '用户在 iPhone 上输入生辰 → BaziCalculator.swift 在本地算出全套八字 → 用户切到 ConsultView 问「我今年财运如何」→ ChatAPIClient 发 HTTPS POST → 大脑 P3 → 返回 { text, metadata } → ChatBubbleView 以原生气泡呈现',
+    warnings: [
+      { level: 'P0', label: 'Git 未初始化', note: '单点设备故障 = 全损' },
+      { level: 'P0', label: '未注册 projects-registry.json' },
+      { level: 'P1', label: 'App Store 命理类合规文案' },
+      { level: 'P1', label: 'IAP vs 引导回小程序决策', note: 'Apple 抽 30%' },
+    ],
+  });
+}
+
 function renderP8Story() {
   const steps = [
     {
@@ -1881,58 +2193,223 @@ function renderP8Story() {
     },
   ];
 
-  const arrow = `<div class="story-arrow">
-    <svg viewBox="0 0 36 24" fill="none">
-      <line class="flow-line" x1="2" y1="12" x2="28" y2="12" stroke="rgba(212,175,55,0.5)" stroke-width="1.5" stroke-dasharray="3 4"/>
-      <path d="M26 6 L34 12 L26 18" stroke="rgba(212,175,55,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </div>`;
+  return buildStoryCard({
+    title: 'P8 · Obsidian 知识库如何连上 AI',
+    subtitle: '我写的每一段思考 → AI 给用户的答案 · 六步漫画',
+    badges: [
+      { label: '3 条自动管道', color: '#E8C86A' },
+      { label: '每小时同步', color: '#34D399' },
+      { label: '8000+ 条素材', color: '#818CF8' },
+    ],
+    steps,
+    trace: '我写下「癸水女性的感情特点」→ 保存到 05_工作台 → 下个整点 launchd 自动触发 → 内容入库、向量化 → 用户在小程序问「我癸水的感情怎么看」→ AI 挑出这段,用根源老师口吻回复 → 秒级返回到手机屏幕',
+    warnings: [
+      { level: 'P1', label: '03_智能体派生 目录还是空壳', note: '自动生成流程没落地' },
+      { level: 'P2', label: '01_原文主库 4047 文件只供本地阅读', note: '暂未进同步管道' },
+    ],
+  });
+}
 
-  const stepsHtml = steps.map((s, i) => {
-    const arr = i < steps.length - 1 ? arrow : '';
-    return `<div class="story-step">
-      <div class="story-num">${s.num}</div>
-      <div class="story-illust">${s.illust}</div>
-      <div class="story-title">${s.title}</div>
-      <div class="story-desc">${s.desc}</div>
-      <div class="story-tech">${s.tech}</div>
-    </div>${arr}`;
-  }).join('');
-
+/* ============ RENDER: P8 全景图 · Vault 俯瞰 ============ */
+function renderP8Overview() {
   return `<div class="glass rounded-3xl p-6 md:p-8 relative overflow-hidden">
     <div class="absolute inset-0 grid-bg opacity-15"></div>
     <div class="relative">
       <div class="flex items-start justify-between flex-wrap gap-4 mb-6 pb-5 border-b border-white/5">
         <div>
-          <h3 class="serif text-xl md:text-2xl font-bold text-white">P8 · Obsidian 知识库如何连上 AI</h3>
-          <p class="text-sm text-slate-400 mt-1">我写的每一段思考,是怎么变成 AI 给用户的答案的 —— 六步漫画</p>
+          <h3 class="serif text-xl md:text-2xl font-bold text-white">P8 · 知识库全景俯瞰</h3>
+          <p class="text-sm text-slate-400 mt-1">左边是我(输入源),中间是 Vault(8 个分区),右边是 AI 大脑 · 三条管道把它们串成闭环</p>
         </div>
         <div class="flex flex-wrap gap-2">
-          <span class="chip" style="color: #E8C86A; border-color: rgba(212,175,55,0.35);">3 条自动管道</span>
-          <span class="chip" style="color: #34D399; border-color: rgba(52,211,153,0.35);">每小时同步</span>
-          <span class="chip" style="color: #818CF8; border-color: rgba(129,140,248,0.35);">8000+ 条素材</span>
+          <span class="chip" style="color:#E8C86A;border-color:rgba(212,175,55,0.4);">★ = 活跃同步区</span>
         </div>
       </div>
 
-      <div class="story-flow">${stepsHtml}</div>
+      <svg viewBox="0 0 1200 700" class="w-full h-auto" style="max-height: 700px;">
+        <defs>
+          <radialGradient id="p8BrainGrad" cx="50%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="#F5E6A8"/>
+            <stop offset="70%" stop-color="#D4AF37"/>
+            <stop offset="100%" stop-color="#8A6914"/>
+          </radialGradient>
+        </defs>
 
-      <div class="deep-trace">
-        <span class="deep-trace-label">一个真实例子 · 走完这 6 步</span>
-        我写下「癸水女性的感情特点」→ 保存到 05_工作台 → 下个整点 launchd 自动触发 → 内容入库、向量化 → 用户在小程序问「我癸水的感情怎么看」→ AI 挑出这段,用根源老师口吻回复 → 秒级返回到手机屏幕
-      </div>
+        <!-- 左: 我(根源老师)-->
+        <g>
+          <circle cx="100" cy="320" r="46" fill="rgba(148,163,184,0.15)" stroke="#CBD5E1" stroke-width="2"/>
+          <circle cx="100" cy="310" r="16" fill="rgba(148,163,184,0.35)" stroke="#CBD5E1" stroke-width="1.5"/>
+          <path d="M78 340 Q100 324 122 340 L118 352 L82 352 Z" fill="rgba(148,163,184,0.35)" stroke="#CBD5E1" stroke-width="1.5"/>
+          <text x="100" y="398" text-anchor="middle" fill="#F5E6A8" font-size="18" font-weight="700" font-family="Noto Serif SC">我</text>
+          <text x="100" y="420" text-anchor="middle" fill="#CBD5E1" font-size="12">根源老师</text>
+          <text x="100" y="438" text-anchor="middle" fill="#94A3B8" font-size="10.5">手写 · 收集 · 整理</text>
+        </g>
 
-      <div class="deep-warn">
-        <div class="deep-warn-title">未 通 · 待 补</div>
-        <div class="grid md:grid-cols-2 gap-x-6 gap-y-1">
-          <div class="deep-warn-item">
-            <span class="chip chip-dev shrink-0">P1</span>
-            <span>03_智能体派生 目录还是空壳<span class="text-slate-500 ml-1">· 自动生成流程没落地</span></span>
-          </div>
-          <div class="deep-warn-item">
-            <span class="chip shrink-0">P2</span>
-            <span>01_原文主库 4047 文件只供本地阅读<span class="text-slate-500 ml-1">· 暂未进同步管道</span></span>
-          </div>
-        </div>
+        <!-- 输入管道:我 → Vault 三路 -->
+        <path d="M 150 320 L 230 320 L 230 255 L 310 255" stroke="rgba(148,163,184,0.55)" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+        <path d="M 150 320 L 230 320 L 310 320" stroke="rgba(148,163,184,0.55)" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+        <path d="M 150 320 L 230 320 L 230 385 L 310 385" stroke="rgba(148,163,184,0.55)" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+        <path d="M 302 252 L 312 255 L 302 258" stroke="#CBD5E1" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M 302 317 L 312 320 L 302 323" stroke="#CBD5E1" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M 302 382 L 312 385 L 302 388" stroke="#CBD5E1" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <text x="205" y="305" fill="#94A3B8" font-size="11">3 个入口</text>
+
+        <!-- 中: Obsidian Vault 大容器 -->
+        <rect x="310" y="60" width="550" height="600" rx="18" fill="rgba(232,200,106,0.05)" stroke="rgba(212,175,55,0.35)" stroke-width="2" stroke-dasharray="10 6"/>
+        <text x="585" y="42" text-anchor="middle" fill="#E8C86A" font-size="20" font-weight="700" font-family="Noto Serif SC">Obsidian Vault · 我的本地笔记</text>
+
+        <!-- Row 1 左: 01_原文主库(只读) -->
+        <g>
+          <rect x="328" y="80" width="250" height="95" rx="12" fill="rgba(148,163,184,0.14)" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <text x="453" y="108" text-anchor="middle" fill="#E8EAF2" font-size="15" font-weight="700">01_原文主库</text>
+          <text x="453" y="130" text-anchor="middle" fill="#CBD5E1" font-size="12">4047 文件 · 只读</text>
+          <text x="453" y="150" text-anchor="middle" fill="#94A3B8" font-size="10.5">不进同步 · 仅本地阅读</text>
+          <rect x="345" y="159" width="40" height="10" rx="2" fill="rgba(148,163,184,0.3)"/>
+          <text x="365" y="167" text-anchor="middle" fill="#CBD5E1" font-size="8">LOCAL</text>
+        </g>
+
+        <!-- Row 1 右: 02_人格语料 -->
+        <g>
+          <rect x="590" y="80" width="250" height="95" rx="12" fill="rgba(129,140,248,0.13)" stroke="#A5B4FC" stroke-width="1.5"/>
+          <text x="715" y="108" text-anchor="middle" fill="#E8EAF2" font-size="15" font-weight="700">02_人格语料</text>
+          <text x="715" y="130" text-anchor="middle" fill="#A5B4FC" font-size="12">75 文件 · 价值观 + 原话</text>
+          <text x="715" y="150" text-anchor="middle" fill="#818CF8" font-size="10.5">用来训练 AI 的人格味道</text>
+        </g>
+
+        <!-- Row 2 左: 04_上新入口 -->
+        <g>
+          <rect x="328" y="190" width="250" height="95" rx="12" fill="rgba(34,197,94,0.12)" stroke="#4ADE80" stroke-width="1.5"/>
+          <text x="453" y="218" text-anchor="middle" fill="#E8EAF2" font-size="15" font-weight="700">04_上新入口</text>
+          <text x="453" y="240" text-anchor="middle" fill="#86EFAC" font-size="12">新内容的暂存区</text>
+          <text x="453" y="260" text-anchor="middle" fill="#4ADE80" font-size="10.5">整理后再决定归档位置</text>
+        </g>
+
+        <!-- Row 2 右: 05_工作台 ★活跃 -->
+        <g>
+          <rect x="590" y="190" width="250" height="95" rx="12" fill="rgba(232,200,106,0.22)" stroke="#E8C86A" stroke-width="2.5"/>
+          <text x="715" y="218" text-anchor="middle" fill="#F5E6A8" font-size="15" font-weight="700">★ 05_工作台</text>
+          <text x="715" y="240" text-anchor="middle" fill="#E8C86A" font-size="12">upload: true → 自动上传</text>
+          <text x="715" y="260" text-anchor="middle" fill="#D4AF37" font-size="10.5">最活跃的创作区</text>
+          <rect x="607" y="267" width="30" height="10" rx="2" fill="#E8C86A"/>
+          <text x="622" y="275" text-anchor="middle" fill="#0B1020" font-size="8" font-weight="700">SYNC</text>
+        </g>
+
+        <!-- Row 3 左: 03_智能体派生(空壳) -->
+        <g>
+          <rect x="328" y="300" width="250" height="95" rx="12" fill="rgba(251,113,133,0.1)" stroke="#FB7185" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <text x="453" y="328" text-anchor="middle" fill="#E8EAF2" font-size="15" font-weight="700">03_智能体派生</text>
+          <text x="453" y="350" text-anchor="middle" fill="#FDA4AF" font-size="12">空壳 · 待落地</text>
+          <text x="453" y="370" text-anchor="middle" fill="#FB7185" font-size="10.5">预计用来放 AI 自动生成内容</text>
+        </g>
+
+        <!-- Row 3 右: 收件箱 ★活跃 -->
+        <g>
+          <rect x="590" y="300" width="250" height="95" rx="12" fill="rgba(232,200,106,0.22)" stroke="#E8C86A" stroke-width="2.5"/>
+          <text x="715" y="328" text-anchor="middle" fill="#F5E6A8" font-size="15" font-weight="700">★ 收件箱</text>
+          <text x="715" y="350" text-anchor="middle" fill="#E8C86A" font-size="12">快捷通道 · 无需 frontmatter</text>
+          <text x="715" y="370" text-anchor="middle" fill="#D4AF37" font-size="10.5">自动识别分类归档</text>
+          <rect x="607" y="377" width="30" height="10" rx="2" fill="#E8C86A"/>
+          <text x="622" y="385" text-anchor="middle" fill="#0B1020" font-size="8" font-weight="700">SYNC</text>
+        </g>
+
+        <!-- Row 4: 90_历史镜像(跨两列) -->
+        <g>
+          <rect x="328" y="410" width="512" height="85" rx="12" fill="rgba(148,163,184,0.1)" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <text x="584" y="438" text-anchor="middle" fill="#E8EAF2" font-size="15" font-weight="700">90_历史镜像知识库</text>
+          <text x="584" y="460" text-anchor="middle" fill="#CBD5E1" font-size="12">从 KB 反向导出 · 兼容旧结构</text>
+          <text x="584" y="478" text-anchor="middle" fill="#94A3B8" font-size="10.5">备份 / 历史快照</text>
+        </g>
+
+        <!-- Row 5: 模板 + 入口文档 -->
+        <g>
+          <rect x="328" y="510" width="250" height="60" rx="10" fill="rgba(148,163,184,0.07)" stroke="#94A3B8" stroke-width="1" stroke-dasharray="2 3"/>
+          <text x="453" y="534" text-anchor="middle" fill="#CBD5E1" font-size="13" font-weight="600">模板</text>
+          <text x="453" y="554" text-anchor="middle" fill="#94A3B8" font-size="11">内容创作模板</text>
+        </g>
+        <g>
+          <rect x="590" y="510" width="250" height="60" rx="10" fill="rgba(148,163,184,0.07)" stroke="#94A3B8" stroke-width="1" stroke-dasharray="2 3"/>
+          <text x="715" y="532" text-anchor="middle" fill="#CBD5E1" font-size="12.5" font-weight="600">首页 · 使用指南</text>
+          <text x="715" y="554" text-anchor="middle" fill="#94A3B8" font-size="11">知识库仪表板 · 高频入口</text>
+        </g>
+
+        <!-- Row 6: 00_重构控制台 -->
+        <g>
+          <rect x="328" y="585" width="512" height="55" rx="10" fill="rgba(148,163,184,0.06)" stroke="#94A3B8" stroke-width="1" stroke-dasharray="2 3"/>
+          <text x="584" y="608" text-anchor="middle" fill="#CBD5E1" font-size="12.5" font-weight="600">00_重构控制台</text>
+          <text x="584" y="628" text-anchor="middle" fill="#94A3B8" font-size="10.5">自动生成的统计/日志,记录 Vault 演进</text>
+        </g>
+
+        <!-- 右侧: PostgreSQL -->
+        <g>
+          <rect x="900" y="140" width="240" height="130" rx="14" fill="rgba(244,63,94,0.1)" stroke="#FB7185" stroke-width="2"/>
+          <ellipse cx="1020" cy="165" rx="80" ry="10" fill="rgba(244,63,94,0.18)" stroke="#FB7185" stroke-width="2"/>
+          <path d="M 940 165 L 940 245 M 1100 165 L 1100 245" stroke="#FB7185" stroke-width="2" fill="none"/>
+          <ellipse cx="1020" cy="245" rx="80" ry="10" fill="rgba(244,63,94,0.2)" stroke="#FB7185" stroke-width="2"/>
+          <line x1="940" y1="195" x2="1100" y2="195" stroke="#FB7185" stroke-dasharray="3 3" stroke-width="1.5" opacity="0.8"/>
+          <line x1="940" y1="220" x2="1100" y2="220" stroke="#FB7185" stroke-dasharray="3 3" stroke-width="1.5" opacity="0.8"/>
+          <text x="1020" y="292" text-anchor="middle" fill="#FDA4AF" font-size="14" font-weight="700">PostgreSQL 知识库</text>
+          <text x="1020" y="310" text-anchor="middle" fill="#FB7185" font-size="11.5">8000+ 条 · pgvector 向量化</text>
+        </g>
+
+        <!-- 右侧: P3 大脑 -->
+        <g>
+          <circle cx="1020" cy="410" r="58" fill="url(#p8BrainGrad)" opacity="0.95"/>
+          <circle cx="1020" cy="410" r="76" fill="none" stroke="rgba(212,175,55,0.2)" stroke-width="1.5" stroke-dasharray="3 4"/>
+          <path d="M990 402 Q990 388 1002 386 Q1008 380 1014 386 Q1026 388 1026 402 Q1032 408 1026 414 Q1026 422 1018 424 Q1010 430 1002 424 Q994 422 994 414 Q988 408 990 402 Z" fill="rgba(11,16,32,0.35)"/>
+          <path d="M1010 392 L1010 418" stroke="#0B1020" stroke-width="1.5" opacity="0.5"/>
+          <text x="1020" y="412" text-anchor="middle" fill="#0B1020" font-size="14" font-weight="700" font-family="Noto Serif SC">P3</text>
+          <text x="1020" y="493" text-anchor="middle" fill="#F5E6A8" font-size="14" font-weight="700">AI 智能体</text>
+          <text x="1020" y="512" text-anchor="middle" fill="#E8C86A" font-size="11.5">根源老师的大脑</text>
+        </g>
+
+        <!-- 右侧下方: 多端用户 -->
+        <g>
+          <rect x="940" y="580" width="30" height="48" rx="5" fill="rgba(129,140,248,0.28)" stroke="#A5B4FC" stroke-width="1.5"/>
+          <text x="955" y="608" text-anchor="middle" fill="#A5B4FC" font-size="10" font-weight="700">P1</text>
+          <rect x="985" y="580" width="30" height="48" rx="5" fill="rgba(129,140,248,0.28)" stroke="#A5B4FC" stroke-width="1.5"/>
+          <text x="1000" y="608" text-anchor="middle" fill="#A5B4FC" font-size="10" font-weight="700">P2</text>
+          <rect x="1030" y="580" width="30" height="48" rx="5" fill="rgba(129,140,248,0.28)" stroke="#A5B4FC" stroke-width="1.5"/>
+          <text x="1045" y="608" text-anchor="middle" fill="#A5B4FC" font-size="10" font-weight="700">P10</text>
+          <text x="1020" y="652" text-anchor="middle" fill="#CBD5E1" font-size="12">终端用户</text>
+        </g>
+
+        <!-- 管道 1: 05_工作台 → PostgreSQL(上传) -->
+        <path class="vault-pipe-out" d="M 840 237 L 880 237 L 880 200 L 900 200" stroke="#E8C86A" stroke-width="3" fill="none" stroke-dasharray="7 5"/>
+        <path d="M 893 196 L 903 200 L 893 204" stroke="#E8C86A" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="864" y="188" fill="#E8C86A" font-size="10.5" font-weight="600">upload-from-obsidian.mjs</text>
+
+        <!-- 管道 2: 收件箱 → PostgreSQL(上传)-->
+        <path class="vault-pipe-out" d="M 840 347 L 880 347 L 880 240 L 900 240" stroke="#E8C86A" stroke-width="3" fill="none" stroke-dasharray="7 5"/>
+        <path d="M 893 236 L 903 240 L 893 244" stroke="#E8C86A" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="864" y="326" fill="#E8C86A" font-size="10.5" font-weight="600">sync-inbox.mjs</text>
+
+        <!-- 管道 3: PostgreSQL → 90_历史镜像(反向导出)-->
+        <path class="vault-pipe-back" d="M 900 260 L 870 260 L 870 450 L 840 450" stroke="#CBD5E1" stroke-width="2.5" fill="none" stroke-dasharray="4 5"/>
+        <path d="M 847 446 L 837 450 L 847 454" stroke="#CBD5E1" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="760" y="440" fill="#94A3B8" font-size="10.5" font-weight="600">export-to-obsidian.mjs</text>
+
+        <!-- 管道 4: PostgreSQL → P3(RAG 检索)-->
+        <path d="M 1020 280 L 1020 352" stroke="#E8C86A" stroke-width="3" fill="none" stroke-dasharray="5 4"/>
+        <path d="M 1015 346 L 1020 356 L 1025 346" stroke="#E8C86A" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="1030" y="322" fill="#E8C86A" font-size="10.5" font-weight="600">RAG 检索</text>
+
+        <!-- 管道 5: P3 → 用户(API)-->
+        <path d="M 1020 468 L 1020 575" stroke="#E8C86A" stroke-width="3" fill="none"/>
+        <path d="M 1015 569 L 1020 579 L 1025 569" stroke="#E8C86A" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="1030" y="525" fill="#E8C86A" font-size="10.5" font-weight="600">/api/chat</text>
+
+        <!-- 一键命令 sync-kb 标注 -->
+        <g transform="translate(870, 100)">
+          <rect x="0" y="0" width="160" height="28" rx="14" fill="rgba(232,200,106,0.15)" stroke="#E8C86A" stroke-width="1.5"/>
+          <text x="80" y="18" text-anchor="middle" fill="#F5E6A8" font-size="12" font-weight="700" font-family="JetBrains Mono">$ sync-kb</text>
+          <text x="80" y="44" text-anchor="middle" fill="#94A3B8" font-size="10">一键命令 · launchd 每小时自动</text>
+        </g>
+      </svg>
+
+      <div class="deep-legend">
+        <span class="deep-legend-item"><span class="deep-legend-dot" style="background:#E8C86A;"></span><span>★ 活跃区 · 进同步</span></span>
+        <span class="deep-legend-item"><span class="deep-legend-dot" style="background:#CBD5E1;"></span><span>本地保留 · 不同步</span></span>
+        <span class="deep-legend-item"><span class="deep-legend-dot" style="background:#FB7185;"></span><span>待落地 / 数据库</span></span>
+        <span class="deep-legend-item"><span class="deep-legend-dot" style="background:#818CF8;"></span><span>特殊语料 / 前端</span></span>
       </div>
     </div>
   </div>`;
@@ -1942,8 +2419,9 @@ function renderDeepDive() {
   const container = document.getElementById('deepdive-container');
   if (!container) return;
   container.innerHTML = [
-    renderLinkDiagram(LINK_P1),
-    renderLinkDiagram(LINK_P10),
+    renderP1Story(),
+    renderP10Story(),
+    renderP8Overview(),
     renderP8Story(),
   ].join('');
 }
