@@ -29,6 +29,20 @@
   }
   .bg-cn { font-family: 'Noto Sans SC', sans-serif; font-weight: 700; }
 
+  /* 统一手绘 SVG 图标系统 */
+  .ki {
+    width: 1em; height: 1em;
+    display: inline-block;
+    vertical-align: -0.14em;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .ki .solid { fill: currentColor; stroke: none; }
+  /* 在深色/彩色背景里的实心小点保持白色(被 color 控制)--默认 currentColor 已够 */
+
   /* 顶部 fixed header */
   .kids-header {
     position: fixed; top: 0; left: 0; right: 0;
@@ -48,9 +62,11 @@
     width: 36px; height: 36px; border-radius: 999px;
     background: linear-gradient(135deg, #FB7185, #F59E0B, #3B82F6);
     display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
+    color: white;
+    font-size: 20px;
   }
   .back-btn {
+    display: inline-flex; align-items: center; gap: 6px;
     padding: 8px 16px; border-radius: 999px;
     background: rgba(30,41,59,0.08);
     color: #1F2937; text-decoration: none;
@@ -58,6 +74,7 @@
     border: 2px solid rgba(30,41,59,0.12);
     transition: all .2s ease;
   }
+  .back-btn .ki { font-size: 16px; }
   .back-btn:hover {
     background: rgba(236,72,153,0.12);
     border-color: rgba(236,72,153,0.4);
@@ -102,29 +119,38 @@
     display: flex; align-items: center; gap: 8px;
     animation: bounce 2s ease-in-out infinite;
   }
+  .scene-hint .ki { font-size: 18px; }
   @keyframes bounce {
     0%, 100% { transform: translateX(-50%) translateY(0); }
     50%      { transform: translateX(-50%) translateY(8px); }
   }
 
-  /* 大 emoji 集合 */
-  .emoji-group {
-    font-size: clamp(80px, 12vw, 140px);
+  /* 大 icon 集合 */
+  .icon-group {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 24px;
+    font-size: clamp(70px, 11vw, 120px);
     line-height: 1;
     margin-bottom: 30px;
-    letter-spacing: 12px;
-    filter: drop-shadow(0 8px 24px rgba(236,72,153,0.3));
+    color: #EC4899;
+    filter: drop-shadow(0 8px 24px rgba(236,72,153,0.28));
     animation: float 4s ease-in-out infinite;
   }
+  .icon-group .ki:nth-child(1) { color: #FB7185; }
+  .icon-group .ki:nth-child(2) { color: #F59E0B; }
+  .icon-group .ki:nth-child(3) { color: #3B82F6; }
   @keyframes float {
     0%, 100% { transform: translateY(0); }
     50%      { transform: translateY(-14px); }
   }
-  .emoji-big {
-    font-size: clamp(90px, 14vw, 160px);
+  .icon-big {
+    font-size: clamp(88px, 13vw, 140px);
     line-height: 1;
     margin-bottom: 28px;
-    filter: drop-shadow(0 10px 28px rgba(251,146,60,0.35));
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 24px;
+    color: #F59E0B;
+    filter: drop-shadow(0 10px 28px rgba(251,146,60,0.32));
     animation: float 4s ease-in-out infinite;
   }
 
@@ -146,8 +172,8 @@
     box-shadow: 0 14px 40px -10px rgba(236,72,153,0.5), 0 0 80px rgba(251,146,60,0.3);
     z-index: 2;
   }
-  .product-center .pc-emoji { font-size: 54px; }
-  .product-center .pc-label { font-size: 13px; font-weight: 700; margin-top: 2px; }
+  .product-center .pc-icon { font-size: 52px; line-height: 1; }
+  .product-center .pc-label { font-size: 13px; font-weight: 700; margin-top: 6px; }
   .product-orbit {
     position: absolute;
     border-radius: 999px;
@@ -167,8 +193,8 @@
     transition: transform .2s ease;
   }
   .product-chip:hover { transform: translate(-50%, -50%) scale(1.1); }
-  .product-chip .pc-emoji { font-size: 30px; }
-  .product-chip .pc-label { font-size: 11px; color: #374151; margin-top: 2px; text-align: center; line-height: 1.2; padding: 0 4px; }
+  .product-chip .pc-icon { font-size: 30px; line-height: 1; }
+  .product-chip .pc-label { font-size: 11px; color: #374151; margin-top: 4px; text-align: center; line-height: 1.2; padding: 0 4px; }
 
   /* 六步卡片(how) */
   .how-grid {
@@ -192,12 +218,12 @@
     transition: transform .25s ease;
   }
   .how-card:hover { transform: translateY(-4px) rotate(-1deg); }
-  .how-card:nth-child(6n+1) { border-color: #FCA5A5; background: #FFF5F7; }
-  .how-card:nth-child(6n+2) { border-color: #FCD34D; background: #FFFBEB; }
-  .how-card:nth-child(6n+3) { border-color: #FDBA74; background: #FFF7ED; }
-  .how-card:nth-child(6n+4) { border-color: #86EFAC; background: #F0FDF4; }
-  .how-card:nth-child(6n+5) { border-color: #93C5FD; background: #EFF6FF; }
-  .how-card:nth-child(6n+6) { border-color: #F9A8D4; background: #FDF2F8; }
+  .how-card:nth-child(6n+1) { border-color: #FCA5A5; background: #FFF5F7; color: #BE123C; }
+  .how-card:nth-child(6n+2) { border-color: #FCD34D; background: #FFFBEB; color: #A16207; }
+  .how-card:nth-child(6n+3) { border-color: #FDBA74; background: #FFF7ED; color: #C2410C; }
+  .how-card:nth-child(6n+4) { border-color: #86EFAC; background: #F0FDF4; color: #15803D; }
+  .how-card:nth-child(6n+5) { border-color: #93C5FD; background: #EFF6FF; color: #1E40AF; }
+  .how-card:nth-child(6n+6) { border-color: #F9A8D4; background: #FDF2F8; color: #9D174D; }
   .how-num {
     width: 32px; height: 32px; border-radius: 999px;
     background: linear-gradient(135deg, #FB7185, #EC4899);
@@ -206,7 +232,7 @@
     font-weight: 700; font-size: 14px;
     margin-bottom: 12px;
   }
-  .how-emoji { font-size: 56px; margin-bottom: 12px; }
+  .how-icon { font-size: 52px; line-height: 1; margin-bottom: 14px; }
   .how-text { font-family: 'Noto Sans SC', sans-serif; font-size: 15.5px; font-weight: 700; color: #1F2937; }
 
   /* Stats(数字卡 notebook) */
@@ -250,7 +276,7 @@
     min-width: 200px;
     box-shadow: 0 10px 28px -8px rgba(0,0,0,0.1);
   }
-  .face-emoji { font-size: 64px; line-height: 1; }
+  .face-icon { font-size: 60px; line-height: 1; }
   .face-count {
     font-family: 'Fredoka', sans-serif;
     font-size: 44px; font-weight: 700;
@@ -276,7 +302,7 @@
     box-shadow: 0 6px 20px -4px rgba(251,113,133,0.25);
     text-align: left;
   }
-  .issue-emoji { font-size: 44px; line-height: 1; flex-shrink: 0; }
+  .issue-icon { font-size: 40px; line-height: 1; flex-shrink: 0; color: #E11D48; }
   .issue-body { flex: 1; }
   .issue-title {
     font-family: 'Noto Sans SC', sans-serif;
@@ -309,7 +335,7 @@
     box-shadow: 0 10px 28px -8px rgba(0,0,0,0.1);
     text-align: left;
   }
-  .roadmap-emoji { font-size: 48px; line-height: 1; margin-bottom: 10px; }
+  .roadmap-icon { font-size: 44px; line-height: 1; margin-bottom: 12px; }
   .roadmap-title {
     font-family: 'Noto Sans SC', sans-serif;
     font-weight: 700; font-size: 22px;
@@ -343,6 +369,7 @@
     font-family: 'Noto Sans SC', sans-serif;
   }
   .end-cta:hover { transform: translateY(-2px); }
+  .end-cta .ki { font-size: 20px; }
 
   /* Progress dots(右侧固定) */
   .scene-dots {
@@ -381,9 +408,12 @@
   .compare-face {
     display: flex; flex-direction: column; align-items: center;
   }
-  .compare-face .cf-emoji { font-size: 80px; line-height: 1; margin-bottom: 8px; }
+  .compare-face .cf-icons {
+    font-size: 70px; line-height: 1; margin-bottom: 10px;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
   .compare-face .cf-label { font-family: 'Noto Sans SC', sans-serif; font-size: 14px; color: #4B5563; font-weight: 600; }
-  .compare-arrow { font-size: 52px; color: #EC4899; }
+  .compare-arrow { font-size: 46px; color: #EC4899; display: inline-flex; align-items: center; }
 
   /* 标签装饰 */
   .tag-dec {
@@ -398,12 +428,238 @@
 </head>
 <body>
 
+<!-- ===== SVG sprite · 一套统一手绘简笔画图标 ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- 水晶球 -->
+    <symbol id="i-crystal" viewBox="0 0 24 24">
+      <circle cx="12" cy="14" r="7"/>
+      <path d="M4 14h16"/>
+      <path d="M9 11.5a3 3 0 0 1 3-2" />
+      <circle cx="9.5" cy="12.5" r="1" class="solid"/>
+    </symbol>
+    <!-- 笔记本电脑(大人) -->
+    <symbol id="i-laptop" viewBox="0 0 24 24">
+      <rect x="4" y="5" width="16" height="11" rx="1.5"/>
+      <path d="M2 19h20"/>
+    </symbol>
+    <!-- 魔法师尖帽 -->
+    <symbol id="i-wizard" viewBox="0 0 24 24">
+      <path d="M12 2l-6 16h12z"/>
+      <path d="M4 18h16"/>
+      <path d="M14 9l.6 1.4L16 11l-1.4.6L14 13l-.6-1.4L12 11l1.4-.6z" class="solid"/>
+    </symbol>
+    <!-- 星光 -->
+    <symbol id="i-sparkle" viewBox="0 0 24 24">
+      <path d="M12 3l2 7 7 2-7 2-2 7-2-7-7-2 7-2z"/>
+    </symbol>
+    <!-- 下箭头 -->
+    <symbol id="i-down" viewBox="0 0 24 24">
+      <path d="M12 4v15"/>
+      <path d="M5 13l7 7 7-7"/>
+    </symbol>
+    <!-- 右箭头 -->
+    <symbol id="i-right" viewBox="0 0 24 24">
+      <path d="M4 12h16"/>
+      <path d="M13 5l7 7-7 7"/>
+    </symbol>
+    <!-- 老人(根源老师) -->
+    <symbol id="i-elder" viewBox="0 0 24 24">
+      <circle cx="12" cy="9" r="4.5"/>
+      <path d="M8 13q2 1.5 4 1.5t4-1.5"/>
+      <path d="M4 21c1-4 4-6 8-6s7 2 8 6"/>
+      <path d="M9 6q3-2 6 0"/>
+    </symbol>
+    <!-- 书堆 -->
+    <symbol id="i-books" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="5" height="15" rx="0.5"/>
+      <rect x="9" y="8" width="5" height="12" rx="0.5"/>
+      <path d="M20 6l-3 14-2-.4 3-14z"/>
+      <path d="M5 9h1M11 12h1"/>
+    </symbol>
+    <!-- 机器人 -->
+    <symbol id="i-robot" viewBox="0 0 24 24">
+      <rect x="5" y="8" width="14" height="11" rx="2"/>
+      <circle cx="9.5" cy="13" r="1" class="solid"/>
+      <circle cx="14.5" cy="13" r="1" class="solid"/>
+      <path d="M10 16h4"/>
+      <path d="M12 5v3"/>
+      <circle cx="12" cy="4" r="1.5"/>
+      <path d="M3 13h2M19 13h2"/>
+    </symbol>
+    <!-- 笔记本 -->
+    <symbol id="i-notebook" viewBox="0 0 24 24">
+      <rect x="5" y="3" width="14" height="18" rx="1.5"/>
+      <path d="M8 3v18"/>
+      <path d="M11 8h5M11 12h5M11 16h5"/>
+    </symbol>
+    <!-- 笑脸 -->
+    <symbol id="i-smile" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/>
+      <circle cx="9" cy="10" r="1" class="solid"/>
+      <circle cx="15" cy="10" r="1" class="solid"/>
+      <path d="M8 14q2 3 4 3t4-3"/>
+    </symbol>
+    <!-- 工具(扳手) -->
+    <symbol id="i-wrench" viewBox="0 0 24 24">
+      <path d="M14.5 3a4.5 4.5 0 0 0-3 7.7L3 19l2 2 8.3-8.5A4.5 4.5 0 1 0 14.5 3z"/>
+      <circle cx="14.5" cy="7.5" r="1.3" class="solid"/>
+    </symbol>
+    <!-- 绷带(小感冒) -->
+    <symbol id="i-bandage" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M3 8l18 2"/>
+      <path d="M3 11l18-3"/>
+      <circle cx="9" cy="14" r="0.8" class="solid"/>
+      <circle cx="15" cy="14" r="0.8" class="solid"/>
+      <path d="M9 18q3 1 6 0"/>
+    </symbol>
+    <!-- 警告三角 -->
+    <symbol id="i-alert" viewBox="0 0 24 24">
+      <path d="M12 3l10 18H2z"/>
+      <path d="M12 10v5"/>
+      <circle cx="12" cy="18" r="0.9" class="solid"/>
+    </symbol>
+    <!-- 付款卡 -->
+    <symbol id="i-card" viewBox="0 0 24 24">
+      <rect x="3" y="6" width="18" height="13" rx="2"/>
+      <path d="M3 10h18"/>
+      <path d="M6 15h5"/>
+    </symbol>
+    <!-- 包裹盒 -->
+    <symbol id="i-box" viewBox="0 0 24 24">
+      <path d="M3 7l9-4 9 4v10l-9 4-9-4z"/>
+      <path d="M3 7l9 4 9-4"/>
+      <path d="M12 11v10"/>
+      <path d="M7.5 5l9 4"/>
+    </symbol>
+    <!-- 闪电 -->
+    <symbol id="i-bolt" viewBox="0 0 24 24">
+      <path d="M13 2L4 14h7v8l9-12h-7z"/>
+    </symbol>
+    <!-- 小苗 -->
+    <symbol id="i-sprout" viewBox="0 0 24 24">
+      <path d="M12 21v-9"/>
+      <path d="M12 13c-2-4-8-3-9-8 4-1 8 2 9 7z"/>
+      <path d="M12 15c2-3 7-2 8-6-3-1-7 1-8 5z"/>
+    </symbol>
+    <!-- 花 -->
+    <symbol id="i-flower" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="2.5"/>
+      <circle cx="12" cy="6" r="3"/>
+      <circle cx="12" cy="18" r="3"/>
+      <circle cx="6" cy="12" r="3"/>
+      <circle cx="18" cy="12" r="3"/>
+    </symbol>
+    <!-- 派对拉花 -->
+    <symbol id="i-party" viewBox="0 0 24 24">
+      <path d="M3 21l5-13 10 10z"/>
+      <path d="M8 8l4 4"/>
+      <circle cx="15" cy="4" r="0.8" class="solid"/>
+      <circle cx="20" cy="7" r="0.8" class="solid"/>
+      <circle cx="20" cy="13" r="0.8" class="solid"/>
+      <circle cx="11" cy="3" r="0.8" class="solid"/>
+    </symbol>
+    <!-- 五彩纸(彩炮) -->
+    <symbol id="i-confetti" viewBox="0 0 24 24">
+      <path d="M6 3q2 3 0 5M12 2q2 3 0 6M18 3q-2 3 0 5"/>
+      <circle cx="7" cy="14" r="0.9" class="solid"/>
+      <circle cx="13" cy="12" r="0.9" class="solid"/>
+      <circle cx="18" cy="15" r="0.9" class="solid"/>
+      <circle cx="10" cy="18" r="0.9" class="solid"/>
+      <circle cx="16" cy="20" r="0.9" class="solid"/>
+      <circle cx="5" cy="20" r="0.9" class="solid"/>
+    </symbol>
+    <!-- 手机 -->
+    <symbol id="i-phone" viewBox="0 0 24 24">
+      <rect x="6" y="2" width="12" height="20" rx="2.5"/>
+      <path d="M10 18h4"/>
+    </symbol>
+    <!-- 地球 -->
+    <symbol id="i-globe" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M3 12h18"/>
+      <path d="M12 3q6 5 0 18"/>
+      <path d="M12 3q-6 5 0 18"/>
+    </symbol>
+    <!-- 苹果 -->
+    <symbol id="i-apple" viewBox="0 0 24 24">
+      <path d="M12 8c-3-2-7 0-7 5 0 4 2.5 9 5 9 1 0 2-.8 2-.8s1 .8 2 .8c2.5 0 5-5 5-9 0-5-4-7-7-5z"/>
+      <path d="M13 7c0-2 1-3 3-3"/>
+      <path d="M12 8s-.5-1.5-2-2"/>
+    </symbol>
+    <!-- 地图 -->
+    <symbol id="i-map" viewBox="0 0 24 24">
+      <path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/>
+      <path d="M9 4v16"/>
+      <path d="M15 6v16"/>
+    </symbol>
+    <!-- 报纸 -->
+    <symbol id="i-news" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="15" rx="1.5"/>
+      <path d="M6 9h6M6 13h6M6 17h4"/>
+      <rect x="14" y="9" width="4" height="6"/>
+    </symbol>
+    <!-- 学士帽 -->
+    <symbol id="i-cap" viewBox="0 0 24 24">
+      <path d="M2 9l10-4 10 4-10 4z"/>
+      <path d="M6 11v4c0 2 3 3 6 3s6-1 6-3v-4"/>
+      <path d="M22 9v5"/>
+      <circle cx="22" cy="15" r="0.8" class="solid"/>
+    </symbol>
+    <!-- 塔罗牌 -->
+    <symbol id="i-tarot" viewBox="0 0 24 24">
+      <rect x="6" y="3" width="12" height="18" rx="2"/>
+      <path d="M12 7l2 3h-4z"/>
+      <circle cx="12" cy="14" r="2"/>
+      <path d="M9 18h6"/>
+    </symbol>
+    <!-- 大脑 -->
+    <symbol id="i-brain" viewBox="0 0 24 24">
+      <path d="M10 4c-2-1-5 0-5 3 0 1-1 1-1 3s1 2 1 3c0 3 3 4 5 3 1 2 4 2 5 0"/>
+      <path d="M14 4c2-1 5 0 5 3 0 1 1 1 1 3s-1 2-1 3c0 3-3 4-5 3-1 2-4 2-5 0"/>
+      <path d="M12 4v16"/>
+    </symbol>
+    <!-- 生日蛋糕 -->
+    <symbol id="i-cake" viewBox="0 0 24 24">
+      <rect x="4" y="12" width="16" height="8" rx="1.5"/>
+      <path d="M4 15q3 2 6 0t6 0 4 0"/>
+      <path d="M12 12V6"/>
+      <path d="M12 6c-1 0-1.5-1-1-2s1.5-1 1-2 1 1 1 2-2 2-1 2z" class="solid"/>
+    </symbol>
+    <!-- 算盘 -->
+    <symbol id="i-abacus" viewBox="0 0 24 24">
+      <rect x="3" y="4" width="18" height="16" rx="1.5"/>
+      <path d="M3 10h18M3 15h18"/>
+      <circle cx="9" cy="10" r="1" class="solid"/>
+      <circle cx="15" cy="10" r="1" class="solid"/>
+      <circle cx="7" cy="15" r="1" class="solid"/>
+      <circle cx="13" cy="15" r="1" class="solid"/>
+      <circle cx="18" cy="15" r="1" class="solid"/>
+    </symbol>
+    <!-- 电话听筒 -->
+    <symbol id="i-call" viewBox="0 0 24 24">
+      <path d="M5 3h4l2 5-3 2c1 3 3 5 6 6l2-3 5 2v4c0 1-1 2-2 2C8 21 3 16 3 6c0-1 1-3 2-3z"/>
+    </symbol>
+    <!-- 对话气泡 -->
+    <symbol id="i-chat" viewBox="0 0 24 24">
+      <path d="M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8l-5 4v-4a2 2 0 0 1-3-2z"/>
+      <circle cx="9" cy="10" r="0.9" class="solid"/>
+      <circle cx="13" cy="10" r="0.9" class="solid"/>
+      <circle cx="17" cy="10" r="0.9" class="solid"/>
+    </symbol>
+  </defs>
+</svg>
+
 <header class="kids-header">
   <div class="kids-logo">
-    <span class="dot">🔮</span>
+    <span class="dot"><svg class="ki"><use href="#i-crystal"/></svg></span>
     <span class="bg-cn">小源说说 · 给小朋友看</span>
   </div>
-  <a href="matrix.html" class="back-btn">🧑‍💻 回大人版</a>
+  <a href="matrix.html" class="back-btn">
+    <svg class="ki"><use href="#i-laptop"/></svg>
+    <span>回大人版</span>
+  </a>
 </header>
 
 <nav class="scene-dots" id="scene-dots"></nav>
@@ -413,18 +669,24 @@
 <!-- Scene 1 · 封面 -->
 <section class="scene" id="s1" data-label="封面">
   <div class="scene-inner">
-    <div class="emoji-group">🧙‍♂️✨🔮</div>
+    <div class="icon-group">
+      <svg class="ki"><use href="#i-wizard"/></svg>
+      <svg class="ki"><use href="#i-sparkle"/></svg>
+      <svg class="ki"><use href="#i-crystal"/></svg>
+    </div>
     <h1 class="scene-mega bg-cn">嗨,我叫小源说说</h1>
     <p class="scene-sub">根源老师做的算命小帮手<br/>我来用 <span style="color:#EC4899;font-weight:700">10 张图</span>,告诉你我是谁、我在干嘛。</p>
   </div>
-  <div class="scene-hint"><span>往下滑</span><span>⬇️</span></div>
+  <div class="scene-hint"><span>往下滑</span><svg class="ki"><use href="#i-down"/></svg></div>
 </section>
 
 <!-- Scene 2 · 小源说说是什么 -->
 <section class="scene" id="s2" data-label="我是什么">
   <div class="scene-inner">
     <span class="tag-dec">第 一 件 事</span>
-    <div class="emoji-big">🔮</div>
+    <div class="icon-big" style="color:#EC4899">
+      <svg class="ki"><use href="#i-crystal"/></svg>
+    </div>
     <h2 class="scene-mega bg-cn">我是一个会算命的 App</h2>
     <p class="scene-sub">
       你只要告诉我你的 <span style="color:#EC4899;font-weight:700">生日</span>,<br/>
@@ -440,12 +702,18 @@
     <h2 class="scene-mega bg-cn">做我的人叫「根源老师」</h2>
     <div class="compare-row">
       <div class="compare-face">
-        <div class="cf-emoji">👴📚</div>
+        <div class="cf-icons" style="color:#A16207">
+          <svg class="ki"><use href="#i-elder"/></svg>
+          <svg class="ki" style="color:#B45309"><use href="#i-books"/></svg>
+        </div>
         <div class="cf-label">根源老师<br/>算了 13 年八字</div>
       </div>
-      <div class="compare-arrow">➡️</div>
+      <div class="compare-arrow"><svg class="ki"><use href="#i-right"/></svg></div>
       <div class="compare-face">
-        <div class="cf-emoji">🤖✨</div>
+        <div class="cf-icons" style="color:#3B82F6">
+          <svg class="ki"><use href="#i-robot"/></svg>
+          <svg class="ki" style="color:#F59E0B"><use href="#i-sparkle"/></svg>
+        </div>
         <div class="cf-label">他教会了一个<br/>AI 小精灵</div>
       </div>
     </div>
@@ -481,7 +749,10 @@
 <section class="scene" id="s6" data-label="笔记本">
   <div class="scene-inner">
     <span class="tag-dec">第 五 件 事</span>
-    <div class="emoji-big">📓✨</div>
+    <div class="icon-big" style="color:#D97706">
+      <svg class="ki"><use href="#i-notebook"/></svg>
+      <svg class="ki" style="color:#F59E0B"><use href="#i-sparkle"/></svg>
+    </div>
     <h2 class="scene-mega bg-cn">小精灵有一本魔法笔记本</h2>
     <p class="scene-sub">
       根源老师每天写的心得和经验,<br/>
@@ -512,17 +783,17 @@
     <p class="scene-sub">我有 10 个小房子,各自状态不一样:</p>
     <div class="faces-row">
       <div class="face-card" style="border-color: #86EFAC; background: #F0FDF4;">
-        <div class="face-emoji">😊</div>
+        <div class="face-icon" style="color:#15803D"><svg class="ki"><use href="#i-smile"/></svg></div>
         <div class="face-count" style="color: #15803D;">7</div>
         <div class="face-label">已经好好工作的</div>
       </div>
       <div class="face-card" style="border-color: #FCD34D; background: #FFFBEB;">
-        <div class="face-emoji">🛠️</div>
+        <div class="face-icon" style="color:#A16207"><svg class="ki"><use href="#i-wrench"/></svg></div>
         <div class="face-count" style="color: #A16207;">1</div>
         <div class="face-label">正在打造的</div>
       </div>
       <div class="face-card" style="border-color: #FCA5A5; background: #FEF2F2;">
-        <div class="face-emoji">🤕</div>
+        <div class="face-icon" style="color:#B91C1C"><svg class="ki"><use href="#i-bandage"/></svg></div>
         <div class="face-count" style="color: #991B1B;">2</div>
         <div class="face-label">有点小感冒的</div>
       </div>
@@ -534,18 +805,20 @@
 <section class="scene" id="s8" data-label="小难题">
   <div class="scene-inner">
     <span class="tag-dec" style="background: linear-gradient(135deg, #FB7185, #EC4899);">第 七 件 事</span>
-    <div class="emoji-big">🚨</div>
+    <div class="icon-big" style="color:#E11D48">
+      <svg class="ki"><use href="#i-alert"/></svg>
+    </div>
     <h2 class="scene-mega bg-cn">两个要修的小难题</h2>
     <div class="issues-stack">
       <div class="issue-card">
-        <div class="issue-emoji">💳</div>
+        <div class="issue-icon"><svg class="ki"><use href="#i-card"/></svg></div>
         <div class="issue-body">
           <div class="issue-title"><span class="issue-level">要紧</span>付钱的地方坏了</div>
           <div class="issue-fix">小朋友交学费的收银台出了点小毛病 · 要打电话给叔叔阿姨修一修</div>
         </div>
       </div>
       <div class="issue-card">
-        <div class="issue-emoji">📦</div>
+        <div class="issue-icon"><svg class="ki"><use href="#i-box"/></svg></div>
         <div class="issue-body">
           <div class="issue-title"><span class="issue-level">要紧</span>苹果 App 还没存到云端</div>
           <div class="issue-fix">像写完作业没交 · 如果电脑坏了会找不回来,要早点存起来</div>
@@ -564,7 +837,7 @@
     <p class="scene-sub">像计划假期一样,我有一个三档的小计划:</p>
     <div class="roadmap-grid">
       <div class="roadmap-card" style="border-color: #FCA5A5; background: #FFF5F7;">
-        <div class="roadmap-emoji">⚡</div>
+        <div class="roadmap-icon" style="color:#BE123C"><svg class="ki"><use href="#i-bolt"/></svg></div>
         <div class="roadmap-title" style="color: #BE123C;">本 周</div>
         <ul class="roadmap-list">
           <li>修好付钱的地方</li>
@@ -572,7 +845,7 @@
         </ul>
       </div>
       <div class="roadmap-card" style="border-color: #FCD34D; background: #FFFBEB;">
-        <div class="roadmap-emoji">🌱</div>
+        <div class="roadmap-icon" style="color:#A16207"><svg class="ki"><use href="#i-sprout"/></svg></div>
         <div class="roadmap-title" style="color: #A16207;">本 月</div>
         <ul class="roadmap-list">
           <li>给小精灵升级新的大脑</li>
@@ -580,7 +853,7 @@
         </ul>
       </div>
       <div class="roadmap-card" style="border-color: #93C5FD; background: #EFF6FF;">
-        <div class="roadmap-emoji">🌸</div>
+        <div class="roadmap-icon" style="color:#1E40AF"><svg class="ki"><use href="#i-flower"/></svg></div>
         <div class="roadmap-title" style="color: #1E40AF;">以 后</div>
         <ul class="roadmap-list">
           <li>推出禅卡小游戏</li>
@@ -594,13 +867,21 @@
 <!-- Scene 10 · 结尾 -->
 <section class="scene" id="s10" data-label="再见">
   <div class="scene-inner">
-    <div class="emoji-group">🎉🎊✨</div>
+    <div class="icon-group">
+      <svg class="ki"><use href="#i-party"/></svg>
+      <svg class="ki"><use href="#i-confetti"/></svg>
+      <svg class="ki"><use href="#i-sparkle"/></svg>
+    </div>
     <h2 class="scene-mega bg-cn">就是这样啦!</h2>
     <p class="scene-sub">
       你现在已经懂了小源说说是个什么东西了。<br/>
       想看详细(会有很多技术字)的版本吗?
     </p>
-    <a href="matrix.html" class="end-cta">🧑‍💻 回到大人版 · 看详细系统图 →</a>
+    <a href="matrix.html" class="end-cta">
+      <svg class="ki"><use href="#i-laptop"/></svg>
+      <span>回到大人版 · 看详细系统图</span>
+      <svg class="ki"><use href="#i-right"/></svg>
+    </a>
     <p class="scene-sub" style="margin-top: 28px; font-size: 13px; color: #94A3B8;">
       根源老师 · 小源说说 · <span id="today"></span>
     </p>
@@ -612,26 +893,25 @@
 <script>
 /* ====== 产品 10 个小房子(围成圈) ====== */
 const PRODUCTS = [
-  { emoji: '📱', name: '微信小程序',  id: 'P1'  },
-  { emoji: '🌐', name: '网页版',     id: 'P2'  },
-  { emoji: '🍎', name: '苹果 App',   id: 'P10' },
-  { emoji: '✨', name: 'Page Maker', id: 'P4'  },
-  { emoji: '🗺️', name: '行程报告',   id: 'P5'  },
-  { emoji: '📰', name: '生财网站',   id: 'P6'  },
-  { emoji: '🎓', name: '521 训练营', id: 'P7'  },
-  { emoji: '📓', name: '根源笔记',   id: 'P8'  },
-  { emoji: '🎴', name: '禅卡',       id: 'P9'  },
+  { icon: 'i-phone',    color: '#FB7185', name: '微信小程序',  id: 'P1'  },
+  { icon: 'i-globe',    color: '#3B82F6', name: '网页版',     id: 'P2'  },
+  { icon: 'i-apple',    color: '#334155', name: '苹果 App',   id: 'P10' },
+  { icon: 'i-sparkle',  color: '#F59E0B', name: 'Page Maker', id: 'P4'  },
+  { icon: 'i-map',      color: '#10B981', name: '行程报告',   id: 'P5'  },
+  { icon: 'i-news',     color: '#6366F1', name: '生财网站',   id: 'P6'  },
+  { icon: 'i-cap',      color: '#EC4899', name: '521 训练营', id: 'P7'  },
+  { icon: 'i-notebook', color: '#D97706', name: '根源笔记',   id: 'P8'  },
+  { icon: 'i-tarot',    color: '#A855F7', name: '禅卡',       id: 'P9'  },
 ];
-const COLORS = ['#FB7185','#F59E0B','#60A5FA','#34D399','#A78BFA','#EC4899','#FCD34D','#22D3EE','#F472B6'];
+const RING_BORDERS = ['#FB7185','#F59E0B','#60A5FA','#34D399','#A78BFA','#EC4899','#FCD34D','#22D3EE','#F472B6'];
 
 function renderRing() {
   const ring = document.getElementById('ring');
   if (!ring) return;
-  // 大脑在中心
   ring.innerHTML = `
     <div class="product-orbit orbit-1"></div>
     <div class="product-center">
-      <div class="pc-emoji">🧠</div>
+      <div class="pc-icon"><svg class="ki"><use href="#i-brain"/></svg></div>
       <div class="pc-label">小精灵大脑</div>
     </div>
   `;
@@ -644,20 +924,23 @@ function renderRing() {
     el.className = 'product-chip';
     el.style.left = cx + '%';
     el.style.top  = cy + '%';
-    el.style.borderColor = COLORS[i % COLORS.length];
-    el.innerHTML = `<div class="pc-emoji">${p.emoji}</div><div class="pc-label">${p.name}</div>`;
+    el.style.borderColor = RING_BORDERS[i % RING_BORDERS.length];
+    el.innerHTML = `
+      <div class="pc-icon" style="color:${p.color}"><svg class="ki"><use href="#${p.icon}"/></svg></div>
+      <div class="pc-label">${p.name}</div>
+    `;
     ring.appendChild(el);
   });
 }
 
 /* ====== 六步怎么聊 ====== */
 const HOW_STEPS = [
-  { emoji: '📱', text: '打开 App' },
-  { emoji: '🎂', text: '输入生日' },
-  { emoji: '🧮', text: 'App 自己算一算' },
-  { emoji: '📞', text: '叫来小精灵' },
-  { emoji: '📚', text: '小精灵翻笔记查' },
-  { emoji: '💬', text: '告诉你答案' },
+  { icon: 'i-phone',    text: '打开 App' },
+  { icon: 'i-cake',     text: '输入生日' },
+  { icon: 'i-abacus',   text: 'App 自己算一算' },
+  { icon: 'i-call',     text: '叫来小精灵' },
+  { icon: 'i-notebook', text: '小精灵翻笔记查' },
+  { icon: 'i-chat',     text: '告诉你答案' },
 ];
 function renderHow() {
   const grid = document.getElementById('how-grid');
@@ -665,7 +948,7 @@ function renderHow() {
   grid.innerHTML = HOW_STEPS.map((s, i) => `
     <div class="how-card">
       <div class="how-num">${i + 1}</div>
-      <div class="how-emoji">${s.emoji}</div>
+      <div class="how-icon"><svg class="ki"><use href="#${s.icon}"/></svg></div>
       <div class="how-text">${s.text}</div>
     </div>
   `).join('');
