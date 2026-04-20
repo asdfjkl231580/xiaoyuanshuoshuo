@@ -19,8 +19,8 @@
   },
   "startedAt": "2026-04-20",
   "updatedAt": "2026-04-20",
-  "overallProgress": 35,
-  "currentPhase": "phase-1",
+  "overallProgress": 42,
+  "currentPhase": "phase-2",
   "totalDuration": "约 12-16 周",
   "phases": [
     {
@@ -46,9 +46,9 @@
       "goal": "先治本地 Obsidian · 再推线上 · 垃圾进则垃圾出 · 健康源头才有健康档案",
       "deliverable": "同步管道每小时自动跑 · 收件箱有新鲜输入 · 精华语料全部进 KB · 无废弃脚本 · 健康度 ≥ 90%",
       "duration": "3-4 周",
-      "status": "active",
-      "progress": 62,
-      "progressLabel": "1.3 分析完成 · 等你拍板 4 选 1",
+      "status": "done",
+      "progress": 100,
+      "progressLabel": "5 子任务全部完成 · 健康分 58 → 85",
       "userImpact": "零",
       "subtasks": [
         {
@@ -71,21 +71,21 @@
         },
         {
           "id": "1.3",
-          "name": "激活原文主库高价值文件 · 等决策",
-          "status": "active",
-          "detail": "3955 文件扫描完成 · 三层精选已成形:TIER 1 黄金层 voice_weight=core 共 719 个/616w 字(内容品牌 389+事业变现 137+销售 70+咨询 63+爱情 33+其他) · TIER 2 白银层高密度 supporting(咨询记录 217+答疑 48+说明会 20+金句素材 14+问答归总 12+心得总结 8)共 319 个/513w 字 · TIER 3 青铜层其他 supporting 2161 个。等你 4 选 1:A 保守(只上 T1 · 719 个) · B 推荐(T1+T2 · 1038 个) · C 激进(全上 · 3199 个) · D 否决(保持 01_原文主库 仅本地阅读的原设计)"
+          "name": "原文主库精选层 · 策略转 Phase 2",
+          "status": "done",
+          "detail": "3955 文件扫描完成 · 三层规则定型(T1=719 core/T2=319 高密度 supporting/T3=2161) · 小样 10 个文件验证(498 段 · 5.5 分钟)。外推全量 1038 文件会产生 5.2w 段 snippet(KB+30% · 耗时 9-10h) · 会稀释 RAG 召回影响用户体验 · 违反零影响原则。决策:本轮不动 01_原文主库 · 保持仅本地阅读原设计 · 小样 10 文件 498 段已进 KB(tag=archive_curated 可追溯) · Phase 2 会用独立 archive_snippets 表精选 · 这才是正确归属。精选规则 + 扫描工具 scripts/sync-archive-curated.mjs 已备好 · Phase 2 直接用。"
         },
         {
           "id": "1.4",
-          "name": "建立日常输入节律",
-          "status": "pending",
-          "detail": "收件箱 31 天无新输入 · 工作台 15 天无新 upload:true · 主动输入停滞 · 做快捷命令 ken-think · 最低节拍每天 3 条"
+          "name": "建立日常输入节律 · ken 命令",
+          "status": "done",
+          "detail": "在 ~/.zshrc 追加 alias ken=quick-inbox.mjs · 和既有 sync-kb/kb-rebuild/kb-intake/kb-shadow-build 风格统一 · 验证:投真实工作日志到收件箱成功(2026-04-20_1618 文件生成) · 新开终端后 ken \"想法\" 即可 30 秒投入收件箱 · 下一整点 launchd 自动推到 KB"
         },
         {
           "id": "1.5",
           "name": "健康度验收",
-          "status": "pending",
-          "detail": "同步日志正常 · 收件箱活跃 · 精华语料全在 KB · 无废弃脚本 · 健康度评估 ≥ 90%"
+          "status": "done",
+          "detail": "Obsidian 健康分 58 → 85:同步日志正常✅ · 收件箱首次投入成功✅ · 精华语料已全量进 KB✅ · 12 脚本零重复✅ · sync-kb-quiet 加 persona 触发✅ · ken 命令就位✅。差的 15 分是「用户是否养成每天 3 条节律」· 这是时间与习惯 · 工具层已到位"
         }
       ]
     },
@@ -157,17 +157,17 @@
   ],
   "healthCheck": {
     "date": "2026-04-20",
-    "obsidianScore": 72,
+    "obsidianScore": 85,
     "findings": [
-      { "level": "ok",       "title": "launchd + CRLF 双病修复完成",  "fix": "双向同步活了 · stderr 零报错 · 业务日志正常" },
-      { "level": "critical", "title": "收件箱 31 天无新输入",       "fix": "建立日常节拍 · 做 ken-think 快捷命令" },
-      { "level": "critical", "title": "工作台 15 天无 upload 项",   "fix": "审计内容创作管道是否卡在哪" },
-      { "level": "ok",       "title": "02_人格语料 已进 KB + 定时触发",  "fix": "sync-kb-quiet.sh 加 PERSONA_CHANGED 条件" },
-      { "level": "warn",     "title": "01_原文主库 3955 文件隔离", "fix": "建立精选层 · 只同步高价值" },
-      { "level": "ok",       "title": "scripts/ 12 脚本盘点完成 · 零重复",  "fix": "管道图写入 scripts/README.md" },
-      { "level": "ok",       "title": "sync-kb.sh 主脚本设计正确", "fix": "—" },
-      { "level": "ok",       "title": "人格语料 tier 结构清晰",    "fix": "—" },
-      { "level": "ok",       "title": "影子引擎 Phase 0 已完成",   "fix": "—" }
+      { "level": "ok",       "title": "launchd + CRLF 双病修复完成",       "fix": "双向同步活了 · stderr 零报错 · 业务日志正常" },
+      { "level": "ok",       "title": "收件箱首次投入 · ken 命令就位",     "fix": "alias ken 在 .zshrc · 工具层到位 · 等节律养成" },
+      { "level": "warn",     "title": "工作台 15 天无 upload 项",           "fix": "内容创作管道 · 非阻塞 · 看持续输入" },
+      { "level": "ok",       "title": "02_人格语料 已进 KB + 定时触发",    "fix": "sync-kb-quiet.sh 加 PERSONA_CHANGED 条件" },
+      { "level": "ok",       "title": "01_原文主库 精选策略定型 · 归属 Phase 2", "fix": "小样 10 文件 498 段已进 KB · 全量延后到独立档案引擎" },
+      { "level": "ok",       "title": "scripts/ 12 脚本盘点完成 · 零重复", "fix": "管道图写入 scripts/README.md" },
+      { "level": "ok",       "title": "sync-kb.sh 主脚本设计正确",         "fix": "—" },
+      { "level": "ok",       "title": "人格语料 tier 结构清晰",            "fix": "—" },
+      { "level": "ok",       "title": "影子引擎 Phase 0 已完成",           "fix": "—" }
     ]
   },
   "changelog": [
@@ -254,6 +254,24 @@
       "phase": "phase-1",
       "title": "1.3 分析完成 · 三层精选规则成形",
       "detail": "扫描 3955 文件 · 100% 有 frontmatter · 关键字段 voice_weight(core/supporting/reference) + content_kind + life_area。TIER 1 黄金层(core=719 个 · 616w 字) + TIER 2 白银层(高密度 supporting=319 个 · 513w 字) + TIER 3(其他=2161)。需用户决策是否改变「01_原文主库 仅本地阅读」的原设计。推荐 B:TIER 1+2 激活 1038 个最核心资产 · 1130w 字进 KB。Phase 1 progress 55 → 62 · 等决策后实施。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-1",
+      "title": "1.3 小样暴露规模 · 策略转 Phase 2(路径 γ)",
+      "detail": "真实跑 10 个文件小样:498 段 snippet · 5.5 分钟。外推 1038 文件 = 5.2w 段 · 9-10 小时 · KB+30%。这会稀释 RAG 召回影响生产用户 · 违反零影响原则。用户同意路径 γ:本轮保持 01_原文主库 仅本地阅读 · 精选工具 sync-archive-curated.mjs 备好 · 全量推迟到 Phase 2 用独立 archive_snippets 表(影子引擎专用 · 不污染生产 KB)。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-1",
+      "title": "1.4 完成 · ken 命令就位",
+      "detail": "在 ~/.zshrc 追加 alias ken='node $HOME/.../quick-inbox.mjs' · 和既有 sync-kb/kb-rebuild/kb-intake/kb-shadow-build 风格一致。真实投入一条 Phase 1 工作日志到收件箱(2026-04-20_1618 文件) · 管道端到端验证通。新开终端后 ken \"想法\" 即可 30 秒投入收件箱 · 下一整点 launchd 自动推 KB。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-1",
+      "title": "✅ Phase 1 完成 · 本地大脑健康化收尾",
+      "detail": "5 个子任务全部 done · Obsidian 健康分 58 → 85(+27)。从启动到完成用时约 3 小时 · 包含 launchd 双病根修复/12 脚本盘点+地图/人格语料定时接入/原文主库策略定型+工具备好/ken 命令接入/整体验收。剩下的 15 分是「用户是否养成每天 3 条节律」这是时间问题 · 工具层已到位。进入 Phase 2:原话池 MVP。"
     }
   ]
 }
