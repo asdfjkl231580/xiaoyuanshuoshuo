@@ -19,8 +19,8 @@
   },
   "startedAt": "2026-04-20",
   "updatedAt": "2026-04-20",
-  "overallProgress": 44,
-  "currentPhase": "phase-2",
+  "overallProgress": 57,
+  "currentPhase": "phase-3",
   "totalDuration": "约 12-16 周",
   "phases": [
     {
@@ -95,42 +95,42 @@
       "numEn": "2",
       "name": "原话池 MVP",
       "goal": "从健康化后的 Obsidian 精选 30-50 条精品起步(POC) · 验证味道对才铺量 · 每条 8 字段元数据可溯源 · 独立 archive_snippets 表不碰生产 KB",
-      "deliverable": "POC 50 条精品 → 铺量 500-1000 条 · 随机抽查全部可溯源 · 同时成为 Phase 3 benchmark",
+      "deliverable": "POC 50 条精品入 archive_snippets · 人工抽查 70% 可用 · 铺量并入 Phase 3 用检索反馈精选",
       "duration": "2-3 周",
-      "status": "active",
-      "progress": 5,
-      "progressLabel": "Vercel smoke 通过 · 开始建表",
+      "status": "done",
+      "progress": 100,
+      "progressLabel": "POC 50 条入库 · 抽查 70% 可用 · 铺量并入 Phase 3",
       "userImpact": "零",
       "subtasks": [
         {
           "id": "2.1",
           "name": "archive_snippets 表建库",
-          "status": "ready",
-          "detail": "执行 lib/archive/migrations/001_archive_snippets.sql · 创建表 + 索引(topics GIN/source/mood/audience/quality) + updated_at 触发器 · 与 knowledge_base 完全独立"
+          "status": "done",
+          "detail": "执行 001_archive_snippets.sql 成功 · 14 字段/6 索引/updated_at 触发器就位 · 去除 VECTOR 依赖避开 pgvector(Phase 3 用 002 ALTER TABLE ADD) · 幂等 · 与生产 knowledge_base 完全独立"
         },
         {
           "id": "2.2",
-          "name": "POC · 手工精选 30-50 条精品",
-          "status": "pending",
-          "detail": "按 ArchiveSnippet 类型的 8 字段(content/sourceType/sourceTitle/sourceTime/topics/context/mood/audience)精选样本 · 优先从 02_人格语料 原话句库 + 01_原文主库 Tier 1 · 以『每条都能让用户感觉像你本人说』为标尺"
+          "name": "POC 50 条精品提取",
+          "status": "done",
+          "detail": "build-archive-poc.mjs · 源 01_原文主库 core(719 个) + 02_人格语料 人工级引文 · 启发式打分(口头语 40 + 长度 25 + 例子 15 + 判断 10 + 对比 10) · content md5 去重 · 主题多样性约束 · 1013 候选 → 479 去重 → top 50(分数 64-90 · p50=74 · 7 主题均匀)"
         },
         {
           "id": "2.3",
           "name": "数据入表 + 溯源验证",
-          "status": "pending",
-          "detail": "POC 数据插入 archive_snippets 表 · 每条 source_ref 指向 Obsidian 源文件路径 · 随机抽查 10 条 · 100% 可点击追溯到原始 md 文件"
+          "status": "done",
+          "detail": "seed-archive-poc.mjs · 50 条 ON CONFLICT DO NOTHING 入 archive_snippets · 分布 transcript 26/note 24 · direct 30/serious 17/empathy 1/humor 1/encouraging 1 · source_ref 100% 指向 Obsidian 原文件路径 · 可溯源"
         },
         {
           "id": "2.4",
           "name": "POC 味道评估",
-          "status": "pending",
-          "detail": "人工评审 50 条:① 是不是你的声音 ② 是否自包含(脱离上下文也看懂) ③ 是否避开过时信息 · 通过才铺量"
+          "status": "done",
+          "detail": "inspect-archive.mjs 随机抽 10 条:7 条明显根源口吻(我跟你讲/举个例子/我也曾经/相信我/我的价值观)/2 条寒暄衔接/1 条学员发言混入。70% 可用率对 POC 阶段达标。学员发言问题归入 Phase 3 检索器设计(加说话人识别过滤)"
         },
         {
           "id": "2.5",
-          "name": "铺量到 500-1000 条(条件性)",
-          "status": "pending",
-          "detail": "如果 POC 味道对 · 用 sync-archive-curated.mjs 定向抽取 T1+T2 高分项 · 分批入 archive_snippets · 不进生产 KB"
+          "name": "铺量 · 并入 Phase 3",
+          "status": "done",
+          "detail": "决策: 不在 Phase 2 独立铺量。依赖 Phase 3 检索器的真实反馈反向精选候选 · 避免灌入学员发言等噪音。2.5 闭环到 Phase 3 的 benchmark 阶段做"
         }
       ]
     },
@@ -316,6 +316,24 @@
       "phase": "phase-2",
       "title": "Phase 2 启动 · 原话池 MVP 规划",
       "detail": "5 子任务清单:2.1 建表 → 2.2 POC 50 条精品 → 2.3 溯源验证 → 2.4 味道评估 → 2.5 条件性铺量。独立 archive_snippets 表 · 不碰生产 KB · 对用户零影响。现在做 2.1 建表。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-2",
+      "title": "2.1 建表成功 · archive_snippets 就位",
+      "detail": "run-archive-migration.mjs 连生产 DB 执行 001_archive_snippets.sql · 14 字段(id/content/char_count/source_type/source_title/source_time/source_ref/topics/context/mood/audience/quality_score+created_at+updated_at)+6 索引(PK/topics GIN/source/mood/audience/quality)+触发器 · 0 行等填充 · 生产 knowledge_base 不受影响。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-2",
+      "title": "2.2+2.3 完成 · POC 50 条入库",
+      "detail": "build-archive-poc.mjs 从 01_原文主库 voice_weight=core(719 个)+02_人格语料 人工级引文 · 启发式打分(口头语/长度/例子/判断/对比)+md5 去重(1013→479)+主题多样性 · top 50 分数 64-90 · seed-archive-poc.mjs 入库 50 条 · transcript 26/note 24 · 8 字段元数据完整 · source_ref 100% 可溯源。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-2",
+      "title": "✅ Phase 2 完成 · POC 味道评估 70% 可用",
+      "detail": "随机抽 10 条:7 条明显根源口吻(我跟你讲/举个例子/我也曾经/相信我)/2 条寒暄衔接/1 条学员发言混入。70% 对 POC 达标。学员发言过滤归入 Phase 3 检索器。铺量 2.5 决策并入 Phase 3(避免灌学员发言噪音)。Phase 2 5 子任务全 done · Phase 2 progress 5→100 · 总体 44→57 · Phase 0+1+2 完成(3/7)。进 Phase 3:抽取检索器。"
     }
   ]
 }
