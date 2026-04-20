@@ -46,6 +46,140 @@
     backdrop-filter: blur(8px);
   }
   .glass:hover { border-color: rgba(212,175,55,0.35); }
+
+  /* 档案升级进度板 (CHAPTER 8) */
+  .au-vision {
+    background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(212,175,55,0.02));
+    border: 1px solid rgba(212,175,55,0.25);
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+  .au-vision-label { font-size: 11px; letter-spacing: 0.2em; color: #D4AF37; font-weight: 600; margin-bottom: 8px; }
+  .au-vision-text { font-family: 'Noto Serif SC', serif; font-size: 20px; font-weight: 600; color: #F5E6A8; line-height: 1.5; }
+  .au-vision-sub { font-size: 13px; color: #94A3B8; margin-top: 10px; line-height: 1.7; }
+
+  .au-overall {
+    display: flex; align-items: center; gap: 20px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 14px 20px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .au-overall-bar {
+    flex: 1; min-width: 200px;
+    height: 8px; border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+    overflow: hidden; position: relative;
+  }
+  .au-overall-fill {
+    height: 100%; border-radius: 999px;
+    background: linear-gradient(90deg, #D4AF37, #F5E6A8);
+    box-shadow: 0 0 12px rgba(212,175,55,0.4);
+    transition: width 0.6s ease;
+  }
+  .au-overall-pct { font-family: 'Noto Serif SC', serif; font-weight: 700; font-size: 22px; color: #F5E6A8; min-width: 60px; text-align: right; }
+  .au-overall-label { font-size: 12px; color: #94A3B8; }
+
+  .au-phases {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px; margin-bottom: 28px;
+  }
+  .au-phase {
+    position: relative;
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 20px 22px;
+    transition: border-color .25s ease, transform .25s ease;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .au-phase:hover { border-color: rgba(212,175,55,0.35); transform: translateY(-2px); }
+  .au-phase-head { display: flex; align-items: center; gap: 12px; }
+  .au-phase-num {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Noto Serif SC', serif; font-size: 18px; font-weight: 700;
+    color: #94A3B8;
+  }
+  .au-phase-title { font-family: 'Noto Serif SC', serif; font-size: 17px; font-weight: 600; color: #E2E8F0; flex: 1; }
+  .au-phase-status {
+    font-size: 10px; padding: 3px 9px; border-radius: 999px;
+    letter-spacing: 0.08em; font-weight: 700;
+  }
+  .au-phase-status[data-status="done"]     { background: rgba(52,211,153,0.15); color: #34D399; }
+  .au-phase-status[data-status="active"]   { background: rgba(212,175,55,0.18); color: #F5E6A8; }
+  .au-phase-status[data-status="planning"] { background: rgba(96,165,250,0.15); color: #93C5FD; }
+  .au-phase-status[data-status="pending"]  { background: rgba(148,163,184,0.1); color: #94A3B8; }
+
+  .au-phase[data-status="done"]     { border-color: rgba(52,211,153,0.3); }
+  .au-phase[data-status="done"] .au-phase-num { background: rgba(52,211,153,0.15); color: #34D399; border-color: rgba(52,211,153,0.3); }
+  .au-phase[data-status="active"]   { border-color: rgba(212,175,55,0.45); box-shadow: 0 0 24px -8px rgba(212,175,55,0.35); }
+  .au-phase[data-status="active"] .au-phase-num { background: rgba(212,175,55,0.2); color: #F5E6A8; border-color: rgba(212,175,55,0.5); }
+  .au-phase[data-status="planning"] { border-color: rgba(96,165,250,0.3); }
+  .au-phase[data-status="planning"] .au-phase-num { background: rgba(96,165,250,0.15); color: #93C5FD; border-color: rgba(96,165,250,0.3); }
+
+  .au-phase-goal { font-size: 13px; color: #CBD5E1; line-height: 1.65; }
+  .au-phase-meta { display: flex; gap: 12px; font-size: 11px; color: #64748B; flex-wrap: wrap; margin-top: 4px; }
+  .au-phase-meta span { display: inline-flex; align-items: center; gap: 4px; }
+  .au-phase-meta .dot { width: 4px; height: 4px; border-radius: 999px; background: currentColor; opacity: 0.5; }
+  .au-phase-bar {
+    height: 4px; border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+    overflow: hidden; margin-top: 6px;
+  }
+  .au-phase-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #D4AF37, #F5E6A8);
+    border-radius: 999px;
+    transition: width 0.6s ease;
+  }
+
+  .au-changelog {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 22px 26px;
+  }
+  .au-changelog h4 {
+    font-family: 'Noto Serif SC', serif; font-size: 14px; font-weight: 600;
+    color: #D4AF37; letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+  .au-log-item {
+    display: flex; gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px dashed rgba(255,255,255,0.06);
+  }
+  .au-log-item:last-child { border-bottom: none; }
+  .au-log-date { min-width: 88px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #64748B; padding-top: 2px; }
+  .au-log-body { flex: 1; }
+  .au-log-title { font-size: 13px; font-weight: 600; color: #E2E8F0; margin-bottom: 4px; }
+  .au-log-detail { font-size: 12px; color: #94A3B8; line-height: 1.65; }
+  .au-log-phase {
+    display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 999px;
+    background: rgba(212,175,55,0.12); color: #E8C86A;
+    margin-right: 8px; letter-spacing: 0.05em;
+    vertical-align: 1px;
+  }
+
+  /* 浅色模式覆盖 */
+  html[data-theme="light"] .au-vision { background: linear-gradient(135deg, rgba(212,175,55,0.12), rgba(212,175,55,0.04)); border-color: rgba(184,134,11,0.3); }
+  html[data-theme="light"] .au-vision-text { color: #78350F; }
+  html[data-theme="light"] .au-vision-sub { color: #475569; }
+  html[data-theme="light"] .au-overall { background: rgba(15,23,42,0.03); border-color: rgba(15,23,42,0.08); }
+  html[data-theme="light"] .au-overall-pct { color: #92400E; }
+  html[data-theme="light"] .au-phase { background: white; border-color: rgba(15,23,42,0.1); }
+  html[data-theme="light"] .au-phase-title { color: #1E293B; }
+  html[data-theme="light"] .au-phase-goal  { color: #475569; }
+  html[data-theme="light"] .au-phase-num { background: rgba(15,23,42,0.04); color: #64748B; border-color: rgba(15,23,42,0.1); }
+  html[data-theme="light"] .au-changelog { background: white; border-color: rgba(15,23,42,0.08); }
+  html[data-theme="light"] .au-log-title { color: #1E293B; }
+  html[data-theme="light"] .au-log-detail { color: #475569; }
   .divider { background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent); height: 1px; }
   .status-dot { width: 8px; height: 8px; border-radius: 999px; display: inline-block; }
   .pulse-ring { box-shadow: 0 0 0 0 rgba(212,175,55,0.6); animation: pulse 2.4s infinite; }
@@ -999,6 +1133,7 @@
   <a href="#business" data-label="商业闭环"></a>
   <a href="#priority" data-label="优先级"></a>
   <a href="#reports" data-label="健康报告"></a>
+  <a href="#archive-upgrade" data-label="智能体升级"></a>
 </nav>
 
 <!-- Header -->
@@ -1475,6 +1610,28 @@
   </div>
 
   <div id="reports-container" class="grid md:grid-cols-2 gap-6"></div>
+</section>
+
+<hr class="section-div" />
+
+<!-- CHAPTER 8: 档案升级(活的林根源档案) -->
+<section id="archive-upgrade" class="max-w-7xl mx-auto px-6 pb-20">
+  <div class="flex items-start justify-between mb-8 gap-8 flex-wrap">
+    <div>
+      <div class="chapter-eyebrow">C H A P T E R · 捌</div>
+      <h2 class="chapter-title">智能体升级 · 活的林根源档案</h2>
+      <p class="text-slate-400 mt-3 max-w-3xl leading-relaxed">
+        一次根本性的架构升级: 让 AI 从「扮演林根源」变成「林根源原话的精准调取员」。
+        影子模式推进 · 对用户零影响 · 每次进度都在这里可见。
+      </p>
+    </div>
+    <div class="chapter-num select-none">捌</div>
+  </div>
+
+  <div id="au-vision-container"></div>
+  <div id="au-overall-container"></div>
+  <div id="au-phases-container" class="au-phases"></div>
+  <div id="au-changelog-container"></div>
 </section>
 
 <footer class="border-t border-white/5">
@@ -3033,6 +3190,110 @@ renderDeepDive();
 renderLoops();
 renderCards();
 renderReports();
+
+/* ============ 档案升级进度板 (数据驱动 · 从 archive-upgrade.json 读取) ============ */
+const AU_STATUS_LABEL = {
+  done:     { text: 'DONE',     label: '已完成' },
+  active:   { text: 'ACTIVE',   label: '进行中' },
+  planning: { text: 'PLANNING', label: '规划中' },
+  pending:  { text: 'PENDING',  label: '待启动' }
+};
+
+function escapeHtml(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+function renderArchiveUpgrade(data) {
+  // Vision 条
+  const visionEl = document.getElementById('au-vision-container');
+  if (visionEl) {
+    visionEl.innerHTML = `
+      <div class="au-vision">
+        <div class="au-vision-label">V I S I O N</div>
+        <div class="au-vision-text">${escapeHtml(data.vision)}</div>
+        <div class="au-vision-sub">${escapeHtml(data.philosophy)}</div>
+      </div>
+    `;
+  }
+
+  // 总体进度条
+  const overallEl = document.getElementById('au-overall-container');
+  if (overallEl) {
+    const pct = Number(data.overallProgress) || 0;
+    overallEl.innerHTML = `
+      <div class="au-overall">
+        <div>
+          <div class="au-overall-label">总 体 进 度 · 起点 ${escapeHtml(data.startedAt)} · 预计 ${escapeHtml(data.totalDuration)}</div>
+          <div style="margin-top:6px;font-size:12px;color:#94A3B8;">${escapeHtml(data.approach)}</div>
+        </div>
+        <div class="au-overall-bar"><div class="au-overall-fill" style="width:${pct}%"></div></div>
+        <div class="au-overall-pct">${pct}<span style="font-size:14px;color:#94A3B8;margin-left:2px;">%</span></div>
+      </div>
+    `;
+  }
+
+  // Phase 卡片
+  const phasesEl = document.getElementById('au-phases-container');
+  if (phasesEl) {
+    phasesEl.innerHTML = data.phases.map(p => {
+      const st = AU_STATUS_LABEL[p.status] || AU_STATUS_LABEL.pending;
+      const showBar = p.status === 'active' && p.progress > 0;
+      return `
+        <div class="au-phase" data-status="${escapeHtml(p.status)}">
+          <div class="au-phase-head">
+            <div class="au-phase-num">${escapeHtml(p.num)}</div>
+            <div class="au-phase-title">${escapeHtml(p.name)}</div>
+            <span class="au-phase-status" data-status="${escapeHtml(p.status)}">${st.text}</span>
+          </div>
+          <div class="au-phase-goal">${escapeHtml(p.goal)}</div>
+          ${p.deliverable ? `<div style="font-size:11px;color:#64748B;line-height:1.6;"><span style="color:#D4AF37;">验收:</span> ${escapeHtml(p.deliverable)}</div>` : ''}
+          <div class="au-phase-meta">
+            <span>⏱ ${escapeHtml(p.duration)}</span>
+            <span class="dot"></span>
+            <span>👥 影响: ${escapeHtml(p.userImpact)}</span>
+            <span class="dot"></span>
+            <span>${st.label}</span>
+          </div>
+          ${showBar ? `<div class="au-phase-bar"><div class="au-phase-bar-fill" style="width:${p.progress}%"></div></div>` : ''}
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Changelog 时间线
+  const logEl = document.getElementById('au-changelog-container');
+  if (logEl) {
+    const items = (data.changelog || []).slice().reverse();
+    logEl.innerHTML = `
+      <div class="au-changelog">
+        <h4>U P D A T E   L O G · 最近 ${items.length} 条</h4>
+        ${items.map(it => `
+          <div class="au-log-item">
+            <div class="au-log-date">${escapeHtml(it.date)}</div>
+            <div class="au-log-body">
+              <div class="au-log-title"><span class="au-log-phase">${escapeHtml(it.phase || 'note')}</span>${escapeHtml(it.title)}</div>
+              <div class="au-log-detail">${escapeHtml(it.detail)}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+}
+
+function renderArchiveUpgradeError(msg) {
+  const el = document.getElementById('au-vision-container');
+  if (el) el.innerHTML = `<div class="au-vision"><div class="au-vision-label">无法加载升级数据</div><div class="au-vision-sub">${escapeHtml(msg)}</div></div>`;
+}
+
+(function loadArchiveUpgrade() {
+  fetch('archive-upgrade.json?t=' + Date.now())
+    .then(r => r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)))
+    .then(renderArchiveUpgrade)
+    .catch(err => renderArchiveUpgradeError(err.message));
+})();
 </script>
 
 </body>

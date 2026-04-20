@@ -1,0 +1,105 @@
+{
+  "vision": "让 AI 变成林根源原话的精准调取员 · 而不是 AI 在扮演林根源",
+  "philosophy": "用户看到的每一句实质内容都来自真实原话 · AI 只做意图理解 / 检索 / 极简衔接 · 不生成观点 / 不改写语气 / 不编造举例",
+  "approach": "影子模式升级 · 与生产 /api/chat 完全并行 · 验证通过后一键切换 · 切换后一键回滚",
+  "moat": "AI 越升级 → 模仿越容易 → 真实性越稀缺 → 档案价值越高 · 反脆弱战略",
+  "startedAt": "2026-04-20",
+  "updatedAt": "2026-04-20",
+  "overallProgress": 2,
+  "currentPhase": "phase-0",
+  "totalDuration": "约 10-12 周",
+  "phases": [
+    {
+      "id": "phase-0",
+      "num": "零",
+      "numEn": "0",
+      "name": "搭影子管道",
+      "goal": "新路由 /api/chat-archive + 新库表 archive_snippets · 与生产完全隔离",
+      "deliverable": "curl 可调用 /api/chat-archive 返回 stub 响应",
+      "duration": "1 周",
+      "status": "planning",
+      "progress": 0,
+      "progressLabel": "规划中",
+      "userImpact": "零"
+    },
+    {
+      "id": "phase-1",
+      "num": "壹",
+      "numEn": "1",
+      "name": "原话池 MVP",
+      "goal": "从 02_人格语料 + 01_原文主库逐字稿抽取 1000 条原话片段 · 每条 8 字段元数据可溯源",
+      "deliverable": "archive_snippets 表 1000 条 · 随机 10 条抽查全部可溯源",
+      "duration": "2-3 周",
+      "status": "pending",
+      "progress": 0,
+      "progressLabel": "待启动",
+      "userImpact": "零"
+    },
+    {
+      "id": "phase-2",
+      "num": "贰",
+      "numEn": "2",
+      "name": "抽取式检索器",
+      "goal": "意图理解 + 多维度匹配 + 质量排序 · 只返回片段和出处 · 不生成内容",
+      "deliverable": "30 道 benchmark 题对比测试 · 味道评分 ≥ 4/5",
+      "duration": "2 周",
+      "status": "pending",
+      "progress": 0,
+      "progressLabel": "待启动",
+      "userImpact": "零"
+    },
+    {
+      "id": "phase-3",
+      "num": "叁",
+      "numEn": "3",
+      "name": "极简衔接器",
+      "goal": "AI 只用模板衔接词拼接片段 · 禁止生成观点 · 出现非模板语即拒绝",
+      "deliverable": "100 道题跑测 · 0 个 AI 自编案例",
+      "duration": "1 周",
+      "status": "pending",
+      "progress": 0,
+      "progressLabel": "待启动",
+      "userImpact": "零"
+    },
+    {
+      "id": "phase-4",
+      "num": "肆",
+      "numEn": "4",
+      "name": "灰度内测",
+      "goal": "对你 + 3-5 个内测账号开放 ?engine=archive · 线上正常用户继续走旧引擎",
+      "deliverable": "内测满意度 > 旧引擎 · 补齐检索盲点",
+      "duration": "2 周",
+      "status": "pending",
+      "progress": 0,
+      "progressLabel": "待启动",
+      "userImpact": "仅内测账号感知"
+    },
+    {
+      "id": "phase-5",
+      "num": "伍",
+      "numEn": "5",
+      "name": "正式切换",
+      "goal": "10% → 50% → 100% 灰度切流量 · 实时监控 · 异常一键回滚",
+      "deliverable": "100% 切换 · 连续 7 天无异常",
+      "duration": "1 周",
+      "status": "pending",
+      "progress": 0,
+      "progressLabel": "待启动",
+      "userImpact": "切换完成后全体用户"
+    }
+  ],
+  "changelog": [
+    {
+      "date": "2026-04-20",
+      "phase": "plan",
+      "title": "升级路径确立",
+      "detail": "确定方向 · 活的林根源档案(抽取式 RAG) · 否决林根源 AI(生成式扮演)。6 阶段路径 · 约 10-12 周 · 不影响生产。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "plan",
+      "title": "可视化进度板上线",
+      "detail": "在 matrix.html 第捌章增加档案升级看板 · 数据驱动 · 每次推进改 archive-upgrade.json 即自动更新网页。"
+    }
+  ]
+}
