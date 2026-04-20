@@ -19,7 +19,7 @@
   },
   "startedAt": "2026-04-20",
   "updatedAt": "2026-04-20",
-  "overallProgress": 22,
+  "overallProgress": 28,
   "currentPhase": "phase-1",
   "totalDuration": "约 12-16 周",
   "phases": [
@@ -47,8 +47,8 @@
       "deliverable": "同步管道每小时自动跑 · 收件箱有新鲜输入 · 精华语料全部进 KB · 无废弃脚本 · 健康度 ≥ 90%",
       "duration": "3-4 周",
       "status": "active",
-      "progress": 25,
-      "progressLabel": "launchd 已通 + 双向同步验证成功",
+      "progress": 40,
+      "progressLabel": "1.0+1.1 完成 · 下一步给精华语料接入管道",
       "userImpact": "零",
       "subtasks": [
         {
@@ -60,8 +60,8 @@
         {
           "id": "1.1",
           "name": "梳理 sync 脚本地图",
-          "status": "pending",
-          "detail": "scripts/ 有 11 个 sync-* / export / upload 脚本 · 需要画一张管道图 · 标记主力 / 实验 / 废弃 · 归档或删除冗余"
+          "status": "done",
+          "detail": "盘点 12 个脚本(加 ingest-docx.mjs) · 零重复可删 · 每条都有明确职责(入口 2 / 摄入 4 / 双向 2 / 辅助 4) · 管道地图写入 scripts/README.md · 记录 launchd 配置/TCC 要求/LF 约定/未来优化清单"
         },
         {
           "id": "1.2",
@@ -164,7 +164,7 @@
       { "level": "critical", "title": "工作台 15 天无 upload 项",   "fix": "审计内容创作管道是否卡在哪" },
       { "level": "warn",     "title": "02_人格语料 不在同步管道",  "fix": "给精华 tier 文件加 upload:true 或建专用管道" },
       { "level": "warn",     "title": "01_原文主库 3955 文件隔离", "fix": "建立精选层 · 只同步高价值" },
-      { "level": "warn",     "title": "scripts/ 11 个 sync 脚本",   "fix": "画管道图 · 标废弃 · 归档" },
+      { "level": "ok",       "title": "scripts/ 12 脚本盘点完成 · 零重复",  "fix": "管道图写入 scripts/README.md" },
       { "level": "ok",       "title": "sync-kb.sh 主脚本设计正确", "fix": "—" },
       { "level": "ok",       "title": "人格语料 tier 结构清晰",    "fix": "—" },
       { "level": "ok",       "title": "影子引擎 Phase 0 已完成",   "fix": "—" }
@@ -236,6 +236,12 @@
       "phase": "phase-1",
       "title": "✅ 双向同步活了 · 知识库真实规模曝光",
       "detail": "kickstart 干净跑通 · stderr 零新增 · 业务日志 docs/memory/sync-kb.log 成功生成 · 上行推送 8 条本地编辑 · 下行从服务端拉取 171,830 条(agent.md 里写的 8000+ 是严重低估 · 实际规模 21x)。Obsidian ↔ KB 双向管道从 15 天休眠变成活体。健康分 58 → 72。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-1",
+      "title": "1.1 完成 · 12 脚本零重复 · 管道地图成型",
+      "detail": "盘点 scripts/ 全部 12 个脚本(sync/ingest/upload/export/audit/inbox/persona-*) · 每条职责独立 · 发现零重复可删。按层级整理为入口 2 + 摄入 4 + 双向 2 + 辅助 4 共 12 条管道。写入 scripts/README.md 含速查命令、launchd 配置、LF 约定、未来优化清单。Phase 1 progress 25 → 40 · 总体进度 22 → 28。"
     }
   ]
 }
