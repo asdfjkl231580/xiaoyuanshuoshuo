@@ -19,7 +19,7 @@
   },
   "startedAt": "2026-04-20",
   "updatedAt": "2026-04-20",
-  "overallProgress": 82,
+  "overallProgress": 85,
   "currentPhase": "phase-5",
   "totalDuration": "约 12-16 周",
   "phases": [
@@ -251,8 +251,8 @@
       "deliverable": "yuaneightlife.com/archive-test 可直接访问 · 你 + 3-5 个朋友真实使用反馈 · 发现数据缺口回补 POC",
       "duration": "2 周",
       "status": "active",
-      "progress": 70,
-      "progressLabel": "5.1+5.3+5.4 完成 · 等你真实使用评估 5.5",
+      "progress": 80,
+      "progressLabel": "5.1+5.3(302 条)+5.4(两轮) 完成 · 待 5.5 满意度评估",
       "userImpact": "零(暗门式灰度 · 常规用户走 /api/chat 不变)",
       "subtasks": [
         {
@@ -275,15 +275,15 @@
         },
         {
           "id": "5.3",
-          "name": "数据缺口补强 · 50 → 242",
+          "name": "数据缺口补强 · 50 → 302",
           "status": "done",
-          "detail": "build-archive-poc.mjs 加 --per-topic=40 主题均衡模式。扩库结果: 新插入 192 条 · 总计 242 条。核心主题补强: 关系感情 7→40 · 咨询疗愈 5→40 · empathy 共情标记 1→12(↑12x)。命理方向 core 层为 0(知识库把命理归为 supporting 层) · 延后从 supporting 层补"
+          "detail": "两轮扩充: ① --per-topic=40 主题均衡 · 50→242(关系感情 7→40/咨询疗愈 5→40/个人成长 10→40/品牌内容 7→40/事业变现 2→28 · empathy 共情 1→12) ② build-archive-bazi.mjs 命理专项补源 · 242→302(扫 85 个 life_area=命理体系 文件 · 抽出 60 条含正官/七杀/正印/偏财/日主/大运/格局 等命理术语的精品 · 分数 56-90)。档案池主题从 7 个 → 8 个(加命理)"
         },
         {
           "id": "5.4",
-          "name": "检索器/衔接器微调(第一轮)",
+          "name": "检索器/衔接器微调(两轮)",
           "status": "done",
-          "detail": "用户首次真实使用暴露:问'正印特质'(命理)返回销售话术硬拼接 · 根因 compose 无置信度阈值。修复:CONFIDENCE_THRESHOLD = 70 · top hit < 70 走诚实 noCoverage fallback · 保留 top 3 候选供调试。'没讲过就说没讲过'原则得以执行。"
+          "detail": "第一轮: CONFIDENCE_THRESHOLD=70 · compose 低分走 fallback('没讲过就说没讲过') · 防止乱拼接。第二轮: scoreSnippet 加相关性门控 · 若 context+topic 都为 0 → mood 归零 · 防销售话术因'对不对/举例子'等口吻词虚高混入 top。benchmark 10 题: 6/10 答 · 4/10 fallback。下轮 iteration: 2-gram 假阳性问题(正印的'印的'命中'印象深刻') · 需 3-gram+专业术语加权。"
         },
         {
           "id": "5.5",
@@ -502,6 +502,18 @@
       "phase": "战略",
       "title": "重要战略说明 · 客户体验何时变好",
       "detail": "当前架构下补 archive_snippets 数据 ≠ 改善云咨询室。生产客户走 /api/chat 读 knowledge_base(171830 条)。今天补的 242 条在独立 archive_snippets 表 · 仅 /archive-test 和未来 Phase 6 灰度切流量后才生效。不双轨灌 knowledge_base 的理由: GPT 会改写原话 · 违背'每句是你原话'原则 · 稀释 Phase 6 切换时的断崖式提升效果。"
+    },
+    {
+      "date": "2026-04-21",
+      "phase": "phase-5",
+      "title": "Phase 5.3 补 · 命理 60 条入库 · 档案池 242 → 302",
+      "detail": "build-archive-bazi.mjs 用 grep 定位 85 个 life_area=命理体系 文件(避开遍历 3955) · 命理术语字典 25+ · 专用打分抽出 60 条精品(分数 56-90 · 覆盖正官七杀正印偏财日主大运格局等)。archive_snippets 8 个主题齐全。问'正印特质'能命中真命理内容到 top 3(分数 64)但 top 1 仍是销售话术(因 2-gram 假阳性:'印的'命中'印象深刻')。下轮改 extractKeywords 给 3-gram + 专业术语加权。"
+    },
+    {
+      "date": "2026-04-21",
+      "phase": "phase-5",
+      "title": "Phase 5.4 第二轮 · retrieve 相关性门控",
+      "detail": "scoreSnippet 加 if(context==0 && topic==0) mood=0 · 防销售话术因'对不对/举例子'等口吻词虚高。benchmark 10 题: 6/10 答 · 4/10 fallback(诚实). lib/archive/retrieve.ts + scripts/test-archive-retrieve.mjs 同步。Phase 5 progress 45→80 · 总体 82→85。6/7 phase 接近收尾。"
     }
   ]
 }
