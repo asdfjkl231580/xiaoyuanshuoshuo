@@ -19,7 +19,7 @@
   },
   "startedAt": "2026-04-20",
   "updatedAt": "2026-04-20",
-  "overallProgress": 42,
+  "overallProgress": 44,
   "currentPhase": "phase-2",
   "totalDuration": "约 12-16 周",
   "phases": [
@@ -36,7 +36,7 @@
       "progressLabel": "骨架完成 · 已推远端分支",
       "userImpact": "零",
       "branch": "archive-engine",
-      "notes": "Vercel preview smoke test 并入 Phase 2 一起做"
+      "notes": "Vercel preview smoke test 通过 · /api/chat-archive 返回正确 stub · 生产 /api/chat 未动"
     },
     {
       "id": "phase-1",
@@ -94,13 +94,45 @@
       "num": "贰",
       "numEn": "2",
       "name": "原话池 MVP",
-      "goal": "从健康化后的 Obsidian 精选 30-50 条精品起步(POC) · 验证味道对才铺量到 500-1000 条 · 每条 8 字段元数据可溯源",
-      "deliverable": "POC 50 条精品 → 铺量 1000 条 · 随机抽查全部可溯源 · 同时成为 Phase 3 benchmark",
+      "goal": "从健康化后的 Obsidian 精选 30-50 条精品起步(POC) · 验证味道对才铺量 · 每条 8 字段元数据可溯源 · 独立 archive_snippets 表不碰生产 KB",
+      "deliverable": "POC 50 条精品 → 铺量 500-1000 条 · 随机抽查全部可溯源 · 同时成为 Phase 3 benchmark",
       "duration": "2-3 周",
-      "status": "pending",
-      "progress": 0,
-      "progressLabel": "待启动(需 Phase 1 健康化完成)",
-      "userImpact": "零"
+      "status": "active",
+      "progress": 5,
+      "progressLabel": "Vercel smoke 通过 · 开始建表",
+      "userImpact": "零",
+      "subtasks": [
+        {
+          "id": "2.1",
+          "name": "archive_snippets 表建库",
+          "status": "ready",
+          "detail": "执行 lib/archive/migrations/001_archive_snippets.sql · 创建表 + 索引(topics GIN/source/mood/audience/quality) + updated_at 触发器 · 与 knowledge_base 完全独立"
+        },
+        {
+          "id": "2.2",
+          "name": "POC · 手工精选 30-50 条精品",
+          "status": "pending",
+          "detail": "按 ArchiveSnippet 类型的 8 字段(content/sourceType/sourceTitle/sourceTime/topics/context/mood/audience)精选样本 · 优先从 02_人格语料 原话句库 + 01_原文主库 Tier 1 · 以『每条都能让用户感觉像你本人说』为标尺"
+        },
+        {
+          "id": "2.3",
+          "name": "数据入表 + 溯源验证",
+          "status": "pending",
+          "detail": "POC 数据插入 archive_snippets 表 · 每条 source_ref 指向 Obsidian 源文件路径 · 随机抽查 10 条 · 100% 可点击追溯到原始 md 文件"
+        },
+        {
+          "id": "2.4",
+          "name": "POC 味道评估",
+          "status": "pending",
+          "detail": "人工评审 50 条:① 是不是你的声音 ② 是否自包含(脱离上下文也看懂) ③ 是否避开过时信息 · 通过才铺量"
+        },
+        {
+          "id": "2.5",
+          "name": "铺量到 500-1000 条(条件性)",
+          "status": "pending",
+          "detail": "如果 POC 味道对 · 用 sync-archive-curated.mjs 定向抽取 T1+T2 高分项 · 分批入 archive_snippets · 不进生产 KB"
+        }
+      ]
     },
     {
       "id": "phase-3",
@@ -272,6 +304,18 @@
       "phase": "phase-1",
       "title": "✅ Phase 1 完成 · 本地大脑健康化收尾",
       "detail": "5 个子任务全部 done · Obsidian 健康分 58 → 85(+27)。从启动到完成用时约 3 小时 · 包含 launchd 双病根修复/12 脚本盘点+地图/人格语料定时接入/原文主库策略定型+工具备好/ken 命令接入/整体验收。剩下的 15 分是「用户是否养成每天 3 条节律」这是时间问题 · 工具层已到位。进入 Phase 2:原话池 MVP。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-0",
+      "title": "Phase 0 正式 100% 关闭 · Vercel smoke 通过",
+      "detail": "vercel curl 访问 archive-engine 分支 preview /api/chat-archive 返回标准 stub:{engine:archive, phase:0, status:alive, ready:false, readyReason:档案池未建...}。Vercel deployment protection 通过 · 影子路由线上可访问 · 生产 /api/chat 未动。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-2",
+      "title": "Phase 2 启动 · 原话池 MVP 规划",
+      "detail": "5 子任务清单:2.1 建表 → 2.2 POC 50 条精品 → 2.3 溯源验证 → 2.4 味道评估 → 2.5 条件性铺量。独立 archive_snippets 表 · 不碰生产 KB · 对用户零影响。现在做 2.1 建表。"
     }
   ]
 }
