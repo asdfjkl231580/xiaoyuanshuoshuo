@@ -19,7 +19,7 @@
   },
   "startedAt": "2026-04-20",
   "updatedAt": "2026-04-20",
-  "overallProgress": 71,
+  "overallProgress": 76,
   "currentPhase": "phase-5",
   "totalDuration": "约 12-16 周",
   "phases": [
@@ -247,13 +247,51 @@
       "num": "伍",
       "numEn": "5",
       "name": "灰度内测",
-      "goal": "对你 + 3-5 个内测账号开放 ?engine=archive · 线上正常用户继续走旧引擎",
-      "deliverable": "内测满意度 > 旧引擎 · 补齐检索盲点",
+      "goal": "独立 /archive-test 页面作暗门入口 · 默认没人知道 · 拿到链接才用到 · 生产行为 0 变化",
+      "deliverable": "yuaneightlife.com/archive-test 可直接访问 · 你 + 3-5 个朋友真实使用反馈 · 发现数据缺口回补 POC",
       "duration": "2 周",
-      "status": "pending",
-      "progress": 0,
-      "progressLabel": "待启动",
-      "userImpact": "仅内测账号感知"
+      "status": "active",
+      "progress": 30,
+      "progressLabel": "5.1 内测页面上线 · 等你真实使用反馈",
+      "userImpact": "零(暗门式灰度 · 常规用户走 /api/chat 不变)",
+      "subtasks": [
+        {
+          "id": "5.0",
+          "name": "archive-engine 合并到 main",
+          "status": "done",
+          "detail": "12 个文件带入 main · 全部在 lib/archive/ + scripts/ + app/api/chat-archive + app/archive-test · 0 文件动 /api/chat / lib/rag / lib/persona.ts"
+        },
+        {
+          "id": "5.1",
+          "name": "/archive-test 内测页面上线",
+          "status": "done",
+          "detail": "Next.js 独立页面 · 调 /api/chat-archive POST · textarea+样例按钮+结果展示(compose 文本+召回源+溯源) · Cmd+Enter 快捷发送 · 不依赖小程序/生产 /api/chat"
+        },
+        {
+          "id": "5.2",
+          "name": "你 + 朋友真实使用(1-2 周)",
+          "status": "pending",
+          "detail": "每天用 archive-test 问几个真实问题 · 记录:① 对位几成 ② 哪些题跑题 ③ 哪些题不像你的声音 · 反馈驱动 5.3"
+        },
+        {
+          "id": "5.3",
+          "name": "数据缺口补强(根据反馈)",
+          "status": "pending",
+          "detail": "Phase 3.7 deferred 的 POC 补数据 · 按真实使用暴露的主题缺口定向抽取 · 扩 archive_snippets 到 200-500 条"
+        },
+        {
+          "id": "5.4",
+          "name": "检索器/衔接器微调",
+          "status": "pending",
+          "detail": "反馈如果发现打分失衡或模板选择不自然 · 调权重/模板库 · 不大改架构"
+        },
+        {
+          "id": "5.5",
+          "name": "灰度满意度评估",
+          "status": "pending",
+          "detail": "内测结束 · 评估「味道对不对」≥ 4/5 · 通过则进 Phase 6 正式切流量 · 不通过则循环回 5.3"
+        }
+      ]
     },
     {
       "id": "phase-6",
@@ -434,6 +472,18 @@
       "phase": "phase-4",
       "title": "✅ Phase 4 完成 · 极简衔接器真实实现",
       "detail": "LINK_TEMPLATES 20 条(5 openings/5 connectors/5 closings/2 noCoverage) · composeResponse 真实拼接:hits=0 → 诚实 fallback · hits=1 → opening+content+closing · hits≥2 → opening+content+connector+content...+closing · stableHash(query) 确定性模板选择 · validateCompose 硬红线 text 每 part 必须 ∈ templates 或 snippet.content · 违反即 throw。天然 0 AI 自编(纯 JS 拼接 · 无 LLM 调用)。100 题验证 deferred 到 Phase 5 灰度。Phase 4 6 子任务:5 done + 1 deferred。Phase 4 progress 0→100 · 总体 64→71 · 5/7 phase 完成。进 Phase 5:灰度内测。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-5",
+      "title": "Phase 5.0 · archive-engine 分支合并到 main",
+      "detail": "12 个文件带入 main:lib/archive/* + scripts/* + app/api/chat-archive + app/archive-test · 全部是新增 · 零文件动 /api/chat/lib/rag/lib/persona.ts · 生产行为完全不变。这是干净的合并(不是灰度切流量 · 是让前端页面和 API 共存于生产域名)。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-5",
+      "title": "Phase 5.1 · /archive-test 内测页面上线",
+      "detail": "yuaneightlife.com/archive-test 可直接在浏览器访问 · 独立 Next.js 页面 · 调 /api/chat-archive POST · 文本框+6 样例问题+Cmd+Enter 快捷发送 · 结果区展示 compose 完整回答 + 召回源 Top 3(分数分解·主题·情绪·字数·Obsidian 溯源路径)。这是暗门式灰度:默认没人知道这个页面 · 你和朋友拿到链接才用。Phase 5 progress 0→30 · 总体 71→76。等你真实使用反馈驱动 5.3 数据补强。"
     }
   ]
 }
