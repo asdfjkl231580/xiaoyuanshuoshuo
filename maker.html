@@ -3,613 +3,1632 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Page Maker — 文档变精美网页</title>
+<title>Page Maker — 文档变精品页面</title>
 <style>
-/* ===== 基础变量 ===== */
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
   --bg:#0a0a08;--bg2:#12100c;--bg3:#1a1510;
-  --accent:#d4a04a;--accent-dim:rgba(212,160,74,0.12);--accent-border:rgba(212,160,74,0.28);
-  --text:#c8c0b0;--text-h:#f0e6d6;--text-m:#8a7d6d;--text-d:#5a5040;
+  --accent:#d4a04a;--adim:rgba(212,160,74,0.12);--aborder:rgba(212,160,74,0.28);
+  --text:#c8c0b0;--th:#f0e6d6;--tm:#8a7d6d;--td:#5a5040;
   --border:#2a2218;--card:#100f0b;--t:0.3s ease;
-  --max:860px;
 }
+html{scroll-behavior:smooth}
 body{font-family:-apple-system,'PingFang SC','Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-::selection{background:rgba(212,160,74,0.3);color:var(--text-h)}
+::selection{background:rgba(212,160,74,0.3);color:var(--th)}
+a{text-decoration:none;color:inherit}
 
-/* ===== 页面状态切换 ===== */
-.screen{display:none;min-height:100vh}
-.screen.active{display:flex}
+/* ========== NAV ========== */
+.pm-nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,8,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 28px;
+}
+.pm-nav-logo{font-size:16px;font-weight:800;color:var(--th);letter-spacing:0.5px}
+.pm-nav-logo span{color:var(--accent)}
+.pm-nav-cta{
+  padding:8px 20px;background:linear-gradient(135deg,#d4a04a,#c4863a);
+  color:#0a0a08;font-size:13px;font-weight:700;border:none;border-radius:8px;
+  cursor:pointer;font-family:inherit;transition:all 0.3s;
+}
+.pm-nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px -4px rgba(212,160,74,0.5)}
 
-/* ===== 1. LANDING 落地页 ===== */
-#sLanding{flex-direction:column;align-items:center;justify-content:flex-start;padding:0}
+/* ========== HERO ========== */
+.pm-hero{
+  text-align:center;padding:80px 24px 64px;position:relative;overflow:hidden;
+  background:radial-gradient(ellipse at 50% -10%,rgba(212,160,74,0.08) 0%,transparent 60%);
+}
+.pm-hero-badge{
+  display:inline-block;padding:5px 16px;
+  border:1px solid var(--aborder);border-radius:100px;
+  font-size:11px;color:var(--accent);letter-spacing:2px;margin-bottom:24px;
+}
+.pm-hero h1{
+  font-size:clamp(38px,7vw,72px);font-weight:900;color:var(--th);
+  line-height:1.1;margin-bottom:20px;letter-spacing:-1px;
+}
+.pm-hero h1 .acc{color:var(--accent)}
+.pm-hero .sub{
+  font-size:clamp(15px,2vw,18px);color:var(--tm);
+  max-width:560px;margin:0 auto 48px;line-height:1.8;
+}
+/* 价格卡片 */
+.pm-price-row{
+  display:inline-flex;align-items:center;gap:28px;flex-wrap:wrap;justify-content:center;
+  background:var(--card);border:1px solid var(--aborder);border-radius:20px;
+  padding:28px 44px;margin-bottom:20px;
+  position:relative;overflow:hidden;
+}
+.pm-price-row::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(212,160,74,0.05) 0%,transparent 60%);
+}
+.pm-price-num{font-size:56px;font-weight:900;color:var(--th);line-height:1;position:relative}
+.pm-price-num sup{font-size:20px;font-weight:400;color:var(--tm);vertical-align:super}
+.pm-price-divider{width:1px;height:60px;background:var(--border)}
+.pm-price-includes{text-align:left;position:relative}
+.pm-price-includes li{
+  font-size:13px;color:var(--text);list-style:none;
+  padding:3px 0;display:flex;align-items:center;gap:8px;
+}
+.pm-price-includes li::before{content:'✓';color:var(--accent);font-weight:700}
+.pm-scroll-hint{font-size:12px;color:var(--td);display:flex;align-items:center;gap:6px;justify-content:center}
 
-/* 顶栏 */
-.nav{width:100%;max-width:var(--max);margin:0 auto;padding:20px 24px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-size:15px;font-weight:700;color:var(--text-h);letter-spacing:0.5px}
-.nav-logo span{color:var(--accent)}
-.nav-cta{padding:9px 22px;background:linear-gradient(135deg,#d4a04a,#c4863a);color:#0a0a08;font-size:13px;font-weight:700;border:none;border-radius:8px;cursor:pointer;font-family:inherit;transition:all 0.3s}
-.nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px -4px rgba(212,160,74,0.5)}
+/* ========== SECTION LABEL ========== */
+.pm-section{width:100%;max-width:960px;margin:0 auto;padding:64px 24px 0}
+.pm-sec-label{
+  font-size:11px;letter-spacing:3px;color:var(--accent);
+  text-transform:uppercase;margin-bottom:10px;
+}
+.pm-sec-title{font-size:24px;font-weight:800;color:var(--th);margin-bottom:8px}
+.pm-sec-sub{font-size:14px;color:var(--tm);margin-bottom:32px;line-height:1.6}
 
-/* Hero */
-.hero{width:100%;text-align:center;padding:72px 24px 60px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(212,160,74,0.07) 0%,transparent 65%);pointer-events:none}
-.hero-badge{display:inline-block;padding:5px 14px;border:1px solid var(--accent-border);border-radius:100px;font-size:12px;color:var(--accent);letter-spacing:1px;margin-bottom:24px}
-.hero h1{font-size:clamp(36px,6vw,64px);font-weight:900;color:var(--text-h);line-height:1.15;margin-bottom:20px}
-.hero h1 .acc{color:var(--accent)}
-.hero .sub{font-size:clamp(15px,2vw,18px);color:var(--text-m);max-width:520px;margin:0 auto 44px;line-height:1.8}
-.hero-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 40px;background:linear-gradient(135deg,#d4a04a,#c4863a);color:#0a0a08;font-size:16px;font-weight:800;border:none;border-radius:12px;cursor:pointer;font-family:inherit;transition:all 0.3s;box-shadow:0 8px 32px -8px rgba(212,160,74,0.4)}
-.hero-btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px -8px rgba(212,160,74,0.55)}
-.hero-hint{margin-top:14px;font-size:12px;color:var(--text-d)}
+/* ========== TEMPLATE PICKER ========== */
+.pm-tpl-scroll{
+  display:flex;gap:14px;overflow-x:auto;padding:4px 0 16px;
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+.pm-tpl-scroll::-webkit-scrollbar{display:none}
+.pm-tpl-card{
+  flex-shrink:0;width:160px;cursor:pointer;
+  border:2px solid var(--border);border-radius:14px;overflow:hidden;
+  transition:all 0.25s;position:relative;
+}
+.pm-tpl-card:hover{border-color:var(--aborder);transform:translateY(-3px);box-shadow:0 12px 36px -8px rgba(0,0,0,0.5)}
+.pm-tpl-card.selected{border-color:var(--accent);box-shadow:0 0 0 2px rgba(212,160,74,0.3)}
+.pm-tpl-card.selected .pm-tpl-check{opacity:1}
+/* 迷你预览 — 真实排版缩略图 */
+.pm-tpl-preview{height:120px;position:relative;overflow:hidden;cursor:pointer}
+.pm-tpl-preview .mp-slide{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  padding:10px 12px 8px;gap:0;
+}
+/* 通用 topbar */
+.pm-tpl-preview .mp-topbar{
+  height:8px;display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:8px;opacity:0.6;
+}
+.mp-topbar-dot{width:12px;height:3px;border-radius:2px}
+.mp-topbar-dots{display:flex;gap:3px;align-items:center}
+.mp-topbar-dot-sm{width:4px;height:4px;border-radius:50%;background:currentColor;opacity:0.4}
+/* 标题区 */
+.mp-h1{border-radius:2px;margin-bottom:5px}
+.mp-h2{border-radius:2px;margin-bottom:6px;opacity:0.6}
+/* 引号块 */
+.mp-quote{border-radius:3px;padding:5px 7px;margin-bottom:5px}
+/* 列表 */
+.mp-list{display:flex;flex-direction:column;gap:3px}
+.mp-li{height:4px;border-radius:2px;opacity:0.55}
+/* 预览角标 */
+.pm-tpl-preview-hint{
+  position:absolute;bottom:0;left:0;right:0;
+  background:rgba(0,0,0,0.5);color:#fff;
+  font-size:9px;text-align:center;padding:3px 0;
+  opacity:0;transition:opacity 0.2s;letter-spacing:1px;
+}
+.pm-tpl-card:hover .pm-tpl-preview-hint{opacity:1}
+/* 选中打钩 */
+.pm-tpl-check{
+  position:absolute;top:6px;right:6px;width:18px;height:18px;
+  background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:10px;color:#0a0a08;font-weight:700;opacity:0;transition:opacity 0.2s;z-index:2;
+}
+.pm-tpl-info{padding:10px 10px 12px;background:var(--card)}
+.pm-tpl-name{font-size:13px;font-weight:700;color:var(--th);margin-bottom:2px}
+.pm-tpl-desc{font-size:10px;color:var(--tm);line-height:1.4}
 
-/* 演示样本 */
-.demo-strip{width:100%;max-width:var(--max);margin:0 auto;padding:0 24px 64px}
-.demo-strip-title{text-align:center;font-size:11px;letter-spacing:3px;color:var(--text-d);text-transform:uppercase;margin-bottom:20px}
-.demo-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.demo-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all 0.3s;cursor:pointer;text-decoration:none}
-.demo-card:hover{border-color:var(--accent-border);transform:translateY(-3px);box-shadow:0 12px 40px -8px rgba(0,0,0,0.4)}
-.demo-card-img{width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,#12100a,#1a1510);display:flex;align-items:center;justify-content:center;font-size:32px;border-bottom:1px solid var(--border)}
-.demo-card-body{padding:14px 16px}
-.demo-card-title{font-size:13px;font-weight:600;color:var(--text-h);margin-bottom:4px}
-.demo-card-desc{font-size:11px;color:var(--text-m)}
+/* ========== FORMAT PICKER ========== */
+.pm-formats{display:flex;gap:12px;flex-wrap:wrap}
+.pm-fmt{
+  flex:1;min-width:140px;
+  border:2px solid var(--border);border-radius:14px;padding:18px 20px;
+  cursor:pointer;transition:all 0.25s;
+}
+.pm-fmt:hover{border-color:var(--aborder)}
+.pm-fmt.selected{border-color:var(--accent);background:var(--adim)}
+.pm-fmt-icon{font-size:22px;margin-bottom:8px}
+.pm-fmt-name{font-size:14px;font-weight:700;color:var(--th);margin-bottom:4px}
+.pm-fmt-desc{font-size:12px;color:var(--tm);line-height:1.5}
 
-/* 功能特性 */
-.features{width:100%;max-width:var(--max);margin:0 auto;padding:0 24px 80px}
-.section-label{font-size:11px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:32px;text-align:center}
-.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.feat-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px}
-.feat-icon{font-size:28px;margin-bottom:12px}
-.feat-title{font-size:15px;font-weight:700;color:var(--text-h);margin-bottom:8px}
-.feat-desc{font-size:13px;color:var(--text-m);line-height:1.7}
+/* ========== UPLOAD ========== */
+.pm-dropzone{
+  border:2px dashed var(--border);border-radius:20px;padding:56px 32px;
+  cursor:pointer;transition:all 0.3s;text-align:center;position:relative;
+}
+.pm-dropzone:hover,.pm-dropzone.dragover{
+  border-color:var(--accent);background:var(--adim);transform:translateY(-2px);
+}
+.pm-drop-icon{font-size:48px;margin-bottom:16px;display:block;transition:transform 0.3s}
+.pm-dropzone:hover .pm-drop-icon{transform:scale(1.1)}
+.pm-drop-title{font-size:17px;font-weight:700;color:var(--th);margin-bottom:8px}
+.pm-drop-hint{font-size:13px;color:var(--tm)}
+.pm-dropzone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer}
+.pm-file-info{
+  display:none;background:var(--bg2);border:1px solid var(--aborder);
+  border-radius:12px;padding:14px 18px;margin-top:12px;
+  align-items:center;gap:14px;text-align:left;
+}
+.pm-file-info.visible{display:flex}
+.pfi-icon{font-size:26px;flex-shrink:0}
+.pfi-name{font-size:14px;font-weight:600;color:var(--accent)}
+.pfi-meta{font-size:12px;color:var(--tm);margin-top:2px}
 
-/* 工作流说明 */
-.flow{width:100%;max-width:var(--max);margin:0 auto;padding:0 24px 80px}
-.flow-steps{display:flex;flex-direction:column;gap:0}
-.flow-step{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border)}
-.flow-step:last-child{border-bottom:none}
-.flow-num{width:40px;height:40px;min-width:40px;border:1px solid var(--accent-border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--accent)}
-.flow-content .fc-title{font-size:15px;font-weight:600;color:var(--text-h);margin-bottom:4px}
-.flow-content .fc-desc{font-size:13px;color:var(--text-m);line-height:1.7}
+/* ========== CTA ========== */
+.pm-cta{
+  width:100%;max-width:960px;margin:40px auto 0;padding:0 24px 80px;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+}
+.pm-generate-btn{
+  width:100%;max-width:520px;padding:18px;
+  background:linear-gradient(135deg,#d4a04a,#c4863a);
+  color:#0a0a08;font-size:17px;font-weight:800;border:none;border-radius:14px;
+  cursor:pointer;font-family:inherit;transition:all 0.3s;
+  box-shadow:0 8px 32px -8px rgba(212,160,74,0.4);
+}
+.pm-generate-btn:not(:disabled):hover{transform:translateY(-2px);box-shadow:0 12px 40px -8px rgba(212,160,74,0.55)}
+.pm-generate-btn:disabled{opacity:0.4;cursor:not-allowed}
+.pm-cta-hint{font-size:12px;color:var(--td)}
 
-/* 定价区 */
-.pricing{width:100%;max-width:var(--max);margin:0 auto;padding:0 24px 80px;text-align:center}
-.pricing h2{font-size:28px;font-weight:800;color:var(--text-h);margin-bottom:8px}
-.pricing .pricing-sub{font-size:15px;color:var(--text-m);margin-bottom:40px}
-.price-card{background:var(--bg2);border:1px solid var(--accent-border);border-radius:20px;padding:40px;max-width:420px;margin:0 auto;position:relative;overflow:hidden}
-.price-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(212,160,74,0.06) 0%,transparent 60%);pointer-events:none}
-.price-badge{display:inline-block;padding:4px 12px;background:var(--accent-dim);border:1px solid var(--accent-border);border-radius:100px;font-size:11px;color:var(--accent);letter-spacing:1px;margin-bottom:20px}
-.price-amount{font-size:56px;font-weight:900;color:var(--text-h);line-height:1;margin-bottom:6px}
-.price-amount span{font-size:20px;font-weight:400;color:var(--text-m)}
-.price-desc{font-size:14px;color:var(--text-m);margin-bottom:28px}
-.price-features{text-align:left;margin-bottom:32px;display:flex;flex-direction:column;gap:10px}
-.price-feature{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text)}
-.price-feature::before{content:'✓';color:var(--accent);font-weight:700;font-size:14px}
-.price-btn{width:100%;padding:15px;background:linear-gradient(135deg,#d4a04a,#c4863a);color:#0a0a08;font-size:16px;font-weight:800;border:none;border-radius:10px;cursor:pointer;font-family:inherit;transition:all 0.3s}
-.price-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px -6px rgba(212,160,74,0.5)}
+/* ========== SAMPLES ========== */
+.pm-samples{width:100%;max-width:960px;margin:0 auto;padding:0 24px 80px}
+.pm-sample-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pm-sample{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  overflow:hidden;transition:all 0.3s;cursor:pointer;
+  display:block;text-decoration:none;
+}
+.pm-sample:hover{border-color:var(--aborder);transform:translateY(-3px);box-shadow:0 12px 40px -8px rgba(0,0,0,0.4)}
+.pm-sample-thumb{
+  width:100%;aspect-ratio:16/10;
+  display:flex;align-items:center;justify-content:center;
+  font-size:32px;border-bottom:1px solid var(--border);
+}
+.pm-sample-body{padding:12px 14px}
+.pm-sample-title{font-size:13px;font-weight:600;color:var(--th);margin-bottom:3px}
+.pm-sample-meta{font-size:11px;color:var(--tm)}
 
-/* Footer */
-.footer{width:100%;border-top:1px solid var(--border);padding:28px 24px;text-align:center;font-size:12px;color:var(--text-d)}
+/* ========== FOOTER ========== */
+.pm-footer{
+  border-top:1px solid var(--border);padding:28px 24px;
+  text-align:center;font-size:12px;color:var(--td);
+}
 
-/* ===== 2. UPLOAD 上传页 ===== */
-#sUpload{flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;gap:0}
-.upload-header{margin-bottom:40px}
-.upload-header .uh-back{background:none;border:none;color:var(--text-m);font-size:13px;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px;margin:0 auto 24px;transition:color 0.2s}
-.upload-header .uh-back:hover{color:var(--accent)}
-.upload-header h2{font-size:28px;font-weight:800;color:var(--text-h);margin-bottom:8px}
-.upload-header p{font-size:14px;color:var(--text-m)}
-.upload-zone{width:100%;max-width:520px;border:2px dashed var(--border);border-radius:20px;padding:60px 40px;cursor:pointer;transition:all 0.3s;position:relative;margin-bottom:16px}
-.upload-zone:hover,.upload-zone.dragover{border-color:var(--accent);background:var(--accent-dim);transform:translateY(-2px);box-shadow:0 16px 40px -12px rgba(0,0,0,0.4)}
-.upload-zone .uz-icon{font-size:52px;margin-bottom:16px;display:block;transition:transform 0.3s}
-.upload-zone:hover .uz-icon{transform:scale(1.1)}
-.upload-zone .uz-title{font-size:18px;font-weight:700;color:var(--text-h);margin-bottom:8px}
-.upload-zone .uz-hint{font-size:13px;color:var(--text-m);line-height:1.7}
-.upload-zone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer}
-.file-info{display:none;width:100%;max-width:520px;background:var(--bg2);border:1px solid var(--accent-border);border-radius:12px;padding:16px 20px;margin-bottom:20px;text-align:left;align-items:center;gap:14px}
-.file-info.visible{display:flex}
-.fi-icon{font-size:28px;flex-shrink:0}
-.fi-text .fi-name{font-size:14px;font-weight:600;color:var(--accent)}
-.fi-text .fi-meta{font-size:12px;color:var(--text-m);margin-top:3px}
-.upload-btn{width:100%;max-width:520px;padding:15px;background:linear-gradient(135deg,#d4a04a,#c4863a);color:#0a0a08;font-size:16px;font-weight:800;border:none;border-radius:12px;cursor:pointer;font-family:inherit;transition:all 0.3s;display:none}
-.upload-btn.visible{display:block}
-.upload-btn:hover{transform:translateY(-1px);box-shadow:0 8px 28px -6px rgba(212,160,74,0.5)}
-.upload-formats{margin-top:20px;font-size:12px;color:var(--text-d)}
-
-/* ===== 3. PROCESSING 处理中 ===== */
-#sProcessing{flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;gap:0}
-.proc-title{font-size:22px;font-weight:700;color:var(--text-h);margin-bottom:8px}
-.proc-sub{font-size:14px;color:var(--text-m);margin-bottom:48px}
-.proc-steps{width:100%;max-width:420px;display:flex;flex-direction:column;gap:0;margin-bottom:48px}
-.proc-step{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--border);opacity:0.35;transition:all 0.5s}
+/* ========== PROCESSING OVERLAY ========== */
+#pmProcessing{
+  display:none;position:fixed;inset:0;z-index:200;
+  background:rgba(10,10,8,0.95);backdrop-filter:blur(12px);
+  flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:40px 24px;
+}
+#pmProcessing.active{display:flex}
+.proc-title{font-size:22px;font-weight:700;color:var(--th);margin-bottom:8px}
+.proc-sub{font-size:14px;color:var(--tm);margin-bottom:48px}
+.proc-steps{width:100%;max-width:420px;margin-bottom:40px}
+.proc-step{
+  display:flex;align-items:center;gap:16px;padding:16px 0;
+  border-bottom:1px solid var(--border);opacity:0.35;transition:all 0.5s;
+}
 .proc-step:last-child{border-bottom:none}
 .proc-step.active{opacity:1}
 .proc-step.done{opacity:0.6}
-.proc-step-icon{width:36px;height:36px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;transition:all 0.3s}
-.proc-step.active .proc-step-icon{border-color:var(--accent);background:var(--accent-dim);animation:pulse-step 1.5s ease infinite}
-.proc-step.done .proc-step-icon{border-color:rgba(212,160,74,0.4);background:var(--accent-dim);font-size:14px}
-@keyframes pulse-step{0%,100%{box-shadow:0 0 0 0 rgba(212,160,74,0.4)}50%{box-shadow:0 0 0 6px rgba(212,160,74,0)}}
-.proc-step-text .pst-label{font-size:14px;font-weight:600;color:var(--text-h);margin-bottom:2px}
-.proc-step-text .pst-desc{font-size:12px;color:var(--text-m)}
-.proc-progress{width:100%;max-width:420px;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
-.proc-progress-fill{height:100%;width:0;background:linear-gradient(90deg,#d4a04a,#e8b860);border-radius:2px;transition:width 1.5s ease}
-
-/* ===== 4. RESULT 结果页 ===== */
-#sResult{flex-direction:column;height:100vh;overflow:hidden}
-.result-topbar{height:52px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 20px;flex-shrink:0}
-.rt-left{display:flex;align-items:center;gap:12px}
-.rt-back{background:none;border:none;color:var(--text-m);font-size:13px;cursor:pointer;font-family:inherit;transition:color 0.2s}
-.rt-back:hover{color:var(--accent)}
-.rt-title{font-size:14px;font-weight:600;color:var(--text-h)}
-.rt-right{display:flex;align-items:center;gap:10px}
-.rt-themes{display:flex;gap:4px}
-.rt-theme-btn{padding:5px 10px;background:none;border:1px solid var(--border);border-radius:6px;color:var(--text-m);font-size:11px;cursor:pointer;font-family:inherit;transition:all 0.2s}
-.rt-theme-btn:hover,.rt-theme-btn.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
-.rt-download{padding:9px 22px;background:linear-gradient(135deg,#d4a04a,#c4863a);color:#0a0a08;font-size:13px;font-weight:700;border:none;border-radius:8px;cursor:pointer;font-family:inherit;transition:all 0.3s}
-.rt-download:hover{transform:translateY(-1px);box-shadow:0 6px 20px -4px rgba(212,160,74,0.5)}
-.result-body{flex:1;overflow:hidden;background:#111;display:flex;align-items:stretch}
-.result-iframe{width:100%;border:none;background:#fff}
-
-/* ===== 通用 ===== */
-.btn-text{background:none;border:none;color:var(--accent);font-size:13px;cursor:pointer;font-family:inherit;text-decoration:underline}
-
-/* ===== 响应式 ===== */
-@media(max-width:640px){
-  .demo-cards{grid-template-columns:1fr}
-  .feat-grid{grid-template-columns:1fr}
-  .demo-strip{display:none}
-  .hero{padding:48px 20px 40px}
+.proc-step-icon{
+  width:36px;height:36px;min-width:36px;
+  border:1px solid var(--border);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+  transition:all 0.3s;
 }
+.proc-step.active .proc-step-icon{border-color:var(--accent);background:var(--adim);animation:pulse-step 1.5s ease infinite}
+.proc-step.done .proc-step-icon{border-color:rgba(212,160,74,0.4);background:var(--adim);font-size:14px}
+@keyframes pulse-step{0%,100%{box-shadow:0 0 0 0 rgba(212,160,74,0.4)}50%{box-shadow:0 0 0 6px rgba(212,160,74,0)}}
+.pst-label{font-size:14px;font-weight:600;color:var(--th);text-align:left}
+.pst-desc{font-size:12px;color:var(--tm);text-align:left}
+.proc-bar{width:100%;max-width:420px;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.proc-bar-fill{height:100%;width:0;background:linear-gradient(90deg,#d4a04a,#e8b860);border-radius:2px;transition:width 1.5s ease}
+
+/* ========== RESULT OVERLAY ========== */
+#pmResult{
+  display:none;position:fixed;inset:0;z-index:200;
+  flex-direction:column;
+}
+#pmResult.active{display:flex}
+.rt-bar{
+  height:52px;background:var(--bg2);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;flex-shrink:0;gap:12px;
+}
+.rt-left{display:flex;align-items:center;gap:12px}
+.rt-back{background:none;border:none;color:var(--tm);font-size:13px;cursor:pointer;font-family:inherit;transition:color 0.2s;white-space:nowrap}
+.rt-back:hover{color:var(--accent)}
+.rt-title{font-size:14px;font-weight:600;color:var(--th);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:300px}
+.rt-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.rt-themes{display:flex;gap:4px}
+.rt-theme-btn{
+  padding:5px 9px;background:none;border:1px solid var(--border);
+  border-radius:6px;color:var(--tm);font-size:11px;cursor:pointer;
+  font-family:inherit;transition:all 0.2s;
+}
+.rt-theme-btn:hover,.rt-theme-btn.active{border-color:var(--accent);color:var(--accent);background:var(--adim)}
+.rt-view-btn{
+  padding:6px 14px;background:none;border:1px solid var(--border);
+  border-radius:20px;color:var(--tm);font-size:12px;font-weight:600;cursor:pointer;
+  font-family:inherit;transition:all 0.2s;
+}
+.rt-view-btn:hover,.rt-view-btn.active{
+  border-color:var(--accent);color:#0a0a08;background:var(--accent);
+}
+.rt-dl{
+  padding:8px 20px;background:linear-gradient(135deg,#d4a04a,#c4863a);
+  color:#0a0a08;font-size:13px;font-weight:700;border:none;border-radius:8px;
+  cursor:pointer;font-family:inherit;transition:all 0.3s;white-space:nowrap;
+}
+.rt-dl:hover{transform:translateY(-1px);box-shadow:0 6px 20px -4px rgba(212,160,74,0.5)}
+.rt-body{flex:1;overflow:hidden;background:#111;display:flex}
+.rt-iframe{width:100%;border:none;transition:box-shadow 0.3s}
+.rt-icon-btn{padding:6px 12px;background:none;border:1px solid var(--border);border-radius:8px;color:var(--tm);font-size:12px;cursor:pointer;font-family:inherit;transition:all 0.2s;white-space:nowrap}
+.rt-icon-btn:hover{border-color:var(--aborder);color:var(--th)}
+.rt-icon-btn.active{border-color:var(--accent);color:var(--accent);background:var(--adim)}
+.rt-wordcount{font-size:11px;color:var(--td);white-space:nowrap;display:none}
+/* 手机框模式 */
+.rt-body.mobile-view{background:#0a0a08;justify-content:center;align-items:flex-start;padding:24px;overflow-y:auto}
+.rt-body.mobile-view .rt-iframe{width:390px;max-width:390px;min-height:844px;height:844px;border-radius:40px;flex-shrink:0;box-shadow:0 0 0 8px #1c1c1e,0 0 0 10px #2c2c2e,0 40px 100px rgba(0,0,0,0.9)}
+/* 编辑模式提示条 */
+.rt-edit-hint{display:none;padding:6px 14px;background:rgba(212,160,74,0.08);border-bottom:1px solid rgba(212,160,74,0.25);font-size:11px;color:var(--accent);text-align:center;flex-shrink:0}
+
+/* ========== RESPONSIVE ========== */
+@media(max-width:640px){
+  .pm-sample-grid{grid-template-columns:1fr}
+  .pm-hero{padding:56px 20px 48px}
+  .pm-price-divider{display:none}
+  .pm-price-row{flex-direction:column;gap:16px;padding:24px 28px}
+}
+/* ===== 结果区新增 UI ===== */
+.rt-tpl-btn{padding:3px 9px;font-size:11px;border-radius:6px;border:1px solid var(--border);background:var(--card);color:var(--tm);cursor:pointer;transition:all 0.2s;font-family:inherit}
+.rt-tpl-btn:hover{border-color:var(--aborder);color:var(--th)}
+.rt-tpl-btn.active{border-color:var(--accent);background:var(--adim);color:var(--accent)}
+/* ===== 历史记录 ===== */
+.pm-history-btn{position:fixed;bottom:24px;right:24px;z-index:50;padding:9px 15px;background:var(--card);border:1px solid var(--aborder);color:var(--accent);border-radius:12px;cursor:pointer;font-size:12px;font-family:inherit;box-shadow:0 4px 20px rgba(0,0,0,0.4);transition:all 0.2s}
+.pm-history-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.5)}
+.pm-history-panel{display:none;position:fixed;bottom:68px;right:24px;z-index:50;width:300px;max-height:320px;overflow-y:auto;background:var(--bg2);border:1px solid var(--aborder);border-radius:14px;box-shadow:0 8px 40px rgba(0,0,0,0.5);padding:10px}
+.pm-history-item{padding:8px 10px;border-radius:8px;cursor:pointer;transition:background 0.15s}
+.pm-history-item:hover{background:var(--bg3)}
+/* ===== 兑换码 Gate ===== */
+#pmGate{text-align:center;padding:48px 24px;max-width:380px;margin:0 auto}
 </style>
 </head>
 <body>
 
-<!-- ========== 1. LANDING ========== -->
-<div class="screen active" id="sLanding">
-  <div style="width:100%;display:flex;flex-direction:column">
+<!-- NAV -->
+<nav class="pm-nav">
+  <div class="pm-nav-logo">Page<span>Maker</span></div>
+  <button class="pm-nav-cta" onclick="document.getElementById('pmUploadSection').scrollIntoView({behavior:'smooth'})">立即开始 →</button>
+</nav>
 
-    <!-- 导航 -->
-    <nav style="width:100%;border-bottom:1px solid var(--border)">
-      <div class="nav">
-        <div class="nav-logo">Page<span>Maker</span></div>
-        <button class="nav-cta" onclick="goToUpload()">立即开始 →</button>
+<!-- HERO -->
+<section class="pm-hero">
+  <div class="pm-hero-badge">AI 一键生成 · 内测版</div>
+  <h1>文档变<span class="acc">精品页面</span></h1>
+  <p class="sub">上传会议纪要、逐字稿、个人文章<br>AI 自动生成媲美专业设计师的图文网页 + PPT版</p>
+
+  <div class="pm-price-row">
+    <div class="pm-price-num"><sup>¥</sup>99</div>
+    <div class="pm-price-divider"></div>
+    <ul class="pm-price-includes">
+      <li>文章版 + PPT 版双格式输出</li>
+      <li>10 套精美排版风格可选</li>
+      <li>独立 HTML 文件永久保存</li>
+      <li>支持 .docx、.pdf、.txt 及音视频格式</li>
+    </ul>
+  </div>
+
+  <p class="pm-scroll-hint">↓ 选风格 · 传档案 · 一键生成</p>
+</section>
+
+<!-- ========== STEP 1: 选风格 ========== -->
+<section class="pm-section" id="pmTemplateSection">
+  <div class="pm-sec-label">Step 1</div>
+  <div class="pm-sec-title">选择排版风格</div>
+  <div class="pm-sec-sub">10 套风格，字体、排版、结构完全不同，不只是换色</div>
+
+  <div class="pm-tpl-scroll" id="pmTplScroll">
+
+    <!-- 1. 墨金 -->
+    <div class="pm-tpl-card selected" data-tpl="inkgold" onclick="selectTemplate(this)">
+      <div class="pm-tpl-check">✓</div>
+      <div class="pm-tpl-preview" style="background:#0a0805">
+        <div class="mp-slide">
+          <div class="mp-topbar">
+            <div class="mp-topbar-dot" style="background:#c9a96e;width:24px"></div>
+            <div class="mp-topbar-dots">
+              <div class="mp-topbar-dot-sm" style="background:#c9a96e"></div>
+              <div class="mp-topbar-dot-sm" style="background:#c9a96e"></div>
+              <div class="mp-topbar-dot-sm" style="background:#c9a96e"></div>
+            </div>
+          </div>
+          <div style="text-align:center">
+            <div class="mp-h1" style="background:#c9a96e;height:9px;width:70%;margin:0 auto 5px"></div>
+            <div class="mp-h2" style="background:#c9a96e;height:7px;width:45%;margin:0 auto 7px"></div>
+            <div class="mp-quote" style="background:rgba(201,169,110,0.12);border-left:2px solid #c9a96e">
+              <div style="height:4px;background:#a89060;border-radius:2px;margin-bottom:3px;opacity:0.7"></div>
+              <div style="height:4px;background:#a89060;border-radius:2px;width:80%;opacity:0.5"></div>
+            </div>
+            <div class="mp-list" style="align-items:center">
+              <div class="mp-li" style="background:#8a7d6d;width:60%"></div>
+              <div class="mp-li" style="background:#8a7d6d;width:50%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="pm-tpl-preview-hint">居中 · 衬线 · 暗金</div>
       </div>
-    </nav>
+      <div class="pm-tpl-info">
+        <div class="pm-tpl-name">「墨金」</div>
+        <div class="pm-tpl-desc">暗金经典 · 衬线居中 · 沉稳</div>
+      </div>
+    </div>
 
-    <!-- Hero -->
-    <div class="hero">
-      <div class="hero-badge">AI 一键生成</div>
-      <h1>文档变<span class="acc">精美网页</span></h1>
-      <p class="sub">上传 Word 或 PDF，AI 自动提取重点、章节、金句<br>生成与专业编辑排版质量相同的独立 HTML 网页</p>
-      <button class="hero-btn" onclick="goToUpload()">
-        <span>上传文档开始生成</span>
-        <span style="font-size:20px">→</span>
+    <!-- 2. 主编·杂志 -->
+    <div class="pm-tpl-card" data-tpl="porcelain" onclick="selectTemplate(this)">
+      <div class="pm-tpl-check">✓</div>
+      <div class="pm-tpl-preview" style="background:#fdf8f0">
+        <div class="mp-slide">
+          <div class="mp-topbar" style="border-bottom:1px solid #ddd;padding-bottom:4px">
+            <div style="font-size:7px;color:#1a1008;font-family:Georgia,serif;font-weight:700;letter-spacing:1px">EDITORIAL</div>
+            <div style="font-size:7px;color:#aaa">2025</div>
+          </div>
+          <div class="mp-h1" style="background:#1a1008;height:14px;width:85%"></div>
+          <div style="height:1px;background:#ccc;width:60%;margin:5px 0 6px"></div>
+          <div style="font-size:8px;color:#8a7060;font-style:italic;margin-bottom:5px;line-height:1.4">
+            <div style="height:4px;background:#8a7060;border-radius:1px;width:90%;margin-bottom:2px;opacity:0.6"></div>
+            <div style="height:4px;background:#8a7060;border-radius:1px;width:70%;opacity:0.4"></div>
+          </div>
+          <div class="mp-list">
+            <div style="display:flex;gap:3px;align-items:center">
+              <div style="width:8px;height:1px;background:#1a1008"></div>
+              <div class="mp-li" style="background:#8a7060;flex:1"></div>
+            </div>
+            <div style="display:flex;gap:3px;align-items:center">
+              <div style="width:8px;height:1px;background:#1a1008"></div>
+              <div class="mp-li" style="background:#8a7060;width:60%;opacity:0.4"></div>
+            </div>
+          </div>
+        </div>
+        <div class="pm-tpl-preview-hint">左对齐 · 杂志感 · 大标题</div>
+      </div>
+      <div class="pm-tpl-info">
+        <div class="pm-tpl-name">「主编」</div>
+        <div class="pm-tpl-desc">杂志排版 · 左对齐 · 大标题</div>
+      </div>
+    </div>
+
+    <!-- 3. 野兽·粗暴 -->
+    <div class="pm-tpl-card" data-tpl="nebula" onclick="selectTemplate(this)">
+      <div class="pm-tpl-check">✓</div>
+      <div class="pm-tpl-preview" style="background:#f0ece4">
+        <div class="mp-slide">
+          <div class="mp-topbar">
+            <div style="width:28px;height:3px;background:#0a0806;border-radius:0"></div>
+            <div style="width:12px;height:3px;background:#0a0806;opacity:0.3;border-radius:0"></div>
+          </div>
+          <!-- 粗暴大字：极大标题 + 反白 -->
+          <div style="background:#0a0806;margin:-4px -12px 6px;padding:8px 12px">
+            <div style="height:11px;background:#f0ece4;border-radius:1px;width:90%;margin-bottom:4px"></div>
+            <div style="height:11px;background:#f0ece4;border-radius:1px;width:78%"></div>
+          </div>
+          <div class="mp-list">
+            <div style="height:3px;background:#0a0806;border-radius:0;opacity:0.7;margin-bottom:3px"></div>
+            <div style="height:3px;background:#0a0806;border-radius:0;opacity:0.5;width:80%;margin-bottom:3px"></div>
+            <div style="height:3px;background:#0a0806;border-radius:0;opacity:0.3;width:60%"></div>
+          </div>
+          <!-- 黑色大引用块 -->
+          <div style="background:#0a0806;padding:5px 7px;margin-top:5px">
+            <div style="height:3px;background:#f0ece4;opacity:0.8;margin-bottom:3px;border-radius:1px"></div>
+            <div style="height:3px;background:#f0ece4;opacity:0.5;width:70%;border-radius:1px"></div>
+          </div>
+        </div>
+        <div class="pm-tpl-preview-hint">居中 · 大字 · 黑白反差</div>
+      </div>
+      <div class="pm-tpl-info">
+        <div class="pm-tpl-name">「野兽」</div>
+        <div class="pm-tpl-desc">粗暴大字 · 满版冲击 · 反白</div>
+      </div>
+    </div>
+
+    <!-- 4. 终端·黑客 -->
+    <div class="pm-tpl-card" data-tpl="tobacco" onclick="selectTemplate(this)">
+      <div class="pm-tpl-check">✓</div>
+      <div class="pm-tpl-preview" style="background:#0d1117">
+        <div class="mp-slide">
+          <div class="mp-topbar" style="background:#161b22;border-bottom:1px solid #21262d;margin:-10px -12px 8px;padding:0 8px;height:14px">
+            <div style="font-size:6px;color:#3fb950;font-family:monospace;letter-spacing:1px">~/output $</div>
+            <div style="display:flex;gap:3px">
+              <div style="width:6px;height:6px;border-radius:50%;background:#ff5f57"></div>
+              <div style="width:6px;height:6px;border-radius:50%;background:#febc2e"></div>
+              <div style="width:6px;height:6px;border-radius:50%;background:#28c840"></div>
+            </div>
+          </div>
+          <!-- 绿色等宽标题 左对齐 -->
+          <div style="height:8px;background:#3fb950;border-radius:1px;width:80%;margin-bottom:4px"></div>
+          <div style="height:6px;background:#3fb950;border-radius:1px;width:60%;opacity:0.6;margin-bottom:6px"></div>
+          <!-- $ OUTPUT 引用块 -->
+          <div style="background:#161b22;border-left:2px solid #3fb950;padding:4px 6px;margin-bottom:5px">
+            <div style="height:3px;background:#3fb950;opacity:0.7;margin-bottom:3px;border-radius:1px"></div>
+            <div style="height:3px;background:#3fb950;opacity:0.4;width:75%;border-radius:1px"></div>
+          </div>
+          <!-- > 列表 -->
+          <div style="display:flex;gap:4px;align-items:center;margin-bottom:2px">
+            <div style="font-size:7px;color:#3fb950;font-family:monospace">&gt;</div>
+            <div style="height:3px;background:#3fb950;flex:1;opacity:0.4;border-radius:1px"></div>
+          </div>
+          <div style="display:flex;gap:4px;align-items:center">
+            <div style="font-size:7px;color:#3fb950;font-family:monospace">&gt;</div>
+            <div style="height:3px;background:#3fb950;width:55%;opacity:0.25;border-radius:1px"></div>
+          </div>
+        </div>
+        <div class="pm-tpl-preview-hint">左对齐 · 等宽绿字 · 代码感</div>
+      </div>
+      <div class="pm-tpl-info">
+        <div class="pm-tpl-name">「终端」</div>
+        <div class="pm-tpl-desc">黑客风 · 等宽绿字 · 代码感</div>
+      </div>
+    </div>
+
+    <!-- 5. 奢华·极夜 -->
+    <div class="pm-tpl-card" data-tpl="agate" onclick="selectTemplate(this)">
+      <div class="pm-tpl-check">✓</div>
+      <div class="pm-tpl-preview" style="background:#080608">
+        <div class="mp-slide">
+          <div class="mp-topbar" style="justify-content:center">
+            <div style="width:16px;height:1px;background:rgba(201,164,68,0.5)"></div>
+            <div style="width:4px;height:4px;border-radius:50%;background:rgba(201,164,68,0.7);margin:0 4px"></div>
+            <div style="width:16px;height:1px;background:rgba(201,164,68,0.5)"></div>
+          </div>
+          <!-- 居中细衬线标题 + 上下装饰线 -->
+          <div style="text-align:center;border-top:1px solid rgba(201,164,68,0.3);border-bottom:1px solid rgba(201,164,68,0.3);padding:6px 0;margin-bottom:7px">
+            <div style="height:8px;background:#c9a444;opacity:0.8;border-radius:1px;width:65%;margin:0 auto 3px"></div>
+            <div style="height:5px;background:#c9a444;opacity:0.4;border-radius:1px;width:40%;margin:0 auto"></div>
+          </div>
+          <!-- 细双边线引用 -->
+          <div style="border-top:1px solid rgba(201,164,68,0.2);border-bottom:1px solid rgba(201,164,68,0.2);padding:5px 0;margin-bottom:6px;text-align:center">
+            <div style="height:3px;background:#c9a444;opacity:0.5;border-radius:1px;width:80%;margin:0 auto 3px"></div>
+            <div style="height:3px;background:#c9a444;opacity:0.3;border-radius:1px;width:60%;margin:0 auto"></div>
+          </div>
+          <!-- ◆ 列表 居中 -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+            <div style="display:flex;align-items:center;gap:3px">
+              <div style="width:4px;height:4px;background:#c9a444;opacity:0.6;transform:rotate(45deg)"></div>
+              <div style="height:3px;background:#c9a444;opacity:0.35;border-radius:1px;width:50px"></div>
+            </div>
+          </div>
+        </div>
+        <div class="pm-tpl-preview-hint">居中 · 细衬线 · 金色装饰线</div>
+      </div>
+      <div class="pm-tpl-info">
+        <div class="pm-tpl-name">「奢华」</div>
+        <div class="pm-tpl-desc">极夜精品 · 细衬线 · 装饰线</div>
+      </div>
+    </div>
+
+    <!-- 6. 报纸·专栏 -->
+    <div class="pm-tpl-card" data-tpl="dawn" onclick="selectTemplate(this)">
+      <div class="pm-tpl-check">✓</div>
+      <div class="pm-tpl-preview" style="background:#f5f0e8">
+        <div class="mp-slide">
+          <!-- 报纸头条：粗顶线 + 大标题 -->
+          <div style="border-top:3px solid #1a1208;margin:-10px -12px 8px;padding:5px 10px 5px">
+            <div style="height:11px;background:#1a1208;border-radius:1px;width:85%;margin-bottom:3px"></div>
+            <div style="height:1px;background:#1a1208;opacity:0.3;margin-bottom:4px"></div>
+            <div style="height:6px;background:#7a6a50;border-radius:1px;width:65%;opacity:0.7"></div>
+          </div>
+          <!-- 双引号引用 左对齐 -->
+          <div style="padding:3px 0 4px;margin-bottom:4px">
+            <div style="font-size:14px;color:#1a1208;font-family:Georgia,serif;line-height:1;margin-bottom:1px">"</div>
+            <div style="height:3px;background:#7a6a50;border-radius:1px;width:85%;margin-bottom:2px;opacity:0.6"></div>
+            <div style="height:3px;background:#7a6a50;border-radius:1px;width:70%;opacity:0.4"></div>
+          </div>
+          <!-- · 列表 左对齐 -->
+          <div class="mp-list">
+            <div style="display:flex;gap:4px;align-items:center;margin-bottom:3px">
+              <div style="font-size:9px;color:#1a1208;line-height:1">·</div>
+              <div style="height:3px;background:#7a6a50;flex:1;opacity:0.55;border-radius:1px"></div>
+            </div>
+            <div style="display:flex;gap:4px;align-items:center">
+              <div style="font-size:9px;color:#1a1208;line-height:1">·</div>
+              <div style="height:3px;background:#7a6a50;width:60%;opacity:0.35;border-radius:1px"></div>
+            </div>
+          </div>
+        </div>
+        <div class="pm-tpl-preview-hint">左对齐 · 报纸头条 · 双引号</div>
+      </div>
+      <div class="pm-tpl-info">
+        <div class="pm-tpl-name">「号外」</div>
+        <div class="pm-tpl-desc">报纸专栏 · 左对齐 · 双引号</div>
+      </div>
+    </div>
+
+    <!-- 7. 瑞士·几何 -->
+    <div class="pm-tpl-card" data-tpl="carbon" onclick="selectTemplate(this)">
+      <div class="pm-tpl-check">✓</div>
+      <div class="pm-tpl-preview" style="background:#ffffff">
+        <div class="mp-slide">
+          <div class="mp-topbar" style="background:#f0f2f5;border-bottom:1px solid #e0e4ec;margin:-10px -12px 8px;padding:0 8px">
+            <div style="display:flex;gap:2px;align-items:center">
+              <div style="width:14px;height:2px;background:#2563eb"></div>
+              <div style="font-size:6px;color:#0f172a;letter-spacing:1px;font-weight:700">GRID</div>
+            </div>
+            <div style="font-size:6px;color:#94a3b8">01/06</div>
+          </div>
+          <!-- 深色粗体标题 左对齐 -->
+          <div style="height:10px;background:#0f172a;border-radius:1px;width:80%;margin-bottom:5px"></div>
+          <!-- 8px 蓝色边条引用 -->
+          <div style="border-left:6px solid #2563eb;padding-left:6px;margin-bottom:5px">
+            <div style="height:3px;background:#334155;border-radius:1px;margin-bottom:3px;opacity:0.7"></div>
+            <div style="height:3px;background:#334155;border-radius:1px;width:75%;opacity:0.5"></div>
+          </div>
+          <!-- 数字列表 -->
+          <div class="mp-list">
+            <div style="display:flex;gap:4px;align-items:center;margin-bottom:3px">
+              <div style="width:12px;height:12px;background:#2563eb;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:6px;color:#fff;font-weight:700;flex-shrink:0">1</div>
+              <div style="height:3px;background:#334155;flex:1;opacity:0.45;border-radius:1px"></div>
+            </div>
+            <div style="display:flex;gap:4px;align-items:center">
+              <div style="width:12px;height:12px;background:#e2e8f0;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:6px;color:#334155;font-weight:700;flex-shrink:0">2</div>
+              <div style="height:3px;background:#94a3b8;width:55%;opacity:0.4;border-radius:1px"></div>
+            </div>
+          </div>
+        </div>
+        <div class="pm-tpl-preview-hint">左对齐 · 蓝色边条 · 编号列表</div>
+      </div>
+      <div class="pm-tpl-info">
+        <div class="pm-tpl-name">「瑞士」</div>
+        <div class="pm-tpl-desc">几何网格 · 蓝色边条 · 精准</div>
+      </div>
+    </div>
+
+    <!-- 8. 霓虹·赛博 -->
+    <div class="pm-tpl-card" data-tpl="neon" onclick="selectTemplate(this)">
+      <div class="pm-tpl-check">✓</div>
+      <div class="pm-tpl-preview" style="background:#050010">
+        <div class="mp-slide">
+          <div class="mp-topbar">
+            <div style="display:flex;gap:2px">
+              <div style="width:10px;height:2px;background:#00ffc8;border-radius:1px;box-shadow:0 0 4px #00ffc8"></div>
+              <div style="width:6px;height:2px;background:#7060ff;border-radius:1px;opacity:0.7"></div>
+            </div>
+            <div style="font-size:6px;color:#00ffc8;opacity:0.6;letter-spacing:1px">CYBER</div>
+          </div>
+          <!-- 渐变大标题 居中 -->
+          <div style="text-align:center;margin-bottom:6px">
+            <div style="height:9px;background:linear-gradient(90deg,#00ffc8,#7060ff);border-radius:2px;width:75%;margin:0 auto 3px;box-shadow:0 0 8px rgba(0,255,200,0.3)"></div>
+            <div style="height:5px;background:linear-gradient(90deg,rgba(0,255,200,0.4),rgba(112,96,255,0.4));border-radius:1px;width:45%;margin:0 auto"></div>
+          </div>
+          <!-- 发光卡片引用 -->
+          <div style="background:rgba(0,255,200,0.05);border:1px solid rgba(0,255,200,0.2);border-radius:4px;padding:5px 7px;margin-bottom:5px;box-shadow:0 0 6px rgba(0,255,200,0.1)">
+            <div style="height:3px;background:#00ffc8;opacity:0.6;border-radius:1px;margin-bottom:3px"></div>
+            <div style="height:3px;background:#00ffc8;opacity:0.35;border-radius:1px;width:70%"></div>
+          </div>
+          <!-- ✦ 列表 -->
+          <div style="display:flex;gap:4px;align-items:center;margin-bottom:3px">
+            <div style="font-size:7px;color:#00ffc8;opacity:0.7">✦</div>
+            <div style="height:3px;background:#7060ff;flex:1;opacity:0.3;border-radius:1px"></div>
+          </div>
+          <div style="display:flex;gap:4px;align-items:center">
+            <div style="font-size:7px;color:#7060ff;opacity:0.5">✦</div>
+            <div style="height:3px;background:#7060ff;width:55%;opacity:0.2;border-radius:1px"></div>
+          </div>
+        </div>
+        <div class="pm-tpl-preview-hint">居中 · 渐变发光 · 赛博感</div>
+      </div>
+      <div class="pm-tpl-info">
+        <div class="pm-tpl-name">「霓虹」</div>
+        <div class="pm-tpl-desc">赛博未来 · 渐变扫描 · 发光</div>
+      </div>
+    </div>
+
+    <!-- 9. 粉彩·温柔 -->
+    <div class="pm-tpl-card" data-tpl="cloudy" onclick="selectTemplate(this)">
+      <div class="pm-tpl-check">✓</div>
+      <div class="pm-tpl-preview" style="background:linear-gradient(135deg,#ffe8f0,#fff5f8)">
+        <div class="mp-slide">
+          <div class="mp-topbar" style="justify-content:center;gap:4px">
+            <div style="width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#ff7eb3,#e0457a);opacity:0.7"></div>
+            <div style="width:5px;height:5px;border-radius:50%;background:#f0a0c0;opacity:0.5"></div>
+            <div style="width:3px;height:3px;border-radius:50%;background:#f0c0d0;opacity:0.4"></div>
+          </div>
+          <!-- 居中粉色柔和标题 -->
+          <div style="text-align:center;margin-bottom:6px">
+            <div style="height:8px;background:#2a1020;border-radius:6px;width:65%;margin:0 auto 4px;opacity:0.8"></div>
+            <div style="height:5px;background:#e0457a;border-radius:6px;width:40%;margin:0 auto;opacity:0.5"></div>
+          </div>
+          <!-- 圆角柔美引用卡片 -->
+          <div style="background:linear-gradient(135deg,rgba(224,69,122,0.08),rgba(180,60,160,0.08));border-radius:10px;padding:5px 8px;margin-bottom:5px;border:1px solid rgba(224,69,122,0.15)">
+            <div style="font-size:9px;color:#e0457a;margin-bottom:2px">💬</div>
+            <div style="height:3px;background:#e0457a;opacity:0.4;border-radius:3px;margin-bottom:2px"></div>
+            <div style="height:3px;background:#c080a0;opacity:0.3;border-radius:3px;width:70%"></div>
+          </div>
+          <!-- ✦ 列表 居中 -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+            <div style="display:flex;align-items:center;gap:4px">
+              <div style="font-size:7px;color:#e0457a;opacity:0.6">✦</div>
+              <div style="height:3px;background:#c080a0;border-radius:3px;width:55px;opacity:0.4"></div>
+            </div>
+          </div>
+        </div>
+        <div class="pm-tpl-preview-hint">居中 · 粉色卡片 · 圆角柔美</div>
+      </div>
+      <div class="pm-tpl-info">
+        <div class="pm-tpl-name">「粉彩」</div>
+        <div class="pm-tpl-desc">温柔粉色 · 圆角卡片 · 柔美</div>
+      </div>
+    </div>
+
+    <!-- 10. 朱砂 -->
+    <div class="pm-tpl-card" data-tpl="vermilion" onclick="selectTemplate(this)">
+      <div class="pm-tpl-check">✓</div>
+      <div class="pm-tpl-preview" style="background:#150505">
+        <div class="mp-slide">
+          <!-- 左侧朱砂竖线装饰 -->
+          <div style="position:absolute;left:10px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,#cc2200,rgba(204,34,0,0.1))"></div>
+          <div style="margin-left:14px">
+            <div class="mp-topbar" style="margin-bottom:8px">
+              <div style="width:20px;height:1px;background:rgba(204,34,0,0.5)"></div>
+              <div style="font-size:6px;color:rgba(204,34,0,0.6);letter-spacing:2px">水墨</div>
+            </div>
+            <!-- 居中标题 + 竖排感 -->
+            <div style="text-align:center;margin-bottom:6px">
+              <div style="height:8px;background:#e8d0c0;border-radius:1px;width:60%;margin:0 auto 3px;opacity:0.85"></div>
+              <div style="height:5px;background:#e8d0c0;border-radius:1px;width:40%;margin:0 auto;opacity:0.5"></div>
+            </div>
+            <!-- 右边线引用 text-align:right -->
+            <div style="border-right:2px solid rgba(204,34,0,0.6);padding-right:6px;text-align:right;margin-bottom:5px">
+              <div style="height:3px;background:#c08070;border-radius:1px;margin-bottom:2px;opacity:0.6"></div>
+              <div style="height:3px;background:#c08070;border-radius:1px;width:75%;margin-left:auto;opacity:0.4"></div>
+            </div>
+            <!-- 、列表 -->
+            <div style="display:flex;gap:4px;align-items:center;margin-bottom:2px">
+              <div style="font-size:8px;color:rgba(204,34,0,0.6)">、</div>
+              <div style="height:3px;background:#8a5050;flex:1;opacity:0.4;border-radius:1px"></div>
+            </div>
+            <div style="display:flex;gap:4px;align-items:center">
+              <div style="font-size:8px;color:rgba(204,34,0,0.4)">、</div>
+              <div style="height:3px;background:#8a5050;width:55%;opacity:0.25;border-radius:1px"></div>
+            </div>
+          </div>
+        </div>
+        <div class="pm-tpl-preview-hint">居中 · 竖线装饰 · 东方留白</div>
+      </div>
+      <div class="pm-tpl-info">
+        <div class="pm-tpl-name">「水墨」</div>
+        <div class="pm-tpl-desc">东方水墨 · 竖线装饰 · 留白</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== STEP 2: 选格式 ========== -->
+<section class="pm-section">
+  <div class="pm-sec-label">Step 2</div>
+  <div class="pm-sec-title">选择输出格式</div>
+  <div class="pm-sec-sub">PPT版每 1000 字约生成 2 张幻灯片，可与文章版同时输出</div>
+  <div class="pm-formats">
+    <div class="pm-fmt selected" data-fmt="both" onclick="selectFormat(this)">
+      <div class="pm-fmt-icon">📑</div>
+      <div class="pm-fmt-name">全套输出</div>
+      <div class="pm-fmt-desc">文章版 + PPT版<br>一次全拿，推荐</div>
+    </div>
+    <div class="pm-fmt" data-fmt="article" onclick="selectFormat(this)">
+      <div class="pm-fmt-icon">📄</div>
+      <div class="pm-fmt-name">仅文章版</div>
+      <div class="pm-fmt-desc">长文排版，适合<br>深度阅读分享</div>
+    </div>
+    <div class="pm-fmt" data-fmt="ppt" onclick="selectFormat(this)">
+      <div class="pm-fmt-icon">🖼</div>
+      <div class="pm-fmt-name">仅 PPT版</div>
+      <div class="pm-fmt-desc">幻灯片浏览，适合<br>社群转发传播</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== STEP 3: 上传 ========== -->
+<section class="pm-section" id="pmUploadSection">
+  <div class="pm-sec-label">Step 3</div>
+  <div class="pm-sec-title">上传档案</div>
+  <div class="pm-sec-sub">支持会议纪要、逐字稿、个人文章、咨询记录</div>
+
+  <!-- 付款 Gate -->
+  <div id="pmGate" style="display:none;text-align:center;padding:48px 24px;max-width:420px;margin:0 auto">
+    <!-- 状态 A：介绍 + 购买按钮 -->
+    <div id="pmGateIntro">
+      <div style="font-size:28px;margin-bottom:16px">✦</div>
+      <div style="font-size:20px;color:var(--th);font-weight:900;margin-bottom:8px;letter-spacing:-0.5px">一次付款，立即使用</div>
+      <div style="font-size:13px;color:var(--tm);margin-bottom:28px;line-height:1.7">上传逐字稿或录音，AI 提炼重点，生成专业排版页面<br>10 套风格模板 · 支持编辑与下载</div>
+      <div style="display:flex;align-items:baseline;justify-content:center;gap:6px;margin-bottom:28px">
+        <span style="font-size:42px;font-weight:900;color:var(--accent);letter-spacing:-1px">¥19.9</span>
+        <span style="font-size:14px;color:var(--tm)">/ 次</span>
+      </div>
+      <button onclick="startPay()" id="pmPayBtn"
+        style="width:100%;max-width:280px;padding:14px 0;background:linear-gradient(135deg,#d4a04a,#c4863a);color:#0a0a08;border:none;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer;font-family:inherit;transition:all 0.2s;letter-spacing:0.3px">
+        微信扫码支付 ¥19.9
       </button>
-      <div class="hero-hint">支持 .docx 和 .pdf · 生成约 30-60 秒 · 可直接分享部署</div>
+      <div style="font-size:11px;color:var(--td);margin-top:14px">支付后立即解锁 · 本次会话内有效</div>
     </div>
-
-    <!-- 样本展示 -->
-    <div class="demo-strip">
-      <div class="demo-strip-title">生成样本</div>
-      <div class="demo-cards">
-        <a class="demo-card" href="sessions/01-article.html" target="_blank">
-          <div class="demo-card-img">📝</div>
-          <div class="demo-card-body">
-            <div class="demo-card-title">私域是关系的生意</div>
-            <div class="demo-card-desc">线下聚会 · 第01场 · 5.8万字稿</div>
-          </div>
-        </a>
-        <a class="demo-card" href="sessions/08-article.html" target="_blank">
-          <div class="demo-card-img">🎯</div>
-          <div class="demo-card-body">
-            <div class="demo-card-title">销售是关系的生意</div>
-            <div class="demo-card-desc">线下聚会 · 第08场 · 4.2万字稿</div>
-          </div>
-        </a>
-        <a class="demo-card" href="sessions/16-article.html" target="_blank">
-          <div class="demo-card-img">⚡</div>
-          <div class="demo-card-body">
-            <div class="demo-card-title">超级个体与销售</div>
-            <div class="demo-card-desc">线下聚会 · 第16场 · 最新一期</div>
-          </div>
-        </a>
+    <!-- 状态 B：显示二维码 + 等待扫码 -->
+    <div id="pmGateQr" style="display:none">
+      <div style="font-size:13px;color:var(--tm);margin-bottom:16px">请用微信扫描下方二维码完成支付</div>
+      <div id="pmQrBox" style="width:200px;height:200px;background:var(--card);border:1px solid var(--border);border-radius:12px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <div id="pmQrLoading" style="font-size:12px;color:var(--tm)">生成中…</div>
+        <canvas id="pmQrCanvas" style="display:none;border-radius:8px"></canvas>
       </div>
-    </div>
-
-    <!-- 功能特性 -->
-    <div class="features">
-      <div class="section-label">核心功能</div>
-      <div class="feat-grid">
-        <div class="feat-item">
-          <div class="feat-icon">🧠</div>
-          <div class="feat-title">AI 四步深度处理</div>
-          <div class="feat-desc">洗稿提炼 → 章节识别 → 内容生成 → 金句提取，每一步专注做好一件事</div>
-        </div>
-        <div class="feat-item">
-          <div class="feat-icon">📄</div>
-          <div class="feat-title">任何文档都能处理</div>
-          <div class="feat-desc">会议纪要、咨询记录、对话稿、个人文章、PPT 内容，一律可以</div>
-        </div>
-        <div class="feat-item">
-          <div class="feat-icon">🎨</div>
-          <div class="feat-title">4 套精美主题</div>
-          <div class="feat-desc">夜·暗金 / 昼·翠绿 / 纸·朱砂 / 海·青瓷，生成后可随时切换</div>
-        </div>
-        <div class="feat-item">
-          <div class="feat-icon">⚡</div>
-          <div class="feat-title">独立 HTML，随处部署</div>
-          <div class="feat-desc">单文件无依赖，可直接放到任何网站、发给任何人打开</div>
-        </div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse2 1.5s infinite"></div>
+        <span style="font-size:12px;color:var(--tm)" id="pmPayStatus">等待扫码…</span>
       </div>
+      <button onclick="cancelPay()" style="padding:6px 16px;background:none;border:1px solid var(--border);color:var(--tm);border-radius:8px;font-size:12px;cursor:pointer;font-family:inherit">取消</button>
+      <div style="font-size:11px;color:var(--td);margin-top:12px">订单号：<span id="pmOrderId" style="font-family:monospace"></span></div>
     </div>
+    <!-- 状态 C：支付成功 -->
+    <div id="pmGateDone" style="display:none">
+      <div style="font-size:48px;margin-bottom:16px">✅</div>
+      <div style="font-size:16px;color:var(--th);font-weight:700;margin-bottom:8px">支付成功！</div>
+      <div style="font-size:13px;color:var(--tm);margin-bottom:24px">正在为你开启上传区域…</div>
+    </div>
+  </div>
+  <style>
+  @keyframes pulse2{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.85)}}
+  </style>
+  <!-- 上传区包装（有 token 时显示，无 token 时隐藏）-->
+  <div id="pmUploadWrapper">
 
-    <!-- 工作流 -->
-    <div class="flow">
-      <div class="section-label">生成流程</div>
-      <div class="flow-steps">
-        <div class="flow-step">
-          <div class="flow-num">01</div>
-          <div class="flow-content">
-            <div class="fc-title">洗稿提炼</div>
-            <div class="fc-desc">AI 读取全文，去掉寒暄、重复和废话，提炼出有价值的内容核心</div>
-          </div>
-        </div>
-        <div class="flow-step">
-          <div class="flow-num">02</div>
-          <div class="flow-content">
-            <div class="fc-title">识别章节结构</div>
-            <div class="fc-desc">自动判断 4-7 个主要话题，给每个章节拟标题，构建文章骨架</div>
-          </div>
-        </div>
-        <div class="flow-step">
-          <div class="flow-num">03</div>
-          <div class="flow-content">
-            <div class="fc-title">生成排版内容</div>
-            <div class="fc-desc">每章节生成段落、小标题、高亮框、引言块，套入专业排版模板</div>
-          </div>
-        </div>
-        <div class="flow-step">
-          <div class="flow-num">04</div>
-          <div class="flow-content">
-            <div class="fc-title">提取金句</div>
-            <div class="fc-desc">挑选 12-18 条可独立引用的精彩句子，自动填入滚动金句展示区</div>
-          </div>
-        </div>
+  <div class="pm-dropzone" id="pmDropzone">
+    <span class="pm-drop-icon">📄</span>
+    <div class="pm-drop-title">拖拽文件到此处，或点击选择</div>
+    <div class="pm-drop-hint">支持 .docx · .pdf · .txt · 音视频（mp3/mp4/m4a/wav/mov）· 最大 25MB</div>
+    <input type="file" id="pmFileInput" accept=".docx,.pdf,.txt,.mp3,.mp4,.m4a,.wav,.webm,.ogg,.mov">
+  </div>
+
+  <div class="pm-file-info" id="pmFileInfo">
+    <div class="pfi-icon" id="pmFileIcon">📄</div>
+    <div>
+      <div class="pfi-name" id="pmFileName"></div>
+      <div class="pfi-meta" id="pmFileMeta"></div>
+    </div>
+  </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="pm-cta">
+  <button class="pm-generate-btn" id="pmGenerateBtn" onclick="startGenerate()" disabled>
+    立即生成（¥19.9）→
+  </button>
+  <p class="pm-cta-hint">生成约需 30-60 秒 · 可直接下载独立 HTML</p>
+</div>
+
+<!-- SAMPLES -->
+<div class="pm-samples">
+  <div class="pm-section" style="padding:0 0 24px">
+    <div class="pm-sec-label" style="margin-bottom:8px">参考样本</div>
+    <div class="pm-sec-title" style="font-size:20px">看看生成效果</div>
+  </div>
+  <div class="pm-sample-grid">
+    <a class="pm-sample" href="sessions/01-article.html" target="_blank">
+      <div class="pm-sample-thumb" style="background:linear-gradient(135deg,#0a0805,#1a1208)">📝</div>
+      <div class="pm-sample-body">
+        <div class="pm-sample-title">私域是关系的生意</div>
+        <div class="pm-sample-meta">第01场 · 5.8万字逐字稿</div>
       </div>
-    </div>
-
-    <!-- 定价 -->
-    <div class="pricing" id="pricing">
-      <h2>简单定价</h2>
-      <p class="pricing-sub">一次付费，永久使用</p>
-      <div class="price-card">
-        <div class="price-badge">标准版</div>
-        <div class="price-amount"><span>¥</span>99</div>
-        <div class="price-desc">无限次生成 · 永久有效</div>
-        <div class="price-features">
-          <div class="price-feature">支持 Word (.docx) 和 PDF 上传</div>
-          <div class="price-feature">AI 四步深度处理</div>
-          <div class="price-feature">4 套精美主题随时切换</div>
-          <div class="price-feature">独立 HTML 文件下载</div>
-          <div class="price-feature">无限次生成，不限文档数量</div>
-        </div>
-        <button class="price-btn" onclick="goToUpload()">立即购买并开始使用</button>
+    </a>
+    <a class="pm-sample" href="sessions/08-article.html" target="_blank">
+      <div class="pm-sample-thumb" style="background:linear-gradient(135deg,#0a0805,#1a1208)">🎯</div>
+      <div class="pm-sample-body">
+        <div class="pm-sample-title">销售是关系的生意</div>
+        <div class="pm-sample-meta">第08场 · 4.2万字逐字稿</div>
       </div>
-    </div>
-
-    <div class="footer">
-      © 2026 PageMaker · 由 <a href="https://yuaneightlife.com" style="color:var(--accent)">根源</a> 出品
-    </div>
-
+    </a>
+    <a class="pm-sample" href="sessions/16-article.html" target="_blank">
+      <div class="pm-sample-thumb" style="background:linear-gradient(135deg,#0a0805,#1a1208)">⚡</div>
+      <div class="pm-sample-body">
+        <div class="pm-sample-title">超级个体与销售</div>
+        <div class="pm-sample-meta">第16场 · 最新一期</div>
+      </div>
+    </a>
   </div>
 </div>
 
-<!-- ========== 2. UPLOAD ========== -->
-<div class="screen" id="sUpload">
-  <div style="width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center">
+<!-- 历史记录按钮 + 面板 -->
+<button class="pm-history-btn" onclick="toggleHistory()">📋 历史记录</button>
+<div id="pmHistoryPanel" class="pm-history-panel">
+  <div style="font-size:11px;color:var(--tm);padding:2px 4px 8px">最近 5 次生成</div>
+  <div id="pmHistoryList"></div>
+</div>
 
-    <div class="upload-header">
-      <button class="uh-back" onclick="goToLanding()">← 返回首页</button>
-      <h2>上传文档</h2>
-      <p>拖拽文件到下方区域，或点击选择文件</p>
+<div class="pm-footer">
+  © 2026 PageMaker · 由 <a href="https://yuaneightlife.com" style="color:var(--accent)">根源</a> 出品
+</div>
+
+<!-- ========== PROCESSING OVERLAY ========== -->
+<div id="pmProcessing">
+  <div class="proc-title">正在生成中</div>
+  <div class="proc-sub">AI 正在处理你的文档，请稍等约 30-60 秒</div>
+  <div class="proc-steps">
+    <div class="proc-step" id="step0">
+      <div class="proc-step-icon" id="si0">📖</div>
+      <div><div class="pst-label">读取与洗稿</div><div class="pst-desc">提炼文档核心内容</div></div>
     </div>
-
-    <div class="upload-zone" id="uploadZone">
-      <span class="uz-icon">📄</span>
-      <div class="uz-title">拖拽文件到此处</div>
-      <div class="uz-hint">支持 Word (.docx) 和 PDF (.pdf)<br>文件大小不超过 20MB</div>
-      <input type="file" id="fileInput" accept=".docx,.pdf">
+    <div class="proc-step" id="step1">
+      <div class="proc-step-icon" id="si1">🗂</div>
+      <div><div class="pst-label">识别章节结构</div><div class="pst-desc">划定 4-7 个主题章节</div></div>
     </div>
-
-    <div class="file-info" id="fileInfo">
-      <div class="fi-icon" id="fileIcon">📄</div>
-      <div class="fi-text">
-        <div class="fi-name" id="fileName"></div>
-        <div class="fi-meta" id="fileMeta"></div>
-      </div>
+    <div class="proc-step" id="step2">
+      <div class="proc-step-icon" id="si2">✍️</div>
+      <div><div class="pst-label">生成排版内容</div><div class="pst-desc">每章节填充段落与高亮框</div></div>
     </div>
-
-    <button class="upload-btn" id="uploadBtn" onclick="startGenerate()">
-      开始生成 →
-    </button>
-
-    <div class="upload-formats">支持格式：.docx · .pdf · 最大 20MB</div>
-
+    <div class="proc-step" id="step3">
+      <div class="proc-step-icon" id="si3">💬</div>
+      <div><div class="pst-label">提取精彩金句</div><div class="pst-desc">挑选 12-18 条可引用句</div></div>
+    </div>
+  </div>
+  <div class="proc-bar" style="max-width:420px;width:100%">
+    <div class="proc-bar-fill" id="procFill"></div>
   </div>
 </div>
 
-<!-- ========== 3. PROCESSING ========== -->
-<div class="screen" id="sProcessing">
-  <div style="width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px">
-
-    <div class="proc-title">正在生成中</div>
-    <div class="proc-sub" id="procSubtitle">AI 正在处理你的文档，请稍等约 30-60 秒</div>
-
-    <div class="proc-steps">
-      <div class="proc-step" id="step0">
-        <div class="proc-step-icon" id="step0-icon">📖</div>
-        <div class="proc-step-text">
-          <div class="pst-label">读取与洗稿</div>
-          <div class="pst-desc">提炼文档核心内容</div>
-        </div>
-      </div>
-      <div class="proc-step" id="step1">
-        <div class="proc-step-icon" id="step1-icon">🗂</div>
-        <div class="proc-step-text">
-          <div class="pst-label">识别章节结构</div>
-          <div class="pst-desc">划定 4-7 个主题章节</div>
-        </div>
-      </div>
-      <div class="proc-step" id="step2">
-        <div class="proc-step-icon" id="step2-icon">✍️</div>
-        <div class="proc-step-text">
-          <div class="pst-label">生成排版内容</div>
-          <div class="pst-desc">每章节填充段落与高亮框</div>
-        </div>
-      </div>
-      <div class="proc-step" id="step3">
-        <div class="proc-step-icon" id="step3-icon">💬</div>
-        <div class="proc-step-text">
-          <div class="pst-label">提取精彩金句</div>
-          <div class="pst-desc">挑选 12-18 条可引用句</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="proc-progress" style="max-width:420px;width:100%">
-      <div class="proc-progress-fill" id="procProgress"></div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ========== 4. RESULT ========== -->
-<div class="screen" id="sResult">
-  <div class="result-topbar">
+<!-- ========== RESULT OVERLAY ========== -->
+<div id="pmResult">
+  <div class="rt-bar">
     <div class="rt-left">
-      <button class="rt-back" onclick="goToUpload()">← 重新上传</button>
+      <button class="rt-back" onclick="closeResult()">← 重新上传</button>
       <span class="rt-title" id="rtTitle">生成完成</span>
+      <span class="rt-wordcount" id="rtWordCount"></span>
+    </div>
+    <div id="rtViewToggle" style="display:none;align-items:center;gap:4px;margin:0 8px">
+      <button class="rt-view-btn active" data-v="article" onclick="switchView('article')">文章</button>
+      <button class="rt-view-btn" data-v="ppt" onclick="switchView('ppt')">PPT</button>
     </div>
     <div class="rt-right">
-      <div class="rt-themes">
-        <button class="rt-theme-btn active" onclick="setPreviewTheme('dark')">夜</button>
-        <button class="rt-theme-btn" onclick="setPreviewTheme('light')">昼</button>
-        <button class="rt-theme-btn" onclick="setPreviewTheme('paper')">纸</button>
-        <button class="rt-theme-btn" onclick="setPreviewTheme('ocean')">海</button>
+      <button id="rtShareBtn" onclick="shareResult()" style="display:none;align-items:center;gap:5px;padding:6px 14px;background:var(--card);border:1px solid var(--aborder);color:var(--accent);border-radius:8px;cursor:pointer;font-size:12px;font-family:inherit;transition:all 0.2s;margin-right:8px">
+        🔗 分享
+      </button>
+      <button id="rtMobileBtn" class="rt-icon-btn" onclick="toggleMobileView()" style="display:none" title="切换手机/电脑视图">📱 手机</button>
+      <button id="rtCopyBtn" class="rt-icon-btn" onclick="copyHtml()" style="display:none">复制 HTML</button>
+      <div class="rt-themes" id="rtThemes">
+        <button class="rt-theme-btn active" onclick="setPreviewTheme('dark',this)">夜</button>
+        <button class="rt-theme-btn" onclick="setPreviewTheme('light',this)">昼</button>
+        <button class="rt-theme-btn" onclick="setPreviewTheme('paper',this)">纸</button>
+        <button class="rt-theme-btn" onclick="setPreviewTheme('ocean',this)">海</button>
       </div>
-      <button class="rt-download" onclick="downloadResult()">下载 HTML ↓</button>
+      <button class="rt-dl" onclick="downloadResult()">下载 HTML ↓</button>
     </div>
   </div>
-  <div class="result-body">
-    <iframe class="result-iframe" id="resultFrame"></iframe>
+  <!-- 模板切换条（生成完才显示）-->
+  <div id="rtTemplateSwitcher" style="display:none;padding:8px 14px;background:var(--bg2);border-bottom:1px solid var(--border);flex-wrap:wrap;gap:6px;align-items:center">
+    <span style="font-size:11px;color:var(--tm);flex-shrink:0">切换模板：</span>
+    <button class="rt-tpl-btn" data-tpl="inkgold" onclick="switchTemplate(this)">墨金</button>
+    <button class="rt-tpl-btn" data-tpl="porcelain" onclick="switchTemplate(this)">玉瓷</button>
+    <button class="rt-tpl-btn" data-tpl="nebula" onclick="switchTemplate(this)">星云</button>
+    <button class="rt-tpl-btn" data-tpl="tobacco" onclick="switchTemplate(this)">烟草</button>
+    <button class="rt-tpl-btn" data-tpl="agate" onclick="switchTemplate(this)">翡翠</button>
+    <button class="rt-tpl-btn" data-tpl="dawn" onclick="switchTemplate(this)">晨玫</button>
+    <button class="rt-tpl-btn" data-tpl="carbon" onclick="switchTemplate(this)">碳黑</button>
+    <button class="rt-tpl-btn" data-tpl="neon" onclick="switchTemplate(this)">霓虹</button>
+    <button class="rt-tpl-btn" data-tpl="cloudy" onclick="switchTemplate(this)">云墨</button>
+    <button class="rt-tpl-btn" data-tpl="vermilion" onclick="switchTemplate(this)">朱砂</button>
+    <a href="template-gallery.html" target="_blank" style="margin-left:auto;font-size:11px;color:var(--tm);text-decoration:none;flex-shrink:0;padding:3px 8px;border:1px solid var(--border);border-radius:6px;transition:all 0.2s" onmouseover="this.style.color='var(--accent)';this.style.borderColor='var(--aborder)'" onmouseout="this.style.color='var(--tm)';this.style.borderColor='var(--border)'">看示例 →</a>
+  </div>
+  <!-- 编辑提示条（编辑模式时显示） -->
+  <div class="rt-edit-hint" id="rtEditHint">✏️ 编辑模式已开启 — 点击页面内任意文字可直接修改，完成后点击「完成编辑」保存</div>
+  <!-- 编辑栏 -->
+  <div id="rtEditBar" style="display:none;padding:8px 14px;background:var(--bg2);border-bottom:1px solid var(--border)">
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <span style="font-size:11px;color:var(--tm);flex-shrink:0">标题：</span>
+      <input id="rtTitleInput" type="text" style="flex:1;min-width:140px;background:var(--card);border:1px solid var(--border);color:var(--th);padding:4px 10px;border-radius:6px;font-size:12px;font-family:inherit;outline:none"/>
+      <span style="font-size:11px;color:var(--tm);flex-shrink:0">主讲人：</span>
+      <input id="rtSpeakerInput" type="text" placeholder="选填" style="width:100px;background:var(--card);border:1px solid var(--border);color:var(--th);padding:4px 10px;border-radius:6px;font-size:12px;font-family:inherit;outline:none"/>
+      <button onclick="reRenderWithEdits()" style="padding:4px 12px;background:var(--accent);color:#0a0a08;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit">重新渲染</button>
+      <button id="rtEditModeBtn" onclick="toggleEditMode()" class="rt-icon-btn" style="margin-left:4px">✏️ 编辑内容</button>
+    </div>
+    <div id="rtShareBox" style="display:none;margin-top:8px;padding:8px 12px;background:var(--card);border:1px solid var(--aborder);border-radius:8px;font-size:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span style="color:var(--tm)">链接：</span>
+      <a id="rtShareLink" href="#" target="_blank" style="color:var(--accent);word-break:break-all"></a>
+      <button onclick="copyShareUrl()" style="padding:2px 8px;border:1px solid var(--aborder);border-radius:4px;background:var(--bg2);color:var(--tm);cursor:pointer;font-size:11px;font-family:inherit;flex-shrink:0">复制</button>
+    </div>
+  </div>
+  <div class="rt-body">
+    <iframe class="rt-iframe" id="rtFrame"></iframe>
   </div>
 </div>
 
 <script>
-// ===== 全局状态 =====
+// ===== 状态 =====
 var _file = null
 var _resultHtml = ''
+var _resultPptHtml = ''
 var _resultMeta = {}
+var _selectedTpl = 'inkgold'
+var _selectedFmt = 'both'
+var _procTimer = null
+var _procIdx = 0
+var _viewMode = 'article'
+var _session = null          // 完整 session，供切换模板和历史使用
+var _shareUrl = null         // 当前已生成的分享链接
+var _mobileView = false      // 手机视图模式
+var _editMode = false        // 内容编辑模式
+var _cleanWordCount = 0      // 净字数
 
 const API = 'https://yuaneightlife.com/api/page-maker'
+const RENDER_API = 'https://yuaneightlife.com/api/page-maker/render'
+const SHARE_API = 'https://yuaneightlife.com/api/page-maker/share'
+const VERIFY_API = 'https://yuaneightlife.com/api/pay/verify'
+const PAY_CREATE_API = 'https://yuaneightlife.com/api/pay/create'
+const PAY_QUERY_API  = 'https://yuaneightlife.com/api/pay/query'
 
-// ===== 页面切换 =====
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(function(s) {
-    s.classList.remove('active')
-  })
-  var el = document.getElementById(id)
-  if (el) {
-    el.classList.add('active')
-    window.scrollTo(0, 0)
-  }
+// ===== 模板选择 =====
+function selectTemplate(el) {
+  document.querySelectorAll('.pm-tpl-card').forEach(function(c){ c.classList.remove('selected') })
+  el.classList.add('selected')
+  _selectedTpl = el.getAttribute('data-tpl')
 }
-function goToLanding() { showScreen('sLanding') }
-function goToUpload() { showScreen('sUpload') }
 
-// ===== 上传逻辑 =====
-var uploadZone = document.getElementById('uploadZone')
-var fileInput = document.getElementById('fileInput')
+// ===== 格式选择 =====
+function selectFormat(el) {
+  document.querySelectorAll('.pm-fmt').forEach(function(c){ c.classList.remove('selected') })
+  el.classList.add('selected')
+  _selectedFmt = el.getAttribute('data-fmt')
+}
 
-// 拖拽
-uploadZone.addEventListener('dragover', function(e) {
-  e.preventDefault()
-  uploadZone.classList.add('dragover')
+// ===== 上传 =====
+var dropzone = document.getElementById('pmDropzone')
+var fileInput = document.getElementById('pmFileInput')
+
+dropzone.addEventListener('dragover', function(e){ e.preventDefault(); dropzone.classList.add('dragover') })
+dropzone.addEventListener('dragleave', function(){ dropzone.classList.remove('dragover') })
+dropzone.addEventListener('drop', function(e){
+  e.preventDefault(); dropzone.classList.remove('dragover')
+  if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0])
 })
-uploadZone.addEventListener('dragleave', function() {
-  uploadZone.classList.remove('dragover')
-})
-uploadZone.addEventListener('drop', function(e) {
-  e.preventDefault()
-  uploadZone.classList.remove('dragover')
-  var f = e.dataTransfer.files[0]
-  if (f) handleFile(f)
-})
-fileInput.addEventListener('change', function() {
-  if (fileInput.files[0]) handleFile(fileInput.files[0])
-})
+fileInput.addEventListener('change', function(){ if (fileInput.files[0]) handleFile(fileInput.files[0]) })
 
 function handleFile(f) {
-  var allowed = ['.docx', '.pdf']
   var ext = f.name.toLowerCase().slice(f.name.lastIndexOf('.'))
-  if (!allowed.includes(ext)) {
-    alert('仅支持 .docx 和 .pdf 格式')
-    return
-  }
-  if (f.size > 20 * 1024 * 1024) {
-    alert('文件大小不能超过 20MB')
-    return
-  }
+  var avExts = ['.mp3','.mp4','.m4a','.wav','.webm','.ogg','.mov']
+  var docExts = ['.docx','.pdf','.txt']
+  var isAV = avExts.indexOf(ext) !== -1
+  if (docExts.indexOf(ext) === -1 && !isAV) { alert('仅支持 .docx、.pdf、.txt 或音视频文件（mp3/mp4/m4a/wav/webm/ogg/mov）'); return }
+  var maxSize = isAV ? 25 * 1024 * 1024 : 20 * 1024 * 1024
+  if (f.size > maxSize) { alert('文件大小不能超过 ' + (isAV ? '25MB' : '20MB')); return }
   _file = f
-
-  // 显示文件信息
-  document.getElementById('fileIcon').textContent = ext === '.pdf' ? '📕' : '📝'
-  document.getElementById('fileName').textContent = f.name
-  document.getElementById('fileMeta').textContent = (f.size / 1024).toFixed(0) + ' KB · ' + ext.toUpperCase()
-  document.getElementById('fileInfo').classList.add('visible')
-  document.getElementById('uploadBtn').classList.add('visible')
+  document.getElementById('pmFileIcon').textContent = ext === '.pdf' ? '📕' : '📝'
+  document.getElementById('pmFileName').textContent = f.name
+  document.getElementById('pmFileMeta').textContent = (f.size / 1024).toFixed(0) + ' KB · ' + ext.toUpperCase()
+  document.getElementById('pmFileInfo').classList.add('visible')
+  document.getElementById('pmGenerateBtn').disabled = false
+  document.getElementById('pmGenerateBtn').textContent = '立即生成（¥19.9）→'
 }
 
-// ===== 生成逻辑 =====
+// ===== 生成 =====
 function startGenerate() {
   if (!_file) return
-  showScreen('sProcessing')
-  resetProcSteps()
+  document.getElementById('pmProcessing').classList.add('active')
+  resetProc()
   runPipeline()
 }
 
-function resetProcSteps() {
+function closeResult() {
+  // 退出编辑模式
+  if (_editMode) { _editMode = true; toggleEditMode() }
+  // 退出手机视图
+  if (_mobileView) toggleMobileView()
+  _cleanWordCount = 0
+  var wc = document.getElementById('rtWordCount')
+  if (wc) { wc.textContent = ''; wc.style.display = 'none' }
+  var mobileBtn = document.getElementById('rtMobileBtn')
+  if (mobileBtn) mobileBtn.style.display = 'none'
+  var copyBtn = document.getElementById('rtCopyBtn')
+  if (copyBtn) copyBtn.style.display = 'none'
+  document.getElementById('pmResult').classList.remove('active')
+}
+
+function resetProc() {
   for (var i = 0; i <= 3; i++) {
     var s = document.getElementById('step' + i)
-    if (s) {
-      s.classList.remove('active', 'done')
-    }
+    if (s) s.classList.remove('active','done')
+    var ic = document.getElementById('si' + i)
+    if (ic) ic.textContent = ['📖','🗂','✍️','💬'][i]
   }
-  document.getElementById('procProgress').style.width = '0'
+  document.getElementById('procFill').style.width = '0'
 }
 
-// 进度动画（纯 UX，不代表真实进度）
-var procTimer = null
-var procStepIdx = 0
-var STEP_DURATIONS = [8000, 12000, 18000, 8000]  // 每步预估时长（ms）
-
-function startProcAnimation() {
-  procStepIdx = 0
-  activateStep(0)
-  advanceSteps()
-}
+// SSE 步骤映射到现有 step0-step3 UI
+var SSE_STEP_MAP = { parse: 0, clean: 0, structure: 1, content: 2, quotes: 3, done: 3 }
 
 function activateStep(idx) {
   for (var i = 0; i < idx; i++) {
     var s = document.getElementById('step' + i)
     if (s) { s.classList.remove('active'); s.classList.add('done') }
-    var ic = document.getElementById('step' + i + '-icon')
+    var ic = document.getElementById('si' + i)
     if (ic) ic.textContent = '✓'
   }
   var cur = document.getElementById('step' + idx)
-  if (cur) cur.classList.add('active')
-  var progress = (idx / 4) * 85
-  document.getElementById('procProgress').style.width = progress + '%'
-}
-
-function advanceSteps() {
-  if (procStepIdx >= 3) return
-  procTimer = setTimeout(function() {
-    procStepIdx++
-    activateStep(procStepIdx)
-    advanceSteps()
-  }, STEP_DURATIONS[procStepIdx])
+  if (cur) { cur.classList.remove('done'); cur.classList.add('active') }
 }
 
 async function runPipeline() {
-  startProcAnimation()
+  // 重置步骤
+  for (var i = 0; i <= 3; i++) {
+    var s = document.getElementById('step' + i)
+    if (s) s.classList.remove('active','done')
+    var ic = document.getElementById('si' + i)
+    if (ic) ic.textContent = ['📖','🗂','✍️','💬'][i]
+  }
+  document.getElementById('procFill').style.width = '0'
 
   try {
-    var formData = new FormData()
-    formData.append('file', _file)
+    var fd = new FormData()
+    fd.append('file', _file)
+    fd.append('template', _selectedTpl)
+    fd.append('format', _selectedFmt)
 
-    var res = await fetch(API, { method: 'POST', body: formData })
-    var data = await res.json()
+    var resp = await fetch(API, { method: 'POST', body: fd })
+    if (!resp.ok || !resp.body) throw new Error('服务器错误 ' + resp.status)
 
-    clearTimeout(procTimer)
+    var reader = resp.body.getReader()
+    var decoder = new TextDecoder()
+    var buf = ''
 
-    if (!res.ok || data.error) {
-      showError(data.error || '生成失败，请重试')
-      return
+    while (true) {
+      var readResult = await reader.read()
+      if (readResult.done) break
+      buf += decoder.decode(readResult.value, { stream: true })
+
+      var parts = buf.split('\n\n')
+      buf = parts.pop() || ''
+
+      for (var pi = 0; pi < parts.length; pi++) {
+        var part = parts[pi]
+        var evtMatch = part.match(/^event: (\w+)/m)
+        var dataMatch = part.match(/^data: (.+)/m)
+        if (!evtMatch || !dataMatch) continue
+
+        var evt = evtMatch[1]
+        var data
+        try { data = JSON.parse(dataMatch[1]) } catch(e) { continue }
+
+        if (evt === 'progress') {
+          var stepIdx = SSE_STEP_MAP[data.step] !== undefined ? SSE_STEP_MAP[data.step] : 0
+          activateStep(stepIdx)
+          document.getElementById('procFill').style.width = (data.pct || 0) + '%'
+        } else if (evt === 'warning') {
+          // 在 proc-sub 下方显示警告（如果有）
+          var subEl = document.querySelector('.proc-sub')
+          if (subEl && !document.getElementById('procWarning')) {
+            var w = document.createElement('div')
+            w.id = 'procWarning'
+            w.style.cssText = 'margin-top:8px;font-size:12px;color:#d4a04a;background:rgba(212,160,74,0.1);border-radius:8px;padding:6px 12px;max-width:420px'
+            w.textContent = '⚠️ ' + data.message
+            subEl.parentNode.insertBefore(w, subEl.nextSibling)
+          }
+        } else if (evt === 'error') {
+          throw new Error(data.message || '生成失败')
+        } else if (evt === 'result') {
+          // 完成
+          for (var j = 0; j <= 3; j++) {
+            var ss = document.getElementById('step' + j)
+            if (ss) { ss.classList.remove('active'); ss.classList.add('done') }
+            var sic = document.getElementById('si' + j)
+            if (sic) sic.textContent = '✓'
+          }
+          document.getElementById('procFill').style.width = '100%'
+
+          _resultHtml = data.html || ''
+          _resultPptHtml = data.pptHtml || ''
+          _resultMeta = data.meta || {}
+          _session = data.session || null
+          _cleanWordCount = data.cleanWordCount || 0
+          _viewMode = (data.format === 'ppt') ? 'ppt' : 'article'
+          _shareUrl = null
+
+          saveHistory(data)
+          setTimeout(showResult, 600)
+        }
+      }
     }
-
-    _resultHtml = data.html
-    _resultMeta = data.meta || {}
-
-    // 全部步骤完成
-    for (var i = 0; i <= 3; i++) {
-      var s = document.getElementById('step' + i)
-      if (s) { s.classList.remove('active'); s.classList.add('done') }
-      var ic = document.getElementById('step' + i + '-icon')
-      if (ic) ic.textContent = '✓'
-    }
-    document.getElementById('procProgress').style.width = '100%'
-
-    setTimeout(showResult, 600)
-
   } catch (err) {
-    clearTimeout(procTimer)
-    showError('网络错误，请检查连接后重试')
+    showError(err.message || '网络错误，请检查连接后重试')
     console.error(err)
   }
 }
 
 function showResult() {
-  showScreen('sResult')
+  document.getElementById('pmProcessing').classList.remove('active')
+  // 清除警告
+  var w = document.getElementById('procWarning')
+  if (w) w.parentNode.removeChild(w)
 
-  // 设置标题
   var title = (_resultMeta && _resultMeta.titleHtml)
     ? _resultMeta.titleHtml.replace(/<[^>]+>/g, '')
     : '生成完成'
   document.getElementById('rtTitle').textContent = title
 
-  // 注入 iframe
-  var iframe = document.getElementById('resultFrame')
-  var blob = new Blob([_resultHtml], { type: 'text/html' })
-  var url = URL.createObjectURL(blob)
-  iframe.src = url
+  // 根据格式决定显示哪个
+  var hasBoth = _resultHtml && _resultPptHtml
+  var viewToggle = document.getElementById('rtViewToggle')
+  if (viewToggle) viewToggle.style.display = hasBoth ? 'flex' : 'none'
+
+  // 填充编辑栏
+  var titleInput = document.getElementById('rtTitleInput')
+  var speakerInput = document.getElementById('rtSpeakerInput')
+  if (titleInput) titleInput.value = title
+  if (speakerInput) speakerInput.value = (_session && _session.meta && _session.meta.speaker) || ''
+
+  // 显示模板切换条、编辑栏、分享按钮、复制、手机切换
+  var switcher = document.getElementById('rtTemplateSwitcher')
+  if (switcher) switcher.style.display = 'flex'
+  var editBar = document.getElementById('rtEditBar')
+  if (editBar) editBar.style.display = 'block'
+  var shareBtn = document.getElementById('rtShareBtn')
+  if (shareBtn) shareBtn.style.display = 'inline-flex'
+  var mobileBtn = document.getElementById('rtMobileBtn')
+  if (mobileBtn) mobileBtn.style.display = 'inline-block'
+  var copyBtn = document.getElementById('rtCopyBtn')
+  if (copyBtn) copyBtn.style.display = 'inline-block'
+  // 字数显示
+  var wc = document.getElementById('rtWordCount')
+  if (wc && _cleanWordCount > 0) {
+    var mins = Math.max(1, Math.round(_cleanWordCount / 400))
+    wc.textContent = _cleanWordCount + ' 字 · 约 ' + mins + ' 分钟'
+    wc.style.display = 'inline'
+  }
+
+  // 激活当前模板按钮
+  document.querySelectorAll('.rt-tpl-btn').forEach(function(b) {
+    b.classList.toggle('active', b.dataset.tpl === _selectedTpl)
+  })
+
+  // 加载对应 HTML
+  _loadFrameContent()
+  document.getElementById('pmResult').classList.add('active')
+}
+
+function _loadFrameContent() {
+  var html = (_viewMode === 'ppt' && _resultPptHtml) ? _resultPptHtml : _resultHtml
+  document.getElementById('rtFrame').srcdoc = html
+
+  // 更新切换按钮状态
+  var btns = document.querySelectorAll('.rt-view-btn')
+  btns.forEach(function(b) { b.classList.toggle('active', b.getAttribute('data-v') === _viewMode) })
+
+  // PPT 模式下隐藏主题切换
+  var themes = document.getElementById('rtThemes')
+  if (themes) themes.style.display = (_viewMode === 'ppt') ? 'none' : 'flex'
+}
+
+function switchView(mode) {
+  // 切换视图前先退出编辑模式
+  if (_editMode) { _editMode = true; toggleEditMode() }
+  _viewMode = mode
+  _loadFrameContent()
 }
 
 function showError(msg) {
-  showScreen('sUpload')
+  document.getElementById('pmProcessing').classList.remove('active')
   alert('生成失败：' + msg)
 }
 
-// ===== 主题切换（控制预览 iframe）=====
-function setPreviewTheme(theme) {
-  // 更新按钮状态
-  document.querySelectorAll('.rt-theme-btn').forEach(function(btn) {
-    btn.classList.remove('active')
-  })
-  event.target.classList.add('active')
-
-  // 修改 iframe 内的 html 标签
-  var iframe = document.getElementById('resultFrame')
+// ===== 主题切换 =====
+function setPreviewTheme(theme, btn) {
+  document.querySelectorAll('.rt-theme-btn').forEach(function(b){ b.classList.remove('active') })
+  btn.classList.add('active')
   try {
-    iframe.contentDocument.documentElement.setAttribute('data-theme', theme)
-  } catch (e) {
-    // Blob URL 应该可以访问，但以防万一
-  }
+    document.getElementById('rtFrame').contentDocument.documentElement.setAttribute('data-theme', theme)
+  } catch(e) {}
 }
 
 // ===== 下载 =====
 function downloadResult() {
-  if (!_resultHtml) return
+  var isPpt = (_viewMode === 'ppt' && _resultPptHtml)
+  var html = isPpt ? _resultPptHtml : _resultHtml
+  if (!html) return
   var title = (_resultMeta && _resultMeta.titleHtml)
-    ? _resultMeta.titleHtml.replace(/<[^>]+>/g, '').slice(0, 20)
+    ? _resultMeta.titleHtml.replace(/<[^>]+>/g, '').slice(0, 24)
     : 'page-maker'
-  var blob = new Blob([_resultHtml], { type: 'text/html' })
+  var suffix = isPpt ? '-ppt.html' : '.html'
+  var blob = new Blob([html], { type: 'text/html' })
   var url = URL.createObjectURL(blob)
   var a = document.createElement('a')
-  a.href = url
-  a.download = title + '-' + Date.now() + '.html'
-  a.click()
-  setTimeout(function() { URL.revokeObjectURL(url) }, 1000)
+  a.href = url; a.download = title + suffix; a.click()
+  setTimeout(function(){ URL.revokeObjectURL(url) }, 1000)
+}
+
+// ===== 模板切换（不重跑 AI）=====
+async function switchTemplate(btn) {
+  if (!_session) return
+  var tpl = btn.dataset.tpl
+  document.querySelectorAll('.rt-tpl-btn').forEach(function(b){ b.classList.remove('active') })
+  btn.classList.add('active')
+  _selectedTpl = tpl
+  document.getElementById('rtFrame').style.opacity = '0.4'
+  try {
+    var resp = await fetch(RENDER_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session: _session, template: tpl, format: _selectedFmt || 'both' })
+    })
+    var data = await resp.json()
+    if (data.html) { _resultHtml = data.html }
+    if (data.pptHtml) { _resultPptHtml = data.pptHtml }
+    _loadFrameContent()
+  } catch(e) { console.error('切换模板失败', e) }
+  finally { document.getElementById('rtFrame').style.opacity = '1' }
+}
+
+// ===== 手机/电脑视图切换 =====
+function toggleMobileView() {
+  _mobileView = !_mobileView
+  var rtBody = document.querySelector('.rt-body')
+  var rtFrame = document.getElementById('rtFrame')
+  var btn = document.getElementById('rtMobileBtn')
+  if (_mobileView) {
+    rtBody.classList.add('mobile-view')
+    rtFrame.style.width = '390px'
+    btn.textContent = '🖥️ 电脑'
+    btn.classList.add('active')
+  } else {
+    rtBody.classList.remove('mobile-view')
+    rtFrame.style.width = ''
+    btn.textContent = '📱 手机'
+    btn.classList.remove('active')
+  }
+}
+
+// ===== 复制 HTML =====
+function copyHtml() {
+  var html = (_viewMode === 'ppt' && _resultPptHtml) ? _resultPptHtml : _resultHtml
+  if (!html) return
+  var btn = document.getElementById('rtCopyBtn')
+  navigator.clipboard.writeText(html).then(function() {
+    btn.textContent = '已复制 ✓'
+    setTimeout(function() { btn.textContent = '复制 HTML' }, 2000)
+  }).catch(function() { alert('复制失败，请手动操作') })
+}
+
+// ===== 内容编辑模式 =====
+function toggleEditMode() {
+  var frame = document.getElementById('rtFrame')
+  var btn = document.getElementById('rtEditModeBtn')
+  var hint = document.getElementById('rtEditHint')
+  _editMode = !_editMode
+
+  try {
+    var doc = frame.contentDocument || frame.contentWindow.document
+    if (_editMode) {
+      // 进入编辑：让所有文字节点可点击编辑
+      var sel = 'h1,h2,h3,h4,p,li,blockquote,.quote-text,.pull-quote,.excerpt,.slide-title,.slide-quote,.slide-context,.section-title,.article-title,.article-subtitle,.meta-title,.badge-text'
+      doc.querySelectorAll(sel).forEach(function(el) {
+        el.contentEditable = 'true'
+        el.dataset._editOrigOutline = el.style.outline || ''
+        el.style.outline = '1.5px dashed rgba(212,160,74,0.5)'
+        el.style.cursor = 'text'
+      })
+      btn.textContent = '✅ 完成编辑'
+      btn.classList.add('active')
+      if (hint) hint.style.display = 'block'
+    } else {
+      // 退出编辑：保存内容回 _resultHtml
+      doc.querySelectorAll('[contenteditable="true"]').forEach(function(el) {
+        el.contentEditable = 'false'
+        el.style.outline = el.dataset._editOrigOutline || ''
+        el.style.cursor = ''
+        delete el.dataset._editOrigOutline
+      })
+      // 序列化回 HTML
+      var isFullDoc = doc.doctype !== null
+      if (isFullDoc) {
+        if (_viewMode === 'ppt' && _resultPptHtml) {
+          _resultPptHtml = '<!DOCTYPE html>' + doc.documentElement.outerHTML
+        } else {
+          _resultHtml = '<!DOCTYPE html>' + doc.documentElement.outerHTML
+        }
+      }
+      btn.textContent = '✏️ 编辑内容'
+      btn.classList.remove('active')
+      if (hint) hint.style.display = 'none'
+    }
+  } catch(e) {
+    console.error('[editMode] error:', e)
+    _editMode = false
+    btn.textContent = '✏️ 编辑内容'
+    btn.classList.remove('active')
+  }
+}
+
+// ===== 编辑后重渲 =====
+async function reRenderWithEdits() {
+  if (!_session) return
+  var title = document.getElementById('rtTitleInput').value || ''
+  var speaker = document.getElementById('rtSpeakerInput').value || ''
+  var edited = Object.assign({}, _session, {
+    meta: Object.assign({}, _session.meta, { titleHtml: title, speaker: speaker })
+  })
+  var resp = await fetch(RENDER_API, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ session: edited, template: _selectedTpl || 'inkgold', format: _selectedFmt || 'both' })
+  })
+  var data = await resp.json()
+  _session = edited
+  if (data.html) { _resultHtml = data.html }
+  if (data.pptHtml) { _resultPptHtml = data.pptHtml }
+  _loadFrameContent()
+  document.getElementById('rtTitle').textContent = title
+}
+
+// ===== 分享 =====
+async function shareResult() {
+  var html = (_viewMode === 'ppt' && _resultPptHtml) ? _resultPptHtml : _resultHtml
+  if (!html) return
+  var btn = document.getElementById('rtShareBtn')
+  btn.textContent = '生成中…'
+  btn.disabled = true
+  try {
+    var title = (_session && _session.meta && _session.meta.titleHtml)
+      ? _session.meta.titleHtml.replace(/<[^>]+>/g, '') : 'page'
+    var resp = await fetch(SHARE_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ html: html, title: title })
+    })
+    var data = await resp.json()
+    if (data.error) throw new Error(data.error)
+    _shareUrl = 'https://yuaneightlife.com' + data.shareUrl
+    var linkEl = document.getElementById('rtShareLink')
+    if (linkEl) { linkEl.href = _shareUrl; linkEl.textContent = _shareUrl }
+    var box = document.getElementById('rtShareBox')
+    if (box) box.style.display = 'flex'
+    btn.textContent = '✓ 已分享'
+  } catch(e) {
+    btn.textContent = '🔗 分享'
+    btn.disabled = false
+    alert('分享失败：' + e.message)
+  }
+}
+
+function copyShareUrl() {
+  if (!_shareUrl) return
+  navigator.clipboard.writeText(_shareUrl).then(function() {
+    var btn = event.target
+    var prev = btn.textContent
+    btn.textContent = '已复制'
+    setTimeout(function(){ btn.textContent = prev }, 1500)
+  })
+}
+
+// ===== 历史记录 =====
+var PM_HIS_KEY = 'pm_history'
+
+function saveHistory(data) {
+  try {
+    var title = (_session && _session.meta && _session.meta.titleHtml)
+      ? _session.meta.titleHtml.replace(/<[^>]+>/g, '').slice(0, 28) : '无标题'
+    var item = {
+      id: Date.now().toString(36),
+      date: new Date().toLocaleDateString('zh-CN'),
+      title: title,
+      template: _selectedTpl || 'inkgold',
+      format: _selectedFmt || 'both',
+      session: data.session,
+      html: data.html || '',
+      pptHtml: data.pptHtml || ''
+    }
+    var history = []
+    try { history = JSON.parse(localStorage.getItem(PM_HIS_KEY) || '[]') } catch(e) {}
+    history.unshift(item)
+    if (history.length > 5) history.length = 5
+    try {
+      localStorage.setItem(PM_HIS_KEY, JSON.stringify(history))
+    } catch(e) {
+      // 存不下时不存 html
+      item.html = ''; item.pptHtml = ''
+      history[0] = item
+      try { localStorage.setItem(PM_HIS_KEY, JSON.stringify(history)) } catch(e2) {}
+    }
+  } catch(e) {}
+}
+
+function toggleHistory() {
+  var panel = document.getElementById('pmHistoryPanel')
+  if (!panel) return
+  if (panel.style.display === 'none' || !panel.style.display) {
+    renderHistoryList()
+    panel.style.display = 'block'
+  } else {
+    panel.style.display = 'none'
+  }
+}
+
+function renderHistoryList() {
+  var list = document.getElementById('pmHistoryList')
+  var history = []
+  try { history = JSON.parse(localStorage.getItem(PM_HIS_KEY) || '[]') } catch(e) {}
+  if (!history.length) {
+    list.innerHTML = '<div style="text-align:center;color:var(--td);font-size:12px;padding:16px 0">暂无记录</div>'
+    return
+  }
+  list.innerHTML = history.map(function(item) {
+    return '<div class="pm-history-item" onclick="restoreHistory(\'' + item.id + '\')">' +
+      '<div style="font-size:13px;color:var(--th)">' + item.title + '</div>' +
+      '<div style="font-size:11px;color:var(--tm);margin-top:2px">' + item.date + ' · ' + item.template + '</div>' +
+      '</div>'
+  }).join('')
+}
+
+function restoreHistory(id) {
+  var history = []
+  try { history = JSON.parse(localStorage.getItem(PM_HIS_KEY) || '[]') } catch(e) {}
+  var item = null
+  for (var i = 0; i < history.length; i++) { if (history[i].id === id) { item = history[i]; break } }
+  if (!item) return
+  _session = item.session
+  _selectedTpl = item.template
+  _selectedFmt = item.format
+  if (item.html || item.pptHtml) {
+    _resultHtml = item.html || ''
+    _resultPptHtml = item.pptHtml || ''
+    _resultMeta = (item.session && item.session.meta) || {}
+    _viewMode = (item.format === 'ppt') ? 'ppt' : 'article'
+    showResult()
+  } else if (item.session) {
+    fetch(RENDER_API, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session: item.session, template: item.template, format: item.format })
+    }).then(function(r){ return r.json() }).then(function(data){
+      _resultHtml = data.html || ''
+      _resultPptHtml = data.pptHtml || ''
+      _resultMeta = item.session.meta || {}
+      _viewMode = (item.format === 'ppt') ? 'ppt' : 'article'
+      showResult()
+    })
+  }
+  document.getElementById('pmHistoryPanel').style.display = 'none'
+}
+
+// ===== 付款门控 =====
+var _payOrderId = null
+var _payPollTimer = null
+
+;(function initGate() {
+  // 付款暂未接通，直接开放上传区域
+  showUploadArea()
+})()
+
+function showGate() {
+  var gate = document.getElementById('pmGate')
+  var upload = document.getElementById('pmUploadWrapper')
+  if (gate) gate.style.display = 'block'
+  if (upload) upload.style.display = 'none'
+  // 重置到介绍页状态
+  var intro = document.getElementById('pmGateIntro')
+  var qr    = document.getElementById('pmGateQr')
+  var done  = document.getElementById('pmGateDone')
+  if (intro) intro.style.display = 'block'
+  if (qr)   qr.style.display = 'none'
+  if (done) done.style.display = 'none'
+}
+
+function showUploadArea() {
+  var gate = document.getElementById('pmGate')
+  var upload = document.getElementById('pmUploadWrapper')
+  if (gate) gate.style.display = 'none'
+  if (upload) upload.style.display = 'block'
+}
+
+// ===== 微信扫码付款 =====
+async function startPay() {
+  var btn = document.getElementById('pmPayBtn')
+  btn.textContent = '生成二维码…'
+  btn.disabled = true
+
+  try {
+    var resp = await fetch(PAY_CREATE_API, { method: 'POST', headers: { 'Content-Type': 'application/json' } })
+    var data = await resp.json()
+    if (data.error) throw new Error(data.error)
+
+    _payOrderId = data.orderId
+    document.getElementById('pmOrderId').textContent = data.orderId
+
+    // 切换到二维码面板
+    document.getElementById('pmGateIntro').style.display = 'none'
+    document.getElementById('pmGateQr').style.display = 'block'
+
+    // 用 qrcode.js 生成二维码
+    renderQrCode(data.codeUrl)
+
+    // 开始轮询支付状态
+    _payPollTimer = setInterval(pollPayStatus, 3000)
+
+  } catch(e) {
+    alert('创建订单失败：' + e.message)
+    btn.textContent = '微信扫码支付 ¥19.9'
+    btn.disabled = false
+  }
+}
+
+function renderQrCode(text) {
+  var loading = document.getElementById('pmQrLoading')
+  var canvas = document.getElementById('pmQrCanvas')
+  // 懒加载 qrcode.min.js
+  if (window.QRCode) {
+    _drawQr(text, canvas, loading)
+    return
+  }
+  var s = document.createElement('script')
+  s.src = 'https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js'
+  s.onload = function() { _drawQr(text, canvas, loading) }
+  s.onerror = function() { if (loading) loading.textContent = '二维码生成失败，请刷新重试' }
+  document.head.appendChild(s)
+}
+
+function _drawQr(text, canvas, loading) {
+  QRCode.toCanvas(canvas, text, { width: 192, margin: 1, color: { dark: '#0a0a08', light: '#ffffff' } },
+    function(err) {
+      if (err) { if (loading) loading.textContent = '生成失败'; return }
+      if (loading) loading.style.display = 'none'
+      canvas.style.display = 'block'
+    }
+  )
+}
+
+async function pollPayStatus() {
+  if (!_payOrderId) return
+  try {
+    var resp = await fetch(PAY_QUERY_API + '?order_id=' + _payOrderId)
+    var data = await resp.json()
+    if (data.status === 'paid' && data.token) {
+      clearInterval(_payPollTimer)
+      _payPollTimer = null
+      // 存储 token
+      localStorage.setItem('pm_token', data.token)
+      // 显示成功画面
+      document.getElementById('pmGateQr').style.display = 'none'
+      document.getElementById('pmGateDone').style.display = 'block'
+      // 1.5 秒后打开上传区
+      setTimeout(function() { showUploadArea() }, 1500)
+    } else if (data.status === 'pending') {
+      var statusEl = document.getElementById('pmPayStatus')
+      if (statusEl) statusEl.textContent = '等待扫码…'
+    }
+  } catch(e) { /* 轮询失败忽略，下次重试 */ }
+}
+
+function cancelPay() {
+  clearInterval(_payPollTimer)
+  _payPollTimer = null
+  _payOrderId = null
+  document.getElementById('pmGateQr').style.display = 'none'
+  document.getElementById('pmGateIntro').style.display = 'block'
+  var btn = document.getElementById('pmPayBtn')
+  if (btn) { btn.textContent = '微信扫码支付 ¥19.9'; btn.disabled = false }
 }
 </script>
-
 </body>
 </html>
