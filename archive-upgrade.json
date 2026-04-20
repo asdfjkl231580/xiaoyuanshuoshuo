@@ -19,7 +19,7 @@
   },
   "startedAt": "2026-04-20",
   "updatedAt": "2026-04-20",
-  "overallProgress": 78,
+  "overallProgress": 82,
   "currentPhase": "phase-5",
   "totalDuration": "约 12-16 周",
   "phases": [
@@ -251,8 +251,8 @@
       "deliverable": "yuaneightlife.com/archive-test 可直接访问 · 你 + 3-5 个朋友真实使用反馈 · 发现数据缺口回补 POC",
       "duration": "2 周",
       "status": "active",
-      "progress": 45,
-      "progressLabel": "5.1 页面+5.4 置信度阈值 · 用户真实暴露缺陷已修",
+      "progress": 70,
+      "progressLabel": "5.1+5.3+5.4 完成 · 等你真实使用评估 5.5",
       "userImpact": "零(暗门式灰度 · 常规用户走 /api/chat 不变)",
       "subtasks": [
         {
@@ -275,9 +275,9 @@
         },
         {
           "id": "5.3",
-          "name": "数据缺口补强(根据反馈)",
-          "status": "pending",
-          "detail": "Phase 3.7 deferred 的 POC 补数据 · 按真实使用暴露的主题缺口定向抽取 · 扩 archive_snippets 到 200-500 条"
+          "name": "数据缺口补强 · 50 → 242",
+          "status": "done",
+          "detail": "build-archive-poc.mjs 加 --per-topic=40 主题均衡模式。扩库结果: 新插入 192 条 · 总计 242 条。核心主题补强: 关系感情 7→40 · 咨询疗愈 5→40 · empathy 共情标记 1→12(↑12x)。命理方向 core 层为 0(知识库把命理归为 supporting 层) · 延后从 supporting 层补"
         },
         {
           "id": "5.4",
@@ -490,6 +490,18 @@
       "phase": "phase-5",
       "title": "Phase 5.4 · 置信度阈值修复 · 首次真实反馈生效",
       "detail": "用户首次在 /archive-test 试'正印的特质是什么'(命理方向 POC 仅 4 条) · archive 返回完全跑题的销售话术。根因:compose 无置信度阈值 · 只要 DB 有命中就拼接。立即修复:CONFIDENCE_THRESHOLD=70 · top hit < 70 走 noCoverage fallback(诚实说'我没讲过 · 说说你情况')。这是整个档案引擎战略的关键保护 — '没讲过就说没讲过 · 不硬答'。Phase 5.4 从 pending 提前到 done · Phase 5 progress 30→45 · 总体 76→78。真实使用驱动修复的第一个循环完成。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-5",
+      "title": "Phase 5.3 · 档案池扩容 50 → 242 条",
+      "detail": "build-archive-poc.mjs 加 --per-topic=40 主题均衡模式 · 突破'每主题限 10'瓶颈。运行后: 1013 候选 → 479 去重 → 242 入选(每主题最多 40)。ON CONFLICT 幂等灌库 · 新增 192 条。关系感情 7→40 / 咨询疗愈 5→40 / 个人成长 10→40 / 品牌内容 7→40 / 事业变现 2→28。情绪标记: empathy 1→12(共情内容 12 倍)。发现命理方向 core 层为 0(你的知识库把命理归为 supporting 层) · 从 supporting 层补命理归入下轮。Phase 5 progress 45→70 · 总体 78→82。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "战略",
+      "title": "重要战略说明 · 客户体验何时变好",
+      "detail": "当前架构下补 archive_snippets 数据 ≠ 改善云咨询室。生产客户走 /api/chat 读 knowledge_base(171830 条)。今天补的 242 条在独立 archive_snippets 表 · 仅 /archive-test 和未来 Phase 6 灰度切流量后才生效。不双轨灌 knowledge_base 的理由: GPT 会改写原话 · 违背'每句是你原话'原则 · 稀释 Phase 6 切换时的断崖式提升效果。"
     }
   ]
 }
