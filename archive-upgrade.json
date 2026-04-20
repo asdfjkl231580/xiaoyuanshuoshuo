@@ -19,7 +19,7 @@
   },
   "startedAt": "2026-04-20",
   "updatedAt": "2026-04-20",
-  "overallProgress": 16,
+  "overallProgress": 22,
   "currentPhase": "phase-1",
   "totalDuration": "约 12-16 周",
   "phases": [
@@ -47,15 +47,15 @@
       "deliverable": "同步管道每小时自动跑 · 收件箱有新鲜输入 · 精华语料全部进 KB · 无废弃脚本 · 健康度 ≥ 90%",
       "duration": "3-4 周",
       "status": "active",
-      "progress": 10,
-      "progressLabel": "体检完成 · 开始修复",
+      "progress": 25,
+      "progressLabel": "launchd 已通 + 双向同步验证成功",
       "userImpact": "零",
       "subtasks": [
         {
           "id": "1.0",
-          "name": "起死回生 · 修 launchd TCC 权限",
-          "status": "blocked",
-          "detail": "真正病灶找到:launchd 已 load 但每次跑被 macOS TCC 权限拦在 Documents/ 外(Operation not permitted) · stderr 累积失败 · 需用户亲自到「系统设置→隐私与安全→完全磁盘访问」授权 · 此步不能由我代做"
+          "name": "起死回生 · launchd + CRLF 修复",
+          "status": "done",
+          "detail": "两个病根修完:① 授权 /bin/bash 完全磁盘访问(TCC)② 6 个 sync 脚本 CRLF → LF(共 1501 行修复)。kickstart 触发 stderr 零新增 · 业务日志成功生成 · 本地编辑 8 条推送到服务端 · 知识库 171830 条全量导出回 Obsidian 已启动 · 双向同步活了"
         },
         {
           "id": "1.1",
@@ -157,9 +157,9 @@
   ],
   "healthCheck": {
     "date": "2026-04-20",
-    "obsidianScore": 58,
+    "obsidianScore": 72,
     "findings": [
-      { "level": "critical", "title": "launchd 被 macOS TCC 权限拦住", "fix": "系统设置→隐私与安全→完全磁盘访问 给 /bin/bash 或 Terminal 授权 · 需 GUI" },
+      { "level": "ok",       "title": "launchd + CRLF 双病修复完成",  "fix": "双向同步活了 · stderr 零报错 · 业务日志正常" },
       { "level": "critical", "title": "收件箱 31 天无新输入",       "fix": "建立日常节拍 · 做 ken-think 快捷命令" },
       { "level": "critical", "title": "工作台 15 天无 upload 项",   "fix": "审计内容创作管道是否卡在哪" },
       { "level": "warn",     "title": "02_人格语料 不在同步管道",  "fix": "给精华 tier 文件加 upload:true 或建专用管道" },
@@ -218,6 +218,24 @@
       "phase": "phase-1",
       "title": "1.0 真相发现 · launchd 被 TCC 权限拦截",
       "detail": "不是 plist 没 load(其实早就 load 了) · 真正病灶是 macOS 隐私保护把 /bin/bash 拦在 Documents/ 外 · stderr 满屏 Operation not permitted · 修复需要用户亲自 GUI 授权 · 状态从 ready 改为 blocked · 1.0 暂挂 · 开始做 1.1 不需要权限的工作"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-1",
+      "title": "1.0 突破 · 用户授权 bash 完全磁盘访问",
+      "detail": "用户加 /bin/bash 到隐私与安全→完全磁盘访问。kickstart 触发 · 不再报 Operation not permitted · 但暴露第二个旧病灶:syntax error。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-1",
+      "title": "1.0 收尾 · 6 个 sync 脚本 CRLF 修复",
+      "detail": "发现 sync-kb.sh / sync-kb-quiet.sh / sync-persona-from-obsidian.mjs / process-inbox-report.mjs / quick-inbox.mjs / audit-workspace-for-upload.mjs 共 1501 行含 Windows 换行符(\\r) · bash 把 \\r 当命令一部分导致 syntax error · sed 批量修复 · bash -n 验证通过 · 提交 GitHub/-/ main 分支(不碰其他 WIP)。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-1",
+      "title": "✅ 双向同步活了 · 知识库真实规模曝光",
+      "detail": "kickstart 干净跑通 · stderr 零新增 · 业务日志 docs/memory/sync-kb.log 成功生成 · 上行推送 8 条本地编辑 · 下行从服务端拉取 171,830 条(agent.md 里写的 8000+ 是严重低估 · 实际规模 21x)。Obsidian ↔ KB 双向管道从 15 天休眠变成活体。健康分 58 → 72。"
     }
   ]
 }
