@@ -1,8 +1,22 @@
 {
   "vision": "让 AI 变成林根源原话的精准调取员 · 而不是 AI 在扮演林根源",
-  "philosophy": "用户看到的每一句实质内容都来自真实原话 · AI 只做意图理解 / 检索 / 极简衔接 · 不生成观点 / 不改写语气 / 不编造举例",
+  "philosophy": "Obsidian 是核心大脑(真身) · 线上知识库是派生投影 · 任何知识改动从 Obsidian 发起 · AI 只做意图理解 / 检索 / 极简衔接 · 不生成观点 / 不改写语气 / 不编造举例",
   "approach": "影子模式升级 · 与生产 /api/chat 完全并行 · 本地大脑先健康 · 再推线上 · 一键切换 · 一键回滚",
   "moat": "AI 越升级 → 模仿越容易 → 真实性越稀缺 → 档案价值越高 · 反脆弱战略",
+  "dataFlow": {
+    "title": "架构铁律 · 数据流向",
+    "nodes": [
+      { "code": "OBS", "name": "Obsidian", "role": "本地 · 核心大脑 · 真身",       "kind": "source" },
+      { "code": "KB",  "name": "知识库",   "role": "PostgreSQL · 服务端派生投影", "kind": "derived" },
+      { "code": "AI",  "name": "智能体",   "role": "yuaneightlife · 消费者",       "kind": "consumer" },
+      { "code": "END", "name": "用户入口", "role": "小程序 / 网页 / iOS",          "kind": "user" }
+    ],
+    "rules": [
+      "任何改知识的动作都从 Obsidian 发起 · KB 不能被直接改",
+      "KB 只是 Obsidian 的服务端投影 · 炸了能从 Obsidian 重建",
+      "反向 export-to-obsidian 只用于灾难恢复 · 不作为日常操作"
+    ]
+  },
   "startedAt": "2026-04-20",
   "updatedAt": "2026-04-20",
   "overallProgress": 16,
@@ -39,9 +53,9 @@
       "subtasks": [
         {
           "id": "1.0",
-          "name": "起死回生 · 激活 launchd",
-          "status": "ready",
-          "detail": "plist 文件存在但从未 load · launchctl list 查无 com.kenyuanlin.sync-kb · 每小时自动同步实际未在跑 · 一行命令修复"
+          "name": "起死回生 · 修 launchd TCC 权限",
+          "status": "blocked",
+          "detail": "真正病灶找到:launchd 已 load 但每次跑被 macOS TCC 权限拦在 Documents/ 外(Operation not permitted) · stderr 累积失败 · 需用户亲自到「系统设置→隐私与安全→完全磁盘访问」授权 · 此步不能由我代做"
         },
         {
           "id": "1.1",
@@ -145,7 +159,7 @@
     "date": "2026-04-20",
     "obsidianScore": 58,
     "findings": [
-      { "level": "critical", "title": "launchd 任务从未被 load",    "fix": "launchctl load ~/Library/LaunchAgents/com.kenyuanlin.sync-kb.plist" },
+      { "level": "critical", "title": "launchd 被 macOS TCC 权限拦住", "fix": "系统设置→隐私与安全→完全磁盘访问 给 /bin/bash 或 Terminal 授权 · 需 GUI" },
       { "level": "critical", "title": "收件箱 31 天无新输入",       "fix": "建立日常节拍 · 做 ken-think 快捷命令" },
       { "level": "critical", "title": "工作台 15 天无 upload 项",   "fix": "审计内容创作管道是否卡在哪" },
       { "level": "warn",     "title": "02_人格语料 不在同步管道",  "fix": "给精华 tier 文件加 upload:true 或建专用管道" },
@@ -192,6 +206,18 @@
       "phase": "phase-1",
       "title": "Phase 1 · Obsidian 体检完成",
       "detail": "发现 3 个严重病灶(launchd 未 load · 收件箱 31 天无输入 · 工作台 15 天无 upload)、3 个中等优化点(精华语料不在管道 / 原文主库隔离 / sync 脚本冗余)、3 个健康项。Obsidian 健康分 58/100 · 本轮目标修到 ≥ 90。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-1",
+      "title": "数据流向图固化 · 架构铁律写入看板",
+      "detail": "在第捌章顶部加了数据流向图:OBS→KB→AI→USER · 三条铁律(改知识从 OBS 起/KB 只是投影/反向同步只灾难恢复)。锁死「Obsidian 是核心大脑」原则 · 后续所有设计都要遵守。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-1",
+      "title": "1.0 真相发现 · launchd 被 TCC 权限拦截",
+      "detail": "不是 plist 没 load(其实早就 load 了) · 真正病灶是 macOS 隐私保护把 /bin/bash 拦在 Documents/ 外 · stderr 满屏 Operation not permitted · 修复需要用户亲自 GUI 授权 · 状态从 ready 改为 blocked · 1.0 暂挂 · 开始做 1.1 不需要权限的工作"
     }
   ]
 }

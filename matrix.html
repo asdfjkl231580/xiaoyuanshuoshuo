@@ -206,6 +206,8 @@
   .au-subtask[data-status="done"]    .au-subtask-name::before { content: '✓ '; color: #34D399; }
   .au-subtask[data-status="active"]  .au-subtask-name::before { content: '▸ '; color: #F5E6A8; }
   .au-subtask[data-status="ready"]   .au-subtask-name::before { content: '▸ '; color: #93C5FD; }
+  .au-subtask[data-status="blocked"] .au-subtask-name::before { content: '⧗ '; color: #FB7185; }
+  .au-subtask[data-status="blocked"] .au-subtask-name { color: #FCA5A5; }
   .au-subtask[data-status="pending"] .au-subtask-name::before { content: '○ '; color: #475569; }
 
   .au-health {
@@ -251,6 +253,84 @@
   html[data-theme="light"] .au-finding[data-level="warn"]     { background: #FEF3C7; color: #92400E; border-color: #FCD34D; }
   html[data-theme="light"] .au-finding[data-level="ok"]       { background: #D1FAE5; color: #065F46; border-color: #86EFAC; }
   html[data-theme="light"] .au-finding-fix { color: #64748B; }
+
+  /* 数据流向图(架构铁律) */
+  .au-flow {
+    background: linear-gradient(135deg, rgba(139,92,246,0.06), rgba(236,72,153,0.04));
+    border: 1px solid rgba(139,92,246,0.22);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin-bottom: 24px;
+  }
+  .au-flow-label {
+    font-size: 11px; letter-spacing: 0.22em; font-weight: 600;
+    color: #C4B5FD; margin-bottom: 16px;
+  }
+  .au-flow-row {
+    display: flex; align-items: stretch; justify-content: space-between;
+    gap: 8px; flex-wrap: wrap; margin-bottom: 18px;
+  }
+  .au-flow-node {
+    flex: 1; min-width: 130px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 14px;
+    border: 1.5px solid rgba(255,255,255,0.08);
+    display: flex; flex-direction: column; gap: 4px;
+    position: relative;
+  }
+  .au-flow-node[data-kind="source"]   { border-color: rgba(167,139,250,0.5); background: rgba(139,92,246,0.12); }
+  .au-flow-node[data-kind="derived"]  { border-color: rgba(96,165,250,0.4);  background: rgba(59,130,246,0.1); }
+  .au-flow-node[data-kind="consumer"] { border-color: rgba(244,114,182,0.4); background: rgba(236,72,153,0.1); }
+  .au-flow-node[data-kind="user"]     { border-color: rgba(251,191,36,0.4);  background: rgba(245,158,11,0.1); }
+  .au-flow-code {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 2px 8px; border-radius: 6px;
+    background: rgba(0,0,0,0.2);
+    color: #F5E6A8;
+    align-self: flex-start;
+  }
+  .au-flow-name { font-family: 'Noto Serif SC', serif; font-size: 16px; font-weight: 700; color: #E2E8F0; margin-top: 2px; }
+  .au-flow-role { font-size: 11px; color: #94A3B8; line-height: 1.55; }
+  .au-flow-arrow {
+    align-self: center;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 18px;
+    color: #C4B5FD;
+    padding: 0 4px;
+  }
+  @media (max-width: 720px) {
+    .au-flow-row { flex-direction: column; }
+    .au-flow-arrow { transform: rotate(90deg); padding: 4px 0; }
+  }
+  .au-flow-rules {
+    display: flex; flex-direction: column; gap: 6px;
+    margin-top: 4px;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(139,92,246,0.22);
+  }
+  .au-flow-rule {
+    font-size: 12.5px; color: #CBD5E1;
+    padding-left: 20px; position: relative;
+    line-height: 1.6;
+  }
+  .au-flow-rule::before {
+    content: attr(data-idx);
+    position: absolute; left: 0; top: 0;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px; font-weight: 700;
+    color: #C4B5FD;
+  }
+
+  html[data-theme="light"] .au-flow { background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(236,72,153,0.06)); border-color: rgba(109,40,217,0.3); }
+  html[data-theme="light"] .au-flow-label { color: #6D28D9; }
+  html[data-theme="light"] .au-flow-node { background: white; }
+  html[data-theme="light"] .au-flow-name { color: #1E293B; }
+  html[data-theme="light"] .au-flow-role { color: #475569; }
+  html[data-theme="light"] .au-flow-code { background: rgba(15,23,42,0.08); color: #78350F; }
+  html[data-theme="light"] .au-flow-rule { color: #334155; }
   .divider { background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent); height: 1px; }
   .status-dot { width: 8px; height: 8px; border-radius: 999px; display: inline-block; }
   .pulse-ring { box-shadow: 0 0 0 0 rgba(212,175,55,0.6); animation: pulse 2.4s infinite; }
@@ -1700,6 +1780,7 @@
   </div>
 
   <div id="au-vision-container"></div>
+  <div id="au-flow-container"></div>
   <div id="au-overall-container"></div>
   <div id="au-health-container"></div>
   <div id="au-phases-container" class="au-phases"></div>
@@ -3302,6 +3383,32 @@ function renderArchiveUpgrade(data) {
         </div>
         <div class="au-overall-bar"><div class="au-overall-fill" style="width:${pct}%"></div></div>
         <div class="au-overall-pct">${pct}<span style="font-size:14px;color:#94A3B8;margin-left:2px;">%</span></div>
+      </div>
+    `;
+  }
+
+  // 数据流向图 (仅当 JSON 里有 dataFlow)
+  const flowEl = document.getElementById('au-flow-container');
+  if (flowEl && data.dataFlow) {
+    const df = data.dataFlow;
+    const nodes = df.nodes || [];
+    const nodesHtml = nodes.map((n, i) => {
+      const arrow = i < nodes.length - 1 ? '<div class="au-flow-arrow">→</div>' : '';
+      return `
+        <div class="au-flow-node" data-kind="${escapeHtml(n.kind)}">
+          <span class="au-flow-code">${escapeHtml(n.code)}</span>
+          <div class="au-flow-name">${escapeHtml(n.name)}</div>
+          <div class="au-flow-role">${escapeHtml(n.role)}</div>
+        </div>${arrow}
+      `;
+    }).join('');
+    flowEl.innerHTML = `
+      <div class="au-flow">
+        <div class="au-flow-label">${escapeHtml(df.title || '架构铁律')}</div>
+        <div class="au-flow-row">${nodesHtml}</div>
+        <div class="au-flow-rules">
+          ${(df.rules || []).map((r, i) => `<div class="au-flow-rule" data-idx="${String(i+1).padStart(2,'0')}">${escapeHtml(r)}</div>`).join('')}
+        </div>
       </div>
     `;
   }
