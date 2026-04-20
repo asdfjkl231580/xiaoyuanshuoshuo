@@ -1517,8 +1517,8 @@ var _payOrderId = null
 var _payPollTimer = null
 
 ;(function initGate() {
-  // 付款暂未接通，直接开放上传区域
-  showUploadArea()
+  // 启用付款门控：用户先支付 ¥19.9 才能进入上传
+  showGate()
 })()
 
 function showGate() {
