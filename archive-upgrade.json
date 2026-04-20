@@ -19,7 +19,7 @@
   },
   "startedAt": "2026-04-20",
   "updatedAt": "2026-04-20",
-  "overallProgress": 33,
+  "overallProgress": 35,
   "currentPhase": "phase-1",
   "totalDuration": "约 12-16 周",
   "phases": [
@@ -47,8 +47,8 @@
       "deliverable": "同步管道每小时自动跑 · 收件箱有新鲜输入 · 精华语料全部进 KB · 无废弃脚本 · 健康度 ≥ 90%",
       "duration": "3-4 周",
       "status": "active",
-      "progress": 55,
-      "progressLabel": "1.0+1.1+1.2 完成 · 下一步 01_原文主库 高价值精选",
+      "progress": 62,
+      "progressLabel": "1.3 分析完成 · 等你拍板 4 选 1",
       "userImpact": "零",
       "subtasks": [
         {
@@ -71,9 +71,9 @@
         },
         {
           "id": "1.3",
-          "name": "激活原文主库高价值文件",
-          "status": "pending",
-          "detail": "01_原文主库 3955 文件不参与同步 · 最大宝库被隔离 · 建立「精选层」选择性同步 · 不全进"
+          "name": "激活原文主库高价值文件 · 等决策",
+          "status": "active",
+          "detail": "3955 文件扫描完成 · 三层精选已成形:TIER 1 黄金层 voice_weight=core 共 719 个/616w 字(内容品牌 389+事业变现 137+销售 70+咨询 63+爱情 33+其他) · TIER 2 白银层高密度 supporting(咨询记录 217+答疑 48+说明会 20+金句素材 14+问答归总 12+心得总结 8)共 319 个/513w 字 · TIER 3 青铜层其他 supporting 2161 个。等你 4 选 1:A 保守(只上 T1 · 719 个) · B 推荐(T1+T2 · 1038 个) · C 激进(全上 · 3199 个) · D 否决(保持 01_原文主库 仅本地阅读的原设计)"
         },
         {
           "id": "1.4",
@@ -248,6 +248,12 @@
       "phase": "phase-1",
       "title": "1.2 完成 · 精华语料打通定时同步",
       "detail": "盘点发现 65 个人格语料文件其实 4.16 已全量进 KB(state 文件证实)。真问题是持续性:① sync-kb.sh 已含 persona 步骤但编号不一致(前 4 步 /4 后 2 步 /5)已统一为 /5;② sync-kb-quiet.sh(launchd 定时版)没有 persona 触发 · 加 PERSONA_CHANGED 检查(state 文件 mtime 对比) · 现在改任何人格文件 · 下一小时自动同步 · bash -n 验证通过。Phase 1 progress 40 → 55 · 总体 28 → 33。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-1",
+      "title": "1.3 分析完成 · 三层精选规则成形",
+      "detail": "扫描 3955 文件 · 100% 有 frontmatter · 关键字段 voice_weight(core/supporting/reference) + content_kind + life_area。TIER 1 黄金层(core=719 个 · 616w 字) + TIER 2 白银层(高密度 supporting=319 个 · 513w 字) + TIER 3(其他=2161)。需用户决策是否改变「01_原文主库 仅本地阅读」的原设计。推荐 B:TIER 1+2 激活 1038 个最核心资产 · 1130w 字进 KB。Phase 1 progress 55 → 62 · 等决策后实施。"
     }
   ]
 }
