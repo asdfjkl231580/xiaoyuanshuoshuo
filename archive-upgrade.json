@@ -1,13 +1,13 @@
 {
   "vision": "让 AI 变成林根源原话的精准调取员 · 而不是 AI 在扮演林根源",
   "philosophy": "用户看到的每一句实质内容都来自真实原话 · AI 只做意图理解 / 检索 / 极简衔接 · 不生成观点 / 不改写语气 / 不编造举例",
-  "approach": "影子模式升级 · 与生产 /api/chat 完全并行 · 验证通过后一键切换 · 切换后一键回滚",
+  "approach": "影子模式升级 · 与生产 /api/chat 完全并行 · 本地大脑先健康 · 再推线上 · 一键切换 · 一键回滚",
   "moat": "AI 越升级 → 模仿越容易 → 真实性越稀缺 → 档案价值越高 · 反脆弱战略",
   "startedAt": "2026-04-20",
   "updatedAt": "2026-04-20",
-  "overallProgress": 13,
-  "currentPhase": "phase-0",
-  "totalDuration": "约 10-12 周",
+  "overallProgress": 16,
+  "currentPhase": "phase-1",
+  "totalDuration": "约 12-16 周",
   "phases": [
     {
       "id": "phase-0",
@@ -15,32 +15,83 @@
       "numEn": "0",
       "name": "搭影子管道",
       "goal": "新路由 /api/chat-archive + 新库表 archive_snippets · 与生产完全隔离",
-      "deliverable": "curl 可调用 /api/chat-archive 返回 stub 响应",
+      "deliverable": "archive-engine 分支 · 6 文件 · 373 行 · 零 TypeScript 错误 · 不触碰 DB / 不改 lib/rag/ / 不改 lib/persona.ts",
       "duration": "1 周",
-      "status": "active",
-      "progress": 80,
-      "progressLabel": "骨架完成 · 待 Vercel preview 部署验证",
+      "status": "done",
+      "progress": 100,
+      "progressLabel": "骨架完成 · 已推远端分支",
       "userImpact": "零",
       "branch": "archive-engine",
-      "notes": "6 个文件已推远端分支 · 不合并 main · 生产一行未改"
+      "notes": "Vercel preview smoke test 并入 Phase 2 一起做"
     },
     {
       "id": "phase-1",
       "num": "壹",
       "numEn": "1",
-      "name": "原话池 MVP",
-      "goal": "从 02_人格语料 + 01_原文主库逐字稿抽取 1000 条原话片段 · 每条 8 字段元数据可溯源",
-      "deliverable": "archive_snippets 表 1000 条 · 随机 10 条抽查全部可溯源",
-      "duration": "2-3 周",
-      "status": "pending",
-      "progress": 0,
-      "progressLabel": "待启动",
-      "userImpact": "零"
+      "name": "本地大脑健康化",
+      "goal": "先治本地 Obsidian · 再推线上 · 垃圾进则垃圾出 · 健康源头才有健康档案",
+      "deliverable": "同步管道每小时自动跑 · 收件箱有新鲜输入 · 精华语料全部进 KB · 无废弃脚本 · 健康度 ≥ 90%",
+      "duration": "3-4 周",
+      "status": "active",
+      "progress": 10,
+      "progressLabel": "体检完成 · 开始修复",
+      "userImpact": "零",
+      "subtasks": [
+        {
+          "id": "1.0",
+          "name": "起死回生 · 激活 launchd",
+          "status": "ready",
+          "detail": "plist 文件存在但从未 load · launchctl list 查无 com.kenyuanlin.sync-kb · 每小时自动同步实际未在跑 · 一行命令修复"
+        },
+        {
+          "id": "1.1",
+          "name": "梳理 sync 脚本地图",
+          "status": "pending",
+          "detail": "scripts/ 有 11 个 sync-* / export / upload 脚本 · 需要画一张管道图 · 标记主力 / 实验 / 废弃 · 归档或删除冗余"
+        },
+        {
+          "id": "1.2",
+          "name": "激活精华语料接入 KB",
+          "status": "pending",
+          "detail": "02_人格语料 tier 结构完整但不在 upload 管道里 · 60 份高质量文件未进生产 KB · 最精华的内容反而不被调用"
+        },
+        {
+          "id": "1.3",
+          "name": "激活原文主库高价值文件",
+          "status": "pending",
+          "detail": "01_原文主库 3955 文件不参与同步 · 最大宝库被隔离 · 建立「精选层」选择性同步 · 不全进"
+        },
+        {
+          "id": "1.4",
+          "name": "建立日常输入节律",
+          "status": "pending",
+          "detail": "收件箱 31 天无新输入 · 工作台 15 天无新 upload:true · 主动输入停滞 · 做快捷命令 ken-think · 最低节拍每天 3 条"
+        },
+        {
+          "id": "1.5",
+          "name": "健康度验收",
+          "status": "pending",
+          "detail": "同步日志正常 · 收件箱活跃 · 精华语料全在 KB · 无废弃脚本 · 健康度评估 ≥ 90%"
+        }
+      ]
     },
     {
       "id": "phase-2",
       "num": "贰",
       "numEn": "2",
+      "name": "原话池 MVP",
+      "goal": "从健康化后的 Obsidian 精选 30-50 条精品起步(POC) · 验证味道对才铺量到 500-1000 条 · 每条 8 字段元数据可溯源",
+      "deliverable": "POC 50 条精品 → 铺量 1000 条 · 随机抽查全部可溯源 · 同时成为 Phase 3 benchmark",
+      "duration": "2-3 周",
+      "status": "pending",
+      "progress": 0,
+      "progressLabel": "待启动(需 Phase 1 健康化完成)",
+      "userImpact": "零"
+    },
+    {
+      "id": "phase-3",
+      "num": "叁",
+      "numEn": "3",
       "name": "抽取式检索器",
       "goal": "意图理解 + 多维度匹配 + 质量排序 · 只返回片段和出处 · 不生成内容",
       "deliverable": "30 道 benchmark 题对比测试 · 味道评分 ≥ 4/5",
@@ -51,9 +102,9 @@
       "userImpact": "零"
     },
     {
-      "id": "phase-3",
-      "num": "叁",
-      "numEn": "3",
+      "id": "phase-4",
+      "num": "肆",
+      "numEn": "4",
       "name": "极简衔接器",
       "goal": "AI 只用模板衔接词拼接片段 · 禁止生成观点 · 出现非模板语即拒绝",
       "deliverable": "100 道题跑测 · 0 个 AI 自编案例",
@@ -64,9 +115,9 @@
       "userImpact": "零"
     },
     {
-      "id": "phase-4",
-      "num": "肆",
-      "numEn": "4",
+      "id": "phase-5",
+      "num": "伍",
+      "numEn": "5",
       "name": "灰度内测",
       "goal": "对你 + 3-5 个内测账号开放 ?engine=archive · 线上正常用户继续走旧引擎",
       "deliverable": "内测满意度 > 旧引擎 · 补齐检索盲点",
@@ -77,9 +128,9 @@
       "userImpact": "仅内测账号感知"
     },
     {
-      "id": "phase-5",
-      "num": "伍",
-      "numEn": "5",
+      "id": "phase-6",
+      "num": "陆",
+      "numEn": "6",
       "name": "正式切换",
       "goal": "10% → 50% → 100% 灰度切流量 · 实时监控 · 异常一键回滚",
       "deliverable": "100% 切换 · 连续 7 天无异常",
@@ -90,6 +141,21 @@
       "userImpact": "切换完成后全体用户"
     }
   ],
+  "healthCheck": {
+    "date": "2026-04-20",
+    "obsidianScore": 58,
+    "findings": [
+      { "level": "critical", "title": "launchd 任务从未被 load",    "fix": "launchctl load ~/Library/LaunchAgents/com.kenyuanlin.sync-kb.plist" },
+      { "level": "critical", "title": "收件箱 31 天无新输入",       "fix": "建立日常节拍 · 做 ken-think 快捷命令" },
+      { "level": "critical", "title": "工作台 15 天无 upload 项",   "fix": "审计内容创作管道是否卡在哪" },
+      { "level": "warn",     "title": "02_人格语料 不在同步管道",  "fix": "给精华 tier 文件加 upload:true 或建专用管道" },
+      { "level": "warn",     "title": "01_原文主库 3955 文件隔离", "fix": "建立精选层 · 只同步高价值" },
+      { "level": "warn",     "title": "scripts/ 11 个 sync 脚本",   "fix": "画管道图 · 标废弃 · 归档" },
+      { "level": "ok",       "title": "sync-kb.sh 主脚本设计正确", "fix": "—" },
+      { "level": "ok",       "title": "人格语料 tier 结构清晰",    "fix": "—" },
+      { "level": "ok",       "title": "影子引擎 Phase 0 已完成",   "fix": "—" }
+    ]
+  },
   "changelog": [
     {
       "date": "2026-04-20",
@@ -113,7 +179,19 @@
       "date": "2026-04-20",
       "phase": "phase-0",
       "title": "Phase 0 · 影子骨架完成",
-      "detail": "新增 6 文件 · 373 行 · 零 TypeScript 错误:/api/chat-archive 影子路由 + lib/archive/ 类型定义 + 检索器骨架 + 衔接器骨架+ 模板词库 + archive_snippets schema SQL(未执行)。lib/rag/ / lib/persona.ts / /api/chat 一行未改。分支已推远端 · 等 Vercel preview 部署验证即 100% 完成。"
+      "detail": "新增 6 文件 · 373 行 · 零 TypeScript 错误:/api/chat-archive 影子路由 + lib/archive/ 类型定义 + 检索器骨架 + 衔接器骨架+ 模板词库 + archive_snippets schema SQL(未执行)。lib/rag/ / lib/persona.ts / /api/chat 一行未改。分支已推远端。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "plan",
+      "title": "路径修正 · 插入 Phase 1 本地大脑健康化",
+      "detail": "用户关键修正:本地 Obsidian 必须先调试好 · 再推线上才是对的逻辑。承认原顺序错了 · 原 Phase 1-5 → Phase 2-6 · 总阶段 6 → 7 · 总工期 10-12 周 → 12-16 周。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-1",
+      "title": "Phase 1 · Obsidian 体检完成",
+      "detail": "发现 3 个严重病灶(launchd 未 load · 收件箱 31 天无输入 · 工作台 15 天无 upload)、3 个中等优化点(精华语料不在管道 / 原文主库隔离 / sync 脚本冗余)、3 个健康项。Obsidian 健康分 58/100 · 本轮目标修到 ≥ 90。"
     }
   ]
 }

@@ -180,6 +180,77 @@
   html[data-theme="light"] .au-changelog { background: white; border-color: rgba(15,23,42,0.08); }
   html[data-theme="light"] .au-log-title { color: #1E293B; }
   html[data-theme="light"] .au-log-detail { color: #475569; }
+
+  /* Phase 子任务 + 体检报告 */
+  .au-subtasks {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(255,255,255,0.06);
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .au-subtask {
+    display: flex; gap: 8px;
+    font-size: 12px; line-height: 1.5;
+    color: #94A3B8;
+  }
+  .au-subtask-id {
+    min-width: 28px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px;
+    color: #64748B;
+    padding-top: 2px;
+  }
+  .au-subtask-body { flex: 1; }
+  .au-subtask-name { color: #CBD5E1; font-weight: 600; font-size: 12.5px; }
+  .au-subtask-detail { font-size: 11px; color: #64748B; margin-top: 2px; line-height: 1.55; }
+  .au-subtask[data-status="done"]    .au-subtask-name::before { content: '✓ '; color: #34D399; }
+  .au-subtask[data-status="active"]  .au-subtask-name::before { content: '▸ '; color: #F5E6A8; }
+  .au-subtask[data-status="ready"]   .au-subtask-name::before { content: '▸ '; color: #93C5FD; }
+  .au-subtask[data-status="pending"] .au-subtask-name::before { content: '○ '; color: #475569; }
+
+  .au-health {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+  }
+  .au-health-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 14px; flex-wrap: wrap; gap: 8px;
+  }
+  .au-health-title { font-family: 'Noto Serif SC', serif; font-size: 14px; font-weight: 600; color: #D4AF37; letter-spacing: 0.1em; }
+  .au-health-score {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 30px; font-weight: 700;
+  }
+  .au-health-score .unit { font-size: 14px; color: #64748B; margin-left: 2px; }
+  .au-health-findings {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 10px;
+  }
+  .au-finding {
+    display: flex; gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 12.5px; line-height: 1.5;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .au-finding[data-level="critical"] { background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.25); color: #FCA5A5; }
+  .au-finding[data-level="warn"]     { background: rgba(251,191,36,0.06); border-color: rgba(251,191,36,0.22); color: #FCD34D; }
+  .au-finding[data-level="ok"]       { background: rgba(52,211,153,0.06); border-color: rgba(52,211,153,0.22); color: #86EFAC; }
+  .au-finding-icon { flex-shrink: 0; font-size: 14px; }
+  .au-finding-body { flex: 1; }
+  .au-finding-title { font-weight: 600; color: inherit; }
+  .au-finding-fix { font-size: 11px; color: #94A3B8; margin-top: 3px; font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+  html[data-theme="light"] .au-subtask-name { color: #1E293B; }
+  html[data-theme="light"] .au-subtask-detail { color: #64748B; }
+  html[data-theme="light"] .au-health { background: white; border-color: rgba(15,23,42,0.08); }
+  html[data-theme="light"] .au-finding[data-level="critical"] { background: #FEE2E2; color: #991B1B; border-color: #FCA5A5; }
+  html[data-theme="light"] .au-finding[data-level="warn"]     { background: #FEF3C7; color: #92400E; border-color: #FCD34D; }
+  html[data-theme="light"] .au-finding[data-level="ok"]       { background: #D1FAE5; color: #065F46; border-color: #86EFAC; }
+  html[data-theme="light"] .au-finding-fix { color: #64748B; }
   .divider { background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent); height: 1px; }
   .status-dot { width: 8px; height: 8px; border-radius: 999px; display: inline-block; }
   .pulse-ring { box-shadow: 0 0 0 0 rgba(212,175,55,0.6); animation: pulse 2.4s infinite; }
@@ -1630,6 +1701,7 @@
 
   <div id="au-vision-container"></div>
   <div id="au-overall-container"></div>
+  <div id="au-health-container"></div>
   <div id="au-phases-container" class="au-phases"></div>
   <div id="au-changelog-container"></div>
 </section>
@@ -3234,12 +3306,52 @@ function renderArchiveUpgrade(data) {
     `;
   }
 
+  // 健康报告 (仅当 JSON 里有 healthCheck)
+  const healthEl = document.getElementById('au-health-container');
+  if (healthEl && data.healthCheck) {
+    const hc = data.healthCheck;
+    const score = Number(hc.obsidianScore) || 0;
+    const scoreColor = score >= 85 ? '#34D399' : score >= 60 ? '#FCD34D' : '#FB7185';
+    const iconMap = { critical: '⚠', warn: '●', ok: '✓' };
+    healthEl.innerHTML = `
+      <div class="au-health">
+        <div class="au-health-head">
+          <div>
+            <div class="au-health-title">O B S I D I A N   本 地 大 脑   体 检 报 告 · ${escapeHtml(hc.date)}</div>
+            <div style="font-size:12px;color:#94A3B8;margin-top:4px;">发现 ${hc.findings.filter(f=>f.level==='critical').length} 个严重病灶 · ${hc.findings.filter(f=>f.level==='warn').length} 个优化点 · ${hc.findings.filter(f=>f.level==='ok').length} 个健康项</div>
+          </div>
+          <div class="au-health-score" style="color:${scoreColor};">${score}<span class="unit">/ 100</span></div>
+        </div>
+        <div class="au-health-findings">
+          ${(hc.findings || []).map(f => `
+            <div class="au-finding" data-level="${escapeHtml(f.level)}">
+              <span class="au-finding-icon">${iconMap[f.level] || '○'}</span>
+              <div class="au-finding-body">
+                <div class="au-finding-title">${escapeHtml(f.title)}</div>
+                ${f.fix && f.fix !== '—' ? `<div class="au-finding-fix">fix: ${escapeHtml(f.fix)}</div>` : ''}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
   // Phase 卡片
   const phasesEl = document.getElementById('au-phases-container');
   if (phasesEl) {
     phasesEl.innerHTML = data.phases.map(p => {
       const st = AU_STATUS_LABEL[p.status] || AU_STATUS_LABEL.pending;
-      const showBar = p.status === 'active' && p.progress > 0;
+      const showBar = (p.status === 'active' || p.status === 'done') && p.progress > 0;
+      const subs = (p.subtasks || []).map(s => `
+        <div class="au-subtask" data-status="${escapeHtml(s.status)}">
+          <div class="au-subtask-id">${escapeHtml(s.id)}</div>
+          <div class="au-subtask-body">
+            <div class="au-subtask-name">${escapeHtml(s.name)}</div>
+            ${s.detail ? `<div class="au-subtask-detail">${escapeHtml(s.detail)}</div>` : ''}
+          </div>
+        </div>
+      `).join('');
       return `
         <div class="au-phase" data-status="${escapeHtml(p.status)}">
           <div class="au-phase-head">
@@ -3252,11 +3364,12 @@ function renderArchiveUpgrade(data) {
           <div class="au-phase-meta">
             <span>⏱ ${escapeHtml(p.duration)}</span>
             <span class="dot"></span>
-            <span>👥 影响: ${escapeHtml(p.userImpact)}</span>
+            <span>影响: ${escapeHtml(p.userImpact)}</span>
             <span class="dot"></span>
-            <span>${st.label}</span>
+            <span>${escapeHtml(p.progressLabel || st.label)}</span>
           </div>
           ${showBar ? `<div class="au-phase-bar"><div class="au-phase-bar-fill" style="width:${p.progress}%"></div></div>` : ''}
+          ${subs ? `<div class="au-subtasks">${subs}</div>` : ''}
         </div>
       `;
     }).join('');
