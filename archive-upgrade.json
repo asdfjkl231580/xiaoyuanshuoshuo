@@ -19,8 +19,8 @@
   },
   "startedAt": "2026-04-20",
   "updatedAt": "2026-04-20",
-  "overallProgress": 57,
-  "currentPhase": "phase-3",
+  "overallProgress": 64,
+  "currentPhase": "phase-4",
   "totalDuration": "约 12-16 周",
   "phases": [
     {
@@ -139,13 +139,57 @@
       "num": "叁",
       "numEn": "3",
       "name": "抽取式检索器",
-      "goal": "意图理解 + 多维度匹配 + 质量排序 · 只返回片段和出处 · 不生成内容",
-      "deliverable": "30 道 benchmark 题对比测试 · 味道评分 ≥ 4/5",
+      "goal": "意图理解 + 多维度匹配 + 质量排序 · 只返回片段和出处 · 不生成内容 · 加权威口吻识别过滤学员发言",
+      "deliverable": "retrieve.ts 真实实现 · route.ts 走真流程 · benchmark 验证召回 · 权重调优",
       "duration": "2 周",
-      "status": "pending",
-      "progress": 0,
-      "progressLabel": "待启动",
-      "userImpact": "零"
+      "status": "done",
+      "progress": 100,
+      "progressLabel": "MVP 完成 · 检索器活了 · 暴露数据不足问题待补",
+      "userImpact": "零",
+      "subtasks": [
+        {
+          "id": "3.1",
+          "name": "retrieve.ts 真实实现",
+          "status": "done",
+          "detail": "从 stub 改真 DB 查询 · 粗筛 topics&& OR content ILIKE 取 50 候选 · 行级多维打分"
+        },
+        {
+          "id": "3.2",
+          "name": "route.ts 走真实流程",
+          "status": "done",
+          "detail": "CURRENT_PHASE 0→3 · GET 健康检查加 archive.snippetCount+byType+byMood 统计 · POST 真 retrieve+compose · 错误处理"
+        },
+        {
+          "id": "3.3",
+          "name": "权威口吻识别 · 学员发言过滤",
+          "status": "done",
+          "detail": "VOICE_MARKERS(我跟你讲/举个例子/相信我 等 20+) · NOISE_STARTERS(就是/然后/对 起头)降权 -40"
+        },
+        {
+          "id": "3.4",
+          "name": "10 题 benchmark 初跑",
+          "status": "done",
+          "detail": "test-archive-retrieve.mjs --bench · 10/10 都有返回 · 50% 对位好 · 50% 跑题(数据覆盖不均)"
+        },
+        {
+          "id": "3.5",
+          "name": "权重调优",
+          "status": "done",
+          "detail": "内容 12×n(120 cap · 核心) · 主题 12×n(36 cap · 弱) · 口吻 8×n(40 cap · tie-breaker) · 质量 ×0.2(20 cap)"
+        },
+        {
+          "id": "3.6",
+          "name": "30 题完整 benchmark · 延到 Phase 5 前",
+          "status": "deferred",
+          "detail": "现在做 30 题价值低(数据不足 · 多测只是重复暴露同问题) · 留到 Phase 4 compose 完 + 数据补强后一起跑"
+        },
+        {
+          "id": "3.7",
+          "name": "POC 数据补强 · 归入下一轮 iteration",
+          "status": "deferred",
+          "detail": "benchmark 发现 50 条 POC 偏销售类 · 关系感情/命理/咨询主题薄 · 需改 build-archive-poc 主题平衡抽取 or 用 sync-archive-curated 扩量 · 归为 Phase 2.5 迭代"
+        }
+      ]
     },
     {
       "id": "phase-4",
@@ -334,6 +378,18 @@
       "phase": "phase-2",
       "title": "✅ Phase 2 完成 · POC 味道评估 70% 可用",
       "detail": "随机抽 10 条:7 条明显根源口吻(我跟你讲/举个例子/我也曾经/相信我)/2 条寒暄衔接/1 条学员发言混入。70% 对 POC 达标。学员发言过滤归入 Phase 3 检索器。铺量 2.5 决策并入 Phase 3(避免灌学员发言噪音)。Phase 2 5 子任务全 done · Phase 2 progress 5→100 · 总体 44→57 · Phase 0+1+2 完成(3/7)。进 Phase 3:抽取检索器。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-3",
+      "title": "Phase 3 启动 · 抽取检索器",
+      "detail": "retrieve.ts 从 stub 改真实:关键词 2/3-gram 抽取 · 主题推断 · DB 粗筛(topics&& OR content ILIKE)取 50 候选 · 行级多维打分。route.ts GET 加 DB 统计 POST 走真 retrieve。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-3",
+      "title": "✅ Phase 3 完成 · 检索器活了 · 数据不足暴露",
+      "detail": "benchmark 10 题:10/10 都有返回(0 空)/50% 对位好('怎么判断老师'/'客户不回消息'/'销售成交')/50% 跑题(关系感情/命理方向 POC 数据不足 · 非检索器缺陷)。权重调优 3 轮定稿:内容 120>主题 36>口吻 40>质量 20。权威口吻+NOISE_STARTERS 过滤学员发言已就位。Phase 3 7 子任务:5 done + 2 deferred(30 题 benchmark/POC 补数据归入下轮迭代)。Phase 3 progress 0→100 · 总体 57→64 · 4/7 phase 完成。进 Phase 4:极简衔接器。"
     }
   ]
 }

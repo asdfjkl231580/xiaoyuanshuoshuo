@@ -203,12 +203,14 @@
   .au-subtask-body { flex: 1; }
   .au-subtask-name { color: #CBD5E1; font-weight: 600; font-size: 12.5px; }
   .au-subtask-detail { font-size: 11px; color: #64748B; margin-top: 2px; line-height: 1.55; }
-  .au-subtask[data-status="done"]    .au-subtask-name::before { content: '✓ '; color: #34D399; }
-  .au-subtask[data-status="active"]  .au-subtask-name::before { content: '▸ '; color: #F5E6A8; }
-  .au-subtask[data-status="ready"]   .au-subtask-name::before { content: '▸ '; color: #93C5FD; }
-  .au-subtask[data-status="blocked"] .au-subtask-name::before { content: '⧗ '; color: #FB7185; }
-  .au-subtask[data-status="blocked"] .au-subtask-name { color: #FCA5A5; }
-  .au-subtask[data-status="pending"] .au-subtask-name::before { content: '○ '; color: #475569; }
+  .au-subtask[data-status="done"]     .au-subtask-name::before { content: '✓ '; color: #34D399; }
+  .au-subtask[data-status="active"]   .au-subtask-name::before { content: '▸ '; color: #F5E6A8; }
+  .au-subtask[data-status="ready"]    .au-subtask-name::before { content: '▸ '; color: #93C5FD; }
+  .au-subtask[data-status="blocked"]  .au-subtask-name::before { content: '⧗ '; color: #FB7185; }
+  .au-subtask[data-status="blocked"]  .au-subtask-name { color: #FCA5A5; }
+  .au-subtask[data-status="deferred"] .au-subtask-name::before { content: '» '; color: #94A3B8; }
+  .au-subtask[data-status="deferred"] .au-subtask-name { color: #94A3B8; font-style: italic; }
+  .au-subtask[data-status="pending"]  .au-subtask-name::before { content: '○ '; color: #475569; }
 
   .au-health {
     background: rgba(255,255,255,0.02);
