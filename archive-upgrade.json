@@ -5,7 +5,7 @@
   "moat": "AI 越升级 → 模仿越容易 → 真实性越稀缺 → 档案价值越高 · 反脆弱战略",
   "startedAt": "2026-04-20",
   "updatedAt": "2026-04-20",
-  "overallProgress": 2,
+  "overallProgress": 13,
   "currentPhase": "phase-0",
   "totalDuration": "约 10-12 周",
   "phases": [
@@ -17,10 +17,12 @@
       "goal": "新路由 /api/chat-archive + 新库表 archive_snippets · 与生产完全隔离",
       "deliverable": "curl 可调用 /api/chat-archive 返回 stub 响应",
       "duration": "1 周",
-      "status": "planning",
-      "progress": 0,
-      "progressLabel": "规划中",
-      "userImpact": "零"
+      "status": "active",
+      "progress": 80,
+      "progressLabel": "骨架完成 · 待 Vercel preview 部署验证",
+      "userImpact": "零",
+      "branch": "archive-engine",
+      "notes": "6 个文件已推远端分支 · 不合并 main · 生产一行未改"
     },
     {
       "id": "phase-1",
@@ -100,6 +102,18 @@
       "phase": "plan",
       "title": "可视化进度板上线",
       "detail": "在 matrix.html 第捌章增加档案升级看板 · 数据驱动 · 每次推进改 archive-upgrade.json 即自动更新网页。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-0",
+      "title": "Phase 0 启动 · archive-engine 分支开出",
+      "detail": "在 GitHub/-/ 仓库从 main 拉出 archive-engine 独立分支 · 保护现有 page-maker WIP 改动 · 工作区隔离。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-0",
+      "title": "Phase 0 · 影子骨架完成",
+      "detail": "新增 6 文件 · 373 行 · 零 TypeScript 错误:/api/chat-archive 影子路由 + lib/archive/ 类型定义 + 检索器骨架 + 衔接器骨架+ 模板词库 + archive_snippets schema SQL(未执行)。lib/rag/ / lib/persona.ts / /api/chat 一行未改。分支已推远端 · 等 Vercel preview 部署验证即 100% 完成。"
     }
   ]
 }
