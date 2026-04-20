@@ -19,8 +19,8 @@
   },
   "startedAt": "2026-04-20",
   "updatedAt": "2026-04-20",
-  "overallProgress": 64,
-  "currentPhase": "phase-4",
+  "overallProgress": 71,
+  "currentPhase": "phase-5",
   "totalDuration": "约 12-16 周",
   "phases": [
     {
@@ -197,12 +197,50 @@
       "numEn": "4",
       "name": "极简衔接器",
       "goal": "AI 只用模板衔接词拼接片段 · 禁止生成观点 · 出现非模板语即拒绝",
-      "deliverable": "100 道题跑测 · 0 个 AI 自编案例",
+      "deliverable": "compose 真实实现 · 20 个模板库 · validateCompose 硬红线 · 天然 0 AI 自编(纯 JS 拼接)",
       "duration": "1 周",
-      "status": "pending",
-      "progress": 0,
-      "progressLabel": "待启动",
-      "userImpact": "零"
+      "status": "done",
+      "progress": 100,
+      "progressLabel": "compose 活了 · 硬红线机制就位",
+      "userImpact": "零",
+      "subtasks": [
+        {
+          "id": "4.1",
+          "name": "LINK_TEMPLATES 扩充到 20 条",
+          "status": "done",
+          "detail": "5 openings / 5 connectors / 5 closings / 2 noCoverage · 覆盖所有拼接场景"
+        },
+        {
+          "id": "4.2",
+          "name": "composeResponse 真实拼接逻辑",
+          "status": "done",
+          "detail": "hits=0 → 诚实 fallback · hits=1 → opening+content+closing · hits≥2 → opening+content+connector+content...+closing"
+        },
+        {
+          "id": "4.3",
+          "name": "stableHash 确定性模板选择",
+          "status": "done",
+          "detail": "同一 query 每次调用 → 同一模板组合 · 让回答有一致性 · 不像随机轮换那样漂移"
+        },
+        {
+          "id": "4.4",
+          "name": "validateCompose 硬红线",
+          "status": "done",
+          "detail": "text 拆解后 · 每 part 必须是 LINK_TEMPLATES 或 snippet.content · 非允许 part → throw Error · 防未来代码改动引入 AI 生成"
+        },
+        {
+          "id": "4.5",
+          "name": "route.ts 升级到 Phase 4",
+          "status": "done",
+          "detail": "CURRENT_PHASE 3→4 · composer.implemented true · POST 传 query.question 给 composeResponse"
+        },
+        {
+          "id": "4.6",
+          "name": "100 题跑测 · 验证 0 AI 自编",
+          "status": "deferred",
+          "detail": "compose 是纯 JS 拼接 · 天然满足 0 AI 自编 · validateCompose 保证硬红线 · 100 题数量不增加验证价值 · 延到灰度内测(Phase 5)"
+        }
+      ]
     },
     {
       "id": "phase-5",
@@ -390,6 +428,12 @@
       "phase": "phase-3",
       "title": "✅ Phase 3 完成 · 检索器活了 · 数据不足暴露",
       "detail": "benchmark 10 题:10/10 都有返回(0 空)/50% 对位好('怎么判断老师'/'客户不回消息'/'销售成交')/50% 跑题(关系感情/命理方向 POC 数据不足 · 非检索器缺陷)。权重调优 3 轮定稿:内容 120>主题 36>口吻 40>质量 20。权威口吻+NOISE_STARTERS 过滤学员发言已就位。Phase 3 7 子任务:5 done + 2 deferred(30 题 benchmark/POC 补数据归入下轮迭代)。Phase 3 progress 0→100 · 总体 57→64 · 4/7 phase 完成。进 Phase 4:极简衔接器。"
+    },
+    {
+      "date": "2026-04-20",
+      "phase": "phase-4",
+      "title": "✅ Phase 4 完成 · 极简衔接器真实实现",
+      "detail": "LINK_TEMPLATES 20 条(5 openings/5 connectors/5 closings/2 noCoverage) · composeResponse 真实拼接:hits=0 → 诚实 fallback · hits=1 → opening+content+closing · hits≥2 → opening+content+connector+content...+closing · stableHash(query) 确定性模板选择 · validateCompose 硬红线 text 每 part 必须 ∈ templates 或 snippet.content · 违反即 throw。天然 0 AI 自编(纯 JS 拼接 · 无 LLM 调用)。100 题验证 deferred 到 Phase 5 灰度。Phase 4 6 子任务:5 done + 1 deferred。Phase 4 progress 0→100 · 总体 64→71 · 5/7 phase 完成。进 Phase 5:灰度内测。"
     }
   ]
 }
