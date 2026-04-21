@@ -4,7 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>第07场 · 八字的科学之辩 — 生财有术线下活动</title>
-<meta name="description" content="生财有术第07场线下活动精华：命越算越薄的三重批驳、苏荣坤庚金伤官格、闪闪身强劫财备孕建议、反应式心灵与一师而学">
+<meta name="description" content="生财有术第7场线下组局 · 八字的科学之辩 — PPT版精华整理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第7场 · 八字的科学之辩 — PPT版">
+<meta property="og:description" content="生财有术第7场线下组局 · 八字的科学之辩 — PPT版精华整理">
+<meta property="og:site_name" content="生财有术线下组局">
+<meta name="twitter:card" content="summary">
+<meta name="description" content="生财有术第07场线下活动精华：命越算越薄的三重批驳、学员S庚金伤官格、学员X身强劫财备孕建议、反应式心灵与一师而学">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
   *{margin:0;padding:0;box-sizing:border-box}
@@ -304,10 +310,297 @@
   }
   @media(max-width:768px){.key-hint{display:none}}
   @media(max-width:640px){.topbar .title{display:none}.topbar{padding:0 0.8rem}}
+
+  /* === C: 翻页动效与键位反馈 === */
+
+  /* 顶部章节进度条 */
+  .progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: transparent;
+    z-index: 110;
+    pointer-events: none;
+  }
+  .progress::after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: var(--progress, 0%);
+    background: var(--accent);
+    transition: width 0.45s cubic-bezier(0.22,1,0.36,1);
+  }
+
+  /* 更顺滑的翻页缓动 */
+  .slide-track {
+    transition: transform 0.55s cubic-bezier(0.22,1,0.36,1) !important;
+  }
+
+  /* slide 内容 stagger 淡入 */
+  .slide .slide-inner > * {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1),
+                transform 0.6s cubic-bezier(0.22,1,0.36,1);
+  }
+  .slide.current .slide-inner > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .slide.current .slide-inner > *:nth-child(1) { transition-delay: 0.05s; }
+  .slide.current .slide-inner > *:nth-child(2) { transition-delay: 0.13s; }
+  .slide.current .slide-inner > *:nth-child(3) { transition-delay: 0.21s; }
+  .slide.current .slide-inner > *:nth-child(4) { transition-delay: 0.29s; }
+  .slide.current .slide-inner > *:nth-child(5) { transition-delay: 0.37s; }
+  .slide.current .slide-inner > *:nth-child(6) { transition-delay: 0.45s; }
+  .slide.current .slide-inner > *:nth-child(7) { transition-delay: 0.53s; }
+
+  /* cover slide 标题更戏剧化 */
+  .slide.cover.current .slide-title {
+    animation: coverTitleIn 0.9s cubic-bezier(0.22,1,0.36,1) 0.15s both;
+  }
+  @keyframes coverTitleIn {
+    0%   { opacity: 0; transform: translateY(18px) scale(0.985); letter-spacing: -0.005em; }
+    100% { opacity: 1; transform: translateY(0)    scale(1);     letter-spacing: 0; }
+  }
+
+  /* 键盘按下时按钮闪一下 */
+  .nav-btn.pressed {
+    background: var(--accent) !important;
+    color: var(--bg) !important;
+    transform: scale(0.96);
+    transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  }
+
+  /* dot 涟漪 + 更紧的反馈 */
+  .dot {
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.22,1,0.36,1) !important;
+  }
+  .dot:hover { transform: scale(1.35); }
+  .dot.active:hover { transform: scale(1); }
+  .dot::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 1px solid var(--accent);
+    opacity: 0;
+    transform: scale(0.6);
+    pointer-events: none;
+  }
+  .dot.ripple::after {
+    animation: dotRipple 0.55s ease-out;
+  }
+  @keyframes dotRipple {
+    0%   { opacity: 0.7; transform: scale(0.6); }
+    100% { opacity: 0;   transform: scale(2.2); }
+  }
+
+  /* 首次交互后 hint 渐隐 */
+  .key-hint {
+    transition: opacity 0.6s ease, transform 0.6s ease !important;
+  }
+  .key-hint.hidden {
+    opacity: 0 !important;
+    transform: translateX(-50%) translateY(8px) !important;
+    pointer-events: none;
+  }
+
+  /* tab 切换时下划线滑动感 */
+  .tabs button {
+    position: relative;
+  }
+  .tabs button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 14px;
+    right: 14px;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+  }
+  .tabs button.active::after {
+    transform: scaleX(1);
+  }
+  .tabs button.active {
+    border-bottom-color: transparent !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .slide .slide-inner > * { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .slide.cover.current .slide-title { animation: none !important; }
+    .progress::after { transition: none !important; }
+  }
+
+
+  /* === D: 跨页面动效一致性 === */
+  body {
+    opacity: 0;
+    transition: opacity 0.45s cubic-bezier(0.22,1,0.36,1);
+  }
+  body.page-ready {
+    opacity: 1;
+  }
+  body.page-leaving {
+    opacity: 0;
+    transition: opacity 0.32s cubic-bezier(0.4,0,0.6,1);
+  }
+  /* 统一 focus-visible 视感 */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible {
+    outline: 2px solid var(--accent, currentColor);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    body, body.page-leaving { transition: none !important; opacity: 1 !important; }
+  }
+
+
+  /* === G: PPT 上下场浮动导航 === */
+  .ppt-session-nav { position: fixed; top: 50%; transform: translateY(-50%); z-index: 80; pointer-events: none; }
+  .ppt-session-nav a {
+    pointer-events: auto;
+    position: fixed; top: 50%;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: var(--card-bg, rgba(255,255,255,0.03));
+    border: 1px solid var(--rule, rgba(255,255,255,0.1));
+    color: var(--text-muted);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
+    opacity: 0.45;
+  }
+  .ppt-session-nav a.psn-prev { left: 18px; transform: translateY(-50%); }
+  .ppt-session-nav a.psn-next { right: 18px; transform: translateY(-50%); }
+  .ppt-session-nav a:hover { opacity: 1; border-color: var(--accent); color: var(--accent); box-shadow: 0 6px 22px -10px var(--accent); }
+  .ppt-session-nav a.psn-prev:hover { transform: translate(-3px, -50%); }
+  .ppt-session-nav a.psn-next:hover { transform: translate(3px, -50%); }
+  .ppt-session-nav a.psn-disabled { opacity: 0.15; pointer-events: none; }
+  .ppt-session-nav .psn-tip {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    white-space: nowrap;
+    background: var(--card-bg, rgba(0,0,0,0.85));
+    color: var(--text);
+    border: 1px solid var(--rule, rgba(255,255,255,0.1));
+    padding: 7px 12px; border-radius: 6px;
+    font-size: 0.72rem; letter-spacing: 0.04em;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .ppt-session-nav .psn-prev .psn-tip { left: calc(100% + 12px); }
+  .ppt-session-nav .psn-next .psn-tip { right: calc(100% + 12px); }
+  .ppt-session-nav a:hover .psn-tip { opacity: 1; transform: translate(0,-50%); }
+  .ppt-session-nav .psn-tip .psn-num { color: var(--accent); font-family: 'Playfair Display', Georgia, serif; font-weight: 700; margin-right: 6px; }
+  @media (max-width: 720px) { .ppt-session-nav a { width: 38px; height: 38px; font-size: 0.95rem; } .ppt-session-nav a.psn-prev { left: 8px; } .ppt-session-nav a.psn-next { right: 8px; } .ppt-session-nav .psn-tip { display: none; } }
+
+  /* === H: 快捷键遮罩 === */
+  .kb-hint-trigger {
+    position: fixed; bottom: 18px; left: 18px; z-index: 90;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--card-bg, rgba(255,255,255,0.03));
+    border: 1px solid var(--rule, rgba(255,255,255,0.12));
+    color: var(--text-muted);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', Georgia, serif; font-size: 0.92rem;
+    cursor: pointer; transition: all 0.3s ease;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    opacity: 0.5;
+  }
+  .kb-hint-trigger:hover { opacity: 1; border-color: var(--accent); color: var(--accent); }
+  .kb-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    display: none; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.35s cubic-bezier(0.22,1,0.36,1);
+  }
+  .kb-overlay.visible { display: flex; opacity: 1; }
+  .kb-panel {
+    background: var(--bg, #0a0a08);
+    border: 1px solid var(--rule, rgba(255,255,255,0.12));
+    border-radius: 14px;
+    padding: 2.4rem 2.6rem;
+    max-width: 520px; width: 90vw;
+    box-shadow: 0 40px 100px -30px rgba(0,0,0,0.8);
+    transform: scale(0.94); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+  }
+  .kb-overlay.visible .kb-panel { transform: scale(1); }
+  .kb-panel h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: var(--text); font-size: 1.35rem; font-weight: 600;
+    margin: 0 0 1.4rem; letter-spacing: 0.02em;
+  }
+  .kb-panel h3 span { color: var(--accent); font-style: italic; }
+  .kb-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.85rem; }
+  .kb-list li { display: flex; align-items: center; gap: 1rem; color: var(--text-muted); font-size: 0.82rem; letter-spacing: 0.03em; }
+  .kb-key {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 32px; padding: 4px 9px;
+    background: var(--card-bg, rgba(255,255,255,0.04));
+    border: 1px solid var(--rule, rgba(255,255,255,0.14));
+    border-bottom-width: 2px;
+    border-radius: 5px;
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 0.72rem; color: var(--text);
+    font-weight: 500;
+  }
+  .kb-close {
+    position: absolute; top: 16px; right: 18px;
+    background: none; border: none; color: var(--text-muted);
+    font-size: 1.5rem; cursor: pointer; font-family: 'Playfair Display', serif;
+    line-height: 1; padding: 4px 8px; border-radius: 4px;
+    transition: color 0.25s ease;
+  }
+  .kb-close:hover { color: var(--accent); }
+  .kb-panel { position: relative; }
+
+
+  /* === J: 触摸滑动手势辅助 === */
+  .viewport { touch-action: pan-y; }
+  .slide-track { will-change: transform; }
+  .swipe-hint {
+    position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
+    padding: 8px 18px; border-radius: 20px;
+    background: rgba(0,0,0,0.72); color: #fff;
+    font-size: 0.7rem; letter-spacing: 0.08em;
+    opacity: 0; pointer-events: none; z-index: 150;
+    transition: opacity 0.4s ease;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  }
+  .swipe-hint.visible { opacity: 1; }
+  @media (min-width: 768px) { .swipe-hint { display: none; } }
+
 </style>
 </head>
 <body>
+<div class="swipe-hint" id="swipeHint">&larr; 左右滑动切换 &rarr;</div>
 
+<div class="ppt-session-nav" id="pptSessionNav"><a class="psn-prev" id="psnPrev"><span class="psn-arrow">&larr;</span><span class="psn-tip"></span></a><a class="psn-next" id="psnNext"><span class="psn-arrow">&rarr;</span><span class="psn-tip"></span></a></div>
+<button class="kb-hint-trigger" id="kbHintTrigger" title="快捷键 (按 ?)">?</button>
+<div class="kb-overlay" id="kbOverlay">
+  <div class="kb-panel">
+    <button class="kb-close" id="kbClose" aria-label="关闭">&times;</button>
+    <h3>键盘 <span>快捷键</span></h3>
+    <ul class="kb-list">
+      <li><span class="kb-key">&larr;</span> / <span class="kb-key">&uarr;</span> <span>上一页</span></li>
+      <li><span class="kb-key">&rarr;</span> / <span class="kb-key">&darr;</span> <span>下一页</span></li>
+      <li><span class="kb-key">1</span> – <span class="kb-key">9</span> <span>切换章节</span></li>
+      <li><span class="kb-key">?</span> <span>显示/隐藏此面板</span></li>
+      <li><span class="kb-key">Esc</span> <span>关闭面板</span></li>
+    </ul>
+  </div>
+</div>
+
+
+
+<div class="progress" id="progress"></div>
 <div class="topbar">
   <a href="../index.html" class="back">&larr; 目录</a>
   <span class="title">第07场 · 八字的科学之辩</span>
@@ -339,7 +632,7 @@
 <script>
 // ====== THEME ======
 const THEMES=['dark','light','paper','ocean'];
-function getTheme(){var t=localStorage.getItem('sc-theme')||'dark';return THEMES.includes(t)?t:'dark'}
+function getTheme(){var t=localStorage.getItem('sc-theme');if(THEMES.includes(t))return t;if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:light)').matches)return'light';return'dark'}
 function applyTheme(t){
   document.documentElement.setAttribute('data-theme',t);
   document.querySelectorAll('#themeSwitcher .chip').forEach(c=>{
@@ -365,7 +658,7 @@ const sections = [
   {
     id:'part02', label:'命越算越薄',
     slides:[
-      {type:'cover',title:'命越算越薄？<br><span class="accent">三重批驳</span>',quote:'命不是越算越薄，是你遇到坏老师才越算越薄。',questioner:'苏荣坤问：命会越算越薄，是不是？要不要频繁算命？'},
+      {type:'cover',title:'命越算越薄？<br><span class="accent">三重批驳</span>',quote:'命不是越算越薄，是你遇到坏老师才越算越薄。',questioner:'学员S问：命会越算越薄，是不是？要不要频繁算命？'},
       {title:'第一重<br><span class="accent">商业</span>逻辑',quote:'说这种话的算命师，目的只有一个——<strong>为了让你只能找他一个人</strong>。',context:'你一年算一次我可能开3000，不然你天天找我就只能算300。"命只能算一次"这种说法，是让你不敢找别人，只能回来找他。'},
       {title:'第二重<br><span class="accent">科学</span>逻辑',quote:'八字本质上是<strong>时间编码系统</strong>——丁卯年换到现代就是1987年。它只是透过天干地支去统计一个人的性格蛛丝马迹。',context:'东方心理学全部是统计学——易经、奇门遁甲、风水、紫微斗数。就像盖洛普、MBTI，都是用行为模式统计你的性格。它的准确度只能说相对高，但不会因为你多看一眼就变坏。'},
       {title:'第三重<br><span class="accent">人性</span>逻辑',quote:'这句话只适合<strong>灵魂层次不够高的人</strong>。他只听不好的，所以才越算越倒霉。',context:'人只会被两三句不好的话连续说三天就崩溃，那是因为人格不够独立。当你自己懂一点八字，你就能判断这话是合理的还是恐吓你的。'},
@@ -378,7 +671,7 @@ const sections = [
     id:'part03', label:'八字根基',
     slides:[
       {type:'cover',title:'八字怎么看？<br><span class="accent">最少要知道的几个字</span>',quote:'这张图里圈起来的字最重要——命主、身强身弱、十神格局。',context:'先让大家有个概念，后面两个案例才听得懂。'},
-      {title:'命主 +<span class="accent">十天干</span>',quote:'天干有十个——<strong>甲乙、丙丁、戊己、庚辛、壬癸</strong>。每个人的属性不同，分阴阳。',context:'像我是乙木——藤蔓、爬山虎，根系很浅，成不了大事但适合做二把手。荣坤是庚金——刀剑之金。'},
+      {title:'命主 +<span class="accent">十天干</span>',quote:'天干有十个——<strong>甲乙、丙丁、戊己、庚辛、壬癸</strong>。每个人的属性不同，分阴阳。',context:'像我是乙木——藤蔓、爬山虎，根系很浅，成不了大事但适合做二把手。学员S是庚金——刀剑之金。'},
       {title:'<span class="accent">身强身弱</span>',quote:'不论好坏，只论性格模式强弱。<strong>大多数老板90%都是身强格。</strong>',list:['<strong>身强</strong> — 抗压强、执行力强、体力心力好','<strong>身强的缺点</strong> — 固执，听不懂人话，要错很多次才会调头','<strong>身弱</strong> — 顺从、能听话，5次就能调整'],context:'身强格要自觉众人相对。身弱格像我，我的医生说一遍我可能5次就变了。'},
       {title:'<span class="accent">伤官格</span>',quote:'伤官格就是<strong>有质感、聪明、脑袋动得特别快</strong>——但他看不起人。',list:['眼睛长头顶上——太聪明导致骄傲','不适合一线服务——觉得对方笨','适合看趋势、看红利、做标品','金水伤官是所有伤官里最聪明的一种'],context:'伤官格这辈子的功课是学会如何去经营人际关系，因为他聪明导致的骄傲会让关系很难维持。'},
       {title:'<span class="accent">劫财格</span>',quote:'劫财格的人对于<strong>金钱是没有概念的</strong>——他不认为现金是现金，现金流才是现金。',context:'一间公司找他做投资，你就让他当风险部门——他投什么，反着投就会赚钱。这是他的用法。'},
@@ -386,29 +679,29 @@ const sections = [
     ]
   },
   {
-    id:'part04', label:'苏荣坤',
+    id:'part04', label:'学员S',
     slides:[
-      {type:'cover',title:'苏荣坤的<br><span class="accent">庚金伤官格</span>',quote:'这八字真优秀——劫财带伤官，能力又行，脑子又行。只是这辈子都在动荡。',questioner:'苏荣坤：我做互联网流量相关，累计做了一个多亿粉丝。'},
+      {type:'cover',title:'学员S的<br><span class="accent">庚金伤官格</span>',quote:'这八字真优秀——劫财带伤官，能力又行，脑子又行。只是这辈子都在动荡。',questioner:'学员S：我做互联网流量相关，累计做了一个多亿粉丝。'},
       {title:'庚金是<br><span class="accent">刀剑之金</span>',quote:'庚金属大金，不是首饰之金——<strong>天生要走锋利的路</strong>，做流量正对口。',context:'秋天生的庚金，天干颜色一样叫身强格。流量就是和人性正面硬碰的生意。'},
-      {title:'伤官格的<span class="accent">脑子</span>',quote:'金水伤官是所有伤官里最聪明最优秀的——<strong>他看不起人</strong>。',context:'适合做纯交付，不适合做后端服务。因为耐心不足，做一半发现你怎么都教不会，时间一长他就不教了。荣坤适合做标品、靠脑子赚钱。'},
-      {title:'<span class="accent">乙庚合</span>女人缘',quote:'乙庚合让荣坤女人缘特别好，人缘特别好——<strong>但没有办法深入</strong>。',context:'男命八字但凡不带财，感情就是新鲜感。男命论财就是论妻——财在天干代表表面尊重老婆，但一遇到自己的喜好和目标，老婆瞬间排到第二第三顺位。'},
+      {title:'伤官格的<span class="accent">脑子</span>',quote:'金水伤官是所有伤官里最聪明最优秀的——<strong>他看不起人</strong>。',context:'适合做纯交付，不适合做后端服务。因为耐心不足，做一半发现你怎么都教不会，时间一长他就不教了。学员S适合做标品、靠脑子赚钱。'},
+      {title:'<span class="accent">乙庚合</span>女人缘',quote:'乙庚合让学员S女人缘特别好，人缘特别好——<strong>但没有办法深入</strong>。',context:'男命八字但凡不带财，感情就是新鲜感。男命论财就是论妻——财在天干代表表面尊重老婆，但一遇到自己的喜好和目标，老婆瞬间排到第二第三顺位。'},
       {title:'明年的<span class="accent">大坎</span>',quote:'明年丙午年，<strong>地支子午冲三倍</strong>。子午冲就是心态的坎，不是事情的坎。',context:'这句话你一定要记得，这句话就值十几万。明年手边有钱你就想做点事，你一定会想加仓、想做大合作。'},
-      {title:'美股基金<br>要不要<span class="accent">取出来</span>',questioner:'荣坤：我买了一百万美股基金，赚了十几万，怎么办？',quote:'本金不动，获利的那一部分先取出来。<strong>或者定存，或者丢保险三年动不了</strong>。',context:'身强劫财格不喜欢放定存——"这什么垃圾东西，我能力还找不到比这高两倍的？"但明年只要钱在你手上，你今年下半年就能花光。'},
+      {title:'美股基金<br>要不要<span class="accent">取出来</span>',questioner:'学员S：我买了一百万美股基金，赚了十几万，怎么办？',quote:'本金不动，获利的那一部分先取出来。<strong>或者定存，或者丢保险三年动不了</strong>。',context:'身强劫财格不喜欢放定存——"这什么垃圾东西，我能力还找不到比这高两倍的？"但明年只要钱在你手上，你今年下半年就能花光。'},
       {title:'身强劫财的<br><span class="accent">人生节奏</span>',quote:'<strong>有10万做10万的事，有100万做100万的事，有1000万就做1000万的事</strong>——这辈子就是大起大落。',context:'身强格对金钱本身没有敏锐度，但他喜欢操作这笔钱让钱变大的感受。钱进了口袋没感觉，他要的是证明自己能力的那个决定。'},
       {title:'不要制造<br><span class="accent">恶贵人</span>',quote:'伤官格反应力太快，常常忽略细节。<strong>你把一个关系还可以的人转化成恶贵人，伤害会远大于善贵人的帮助。</strong>',context:'恶贵人不是坏人，是看起来在帮你其实在拖你的人——或者是你过去某个小细节没照顾到，就变成敌人的人。对恶贵人最少保持60分的礼貌。'}
     ]
   },
   {
-    id:'part05', label:'闪闪备孕',
+    id:'part05', label:'学员X备孕',
     slides:[
-      {type:'cover',title:'闪闪的<br><span class="accent">身强劫财</span>',quote:'你看这八字像一只老虎，有老虎的野心，却做着家猫的举动。',questioner:'闪闪：95年，做母婴小红书账号，今年在医院促排备孕。'},
+      {type:'cover',title:'学员X的<br><span class="accent">身强劫财</span>',quote:'你看这八字像一只老虎，有老虎的野心，却做着家猫的举动。',questioner:'学员X：95年，做母婴小红书账号，今年在医院促排备孕。'},
       {title:'老虎的身躯<br><span class="accent">家猫的行为</span>',quote:'有远大目标、执行力也可以——<strong>但本性胆小</strong>，不想做过于冲动的决定。',context:'这就是正官格带劫财的矛盾。正官想乖、想稳，可是劫财又推着你反叛，你会不断地自己跟自己冲突。'},
       {title:'<span class="accent">反应式</span>心灵',quote:'八字火旺加巳亥冲——你做决定几乎全凭<strong>当下的反应和过去的硬痕</strong>。',context:'爸爸脾气暴，你的反应式心灵就是"只要触犯我的原则，我就必须声音更大来证明老娘是对的"。劫财格一定杠到赢，他不会主动示弱。'},
       {title:'正官格是<br><span class="accent">假的温柔</span>',quote:'刚认识觉得她善解人意、川妹子温柔——<strong>那是正官格的性格作祟</strong>，她是好的。',context:'但那是天干上的假正官。底下是火急火燎的主核心性格——火球和水球对撞，最后赢的一定是火。你对老公是尊重的，但家里说了算的是你。'},
       {title:'明年<span class="accent">不适合备孕</span>',quote:'明年丙午年，火再旺——<strong>你的情绪会让孩子留不住</strong>。',context:'火年就是你已经是个火山，明年来了九个太阳。备孕期的情绪暴躁孩子感受得到，生出来你也难带。备孕不是让身体好，是让情绪好。'},
       {title:'推到<span class="accent">后年冬天</span>',quote:'27年才是桃花+孩子年。<strong>明年10月（阳历冬月）开始备孕，后年春秋生最好。</strong>',context:'冬月属水，可以灭一点火。水月备孕可以让你的状态更好。26、27、28、29这四年都有孩子，选一个情绪稳的年份来生。'},
       {title:'老公是<span class="accent">弱命</span>',quote:'你老公八字30分，你100分——<strong>这家一定是你说了算</strong>。',context:'他偏财格，幽默风趣好玩，性格不错。但承担力有限。强烈建议他去找一份稳定工作——那是这个家的压舱石，而不是让他和你一起做自由职业。'},
-      {title:'不要和<span class="accent">父母同住</span>',quote:'这种身强劫财八字——<strong>千万不能跟父母住，尤其是对方父母</strong>。',context:'但凡掺杂父母就完了。最好是你和老公两个人住。闪闪回："我把我爸都拉黑了，我婆婆我公公都听我的。"是，藏得很深而已。'}
+      {title:'不要和<span class="accent">父母同住</span>',quote:'这种身强劫财八字——<strong>千万不能跟父母住，尤其是对方父母</strong>。',context:'但凡掺杂父母就完了。最好是你和老公两个人住。学员X回："我把我爸都拉黑了，我婆婆我公公都听我的。"是，藏得很深而已。'}
     ]
   },
   {
@@ -458,13 +751,16 @@ function renderSlides(){
 
 function updatePosition(anim=true){
   const t=document.getElementById('track');
-  t.style.transition=anim?'transform 0.4s cubic-bezier(0.25,0.1,0.25,1)':'none';
+  t.style.transition=anim?'transform 0.55s cubic-bezier(0.22,1,0.36,1)':'none';
   t.style.transform=`translateX(-${currentSlide*100}vw)`;
   document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));
+  document.querySelectorAll('.slide').forEach((s,i)=>s.classList.toggle('current',i===currentSlide));
   const total=sections[currentSection].slides.length;
   document.getElementById('counter').textContent=`${currentSlide+1} / ${total}`;
   document.getElementById('prevBtn').disabled=(currentSlide===0&&currentSection===0);
   document.getElementById('nextBtn').disabled=(currentSlide===total-1&&currentSection===sections.length-1);
+  const pct=total>1?(currentSlide/(total-1))*100:100;
+  const pb=document.getElementById('progress');if(pb)pb.style.setProperty('--progress',pct+'%');
   const ad=document.querySelector('.dot.active');if(ad)ad.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
 }
 
@@ -476,12 +772,15 @@ function go(dir){
   else if(dir>0&&currentSection<sections.length-1){currentSection++;currentSlide=0;renderTabs();renderSlides();const at=document.querySelector('.tabs button.active');if(at)at.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}
   else if(dir<0&&currentSection>0){currentSection--;currentSlide=sections[currentSection].slides.length-1;renderTabs();renderSlides();const at=document.querySelector('.tabs button.active');if(at)at.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}
 }
-function goTo(i){currentSlide=i;updatePosition()}
+function goTo(i){currentSlide=i;updatePosition();const dt=document.querySelectorAll('.dot')[i];if(dt){dt.classList.remove('ripple');void dt.offsetWidth;dt.classList.add('ripple');}}
 
 document.addEventListener('keydown',e=>{
-  if(e.key==='ArrowRight'||e.key==='ArrowDown')go(1);
-  else if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1);
-  else if(e.key>='1'&&e.key<='6')switchSection(parseInt(e.key)-1);
+  let btn=null;
+  if(e.key==='ArrowRight'||e.key==='ArrowDown'){go(1);btn=document.getElementById('nextBtn');}
+  else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){go(-1);btn=document.getElementById('prevBtn');}
+  else if(e.key>='1'&&e.key<='6'){switchSection(parseInt(e.key)-1);}
+  if(btn){btn.classList.add('pressed');setTimeout(()=>btn.classList.remove('pressed'),180);}
+  const h=document.querySelector('.key-hint');if(h&&!h.classList.contains('hidden')){h.classList.add('hidden');}
 });
 
 let touchX=0,swiping=false;
@@ -491,6 +790,164 @@ vp.addEventListener('touchmove',e=>{if(swiping&&Math.abs(e.touches[0].clientX-to
 vp.addEventListener('touchend',e=>{if(!swiping)return;swiping=false;const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>50)go(dx<0?1:-1)});
 
 renderTabs();renderSlides();
+
+// === D: 页面进入/离开过渡 ===
+(function(){
+  // 进入：DOM 准备好就标 ready
+  function ready(){ document.body.classList.add('page-ready'); }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ready);
+  } else {
+    ready();
+  }
+  // 离开：拦截同站链接，淡出再跳转
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href) return;
+    // 跳过外链、锚点、新窗口、特殊协议、下载链接
+    if (href.startsWith('#')) return;
+    if (href.startsWith('http://') || href.startsWith('https://')) return;
+    if (href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+    if (a.target && a.target !== '_self') return;
+    if (a.hasAttribute('download')) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    document.body.classList.add('page-leaving');
+    setTimeout(function(){ window.location.href = href; }, 280);
+  });
+  // bfcache 回退时不要保留淡出态
+  window.addEventListener('pageshow', function(e){
+    if (e.persisted) {
+      document.body.classList.remove('page-leaving');
+      document.body.classList.add('page-ready');
+    }
+  });
+})();
+
+
+// === G: PPT 上下场导航 ===
+const PPT_SESSIONS = [
+  {n:1,  t:'私域不是流量，是关系'},
+  {n:2,  t:'主动性是最稀缺的能力'},
+  {n:3,  t:'销售是通才的生意'},
+  {n:4,  t:'私域转化与销售基本功'},
+  {n:5,  t:'个体创业与私域转化'},
+  {n:6,  t:'销售即沟通之道'},
+  {n:7,  t:'八字的科学之辩'},
+  {n:8,  t:'高客单销售术'},
+  {n:9,  t:'混圈与沉淀'},
+  {n:10, t:'成交与名单'},
+  {n:11, t:'产品定价与私域转化'},
+  {n:12, t:'私域转化与个人产品'},
+  {n:13, t:'咨询师的复合能力与人生基本功'},
+  {n:14, t:'试错与主见'},
+  {n:15, t:'直播表达与销售基本功'},
+  {n:16, t:'超级个体与销售'},
+];
+(function(){
+  var m = (window.location.pathname || '').match(/(\d{1,2})\.html$/);
+  if (!m) return;
+  var curNum = parseInt(m[1], 10);
+  var pad = function(n){ return n < 10 ? '0' + n : '' + n; };
+  var prev = PPT_SESSIONS.find(function(s){ return s.n === curNum - 1; });
+  var next = PPT_SESSIONS.find(function(s){ return s.n === curNum + 1; });
+  var pEl = document.getElementById('psnPrev');
+  var nEl = document.getElementById('psnNext');
+  if (pEl) {
+    if (prev) {
+      pEl.href = pad(prev.n) + '.html';
+      var tp = pEl.querySelector('.psn-tip');
+      if (tp) tp.innerHTML = '<span class="psn-num">No.' + pad(prev.n) + '</span>' + prev.t;
+    } else {
+      pEl.classList.add('psn-disabled');
+    }
+  }
+  if (nEl) {
+    if (next) {
+      nEl.href = pad(next.n) + '.html';
+      var tn = nEl.querySelector('.psn-tip');
+      if (tn) tn.innerHTML = '<span class="psn-num">No.' + pad(next.n) + '</span>' + next.t;
+    } else {
+      nEl.classList.add('psn-disabled');
+    }
+  }
+})();
+
+// === H: 快捷键遮罩 ===
+(function(){
+  var overlay = document.getElementById('kbOverlay');
+  var trigger = document.getElementById('kbHintTrigger');
+  var closeBtn = document.getElementById('kbClose');
+  if (!overlay || !trigger) return;
+  var show = function(){ overlay.classList.add('visible'); };
+  var hide = function(){ overlay.classList.remove('visible'); };
+  var toggle = function(){ overlay.classList.toggle('visible'); };
+  trigger.addEventListener('click', toggle);
+  if (closeBtn) closeBtn.addEventListener('click', hide);
+  overlay.addEventListener('click', function(e){ if (e.target === overlay) hide(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === '?' || (e.key === '/' && e.shiftKey)) { e.preventDefault(); toggle(); }
+    else if (e.key === 'Escape' && overlay.classList.contains('visible')) { hide(); }
+  });
+})();
+
+
+// === J: PPT 触摸滑动手势 ===
+(function(){
+  if (typeof go !== 'function') return;
+  var viewport = document.getElementById('viewport') || document.querySelector('.viewport');
+  if (!viewport) return;
+  var startX = 0, startY = 0, startT = 0, locked = null;
+  viewport.addEventListener('touchstart', function(e){
+    if (!e.touches || e.touches.length !== 1) return;
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    startT = Date.now();
+    locked = null;
+  }, { passive: true });
+  viewport.addEventListener('touchmove', function(e){
+    if (!e.touches || e.touches.length !== 1 || locked === 'v') return;
+    var dx = e.touches[0].clientX - startX;
+    var dy = e.touches[0].clientY - startY;
+    if (locked === null) {
+      if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
+        locked = Math.abs(dx) > Math.abs(dy) ? 'h' : 'v';
+      }
+    }
+  }, { passive: true });
+  viewport.addEventListener('touchend', function(e){
+    if (!e.changedTouches || e.changedTouches.length === 0) return;
+    var dx = e.changedTouches[0].clientX - startX;
+    var dy = e.changedTouches[0].clientY - startY;
+    var dt = Date.now() - startT;
+    if (locked !== 'h') return;
+    // 触发条件：水平位移 > 60px 或者高速滑动 > 180px/s
+    var vx = Math.abs(dx) / Math.max(dt, 1) * 1000;
+    if (Math.abs(dx) > 60 || vx > 180) {
+      if (Math.abs(dx) > Math.abs(dy) * 1.2) {
+        go(dx < 0 ? 1 : -1);
+      }
+    }
+  }, { passive: true });
+  // 首次访问显示一次提示
+  try {
+    if (window.matchMedia && window.matchMedia('(max-width: 767px)').matches) {
+      if (!localStorage.getItem('swipeHintShown')) {
+        var hint = document.getElementById('swipeHint');
+        if (hint) {
+          setTimeout(function(){
+            hint.classList.add('visible');
+            setTimeout(function(){ hint.classList.remove('visible'); }, 2600);
+          }, 900);
+        }
+        localStorage.setItem('swipeHintShown', '1');
+      }
+    }
+  } catch(e) {}
+})();
+
 </script>
 </body>
 </html>

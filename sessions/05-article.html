@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>第05场 · 个体创业与私域转化 — 生财有术线下活动</title>
+<meta name="description" content="生财有术第5场线下组局 · 个体创业与私域转化 — 文章版精华整理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第5场 · 个体创业与私域转化 — 文章版">
+<meta property="og:description" content="生财有术第5场线下组局 · 个体创业与私域转化 — 文章版精华整理">
+<meta property="og:site_name" content="生财有术线下组局">
+<meta name="twitter:card" content="summary">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -496,17 +502,529 @@
     pointer-events: none;
   }
 
+
+  /* === B: 阅读体验深度打磨 === */
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 110px;
+  }
+
+  body {
+    letter-spacing: 0.015em;
+    font-feature-settings: "palt" 1, "kern" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--accent-bg2);
+    color: var(--text-heading);
+  }
+
+  /* 阅读进度条 */
+  .read-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background: var(--accent);
+    z-index: 200;
+    transition: width 0.15s ease-out, background var(--t);
+    pointer-events: none;
+  }
+
+  /* 文章容器收窄 */
+  .article {
+    max-width: min(720px, 92vw) !important;
+    padding: 3rem 1.6rem 5rem !important;
+  }
+
+  /* 段落节奏 */
+  .article p {
+    margin-bottom: 1.35rem;
+    line-height: 1.95;
+    color: var(--text);
+  }
+
+  /* 标题字距与节奏 */
+  .article h2,
+  .section-header h2 {
+    letter-spacing: -0.005em;
+    font-size: 1.55rem !important;
+    line-height: 1.4;
+  }
+  .section-header {
+    margin: 4.5rem 0 2rem !important;
+    padding-left: 18px !important;
+    border-left-width: 3px !important;
+  }
+  .section-header:first-child { margin-top: 0.5rem !important; }
+  .section-header .sec-num {
+    letter-spacing: 4px !important;
+    font-size: 0.7rem !important;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .article h3 {
+    font-size: 1.12rem !important;
+    margin: 2.6rem 0 1rem !important;
+    padding-bottom: 8px !important;
+    letter-spacing: 0.005em;
+    line-height: 1.5;
+  }
+
+  /* blockquote 重塑 */
+  .article blockquote {
+    position: relative;
+    font-size: 1rem !important;
+    line-height: 1.85;
+    padding: 1.3rem 1.5rem 1.3rem 2.4rem !important;
+    margin: 1.6rem 0 !important;
+    border-left-width: 3px !important;
+    border-radius: 0 10px 10px 0 !important;
+    font-style: normal;
+  }
+  .article blockquote::before {
+    content: "\201C";
+    position: absolute;
+    left: 0.55rem;
+    top: 0.3rem;
+    font-size: 2.4rem;
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0.55;
+    font-family: Georgia, "Noto Serif SC", serif;
+    font-weight: 700;
+    pointer-events: none;
+  }
+
+  /* 强调与链接 */
+  .article strong {
+    color: var(--text-heading);
+    font-weight: 700;
+  }
+  .article a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--accent-border2);
+  }
+  .article a:hover {
+    text-decoration-color: var(--accent);
+  }
+
+  /* 列表节奏 */
+  .article ul, .article ol {
+    padding-left: 1.6rem;
+    margin: 1rem 0 1.4rem;
+  }
+  .article li {
+    margin-bottom: 0.6rem;
+    line-height: 1.85;
+  }
+
+  /* 提问者标签更柔和 */
+  .article .questioner {
+    font-size: 0.72rem !important;
+    letter-spacing: 0.5px;
+    padding: 3px 12px !important;
+    border-radius: 12px !important;
+    margin-bottom: 8px;
+  }
+
+  /* 分节进入动画 */
+  .section-header,
+  .highlight-box,
+  .product-grid,
+  .info-box {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .section-header.revealed,
+  .highlight-box.revealed,
+  .product-grid.revealed,
+  .info-box.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .section-header, .highlight-box, .product-grid, .info-box {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none;
+    }
+  }
+
+  /* Focus 可见性 */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  /* 小屏优化 */
+  @media (max-width: 640px) {
+    .article { padding: 2rem 1.1rem 3.5rem !important; }
+    .article h2, .section-header h2 { font-size: 1.3rem !important; }
+    .article h3 { font-size: 1rem !important; margin-top: 2rem !important; }
+    .article blockquote { padding: 1.1rem 1.1rem 1.1rem 2.1rem !important; }
+    .article blockquote::before { font-size: 2rem; left: 0.4rem; }
+    .section-header { margin: 3rem 0 1.5rem !important; }
+  }
+
+
+  /* === D: 跨页面动效一致性 === */
+  body {
+    opacity: 0;
+    transition: opacity 0.45s cubic-bezier(0.22,1,0.36,1);
+  }
+  body.page-ready {
+    opacity: 1;
+  }
+  body.page-leaving {
+    opacity: 0;
+    transition: opacity 0.32s cubic-bezier(0.4,0,0.6,1);
+  }
+  /* 统一 focus-visible 视感 */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible {
+    outline: 2px solid var(--accent, currentColor);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    body, body.page-leaving { transition: none !important; opacity: 1 !important; }
+  }
+
+
+  /* === E: 文章上下篇导航 + 阅读时长 === */
+
+  /* 阅读时长徽章 — 放在 hero badge 旁 */
+  .reading-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+  .reading-meta .dot-sep {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--text-dim);
+    flex-shrink: 0;
+  }
+  .reading-meta .rm-num {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* 上下篇导航卡 */
+  .session-nav {
+    max-width: min(720px, 92vw);
+    margin: 3rem auto 1.5rem;
+    padding: 0 1.6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .session-nav a {
+    display: block;
+    padding: 1.2rem 1.4rem;
+    background: var(--card-bg, var(--bg));
+    border: 1px solid var(--border, var(--rule));
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
+    position: relative;
+    overflow: hidden;
+  }
+  .session-nav a:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px -12px var(--accent);
+  }
+  .session-nav a.disabled {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .session-nav .sn-eyebrow {
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    font-family: 'Playfair Display', Georgia, serif;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .session-nav a.next .sn-eyebrow { justify-content: flex-end; }
+  .session-nav a.next { text-align: right; }
+  .session-nav .sn-num {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .session-nav .sn-title {
+    font-size: 0.96rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.5;
+    transition: color 0.35s ease;
+  }
+  .session-nav a:hover .sn-title { color: var(--accent); }
+  .session-nav .sn-arrow {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 0.85rem;
+    transition: transform 0.35s ease;
+    display: inline-block;
+  }
+  .session-nav a.prev:hover .sn-arrow { transform: translateX(-4px); }
+  .session-nav a.next:hover .sn-arrow { transform: translateX(4px); }
+
+  @media (max-width: 600px) {
+    .session-nav {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      padding: 0 1.1rem;
+    }
+    .session-nav a { padding: 1rem 1.15rem; }
+    .session-nav a.next { text-align: left; }
+    .session-nav a.next .sn-eyebrow { justify-content: flex-start; }
+  }
+
+
+  /* === 阅读位置记忆 === */
+  .resume-banner {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(120px);
+    z-index: 120;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 22px;
+    background: var(--bg, #0a0a08);
+    border: 1px solid var(--accent-border, rgba(212,160,74,0.25));
+    border-radius: 12px;
+    box-shadow: 0 12px 40px -12px rgba(0,0,0,0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    font-size: 0.82rem;
+    color: var(--text);
+    transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), opacity 0.5s ease;
+    opacity: 0;
+  }
+  .resume-banner.visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  .resume-banner .rb-text {
+    line-height: 1.5;
+  }
+  .resume-banner .rb-section {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .resume-banner .rb-btn {
+    padding: 7px 18px;
+    border-radius: 6px;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+  }
+  [data-theme="paper"] .resume-banner .rb-btn { color: #f1ead9; }
+  [data-theme="light"] .resume-banner .rb-btn { color: #f5faf8; }
+  .resume-banner .rb-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px -4px var(--accent);
+  }
+  .resume-banner .rb-dismiss {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 2px 6px;
+    line-height: 1;
+    transition: color 0.25s ease;
+  }
+  .resume-banner .rb-dismiss:hover { color: var(--accent); }
+  @media (max-width: 600px) {
+    .resume-banner { left: 12px; right: 12px; transform: translateX(0) translateY(120px); }
+    .resume-banner.visible { transform: translateX(0) translateY(0); }
+  }
+
+
+  /* === 字号调节器 === */
+  .font-sizer {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    background: var(--bg-card, var(--bg));
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    height: 28px;
+  }
+  .font-sizer button {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-family: 'Noto Sans SC', sans-serif;
+    cursor: pointer;
+    padding: 0 10px;
+    height: 100%;
+    transition: all 0.25s ease;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .font-sizer button:hover { color: var(--accent); background: var(--accent-bg); }
+  .font-sizer button:first-child { font-size: 0.7rem; border-right: 1px solid var(--border); }
+  .font-sizer button:last-child { font-size: 0.92rem; }
+  .font-sizer .fs-label {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    padding: 0 6px;
+    letter-spacing: 0.05em;
+    user-select: none;
+  }
+
+  /* === Blockquote 分享交互 === */
+  article blockquote {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
+  }
+  article blockquote:hover {
+    border-left-color: var(--accent);
+    transform: translateX(4px);
+  }
+  article blockquote::after {
+    content: '点击生成分享卡';
+    position: absolute;
+    right: 12px;
+    bottom: 8px;
+    font-size: 0.62rem;
+    color: var(--text-dim);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    letter-spacing: 0.06em;
+    pointer-events: none;
+  }
+  article blockquote:hover::after { opacity: 1; }
+
+  /* 分享卡遮罩 */
+  .share-overlay {
+    position: fixed; inset: 0; z-index: 500;
+    background: rgba(0,0,0,0.78);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    display: none; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.4s cubic-bezier(0.22,1,0.36,1);
+  }
+  .share-overlay.visible { display: flex; opacity: 1; }
+  .share-panel {
+    position: relative;
+    display: flex; flex-direction: column; align-items: center; gap: 1.2rem;
+    max-width: 92vw;
+  }
+  .share-panel canvas {
+    border-radius: 14px;
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6);
+    max-width: 100%; height: auto;
+  }
+  .share-actions {
+    display: flex; gap: 12px; align-items: center;
+  }
+  .share-actions button {
+    padding: 10px 24px;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Noto Sans SC', sans-serif;
+  }
+  .share-download {
+    background: linear-gradient(135deg, #d4a04a, #c4863a);
+    color: #fff;
+    box-shadow: 0 6px 20px -6px rgba(212,160,74,0.5);
+  }
+  .share-download:hover { transform: translateY(-2px); box-shadow: 0 10px 28px -6px rgba(212,160,74,0.6); }
+  .share-close-btn {
+    background: rgba(255,255,255,0.08);
+    color: #ccc;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+  }
+  .share-close-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
+  .share-hint {
+    color: rgba(255,255,255,0.45);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+  }
+
+  /* === 顶栏章节指示器 === */
+  .section-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: transparent;
+    overflow: hidden;
+  }
+  .section-indicator .si-fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.4s cubic-bezier(0.22,1,0.36,1);
+    width: 0%;
+  }
+  .top-bar .current-section {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: color 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+  }
+  .top-bar .current-section.visible { opacity: 1; color: var(--text-muted); }
+  @media (max-width: 600px) { .top-bar .current-section { max-width: 120px; font-size: 0.62rem; } }
+
 </style>
 </head>
 <body>
 
+
+<div class="read-progress" id="readProgress"></div>
 <!-- Top bar -->
 <div class="top-bar">
   <a href="../index.html" class="back">&larr; 返回目录</a>
   <span class="session-title">第05场 · 个体创业与私域转化</span>
+  <span class="current-section" id="currentSection"></span><div class="section-indicator"><div class="si-fill"></div></div>
   <div class="right-btns">
     <a href="05.html" class="ppt-btn">&#9635; PPT版</a>
     <a href="../downloads/第05场-精华整理.md" download class="download-btn">下载 .md</a>
+    <div class="font-sizer"><button onclick="_fontSmaller()">A-</button><span class="fs-label" id="fsLabel">100%</span><button onclick="_fontLarger()">A+</button></div>
     <div class="theme-switcher" id="themeSwitcher">
       <button class="chip" data-t="dark" onclick="setTheme('dark')" title="夜">夜</button>
       <button class="chip" data-t="light" onclick="setTheme('light')" title="昼">昼</button>
@@ -809,6 +1327,9 @@
 
 </article>
 
+<nav class="session-nav" id="sessionNav"></nav>
+
+
 <div class="article-footer">
   <a href="../index.html">&larr; 返回活动目录</a>
   <p style="margin-top:8px">生财有术 · 线下活动精华归档 &nbsp;|&nbsp; 由根源整理，AI辅助排版</p>
@@ -820,7 +1341,7 @@
 <script>
 // ====== THEME ======
 const THEMES=['dark','light','paper','ocean'];
-function getTheme(){var t=localStorage.getItem('sc-theme')||'dark';return THEMES.includes(t)?t:'dark'}
+function getTheme(){var t=localStorage.getItem('sc-theme');if(THEMES.includes(t))return t;if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:light)').matches)return'light';return'dark'}
 function applyTheme(t){
   document.documentElement.setAttribute('data-theme',t);
   document.querySelectorAll('#themeSwitcher .chip').forEach(c=>{
@@ -848,19 +1369,479 @@ window.addEventListener('scroll', () => {
   document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
 });
 
-// TOC active state
-const sections = document.querySelectorAll('.section-header');
-const tocLinks = document.querySelectorAll('.toc-bar a');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+// === I: TOC scrollspy 升级 ===
+(function(){
+  const sections = document.querySelectorAll('.section-header');
+  const tocLinks = document.querySelectorAll('.toc-bar a');
+  const tocBar = document.querySelector('.toc-bar');
+  if (!sections.length || !tocLinks.length) return;
+  let lastActive = null;
+  const update = function(){
+    const h = document.documentElement;
+    const scrolled = h.scrollTop;
+    const nearBottom = (scrolled + h.clientHeight) >= (h.scrollHeight - 40);
+    let current = '';
+    if (nearBottom) {
+      // 滑到页底：最后一节强制高亮
+      current = sections[sections.length - 1].id;
+    } else {
+      sections.forEach(function(s){
+        if (scrolled >= s.offsetTop - 140) current = s.id;
+      });
+      if (!current && sections[0]) current = sections[0].id;
+    }
+    if (current === lastActive) return;
+    lastActive = current;
+    tocLinks.forEach(function(a){
+      const isActive = a.getAttribute('href') === '#' + current;
+      a.classList.toggle('active', isActive);
+      if (isActive && tocBar && tocBar.scrollWidth > tocBar.clientWidth) {
+        // 移动端横向 TOC：把激活项滚进视野
+        const barRect = tocBar.getBoundingClientRect();
+        const aRect = a.getBoundingClientRect();
+        const offset = (aRect.left + aRect.width/2) - (barRect.left + barRect.width/2);
+        tocBar.scrollBy({ left: offset, behavior: 'smooth' });
+      }
+    });
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+
+// B: 阅读进度条 + 章节进入动画
+(function(){
+  var bar = document.getElementById('readProgress');
+  if (bar) {
+    var update = function(){
+      var h = document.documentElement;
+      var scrolled = h.scrollTop;
+      var total = h.scrollHeight - h.clientHeight;
+      var pct = total > 0 ? (scrolled / total * 100) : 0;
+      bar.style.width = pct + '%';
+    };
+    window.addEventListener('scroll', update, {passive:true});
+    window.addEventListener('resize', update);
+    update();
+  }
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) {
+          e.target.classList.add('revealed');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.section-header, .highlight-box, .product-grid, .info-box').forEach(function(el){
+      io.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.section-header, .highlight-box, .product-grid, .info-box').forEach(function(el){
+      el.classList.add('revealed');
+    });
+  }
+})();
+
+
+// === D: 页面进入/离开过渡 ===
+(function(){
+  // 进入：DOM 准备好就标 ready
+  function ready(){ document.body.classList.add('page-ready'); }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ready);
+  } else {
+    ready();
+  }
+  // 离开：拦截同站链接，淡出再跳转
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href) return;
+    // 跳过外链、锚点、新窗口、特殊协议、下载链接
+    if (href.startsWith('#')) return;
+    if (href.startsWith('http://') || href.startsWith('https://')) return;
+    if (href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+    if (a.target && a.target !== '_self') return;
+    if (a.hasAttribute('download')) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    document.body.classList.add('page-leaving');
+    setTimeout(function(){ window.location.href = href; }, 280);
   });
-  tocLinks.forEach(a => {
-    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  // bfcache 回退时不要保留淡出态
+  window.addEventListener('pageshow', function(e){
+    if (e.persisted) {
+      document.body.classList.remove('page-leaving');
+      document.body.classList.add('page-ready');
+    }
   });
-});
+})();
+
+
+// === E: 文章上下篇导航 + 阅读时长 ===
+const SESSIONS_LIST = [
+  {n:1,  t:'私域不是流量，是关系'},
+  {n:2,  t:'主动性是最稀缺的能力'},
+  {n:3,  t:'销售是通才的生意'},
+  {n:4,  t:'私域转化与销售基本功'},
+  {n:5,  t:'个体创业与私域转化'},
+  {n:6,  t:'销售即沟通之道'},
+  {n:7,  t:'八字的科学之辩'},
+  {n:8,  t:'高客单销售术'},
+  {n:9,  t:'混圈与沉淀'},
+  {n:10, t:'成交与名单'},
+  {n:11, t:'产品定价与私域转化'},
+  {n:12, t:'私域转化与个人产品'},
+  {n:13, t:'咨询师的复合能力与人生基本功'},
+  {n:14, t:'试错与主见'},
+  {n:15, t:'直播表达与销售基本功'},
+  {n:16, t:'超级个体与销售'},
+];
+
+(function(){
+  // 1. 从 URL 推出当前场次
+  var m = (window.location.pathname || '').match(/(\d{1,2})-article\.html/);
+  if (!m) return;
+  var curNum = parseInt(m[1], 10);
+
+  // 2. 阅读时长 + 字数
+  var article = document.querySelector('article.article');
+  if (article) {
+    var text = article.textContent || '';
+    // 中文按字符计；非空白视为有效
+    var chars = text.replace(/\s+/g, '').length;
+    // 中文阅读速度 ~ 400 字/分钟
+    var minutes = Math.max(1, Math.round(chars / 400));
+    var meta = document.querySelector('.hero .meta-line');
+    if (meta && !document.querySelector('.reading-meta')) {
+      var rm = document.createElement('div');
+      rm.className = 'reading-meta';
+      rm.innerHTML =
+        '<span><span class="rm-num">' + minutes + '</span> 分钟阅读</span>' +
+        '<span class="dot-sep"></span>' +
+        '<span><span class="rm-num">' + chars.toLocaleString() + '</span> 字</span>';
+      meta.parentNode.insertBefore(rm, meta.nextSibling);
+    }
+  }
+
+  // 3. 上下篇导航
+  var nav = document.getElementById('sessionNav');
+  if (nav) {
+    var prev = SESSIONS_LIST.find(function(s){return s.n === curNum - 1;});
+    var next = SESSIONS_LIST.find(function(s){return s.n === curNum + 1;});
+    var pad = function(n){return n < 10 ? '0' + n : '' + n;};
+    var prevHTML = prev
+      ? '<a class="prev" href="' + pad(prev.n) + '-article.html">' +
+          '<div class="sn-eyebrow"><span class="sn-arrow">&larr;</span> 上一场 · <span class="sn-num">No.' + pad(prev.n) + '</span></div>' +
+          '<div class="sn-title">' + prev.t + '</div>' +
+        '</a>'
+      : '<a class="prev disabled"><div class="sn-eyebrow">&larr; 已是首场</div><div class="sn-title">&nbsp;</div></a>';
+    var nextHTML = next
+      ? '<a class="next" href="' + pad(next.n) + '-article.html">' +
+          '<div class="sn-eyebrow">下一场 · <span class="sn-num">No.' + pad(next.n) + '</span> <span class="sn-arrow">&rarr;</span></div>' +
+          '<div class="sn-title">' + next.t + '</div>' +
+        '</a>'
+      : '<a class="next disabled"><div class="sn-eyebrow">已是最新场 &rarr;</div><div class="sn-title">&nbsp;</div></a>';
+    nav.innerHTML = prevHTML + nextHTML;
+  }
+})();
+
+
+// === 阅读位置记忆 ===
+(function(){
+  var key = 'read_pos_' + location.pathname.replace(/[^a-z0-9]/gi, '_');
+  var sections = document.querySelectorAll('.section-header');
+  var article = document.querySelector('article.article');
+  if (!article || !sections.length) return;
+
+  // 保存位置（节流 500ms）
+  var saveTimer = null;
+  function savePos() {
+    var scrolled = document.documentElement.scrollTop;
+    var total = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    if (total <= 0) return;
+    var pct = Math.round(scrolled / total * 100);
+    var currentSec = '';
+    sections.forEach(function(s) {
+      if (scrolled >= s.offsetTop - 160) currentSec = s.id;
+    });
+    var secTitle = '';
+    if (currentSec) {
+      var h2 = document.querySelector('#' + currentSec + ' h2');
+      if (h2) secTitle = h2.textContent.trim();
+    }
+    try {
+      localStorage.setItem(key, JSON.stringify({ y: scrolled, pct: pct, sec: currentSec, title: secTitle, t: Date.now() }));
+    } catch(e) {}
+  }
+  window.addEventListener('scroll', function() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(savePos, 500);
+  }, { passive: true });
+
+  // 读完就清除
+  window.addEventListener('scroll', function() {
+    var h = document.documentElement;
+    if ((h.scrollTop + h.clientHeight) >= (h.scrollHeight - 60)) {
+      try { localStorage.removeItem(key); } catch(e) {}
+    }
+  }, { passive: true });
+
+  // 恢复提示
+  try {
+    var saved = JSON.parse(localStorage.getItem(key));
+    if (!saved || !saved.y || saved.pct < 5 || saved.pct > 95) return;
+    // 超过 30 天的记录忽略
+    if (Date.now() - saved.t > 30 * 86400000) { localStorage.removeItem(key); return; }
+    var banner = document.getElementById('resumeBanner');
+    if (!banner) return;
+    var secText = saved.title ? '<span class="rb-section">' + saved.title + '</span>' : '约 ' + saved.pct + '%';
+    banner.innerHTML =
+      '<div class="rb-text">上次读到 ' + secText + '</div>' +
+      '<button class="rb-btn" id="rbGo">继续阅读</button>' +
+      '<button class="rb-dismiss" id="rbDismiss">&times;</button>';
+    setTimeout(function() { banner.classList.add('visible'); }, 600);
+    document.getElementById('rbGo').addEventListener('click', function() {
+      window.scrollTo({ top: saved.y, behavior: 'smooth' });
+      banner.classList.remove('visible');
+    });
+    document.getElementById('rbDismiss').addEventListener('click', function() {
+      banner.classList.remove('visible');
+      try { localStorage.removeItem(key); } catch(e) {}
+    });
+    // 用户滚动后自动消失
+    var dismissed = false;
+    window.addEventListener('scroll', function() {
+      if (!dismissed && document.documentElement.scrollTop > 200) {
+        dismissed = true;
+        setTimeout(function() { banner.classList.remove('visible'); }, 3000);
+      }
+    }, { passive: true });
+  } catch(e) {}
+})();
+
+
+// === 字号调节器 ===
+(function(){
+  var key = 'article_fontsize';
+  var sizes = [0.88, 0.94, 1, 1.08, 1.16, 1.24];
+  var idx = 2; // 默认 1rem
+  try {
+    var saved = parseInt(localStorage.getItem(key));
+    if (!isNaN(saved) && saved >= 0 && saved < sizes.length) idx = saved;
+  } catch(e){}
+  var article = document.querySelector('article.article');
+  if (!article) return;
+  function apply() {
+    article.style.fontSize = sizes[idx] + 'rem';
+    try { localStorage.setItem(key, idx); } catch(e){}
+    var label = document.getElementById('fsLabel');
+    if (label) label.textContent = Math.round(sizes[idx]*100) + '%';
+  }
+  apply();
+  window._fontSmaller = function() { if (idx > 0) { idx--; apply(); } };
+  window._fontLarger = function() { if (idx < sizes.length - 1) { idx++; apply(); } };
+})();
+
+// === 顶栏章节指示器 ===
+(function(){
+  var bar = document.querySelector('.session-title');
+  var csEl = document.querySelector('.current-section');
+  var siFill = document.querySelector('.si-fill');
+  var sections = document.querySelectorAll('.section-header');
+  if (!bar || !sections.length) return;
+  var lastSec = '';
+  window.addEventListener('scroll', function(){
+    var h = document.documentElement;
+    var scrolled = h.scrollTop;
+    var total = h.scrollHeight - h.clientHeight;
+    // 进度条
+    if (siFill) {
+      var pct = total > 0 ? (scrolled / total * 100) : 0;
+      siFill.style.width = pct + '%';
+    }
+    // 当前章节
+    var current = '';
+    var nearBottom = (scrolled + h.clientHeight) >= (h.scrollHeight - 40);
+    if (nearBottom) {
+      current = sections[sections.length - 1].id;
+    } else {
+      sections.forEach(function(s){
+        if (scrolled >= s.offsetTop - 160) current = s.id;
+      });
+    }
+    if (current !== lastSec) {
+      lastSec = current;
+      if (csEl && current) {
+        var h2 = document.querySelector('#' + current + ' h2');
+        csEl.textContent = h2 ? h2.textContent.trim() : '';
+        csEl.classList.add('visible');
+      } else if (csEl) {
+        csEl.classList.remove('visible');
+      }
+    }
+  }, { passive: true });
+})();
+
+// === Blockquote 分享卡 ===
+(function(){
+  // roundRect polyfill
+  if (!CanvasRenderingContext2D.prototype.roundRect) {
+    CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+      if (typeof r === 'number') r = [r, r, r, r];
+      this.moveTo(x + r[0], y);
+      this.lineTo(x + w - r[1], y);
+      this.quadraticCurveTo(x + w, y, x + w, y + r[1]);
+      this.lineTo(x + w, y + h - r[2]);
+      this.quadraticCurveTo(x + w, y + h, x + w - r[2], y + h);
+      this.lineTo(x + r[3], y + h);
+      this.quadraticCurveTo(x, y + h, x, y + h - r[3]);
+      this.lineTo(x, y + r[0]);
+      this.quadraticCurveTo(x, y, x + r[0], y);
+      this.closePath();
+    };
+  }
+
+  var overlay = document.getElementById('bqShareOverlay');
+  var canvas = document.getElementById('bqShareCanvas');
+  if (!overlay || !canvas) return;
+  var ctx = canvas.getContext('2d');
+  var DPR = Math.min(window.devicePixelRatio || 1, 3);
+  var W = 720, H = 960;
+
+  function setupCanvas() {
+    canvas.width = W * DPR;
+    canvas.height = H * DPR;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.scale(DPR, DPR);
+  }
+
+  function wrapText(text, x, y, maxW, lineH, maxLines) {
+    var chars = text.split('');
+    var line = '';
+    var lines = [];
+    for (var i = 0; i < chars.length; i++) {
+      var test = line + chars[i];
+      if (ctx.measureText(test).width > maxW && line.length > 0) {
+        lines.push(line);
+        line = chars[i];
+      } else {
+        line = test;
+      }
+    }
+    if (line) lines.push(line);
+    if (maxLines && lines.length > maxLines) {
+      lines = lines.slice(0, maxLines);
+      lines[maxLines - 1] = lines[maxLines - 1].slice(0, -1) + '\u2026';
+    }
+    for (var j = 0; j < lines.length; j++) {
+      ctx.fillText(lines[j], x, y + j * lineH);
+    }
+    return lines.length;
+  }
+
+  // 从 URL 获取场次
+  var m = (location.pathname || '').match(/(\d{1,2})-article/);
+  var curNum = m ? parseInt(m[1], 10) : 0;
+  var pad = curNum < 10 ? '0' + curNum : '' + curNum;
+  // 从页面获取标题
+  var heroH1 = document.querySelector('.hero h1');
+  var sessionTitle = heroH1 ? heroH1.textContent.trim() : '';
+
+  function drawCard(text) {
+    setupCanvas();
+    // 背景
+    var bg = ctx.createLinearGradient(0, 0, W, H);
+    bg.addColorStop(0, '#0f0d09');
+    bg.addColorStop(0.5, '#1a1510');
+    bg.addColorStop(1, '#0a0a08');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+    // 光晕
+    var glow = ctx.createRadialGradient(W * 0.7, H * 0.15, 0, W * 0.7, H * 0.15, 320);
+    glow.addColorStop(0, 'rgba(212,160,74,0.12)');
+    glow.addColorStop(1, 'rgba(212,160,74,0)');
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, W, H);
+    // 顶部
+    ctx.fillStyle = '#d4a04a';
+    ctx.fillRect(60, 68, 50, 3);
+    ctx.font = '500 13px "Noto Sans SC", sans-serif';
+    ctx.fillStyle = 'rgba(212,160,74,0.7)';
+    ctx.fillText('\u751F \u8D22 \u6709 \u672F \u7EBF \u4E0B \u7EC4 \u5C40', 60, 106);
+    // 大号引号
+    ctx.font = 'italic 160px "Playfair Display", Georgia, serif';
+    ctx.fillStyle = 'rgba(212,160,74,0.15)';
+    ctx.fillText('\u201C', 38, 240);
+    // 正文
+    ctx.font = '600 26px "Noto Serif SC", "Noto Sans SC", serif';
+    ctx.fillStyle = '#e8dcc8';
+    var linesUsed = wrapText(text, 68, 280, W - 136, 46, 10);
+    // 分隔线
+    var bottomY = 280 + linesUsed * 46 + 50;
+    ctx.fillStyle = 'rgba(212,160,74,0.25)';
+    ctx.fillRect(68, bottomY, W - 136, 1);
+    // 场次
+    ctx.font = 'italic 15px "Playfair Display", Georgia, serif';
+    ctx.fillStyle = '#d4a04a';
+    ctx.fillText('No.' + pad, 68, bottomY + 36);
+    ctx.font = '500 15px "Noto Sans SC", sans-serif';
+    ctx.fillStyle = 'rgba(200,192,176,0.6)';
+    if (sessionTitle) ctx.fillText('\u00B7  ' + sessionTitle, 68 + ctx.measureText('No.' + pad).width + 12, bottomY + 36);
+    // 水印
+    ctx.font = '400 12px "Noto Sans SC", sans-serif';
+    ctx.fillStyle = 'rgba(200,192,176,0.25)';
+    ctx.textAlign = 'center';
+    ctx.fillText('\u2014 \u6839\u6E90\uFF08\u6797\u6839\u6E90\uFF09\u00B7 \u751F\u8D22\u6709\u672F\u7EBF\u4E0B\u7EC4\u5C40 \u2014', W / 2, H - 50);
+    ctx.textAlign = 'left';
+  }
+
+  function show() { overlay.classList.add('visible'); }
+  function hide() { overlay.classList.remove('visible'); }
+
+  document.getElementById('bqShareClose').addEventListener('click', hide);
+  overlay.addEventListener('click', function(e){ if (e.target === overlay) hide(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && overlay.classList.contains('visible')) hide();
+  });
+  document.getElementById('bqShareDownload').addEventListener('click', function(){
+    canvas.toBlob(function(blob){
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'shengcai-No' + pad + '-' + Date.now() + '.png';
+      a.click();
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+    }, 'image/png');
+  });
+
+  // 点击 blockquote 触发
+  document.querySelector('article.article').addEventListener('click', function(e){
+    var bq = e.target.closest('blockquote');
+    if (!bq) return;
+    var text = bq.textContent.trim();
+    if (!text) return;
+    drawCard(text);
+    show();
+  });
+})();
+
 </script>
 
+<div class="resume-banner" id="resumeBanner"></div>
+<div class="share-overlay" id="bqShareOverlay">
+  <div class="share-panel">
+    <canvas id="bqShareCanvas" width="720" height="960"></canvas>
+    <div class="share-actions">
+      <button class="share-download" id="bqShareDownload">保存图片</button>
+      <button class="share-close-btn" id="bqShareClose">关闭</button>
+    </div>
+    <div class="share-hint">长按图片可直接分享到微信</div>
+  </div>
+</div>
 </body>
 </html>

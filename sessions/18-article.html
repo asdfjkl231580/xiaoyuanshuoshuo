@@ -1,0 +1,2230 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第18场 · AI编程与销售之道 — 生财有术线下活动</title>
+<meta name="description" content="生财有术第18场线下组局 · AI编程与销售之道 — 文章版精华整理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第18场 · AI编程与销售之道 — 文章版">
+<meta property="og:description" content="生财有术第18场线下组局 · AI编程与销售之道 — 文章版精华整理">
+<meta property="og:site_name" content="生财有术线下组局">
+<meta name="twitter:card" content="summary">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root { --t: 0.35s ease; }
+  html { font-size: clamp(15px, 0.55vw + 12px, 20px); }
+
+
+  /* === Dark theme === */
+  [data-theme="dark"] {
+    --bg: #0a0a08;
+    --bg-bar: rgba(10,10,8,0.92);
+    --bg-hero-a: #1a1510;
+    --bg-hero-b: #0a0a08;
+    --bg-glow: rgba(212,160,74,0.1);
+    --bg-toc: #12100c;
+    --bg-card: #1a1510;
+    --bg-info: #12100c;
+    --border: #2a2218;
+    --accent: #d4a04a;
+    --accent-bg: rgba(212,160,74,0.12);
+    --accent-bg2: rgba(212,160,74,0.25);
+    --accent-border: rgba(212,160,74,0.2);
+    --accent-border2: rgba(212,160,74,0.3);
+    --text: #c8c0b0;
+    --text-heading: #f0e6d6;
+    --text-sub: #e8dcc8;
+    --text-quote: #d8cfc0;
+    --text-muted: #8a7d6d;
+    --text-dim: #5a5040;
+    --bq-bg: rgba(212,160,74,0.06);
+  }
+
+  /* === Light theme (松石绿) === */
+  [data-theme="light"] {
+    --bg: #f5faf8;
+    --bg-bar: rgba(245,250,248,0.92);
+    --bg-hero-a: #e4f0ec;
+    --bg-hero-b: #f5faf8;
+    --bg-glow: rgba(26,138,125,0.08);
+    --bg-toc: #eaf4f0;
+    --bg-card: #e4f0ec;
+    --bg-info: #eaf4f0;
+    --border: #c8ddd6;
+    --accent: #1a8a7d;
+    --accent-bg: rgba(26,138,125,0.08);
+    --accent-bg2: rgba(26,138,125,0.15);
+    --accent-border: rgba(26,138,125,0.18);
+    --accent-border2: rgba(26,138,125,0.25);
+    --text: #3a5a52;
+    --text-heading: #1a2e28;
+    --text-sub: #2a4a42;
+    --text-quote: #2a4a42;
+    --text-muted: #7a9a90;
+    --text-dim: #a0b8b0;
+    --bq-bg: rgba(26,138,125,0.05);
+  }
+
+  /* === Paper theme (纸卷 · 朱砂) === */
+  [data-theme="paper"] {
+    --bg: #f1ead9;
+    --bg-bar: rgba(241,234,217,0.92);
+    --bg-hero-a: #ebe3cd;
+    --bg-hero-b: #f1ead9;
+    --bg-glow: rgba(168,50,38,0.08);
+    --bg-toc: #ebe3cd;
+    --bg-card: #ebe3cd;
+    --bg-info: #ebe3cd;
+    --border: #d4c8a8;
+    --accent: #a83226;
+    --accent-bg: rgba(168,50,38,0.08);
+    --accent-bg2: rgba(168,50,38,0.18);
+    --accent-border: rgba(168,50,38,0.2);
+    --accent-border2: rgba(168,50,38,0.3);
+    --text: #5a4030;
+    --text-heading: #3a2818;
+    --text-sub: #4a3420;
+    --text-quote: #4a3420;
+    --text-muted: #8a6f5a;
+    --text-dim: #a08f76;
+    --bq-bg: rgba(168,50,38,0.05);
+  }
+
+  /* === Ocean theme (深海 · 青光) === */
+  [data-theme="ocean"] {
+    --bg: #0e2147;
+    --bg-bar: rgba(14,33,71,0.92);
+    --bg-hero-a: #16305a;
+    --bg-hero-b: #0e2147;
+    --bg-glow: rgba(79,209,197,0.1);
+    --bg-toc: #132a55;
+    --bg-card: #16305a;
+    --bg-info: #132a55;
+    --border: #1e3a66;
+    --accent: #4fd1c5;
+    --accent-bg: rgba(79,209,197,0.1);
+    --accent-bg2: rgba(79,209,197,0.2);
+    --accent-border: rgba(79,209,197,0.2);
+    --accent-border2: rgba(79,209,197,0.3);
+    --text: #a2bde0;
+    --text-heading: #d6e6ff;
+    --text-sub: #b8cfee;
+    --text-quote: #b8cfee;
+    --text-muted: #7a93b8;
+    --text-dim: #5a7290;
+    --bq-bg: rgba(79,209,197,0.06);
+  }
+
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.85;
+    transition: background var(--t), color var(--t);
+  }
+  a { color: var(--accent); text-decoration: none; transition: color var(--t); }
+  a:hover { text-decoration: underline; }
+
+  /* === Top bar === */
+  .top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-bar);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background var(--t), border-color var(--t);
+  }
+  .top-bar .back {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color var(--t);
+  }
+  .top-bar .back:hover { color: var(--accent); text-decoration: none; }
+  .top-bar .session-title {
+    font-size: 0.85rem;
+    color: var(--text-heading);
+    font-weight: 600;
+    transition: color var(--t);
+  }
+  .top-bar .right-btns { display: flex; align-items: center; gap: 8px; }
+  .top-bar .download-btn {
+    font-size: 0.78rem;
+    padding: 5px 14px;
+    border-radius: 6px;
+    background: var(--accent-bg);
+    color: var(--accent);
+    border: 1px solid var(--accent-border2);
+    cursor: pointer;
+    transition: all var(--t);
+  }
+  .top-bar .download-btn:hover {
+    background: var(--accent-bg2);
+    text-decoration: none;
+  }
+  .theme-btn {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--accent-bg); border: 1px solid var(--accent-border);
+    color: var(--accent); font-size: 0.95rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all var(--t);
+  }
+  .theme-btn:hover { transform: scale(1.1); }
+
+  /* === 4-theme switcher === */
+  .theme-switcher{
+    display:inline-flex;gap:4px;padding:3px;
+    background:var(--bg-card,var(--bg));
+    border:1px solid var(--border);border-radius:14px;
+    transition:background var(--t),border-color var(--t);
+  }
+  .theme-switcher .chip{
+    width:20px;height:20px;border-radius:50%;border:1px solid transparent;
+    cursor:pointer;font-size:0;padding:0;
+    transition:all 0.2s;
+  }
+  .theme-switcher .chip[data-t="dark"]{background:#0a0a08;border-color:#2a2218}
+  .theme-switcher .chip[data-t="light"]{background:#f5faf8;border-color:#c8ddd6}
+  .theme-switcher .chip[data-t="paper"]{background:#f1ead9;border-color:#d4c8a8}
+  .theme-switcher .chip[data-t="ocean"]{background:#0e2147;border-color:#1e3a66}
+  .theme-switcher .chip:hover{transform:scale(1.15)}
+  .theme-switcher .chip.active{
+    box-shadow:0 0 0 2px var(--accent);
+  }
+
+
+  /* === Hero === */
+  .hero {
+    text-align: center;
+    padding: 4rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--bg-hero-a) 0%, var(--bg-hero-b) 100%);
+    transition: background var(--t);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, var(--bg-glow) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .hero .badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    padding: 4px 14px;
+    border-radius: 20px;
+    background: var(--accent-bg);
+    color: var(--accent);
+    border: 1px solid var(--accent-border);
+    margin-bottom: 1rem;
+    position: relative;
+    transition: all var(--t);
+  }
+  .hero h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--text-heading);
+    position: relative;
+    margin-bottom: 0.3rem;
+    transition: color var(--t);
+  }
+  .hero .accent { color: var(--accent); transition: color var(--t); }
+  .hero .meta-line {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    position: relative;
+    margin-top: 0.8rem;
+    transition: color var(--t);
+  }
+  .hero .stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+    position: relative;
+  }
+  .hero .stat .n { font-size: 1.3rem; font-weight: 900; color: var(--accent); transition: color var(--t); }
+  .hero .stat .l { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; transition: color var(--t); }
+
+  /* === Nav / TOC === */
+  .toc-bar {
+    background: var(--bg-toc);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 2rem;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 42px;
+    z-index: 90;
+    transition: background var(--t), border-color var(--t);
+  }
+  .toc-bar a {
+    font-size: 0.75rem;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-muted);
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .toc-bar a:hover, .toc-bar a.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* === Article === */
+  .article {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 4rem;
+  }
+
+  /* Section header */
+  .section-header {
+    margin: 3rem 0 1.5rem;
+    padding-left: 14px;
+    border-left: 3px solid var(--accent);
+    transition: border-color var(--t);
+  }
+  .section-header:first-child { margin-top: 0; }
+  .section-header .sec-num {
+    font-size: 0.68rem;
+    letter-spacing: 3px;
+    color: var(--accent);
+    font-weight: 500;
+    transition: color var(--t);
+  }
+  .section-header h2 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-heading);
+    margin-top: 2px;
+    transition: color var(--t);
+  }
+
+  /* Sub header */
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-sub);
+    margin: 2rem 0 0.8rem;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+    transition: color var(--t), border-color var(--t);
+  }
+
+  /* Paragraph */
+  p { margin-bottom: 1rem; }
+
+  /* Bold highlight */
+  strong { color: var(--text-sub); transition: color var(--t); }
+
+  /* Blockquote */
+  blockquote {
+    background: var(--bq-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.2rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1rem 0 1.2rem;
+    color: var(--text-quote);
+    font-size: 0.92rem;
+    transition: all var(--t);
+  }
+
+  /* List */
+  ul, ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  li {
+    margin-bottom: 0.4rem;
+  }
+  li::marker { color: var(--accent); }
+
+  /* Questioner tag */
+  .questioner {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-bg);
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    transition: all var(--t);
+  }
+
+  /* Highlight box */
+  .highlight-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin: 1.2rem 0;
+    transition: all var(--t);
+  }
+  .highlight-box .hl-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    transition: color var(--t);
+  }
+
+  /* Product card grid */
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 1rem 0;
+  }
+  .product-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all var(--t);
+  }
+  .product-card .pname {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+    transition: color var(--t);
+  }
+  .product-card .pdesc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    transition: color var(--t);
+  }
+
+  /* Activity info box */
+  .info-box {
+    background: var(--bg-info);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 2rem;
+    font-size: 0.88rem;
+    transition: all var(--t);
+  }
+  .info-box .info-row {
+    display: flex;
+    gap: 0.5rem;
+    padding: 4px 0;
+    color: var(--text-muted);
+    transition: color var(--t);
+  }
+  .info-box .info-label {
+    color: var(--accent);
+    font-weight: 600;
+    flex-shrink: 0;
+    width: 70px;
+    transition: color var(--t);
+  }
+  .info-box .info-val { color: var(--text); transition: color var(--t); }
+  /* 参与者列表（一行一个，整齐美观） */
+  .info-box .info-row.info-row-stack { flex-direction: column; align-items: flex-start; gap: 0.4rem; padding: 0.4rem 0; }
+  .info-box .info-row-stack .info-label { width: auto; margin-bottom: 0.2rem; }
+  .info-box .participants-list { list-style: none; padding: 0; margin: 0; width: 100%; }
+  .info-box .participants-list li {
+    padding: 0.5rem 0.8rem;
+    border-bottom: 1px dashed var(--border);
+    color: var(--text);
+    line-height: 1.55;
+    display: flex; align-items: baseline; gap: 0.6rem;
+    transition: background var(--t);
+  }
+  .info-box .participants-list li:last-child { border-bottom: none; }
+  .info-box .participants-list li:hover { background: var(--accent-bg); border-radius: 4px; }
+  .info-box .participants-list .p-name { color: var(--accent); font-weight: 600; flex-shrink: 0; min-width: 9.5em; }
+  .info-box .participants-list .p-meta { color: var(--text-muted); font-size: 0.92em; }
+
+  /* Divider */
+  .divider {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    margin: 2.5rem 0;
+    transition: background var(--t);
+  }
+
+  /* Footer */
+  .article-footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    border-top: 1px solid var(--border);
+    transition: all var(--t);
+  }
+  .article-footer a { color: var(--text-muted); }
+
+  /* Back to top */
+  .back-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--accent-bg2);
+    border: 1px solid var(--accent-border2);
+    color: var(--accent);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s, background var(--t), border-color var(--t), color var(--t);
+    z-index: 50;
+  }
+  .back-top.show { opacity: 1; }
+  .back-top:hover { background: var(--accent-bg2); }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.5rem; }
+    .hero .stats { gap: 1.2rem; }
+    .article { padding: 1.5rem 1rem; }
+    .product-grid { grid-template-columns: 1fr; }
+    .top-bar { padding: 8px 1rem; }
+    .toc-bar { padding: 10px 1rem; justify-content: flex-start; }
+    .top-bar .session-title { display: none; }
+  }
+
+  /* PPT version button - prominent */
+  .top-bar .ppt-btn {
+    font-size: 0.78rem;
+    padding: 6px 14px;
+    border-radius: 16px;
+    background: var(--accent-bg2);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all var(--t);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .top-bar .ppt-btn:hover {
+    background: var(--accent);
+    color: var(--bg);
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+
+  /* Scroll-hide TOC */
+  .toc-bar {
+    transition: transform 0.3s ease, opacity 0.3s ease, background var(--t), border-color var(--t);
+    will-change: transform;
+  }
+  .toc-bar.hidden {
+    transform: translateY(-120%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+
+  /* === B: 阅读体验深度打磨 === */
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 110px;
+  }
+
+  body {
+    letter-spacing: 0.015em;
+    font-feature-settings: "palt" 1, "kern" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--accent-bg2);
+    color: var(--text-heading);
+  }
+
+  /* 阅读进度条 */
+  .read-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background: var(--accent);
+    z-index: 200;
+    transition: width 0.15s ease-out, background var(--t);
+    pointer-events: none;
+  }
+
+  /* 文章容器收窄 */
+  .article {
+    max-width: min(720px, 92vw) !important;
+    padding: 3rem 1.6rem 5rem !important;
+  }
+
+  /* 段落节奏 */
+  .article p {
+    margin-bottom: 1.35rem;
+    line-height: 1.95;
+    color: var(--text);
+  }
+
+  /* 标题字距与节奏 */
+  .article h2,
+  .section-header h2 {
+    letter-spacing: -0.005em;
+    font-size: 1.55rem !important;
+    line-height: 1.4;
+  }
+  .section-header {
+    margin: 4.5rem 0 2rem !important;
+    padding-left: 18px !important;
+    border-left-width: 3px !important;
+  }
+  .section-header:first-child { margin-top: 0.5rem !important; }
+  .section-header .sec-num {
+    letter-spacing: 4px !important;
+    font-size: 0.7rem !important;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .article h3 {
+    font-size: 1.12rem !important;
+    margin: 2.6rem 0 1rem !important;
+    padding-bottom: 8px !important;
+    letter-spacing: 0.005em;
+    line-height: 1.5;
+  }
+
+  /* blockquote 重塑 */
+  .article blockquote {
+    position: relative;
+    font-size: 1rem !important;
+    line-height: 1.85;
+    padding: 1.3rem 1.5rem 1.3rem 2.4rem !important;
+    margin: 1.6rem 0 !important;
+    border-left-width: 3px !important;
+    border-radius: 0 10px 10px 0 !important;
+    font-style: normal;
+  }
+  .article blockquote::before {
+    content: "\201C";
+    position: absolute;
+    left: 0.55rem;
+    top: 0.3rem;
+    font-size: 2.4rem;
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0.55;
+    font-family: Georgia, "Noto Serif SC", serif;
+    font-weight: 700;
+    pointer-events: none;
+  }
+
+  /* 强调与链接 */
+  .article strong {
+    color: var(--text-heading);
+    font-weight: 700;
+  }
+  .article a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--accent-border2);
+  }
+  .article a:hover {
+    text-decoration-color: var(--accent);
+  }
+
+  /* 列表节奏 */
+  .article ul, .article ol {
+    padding-left: 1.6rem;
+    margin: 1rem 0 1.4rem;
+  }
+  .article li {
+    margin-bottom: 0.6rem;
+    line-height: 1.85;
+  }
+
+  /* 提问者标签更柔和 */
+  .article .questioner {
+    font-size: 0.72rem !important;
+    letter-spacing: 0.5px;
+    padding: 3px 12px !important;
+    border-radius: 12px !important;
+    margin-bottom: 8px;
+  }
+
+  /* 分节进入动画 */
+  .section-header,
+  .highlight-box,
+  .product-grid,
+  .info-box {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .section-header.revealed,
+  .highlight-box.revealed,
+  .product-grid.revealed,
+  .info-box.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .section-header, .highlight-box, .product-grid, .info-box {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none;
+    }
+  }
+
+  /* Focus 可见性 */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  /* 小屏优化 */
+  @media (max-width: 640px) {
+    .article { padding: 2rem 1.1rem 3.5rem !important; }
+    .article h2, .section-header h2 { font-size: 1.3rem !important; }
+    .article h3 { font-size: 1rem !important; margin-top: 2rem !important; }
+    .article blockquote { padding: 1.1rem 1.1rem 1.1rem 2.1rem !important; }
+    .article blockquote::before { font-size: 2rem; left: 0.4rem; }
+    .section-header { margin: 3rem 0 1.5rem !important; }
+  }
+
+
+  /* === D: 跨页面动效一致性 === */
+  body {
+    opacity: 0;
+    transition: opacity 0.45s cubic-bezier(0.22,1,0.36,1);
+  }
+  body.page-ready {
+    opacity: 1;
+  }
+  body.page-leaving {
+    opacity: 0;
+    transition: opacity 0.32s cubic-bezier(0.4,0,0.6,1);
+  }
+  /* 统一 focus-visible 视感 */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible {
+    outline: 2px solid var(--accent, currentColor);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    body, body.page-leaving { transition: none !important; opacity: 1 !important; }
+  }
+
+
+  /* === E: 文章上下篇导航 + 阅读时长 === */
+
+  /* 阅读时长徽章 — 放在 hero badge 旁 */
+  .reading-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+  .reading-meta .dot-sep {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--text-dim);
+    flex-shrink: 0;
+  }
+  .reading-meta .rm-num {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* 上下篇导航卡 */
+  .session-nav {
+    max-width: min(720px, 92vw);
+    margin: 3rem auto 1.5rem;
+    padding: 0 1.6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .session-nav a {
+    display: block;
+    padding: 1.2rem 1.4rem;
+    background: var(--card-bg, var(--bg));
+    border: 1px solid var(--border, var(--rule));
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
+    position: relative;
+    overflow: hidden;
+  }
+  .session-nav a:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px -12px var(--accent);
+  }
+  .session-nav a.disabled {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .session-nav .sn-eyebrow {
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    font-family: 'Playfair Display', Georgia, serif;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .session-nav a.next .sn-eyebrow { justify-content: flex-end; }
+  .session-nav a.next { text-align: right; }
+  .session-nav .sn-num {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .session-nav .sn-title {
+    font-size: 0.96rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.5;
+    transition: color 0.35s ease;
+  }
+  .session-nav a:hover .sn-title { color: var(--accent); }
+  .session-nav .sn-arrow {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 0.85rem;
+    transition: transform 0.35s ease;
+    display: inline-block;
+  }
+  .session-nav a.prev:hover .sn-arrow { transform: translateX(-4px); }
+  .session-nav a.next:hover .sn-arrow { transform: translateX(4px); }
+
+  @media (max-width: 600px) {
+    .session-nav {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      padding: 0 1.1rem;
+    }
+    .session-nav a { padding: 1rem 1.15rem; }
+    .session-nav a.next { text-align: left; }
+    .session-nav a.next .sn-eyebrow { justify-content: flex-start; }
+  }
+
+
+  /* === 阅读位置记忆 === */
+  .resume-banner {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(120px);
+    z-index: 120;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 22px;
+    background: var(--bg, #0a0a08);
+    border: 1px solid var(--accent-border, rgba(212,160,74,0.25));
+    border-radius: 12px;
+    box-shadow: 0 12px 40px -12px rgba(0,0,0,0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    font-size: 0.82rem;
+    color: var(--text);
+    transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), opacity 0.5s ease;
+    opacity: 0;
+  }
+  .resume-banner.visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  .resume-banner .rb-text {
+    line-height: 1.5;
+  }
+  .resume-banner .rb-section {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .resume-banner .rb-btn {
+    padding: 7px 18px;
+    border-radius: 6px;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+  }
+  [data-theme="paper"] .resume-banner .rb-btn { color: #f1ead9; }
+  [data-theme="light"] .resume-banner .rb-btn { color: #f5faf8; }
+  .resume-banner .rb-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px -4px var(--accent);
+  }
+  .resume-banner .rb-dismiss {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 2px 6px;
+    line-height: 1;
+    transition: color 0.25s ease;
+  }
+  .resume-banner .rb-dismiss:hover { color: var(--accent); }
+  @media (max-width: 600px) {
+    .resume-banner { left: 12px; right: 12px; transform: translateX(0) translateY(120px); }
+    .resume-banner.visible { transform: translateX(0) translateY(0); }
+  }
+
+
+  /* === 字号调节器 === */
+  .font-sizer {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    background: var(--bg-card, var(--bg));
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    height: 28px;
+  }
+  .font-sizer button {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-family: 'Noto Sans SC', sans-serif;
+    cursor: pointer;
+    padding: 0 10px;
+    height: 100%;
+    transition: all 0.25s ease;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .font-sizer button:hover { color: var(--accent); background: var(--accent-bg); }
+  .font-sizer button:first-child { font-size: 0.7rem; border-right: 1px solid var(--border); }
+  .font-sizer button:last-child { font-size: 0.92rem; }
+  .font-sizer .fs-label {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    padding: 0 6px;
+    letter-spacing: 0.05em;
+    user-select: none;
+  }
+
+  /* === Blockquote 分享交互 === */
+  article blockquote {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
+  }
+  article blockquote:hover {
+    border-left-color: var(--accent);
+    transform: translateX(4px);
+  }
+  article blockquote::after {
+    content: '点击生成分享卡';
+    position: absolute;
+    right: 12px;
+    bottom: 8px;
+    font-size: 0.62rem;
+    color: var(--text-dim);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    letter-spacing: 0.06em;
+    pointer-events: none;
+  }
+  article blockquote:hover::after { opacity: 1; }
+
+  /* 分享卡遮罩 */
+  .share-overlay {
+    position: fixed; inset: 0; z-index: 500;
+    background: rgba(0,0,0,0.78);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    display: none; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.4s cubic-bezier(0.22,1,0.36,1);
+  }
+  .share-overlay.visible { display: flex; opacity: 1; }
+  .share-panel {
+    position: relative;
+    display: flex; flex-direction: column; align-items: center; gap: 1.2rem;
+    max-width: 92vw;
+  }
+  .share-panel canvas {
+    border-radius: 14px;
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6);
+    max-width: 100%; height: auto;
+  }
+  .share-actions {
+    display: flex; gap: 12px; align-items: center;
+  }
+  .share-actions button {
+    padding: 10px 24px;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Noto Sans SC', sans-serif;
+  }
+  .share-download {
+    background: linear-gradient(135deg, #d4a04a, #c4863a);
+    color: #fff;
+    box-shadow: 0 6px 20px -6px rgba(212,160,74,0.5);
+  }
+  .share-download:hover { transform: translateY(-2px); box-shadow: 0 10px 28px -6px rgba(212,160,74,0.6); }
+  .share-close-btn {
+    background: rgba(255,255,255,0.08);
+    color: #ccc;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+  }
+  .share-close-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
+  .share-hint {
+    color: rgba(255,255,255,0.45);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+  }
+
+  /* === 顶栏章节指示器 === */
+  .section-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: transparent;
+    overflow: hidden;
+  }
+  .section-indicator .si-fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.4s cubic-bezier(0.22,1,0.36,1);
+    width: 0%;
+  }
+  .top-bar .current-section {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: color 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+  }
+  .top-bar .current-section.visible { opacity: 1; color: var(--text-muted); }
+  @media (max-width: 600px) { .top-bar .current-section { max-width: 120px; font-size: 0.62rem; } }
+
+
+  /* === 左侧边栏 TOC === */
+  .page-wrapper {
+    display: flex;
+    align-items: flex-start;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .sidebar-toc {
+    width: 160px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 96px;
+    padding: 1.4rem 0 1.4rem 1.2rem;
+    display: none; /* 默认隐藏，desktop 才显示 */
+  }
+  .sidebar-toc .stoc-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+    padding-left: 4px;
+    transition: color var(--t);
+  }
+  .stoc-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    color: var(--text-dim);
+  }
+  .stoc-item:hover {
+    background: var(--accent-bg);
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .stoc-item.active {
+    background: var(--accent-bg);
+    color: var(--accent);
+  }
+  .stoc-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+  .stoc-item:hover .stoc-icon,
+  .stoc-item.active .stoc-icon {
+    background: var(--accent-bg2);
+    border-color: var(--accent-border2);
+    color: var(--accent);
+  }
+  .stoc-name {
+    font-size: 0.72rem;
+    line-height: 1.3;
+    transition: color 0.2s ease;
+  }
+
+  /* === Section 大字图标徽章 === */
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .sec-badge {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: var(--accent-bg2);
+    border: 1px solid var(--accent-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 4px;
+    transition: all var(--t);
+  }
+  .sec-header-text {
+    flex: 1;
+    padding-left: 0;
+    border-left: none;
+  }
+  /* 覆盖旧的 border-left 到 text wrapper 上 */
+  .section-header {
+    border-left: none !important;
+    padding-left: 0 !important;
+  }
+  .sec-header-text {
+    border-left: 3px solid var(--accent);
+    padding-left: 18px;
+    transition: border-color var(--t);
+  }
+
+  /* Desktop 才显示侧边栏，隐藏水平 toc-bar */
+  @media (min-width: 900px) {
+    html { scroll-padding-top: 58px; }
+    .sidebar-toc { display: block; }
+    .toc-bar { display: none; }
+    .page-wrapper .article {
+      flex: 1;
+      min-width: 0;
+      max-width: min(720px, 92vw) !important;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+
+<div class="read-progress" id="readProgress"></div>
+<!-- Top bar -->
+<div class="top-bar">
+  <a href="../index.html" class="back">&larr; 返回目录</a>
+  <span class="session-title">第18场 · AI编程与销售之道</span>
+  <span class="current-section" id="currentSection"></span><div class="section-indicator"><div class="si-fill"></div></div>
+  <div class="right-btns">
+    <a href="18-full.html" class="ppt-btn">&#8801; 全文版</a>
+    <a href="18.html" class="ppt-btn">&#9635; PPT版</a>
+    <a href="../downloads/第18场-AI编程与销售之道-精华整理.md" download class="download-btn">下载 .md</a>
+    <div class="font-sizer"><button onclick="_fontSmaller()">A-</button><span class="fs-label" id="fsLabel">100%</span><button onclick="_fontLarger()">A+</button></div>
+    <div class="theme-switcher" id="themeSwitcher">
+      <button class="chip" data-t="dark" onclick="setTheme('dark')" title="夜">夜</button>
+      <button class="chip" data-t="light" onclick="setTheme('light')" title="昼">昼</button>
+      <button class="chip" data-t="paper" onclick="setTheme('paper')" title="纸">纸</button>
+      <button class="chip" data-t="ocean" onclick="setTheme('ocean')" title="海">海</button>
+    </div>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="badge">第 18 场 · 2026年4月21日</div>
+  <h1>AI编程<span class="accent">与销售之道</span></h1>
+  <p class="meta-line">杭州 · 大象导茶室 &nbsp;|&nbsp; 根源（林根源）主讲</p>
+  <div class="stats">
+    <div class="stat"><div class="n">8</div><div class="l">核心主题</div></div>
+    <div class="stat"><div class="n">2.5h</div><div class="l">活动时长</div></div>
+    <div class="stat"><div class="n">1.6万</div><div class="l">字精华</div></div>
+    <div class="stat"><div class="n">12</div><div class="l">人参与</div></div>
+  </div>
+</div>
+
+<!-- TOC -->
+<nav class="toc-bar">
+  <a href="#part01">名字记忆点</a>
+  <a href="#part02">数码消费观</a>
+  <a href="#part03">AI vs AI编程</a>
+  <a href="#part04">AI编程实战</a>
+  <a href="#part05">八字识人术</a>
+  <a href="#part06">销售五层信任</a>
+  <a href="#part07">销售三条路径</a>
+  <a href="#part08">1000万目标拆解</a>
+</nav>
+
+<!-- Page wrapper: sidebar + article -->
+<div class="page-wrapper">
+
+<!-- Sidebar TOC (desktop only) -->
+<nav class="sidebar-toc" aria-label="文章目录">
+  <div class="stoc-label">目录</div>
+  <a class="stoc-item" href="#part01">
+    <span class="stoc-icon">名</span>
+    <span class="stoc-name">名字记忆点</span>
+  </a>
+  <a class="stoc-item" href="#part02">
+    <span class="stoc-icon">器</span>
+    <span class="stoc-name">数码消费观</span>
+  </a>
+  <a class="stoc-item" href="#part03">
+    <span class="stoc-icon">智</span>
+    <span class="stoc-name">AI vs AI编程</span>
+  </a>
+  <a class="stoc-item" href="#part04">
+    <span class="stoc-icon">编</span>
+    <span class="stoc-name">AI编程实战</span>
+  </a>
+  <a class="stoc-item" href="#part05">
+    <span class="stoc-icon">命</span>
+    <span class="stoc-name">八字识人术</span>
+  </a>
+  <a class="stoc-item" href="#part06">
+    <span class="stoc-icon">信</span>
+    <span class="stoc-name">销售五层信任</span>
+  </a>
+  <a class="stoc-item" href="#part07">
+    <span class="stoc-icon">路</span>
+    <span class="stoc-name">销售三条路径</span>
+  </a>
+  <a class="stoc-item" href="#part08">
+    <span class="stoc-icon">标</span>
+    <span class="stoc-name">1000万目标拆解</span>
+  </a>
+</nav>
+
+<!-- Article -->
+<article class="article">
+
+  <!-- Activity info -->
+  <div class="info-box">
+    <div class="info-row"><span class="info-label">日期</span><span class="info-val">2026年4月21日（周二）</span></div>
+    <div class="info-row"><span class="info-label">地点</span><span class="info-val">杭州·大象导茶室</span></div>
+    <div class="info-row"><span class="info-label">主讲人</span><span class="info-val">根源（林根源）</span></div>
+    <div class="info-row"><span class="info-label">编号</span><span class="info-val">第18场（自2024年8月起，每周一场）</span></div>
+    <div class="info-row info-row-stack">
+      <span class="info-label">参与者（12 位）</span>
+      <ul class="participants-list">
+        <li><span class="p-name">小鹤 / Spencer</span><span class="p-meta">李佳耀，96年，山西 → 内蒙古大草原</span></li>
+        <li><span class="p-name">凯米 / KAMI</span><span class="p-meta">唐正平，90年，安徽安庆 → 上海</span></li>
+        <li><span class="p-name">润贝 / 小贝</span><span class="p-meta">胡卢润贝，06年，浙江永康</span></li>
+        <li><span class="p-name">Z / 曾志鑫</span><span class="p-meta">00年，江西景德镇</span></li>
+        <li><span class="p-name">黄12 / 黄东起</span><span class="p-meta">97年，安徽阜阳 → 杭州</span></li>
+        <li><span class="p-name">十七 / 景梦</span><span class="p-meta">大连辽宁 → 杭州</span></li>
+        <li><span class="p-name">王宁 / 盖盖</span><span class="p-meta">97年，金华东阳 → 杭州</span></li>
+        <li><span class="p-name">林爱 / Ling</span><span class="p-meta">96年，温州永嘉</span></li>
+        <li><span class="p-name">木子 / 李建忠</span><span class="p-meta">89年，浙江台州 → 杭州</span></li>
+        <li><span class="p-name">大松松 / 松松</span><span class="p-meta">84年，湖北武当 → 杭州</span></li>
+        <li><span class="p-name">董先生 / 董司原</span><span class="p-meta">88年，河北石家庄 → 杭州 + 上海</span></li>
+        <li><span class="p-name">谢其深</span><span class="p-meta">绍兴</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ==================== PART 01 ==================== -->
+  <div class="section-header" id="part01">
+    <div class="sec-badge">名</div>
+    <div class="sec-header-text">
+      <div class="sec-num">PART 01</div>
+      <h2>线下见人第一招：让别人记住你的名字</h2>
+    </div>
+  </div>
+
+  <h3>从去年八月到今天，第18场</h3>
+  <p>从去年8月18号到今天，总共开了18场，每周一场，今天是第18场。每周二下午 1 点到 3 点，最晚 3 点半结束——因为我得回家弄孩子。</p>
+  <p>每一场都是问答的形式——你带着问题来，我能答的就给方向，我没经验的也能给思路。我们今天有三台录制设备（一台钉钉、一台飞书、一台 Tic Note），所以你今天讲的所有东西都会被记下来，<strong>化成灰都可以找得到资料</strong>，不用担心笔记跟不上。</p>
+  <p>每一场我都会从同一个主题开场：自我介绍。因为线下见面有一件最重要的事情，就是你的名字。</p>
+
+  <h3>三个名字，要让别人知道怎么叫你</h3>
+  <p>这个时代很奇妙。一个人见了你之后认识一周，他都不知道到底要叫你什么。因为名字一堆：本名、绰号、微信名、个性签名的名字。我开了18场，<strong>有60%的人三个名字都不一样</strong>——这是让我一直很佩服的一个现象。</p>
+  <p>像今天来的小鹤就是一个典型：本名李佳耀（单人旁的佳，光耀的耀），微信名 Spencer，群里大家叫他小鹤。三个名字毫无关联——你下次想找他想了半天："那个山西、内蒙古的、做爬虫的，叫……什么来着？"</p>
+  <p>所以名字这块要认真讲。像我叫根源，林根源是我的本名——根是树根的根，源是水源的源，就是"万恶根源"的那个根源。<strong>我没有绰号，大家都叫我根源。一个名字，清清楚楚。</strong></p>
+  <p>有人自我介绍会说"你好，我叫淘淘，本名英飞，你叫哪个都行"——这就麻烦了。大多数人有选择困难，下次见面他不是忘了，是不知道叫哪个，于是干脆就不叫了。<strong>名字模糊 = 关系模糊。</strong></p>
+  <blockquote>一定要习惯性让别人知道该怎么称呼你。就算是绰号也好——只要清楚、只有一个。</blockquote>
+
+  <h3>自我介绍的四要素</h3>
+  <p>我们第一轮自我介绍每人一分钟，必须涵盖四个要素：</p>
+  <p><strong>第一：名字，讲三种。</strong>本名 + 别人怎么称呼你 + 微信名。名字要让别人举例就能记住——像我叫根源，我会说"就是万恶根源的根源"，这样别人就有了记忆抓手。</p>
+  <p><strong>第二：年纪。</strong>像我是87年的。说出来让大家知道彼此的人生阶段——你跟一个 06 年的大学生跟跟一个 84 年的合伙人聊话题，是不一样的。</p>
+  <p><strong>第三：老家 + 现居地。</strong>要讲具体——不能说"我安徽的"，要说"我是安徽安庆的，目前住在杭州"。这样别人知道你的来路、知道你现在能不能见你、有没有共同的地理记忆。</p>
+  <p><strong>第四：目前在做的项目。</strong>快速带过就好。像我做三件事：第一是旅游业务（隔壁这间公司大象导就是我的）、第二是心理咨询师讲知识付费、第三是有自己的小程序在卖（AI 编程做的）。让别人知道你的核心标签，关系深的下次再聊。</p>
+
+  <h3>讲名字的时候要打断你</h3>
+  <p>开场的时候我会做一件事：如果你只讲了"我叫小鹤" 就一笔带过——我会打断你，说"名字这块要多认真讲一下，这个鹤怎么写？"</p>
+  <p>因为名字毕竟是父母赋予的，是一个人最早的身份。一笔带过太可惜了。所以理想的讲法是："我本名李佳耀，单人旁的佳，光耀的耀。微信名 Spencer，群里大家叫我小鹤——飞鹤的鹤。"<strong>每个字怎么写都讲清楚</strong>——别人录音的时候、加好友备注的时候，就不会出错。</p>
+
+  <h3>第二轮 30 秒：给自己一个被记住的特点</h3>
+  <p>第二轮 30 秒之内说完。只讲两件事：你的名字 + 你身上让别人印象深刻的一个点。可以是外在（穿着、发型、眼镜），也可以是某种特质，或者你带的某件东西。</p>
+  <p>我做示范："你好，我是根源，我今天的特点是穿了一双粉红配黑色的鞋子，包准你们忘不了。"——就是这种力度。</p>
+  <p>今天大家给的记忆点都很亮，我现在脱口就能复述：</p>
+  <ul>
+    <li><strong>小鹤</strong>——老家搬到了内蒙古大草原</li>
+    <li><strong>凯米</strong>——上海过来的，今年是他的本命年</li>
+    <li><strong>润贝</strong>——06 年的大学生，全场最年轻</li>
+    <li><strong>黄12</strong>——骑电瓶车被交警抓了，没戴头盔，说"朋友在等我"，警察点头放他走了</li>
+    <li><strong>十七</strong>——大连人，全场唯一的东北口音</li>
+    <li><strong>盖盖</strong>（王宁）——年轻人里少有的喜欢八字</li>
+    <li><strong>林爱</strong>——刚植发两个月剃了寸头</li>
+    <li><strong>木子</strong>（李建忠）——有强迫症，纸巾擦完一定要折叠起来</li>
+    <li><strong>大松松</strong>——公司就在隔壁（指向窗外的大象导）</li>
+    <li><strong>董先生</strong>——198 斤，全场重量级</li>
+    <li><strong>谢其深</strong>——体脂只有 12，可能有腹肌</li>
+  </ul>
+  <p>这些点你回去之后过一周，加微信还能说"我是那天被交警抓的十二"、"我是那天剃寸头的林爱"——<strong>这一句话，关系就续上了</strong>。如果没有这一句，对方完全想不起你是谁。</p>
+  <blockquote>第一次见面只是让对方有印象。深入链接一定在第二次。所以第一次最重要的事，就是让对方对你有一个清楚、且最好是好的印象。</blockquote>
+
+  <!-- ==================== PART 02 ==================== -->
+  <div class="section-header" id="part02">
+    <div class="sec-badge">器</div>
+    <div class="sec-header-text">
+      <div class="sec-num">PART 02</div>
+      <h2>数码工具消费观：要顶配，不要省钱</h2>
+    </div>
+  </div>
+
+  <h3>电子产品要么顶配，要么 70%</h3>
+  <p>开场前在跟盖盖聊他刚换的电脑，刚好提到一个我自己的诀窍：<strong>买任何电子类产品，尤其是你的效率工具，要么就上到最顶，要么就上到 70% 的配置</strong>，绝对不要去买入门款。</p>
+  <p>像我现在用的 Air 是当时上的顶配，1万两千多，1T 的硬盘——现在我都觉得不够用了。我手机以前是 512G，后来也换成 1T。因为电脑容量的使用量永远比你想象的快得多，今天有录制、有视频、有大文件——都很重要。</p>
+  <blockquote>跟你提升效率有关的工具，绝对不要省。要上就上最顶。</blockquote>
+
+  <h3>四款录音笔的实战对比</h3>
+  <p>讲到效率工具，我桌上现在摆了四台录音笔——因为今天有三个机器在录，正好可以对照。</p>
+  <p><strong>Get 笔记</strong>——设计我个人最喜欢，外形最好看。但充电是小天才那种小接口，出门忘带线就麻烦。</p>
+  <p><strong>钉钉录音</strong>——Type-C 充电，最方便；它就是有点厚。</p>
+  <p><strong>飞书</strong>——这是航海家抽到的。设计是一片板子吸在手机后面，但贴上手机后会翘起来——我不喜欢那感觉。</p>
+  <p><strong>Tic Note</strong>——又薄又轻，但充电也是小天才。<strong>它的翻译/转写是这四个里最强的</strong>——而且我后来买了 Tic Note 的线上会员，因为我是心理咨询师，我懂八字。我发现<strong>八字的专有名词在 Tic Note 的转写里一次过，我不用修改任何字</strong>，它能完全精准地转成正确的文字。这一点对我来说太关键了，所以最后我主力用它。</p>
+  <blockquote>我对 AI 转写的态度是——我只要"逐字稿转录"，不要"AI 帮我提炼重点"。我不要你帮我整理，我要全文。</blockquote>
+
+  <h3>手机一年到一年半换一次</h3>
+  <p>很多人觉得换手机麻烦——"那么多东西要备份"。其实不是麻烦，是你换的次数还不够多。当你一年换一次，备份就熟练了，根本不是个事。苹果到苹果，4 个小时之内一觉睡起来就换过去了。</p>
+  <p>手机最好做到一年半到两年换一次。把原本的手机卖掉——苹果手机隔两年卖大概还能六到七折回收。你算一下：用京东白条或者苹果 24 期零利率分期，最终你花不了多少钱。</p>
+  <p>但是你换了之后呢？速度变快，开微信省 10 秒，回讯息顺畅度直接拉高。每一次操作都觉得爽，又有虚荣心，心情好做事效率就高。<strong>这种钱绝对不能省。</strong></p>
+  <p>所以我平均一年到两年换一次手机，绝对不会让自己用一台让自己感觉慢的设备超过两年。</p>
+
+  <h3>数据备份：三个云端 + 一个 NAS</h3>
+  <p>我自己的数据备份做得很重——三个云端 + 一个本地 NAS：iCloud、阿里云、百度云，月月都付费。再加上家里书房的 NAS（10T 起步），这是我的"私有云硬盘"，所有讲课视频、文字稿都存里面。</p>
+  <p>为什么这么舍得？<strong>我以前真的踩过坑——某个平台死了，东西就没了，你想哭都没门。</strong>所以现在四个备份并行，但凡一个出事，另外三个还能保住。</p>
+  <p>我讲课多嘛，几年下来视频文字加起来都好几期。这些东西但凡一不见，以后死的都没人给你刻墓碑——没东西可以找。所以这块的钱我从来不省。</p>
+  <blockquote>微信能不删就不要删——这些以后都是呈堂证供。哪一天有什么误会，从对话里就能找出来。</blockquote>
+
+  <h3>NAS 是什么？为什么家里要装一个</h3>
+  <p>有人问我 NAS 是什么。其实你可以理解成：百度云是把东西放在百度的云端硬盘里；NAS 就是把东西放在<strong>你家里自己的大硬盘里</strong>，通过网络访问——它是一台联网的大硬盘。</p>
+  <p>我家这台 NAS 加起来大概 10T——四颗硬盘，每颗最多五个 TB。这台机器跟我的所有云端是并行的备份层。</p>
+  <p>对于我这样高频产生大文件的内容创作者来说——讲课视频、逐字稿、客户咨询录音——这些东西如果只放一份在云端，是有风险的。我宁可每个月多付一点订阅费，也不要赌那个万一。</p>
+
+  <!-- ==================== PART 03 ==================== -->
+  <div class="section-header" id="part03">
+    <div class="sec-badge">智</div>
+    <div class="sec-header-text">
+      <div class="sec-num">PART 03</div>
+      <h2>AI vs AI 编程：从「给建议」到「给执行」</h2>
+    </div>
+  </div>
+
+  <h3>董先生的提问：AI 工具学不会怎么办</h3>
+  <p>今天的第一个提问来自董先生（董司原）：他是去年 6 月加入生财，主要冲着 AI 来的，自己也开了 AI 创业公司。线下活动跑了不少，N8N、扣子、CC 都接触了——但到现在他依然学不会，或者说不知道边际在哪、能开展什么新业务。他说他更想知道："这东西它的边际在哪里？我学会使用之后，我能开展什么样新的业务？而不是当别人已经开展以后，我才说原来这个东西可以这么干。"</p>
+  <p>这个问题其实代表了<strong>大多数人面对 AI 的处境</strong>：知道 AI 重要，知道是趋势，但找不到入口。教程收藏一堆，工具装了一堆，到最后还是不知道怎么用、能用来做什么。</p>
+
+  <h3>我自己也是这样过来的</h3>
+  <p>这个问题我刚好能回答。我是去年八月多加入小派老师的深海圈第一期。我报名之后呢，严格来说我没有看，因为<strong>主要是看不懂</strong>——你照他的方法来做也确实不会。</p>
+  <p>因为我报名的是线上加线下的，所以我线下也参加了。参加完之后我发现：哦，开窍了，真的开窍了。</p>
+  <p>那之后我自己就有自己的产品了，有自己的小程序，我个人觉得写得还挺完善的，已经卖了大概 70-80 份。这个突破口不是来自更多的教程——是来自<strong>真的动手做了一次</strong>。</p>
+
+  <h3>AI 是搜索层面，AI 编程是执行层面</h3>
+  <p>我自己对 AI 的理解分两个层次：</p>
+  <p><strong>第一层 · 普通人理解的 AI</strong>——豆包、Kimi、GPT、Gemini。这些更像是高级搜索工具。我以前问百度，现在不问了，问豆包。我第一次用豆包是去年元宵节，刚好我家旁边的图书馆有一个元宵节猜灯谜的活动——上面的灯谜我不会嘛，我就跟豆包说"这个东西的灯谜答案是什么？" 我发现旁边的人都在用百度，我用豆包最快找到答案。</p>
+  <p><strong>第二层 · AI 编程</strong>——和上面是完全不同层次的东西。普通 AI 给你的是"答案"或"建议"——你问它怎么删除某个软件，它告诉你"哦，你第一步要找到你的软件，把这个软件放进一个什么地方，它有可能不会做到深度的清洁，所以你得去下载另外一个东西，可能叫什么 Clean 什么的，你要把你的档案拉进去，它才可以完全的清除掉…"——全是步骤。</p>
+  <p>但 AI 编程不一样。我跟它说"帮我删掉某个软件"——<strong>它直接跳出 6、7 段话，然后告诉你"我删好了"</strong>。它不是给你路径，它直接帮你做完。</p>
+  <blockquote>AI 是建议层面，AI 编程是执行层面——他就像你的员工，你跟他说要这个，他就给你这个。</blockquote>
+
+  <h3>再举一个对比例子</h3>
+  <p>假设我可能要做一个 PPT，或者要做一个网页。</p>
+  <p>用<strong>普通 AI</strong>：我会跟它说"帮我做一个网页"，它会问我"你要做什么风格的网页？什么主题？什么颜色？什么字体？" 然后给你一堆建议——这些都是文字回复。最后还是要你自己去找工具、自己去搭建。</p>
+  <p>用<strong>AI 编程</strong>：我跟它说"帮我做一个网页"，它会问我目标和风格，然后<strong>直接开始写代码</strong>。它跑很多的代码，最后告诉你一句话——"我网页做好了"，给你 URL，你点开看就行。</p>
+  <p>所以 AI 进到 AI 编程，它是一个 AI 使用方法的<strong>升级版</strong>——从给路径，进化到给结果。</p>
+
+  <h3>AI 不需要"学"</h3>
+  <p>其实我一直觉得，我们对 AI 有个误会——总想着要"学好" AI。但 AI 既然叫 AI，就代表我们不用学就可以用了。<strong>它需要的是你"用过"，而不是"学过"。</strong></p>
+  <p>关键不是收藏了多少教程，而是你真的开过它一次。打开来用，跟它对话，跟它互动——你会发现它跟你想象的不一样，会比你以为的更顺。</p>
+  <p>尤其是 AI 编程——什么 Codex、Claude Code 听起来很高大上，其实它不难。<strong>难的不是它本身，而是我们平时没有使用的习惯。</strong>你只要把它装好，你就可以使用它了，它的使用方式就是用嘴巴说话。</p>
+  <p>所以董先生的困惑，本质上不是工具问题，是<strong>使用习惯还没建立起来</strong>。这部分下半场我会现场示范一遍——我把电脑搬出来，让你们看看 30 分钟到底能做什么。</p>
+
+  <!-- ==================== PART 04 ==================== -->
+  <div class="section-header" id="part04">
+    <div class="sec-badge">编</div>
+    <div class="sec-header-text">
+      <div class="sec-num">PART 04</div>
+      <h2>AI 编程实战：从一句话到完整产品</h2>
+    </div>
+  </div>
+
+  <h3>现场演示：一句话生成活动网页</h3>
+  <p>我现场打开自己的电脑——平时我会同时开两种 AI 编程工具：<strong>Codex</strong> 和 <strong>Claude Code（CC）</strong>。下载只要两件事：电脑要装梯子（普通梯子 + cloud code 用的另一种梯子）。我个人不建议新手用 cloud code 中转，因为得到的东西不一定是真的。</p>
+  <p>使用方式简单到极致——打开软件，跟它说："请帮我做一个活动网页，要求是网页里可以上传很多档案文件，是一个别人可以购买的产品，用户上传文字就能直接做出一个不错的转 PPT 页面。"</p>
+  <p>说完点送出，他就开始跑。10 分钟左右，第一版就出来了。<strong>他不是给你路径，他直接给你成品。</strong>不满意？截图丢回去，告诉他"这块改成蓝色"，几分钟红色就变蓝色。</p>
+  <blockquote>AI 编程比使用 AI 还简单。你只要把它装好就能用——它是 AI 使用方法的升级版。</blockquote>
+
+  <h3>视频生产线案例：从小红书参考到自动出片</h3>
+  <p>我昨天做了一个真实案例：在小红书看到一个"白板手画 + 边讲边画"的视频，那种边讲边画图案变化的，类似以前的火柴人视频——我觉得做这个视频太牛了。</p>
+  <p>那如果是普通人，我们会怎么做？要么打开扣子去搭工作流；要么去 B 站查教程；要么去 N8N 拼。但<strong>我都没这么做</strong>——我直接把那条小红书的链接丢给 Claude Code，告诉他："请学习这个视频里面的制作方式，如果不懂你就上网找。找完之后，你只要告诉我，我能不能够给你文字，你帮我生成一个一模一样的视频。"</p>
+  <p>大概 20 分钟后，一个视频生产线的工作台就出来了。我现在跟你描述一下这个工作台长什么样：左边是<strong>主题输入框</strong>——你输入"伤官、偏印格跟赚钱相关"。中间是参数选择——<strong>风格</strong>（3D / 国风 / 简笔 / 手账可选）、<strong>时长</strong>（30 秒 / 2-3 分钟 / 3-5 分钟）、<strong>数量</strong>（一次跑 1 条 / 5 条 / 10 条）。右边是<strong>历史沉淀</strong>——你之前做的所有视频都列在那里。</p>
+  <p>点了"生成"之后，它就帮我把对应的领导声音、对应的画面、对应的文字一次性做成一个视频。这个工作台是我昨天才做的产品，我做的全部工作就是：<strong>把小红书的链接丢给 Claude Code，说"我要做出一样的成果"。</strong></p>
+  <p>所以这是我想强调的——<strong>我也不是程序员，也不懂代码。我会的只是把"我要什么"说清楚。</strong></p>
+
+  <h3>新手最难跨越的点：环境变量</h3>
+  <p>使用 AI 编程，新手最难的一关其实就是一个词——<strong>环境变量</strong>。这个词多数人是没有概念的，我也曾经没概念。</p>
+  <p>它的意思就是：如果你要做的视频它需要提取文字、需要制作图片、需要把你的声音克隆进去——这三个其实是最核心要做的。但 AI 编程不可能说"你帮我弄"——它需要你去调取某一个大模型，比如把豆包的 API、把生图软件的 API 给它。也就是<strong>你必须要跟某一个"师傅"说"你的技术，你抠一点给我"，你就有了那个 API 的密码</strong>。</p>
+  <p>但好消息是：<strong>AI 编程会全程把路径告诉你</strong>。它会说："请打开这个网页，点右上角第二个选项叫账户中心，从里面找到某一个东西，那边点确认、那边点申请，会得到一组 32 位的密码。你把那个密码要么发给我，要么按照我的方法贴到某一个地方。"</p>
+  <p>这种举动，没有操作过的人会觉得"怎么那么麻烦"。但你做个两三次就熟了——其实就是开几个我们过去不曾开过的网页而已。<strong>关键是它能把全英文的页面解释成中文给你听</strong>，让你知道每一步要做什么、得到什么结果。</p>
+
+  <h3>调试就是丢截图</h3>
+  <p>AI 编程做出来的东西，绝大部分时候第一版不会完美。但调整也很简单：<strong>哪里不满意，截图丢给它，告诉它要怎么改</strong>。</p>
+  <p>比如我可能跟它说"这一段的颜色我要改成蓝色"——它会回"稍等我一下"，然后跑代码。你的页面马上就会从红色变成蓝色。或者"这个字体有点歪，帮我拉正"、"这个线条有点不太对，帮我拉正"。它就会按照这个模式，把你想要的东西全部用视觉感受去更改。</p>
+  <p>而且现在所有的 Codex 或 Claude Code，它在制作 PPT 的效率超级高。<strong>而且它一做出来视觉感就很好</strong>，你可以跟它说"帮我做出四种不同的风格"，它就给你四种。</p>
+
+  <h3>不会装环境？闲鱼找人远程帮装</h3>
+  <p>有些步骤本身就不应该产生阻力——比如 N8N 装到一半报错、Codex 装不上 Intel 芯片的 Mac、Cloud Code 找梯子找不到。这些事情花精力学是浪费时间。</p>
+  <p>我的建议是：<strong>花 100 块钱买个 Cloud Token，闲鱼花点钱让人远程帮你装好就行</strong>。把不该花精力的环节用钱买掉，把精力留给真正要学的事——也就是怎么让 AI 给你出活。</p>
+
+  <h3>建议用 Mac 电脑</h3>
+  <p>不知道为什么，目前大多数 AI 编程工具对 Mac 比较吃香。我两种电脑都有，但我用 Mac 写东西的速度跟操作容易度明显更高。所以如果有条件，<strong>建议入手一台 Mac 笔记本</strong>。</p>
+  <p>小派老师也建议用苹果电脑——他的教程虽然两种系统都行，但苹果体验会顺很多。</p>
+
+  <h3>关于"高扣"——AI 内容信息茧房的提醒</h3>
+  <p>提一个有趣的现象：你只要开始搞这个 AI 编程，你的小红书、B 站、视频号会跳出很多类似的东西。比如"高扣"——你在小红书连续搜索三次，你的小红书 10 个里面有 6 个是"高扣"。</p>
+  <p>你点进去看看就发现，<strong>多了之后就发现"它妈也就这样"</strong>。你不用每个都看，看几个就行——你的注意力比信息更值钱。</p>
+
+  <h3>下周二实操场</h3>
+  <p>下周二我们专门开一场"AI 编程小白实操"——所有人带电脑来，现场把梯子装好、把 Codex 装好，30 分钟内每个人都写出属于自己的第一个软件。真没那么难。</p>
+  <p>我可以发一些我自己使用的教程到群里，或者用飞书录制我的桌面让你们直接看。但比所有这些都更有效的方式——是<strong>面对面坐下来，我看着你装、你看着我用</strong>。30 分钟开窍，超过 30 分钟就不会更快了。</p>
+
+  <!-- ==================== PART 05 ==================== -->
+  <div class="section-header" id="part05">
+    <div class="sec-badge">命</div>
+    <div class="sec-header-text">
+      <div class="sec-num">PART 05</div>
+      <h2>八字 = 东方心理学 + 销售识人术</h2>
+    </div>
+  </div>
+
+  <h3>为什么我会写一个八字小程序</h3>
+  <p>我自己写了个八字小程序，叫"小袁说说"——这是我 3 月初开始写的。我个人觉得它接下来这个半年到未来好几年，应该会是<strong>全中国八字结合个人咨询最强的小程序</strong>，没有之一。不夸张。</p>
+  <p>原因是它里面用的不是 AI 的回复，而是<strong>我自己的资料库</strong>——目前我自己的资料库里面有 1600 多万字的内容。这是我从 2022 年讲课讲到现在，包含 18 个专业、几年的累积。</p>
+  <p>为什么我要花这个力气自己做？以前我用别人的软件输入八字之后，他的资料是在他的云端里面。但是我希望<strong>把这个东西变成我自己的东西</strong>——未来如果要进一步开发、要跟其他系统对接、要训练成根源智能体，这些资料权要握在自己手里。</p>
+
+  <h3>八字不是玄学，是中国 5000 年的统计学</h3>
+  <p>我 2012 年开始学八字，到现在 14 年了。我学的时候就有个梦想——<strong>很多人对八字有误会，以为是玄学。但其实不是，八字是个很精准的统计学，是心理学的东方分支。</strong></p>
+  <p>对照一下西方的心理学：盖洛普做 200 道题，会告诉你"你是战略优先 / 沟通优先 / 和谐优先"，给你一个现况建议。但你第二年再做盖洛普，你会发现你得到的数据可能会不一样——<strong>第二年我状态不好，沟通原本第一变到第八</strong>，就这个意思。</p>
+  <p>东方心理学不一样。它的诊断工具就是你的出生年月日，<strong>八字一辈子不变</strong>——因为它就是跟你的生日结合。</p>
+
+  <h3>东方心理学：诊断 + 调理（中医同源）</h3>
+  <p>你看我们今天去医院看病：你胃痛，西医给你开胃药。但是如果你去看中医，你说胃痛，他可能给你开生理调理；你刚刚说"我的左手的肌肉很酸"，他给你针灸扎你的右脚——<strong>因为他这是同一条经脉</strong>。</p>
+  <p>所以<strong>东方的心理学更多的是诊断 + 调理</strong>——能够快速诊断你目前的情况。八字就是这种诊断工具——你只要把生日给我，我可以告诉你哪一年谈恋爱、哪一年破产、哪一年换工作、哪一年生孩子，甚至你的性格适合做销售还是适合做运营，还是适合在公司里面做一个螺丝钉。</p>
+  <p><strong>但凡给我八字，我就可以马上看出来</strong>，而且八字人一辈子是不会变的。这是中国在 5000 多年的历史里去统计沉淀出来的一门学问。</p>
+
+  <h3>需要时辰吗？60 岁以上才需要</h3>
+  <p>盖盖问我："八字不是需要出生时辰的吗？"——我说不一定。<strong>如果那个人的年纪过了 60 岁，时辰就需要</strong>；但年纪不到 60 岁，时辰我可以不要。</p>
+  <p>如果说我不要看得那么的精准，<strong>性格的前三、百分之七十的部分，单凭年月日就可以看</strong>——因为时辰主要影响的是晚年和细节。年轻人的人生轨迹和性格主轴，年月日已经够看。</p>
+
+  <h3>把生日换成天干地支：原理一句话</h3>
+  <p>八字的原理我用一句话讲清楚：你的生日，比如 1987 年 X 月 X 日——西方讲八七年，但放在五千年的中国历史里，<strong>那年不叫八七年，叫"丁卯年"</strong>。</p>
+  <p>天干和地支在过去叫做"时间的计算单位"。但中国人就了不起——他把天干跟地支换算成<strong>五行</strong>：可能属火的、属木的、属金的、属水的、属土的。</p>
+  <p>五行跟五行的过程中会有一些化学作用——比如假设盖盖是属火的，那如果你的八字里面是冬天生的孩子，那就代表说你的性格本身是个比较体制内的人。<strong>八字就只是把五行去做一个不同的解释，再把这个解释变成人性的诠释方法</strong>，我就可以知道一个人的性格。</p>
+  <p>所以它是一个很严谨的统计学，<strong>优点是易学但是难精</strong>——像我学了 14 年，到现在我还在每天看跟八字相关的东西，量也很大——一天最少都会看到三张以上的八字。</p>
+
+  <h3>销售识人术：不同十神，用不同话术</h3>
+  <p>我做销售 14 年，见过太多客户。八字最大的用处之一就是<strong>识人——不同性格用不同的销售话术</strong>。举两个对比的例子：</p>
+  <p><strong>伤官格</strong>：很有才华、很有想法，但容易得罪人——讲话太直接。这种人怎么办？<strong>不要让他带团队</strong>，他能把团队带死。可以让他去上台当讲师——他的才华和直接，在表达场是优势。</p>
+  <p><strong>正财格</strong>：他要听具体的数字。我邀请他到我的公司，我不能说"我可以承诺你今年比去年赚更多"——这种话他不听。我必须说："<strong>你上一份公司年薪 100 万，我承诺今年给你 130 万。</strong>" 他就说"行，我去。"——具体数字 + 具体兑现 = 他听得懂的语言。</p>
+  <p>所以我跟人聊天的时候有个习惯——<strong>快速问到生日</strong>。"诶，你哪一年的？" 他说"九六的。" 我说"看起来像巨蟹吧？" 他说"不是，祝你的。" 我说"九月几号？" 他说"九月十六——是我阳历"。然后我说"哎，你等我一下，我老婆给我发消息"——其实是我把手机打开，输入他的八字。</p>
+  <p><strong>三秒钟我就知道怎么跟他聊天。</strong></p>
+
+  <h3>相亲场案例：找今年动桃花的人</h3>
+  <p>用八字做相亲会怎样？把那一年"<strong>动桃花</strong>"的人全拉出来组一场——<strong>我可以保证 90% 一定成功</strong>。因为那些人今年就是想谈恋爱，<strong>意愿和命盘都对得上</strong>，撮合就是水到渠成。</p>
+  <p>这就是八字的好处——它告诉你哪些人当下"是热的"。</p>
+
+  <h3>挖人才同理：找今年动驿马的人</h3>
+  <p>同样的逻辑用在挖人才上：那种"这辈子就爱公司"的牛人，别人挖不动他。但我们能挖——<strong>因为我们知道他哪一年"动驿马"</strong>，那一年他工作一定会想换。</p>
+  <p>所以我提前半年布局——<strong>开始跟他聊天，开始跟他沟通，开始跟他经营关系</strong>。到了"动驿马"的那一年，我一出手准一个，那时候他刚好想动，我刚好在场，挖人就成了。</p>
+  <p>这套方法的核心是：<strong>不是去说服一个不想动的人，而是找到那个本来就想动的人</strong>。八字告诉你时机，剩下的就交给水到渠成。</p>
+  <blockquote>八字易学难精——我学了 14 年，到现在每天还在看，一天最少要看三张以上。</blockquote>
+
+  <!-- ==================== PART 06 ==================== -->
+  <div class="section-header" id="part06">
+    <div class="sec-badge">信</div>
+    <div class="sec-header-text">
+      <div class="sec-num">PART 06</div>
+      <h2>销售的五层信任：仪表 → 价值观</h2>
+    </div>
+  </div>
+
+  <h3>林爱的提问：怎么精进销售能力</h3>
+  <p>下半场林爱抛出一个深问题：她今年的目标是想学销售能力，问怎么才能成为一个好的销售、这个东西能靠什么练。</p>
+  <p>我自己做了 14 年销售，先抛一个共识——<strong>这个时代，没有销售能力很难把项目做好</strong>。99% 的项目都要卖：卖课、卖产品、卖人设、卖视频。三五年前你文案写得好，别人就挂车下单了；这个时代不一样，对方读完文章会私下咨询你，你得跟他聊。所以销售能力是必须练的。</p>
+
+  <h3>信任感第一层 · 仪表（线下）：你不能让对方扣分</h3>
+  <p>我把信任感分成<strong>五个阶段</strong>：仪表、专业度、讨人喜欢、价值观、谈话高度。这五个是从下到上递进的——仪表最基础，没仪表，后面的都没机会展示。</p>
+  <p>第一阶段<strong>仪表</strong>，线下场景下包括很多细节：</p>
+  <p><strong>穿着</strong>——不能过于正式（西装领带皮鞋油头像保险业务员），但要得体干净。过重对方反而有压力——他会觉得"你穿这么隆重，我穿这么随便"，他会尴尬。所以你的穿着要"配得上场合，但又不超过场合"。</p>
+  <p><strong>味道（这个最常被忽略）</strong>——我们家我爸有遗传狐臭，所以我也有。但是<strong>我不会让我身边的人闻得出来我身上有这个味道</strong>，因为我会刻意去做规避。喷雾、滚珠之类的我都买过数百种，后来发现就这个牌子好用。</p>
+  <p>另外我出门一定会<strong>穿一件内衣</strong>。男生可能不知道，男性荷尔蒙的分泌比女生原来的更多——你跟你老婆睡同一张床，用着不一样的枕头，<strong>百分之九十的女生都会嫌弃说"你怎么枕头越睡越黄？"</strong> 莫名其妙，同样是白色枕头，男生的枕头就容易黄。这不是我们的错——男性荷尔蒙就是会分泌这些。</p>
+  <p>所以当你的角色是一个男生，需要线下见人的时候——<strong>多穿一件内衣</strong>，汗会被隔绝到里面那件，你的流汗印子不会印到外面，味道就藏在里面。靠近的时候不一定闻得到，拥抱可能闻得到，但起码 1 米开外是干净的。</p>
+  <p><strong>口臭</strong>——平时带口香糖、薄荷糖、芳香喷雾。对方嘴巴味道重你跟他面对面聊，那是个灾难片，你站不住，整个聊天就废了。这个东西你提前规划，永远不会出错。</p>
+  <p><strong>鞋子和袜子</strong>——<strong>别小看袜子，5 块钱的和 30 块的防臭力完全不同</strong>。鞋子尽量不要买路边那种"什么鸟牌子"——总会让你的鞋子里面闷在那里。我有个习惯：如果今天我知道要去人家家，我就会特别穿透气一点的鞋子，或者<strong>车上备一双鞋一双袜子</strong>。一去人家家发现味道不对了，"你们家洗手间在哪？" 袜子脱了，先把脚洗了。<strong>脚臭和衣服闷的霉味，是最不得了的两种。</strong></p>
+  <p><strong>衣橱的霉味</strong>——衣服没晒干就塞进衣橱，那味道比脚臭还可怕。我前几天遇到一个线下找我聊的，想让我填问卷——我听了大概 30 秒就受不了了，他真的太臭了。<strong>那种味道一上头，你后面什么内容都听不进去。</strong></p>
+  <p><strong>头发和皮肤</strong>——男生出门能洗个头就洗个头。头发能整理就整理一下——男生抓头发就跟女生化妆一样。<strong>女生不一定要化妆，但擦个口红、上点隔离吧</strong>，因为不是每个人的皮肤都这么好，最少让对方看你不会"看着不舒服"。</p>
+  <p><strong>但又不能太过</strong>——有些人喷古龙水，那味道不得了。当一个人为了防狐臭把自己喷得超香——那个组合也不得了，远远就闻到。所以"得体" 是这件事的关键。</p>
+
+  <h3>信任感第一层 · 仪表（线上）：让别人想跟你聊天</h3>
+  <p>线上的仪表也很重要——这部分多数人完全没意识到。</p>
+  <p><strong>头像</strong>——我见过一些人的头像是<strong>纯黑的</strong>，我就想"这个人人生是黑色的吗？"；或者是名字一个<strong>句号</strong>、或者一个 <strong>A</strong>，完全没特色。这种头像就是丢失了第一个让别人愿意跟你聊天的机会。</p>
+  <p>讲一个完整的故事——我加过一个女生的微信，对那个头像印象真深。她在我朋友家加的微信。加完之后我看着她的头像，<strong>是一张图的四分之一，里面只有一只猫</strong>。我说"诶，你的头像好特别。"</p>
+  <p>她笑了，说："这个图案是一张图的四分之一。原图的右下角有一只大鲸鱼，鲸鱼的鳍跟猫的手碰在一起。<strong>我不想让大家看到这只鲸鱼——我不想让每个人都知道我的野心是大的。</strong>"</p>
+  <p>那一刻我就记住这个人了。<strong>她的头像有故事，故事还连着她的人生哲学</strong>——这就是一个好头像。所以你要思考：你能不能让你的头像有故事？或者你要养成习惯——<strong>主动去问别人头像的故事</strong>。</p>
+  <p><strong>名字 / 微信名 / 个性签名</strong>——能不能让别人有一个"想跟你聊"的钩子？很多人地点是冰岛、挪威——<strong>你们手机里肯定有 78 个冰岛挪威人</strong>。我也不懂他们为啥地点放冰岛挪威，但这就可以聊嘛——"你住冰岛哪一个省啊？" 不管开什么话题，<strong>就是学会了解对方</strong>。</p>
+
+  <h3>开场聊天的固定动作：先夸一个具体的点</h3>
+  <p>开场聊天我有个习惯：<strong>不管这个人熟不熟，我都会想尽方法去夸他身上某一个特点</strong>。</p>
+  <p>"哎，你这个发型很特别。"、"我喜欢你的鞋子。"、"你的项链的颜色太特别了——这个我第一次见。"、"你的衬衫风格我很喜欢。"、"我发现你看起来特别干净，感觉是个很精神的人。"——类似这样。</p>
+  <p>当你这句话开口的那一刻——对方心里他不一定会笑出来，<strong>他就会偷偷的乐</strong>。"你有眼光真的，终于找到懂我的人。"</p>
+  <p>给你讲一个真实的故事——我以前做团队的时候，那时候是冬天转春天，天气还冷。我那时候在台上讲课，团队里有一个组员，他那天围了一条围巾。那围巾确实漂亮——我一来就说："<strong>哎，你这个围巾好看，看起来特别贵气。</strong>" 不夸张啊——<strong>接下来七天的早会他天天带这条围巾，二十七度的高温都带着</strong>。为什么？因为我那一句话，让他觉得"这条围巾让我看起来像贵妇"。</p>
+  <p>所以<strong>夸奖的力量是很大的</strong>——夸奖会让能量起来，能量起来一个人才会愿意听。这时候你想说什么、想推什么，他都会比较愿意听。<strong>夸奖是几乎零成本的破冰工具，但 99% 的人不会用</strong>。</p>
+  <blockquote>线下的所有印象一定从名字开始。线上的所有破冰一定从头像开始。先让对方愿意跟你聊上 10 句话，你的产品才有机会被听见。</blockquote>
+
+  <h3>信任感第二层 · 专业度</h3>
+  <p>对方问你某件事，你能不能说出对它的看法？比如他问八字，我可以告诉他八字的逻辑；问旅游，我能告诉他旅游分哪几种、想做旅游赚钱可以怎么做。<strong>专业度不是装出来的，是问几句你就知道有没有。</strong></p>
+
+  <h3>信任感第三层 · 讨人喜欢</h3>
+  <p>讨人喜欢，就是你的话别人听着会不会反感。常见的不讨喜场景——拿到麦克风觉得自己是主角，一讲讲 40 分钟；该听别人讲的时候插话太多。</p>
+  <p>讨人喜欢的核心是<strong>先听完别人，再说自己</strong>。这场你不是主角的时候，多请教、多倾听，别让别人觉得你"没有眼力劲"。</p>
+
+  <h3>销售开端：让对方先愿意聊 10 句话</h3>
+  <p>销售的本质不是把产品讲完，而是<strong>互动</strong>。一场见面 1 小时，产品介绍其实就最后那 10 分钟——前 50 分钟是为了让对方愿意听最后那 10 分钟。</p>
+  <p>所以销售的第一阶段叫<strong>邀约</strong>。线上你刚加好友，第一句不能是"我有个产品很好你听听"——他可能连回都不回。要先找一个跟他有关的钩子聊上 10 句、15 句，对方愿意搭话了，你再轻轻提："是这样的，我最近做了一个新项目，能不能给你介绍三分钟，不打扰太久？"</p>
+
+  <h3>反面案例 1：加好友就甩自我介绍</h3>
+  <p>我最常遇到的——加好友第一课就给我发自我介绍，三四段那就算了。我遇过最夸张的是<strong>两屏的自我介绍，看不完</strong>。</p>
+  <p>你想啊，对方刚加你好友，你跟他没那么熟。<strong>第一段话手机满屏都是你发的字——是个灾难片</strong>。他没有耐心看，也没有动力看。所以这种群发式自我介绍，本质上是个零效甚至负效的开场。</p>
+
+  <h3>反面案例 2：加好友就甩 PDF</h3>
+  <p>我遇过最离谱的是一个加好友的人，第一句就发：</p>
+  <p><strong>"作为我的朋友，我要送你一份大礼。这是四份 PDF，作者都是我的朋友。这是成为我朋友的荣幸。"</strong></p>
+  <p>我心想——"荣幸"是什么？荣幸什么？<strong>我都不知道你是谁啊。</strong> 你直接发 PDF——你和我之间一句聊天都没有，就让我看四份 PDF，我凭什么看？而且发的都是别人的东西——这就更尴尬了。</p>
+  <p>还有一种营销话术：先给你发完海报，然后让你"<strong>扣 666 进群</strong>"——我说"我没扣 1 啊"。他就不回我了。<strong>很显然他是用群发工具，遇到不照剧本走的就直接放弃。</strong></p>
+
+  <h3>反面案例 3：自吹型私信</h3>
+  <p>有一次我又收到类似的消息，开头是这样的：</p>
+  <p><strong>"亲爱的，我这几天做了一个奇妙的实验——一年没联系的微信好友，我是如何用「种子成交智慧」完成冷启动，轻松成交 30 个高净值东方女性用户。"</strong></p>
+  <p>我心想——<strong>我是男性啊。</strong> 然后他接着说："我猜可能会对你的成就有启发，所以准备明天做一个小范围分享，邀请你进思想闭门会，仅限今晚 24 点前。"</p>
+  <p>我就回他："<strong>你猜错了。</strong>"——这种群发是没有针对性的、是侮辱对方智商的。当你是接收者都觉得不舒服的事，为什么自己还在做？</p>
+
+  <h3>核心：销售是不让对方感到不舒服的技巧</h3>
+  <p>销售是一个你<strong>不能让对方感觉到不舒服</strong>的更好用的技巧——这是我个人对销售的定义。</p>
+  <p>就是尽量让我能够不要这么唐突，让我的沟通效率变得更高，让我的聊天顺序做一点改变。当你是一个<strong>别人不讨厌的人</strong>的时候，你才有机会讲你的产品。如果你连讨人喜欢的事情都做不到——你就别想着他愿意给你买东西。但凡他愿意给你买，那都叫运气。</p>
+  <blockquote>销售是互动，不是把东西讲完。学会让对方先愿意跟你聊天——讨人喜欢的人，才有机会讲产品。</blockquote>
+
+  <!-- ==================== PART 07 ==================== -->
+  <div class="section-header" id="part07">
+    <div class="sec-badge">路</div>
+    <div class="sec-header-text">
+      <div class="sec-num">PART 07</div>
+      <h2>销售价值观三选一 + 三条学习路径</h2>
+    </div>
+  </div>
+
+  <h3>三种销售价值观：先选你认同的那一种</h3>
+  <p>所有老师对于销售的价值观完全不同——这点很重要，<strong>价值观决定工具怎么用，价值观决定技术怎么用</strong>。常见的有三种：</p>
+  <p><strong>价值观 A · 东西卖出去再说。</strong>"主管，我今天聊了 10 个人都卖不出去。" "那就再卖 10 个人呀！" 这是一种价值观——<strong>多数公司培训都是这种</strong>。10 个人没卖出去，公司就先把你淘汰。所以这个价值观下，员工的压力来自数字，不来自方法。</p>
+  <p><strong>价值观 B · 先把自己做好</strong>（我自己的派别）。我觉得卖东西把东西卖出去，<strong>只是销售里其中的 10%</strong>——一切都做得很好之后，对方在你开口的那一刻就同意了。所以我觉得 90% 更重要，就是<strong>学会让自己如何成为一个更好的人</strong>：让我自己好一点，让我能够有善意，让我能够讲话别人听了会觉得舒服，或者是让对方愿意信任，或者是他的所有事情我都了解，不止了解，我可以给他更多的价值。</p>
+  <p><strong>价值观 C · 筛选拒绝你的人。</strong>谁拒绝你就把谁标记下来——把"被拒绝"当作信号筛选高潜客户。这种价值观的逻辑是：能拒绝你的人，至少证明他认真看了；下次再触达，他可能更倾向于回应。</p>
+
+  <h3>三种价值观的本质差异</h3>
+  <p>这三种价值观最大的不同在于："销售完成"被定义在哪一步：</p>
+  <ul>
+    <li><strong>A 型：</strong>定义在"成交"那一刻，没成交 = 失败</li>
+    <li><strong>B 型：</strong>定义在"价值交换"，对方信任你 = 成功的开始</li>
+    <li><strong>C 型：</strong>定义在"信号收集"，被拒绝 = 信号</li>
+  </ul>
+  <p>你必须先确定"什么叫成功的销售"——价值观才有用。</p>
+
+  <h3>价值交换：销售的更高境界</h3>
+  <p>我觉得销售最终是<strong>价值的交换</strong>。东西的买卖只是价值交换的一个环节。</p>
+  <p>举个例子：今天我跟林爱说"我朋友圈里面有一个我孩子的比赛，我需要点赞，你可以帮我个忙吗？"——如果我们没有交情，我直接群发，<strong>你们就会想"点你妹啊，我干嘛帮你点赞？"</strong></p>
+  <p>但如果今天活动结束了，晚上我真有这个需求。我说："诶，你看你帮我一个忙——我就耽误你十秒，这个忙太重要了。" 她可能会说"嗯，那行，老师你说说看。" <strong>因为我们今天有过热交情，所以最怕是没有交情你就提需求。</strong></p>
+  <p>所以你会发现每个老师对于销售的价值观完全不同。<strong>价值观决定工具怎么用，价值观决定技术怎么用。</strong></p>
+
+  <h3>不要集各家所长，会走火入魔</h3>
+  <p>很多人想"集各家所长"——把不同老师的销售技巧都学到自己身上。<strong>这条路是绝对错误的，没有用的。</strong></p>
+  <p>你看，<strong>老子、庄子、孔子、墨子</strong>，那讲的东西都不一样——但价值观的体系是不同的。所以当你把所有的各家所长学到一个人身上之后，你会发现你<strong>用不上、完全用不上</strong>。</p>
+  <p>因为第一个人讲说"销售就是把东西卖出去"，第二个就是说"销售就得先把自己做好"，第三个又说"销售就是要他妈去筛选到那些他一开始拒绝你的人"。<strong>这三种价值观完全不一样。</strong></p>
+  <p>你可能问了 GPT，它就会说"这三种方法最适合你"——一用发现走火入魔。你看：<strong>你用九阴白骨爪的内功去用降龙十八掌，第一个先爆体，你就挂了。</strong> 一个是逆的行走的大周天，一个是顺着走的，内功完全是不一样的。</p>
+  <blockquote>选一个你认同的价值观体系，深入学一个老师就好。这能让你学到的销售逻辑是完整的、自洽的、可用的。</blockquote>
+
+  <h3>三条学习路径，效果排序：3 > 2 > 1</h3>
+  <p>如果你确定要把销售做起来，给自己半年时间，有三条路可以走：</p>
+
+  <h3>路径 1 · 看书</h3>
+  <p>推荐<strong>《阿里铁军》</strong>——这本书的销售我认为讲得很好，因为它是<strong>很实战的销售</strong>。同样的方向我自己也准备出书——之前出过一本沟通书，但还没印。下一本可能就是关于销售的，应该一两年内会出。</p>
+  <p>但是我必须说：<strong>纯看书你会发现，看着就是浪费时间。</strong> 你最多增加认知，知道"哦，我知道这个"——极限了。因为销售你得快速得到正反馈。你要想啊——销售学了，你没有去市场真正的实战，你都不知道说"哦，原来我会被拒绝啊"。然后一拒绝之后呢，你就不知道该怎么办了，你<strong>要马上有人可以问</strong>。</p>
+  <p>所以书是基础读物，但单靠书学不会销售。</p>
+
+  <h3>路径 2 · 找一个老师认真学</h3>
+  <p>这个最快。但要选对——<strong>选一个你认同他价值观的老师</strong>，留好预算，认真学。</p>
+  <p>注意"认同价值观" 这一点——你要先确认"这老师卖东西的方式我能不能接受"。如果他是 A 型（卖出去再说），但你内心觉得这种方式让自己很不舒服——你学了也用不出来。</p>
+  <p>找老师的好处是：<strong>路径系统、反馈即时、有人陪练</strong>。被拒绝了你回去问"刚才那段我哪里说错了？"——这就是 1 对 1 进化的速度。</p>
+
+  <h3>路径 3 · 找一个有人带你做销售的项目</h3>
+  <p><strong>边学边做，边做边学——这种方式可以让你在卖东西的过程，以及在学习的过程，效率是最快的。</strong></p>
+  <p>项目里有<strong>固定客户、固定话术、固定流程</strong>——你边卖边纠错，老人家会带你过弯。和路径 2 比，最大的优势是<strong>你的练习有真实场景</strong>——不是模拟、不是角色扮演，是真客户、真合同、真奖金。</p>
+  <p>这个的副作用是<strong>项目的价值观就是你被迫接受的价值观</strong>。所以选项目的时候要看清楚：他们的销售文化是哪一种？你能不能接受？</p>
+  <blockquote>销售是一个实战的学问。纯看书 / 纯看视频得不到任何帮助——你要么找老师，要么进项目，让自己马上有人可以问。三条路效果排序很清楚：路径 3 > 路径 2 > 路径 1。</blockquote>
+
+  <h3>看你的目标紧不紧迫</h3>
+  <p>所以这个东西看对你来讲它是否很急迫。如果你觉得"我要给自己半年时间，认真把销售做起来"——<strong>找老师</strong>最快、留预算、跟着走。或者第三种方法——<strong>找一个有人带你做销售的项目</strong>。这两条路的反馈密度都比看书高一个量级。</p>
+  <p>所以这就是销售学习的方向——具体走哪条，看你的资源和你想要的结果速度。</p>
+
+  <!-- ==================== PART 08 ==================== -->
+  <div class="section-header" id="part08">
+    <div class="sec-badge">标</div>
+    <div class="sec-header-text">
+      <div class="sec-num">PART 08</div>
+      <h2>林爱的 1000 万目标：怎么拆才落地</h2>
+    </div>
+  </div>
+
+  <h3>林爱抛出的目标</h3>
+  <p>"既然大家都没问题，我继续问。" 林爱接着说——"我有一个目标，叫做<strong>两年内赚到 1000 万</strong>。这是我半年之前定的。"</p>
+  <p>"所以我这半年做了一件事情：<strong>把自己开了——从公司开了。</strong> 因为我觉得要离开才会有这个可能性。"</p>
+  <p>"我现在做几件事——做 AI 的线下社群（在企盘），是因为我想做 AI 相关的事情，而且我喜欢跟人链接。我做自媒体账号，是因为我觉得这是更新我学习方式最低成本的方式。后面我可能想做线上的陪跑服务，AI 朋友也建议我去往这个方向走。最终可能是想做 AI 的<strong>企业咨询</strong>——把我之前 8 年的内容能力和 AI 结合起来，去帮企业做 AI 效率咨询。"</p>
+  <p>"基于我那个大目标——两年赚到 1000 万——你有什么建议？"</p>
+
+  <h3>第一个问题：纯利润还是流水？</h3>
+  <p>我先打断她："这个 1000 万是<strong>纯利润</strong>还是<strong>流水</strong>？" 她说："我不在意。" 我说"<strong>很重要。</strong>"</p>
+  <p>她说："那可以先是流水。"</p>
+  <p>我说："那我们换一种问法——我们尝试把目标做一个更精准的设定。<strong>你想赚到多少钱进口袋？</strong>" 她说："就是按这样，没有如果，就第一个数字——纯利润。"</p>
+  <p>我说："好。那这个数字就要重新定义了——<strong>1000 万纯利润 ≠ 1000 万流水</strong>，背后的能力栈完全不同。"</p>
+
+  <h3>第二个问题：你能持续两年每天睡 3 小时吗？</h3>
+  <p>我接着问："如果你现在每天只能睡 3 个小时，持续两年——你做得到吗？" 她说："做不到。"</p>
+  <p>我说："那这个数字就得改。"</p>
+  <p>这是我做目标拆解的第一道题——<strong>用"承受能力"反推"目标可行性"</strong>。1000 万纯利润不是数字问题，是身体、家庭、关系都要付出的成本问题。如果你不能接受连续两年高强度，那 1000 万的目标就需要降下来，或者拉长到 3 年、4 年。</p>
+
+  <h3>第三个问题：你之前的最高年薪是多少？</h3>
+  <p>第三个问题更深入——"你之前的工作年薪最高是多少？" 这个数字很关键，因为<strong>它代表你在职场上能拿到的"市场价"</strong>。</p>
+  <p>从职场年薪到自由职业年收入，倍数有限——一般是 2-5 倍，超过这个就要靠模式（产品化、规模化、IP 化），不是纯个人能力堆出来。</p>
+  <p>所以"你过去的高度" + "你能承受的强度" + "你想要的纯利润数字" ——三个变量约束之下，<strong>你才知道两年 1000 万到底是不是合理的目标</strong>。</p>
+  <blockquote>设目标的第一步，不是"想多大"，而是"你为这个数字愿意付出什么"。先定承受度，再定数字，目标才不会半年就崩。</blockquote>
+
+  <h3>今天在场的每一个人</h3>
+  <p>今天的伙伴各有各的来路：有从大同来杭州的、有从内蒙古大草原搬过来的、有杭州本地的大学生、有从国企离职做 AI 编程的、有想从家庭教育转新旅行的、有 198 斤的重量级 AI GEO 创业者。</p>
+  <p>大家来的目的也不一样：有来认识人的、有来学 AI 的、有来精进销售的、有来找方向的、有来定 1000 万目标的。</p>
+  <p>但有一件事是确定的：<strong>你出门、你愿意见人、你愿意提问——这一步已经比大多数人走得远了。</strong></p>
+  <p>下周二，我们带着电脑再聚——<strong>AI 编程实操场</strong>，30 分钟人人都能写出自己的第一个软件。期待你来。</p>
+
+  <hr>
+  <p class="footer-note">
+    <em>整理说明：本文基于 2026 年 4 月 21 日线下活动 4.5 万字逐字稿整理，以根源老师第一人称视角归类、保留原始表达。如需查看完整对话原文（不删节版本），请<a href="18-full.html">查看「全文整理版」</a>。</em>
+  </p>
+
+</article>
+
+</div><!-- /.page-wrapper -->
+
+<nav class="session-nav" id="sessionNav"></nav>
+
+
+<div class="article-footer">
+  <a href="../index.html">&larr; 返回活动目录</a>
+  <p style="margin-top:8px">生财有术 · 线下活动精华归档 &nbsp;|&nbsp; 由根源整理，AI辅助排版</p>
+</div>
+
+<!-- Back to top -->
+<div class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</div>
+
+<script>
+// ====== THEME ======
+const THEMES=['dark','light','paper','ocean'];
+function getTheme(){var t=localStorage.getItem('sc-theme');if(THEMES.includes(t))return t;if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:light)').matches)return'light';return'dark'}
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  document.querySelectorAll('#themeSwitcher .chip').forEach(c=>{
+    c.classList.toggle('active',c.getAttribute('data-t')===t);
+  });
+}
+function setTheme(t){localStorage.setItem('sc-theme',t);applyTheme(t)}
+applyTheme(getTheme());
+
+// Scroll-hide TOC bar
+(function(){
+  let lastY = 0, toc = document.querySelector('.toc-bar');
+  if(!toc) return;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > 200 && y > lastY) toc.classList.add('hidden');
+    else toc.classList.remove('hidden');
+    lastY = y;
+  }, {passive:true});
+})();
+
+
+// Back to top visibility
+window.addEventListener('scroll', () => {
+  document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
+});
+
+// === I: TOC scrollspy 升级（含侧边栏） ===
+(function(){
+  const sections = document.querySelectorAll('.section-header');
+  const tocLinks = document.querySelectorAll('.toc-bar a');
+  const sideLinks = document.querySelectorAll('.sidebar-toc .stoc-item');
+  const tocBar = document.querySelector('.toc-bar');
+  if (!sections.length) return;
+  let lastActive = null;
+  const update = function(){
+    const h = document.documentElement;
+    const scrolled = h.scrollTop;
+    const nearBottom = (scrolled + h.clientHeight) >= (h.scrollHeight - 40);
+    let current = '';
+    if (nearBottom) {
+      current = sections[sections.length - 1].id;
+    } else {
+      sections.forEach(function(s){
+        if (scrolled >= s.offsetTop - 140) current = s.id;
+      });
+      if (!current && sections[0]) current = sections[0].id;
+    }
+    if (current === lastActive) return;
+    lastActive = current;
+    tocLinks.forEach(function(a){
+      const isActive = a.getAttribute('href') === '#' + current;
+      a.classList.toggle('active', isActive);
+      if (isActive && tocBar && tocBar.scrollWidth > tocBar.clientWidth) {
+        const barRect = tocBar.getBoundingClientRect();
+        const aRect = a.getBoundingClientRect();
+        const offset = (aRect.left + aRect.width/2) - (barRect.left + barRect.width/2);
+        tocBar.scrollBy({ left: offset, behavior: 'smooth' });
+      }
+    });
+    // 同步高亮侧边栏
+    sideLinks.forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+
+// B: 阅读进度条 + 章节进入动画
+(function(){
+  var bar = document.getElementById('readProgress');
+  if (bar) {
+    var update = function(){
+      var h = document.documentElement;
+      var scrolled = h.scrollTop;
+      var total = h.scrollHeight - h.clientHeight;
+      var pct = total > 0 ? (scrolled / total * 100) : 0;
+      bar.style.width = pct + '%';
+    };
+    window.addEventListener('scroll', update, {passive:true});
+    window.addEventListener('resize', update);
+    update();
+  }
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) {
+          e.target.classList.add('revealed');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.section-header, .highlight-box, .product-grid, .info-box').forEach(function(el){
+      io.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.section-header, .highlight-box, .product-grid, .info-box').forEach(function(el){
+      el.classList.add('revealed');
+    });
+  }
+})();
+
+
+// === D: 页面进入/离开过渡 ===
+(function(){
+  // 进入：DOM 准备好就标 ready
+  function ready(){ document.body.classList.add('page-ready'); }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ready);
+  } else {
+    ready();
+  }
+  // 离开：拦截同站链接，淡出再跳转
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href) return;
+    // 跳过外链、锚点、新窗口、特殊协议、下载链接
+    if (href.startsWith('#')) return;
+    if (href.startsWith('http://') || href.startsWith('https://')) return;
+    if (href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+    if (a.target && a.target !== '_self') return;
+    if (a.hasAttribute('download')) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    document.body.classList.add('page-leaving');
+    setTimeout(function(){ window.location.href = href; }, 280);
+  });
+  // bfcache 回退时不要保留淡出态
+  window.addEventListener('pageshow', function(e){
+    if (e.persisted) {
+      document.body.classList.remove('page-leaving');
+      document.body.classList.add('page-ready');
+    }
+  });
+})();
+
+
+// === E: 文章上下篇导航 + 阅读时长 ===
+const SESSIONS_LIST = [
+  {n:1,  t:'私域不是流量，是关系'},
+  {n:2,  t:'主动性是最稀缺的能力'},
+  {n:3,  t:'销售是通才的生意'},
+  {n:4,  t:'私域转化与销售基本功'},
+  {n:5,  t:'个体创业与私域转化'},
+  {n:6,  t:'销售即沟通之道'},
+  {n:7,  t:'八字的科学之辩'},
+  {n:8,  t:'高客单销售术'},
+  {n:9,  t:'混圈与沉淀'},
+  {n:10, t:'成交与名单'},
+  {n:11, t:'产品定价与私域转化'},
+  {n:12, t:'私域转化与个人产品'},
+  {n:13, t:'咨询师的复合能力与人生基本功'},
+  {n:14, t:'试错与主见'},
+  {n:15, t:'直播表达与销售基本功'},
+  {n:16, t:'超级个体与销售'},
+  {n:17, t:'自由职业与AI变现'},
+  {n:18, t:'AI编程与销售之道'},
+];
+
+(function(){
+  // 1. 从 URL 推出当前场次
+  var m = (window.location.pathname || '').match(/(\d{1,2})-article\.html/);
+  if (!m) return;
+  var curNum = parseInt(m[1], 10);
+
+  // 2. 阅读时长 + 字数
+  var article = document.querySelector('article.article');
+  if (article) {
+    var text = article.textContent || '';
+    // 中文按字符计；非空白视为有效
+    var chars = text.replace(/\s+/g, '').length;
+    // 中文阅读速度 ~ 400 字/分钟
+    var minutes = Math.max(1, Math.round(chars / 400));
+    var meta = document.querySelector('.hero .meta-line');
+    if (meta && !document.querySelector('.reading-meta')) {
+      var rm = document.createElement('div');
+      rm.className = 'reading-meta';
+      rm.innerHTML =
+        '<span><span class="rm-num">' + minutes + '</span> 分钟阅读</span>' +
+        '<span class="dot-sep"></span>' +
+        '<span><span class="rm-num">' + chars.toLocaleString() + '</span> 字</span>';
+      meta.parentNode.insertBefore(rm, meta.nextSibling);
+    }
+  }
+
+  // 3. 上下篇导航
+  var nav = document.getElementById('sessionNav');
+  if (nav) {
+    var prev = SESSIONS_LIST.find(function(s){return s.n === curNum - 1;});
+    var next = SESSIONS_LIST.find(function(s){return s.n === curNum + 1;});
+    var pad = function(n){return n < 10 ? '0' + n : '' + n;};
+    var prevHTML = prev
+      ? '<a class="prev" href="' + pad(prev.n) + '-article.html">' +
+          '<div class="sn-eyebrow"><span class="sn-arrow">&larr;</span> 上一场 · <span class="sn-num">No.' + pad(prev.n) + '</span></div>' +
+          '<div class="sn-title">' + prev.t + '</div>' +
+        '</a>'
+      : '<a class="prev disabled"><div class="sn-eyebrow">&larr; 已是首场</div><div class="sn-title">&nbsp;</div></a>';
+    var nextHTML = next
+      ? '<a class="next" href="' + pad(next.n) + '-article.html">' +
+          '<div class="sn-eyebrow">下一场 · <span class="sn-num">No.' + pad(next.n) + '</span> <span class="sn-arrow">&rarr;</span></div>' +
+          '<div class="sn-title">' + next.t + '</div>' +
+        '</a>'
+      : '<a class="next disabled"><div class="sn-eyebrow">已是最新场 &rarr;</div><div class="sn-title">&nbsp;</div></a>';
+    nav.innerHTML = prevHTML + nextHTML;
+  }
+})();
+
+
+// === 阅读位置记忆 ===
+(function(){
+  var key = 'read_pos_' + location.pathname.replace(/[^a-z0-9]/gi, '_');
+  var sections = document.querySelectorAll('.section-header');
+  var article = document.querySelector('article.article');
+  if (!article || !sections.length) return;
+
+  // 保存位置（节流 500ms）
+  var saveTimer = null;
+  function savePos() {
+    var scrolled = document.documentElement.scrollTop;
+    var total = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    if (total <= 0) return;
+    var pct = Math.round(scrolled / total * 100);
+    var currentSec = '';
+    sections.forEach(function(s) {
+      if (scrolled >= s.offsetTop - 160) currentSec = s.id;
+    });
+    var secTitle = '';
+    if (currentSec) {
+      var h2 = document.querySelector('#' + currentSec + ' h2');
+      if (h2) secTitle = h2.textContent.trim();
+    }
+    try {
+      localStorage.setItem(key, JSON.stringify({ y: scrolled, pct: pct, sec: currentSec, title: secTitle, t: Date.now() }));
+    } catch(e) {}
+  }
+  window.addEventListener('scroll', function() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(savePos, 500);
+  }, { passive: true });
+
+  // 读完就清除
+  window.addEventListener('scroll', function() {
+    var h = document.documentElement;
+    if ((h.scrollTop + h.clientHeight) >= (h.scrollHeight - 60)) {
+      try { localStorage.removeItem(key); } catch(e) {}
+    }
+  }, { passive: true });
+
+  // 恢复提示
+  try {
+    var saved = JSON.parse(localStorage.getItem(key));
+    if (!saved || !saved.y || saved.pct < 5 || saved.pct > 95) return;
+    // 超过 30 天的记录忽略
+    if (Date.now() - saved.t > 30 * 86400000) { localStorage.removeItem(key); return; }
+    var banner = document.getElementById('resumeBanner');
+    if (!banner) return;
+    var secText = saved.title ? '<span class="rb-section">' + saved.title + '</span>' : '约 ' + saved.pct + '%';
+    banner.innerHTML =
+      '<div class="rb-text">上次读到 ' + secText + '</div>' +
+      '<button class="rb-btn" id="rbGo">继续阅读</button>' +
+      '<button class="rb-dismiss" id="rbDismiss">&times;</button>';
+    setTimeout(function() { banner.classList.add('visible'); }, 600);
+    document.getElementById('rbGo').addEventListener('click', function() {
+      window.scrollTo({ top: saved.y, behavior: 'smooth' });
+      banner.classList.remove('visible');
+    });
+    document.getElementById('rbDismiss').addEventListener('click', function() {
+      banner.classList.remove('visible');
+      try { localStorage.removeItem(key); } catch(e) {}
+    });
+    // 用户滚动后自动消失
+    var dismissed = false;
+    window.addEventListener('scroll', function() {
+      if (!dismissed && document.documentElement.scrollTop > 200) {
+        dismissed = true;
+        setTimeout(function() { banner.classList.remove('visible'); }, 3000);
+      }
+    }, { passive: true });
+  } catch(e) {}
+})();
+
+
+// === 字号调节器 ===
+(function(){
+  var key = 'article_fontsize';
+  var sizes = [0.88, 0.94, 1, 1.08, 1.16, 1.24];
+  var idx = 2; // 默认 1rem
+  try {
+    var saved = parseInt(localStorage.getItem(key));
+    if (!isNaN(saved) && saved >= 0 && saved < sizes.length) idx = saved;
+  } catch(e){}
+  var article = document.querySelector('article.article');
+  if (!article) return;
+  function apply() {
+    article.style.fontSize = sizes[idx] + 'rem';
+    try { localStorage.setItem(key, idx); } catch(e){}
+    var label = document.getElementById('fsLabel');
+    if (label) label.textContent = Math.round(sizes[idx]*100) + '%';
+  }
+  apply();
+  window._fontSmaller = function() { if (idx > 0) { idx--; apply(); } };
+  window._fontLarger = function() { if (idx < sizes.length - 1) { idx++; apply(); } };
+})();
+
+// === 顶栏章节指示器 ===
+(function(){
+  var bar = document.querySelector('.session-title');
+  var csEl = document.querySelector('.current-section');
+  var siFill = document.querySelector('.si-fill');
+  var sections = document.querySelectorAll('.section-header');
+  if (!bar || !sections.length) return;
+  var lastSec = '';
+  window.addEventListener('scroll', function(){
+    var h = document.documentElement;
+    var scrolled = h.scrollTop;
+    var total = h.scrollHeight - h.clientHeight;
+    // 进度条
+    if (siFill) {
+      var pct = total > 0 ? (scrolled / total * 100) : 0;
+      siFill.style.width = pct + '%';
+    }
+    // 当前章节
+    var current = '';
+    var nearBottom = (scrolled + h.clientHeight) >= (h.scrollHeight - 40);
+    if (nearBottom) {
+      current = sections[sections.length - 1].id;
+    } else {
+      sections.forEach(function(s){
+        if (scrolled >= s.offsetTop - 160) current = s.id;
+      });
+    }
+    if (current !== lastSec) {
+      lastSec = current;
+      if (csEl && current) {
+        var h2 = document.querySelector('#' + current + ' h2');
+        csEl.textContent = h2 ? h2.textContent.trim() : '';
+        csEl.classList.add('visible');
+      } else if (csEl) {
+        csEl.classList.remove('visible');
+      }
+    }
+  }, { passive: true });
+})();
+
+// === Blockquote 分享卡 ===
+(function(){
+  // roundRect polyfill
+  if (!CanvasRenderingContext2D.prototype.roundRect) {
+    CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+      if (typeof r === 'number') r = [r, r, r, r];
+      this.moveTo(x + r[0], y);
+      this.lineTo(x + w - r[1], y);
+      this.quadraticCurveTo(x + w, y, x + w, y + r[1]);
+      this.lineTo(x + w, y + h - r[2]);
+      this.quadraticCurveTo(x + w, y + h, x + w - r[2], y + h);
+      this.lineTo(x + r[3], y + h);
+      this.quadraticCurveTo(x, y + h, x, y + h - r[3]);
+      this.lineTo(x, y + r[0]);
+      this.quadraticCurveTo(x, y, x + r[0], y);
+      this.closePath();
+    };
+  }
+
+  var overlay = document.getElementById('bqShareOverlay');
+  var canvas = document.getElementById('bqShareCanvas');
+  if (!overlay || !canvas) return;
+  var ctx = canvas.getContext('2d');
+  var DPR = Math.min(window.devicePixelRatio || 1, 3);
+  var W = 720, H = 960;
+
+  function setupCanvas() {
+    canvas.width = W * DPR;
+    canvas.height = H * DPR;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.scale(DPR, DPR);
+  }
+
+  function wrapText(text, x, y, maxW, lineH, maxLines) {
+    var chars = text.split('');
+    var line = '';
+    var lines = [];
+    for (var i = 0; i < chars.length; i++) {
+      var test = line + chars[i];
+      if (ctx.measureText(test).width > maxW && line.length > 0) {
+        lines.push(line);
+        line = chars[i];
+      } else {
+        line = test;
+      }
+    }
+    if (line) lines.push(line);
+    if (maxLines && lines.length > maxLines) {
+      lines = lines.slice(0, maxLines);
+      lines[maxLines - 1] = lines[maxLines - 1].slice(0, -1) + '\u2026';
+    }
+    for (var j = 0; j < lines.length; j++) {
+      ctx.fillText(lines[j], x, y + j * lineH);
+    }
+    return lines.length;
+  }
+
+  // 从 URL 获取场次
+  var m = (location.pathname || '').match(/(\d{1,2})-article/);
+  var curNum = m ? parseInt(m[1], 10) : 0;
+  var pad = curNum < 10 ? '0' + curNum : '' + curNum;
+  // 从页面获取标题
+  var heroH1 = document.querySelector('.hero h1');
+  var sessionTitle = heroH1 ? heroH1.textContent.trim() : '';
+
+  function drawCard(text) {
+    setupCanvas();
+    // 背景
+    var bg = ctx.createLinearGradient(0, 0, W, H);
+    bg.addColorStop(0, '#0f0d09');
+    bg.addColorStop(0.5, '#1a1510');
+    bg.addColorStop(1, '#0a0a08');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+    // 光晕
+    var glow = ctx.createRadialGradient(W * 0.7, H * 0.15, 0, W * 0.7, H * 0.15, 320);
+    glow.addColorStop(0, 'rgba(212,160,74,0.12)');
+    glow.addColorStop(1, 'rgba(212,160,74,0)');
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, W, H);
+    // 顶部
+    ctx.fillStyle = '#d4a04a';
+    ctx.fillRect(60, 68, 50, 3);
+    ctx.font = '500 13px "Noto Sans SC", sans-serif';
+    ctx.fillStyle = 'rgba(212,160,74,0.7)';
+    ctx.fillText('\u751F \u8D22 \u6709 \u672F \u7EBF \u4E0B \u7EC4 \u5C40', 60, 106);
+    // 大号引号
+    ctx.font = 'italic 160px "Playfair Display", Georgia, serif';
+    ctx.fillStyle = 'rgba(212,160,74,0.15)';
+    ctx.fillText('\u201C', 38, 240);
+    // 正文
+    ctx.font = '600 26px "Noto Serif SC", "Noto Sans SC", serif';
+    ctx.fillStyle = '#e8dcc8';
+    var linesUsed = wrapText(text, 68, 280, W - 136, 46, 10);
+    // 分隔线
+    var bottomY = 280 + linesUsed * 46 + 50;
+    ctx.fillStyle = 'rgba(212,160,74,0.25)';
+    ctx.fillRect(68, bottomY, W - 136, 1);
+    // 场次
+    ctx.font = 'italic 15px "Playfair Display", Georgia, serif';
+    ctx.fillStyle = '#d4a04a';
+    ctx.fillText('No.' + pad, 68, bottomY + 36);
+    ctx.font = '500 15px "Noto Sans SC", sans-serif';
+    ctx.fillStyle = 'rgba(200,192,176,0.6)';
+    if (sessionTitle) ctx.fillText('\u00B7  ' + sessionTitle, 68 + ctx.measureText('No.' + pad).width + 12, bottomY + 36);
+    // 水印
+    ctx.font = '400 12px "Noto Sans SC", sans-serif';
+    ctx.fillStyle = 'rgba(200,192,176,0.25)';
+    ctx.textAlign = 'center';
+    ctx.fillText('\u2014 \u6839\u6E90\uFF08\u6797\u6839\u6E90\uFF09\u00B7 \u751F\u8D22\u6709\u672F\u7EBF\u4E0B\u7EC4\u5C40 \u2014', W / 2, H - 50);
+    ctx.textAlign = 'left';
+  }
+
+  function show() { overlay.classList.add('visible'); }
+  function hide() { overlay.classList.remove('visible'); }
+
+  document.getElementById('bqShareClose').addEventListener('click', hide);
+  overlay.addEventListener('click', function(e){ if (e.target === overlay) hide(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && overlay.classList.contains('visible')) hide();
+  });
+  document.getElementById('bqShareDownload').addEventListener('click', function(){
+    canvas.toBlob(function(blob){
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'shengcai-No' + pad + '-' + Date.now() + '.png';
+      a.click();
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+    }, 'image/png');
+  });
+
+  // 点击 blockquote 触发
+  document.querySelector('article.article').addEventListener('click', function(e){
+    var bq = e.target.closest('blockquote');
+    if (!bq) return;
+    var text = bq.textContent.trim();
+    if (!text) return;
+    drawCard(text);
+    show();
+  });
+})();
+
+</script>
+
+<div class="resume-banner" id="resumeBanner"></div>
+<div class="share-overlay" id="bqShareOverlay">
+  <div class="share-panel">
+    <canvas id="bqShareCanvas" width="720" height="960"></canvas>
+    <div class="share-actions">
+      <button class="share-download" id="bqShareDownload">保存图片</button>
+      <button class="share-close-btn" id="bqShareClose">关闭</button>
+    </div>
+    <div class="share-hint">长按图片可直接分享到微信</div>
+  </div>
+</div>
+</body>
+</html>

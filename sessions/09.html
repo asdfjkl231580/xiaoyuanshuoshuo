@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>第09场 · 混圈与沉淀 — 生财有术线下活动</title>
+<meta name="description" content="生财有术第9场线下组局 · 混圈与沉淀 — PPT版精华整理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第9场 · 混圈与沉淀 — PPT版">
+<meta property="og:description" content="生财有术第9场线下组局 · 混圈与沉淀 — PPT版精华整理">
+<meta property="og:site_name" content="生财有术线下组局">
+<meta name="twitter:card" content="summary">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root{--t:0.3s ease}
@@ -229,10 +235,297 @@ body{
   .slide h1{font-size:24px}
   .slide.cover .big{font-size:32px}
 }
+
+  /* === C: 翻页动效与键位反馈 === */
+
+  /* 顶部章节进度条 */
+  .progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: transparent;
+    z-index: 110;
+    pointer-events: none;
+  }
+  .progress::after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: var(--progress, 0%);
+    background: var(--accent);
+    transition: width 0.45s cubic-bezier(0.22,1,0.36,1);
+  }
+
+  /* 更顺滑的翻页缓动 */
+  .slide-track {
+    transition: transform 0.55s cubic-bezier(0.22,1,0.36,1) !important;
+  }
+
+  /* slide 内容 stagger 淡入 */
+  .slide .slide-inner > * {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1),
+                transform 0.6s cubic-bezier(0.22,1,0.36,1);
+  }
+  .slide.current .slide-inner > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .slide.current .slide-inner > *:nth-child(1) { transition-delay: 0.05s; }
+  .slide.current .slide-inner > *:nth-child(2) { transition-delay: 0.13s; }
+  .slide.current .slide-inner > *:nth-child(3) { transition-delay: 0.21s; }
+  .slide.current .slide-inner > *:nth-child(4) { transition-delay: 0.29s; }
+  .slide.current .slide-inner > *:nth-child(5) { transition-delay: 0.37s; }
+  .slide.current .slide-inner > *:nth-child(6) { transition-delay: 0.45s; }
+  .slide.current .slide-inner > *:nth-child(7) { transition-delay: 0.53s; }
+
+  /* cover slide 标题更戏剧化 */
+  .slide.cover.current .slide-title {
+    animation: coverTitleIn 0.9s cubic-bezier(0.22,1,0.36,1) 0.15s both;
+  }
+  @keyframes coverTitleIn {
+    0%   { opacity: 0; transform: translateY(18px) scale(0.985); letter-spacing: -0.005em; }
+    100% { opacity: 1; transform: translateY(0)    scale(1);     letter-spacing: 0; }
+  }
+
+  /* 键盘按下时按钮闪一下 */
+  .nav-btn.pressed {
+    background: var(--accent) !important;
+    color: var(--bg) !important;
+    transform: scale(0.96);
+    transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  }
+
+  /* dot 涟漪 + 更紧的反馈 */
+  .dot {
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.22,1,0.36,1) !important;
+  }
+  .dot:hover { transform: scale(1.35); }
+  .dot.active:hover { transform: scale(1); }
+  .dot::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 1px solid var(--accent);
+    opacity: 0;
+    transform: scale(0.6);
+    pointer-events: none;
+  }
+  .dot.ripple::after {
+    animation: dotRipple 0.55s ease-out;
+  }
+  @keyframes dotRipple {
+    0%   { opacity: 0.7; transform: scale(0.6); }
+    100% { opacity: 0;   transform: scale(2.2); }
+  }
+
+  /* 首次交互后 hint 渐隐 */
+  .key-hint {
+    transition: opacity 0.6s ease, transform 0.6s ease !important;
+  }
+  .key-hint.hidden {
+    opacity: 0 !important;
+    transform: translateX(-50%) translateY(8px) !important;
+    pointer-events: none;
+  }
+
+  /* tab 切换时下划线滑动感 */
+  .tabs button {
+    position: relative;
+  }
+  .tabs button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 14px;
+    right: 14px;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+  }
+  .tabs button.active::after {
+    transform: scaleX(1);
+  }
+  .tabs button.active {
+    border-bottom-color: transparent !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .slide .slide-inner > * { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .slide.cover.current .slide-title { animation: none !important; }
+    .progress::after { transition: none !important; }
+  }
+
+
+  /* === D: 跨页面动效一致性 === */
+  body {
+    opacity: 0;
+    transition: opacity 0.45s cubic-bezier(0.22,1,0.36,1);
+  }
+  body.page-ready {
+    opacity: 1;
+  }
+  body.page-leaving {
+    opacity: 0;
+    transition: opacity 0.32s cubic-bezier(0.4,0,0.6,1);
+  }
+  /* 统一 focus-visible 视感 */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible {
+    outline: 2px solid var(--accent, currentColor);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    body, body.page-leaving { transition: none !important; opacity: 1 !important; }
+  }
+
+
+  /* === G: PPT 上下场浮动导航 === */
+  .ppt-session-nav { position: fixed; top: 50%; transform: translateY(-50%); z-index: 80; pointer-events: none; }
+  .ppt-session-nav a {
+    pointer-events: auto;
+    position: fixed; top: 50%;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: var(--card-bg, rgba(255,255,255,0.03));
+    border: 1px solid var(--rule, rgba(255,255,255,0.1));
+    color: var(--text-muted);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
+    opacity: 0.45;
+  }
+  .ppt-session-nav a.psn-prev { left: 18px; transform: translateY(-50%); }
+  .ppt-session-nav a.psn-next { right: 18px; transform: translateY(-50%); }
+  .ppt-session-nav a:hover { opacity: 1; border-color: var(--accent); color: var(--accent); box-shadow: 0 6px 22px -10px var(--accent); }
+  .ppt-session-nav a.psn-prev:hover { transform: translate(-3px, -50%); }
+  .ppt-session-nav a.psn-next:hover { transform: translate(3px, -50%); }
+  .ppt-session-nav a.psn-disabled { opacity: 0.15; pointer-events: none; }
+  .ppt-session-nav .psn-tip {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    white-space: nowrap;
+    background: var(--card-bg, rgba(0,0,0,0.85));
+    color: var(--text);
+    border: 1px solid var(--rule, rgba(255,255,255,0.1));
+    padding: 7px 12px; border-radius: 6px;
+    font-size: 0.72rem; letter-spacing: 0.04em;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .ppt-session-nav .psn-prev .psn-tip { left: calc(100% + 12px); }
+  .ppt-session-nav .psn-next .psn-tip { right: calc(100% + 12px); }
+  .ppt-session-nav a:hover .psn-tip { opacity: 1; transform: translate(0,-50%); }
+  .ppt-session-nav .psn-tip .psn-num { color: var(--accent); font-family: 'Playfair Display', Georgia, serif; font-weight: 700; margin-right: 6px; }
+  @media (max-width: 720px) { .ppt-session-nav a { width: 38px; height: 38px; font-size: 0.95rem; } .ppt-session-nav a.psn-prev { left: 8px; } .ppt-session-nav a.psn-next { right: 8px; } .ppt-session-nav .psn-tip { display: none; } }
+
+  /* === H: 快捷键遮罩 === */
+  .kb-hint-trigger {
+    position: fixed; bottom: 18px; left: 18px; z-index: 90;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--card-bg, rgba(255,255,255,0.03));
+    border: 1px solid var(--rule, rgba(255,255,255,0.12));
+    color: var(--text-muted);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', Georgia, serif; font-size: 0.92rem;
+    cursor: pointer; transition: all 0.3s ease;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    opacity: 0.5;
+  }
+  .kb-hint-trigger:hover { opacity: 1; border-color: var(--accent); color: var(--accent); }
+  .kb-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    display: none; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.35s cubic-bezier(0.22,1,0.36,1);
+  }
+  .kb-overlay.visible { display: flex; opacity: 1; }
+  .kb-panel {
+    background: var(--bg, #0a0a08);
+    border: 1px solid var(--rule, rgba(255,255,255,0.12));
+    border-radius: 14px;
+    padding: 2.4rem 2.6rem;
+    max-width: 520px; width: 90vw;
+    box-shadow: 0 40px 100px -30px rgba(0,0,0,0.8);
+    transform: scale(0.94); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+  }
+  .kb-overlay.visible .kb-panel { transform: scale(1); }
+  .kb-panel h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: var(--text); font-size: 1.35rem; font-weight: 600;
+    margin: 0 0 1.4rem; letter-spacing: 0.02em;
+  }
+  .kb-panel h3 span { color: var(--accent); font-style: italic; }
+  .kb-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.85rem; }
+  .kb-list li { display: flex; align-items: center; gap: 1rem; color: var(--text-muted); font-size: 0.82rem; letter-spacing: 0.03em; }
+  .kb-key {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 32px; padding: 4px 9px;
+    background: var(--card-bg, rgba(255,255,255,0.04));
+    border: 1px solid var(--rule, rgba(255,255,255,0.14));
+    border-bottom-width: 2px;
+    border-radius: 5px;
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 0.72rem; color: var(--text);
+    font-weight: 500;
+  }
+  .kb-close {
+    position: absolute; top: 16px; right: 18px;
+    background: none; border: none; color: var(--text-muted);
+    font-size: 1.5rem; cursor: pointer; font-family: 'Playfair Display', serif;
+    line-height: 1; padding: 4px 8px; border-radius: 4px;
+    transition: color 0.25s ease;
+  }
+  .kb-close:hover { color: var(--accent); }
+  .kb-panel { position: relative; }
+
+
+  /* === J: 触摸滑动手势辅助 === */
+  .viewport { touch-action: pan-y; }
+  .slide-track { will-change: transform; }
+  .swipe-hint {
+    position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
+    padding: 8px 18px; border-radius: 20px;
+    background: rgba(0,0,0,0.72); color: #fff;
+    font-size: 0.7rem; letter-spacing: 0.08em;
+    opacity: 0; pointer-events: none; z-index: 150;
+    transition: opacity 0.4s ease;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  }
+  .swipe-hint.visible { opacity: 1; }
+  @media (min-width: 768px) { .swipe-hint { display: none; } }
+
 </style>
 </head>
 <body>
+<div class="swipe-hint" id="swipeHint">&larr; 左右滑动切换 &rarr;</div>
 
+<div class="ppt-session-nav" id="pptSessionNav"><a class="psn-prev" id="psnPrev"><span class="psn-arrow">&larr;</span><span class="psn-tip"></span></a><a class="psn-next" id="psnNext"><span class="psn-arrow">&rarr;</span><span class="psn-tip"></span></a></div>
+<button class="kb-hint-trigger" id="kbHintTrigger" title="快捷键 (按 ?)">?</button>
+<div class="kb-overlay" id="kbOverlay">
+  <div class="kb-panel">
+    <button class="kb-close" id="kbClose" aria-label="关闭">&times;</button>
+    <h3>键盘 <span>快捷键</span></h3>
+    <ul class="kb-list">
+      <li><span class="kb-key">&larr;</span> / <span class="kb-key">&uarr;</span> <span>上一页</span></li>
+      <li><span class="kb-key">&rarr;</span> / <span class="kb-key">&darr;</span> <span>下一页</span></li>
+      <li><span class="kb-key">1</span> – <span class="kb-key">9</span> <span>切换章节</span></li>
+      <li><span class="kb-key">?</span> <span>显示/隐藏此面板</span></li>
+      <li><span class="kb-key">Esc</span> <span>关闭面板</span></li>
+    </ul>
+  </div>
+</div>
+
+
+
+<div class="progress" id="progress"></div>
 <div class="topbar">
   <a href="../index.html" class="back">← 返回</a>
   <div class="title">第09场 · 混圈与沉淀</div>
@@ -392,10 +685,16 @@ function renderDots(){
   dots.innerHTML = flatSlides.map((_,i)=>`<div class="dot ${i===globalIndex?'active':''}" onclick="goTo(${i})"></div>`).join("");
 }
 function update(){
-  document.getElementById("track").style.transform = `translateX(-${globalIndex*100}%)`;
+  const tk = document.getElementById("track");
+  tk.style.transition = 'transform 0.55s cubic-bezier(0.22,1,0.36,1)';
+  tk.style.transform = `translateX(-${globalIndex*100}%)`;
   document.getElementById("count").textContent = `${globalIndex+1} / ${flatSlides.length}`;
   document.getElementById("prev").disabled = globalIndex===0;
   document.getElementById("next").disabled = globalIndex===flatSlides.length-1;
+  document.querySelectorAll('.slide').forEach((s,i)=>s.classList.toggle('current',i===globalIndex));
+  const total = flatSlides.length;
+  const pct = total>1?(globalIndex/(total-1))*100:100;
+  const pb = document.getElementById('progress'); if(pb) pb.style.setProperty('--progress',pct+'%');
   const cur = flatSlides[globalIndex];
   sectionIndex = cur.si;
   renderTabs();
@@ -414,7 +713,7 @@ function goToSection(si){
 }
 // ====== THEME ======
 const THEMES=['dark','light','paper','ocean'];
-function getTheme(){var t=localStorage.getItem('sc-theme')||'dark';return THEMES.includes(t)?t:'dark'}
+function getTheme(){var t=localStorage.getItem('sc-theme');if(THEMES.includes(t))return t;if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:light)').matches)return'light';return'dark'}
 function applyTheme(t){
   document.documentElement.setAttribute('data-theme',t);
   document.querySelectorAll('#themeSwitcher .chip').forEach(c=>{
@@ -425,8 +724,11 @@ function setTheme(t){localStorage.setItem('sc-theme',t);applyTheme(t)}
 applyTheme(getTheme());
 
 document.addEventListener("keydown",e=>{
-  if(e.key==="ArrowLeft") go(-1);
-  if(e.key==="ArrowRight") go(1);
+  let btn=null;
+  if(e.key==="ArrowLeft"){go(-1);btn=document.getElementById('prev');}
+  if(e.key==="ArrowRight"){go(1);btn=document.getElementById('next');}
+  if(btn){btn.classList.add('pressed');setTimeout(()=>btn.classList.remove('pressed'),180);}
+  const h=document.querySelector('.key-hint');if(h&&!h.classList.contains('hidden')){h.classList.add('hidden');}
 });
 let touchX = 0;
 document.addEventListener("touchstart",e=>touchX=e.touches[0].clientX);
@@ -439,6 +741,164 @@ renderTabs();
 renderSlides();
 renderDots();
 update();
+
+// === D: 页面进入/离开过渡 ===
+(function(){
+  // 进入：DOM 准备好就标 ready
+  function ready(){ document.body.classList.add('page-ready'); }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ready);
+  } else {
+    ready();
+  }
+  // 离开：拦截同站链接，淡出再跳转
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href) return;
+    // 跳过外链、锚点、新窗口、特殊协议、下载链接
+    if (href.startsWith('#')) return;
+    if (href.startsWith('http://') || href.startsWith('https://')) return;
+    if (href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+    if (a.target && a.target !== '_self') return;
+    if (a.hasAttribute('download')) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    document.body.classList.add('page-leaving');
+    setTimeout(function(){ window.location.href = href; }, 280);
+  });
+  // bfcache 回退时不要保留淡出态
+  window.addEventListener('pageshow', function(e){
+    if (e.persisted) {
+      document.body.classList.remove('page-leaving');
+      document.body.classList.add('page-ready');
+    }
+  });
+})();
+
+
+// === G: PPT 上下场导航 ===
+const PPT_SESSIONS = [
+  {n:1,  t:'私域不是流量，是关系'},
+  {n:2,  t:'主动性是最稀缺的能力'},
+  {n:3,  t:'销售是通才的生意'},
+  {n:4,  t:'私域转化与销售基本功'},
+  {n:5,  t:'个体创业与私域转化'},
+  {n:6,  t:'销售即沟通之道'},
+  {n:7,  t:'八字的科学之辩'},
+  {n:8,  t:'高客单销售术'},
+  {n:9,  t:'混圈与沉淀'},
+  {n:10, t:'成交与名单'},
+  {n:11, t:'产品定价与私域转化'},
+  {n:12, t:'私域转化与个人产品'},
+  {n:13, t:'咨询师的复合能力与人生基本功'},
+  {n:14, t:'试错与主见'},
+  {n:15, t:'直播表达与销售基本功'},
+  {n:16, t:'超级个体与销售'},
+];
+(function(){
+  var m = (window.location.pathname || '').match(/(\d{1,2})\.html$/);
+  if (!m) return;
+  var curNum = parseInt(m[1], 10);
+  var pad = function(n){ return n < 10 ? '0' + n : '' + n; };
+  var prev = PPT_SESSIONS.find(function(s){ return s.n === curNum - 1; });
+  var next = PPT_SESSIONS.find(function(s){ return s.n === curNum + 1; });
+  var pEl = document.getElementById('psnPrev');
+  var nEl = document.getElementById('psnNext');
+  if (pEl) {
+    if (prev) {
+      pEl.href = pad(prev.n) + '.html';
+      var tp = pEl.querySelector('.psn-tip');
+      if (tp) tp.innerHTML = '<span class="psn-num">No.' + pad(prev.n) + '</span>' + prev.t;
+    } else {
+      pEl.classList.add('psn-disabled');
+    }
+  }
+  if (nEl) {
+    if (next) {
+      nEl.href = pad(next.n) + '.html';
+      var tn = nEl.querySelector('.psn-tip');
+      if (tn) tn.innerHTML = '<span class="psn-num">No.' + pad(next.n) + '</span>' + next.t;
+    } else {
+      nEl.classList.add('psn-disabled');
+    }
+  }
+})();
+
+// === H: 快捷键遮罩 ===
+(function(){
+  var overlay = document.getElementById('kbOverlay');
+  var trigger = document.getElementById('kbHintTrigger');
+  var closeBtn = document.getElementById('kbClose');
+  if (!overlay || !trigger) return;
+  var show = function(){ overlay.classList.add('visible'); };
+  var hide = function(){ overlay.classList.remove('visible'); };
+  var toggle = function(){ overlay.classList.toggle('visible'); };
+  trigger.addEventListener('click', toggle);
+  if (closeBtn) closeBtn.addEventListener('click', hide);
+  overlay.addEventListener('click', function(e){ if (e.target === overlay) hide(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === '?' || (e.key === '/' && e.shiftKey)) { e.preventDefault(); toggle(); }
+    else if (e.key === 'Escape' && overlay.classList.contains('visible')) { hide(); }
+  });
+})();
+
+
+// === J: PPT 触摸滑动手势 ===
+(function(){
+  if (typeof go !== 'function') return;
+  var viewport = document.getElementById('viewport') || document.querySelector('.viewport');
+  if (!viewport) return;
+  var startX = 0, startY = 0, startT = 0, locked = null;
+  viewport.addEventListener('touchstart', function(e){
+    if (!e.touches || e.touches.length !== 1) return;
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    startT = Date.now();
+    locked = null;
+  }, { passive: true });
+  viewport.addEventListener('touchmove', function(e){
+    if (!e.touches || e.touches.length !== 1 || locked === 'v') return;
+    var dx = e.touches[0].clientX - startX;
+    var dy = e.touches[0].clientY - startY;
+    if (locked === null) {
+      if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
+        locked = Math.abs(dx) > Math.abs(dy) ? 'h' : 'v';
+      }
+    }
+  }, { passive: true });
+  viewport.addEventListener('touchend', function(e){
+    if (!e.changedTouches || e.changedTouches.length === 0) return;
+    var dx = e.changedTouches[0].clientX - startX;
+    var dy = e.changedTouches[0].clientY - startY;
+    var dt = Date.now() - startT;
+    if (locked !== 'h') return;
+    // 触发条件：水平位移 > 60px 或者高速滑动 > 180px/s
+    var vx = Math.abs(dx) / Math.max(dt, 1) * 1000;
+    if (Math.abs(dx) > 60 || vx > 180) {
+      if (Math.abs(dx) > Math.abs(dy) * 1.2) {
+        go(dx < 0 ? 1 : -1);
+      }
+    }
+  }, { passive: true });
+  // 首次访问显示一次提示
+  try {
+    if (window.matchMedia && window.matchMedia('(max-width: 767px)').matches) {
+      if (!localStorage.getItem('swipeHintShown')) {
+        var hint = document.getElementById('swipeHint');
+        if (hint) {
+          setTimeout(function(){
+            hint.classList.add('visible');
+            setTimeout(function(){ hint.classList.remove('visible'); }, 2600);
+          }, 900);
+        }
+        localStorage.setItem('swipeHintShown', '1');
+      }
+    }
+  } catch(e) {}
+})();
+
 </script>
 </body>
 </html>
