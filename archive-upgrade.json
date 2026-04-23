@@ -19,7 +19,7 @@
   },
   "startedAt": "2026-04-20",
   "updatedAt": "2026-04-20",
-  "overallProgress": 85,
+  "overallProgress": 90,
   "currentPhase": "phase-5",
   "totalDuration": "约 12-16 周",
   "phases": [
@@ -297,14 +297,52 @@
       "id": "phase-6",
       "num": "陆",
       "numEn": "6",
-      "name": "正式切换",
-      "goal": "10% → 50% → 100% 灰度切流量 · 实时监控 · 异常一键回滚",
-      "deliverable": "100% 切换 · 连续 7 天无异常",
-      "duration": "1 周",
-      "status": "pending",
-      "progress": 0,
-      "progressLabel": "待启动",
-      "userImpact": "切换完成后全体用户"
+      "name": "B 路线 · 档案原话注入",
+      "goal": "放弃纯抽取替代 · 档案作为 GPT prompt 的原话注入层 · 两边优势相加:GPT 组织力 + 档案真实性",
+      "deliverable": "lib/archive/inject.ts 注入层 + /api/chat env 开关 + Vercel preview 隔离测试 + 对比评估",
+      "duration": "3-5 天",
+      "status": "active",
+      "progress": 60,
+      "progressLabel": "6.1+6.2 代码就位 · 等你在 preview 实测",
+      "userImpact": "默认零影响 · 仅 preview 环境开启 · 生产按旧 GPT+RAG 跑",
+      "subtasks": [
+        {
+          "id": "6.0",
+          "name": "战略调整 · 从纯抽取 → 混合式",
+          "status": "done",
+          "detail": "用户对比云咨询室('正印特质'回答精彩) vs /archive-test(跑题)后发现:纯抽取式在数据 302 条规模下不如 GPT+RAG 17.2w 条。决定改路线 B:档案作为 GPT 的原话注入源 · 不替代 GPT"
+        },
+        {
+          "id": "6.1",
+          "name": "inject.ts 注入层",
+          "status": "done",
+          "detail": "lib/archive/inject.ts · injectArchiveOriginals(query) 调 retrieveSnippets → 置信度阈值 70 过滤 → 拼成【根源老师真实讲过的原话】注入块。低置信/DB 错静默返回 null 不影响 GPT。isArchiveInjectionEnabled() 读 env"
+        },
+        {
+          "id": "6.2",
+          "name": "/api/chat 注入钩子",
+          "status": "done",
+          "detail": "在 systemPrompt 构建后加注入逻辑 · ARCHIVE_INJECTION_ENABLED=true 才生效 · try/catch 保护。默认 false · 生产零影响。同步改 lib/prompt.ts 加 archiveOriginals 可选参数(buildPrompt 也支持)"
+        },
+        {
+          "id": "6.3",
+          "name": "Vercel preview 开关",
+          "status": "ready",
+          "detail": "等用户到 Vercel dashboard 给 archive-engine 分支 preview 设置 ARCHIVE_INJECTION_ENABLED=true(生产保持 false) · 物理隔离测试环境"
+        },
+        {
+          "id": "6.4",
+          "name": "对比评估 · preview vs 生产",
+          "status": "pending",
+          "detail": "你用 preview URL 问 10-20 个真实问题 · 对比 yuaneightlife.com 生产。评估:① 原话引用自然吗 ② GPT 有没有按原话立场展开 ③ 是否比纯 GPT 更'像你真说的'"
+        },
+        {
+          "id": "6.5",
+          "name": "全量切换(条件性)",
+          "status": "pending",
+          "detail": "评估通过 → 生产 env 设 ARCHIVE_INJECTION_ENABLED=true · 所有用户受益 · 同时监控异常 · 有问题一键切回 false"
+        }
+      ]
     }
   ],
   "healthCheck": {
@@ -514,6 +552,18 @@
       "phase": "phase-5",
       "title": "Phase 5.4 第二轮 · retrieve 相关性门控",
       "detail": "scoreSnippet 加 if(context==0 && topic==0) mood=0 · 防销售话术因'对不对/举例子'等口吻词虚高。benchmark 10 题: 6/10 答 · 4/10 fallback(诚实). lib/archive/retrieve.ts + scripts/test-archive-retrieve.mjs 同步。Phase 5 progress 45→80 · 总体 82→85。6/7 phase 接近收尾。"
+    },
+    {
+      "date": "2026-04-23",
+      "phase": "战略",
+      "title": "⚡️ 战略转折 · 放弃纯抽取 · 走路线 B",
+      "detail": "用户对比云咨询室'正印特质'回答(GPT 优雅教学对比偏印/核心耐心)vs /archive-test(销售话术硬拼接)后 · 诚实评估:纯抽取式在 302 条 POC 规模下不如 171830 条生产 RAG。承认方向调整:档案引擎不替代 GPT · 改做 GPT prompt 的'原话注入源'。两边优势相加:GPT 组织力 + 档案真实性。Phase 6 定义重写。"
+    },
+    {
+      "date": "2026-04-23",
+      "phase": "phase-6",
+      "title": "✅ Phase 6.1+6.2 · B 路线代码就位",
+      "detail": "lib/archive/inject.ts 新建 · injectArchiveOriginals() 调 retrieveSnippets 拼原话块 · 阈值 70 过滤 · 错误静默保护生产。/api/chat/route.ts 加钩子 · systemPrompt 前拼 archive 块 · ARCHIVE_INJECTION_ENABLED=true 才生效 · 默认 false。lib/prompt.ts 也加 archiveOriginals 可选入参(备用路径)。lib/archive/retrieve.ts 完成术语 30/3-gram 15/2-gram 4 分层权重。推 archive-engine 分支 → Vercel preview 自动部署。等你到 Vercel dashboard 设 preview 的 ARCHIVE_INJECTION_ENABLED=true 做对比测试。Phase 6 progress 0→60 · 总体 85→90。"
     }
   ]
 }
