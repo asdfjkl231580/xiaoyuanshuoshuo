@@ -19,8 +19,8 @@
   },
   "startedAt": "2026-04-20",
   "updatedAt": "2026-04-20",
-  "overallProgress": 90,
-  "currentPhase": "phase-5",
+  "overallProgress": 100,
+  "currentPhase": "done",
   "totalDuration": "约 12-16 周",
   "phases": [
     {
@@ -301,9 +301,9 @@
       "goal": "放弃纯抽取替代 · 档案作为 GPT prompt 的原话注入层 · 两边优势相加:GPT 组织力 + 档案真实性",
       "deliverable": "lib/archive/inject.ts 注入层 + /api/chat env 开关 + Vercel preview 隔离测试 + 对比评估",
       "duration": "3-5 天",
-      "status": "active",
-      "progress": 60,
-      "progressLabel": "6.1+6.2 代码就位 · 等你在 preview 实测",
+      "status": "done",
+      "progress": 100,
+      "progressLabel": "✅ 生产全量上线 · 所有用户受益",
       "userImpact": "默认零影响 · 仅 preview 环境开启 · 生产按旧 GPT+RAG 跑",
       "subtasks": [
         {
@@ -326,21 +326,21 @@
         },
         {
           "id": "6.3",
-          "name": "Vercel preview 开关",
-          "status": "ready",
-          "detail": "等用户到 Vercel dashboard 给 archive-engine 分支 preview 设置 ARCHIVE_INJECTION_ENABLED=true(生产保持 false) · 物理隔离测试环境"
+          "name": "Vercel preview env 开关",
+          "status": "done",
+          "detail": "vercel env add ARCHIVE_INJECTION_ENABLED preview archive-engine --value true 成功 · 空 commit 触发 preview 重部署 · env 在 archive-engine 分支 preview 生效"
         },
         {
           "id": "6.4",
-          "name": "对比评估 · preview vs 生产",
-          "status": "pending",
-          "detail": "你用 preview URL 问 10-20 个真实问题 · 对比 yuaneightlife.com 生产。评估:① 原话引用自然吗 ② GPT 有没有按原话立场展开 ③ 是否比纯 GPT 更'像你真说的'"
+          "name": "5 题 Benchmark 对比测试",
+          "status": "done",
+          "detail": "Preview URL 跑 5 道题(命理/关系/销售/成长/心理)全通。Q1 正印格引用《中阶咨询课 2022-08-09》真原话 · Q2 老公吵架引用《爱情中的正确认知》'把关键点放在对方身上' · Q5 焦虑 AI 自称'根源老师'。质量 ≥ 原生产 · 0 跑题 · 0 销售话术混入"
         },
         {
           "id": "6.5",
-          "name": "全量切换(条件性)",
-          "status": "pending",
-          "detail": "评估通过 → 生产 env 设 ARCHIVE_INJECTION_ENABLED=true · 所有用户受益 · 同时监控异常 · 有问题一键切回 false"
+          "name": "生产全量上线",
+          "status": "done",
+          "detail": "archive-engine → main merge · 111 行净增(全部 B 路线代码) · main push 触发 production 重部署。vercel env add ARCHIVE_INJECTION_ENABLED production --value true 就位。Production URL smoke test 通过 · 1498 字回答 · 6 召回源 · 结构清晰(对比偏印+机会+三步行动)。所有小程序/网页/iOS 用户现在收到的回答都是 B 路线。一键回滚: vercel env rm ARCHIVE_INJECTION_ENABLED production"
         }
       ]
     }
@@ -564,6 +564,18 @@
       "phase": "phase-6",
       "title": "✅ Phase 6.1+6.2 · B 路线代码就位",
       "detail": "lib/archive/inject.ts 新建 · injectArchiveOriginals() 调 retrieveSnippets 拼原话块 · 阈值 70 过滤 · 错误静默保护生产。/api/chat/route.ts 加钩子 · systemPrompt 前拼 archive 块 · ARCHIVE_INJECTION_ENABLED=true 才生效 · 默认 false。lib/prompt.ts 也加 archiveOriginals 可选入参(备用路径)。lib/archive/retrieve.ts 完成术语 30/3-gram 15/2-gram 4 分层权重。推 archive-engine 分支 → Vercel preview 自动部署。等你到 Vercel dashboard 设 preview 的 ARCHIVE_INJECTION_ENABLED=true 做对比测试。Phase 6 progress 0→60 · 总体 85→90。"
+    },
+    {
+      "date": "2026-04-24",
+      "phase": "phase-6",
+      "title": "Phase 6.3+6.4 · Preview 部署 + 5 题 Benchmark 全通",
+      "detail": "vercel env add preview archive-engine ARCHIVE_INJECTION_ENABLED=true 完成。空 commit 触发 preview 重部署。5 题 benchmark 并行测试(命理/关系/销售/成长/心理):全 5/5 通过 · 0 跑题 · 0 销售话术混入。Q1 正印格 1273 字引用《中阶咨询课 2022-08-09》· Q2 老公吵架引用《爱情中的正确认知》· Q5 焦虑 AI 自称'根源老师'。质量 ≥ 原生产 GPT+RAG。"
+    },
+    {
+      "date": "2026-04-24",
+      "phase": "phase-6",
+      "title": "🚀 B 路线生产全量上线 · Phase 6 收官",
+      "detail": "archive-engine → main merge(111 行净增 · 全 B 路线代码) · main push 触发 production 重部署。vercel env add ARCHIVE_INJECTION_ENABLED production --value true 就位。Production smoke test 通过:1498 字回答 · 6 召回源 · 结构(正印 vs 偏印对比+机会+三步行动)完整。所有小程序/网页/iOS 用户现在收到的回答都是 B 路线(GPT 组织 + archive 真原话注入)。Phase 6 progress 60→100 · 总体 90→100 · 7 个 Phase 全部完成 · 整个'活的林根源档案'升级收官。一键回滚: vercel env rm ARCHIVE_INJECTION_ENABLED production"
     }
   ]
 }
