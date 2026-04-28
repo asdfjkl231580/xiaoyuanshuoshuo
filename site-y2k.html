@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生财有术 · 根源场 — Y2K 杂志版 DEMO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=VT323&family=Major+Mono+Display&family=Bebas+Neue&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Serif+SC:wght@500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#08070A;--white:#F2F0EB;
+  --cyan:#00FFE0;--cyan2:#00C8B5;
+  --magenta:#FF2EA0;--magenta2:#D9007E;
+  --lime:#D4FF3D;--orange:#FF6B1A;
+  --lilac:#A78BFA;
+  --grid:rgba(0,255,224,0.08);
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'Space Grotesk','Noto Sans SC',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--magenta);color:var(--black)}
+
+/* CRT 扫描线 */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(180deg,transparent 0,transparent 2px,rgba(0,255,224,0.025) 2px,rgba(0,255,224,0.025) 3px);z-index:1}
+
+/* ============== MARQUEE TOP ============== */
+.marquee{background:var(--cyan);color:var(--black);padding:6px 0;overflow:hidden;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.06em;border-bottom:2px solid var(--black);position:relative;z-index:5}
+.marquee-track{display:flex;gap:40px;white-space:nowrap;animation:m 30s linear infinite}
+.marquee-track span{display:flex;align-items:center;gap:14px}
+.marquee-track .star{color:var(--magenta)}
+.marquee-track em{color:var(--magenta);font-style:normal}
+@keyframes m{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============== NAV ============== */
+.nav{position:sticky;top:0;z-index:100;background:var(--black);border-bottom:2px solid var(--cyan);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;font-family:'JetBrains Mono',monospace}
+.nav-logo{font-family:'Major Mono Display',monospace;font-size:22px;letter-spacing:0;color:var(--white);text-transform:lowercase}
+.nav-logo .dot{color:var(--magenta)}
+.nav-logo em{color:var(--cyan);font-style:normal}
+.nav-mid{display:flex;gap:6px;align-items:center}
+.nav-mid a{padding:6px 12px;font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--white);border:1px solid transparent;transition:all 0.15s;font-family:'JetBrains Mono',monospace}
+.nav-mid a:hover{border-color:var(--cyan);color:var(--cyan)}
+.nav-mid a.active{background:var(--magenta);color:var(--black);border-color:var(--magenta)}
+.nav-cta{padding:9px 18px;background:var(--lime);color:var(--black);border:2px solid var(--black);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:0.1em;text-transform:uppercase;box-shadow:3px 3px 0 var(--magenta);transition:all 0.15s}
+.nav-cta:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--magenta)}
+
+/* ============== HERO ============== */
+.hero{padding:60px 28px 80px;position:relative;overflow:hidden;border-bottom:2px solid var(--cyan)}
+.hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;max-width:1400px;margin:0 auto;position:relative;z-index:2}
+
+/* 背景巨字 */
+.hero-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:42vw;line-height:0.8;color:transparent;-webkit-text-stroke:1px rgba(0,255,224,0.12);letter-spacing:-0.05em;pointer-events:none;z-index:1;white-space:nowrap}
+
+.hero-row1{display:flex;align-items:center;gap:14px;margin-bottom:24px;flex-wrap:wrap}
+.hero-issue{background:var(--magenta);color:var(--white);padding:6px 14px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;border:2px solid var(--black);box-shadow:3px 3px 0 var(--cyan);transform:rotate(-2deg)}
+.hero-date{font-family:'VT323',monospace;font-size:22px;color:var(--cyan);letter-spacing:0.04em}
+.hero-glitch{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--lime);letter-spacing:0.18em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--lime)}
+.hero-glitch::before{content:'●';color:var(--lime);animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:0.2}}
+
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,12vw,200px);line-height:0.82;letter-spacing:-0.02em;color:var(--white);margin-bottom:24px;font-weight:400}
+.hero-h1 .stack{display:block}
+.hero-h1 .cyan{color:var(--cyan)}
+.hero-h1 .magenta{color:var(--magenta)}
+.hero-h1 .lime{background:var(--lime);color:var(--black);padding:0 0.06em;display:inline-block;transform:rotate(-1deg)}
+.hero-h1 .stroke{color:transparent;-webkit-text-stroke:2px var(--white)}
+.hero-h1 .stamp{display:inline-block;background:var(--magenta);color:var(--white);padding:0.05em 0.18em;transform:rotate(-3deg);box-shadow:6px 6px 0 var(--cyan);font-size:0.7em;border:3px solid var(--black)}
+
+.hero-cn{font-family:'Noto Serif SC',serif;font-weight:900;font-size:clamp(28px,3.6vw,48px);line-height:1.1;color:var(--white);margin-bottom:32px;letter-spacing:-0.02em}
+.hero-cn em{font-style:normal;color:var(--magenta);background:var(--white);padding:0 0.1em}
+
+.hero-deck{font-family:'Space Grotesk',sans-serif;font-size:16px;line-height:1.7;color:rgba(242,240,235,0.78);max-width:540px;margin-bottom:36px;font-weight:400}
+.hero-deck b{color:var(--cyan);font-weight:700;background:rgba(0,255,224,0.08);padding:1px 4px}
+.hero-deck em{font-style:normal;color:var(--magenta);font-weight:600;background:rgba(255,46,160,0.1);padding:1px 4px}
+
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:14px 22px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;border:2px solid var(--black);cursor:pointer;transition:all 0.15s;display:inline-flex;align-items:center;gap:8px}
+.btn--primary{background:var(--cyan);color:var(--black);box-shadow:5px 5px 0 var(--magenta)}
+.btn--primary:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--magenta)}
+.btn--ghost{background:var(--white);color:var(--black);box-shadow:5px 5px 0 var(--lime)}
+.btn--ghost:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--lime)}
+.btn-ar{font-family:'VT323',monospace;font-size:18px}
+
+/* HERO CARD STACK */
+.hero-cards{position:relative;min-height:380px}
+.hcard{position:absolute;background:var(--white);color:var(--black);padding:20px 22px;border:2px solid var(--black);width:100%}
+.hcard:nth-child(1){top:0;left:0;background:var(--lime);transform:rotate(-3deg);box-shadow:6px 6px 0 var(--magenta)}
+.hcard:nth-child(2){top:80px;left:20px;background:var(--white);transform:rotate(2deg);box-shadow:6px 6px 0 var(--cyan)}
+.hcard:nth-child(3){top:200px;left:-10px;background:var(--magenta);color:var(--white);transform:rotate(-1deg);box-shadow:6px 6px 0 var(--lime)}
+.hcard-tag{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.hcard-tag::before{content:'▲';color:var(--magenta)}
+.hcard:nth-child(2) .hcard-tag::before{color:var(--cyan)}
+.hcard:nth-child(3) .hcard-tag::before{color:var(--lime)}
+.hcard-num{font-family:'Bebas Neue',sans-serif;font-size:60px;line-height:0.85;letter-spacing:-0.02em;margin-bottom:6px}
+.hcard-title{font-family:'Noto Serif SC',serif;font-weight:900;font-size:16px;line-height:1.3;letter-spacing:-0.01em}
+.hcard-meta{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;margin-top:10px;opacity:0.7}
+
+/* ============== STATS BAND ============== */
+.band{padding:30px 28px;background:var(--magenta);border-top:2px solid var(--black);border-bottom:2px solid var(--black);display:flex;justify-content:center;gap:48px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--white);letter-spacing:0.04em}
+.band-item{display:flex;align-items:center;gap:10px}
+.band-item .num{font-family:'Bebas Neue',sans-serif;font-size:38px;line-height:1;color:var(--lime);letter-spacing:0;font-weight:400}
+.band-item .num em{color:var(--cyan);font-style:normal}
+.band-item .lab{font-size:12px;letter-spacing:0.16em;text-transform:uppercase;line-height:1.3;max-width:120px}
+
+/* ============== ARCHIVE ============== */
+.archive{padding:80px 28px;max-width:1400px;margin:0 auto}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:30px;gap:30px;flex-wrap:wrap}
+.section-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--cyan);font-weight:700;margin-bottom:10px;display:inline-flex;align-items:center;gap:10px}
+.section-eyebrow::before{content:'>>';color:var(--magenta)}
+.section-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,7vw,108px);line-height:0.86;letter-spacing:-0.015em;color:var(--white);font-weight:400}
+.section-h2 em{font-style:normal;color:var(--cyan)}
+.section-h2 .stamp{background:var(--magenta);color:var(--white);padding:0 0.06em;display:inline-block;transform:rotate(-1.5deg);box-shadow:5px 5px 0 var(--lime);border:3px solid var(--black);font-size:0.7em}
+.section-meta{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;color:rgba(242,240,235,0.6)}
+.section-meta b{color:var(--lime)}
+
+.afilters{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap}
+.afilter{padding:8px 16px;background:transparent;border:2px solid var(--cyan);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--cyan);cursor:pointer;transition:all 0.15s}
+.afilter:hover{background:var(--cyan);color:var(--black)}
+.afilter.active{background:var(--magenta);border-color:var(--magenta);color:var(--white)}
+
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.card{background:var(--white);color:var(--black);padding:18px 18px 14px;border:2px solid var(--black);transition:all 0.15s;cursor:pointer;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;min-height:240px}
+.card:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--cyan)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.card-num{font-family:'Bebas Neue',sans-serif;font-size:54px;line-height:0.85;letter-spacing:-0.02em;color:var(--black);font-weight:400}
+.card-tag{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:3px 7px;background:var(--black);color:var(--lime);border:1.5px solid var(--black)}
+.card-title{font-family:'Noto Serif SC',serif;font-weight:900;font-size:15px;line-height:1.32;color:var(--black);margin-bottom:8px;letter-spacing:-0.01em}
+.card-quote{font-family:'Space Grotesk',sans-serif;font-size:11px;line-height:1.5;color:rgba(8,7,10,0.65);font-weight:400;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:10px;border-top:1px dashed rgba(8,7,10,0.3);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em}
+.card-arr{font-family:'VT323',monospace;font-size:18px;color:var(--magenta)}
+
+.card--cyan{background:var(--cyan)}
+.card--magenta{background:var(--magenta);color:var(--white)}
+.card--magenta .card-num{color:var(--white)}
+.card--magenta .card-title{color:var(--white)}
+.card--magenta .card-quote{color:rgba(255,255,255,0.85)}
+.card--magenta .card-tag{background:var(--lime);color:var(--black)}
+.card--lime{background:var(--lime)}
+.card--lilac{background:var(--lilac)}
+.card--lilac .card-tag{background:var(--white);color:var(--black)}
+.card--orange{background:var(--orange);color:var(--white)}
+.card--orange .card-num{color:var(--white)}
+.card--orange .card-title{color:var(--white)}
+.card--orange .card-quote{color:rgba(255,255,255,0.85)}
+
+.card--latest{background:var(--black);color:var(--cyan);border-color:var(--cyan)}
+.card--latest .card-num{color:var(--cyan)}
+.card--latest .card-title{color:var(--cyan)}
+.card--latest .card-quote{color:rgba(0,255,224,0.7)}
+.card--latest .card-tag{background:var(--magenta);color:var(--white);border-color:var(--magenta)}
+.card--latest .card-foot{border-top-color:rgba(0,255,224,0.3)}
+.card--latest .card-arr{color:var(--lime)}
+
+/* 旋转贴纸 */
+.sticker{position:absolute;top:-12px;right:-10px;background:var(--lime);color:var(--black);padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;transform:rotate(8deg);border:2px solid var(--black);z-index:3}
+
+/* ============== ARTICLE PREVIEW ============== */
+.article-section{padding:80px 28px;background:var(--white);color:var(--black);border-top:2px solid var(--black);border-bottom:2px solid var(--black);position:relative;overflow:hidden}
+.article-section::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);font-family:'Bebas Neue',sans-serif;font-size:260px;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(8,7,10,0.06);letter-spacing:-0.05em;pointer-events:none;white-space:nowrap}
+
+.article-page{max-width:780px;margin:0 auto;background:var(--white);border:3px solid var(--black);position:relative;box-shadow:14px 14px 0 var(--magenta),14px 14px 0 4px var(--black)}
+.article-page-banner{background:var(--cyan);color:var(--black);padding:14px 32px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--black);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase}
+.article-page-banner .pill{background:var(--magenta);color:var(--white);padding:4px 10px;border:1.5px solid var(--black);letter-spacing:0.14em}
+
+.article-hero{padding:48px 40px 32px;position:relative;background:linear-gradient(180deg,var(--white) 0%,#FFF8E0 100%);border-bottom:2px dashed var(--black)}
+.article-hero::after{content:'★ ★ ★';position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);background:var(--white);padding:0 14px;color:var(--magenta);font-size:14px;letter-spacing:0.4em}
+.article-eyebrow{display:inline-flex;align-items:center;gap:14px;background:var(--lime);padding:5px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--black);border:2px solid var(--black);transform:rotate(-1deg);box-shadow:3px 3px 0 var(--black);margin-bottom:24px}
+.article-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(46px,6vw,84px);line-height:0.9;letter-spacing:-0.02em;color:var(--black);margin-bottom:22px;font-weight:400}
+.article-title .magenta{color:var(--magenta)}
+.article-title .stroke{color:transparent;-webkit-text-stroke:2px var(--black)}
+.article-title .stamp{display:inline-block;background:var(--cyan);color:var(--black);padding:0 0.06em;transform:rotate(-1deg);box-shadow:5px 5px 0 var(--black);border:3px solid var(--black)}
+.article-deck{font-family:'Noto Serif SC',serif;font-weight:500;font-size:19px;line-height:1.65;color:rgba(8,7,10,0.85);max-width:600px;font-style:italic}
+.article-deck em{font-style:normal;color:var(--magenta);background:var(--lime);padding:0 4px;font-weight:700}
+
+.article-meta{display:flex;align-items:center;gap:18px;margin-top:26px;padding:14px 16px;background:var(--black);color:var(--white);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;border:2px solid var(--black);transform:rotate(0.4deg)}
+.article-meta .by{color:var(--cyan);font-weight:700;letter-spacing:0.18em;text-transform:uppercase}
+.article-meta .nm{color:var(--lime);font-weight:700;font-size:13px;letter-spacing:0.06em}
+.article-meta .sp{color:rgba(242,240,235,0.5)}
+
+.article-body{padding:48px 40px;font-family:'Noto Serif SC',serif;font-size:17px;line-height:1.95;color:var(--black);font-weight:400}
+.article-body > p{margin-bottom:22px}
+.article-body > p:first-child::first-letter{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:96px;float:left;line-height:0.85;margin:6px 12px 0 0;color:var(--magenta);background:var(--cyan);padding:6px 10px;border:2px solid var(--black);box-shadow:4px 4px 0 var(--black)}
+.article-body p b{font-weight:900;color:var(--black);background:var(--lime);padding:1px 4px}
+.article-body p em{font-style:normal;color:var(--magenta);font-weight:700;background:rgba(255,46,160,0.08);padding:1px 4px}
+
+.article-h3{font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:1;letter-spacing:-0.015em;margin:46px 0 22px;color:var(--black);font-weight:400;position:relative;padding-left:14px;border-left:6px solid var(--magenta)}
+.article-h3 em{font-style:normal;color:var(--magenta)}
+.article-h3 .stamp{background:var(--cyan);color:var(--black);padding:0 0.06em;display:inline-block;transform:rotate(-1deg)}
+
+.article-quote{margin:36px -10px;padding:28px 32px;background:var(--magenta);color:var(--white);border:3px solid var(--black);box-shadow:8px 8px 0 var(--cyan);position:relative;font-family:'Noto Serif SC',serif;font-weight:500;font-size:22px;line-height:1.45;font-style:italic}
+.article-quote::before{content:'"';position:absolute;top:-30px;left:14px;background:var(--lime);color:var(--black);font-size:60px;font-family:'Bebas Neue',sans-serif;font-weight:400;line-height:1;padding:0 14px;border:3px solid var(--black);font-style:normal}
+.article-quote em{font-style:italic;color:var(--lime);font-weight:700}
+.article-quote-cite{display:block;margin-top:14px;font-family:'JetBrains Mono',monospace;font-style:normal;font-size:11px;letter-spacing:0.18em;color:var(--cyan);text-transform:uppercase;font-weight:700}
+
+.article-list{margin:24px 0;list-style:none;counter-reset:art-y2k}
+.article-list li{padding:14px 0 14px 60px;border-bottom:1px dashed rgba(8,7,10,0.3);position:relative;font-size:16px;line-height:1.7;color:rgba(8,7,10,0.85)}
+.article-list li::before{counter-increment:art-y2k;content:counter(art-y2k,decimal-leading-zero);position:absolute;left:0;top:14px;font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--white);background:var(--black);padding:1px 8px;letter-spacing:-0.02em;line-height:1;font-weight:400;border:2px solid var(--magenta)}
+.article-list li b{font-weight:900;color:var(--black);background:var(--cyan);padding:1px 4px}
+
+.article-pull{margin:48px -16px;padding:36px 32px;background:var(--lime);border:3px solid var(--black);box-shadow:10px 10px 0 var(--magenta);text-align:center;transform:rotate(-0.6deg);position:relative}
+.article-pull::before{content:'BIG NUMBER';position:absolute;top:-14px;left:24px;background:var(--cyan);color:var(--black);padding:4px 14px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.2em;border:2px solid var(--black)}
+.article-pull-num{font-family:'Bebas Neue',sans-serif;font-size:120px;line-height:0.85;color:var(--black);letter-spacing:-0.04em;margin-bottom:10px;font-weight:400}
+.article-pull-num small{font-size:30px;color:var(--magenta)}
+.article-pull-cap{font-family:'Space Grotesk',sans-serif;font-size:15px;line-height:1.6;color:var(--black);font-weight:500;max-width:520px;margin:0 auto}
+.article-pull-cap b{font-weight:900;background:var(--white);padding:1px 4px}
+
+.article-foot{padding:24px 40px;background:var(--black);color:var(--white);display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;border-top:2px solid var(--black)}
+.article-foot a{color:var(--cyan);font-weight:700;border-bottom:2px solid var(--cyan);padding-bottom:1px}
+.article-foot a:hover{color:var(--lime);border-bottom-color:var(--lime)}
+
+/* ============== PPT GALLERY ============== */
+.ppt-section{padding:80px 28px;max-width:1400px;margin:0 auto}
+.slides{display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-template-rows:repeat(2,1fr);gap:18px}
+.slide{aspect-ratio:16/10;border:3px solid var(--black);position:relative;overflow:hidden;padding:30px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;transition:all 0.15s}
+.slide:hover{transform:translate(-3px,-3px)}
+.slide-num{position:absolute;top:14px;right:18px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;font-weight:700}
+
+.slide--cover{grid-column:1/2;grid-row:1/3;background:var(--black);color:var(--white);box-shadow:8px 8px 0 var(--cyan)}
+.slide--cover:hover{box-shadow:11px 11px 0 var(--cyan)}
+.slide--cover .slide-num{color:var(--cyan)}
+.slide--cover::after{content:'';position:absolute;top:50%;right:-30px;width:200px;height:200px;border:2px solid var(--magenta);border-radius:50%;transform:translateY(-50%)}
+.slide-cover-eyebrow{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--black);background:var(--lime);padding:4px 12px;margin-bottom:24px;font-weight:700;border:2px solid var(--lime)}
+.slide-cover-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,4.5vw,76px);line-height:0.9;letter-spacing:-0.025em;margin-bottom:18px;font-weight:400}
+.slide-cover-h .magenta{color:var(--magenta)}
+.slide-cover-h .stamp{background:var(--cyan);color:var(--black);padding:0 0.06em;display:inline-block;transform:rotate(-2deg)}
+.slide-cover-deck{font-family:'Noto Serif SC',serif;font-weight:500;font-size:14px;line-height:1.65;color:rgba(242,240,235,0.78);max-width:380px;margin-bottom:auto;font-style:italic;position:relative;z-index:2}
+.slide-cover-foot{display:flex;justify-content:space-between;align-items:center;border-top:2px solid var(--cyan);padding-top:14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;color:var(--cyan);text-transform:uppercase;font-weight:700;position:relative;z-index:2}
+.slide-cover-foot em{color:var(--magenta);font-style:normal}
+
+.slide--quote{background:var(--magenta);color:var(--white);box-shadow:6px 6px 0 var(--lime)}
+.slide--quote:hover{box-shadow:9px 9px 0 var(--lime)}
+.slide--quote .slide-num{color:var(--lime)}
+.slide-quote-mark{font-family:'Bebas Neue',sans-serif;font-size:90px;line-height:0.7;color:var(--lime);font-weight:400}
+.slide-quote-text{font-family:'Noto Serif SC',serif;font-weight:700;font-size:18px;line-height:1.4;color:var(--white);font-style:italic}
+.slide-quote-text em{font-style:italic;color:var(--cyan)}
+.slide-quote-cite{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;color:rgba(255,255,255,0.7);text-transform:uppercase;font-weight:700}
+
+.slide--data{background:var(--cyan);color:var(--black);box-shadow:6px 6px 0 var(--magenta)}
+.slide--data:hover{box-shadow:9px 9px 0 var(--magenta)}
+.slide--data .slide-num{color:var(--magenta)}
+.slide-data-num{font-family:'Bebas Neue',sans-serif;font-size:120px;line-height:0.82;letter-spacing:-0.03em;color:var(--black);font-weight:400}
+.slide-data-num small{font-size:30px;color:var(--magenta)}
+.slide-data-lab{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;color:rgba(8,7,10,0.7);text-transform:uppercase;font-weight:700;margin-top:6px}
+.slide-data-cap{font-family:'Space Grotesk',sans-serif;font-size:13px;line-height:1.5;color:var(--black);font-weight:500}
+.slide-data-cap b{background:var(--magenta);color:var(--white);padding:1px 4px;font-weight:700}
+
+.slide--list{background:var(--lime);color:var(--black);box-shadow:6px 6px 0 var(--cyan)}
+.slide--list:hover{box-shadow:9px 9px 0 var(--cyan)}
+.slide--list .slide-num{color:var(--magenta)}
+.slide-list-h{font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:1;letter-spacing:-0.02em;margin-bottom:14px;color:var(--black);font-weight:400}
+.slide-list-h em{font-style:normal;color:var(--magenta)}
+.slide--list ul{list-style:none;counter-reset:lt-y}
+.slide--list li{font-family:'Noto Serif SC',serif;font-weight:500;font-size:13px;line-height:1.5;padding:6px 0 6px 28px;position:relative;border-bottom:1px dashed rgba(8,7,10,0.3)}
+.slide--list li:last-child{border-bottom:none}
+.slide--list li::before{counter-increment:lt-y;content:counter(lt-y,decimal-leading-zero);position:absolute;left:0;font-family:'Bebas Neue',sans-serif;color:var(--magenta);font-weight:400;font-size:18px;top:5px;letter-spacing:-0.02em}
+.slide--list li b{background:var(--white);padding:1px 4px;font-weight:900}
+
+.slide--two{background:var(--white);color:var(--black);display:grid;grid-template-columns:1fr 1fr;gap:0;padding:0;align-items:stretch;box-shadow:6px 6px 0 var(--magenta)}
+.slide--two:hover{box-shadow:9px 9px 0 var(--magenta)}
+.slide--two .slide-num{color:var(--magenta);z-index:2}
+.slide-two-col{padding:24px 22px;display:flex;flex-direction:column;justify-content:space-between}
+.slide-two-col:first-child{background:var(--black);color:var(--white);border-right:3px solid var(--black)}
+.slide-two-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;margin-bottom:8px}
+.slide-two-col:first-child .slide-two-tag{color:var(--cyan)}
+.slide-two-col:last-child .slide-two-tag{color:var(--magenta)}
+.slide-two-h{font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:0.95;letter-spacing:-0.02em;font-weight:400;margin-bottom:8px}
+.slide-two-h em{color:var(--magenta);font-style:normal}
+.slide-two-col:first-child .slide-two-h em{color:var(--cyan)}
+.slide-two-cap{font-family:'Space Grotesk',sans-serif;font-size:13px;line-height:1.55;font-weight:500}
+.slide-two-col:first-child .slide-two-cap{color:rgba(242,240,235,0.78)}
+.slide-two-col:last-child .slide-two-cap{color:rgba(8,7,10,0.7)}
+
+.slide--bigtype{background:var(--white);color:var(--black);box-shadow:6px 6px 0 var(--lime)}
+.slide--bigtype:hover{box-shadow:9px 9px 0 var(--lime)}
+.slide--bigtype .slide-num{color:var(--magenta)}
+.slide-bigtype-h{font-family:'Bebas Neue',sans-serif;font-size:54px;line-height:0.92;letter-spacing:-0.025em;color:var(--black);font-weight:400}
+.slide-bigtype-h em{color:var(--magenta);font-style:normal}
+.slide-bigtype-h .stamp{background:var(--cyan);color:var(--black);padding:0 0.06em;display:inline-block;transform:rotate(-2deg);box-shadow:4px 4px 0 var(--black);border:2px solid var(--black)}
+.slide-bigtype-foot{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;color:var(--magenta);text-transform:uppercase;font-weight:700}
+
+/* ============== FOOTER ============== */
+.footer{padding:60px 28px 30px;background:var(--cyan);color:var(--black);position:relative;overflow:hidden;border-top:3px solid var(--black)}
+.footer::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);font-family:'Bebas Neue',sans-serif;font-size:220px;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(8,7,10,0.06);letter-spacing:-0.05em;pointer-events:none;white-space:nowrap}
+.footer-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;position:relative;z-index:2;border-bottom:2px solid var(--black);padding-bottom:36px}
+.footer-logo{font-family:'Major Mono Display',monospace;font-size:48px;line-height:0.9;color:var(--black);text-transform:lowercase;margin-bottom:6px}
+.footer-logo .magenta{color:var(--magenta)}
+.footer-tag{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.18em;color:var(--magenta);text-transform:uppercase;margin-bottom:18px}
+.footer-mid{font-family:'Noto Serif SC',serif;font-weight:700;font-size:18px;line-height:1.55;color:var(--black);max-width:380px;font-style:italic}
+.footer-mid em{font-style:italic;background:var(--magenta);color:var(--white);padding:0 4px}
+.footer-list-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:-0.01em;margin-bottom:14px;color:var(--black);font-weight:400}
+.footer-list{list-style:none;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.1em}
+.footer-list li{padding:5px 0;color:var(--black);cursor:pointer}
+.footer-list li::before{content:'▸ ';color:var(--magenta)}
+.footer-list li:hover{color:var(--magenta)}
+.footer-strip{margin-top:24px;display:flex;justify-content:space-between;font-family:'VT323',monospace;font-size:18px;color:var(--black);letter-spacing:0.04em;flex-wrap:wrap;gap:14px}
+
+@media(max-width:1100px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-cards{margin-top:30px;min-height:300px}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .slides{grid-template-columns:1fr 1fr}
+  .slide--cover{grid-column:1/3;grid-row:auto}
+  .footer-inner{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .nav-mid{display:none}
+  .hero,.archive,.article-section,.ppt-section,.footer{padding-left:18px;padding-right:18px}
+  .cards,.slides,.footer-inner{grid-template-columns:1fr}
+  .hero-h1{font-size:60px}
+  .article-hero,.article-body,.article-foot{padding-left:24px;padding-right:24px}
+  .band{flex-direction:column;gap:18px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============== MARQUEE ============== -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span><span class="star">★</span> ROOT TALK ISSUE 19 LIVE NOW <em>·</em> AI 虚拟乐队 · 合伙人 · 用什么驱动</span>
+    <span><span class="star">●</span> 19 SESSIONS · 85W WORDS · <em>380 QUOTES</em></span>
+    <span><span class="star">★</span> 2026·04·28 <em>·</em> HANGZHOU WEEKLY</span>
+    <span><span class="star">●</span> NEW PLATES · NEW READS · <em>NEW QUOTES</em></span>
+    <span><span class="star">★</span> ROOT TALK ISSUE 19 LIVE NOW <em>·</em> AI 虚拟乐队 · 合伙人 · 用什么驱动</span>
+    <span><span class="star">●</span> 19 SESSIONS · 85W WORDS · <em>380 QUOTES</em></span>
+    <span><span class="star">★</span> 2026·04·28 <em>·</em> HANGZHOU WEEKLY</span>
+    <span><span class="star">●</span> NEW PLATES · NEW READS · <em>NEW QUOTES</em></span>
+  </div>
+</div>
+
+<!-- ============== NAV ============== -->
+<nav class="nav">
+  <div class="nav-logo">root<span class="dot">.</span><em>talk</em></div>
+  <div class="nav-mid">
+    <a href="#archive">archive</a>
+    <a href="#article">read</a>
+    <a href="#ppt">slides</a>
+    <a href="#about">info</a>
+  </div>
+  <button class="nav-cta">▸ subscribe</button>
+</nav>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="hero-bg">ROOTTALK</div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-row1">
+        <span class="hero-issue">Issue ‹ 19 ›</span>
+        <span class="hero-date">2026·04·28</span>
+        <span class="hero-glitch">live now</span>
+      </div>
+      <h1 class="hero-h1">
+        <span class="stack">ROOT</span>
+        <span class="stack stroke">·TALK·</span>
+        <span class="stack"><span class="lime">ISSUE</span> <span class="magenta">19</span></span>
+      </h1>
+      <h2 class="hero-cn">每周一场 · <em>深度对话</em></h2>
+      <p class="hero-deck">
+        2024 年起，根源在杭州的线下深度对话。<b>18+1 卷</b>已结集，<em>85 万字逐字稿</em>，覆盖销售方法、AI 工具、个人成长、表达训练、命理思维。<b>不备课、不录播</b>——杂志感的目录页、撞色的金句卡片、可单独出片的 380 条录句。
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn--primary" href="#archive">▸ browse all 19 <span class="btn-ar">→</span></a>
+        <a class="btn btn--ghost" href="#article">▸ read latest</a>
+      </div>
+    </div>
+
+    <div class="hero-cards">
+      <div class="hcard">
+        <div class="hcard-tag">N°19 · LATEST</div>
+        <div class="hcard-num">19</div>
+        <div class="hcard-title">AI 虚拟乐队 · 合伙人 · 用什么驱动</div>
+        <div class="hcard-meta">4.8W字 · 105min · 7 人小局</div>
+      </div>
+      <div class="hcard">
+        <div class="hcard-tag">N°11 · PICK</div>
+        <div class="hcard-num">11</div>
+        <div class="hcard-title">这 400 个人 · 养了我三年半</div>
+        <div class="hcard-meta">4.8W字 · 主题/转介绍</div>
+      </div>
+      <div class="hcard">
+        <div class="hcard-tag">N°07 · PICK</div>
+        <div class="hcard-num">07</div>
+        <div class="hcard-title">命理不是迷信 · 是统计</div>
+        <div class="hcard-meta">5.1W字 · 主题/命理</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== STATS BAND ============== -->
+<div class="band">
+  <div class="band-item">
+    <span class="num"><em>18</em>+1</span>
+    <span class="lab">Sessions / 场次</span>
+  </div>
+  <div class="band-item">
+    <span class="num">85W</span>
+    <span class="lab">Words / 字数</span>
+  </div>
+  <div class="band-item">
+    <span class="num">380</span>
+    <span class="lab">Quotes / 金句</span>
+  </div>
+  <div class="band-item">
+    <span class="num">5</span>
+    <span class="lab">Topics / 主题</span>
+  </div>
+  <div class="band-item">
+    <span class="num"><em>∞</em></span>
+    <span class="lab">每周一场 持续更新</span>
+  </div>
+</div>
+
+<!-- ============== ARCHIVE ============== -->
+<section class="archive" id="archive">
+  <div class="section-head">
+    <div>
+      <div class="section-eyebrow">complete archive</div>
+      <h2 class="section-h2">all <em>19</em> <span class="stamp">+1</span></h2>
+    </div>
+    <div class="section-meta">每周一场<br>已收录 <b>380 句</b>金句</div>
+  </div>
+
+  <div class="afilters">
+    <button class="afilter active">▸ all 19</button>
+    <button class="afilter">销售</button>
+    <button class="afilter">ai</button>
+    <button class="afilter">成长</button>
+    <button class="afilter">表达</button>
+    <button class="afilter">命理</button>
+  </div>
+
+  <div class="cards">
+
+    <article class="card card--latest" style="position:relative">
+      <span class="sticker">NEW · 19</span>
+      <div>
+        <div class="card-top">
+          <div class="card-num">19</div>
+          <span class="card-tag">最新</span>
+        </div>
+        <h3 class="card-title">AI 虚拟乐队 · 合伙人 · 用什么驱动</h3>
+        <p class="card-quote">"我希望又喜欢又能赚钱。纯靠爱好支撑其实也很难——兴趣可以驱动到半年，剩下的得靠变现。"</p>
+      </div>
+      <div class="card-foot">
+        <span>2026·04·28</span>
+        <span class="card-arr">→</span>
+      </div>
+    </article>
+
+    <article class="card card--magenta">
+      <div>
+        <div class="card-top"><div class="card-num">18</div><span class="card-tag">人设</span></div>
+        <h3 class="card-title">高客单不在产品 · 在人设</h3>
+        <p class="card-quote">"我的产品最高金额是 25 万，今年卖了 4 个。你看好对方，经营了 3 个月——你会觉得自己太有价值了。"</p>
+      </div>
+      <div class="card-foot"><span>2026·04·26</span><span class="card-arr">→</span></div>
+    </article>
+
+    <article class="card card--cyan">
+      <div>
+        <div class="card-top"><div class="card-num">17</div><span class="card-tag">复盘</span></div>
+        <h3 class="card-title">把成长当成确定性资产</h3>
+        <p class="card-quote">"赚钱跟项目本身无关，而是你做事情的习惯只要在那，任何项目嫁接进来你就能回到这个收入。"</p>
+      </div>
+      <div class="card-foot"><span>2025·04·16</span><span class="card-arr">→</span></div>
+    </article>
+
+    <article class="card">
+      <div>
+        <div class="card-top"><div class="card-num">16</div><span class="card-tag">ai</span></div>
+        <h3 class="card-title">能少用 AI · 就少用 AI</h3>
+        <p class="card-quote">"AI 取代不了基本能力。基本能力的部分，能少用 AI 你就少用 AI。"</p>
+      </div>
+      <div class="card-foot"><span>2025·04·02</span><span class="card-arr">→</span></div>
+    </article>
+
+    <article class="card card--lime">
+      <div>
+        <div class="card-top"><div class="card-num">15</div><span class="card-tag">付费</span></div>
+        <h3 class="card-title">先卖才有课 · 不是先有课</h3>
+        <p class="card-quote">"做课的重点是有人买，而不是课做得多精彩。先卖才有课，而不是先有课再卖。"</p>
+      </div>
+      <div class="card-foot"><span>2025·03·05</span><span class="card-arr">→</span></div>
+    </article>
+
+    <article class="card card--magenta">
+      <div>
+        <div class="card-top"><div class="card-num">14</div><span class="card-tag">体验</span></div>
+        <h3 class="card-title">这时代把所有体验给你了</h3>
+        <p class="card-quote">"先去试、先去摸、先去感受，然后你才知道你想要什么。不试的人永远不知道。"</p>
+      </div>
+      <div class="card-foot"><span>2025·02·12</span><span class="card-arr">→</span></div>
+    </article>
+
+    <article class="card">
+      <div>
+        <div class="card-top"><div class="card-num">13</div><span class="card-tag">习惯</span></div>
+        <h3 class="card-title">每天不做 · 就不会做了</h3>
+        <p class="card-quote">"我们可以做得少，但不能不做。一年不陪孩子讲话，第二年也不会跟孩子讲话。"</p>
+      </div>
+      <div class="card-foot"><span>2025·01·08</span><span class="card-arr">→</span></div>
+    </article>
+
+    <article class="card card--lilac">
+      <div>
+        <div class="card-top"><div class="card-num">12</div><span class="card-tag">ai</span></div>
+        <h3 class="card-title">先向内求 · 再向外求</h3>
+        <p class="card-quote">"个人能力一定是时代的红利。云咨询室跑的不是大模型，而是我自己的数据库。"</p>
+      </div>
+      <div class="card-foot"><span>2024·12·18</span><span class="card-arr">→</span></div>
+    </article>
+
+    <article class="card">
+      <div>
+        <div class="card-top"><div class="card-num">11</div><span class="card-tag">人设</span></div>
+        <h3 class="card-title">高客单不在产品 · 在人设</h3>
+        <p class="card-quote">"高客单一定不是着重在产品，而是着重在你的人设。这是我最骄傲的人设。"</p>
+      </div>
+      <div class="card-foot"><span>2024·12·04</span><span class="card-arr">→</span></div>
+    </article>
+
+    <article class="card card--orange">
+      <div>
+        <div class="card-top"><div class="card-num">10</div><span class="card-tag">项目</span></div>
+        <h3 class="card-title">换项目 · 不会让你赚到钱</h3>
+        <p class="card-quote">"你换到下一个人群，你还是不懂他，结果还是不好赚。"</p>
+      </div>
+      <div class="card-foot"><span>2024·11·20</span><span class="card-arr">→</span></div>
+    </article>
+
+    <article class="card">
+      <div>
+        <div class="card-top"><div class="card-num">09</div><span class="card-tag">决策</span></div>
+        <h3 class="card-title">别问太多人 · 越问越乱</h3>
+        <p class="card-quote">"你们最大的毛病是问太多人——十个人十个答案。"</p>
+      </div>
+      <div class="card-foot"><span>2024·11·06</span><span class="card-arr">→</span></div>
+    </article>
+
+    <article class="card card--cyan">
+      <div>
+        <div class="card-top"><div class="card-num">08</div><span class="card-tag">高客单</span></div>
+        <h3 class="card-title">高单价是双向筛选</h3>
+        <p class="card-quote">"进到高单价一定不是他筛选我，而是双向筛选。单价越高次数就得越多。"</p>
+      </div>
+      <div class="card-foot"><span>2024·10·23</span><span class="card-arr">→</span></div>
+    </article>
+
+    <article class="card card--magenta">
+      <div>
+        <div class="card-top"><div class="card-num">07</div><span class="card-tag">命理</span></div>
+        <h3 class="card-title">命理不是迷信 · 是统计</h3>
+        <p class="card-quote">"命理不是迷信，是统计。十四年看下来，我只相信数据。"</p>
+      </div>
+      <div class="card-foot"><span>2024·10·09</span><span class="card-arr">→</span></div>
+    </article>
+
+    <article class="card">
+      <div>
+        <div class="card-top"><div class="card-num">06</div><span class="card-tag">习惯</span></div>
+        <h3 class="card-title">手机一亮 · 就偷能量</h3>
+        <p class="card-quote">"加到所有好友第一件事情先把提醒关了。我是固定会看手机的人。"</p>
+      </div>
+      <div class="card-foot"><span>2024·09·25</span><span class="card-arr">→</span></div>
+    </article>
+
+    <article class="card card--lime">
+      <div>
+        <div class="card-top"><div class="card-num">05</div><span class="card-tag">成长</span></div>
+        <h3 class="card-title">副业不要小看 3000 块</h3>
+        <p class="card-quote">"一年就是 6 万。这是很多人一年平均工资赚到的钱。"</p>
+      </div>
+      <div class="card-foot"><span>2024·09·11</span><span class="card-arr">→</span></div>
+    </article>
+
+    <article class="card">
+      <div>
+        <div class="card-top"><div class="card-num">04</div><span class="card-tag">流量</span></div>
+        <h3 class="card-title">流量 · 八访表与转化</h3>
+        <p class="card-quote">"7 又 3 分之 2 次他都没答应，这辈子你就成交不了他。"</p>
+      </div>
+      <div class="card-foot"><span>2024·09·04</span><span class="card-arr">→</span></div>
+    </article>
+
+    <article class="card card--lilac">
+      <div>
+        <div class="card-top"><div class="card-num">03</div><span class="card-tag">自介</span></div>
+        <h3 class="card-title">把身份做成一个钩子</h3>
+        <p class="card-quote">"卖什么？卖小白鼠。这一句话出去就没人会忘记你。"</p>
+      </div>
+      <div class="card-foot"><span>2024·08·28</span><span class="card-arr">→</span></div>
+    </article>
+
+    <article class="card">
+      <div>
+        <div class="card-top"><div class="card-num">02</div><span class="card-tag">销售</span></div>
+        <h3 class="card-title">来回 60 趟 · 没有诀窍</h3>
+        <p class="card-quote">"我就这么来来回回走了 60 趟。"</p>
+      </div>
+      <div class="card-foot"><span>2024·08·21</span><span class="card-arr">→</span></div>
+    </article>
+
+    <article class="card card--orange">
+      <div>
+        <div class="card-top"><div class="card-num">01</div><span class="card-tag">销售</span></div>
+        <h3 class="card-title">销售员的态度 · 是练出来的</h3>
+        <p class="card-quote">"骄傲只能骄傲 10 到 20 分钟，剩下的时间回到谦卑请教。"</p>
+      </div>
+      <div class="card-foot"><span>2024·08·14</span><span class="card-arr">→</span></div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============== ARTICLE PREVIEW ============== -->
+<section class="article-section" id="article">
+  <article class="article-page">
+    <div class="article-page-banner">
+      <span>★ ROOT · TALK ★ ISSUE 19 ★</span>
+      <span class="pill">N°19 / 19</span>
+      <span>2026·04·28 · WK 19</span>
+    </div>
+
+    <div class="article-hero">
+      <span class="article-eyebrow">第 19 场 · AI 虚拟乐队 · 合伙人 · 4.8W字</span>
+      <h1 class="article-title">
+        虚 <span class="magenta">拟</span> 乐 队<br>
+        <span class="stroke">AND</span> 合 伙 人<br>
+        <span class="stamp">用 什 么 驱 动</span>
+      </h1>
+      <p class="article-deck">第 19 场是连续办了大半年之后的一场"小局"，七个人。<em>我希望又喜欢又能赚钱</em>——但纯靠爱好支撑其实也很难。兴趣可以驱动到半年，剩下的得靠变现。</p>
+      <div class="article-meta">
+        <span class="by">By</span>
+        <span class="nm">林 · 根 源</span>
+        <span class="sp">|</span>
+        <span>105 min</span>
+        <span class="sp">|</span>
+        <span>整理 / Claude</span>
+        <span class="sp">|</span>
+        <span>排版 / Typeless</span>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p>第 19 场我差点没办——杭州小学有春假，我们一家前天刚出门玩了一趟，本想着今天回杭州避两天雨。结果"巧"得很，一打开电脑发现还是有人报名，最后凑成了七人局。这一场的核心问题只有一个：<b>当你想做一件事，是用爱好驱动，还是用赚钱驱动？</b></p>
+
+      <p>大俊，94 年的前阿里运营，疫情前一手把音乐节的资源全找齐了，办了两场选秀，差点把音乐节做成；现在和一个浙音的小伙伴在做"全 AI 虚拟乐队 IP"。这个赛道很特别——<em>我认识这么多朋友里第一个做这个的</em>。但她的真正问题，不是赛道，而是合伙人和驱动力。</p>
+
+      <h3 class="article-h3">三条 <span class="stamp">底线</span></h3>
+
+      <ol class="article-list">
+        <li><b>兴趣驱动只能撑半年</b>——纯靠爱好支撑其实很难。半年之后，没有变现的反馈，所有的热情都会变成消耗。</li>
+        <li><b>不要直接转，用 1–2 年过渡。</b>你以为辞职就能做自由职业，其实卡住你的不是项目，而是现金流断裂的那种慌。</li>
+        <li><b>All in 一年 · 不赔不赚就是赢。</b>第一年做一个新方向，能不亏钱、能持续投入，已经赢了大多数人。</li>
+      </ol>
+
+      <blockquote class="article-quote">
+        <em>你以为卡在 5</em>，其实卡在 3。所有人都觉得自己只差最后一步，但回头看——真正卡住你的，是更早的一个判断。
+        <span class="article-quote-cite">— N°19 · 合伙人 · 驱动</span>
+      </blockquote>
+
+      <p>合伙人也是一样。大俊那位浙音的小伙伴，技术能力是过关的——视觉建模、音乐创作、剧情创作全 AI 跑得通。但合伙的真正麻烦从来不是能力，是<b>"用什么驱动"</b>。一个用爱好驱动，一个用赚钱驱动，半年之后必然吵起来。<b>创业的真正难点不在项目而在人</b>，这句话我已经讲了 14 年。</p>
+
+      <h3 class="article-h3">变现 · <em>排序第一位</em></h3>
+
+      <p>我跟杜小娟（89 年甘肃张掖、原药研发、被裁后探索）和大头（90 年前字节运营、有焦虑后辞职）讲的一句话是：<em>"赚钱排序的第一位是变现"</em>。不是定位、不是品牌、不是流量——是变现。能赚到第一笔钱的方向，才值得优化。一直没赚到钱的方向，再优化也是 0。</p>
+
+      <div class="article-pull">
+        <div class="article-pull-num">7<small>人</small></div>
+        <p class="article-pull-cap">第 19 场只有 7 个人，是连续办了大半年之后的一场"小局"。<b>但小局往往最深</b>——4.8 W 字，105 分钟，把"AI 虚拟乐队 + 合伙人 + 用什么驱动 + 自由职业转型"四个核心问题讲了个透。</p>
+      </div>
+
+      <p>自由职业不是逃出来就赢了。我跟大头讲：<b>不要直接转，用 1–2 年过渡。</b>这一两年里，你既要保住原有现金流，又要把新方向的第一笔钱赚出来。第一年 All in，不赔不赚——这就是合格。等到第二年，新方向的钱已经能撑生活，老路再切。这样你不会慌，慌了就会做错决定。</p>
+    </div>
+
+    <div class="article-foot">
+      <span>← prev · n°18</span>
+      <a href="#archive">▸ all 19 sessions</a>
+      <span>next · n°20 →</span>
+    </div>
+  </article>
+</section>
+
+<!-- ============== PPT GALLERY ============== -->
+<section class="ppt-section" id="ppt">
+  <div class="section-head">
+    <div>
+      <div class="section-eyebrow">slide gallery</div>
+      <h2 class="section-h2">同一个 <em>system</em> · 套<span class="stamp">全部 19</span>场</h2>
+    </div>
+    <div class="section-meta">10–20 张 16:10 · auto generated<br><b>color · type · stamps</b></div>
+  </div>
+
+  <div class="slides">
+
+    <div class="slide slide--cover">
+      <span class="slide-num">01 / 12</span>
+      <div>
+        <div class="slide-cover-eyebrow">ISSUE ‹ 19 ›</div>
+        <h3 class="slide-cover-h">AI<br>BAND<br><span class="magenta">AND</span> 合 伙 人.<br><span class="stamp">用 什 么 驱 动</span></h3>
+        <p class="slide-cover-deck">我希望又喜欢又能赚钱——但纯靠爱好支撑其实也很难，兴趣可以驱动到半年。</p>
+      </div>
+      <div class="slide-cover-foot">
+        <span>by 林根源</span>
+        <span><em>2026 · WK 19</em></span>
+      </div>
+    </div>
+
+    <div class="slide slide--quote">
+      <span class="slide-num">02 / 12</span>
+      <div>
+        <div class="slide-quote-mark">"</div>
+        <p class="slide-quote-text">不要直接转，<br>用 1–2 年过渡。<br>All in 一年 · <em>不赔不赚。</em></p>
+      </div>
+      <div class="slide-quote-cite">— N°19 · 自由职业转型</div>
+    </div>
+
+    <div class="slide slide--data">
+      <span class="slide-num">03 / 12</span>
+      <div>
+        <div class="slide-data-num">7<small>人</small></div>
+        <div class="slide-data-lab">SMALL ROOM · DEEPEST TALK</div>
+      </div>
+      <p class="slide-data-cap">连续办了大半年后的一场<b>小局</b>。<br>4.8 W 字 · 105 min。</p>
+    </div>
+
+    <div class="slide slide--list">
+      <span class="slide-num">04 / 12</span>
+      <h4 class="slide-list-h">三条 <em>底线</em></h4>
+      <ul>
+        <li>兴趣驱动<b>只撑半年</b></li>
+        <li>过渡期<b>1–2 年</b>缓冲</li>
+        <li>合伙人难点<b>不在能力</b></li>
+      </ul>
+    </div>
+
+    <div class="slide slide--two">
+      <span class="slide-num">05 / 12</span>
+      <div class="slide-two-col">
+        <div class="slide-two-tag">// 兴趣</div>
+        <h4 class="slide-two-h">爱好 <em>驱动</em></h4>
+        <p class="slide-two-cap">能撑半年，<br>没变现就消耗。</p>
+      </div>
+      <div class="slide-two-col">
+        <div class="slide-two-tag">// 赚钱</div>
+        <h4 class="slide-two-h">变现 <em>驱动</em></h4>
+        <p class="slide-two-cap">排序第一位，<br>能持续才算数。</p>
+      </div>
+    </div>
+
+    <div class="slide slide--bigtype">
+      <span class="slide-num">06 / 12</span>
+      <h3 class="slide-bigtype-h">你 以 为<br>卡 在 5<br><em>其 实</em> <span class="stamp">卡在 3</span></h3>
+      <div class="slide-bigtype-foot">— N°19 · 判断</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer" id="about">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">root<span class="magenta">.</span>talk</div>
+      <div class="footer-tag">▸ Hangzhou · since 2024 · weekly</div>
+      <p class="footer-mid">"不备课，<em>不录播</em>。<br>用最真实的状态分享。"</p>
+    </div>
+    <div>
+      <div class="footer-list-title">/ browse</div>
+      <ul class="footer-list">
+        <li>archive 全部场次</li>
+        <li>read 文章库</li>
+        <li>quotes 380 句</li>
+        <li>plates 幻灯片</li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-list-title">/ info</div>
+      <ul class="footer-list">
+        <li>about 关于根源</li>
+        <li>join 线下报名</li>
+        <li>members 学员入口</li>
+        <li>contact 合作</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-strip">
+    <span>© 生财有术 · 根源场 · 2024–2026</span>
+    <span>★ Y2K MAG · DEMO · v1 ★</span>
+    <span>由根源整理 · AI 辅助排版</span>
+  </div>
+</footer>
+
+<script src="style-switcher.js"></script>
+</body>
+</html>

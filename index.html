@@ -3020,9 +3020,10 @@ function shareQuoteByIdx(idx) {
 // EVENT DATA
 // ===================================================================
 // 每场阅读时长（分钟）— 由 article 字数 / 400 自动算出
-const READ_MINS = {1:38, 2:20, 3:23, 4:13, 5:16, 6:34, 7:26, 8:28, 9:9, 10:24, 11:15, 12:15, 13:12, 14:21, 15:14, 16:27, 17:20};
+const READ_MINS = {1:38, 2:20, 3:23, 4:13, 5:16, 6:34, 7:26, 8:28, 9:9, 10:24, 11:15, 12:15, 13:12, 14:21, 15:14, 16:27, 17:20, 18:115, 19:120};
 
 const events = [
+  { num: 19, title: 'AI虚拟乐队与合伙人选择', date: '2026.04.28', tags: ['七人小局','AI虚拟乐队IP','合伙人模式','兴趣vs赚钱','自由职业转型','被裁后探索','一年生活费法则','创始人IP放大'], status: 'ready', link: 'sessions/19-article.html' },
   { num: 18, title: 'AI编程与销售之道', date: '2026.04.21', tags: ['名字记忆点','数码消费观','AI vs AI编程','AI编程实战','八字识人术','销售五层信任','销售三条路径'], status: 'ready', link: 'sessions/18-article.html' },
   { num: 17, title: '自由职业与AI变现', date: '2025.04.14', tags: ['名字记忆点','加好友礼仪','Typeless语音','AI工具哲学','AI编程实战','自由职业'], status: 'ready', link: 'sessions/17-article.html' },
   { num: 16, title: '超级个体与销售', date: '2026.04.07', tags: ['线下社交','五大基本功','AI工具','个人影响力','销售方法','表达训练'], status: 'ready', link: 'sessions/16-article.html' },
@@ -3137,14 +3138,14 @@ function filterByTopic(name) {
 // TOPICS — 每个主题推荐的活动场次（人工策划 + 最相关）
 // ===================================================================
 const TOPICS = [
-  { icon: '&#9878;', name: '销售方法',   sessions: [16, 10, 8, 6, 4] },
-  { icon: '&#9881;', name: 'AI 工具',    sessions: [17, 16, 13, 12] },
-  { icon: '&#9650;', name: '个人成长',   sessions: [17, 14, 13, 7] },
+  { icon: '&#9878;', name: '销售方法',   sessions: [19, 16, 10, 8, 6, 4] },
+  { icon: '&#9881;', name: 'AI 工具',    sessions: [19, 17, 16, 13, 12] },
+  { icon: '&#9650;', name: '个人成长',   sessions: [19, 17, 14, 13, 7] },
   { icon: '&#9733;', name: '五大基本功', sessions: [16, 15] },
-  { icon: '&#9670;', name: '财商思维',   sessions: [14, 11, 2] },
-  { icon: '&#9998;', name: '表达训练',   sessions: [17, 15, 13, 6] },
+  { icon: '&#9670;', name: '财商思维',   sessions: [19, 14, 11, 2] },
+  { icon: '&#9998;', name: '表达训练',   sessions: [19, 17, 15, 13, 6] },
   { icon: '&#9776;', name: '知识库建设', sessions: [17, 16, 12] },
-  { icon: '&#10038;', name: '超级个体',  sessions: [17, 16, 10, 9] },
+  { icon: '&#10038;', name: '超级个体',  sessions: [19, 17, 16, 10, 9] },
 ];
 
 function renderTopics() {

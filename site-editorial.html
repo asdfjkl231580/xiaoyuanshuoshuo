@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生财有术 · 根源场 — 编辑部极简版 DEMO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Inter+Tight:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FAFAF8;--surface:#FFFFFF;--ink:#0E1116;--ink2:#1E232B;
+  --muted:#6B7280;--muted2:#94A1AE;--rule:#E6E8EC;--rule2:#F1F2F4;
+  --accent:#0E5C4F;--accent2:#0A4A40;--accent-soft:rgba(14,92,79,0.08);
+  --highlight:#FFF170;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Inter','Noto Sans SC','PingFang SC',-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;font-feature-settings:'ss01','cv11';overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--highlight);color:var(--ink)}
+
+/* ============== NAV ============== */
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,250,248,0.84);backdrop-filter:blur(14px);border-bottom:1px solid var(--rule);padding:14px 32px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:16px;letter-spacing:-0.02em;color:var(--ink);display:flex;align-items:center;gap:8px}
+.nav-logo .dot{width:8px;height:8px;background:var(--accent);border-radius:50%;display:inline-block}
+.nav-mid{display:flex;gap:28px}
+.nav-mid a{font-size:13px;color:var(--muted);font-weight:500;transition:color 0.15s}
+.nav-mid a:hover{color:var(--ink)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.nav-search{display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--rule2);border-radius:8px;color:var(--muted);font-size:13px;width:240px}
+.nav-search::before{content:'⌕';font-size:14px}
+.nav-cta{padding:9px 18px;background:var(--ink);color:var(--surface);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all 0.2s;font-family:inherit}
+.nav-cta:hover{background:var(--accent)}
+
+/* ============== HERO ============== */
+.hero{padding:80px 32px 70px;border-bottom:1px solid var(--rule);background:var(--bg)}
+.hero-inner{max-width:1240px;margin:0 auto}
+.hero-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:32px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:0.06em}
+.hero-eyebrow .pill{padding:4px 10px;background:var(--accent-soft);color:var(--accent);border-radius:4px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase}
+.hero-eyebrow .meta{display:flex;align-items:center;gap:14px}
+.hero-eyebrow .meta::before{content:'';width:24px;height:1px;background:var(--rule)}
+
+.hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:80px;align-items:end}
+.hero-h1{font-family:'Inter Tight',sans-serif;font-size:clamp(56px,7vw,108px);font-weight:700;line-height:0.96;letter-spacing:-0.035em;color:var(--ink);margin-bottom:28px}
+.hero-h1 em{font-style:normal;color:var(--accent);font-weight:700}
+.hero-h1 .cn{font-family:'Noto Serif SC',serif;font-weight:700;letter-spacing:-0.02em;display:block}
+.hero-deck{font-family:'Source Serif 4','Noto Serif SC',serif;font-size:20px;line-height:1.65;color:var(--ink2);max-width:560px;margin-bottom:36px;font-weight:400}
+.hero-deck em{font-style:normal;background:linear-gradient(transparent 60%,var(--highlight) 60%);font-weight:600;color:var(--ink);padding:0 2px}
+
+.hero-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.btn{padding:13px 22px;font-size:14px;font-weight:600;border-radius:8px;border:none;cursor:pointer;transition:all 0.18s;font-family:inherit;display:inline-flex;align-items:center;gap:8px;letter-spacing:-0.01em}
+.btn--primary{background:var(--ink);color:var(--surface)}
+.btn--primary:hover{background:var(--accent);transform:translateY(-1px)}
+.btn--ghost{background:transparent;color:var(--ink);border:1px solid var(--rule)}
+.btn--ghost:hover{background:var(--surface);border-color:var(--ink)}
+.btn-ar{font-family:'JetBrains Mono',monospace;font-weight:400}
+
+/* HERO META PANEL */
+.hero-side{padding:32px 28px;background:var(--surface);border:1px solid var(--rule);border-radius:14px;position:relative}
+.hero-side-row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--rule2)}
+.hero-side-row:last-child{border-bottom:none}
+.hero-side-row:first-child{padding-top:0}
+.hero-side-key{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase}
+.hero-side-val{font-family:'Inter Tight',sans-serif;font-size:24px;font-weight:600;color:var(--ink);letter-spacing:-0.02em}
+.hero-side-val em{color:var(--accent);font-style:normal}
+.hero-side-val small{font-size:13px;font-weight:500;color:var(--muted);margin-left:4px}
+.hero-side-tag{position:absolute;top:-10px;left:24px;background:var(--surface);padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;color:var(--accent);text-transform:uppercase;font-weight:600}
+
+/* ============== STATS BAR ============== */
+.statsbar{padding:0;border-bottom:1px solid var(--rule);background:var(--surface)}
+.statsbar-grid{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);border-left:1px solid var(--rule)}
+.sbi{padding:32px 28px;border-right:1px solid var(--rule);position:relative}
+.sbi-num{font-family:'Inter Tight',sans-serif;font-size:42px;font-weight:600;letter-spacing:-0.03em;color:var(--ink);line-height:1;margin-bottom:6px}
+.sbi-num em{color:var(--accent);font-style:normal}
+.sbi-num small{font-size:18px;color:var(--muted);font-weight:500;margin-left:2px}
+.sbi-lab{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;margin-bottom:8px}
+.sbi-trend{font-size:12px;color:var(--accent);font-weight:500;display:flex;align-items:center;gap:4px}
+.sbi-trend::before{content:'↑';font-family:'JetBrains Mono',monospace}
+
+/* ============== FEATURED ROW ============== */
+.featured{padding:80px 32px 60px;max-width:1240px;margin:0 auto}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;border-bottom:1px solid var(--rule);padding-bottom:18px}
+.section-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;color:var(--accent);text-transform:uppercase;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.section-eyebrow::before{content:'';width:18px;height:2px;background:var(--accent)}
+.section-h2{font-family:'Inter Tight',sans-serif;font-size:32px;font-weight:700;letter-spacing:-0.02em;color:var(--ink);line-height:1.1}
+.section-meta{font-size:13px;color:var(--muted)}
+.section-meta a{color:var(--ink);font-weight:600;border-bottom:1.5px solid var(--ink);padding-bottom:1px}
+
+.feat-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:24px}
+.feat{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:32px 28px;cursor:pointer;transition:all 0.25s;display:flex;flex-direction:column;justify-content:space-between;min-height:280px}
+.feat:hover{border-color:var(--ink);transform:translateY(-3px);box-shadow:0 12px 32px -12px rgba(14,17,22,0.12)}
+.feat-tag{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:var(--accent-soft);color:var(--accent);border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;width:fit-content;margin-bottom:18px}
+.feat-tag::before{content:'●';font-size:7px}
+.feat--latest{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.feat--latest .feat-tag{background:rgba(255,255,255,0.1);color:var(--surface)}
+.feat--latest .feat-meta{color:var(--muted2)}
+.feat-num{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);letter-spacing:0.1em;margin-bottom:14px;font-weight:500}
+.feat--latest .feat-num{color:var(--muted2)}
+.feat-title{font-family:'Inter Tight',sans-serif;font-size:26px;font-weight:600;line-height:1.2;letter-spacing:-0.02em;margin-bottom:14px;color:inherit}
+.feat--latest .feat-title{color:var(--surface)}
+.feat-deck{font-family:'Source Serif 4','Noto Serif SC',serif;font-size:15px;line-height:1.6;color:var(--ink2);font-weight:400;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.feat--latest .feat-deck{color:var(--muted2)}
+.feat-meta{margin-top:20px;padding-top:16px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.06em}
+.feat--latest .feat-meta{border-top-color:rgba(255,255,255,0.14)}
+
+/* ============== ARCHIVE TABLE ============== */
+.archive{padding:80px 32px;max-width:1240px;margin:0 auto;border-top:1px solid var(--rule)}
+.afilters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+.afilter{padding:7px 14px;background:transparent;border:1px solid var(--rule);border-radius:8px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;transition:all 0.15s;font-family:inherit}
+.afilter:hover{border-color:var(--ink);color:var(--ink)}
+.afilter.active{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+
+.archive-table{width:100%;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.atr{display:grid;grid-template-columns:60px 1fr 140px 100px 80px;gap:24px;padding:18px 0;border-bottom:1px solid var(--rule);align-items:center;cursor:pointer;transition:background 0.15s}
+.atr:last-child{border-bottom:none}
+.atr:hover{background:var(--rule2)}
+.atr--head{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;color:var(--muted);text-transform:uppercase;font-weight:600;padding:14px 0;border-bottom:1.5px solid var(--ink)}
+.atr--head:hover{background:transparent;cursor:default}
+.atr-num{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;color:var(--accent);letter-spacing:0.04em}
+.atr-title{font-family:'Inter Tight',sans-serif;font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-0.01em;line-height:1.35}
+.atr-title em{font-style:normal;background:linear-gradient(transparent 65%,var(--highlight) 65%);padding:0 2px}
+.atr-quote{display:block;font-family:'Source Serif 4','Noto Serif SC',serif;font-size:13px;color:var(--muted);font-weight:400;line-height:1.5;margin-top:4px;font-style:italic;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.atr-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink);font-weight:500;letter-spacing:0.04em}
+.atr-date{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.04em}
+.atr-arr{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--muted);text-align:right;transition:transform 0.15s,color 0.15s}
+.atr:hover .atr-arr{color:var(--accent);transform:translateX(3px)}
+
+.atr--latest{background:var(--accent-soft)}
+.atr--latest .atr-num{color:var(--accent2);font-weight:700}
+.atr--latest .atr-tag::before{content:'NEW · ';color:var(--accent);font-weight:700}
+
+/* ============== ARTICLE PREVIEW ============== */
+.article-section{padding:80px 32px;background:var(--surface);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.article-page{max-width:740px;margin:0 auto}
+.article-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:24px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase}
+.article-eyebrow .num{color:var(--accent);font-weight:700;letter-spacing:0.06em}
+.article-eyebrow::before{content:'';width:24px;height:2px;background:var(--accent)}
+.article-title{font-family:'Inter Tight','Noto Serif SC',sans-serif;font-size:clamp(40px,5vw,68px);font-weight:700;line-height:1.05;letter-spacing:-0.025em;color:var(--ink);margin-bottom:24px}
+.article-title em{font-style:normal;color:var(--accent)}
+.article-deck{font-family:'Source Serif 4','Noto Serif SC',serif;font-size:22px;line-height:1.55;color:var(--ink2);font-weight:400;margin-bottom:32px}
+.article-deck em{font-style:italic;color:var(--ink);font-weight:600}
+
+.article-byline{display:flex;align-items:center;gap:14px;padding:20px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin-bottom:48px}
+.article-byline-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);display:flex;align-items:center;justify-content:center;color:var(--surface);font-family:'Inter Tight',sans-serif;font-weight:700;font-size:15px}
+.article-byline-info{flex:1}
+.article-byline-name{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.article-byline-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.06em}
+.article-byline-actions{display:flex;gap:6px}
+.byact{padding:7px 14px;background:transparent;border:1px solid var(--rule);border-radius:6px;font-size:12px;color:var(--muted);cursor:pointer;font-family:inherit}
+.byact:hover{border-color:var(--ink);color:var(--ink)}
+
+.article-body{font-family:'Source Serif 4','Noto Serif SC',serif;font-size:18px;line-height:1.85;color:var(--ink);font-weight:400}
+.article-body > p{margin-bottom:22px}
+.article-body > p:first-child::first-letter{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:72px;float:left;line-height:0.85;margin:6px 12px 0 0;color:var(--accent)}
+.article-body p b{font-weight:700;color:var(--ink);background:linear-gradient(transparent 65%,var(--highlight) 65%);padding:0 2px}
+.article-body p em{font-style:italic;color:var(--accent);font-weight:500}
+.article-h3{font-family:'Inter Tight',sans-serif;font-size:28px;font-weight:700;line-height:1.2;letter-spacing:-0.02em;margin:48px 0 18px;color:var(--ink)}
+.article-h3 em{font-style:normal;color:var(--accent)}
+.article-h3::before{content:counter(h3-counter,decimal-leading-zero) '.';counter-increment:h3-counter;font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);font-weight:600;letter-spacing:0.06em;display:block;margin-bottom:6px}
+.article-body{counter-reset:h3-counter}
+
+.article-quote{margin:36px 0;padding:28px 32px;border-left:3px solid var(--accent);background:var(--bg);border-radius:0 8px 8px 0;font-family:'Source Serif 4','Noto Serif SC',serif;font-size:22px;line-height:1.5;color:var(--ink);font-weight:500;font-style:italic}
+.article-quote em{font-style:italic;color:var(--accent);font-weight:600}
+.article-quote-cite{display:block;margin-top:14px;font-family:'JetBrains Mono',monospace;font-style:normal;font-size:11px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;font-weight:500}
+
+.article-list{margin:24px 0;list-style:none;counter-reset:art-list}
+.article-list li{padding:18px 0 18px 56px;border-bottom:1px solid var(--rule);position:relative;font-size:17px;line-height:1.7;color:var(--ink2)}
+.article-list li::before{content:counter(art-list,decimal-leading-zero);counter-increment:art-list;position:absolute;left:0;top:18px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:18px;color:var(--accent);letter-spacing:-0.01em;width:42px;border-right:1px solid var(--rule);padding-right:14px;text-align:right}
+.article-list li b{color:var(--ink);font-weight:700}
+
+.article-pull{margin:48px -20px;padding:40px;background:var(--bg);border:1px solid var(--rule);border-radius:14px;display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center}
+.article-pull-num{font-family:'Inter Tight',sans-serif;font-size:84px;font-weight:700;color:var(--accent);letter-spacing:-0.04em;line-height:0.9}
+.article-pull-num small{font-size:24px;color:var(--muted);font-weight:500}
+.article-pull-text{font-family:'Source Serif 4','Noto Serif SC',serif;font-size:17px;line-height:1.65;color:var(--ink2);font-weight:400}
+.article-pull-text b{color:var(--ink);font-weight:700}
+
+.article-foot{margin-top:60px;padding-top:32px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:0.06em}
+.article-foot a{color:var(--ink);font-weight:600;border-bottom:1.5px solid var(--rule);padding-bottom:2px;transition:border-color 0.15s}
+.article-foot a:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ============== PPT GALLERY ============== */
+.ppt-section{padding:80px 32px;max-width:1240px;margin:0 auto}
+.slides{display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-template-rows:repeat(2,1fr);gap:18px}
+.slide{aspect-ratio:16/10;border:1px solid var(--rule);border-radius:14px;background:var(--surface);position:relative;overflow:hidden;padding:32px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;transition:all 0.25s}
+.slide:hover{border-color:var(--ink);transform:translateY(-3px);box-shadow:0 14px 36px -12px rgba(14,17,22,0.14)}
+.slide-num{position:absolute;top:18px;right:24px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;font-weight:500}
+
+.slide--cover{grid-column:1/2;grid-row:1/3;background:var(--ink);color:var(--surface);padding:48px 44px}
+.slide--cover .slide-num{color:rgba(255,255,255,0.45)}
+.slide-cover-eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:0.18em;text-transform:uppercase;font-weight:600;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.slide-cover-eyebrow::before{content:'';width:24px;height:2px;background:var(--accent)}
+.slide-cover-h{font-family:'Inter Tight','Noto Serif SC',sans-serif;font-size:clamp(40px,4vw,60px);font-weight:700;line-height:1;letter-spacing:-0.03em;margin-bottom:20px;color:var(--surface)}
+.slide-cover-h em{font-style:normal;color:var(--accent)}
+.slide-cover-deck{font-family:'Source Serif 4','Noto Serif SC',serif;font-size:15px;line-height:1.6;color:rgba(255,255,255,0.7);max-width:380px;margin-bottom:auto}
+.slide-cover-foot{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,0.55);letter-spacing:0.1em;text-transform:uppercase;border-top:1px solid rgba(255,255,255,0.18);padding-top:14px}
+
+.slide--quote .slide-quote-mark{font-family:'Inter Tight',sans-serif;font-size:60px;font-weight:700;color:var(--accent);line-height:0.7;letter-spacing:-0.05em}
+.slide--quote .slide-quote-text{font-family:'Source Serif 4','Noto Serif SC',serif;font-size:17px;line-height:1.5;color:var(--ink);font-weight:500;font-style:italic}
+.slide--quote .slide-quote-text em{color:var(--accent);font-weight:600}
+.slide--quote .slide-quote-cite{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase}
+
+.slide--data{background:var(--accent);color:var(--surface);border-color:var(--accent)}
+.slide--data .slide-num{color:rgba(255,255,255,0.55)}
+.slide-data-num{font-family:'Inter Tight',sans-serif;font-size:96px;font-weight:700;line-height:0.92;letter-spacing:-0.04em;color:var(--surface)}
+.slide-data-num small{font-size:24px;color:rgba(255,255,255,0.7);font-weight:500}
+.slide-data-lab{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-top:8px;font-weight:500}
+.slide-data-cap{font-size:13px;color:rgba(255,255,255,0.85);line-height:1.55}
+
+.slide--list .slide-list-h{font-family:'Inter Tight',sans-serif;font-size:22px;font-weight:700;line-height:1.15;letter-spacing:-0.02em;margin-bottom:14px;color:var(--ink)}
+.slide--list .slide-list-h em{font-style:normal;color:var(--accent)}
+.slide--list ul{list-style:none}
+.slide--list li{font-size:13px;line-height:1.55;padding:8px 0 8px 24px;position:relative;border-bottom:1px solid var(--rule);font-family:'Source Serif 4','Noto Serif SC',serif}
+.slide--list li:last-child{border-bottom:none}
+.slide--list li::before{counter-increment:list-c;content:counter(list-c,decimal-leading-zero);position:absolute;left:0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);font-weight:600;top:9px}
+.slide--list ul{counter-reset:list-c}
+.slide--list li b{color:var(--ink);font-weight:700;background:linear-gradient(transparent 65%,var(--highlight) 65%);padding:0 2px}
+
+.slide--two{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:0;align-items:stretch;background:var(--surface)}
+.slide-two-col{padding:24px 22px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+.slide-two-col:first-child{background:var(--bg);border-right:1px solid var(--rule)}
+.slide-two-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:8px}
+.slide-two-col:last-child .slide-two-tag{color:var(--accent)}
+.slide-two-h{font-family:'Inter Tight',sans-serif;font-size:22px;font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);margin-bottom:8px}
+.slide-two-h em{font-style:normal;color:var(--accent)}
+.slide-two-cap{font-family:'Source Serif 4','Noto Serif SC',serif;font-size:13px;line-height:1.55;color:var(--muted)}
+.slide--two .slide-num{color:var(--muted)}
+
+.slide--bigtype{background:var(--bg)}
+.slide--bigtype .slide-bigtype-h{font-family:'Inter Tight',sans-serif;font-size:54px;font-weight:700;line-height:0.95;letter-spacing:-0.035em;color:var(--ink)}
+.slide--bigtype .slide-bigtype-h em{font-style:normal;color:var(--accent)}
+.slide--bigtype .slide-bigtype-foot{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase}
+
+/* ============== FOOTER ============== */
+.footer{padding:60px 32px 32px;background:var(--ink);color:var(--surface);margin-top:60px}
+.footer-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;border-bottom:1px solid rgba(255,255,255,0.14);padding-bottom:48px}
+.footer-logo{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:24px;letter-spacing:-0.02em;color:var(--surface);display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.footer-logo .dot{width:9px;height:9px;background:var(--accent);border-radius:50%}
+.footer-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted2);letter-spacing:0.14em;margin-bottom:20px}
+.footer-mid{font-family:'Source Serif 4','Noto Serif SC',serif;font-size:15px;line-height:1.7;color:rgba(255,255,255,0.7);font-style:italic;max-width:340px;font-weight:400}
+.footer-list-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.14em;text-transform:uppercase;font-weight:600;margin-bottom:16px}
+.footer-list{list-style:none}
+.footer-list li{padding:6px 0;font-size:13px;color:rgba(255,255,255,0.6);cursor:pointer;transition:color 0.15s}
+.footer-list li:hover{color:var(--surface)}
+.footer-strip{max-width:1240px;margin:24px auto 0;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:0.08em}
+
+@media(max-width:1100px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-side{margin-top:24px}
+  .feat-grid{grid-template-columns:1fr 1fr}
+  .feat:first-child{grid-column:1/-1}
+  .statsbar-grid{grid-template-columns:repeat(2,1fr)}
+  .slides{grid-template-columns:1fr 1fr}
+  .slide--cover{grid-column:1/3;grid-row:auto}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .nav-search{display:none}
+  .atr{grid-template-columns:50px 1fr 100px 70px;gap:14px}
+  .atr-tag{display:none}
+}
+@media(max-width:640px){
+  .nav-mid{display:none}
+  .hero,.featured,.archive,.article-section,.ppt-section,.footer{padding-left:20px;padding-right:20px}
+  .feat-grid,.slides{grid-template-columns:1fr}
+  .statsbar-grid{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr}
+  .article-pull{grid-template-columns:1fr;text-align:center;margin-left:0;margin-right:0}
+  .atr{grid-template-columns:40px 1fr 60px}
+  .atr-tag,.atr-arr{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<nav class="nav">
+  <div class="nav-logo"><span class="dot"></span>Root Talk</div>
+  <div class="nav-mid">
+    <a href="#archive">Archive</a>
+    <a href="#article">Article</a>
+    <a href="#ppt">Slides</a>
+    <a href="#about">About</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-search">搜索 80 万字逐字稿</div>
+    <button class="nav-cta">订阅</button>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="pill">ISSUE 19</span>
+      <span class="meta">2026 · 04 · 28 · Hangzhou Weekly</span>
+    </div>
+    <div class="hero-grid">
+      <div>
+        <h1 class="hero-h1">
+          80 <em>Words</em><br>
+          <span class="cn">每周一场 <em>深度对话</em></span>
+        </h1>
+        <p class="hero-deck">
+          根源在杭州组织的线下深度对话归档。<em>每场 5 万字逐字稿</em>，覆盖销售方法、AI 工具、个人成长、表达训练、命理思维。不备课，不录播，用最真实的状态分享。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn--primary" href="#archive">浏览 19 场全部 <span class="btn-ar">→</span></a>
+          <a class="btn btn--ghost" href="#article">阅读最新一篇</a>
+        </div>
+      </div>
+      <aside class="hero-side">
+        <span class="hero-side-tag">/ STATUS</span>
+        <div class="hero-side-row">
+          <span class="hero-side-key">Latest</span>
+          <span class="hero-side-val"><em>#19</em></span>
+        </div>
+        <div class="hero-side-row">
+          <span class="hero-side-key">Sessions</span>
+          <span class="hero-side-val">18<small>+1</small></span>
+        </div>
+        <div class="hero-side-row">
+          <span class="hero-side-key">Words</span>
+          <span class="hero-side-val">80<small>万</small></span>
+        </div>
+        <div class="hero-side-row">
+          <span class="hero-side-key">Quotes</span>
+          <span class="hero-side-val">365</span>
+        </div>
+        <div class="hero-side-row">
+          <span class="hero-side-key">Cadence</span>
+          <span class="hero-side-val" style="font-size:18px">每周一场</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============== STATS BAR ============== -->
+<div class="statsbar">
+  <div class="statsbar-grid">
+    <div class="sbi">
+      <div class="sbi-lab">Sessions / 场次</div>
+      <div class="sbi-num"><em>18</em><small>+1</small></div>
+      <div class="sbi-trend">第 19 场刚上线</div>
+    </div>
+    <div class="sbi">
+      <div class="sbi-lab">Words / 字数</div>
+      <div class="sbi-num">80<small>w</small></div>
+      <div class="sbi-trend">单场平均 5 万字</div>
+    </div>
+    <div class="sbi">
+      <div class="sbi-lab">Quotes / 金句</div>
+      <div class="sbi-num">365</div>
+      <div class="sbi-trend">可单独出片</div>
+    </div>
+    <div class="sbi">
+      <div class="sbi-lab">Topics / 主题</div>
+      <div class="sbi-num">5</div>
+      <div class="sbi-trend">销售 / AI / 成长 / 表达 / 命理</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============== FEATURED ============== -->
+<section class="featured">
+  <div class="section-head">
+    <div>
+      <div class="section-eyebrow">Featured · 编辑精选</div>
+      <h2 class="section-h2">这周值得一读的三场</h2>
+    </div>
+    <div class="section-meta">每周三由编辑精选 · <a href="#archive">查看全部 →</a></div>
+  </div>
+
+  <div class="feat-grid">
+    <article class="feat feat--latest">
+      <div>
+        <span class="feat-tag">最新 · LATEST</span>
+        <div class="feat-num">N°19 · 2026·04·28</div>
+        <h3 class="feat-title">AI 虚拟乐队 · 合伙人选择与"用什么驱动"</h3>
+        <p class="feat-deck">7 人小局，与 94 年前阿里、现做全 AI 虚拟乐队 IP 的"大俊"深聊。"我希望又喜欢又能赚钱"——兴趣、合伙人、自由职业转型，三条主线一次讲透。</p>
+      </div>
+      <div class="feat-meta">
+        <span>4.8 W 字 · 120 min</span>
+        <span>主题 · AI / 创业</span>
+      </div>
+    </article>
+
+    <article class="feat">
+      <div>
+        <span class="feat-tag">编辑选 · pick</span>
+        <div class="feat-num">N°11 · 2024·12·04</div>
+        <h3 class="feat-title">这 400 个人，养了我三年半</h3>
+        <p class="feat-deck">"全部是他们转介绍出来的。我没有小红书，公众号粉丝才 5000 多。公域做得很差，全靠私域转介绍。"</p>
+      </div>
+      <div class="feat-meta">
+        <span>4.8 W 字</span>
+        <span>主题 · 转介绍</span>
+      </div>
+    </article>
+
+    <article class="feat">
+      <div>
+        <span class="feat-tag">编辑选 · pick</span>
+        <div class="feat-num">N°07 · 2024·10·09</div>
+        <h3 class="feat-title">命理不是迷信 · 是统计</h3>
+        <p class="feat-deck">"十四年看下来，我只相信数据。" 八字身强身弱、五行属性、性格模式如何在销售对话里给出真实参考。</p>
+      </div>
+      <div class="feat-meta">
+        <span>5.1 W 字</span>
+        <span>主题 · 命理</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============== ARCHIVE TABLE ============== -->
+<section class="archive" id="archive">
+  <div class="section-head">
+    <div>
+      <div class="section-eyebrow">Complete Archive · 全部场次</div>
+      <h2 class="section-h2">全部 19 场 · 按时间倒序</h2>
+    </div>
+    <div class="section-meta">点击任意行进入逐字稿</div>
+  </div>
+
+  <div class="afilters">
+    <button class="afilter active">全部 19</button>
+    <button class="afilter">销售方法</button>
+    <button class="afilter">AI 工具</button>
+    <button class="afilter">个人成长</button>
+    <button class="afilter">表达训练</button>
+    <button class="afilter">命理 / 八字</button>
+  </div>
+
+  <div class="archive-table">
+    <div class="atr atr--head">
+      <div>N°</div>
+      <div>标题 · 引用</div>
+      <div>主题</div>
+      <div>日期</div>
+      <div></div>
+    </div>
+
+    <div class="atr atr--latest">
+      <div class="atr-num">19</div>
+      <div>
+        <div class="atr-title">AI 虚拟乐队 · <em>合伙人</em>选择</div>
+        <span class="atr-quote">"我希望又喜欢又能赚钱——纯靠爱好支撑其实也很难。"</span>
+      </div>
+      <div class="atr-tag">最新</div>
+      <div class="atr-date">2026·04·28</div>
+      <div class="atr-arr">→</div>
+    </div>
+
+    <div class="atr">
+      <div class="atr-num">18</div>
+      <div>
+        <div class="atr-title">高客单 <em>不在</em>产品 · 在人设</div>
+        <span class="atr-quote">"我的产品最高金额是 25 万，今年卖了 4 个。"</span>
+      </div>
+      <div class="atr-tag">高客单</div>
+      <div class="atr-date">2026·04·26</div>
+      <div class="atr-arr">→</div>
+    </div>
+
+    <div class="atr">
+      <div class="atr-num">17</div>
+      <div>
+        <div class="atr-title">把成长当成确定性的资产</div>
+        <span class="atr-quote">"赚钱跟项目本身无关，而是你做事情的习惯。"</span>
+      </div>
+      <div class="atr-tag">复盘</div>
+      <div class="atr-date">2025·04·16</div>
+      <div class="atr-arr">→</div>
+    </div>
+
+    <div class="atr">
+      <div class="atr-num">16</div>
+      <div>
+        <div class="atr-title">能少用 AI · 就少用 AI</div>
+        <span class="atr-quote">"AI 取代不了基本能力。基本能力的部分，能少用 AI 你就少用 AI。"</span>
+      </div>
+      <div class="atr-tag">AI</div>
+      <div class="atr-date">2025·04·02</div>
+      <div class="atr-arr">→</div>
+    </div>
+
+    <div class="atr">
+      <div class="atr-num">15</div>
+      <div>
+        <div class="atr-title">先卖才有课 · 不是先有课</div>
+        <span class="atr-quote">"做课的重点是有人买，而不是课做得多精彩。"</span>
+      </div>
+      <div class="atr-tag">知识付费</div>
+      <div class="atr-date">2025·03·05</div>
+      <div class="atr-arr">→</div>
+    </div>
+
+    <div class="atr">
+      <div class="atr-num">14</div>
+      <div>
+        <div class="atr-title">这时代把所有<em>体验</em>给你了</div>
+        <span class="atr-quote">"先去试、先去摸、先去感受，然后你才知道你想要什么。"</span>
+      </div>
+      <div class="atr-tag">体验</div>
+      <div class="atr-date">2025·02·12</div>
+      <div class="atr-arr">→</div>
+    </div>
+
+    <div class="atr">
+      <div class="atr-num">13</div>
+      <div>
+        <div class="atr-title">每天不做 · 就不会做了</div>
+        <span class="atr-quote">"我们可以做得少，但不能不做。"</span>
+      </div>
+      <div class="atr-tag">习惯</div>
+      <div class="atr-date">2025·01·08</div>
+      <div class="atr-arr">→</div>
+    </div>
+
+    <div class="atr">
+      <div class="atr-num">12</div>
+      <div>
+        <div class="atr-title">先<em>向内求</em> · 再向外求</div>
+        <span class="atr-quote">"个人能力一定是时代的红利。"</span>
+      </div>
+      <div class="atr-tag">AI</div>
+      <div class="atr-date">2024·12·18</div>
+      <div class="atr-arr">→</div>
+    </div>
+
+    <div class="atr">
+      <div class="atr-num">11</div>
+      <div>
+        <div class="atr-title">高客单不在产品 · <em>在人设</em></div>
+        <span class="atr-quote">"高客单一定不是着重在产品，而是着重在你的人设。"</span>
+      </div>
+      <div class="atr-tag">人设</div>
+      <div class="atr-date">2024·12·04</div>
+      <div class="atr-arr">→</div>
+    </div>
+
+    <div class="atr">
+      <div class="atr-num">10</div>
+      <div>
+        <div class="atr-title">换项目 · 不会让你赚到钱</div>
+        <span class="atr-quote">"你换到下一个人群，你还是不懂他，结果还是不好赚。"</span>
+      </div>
+      <div class="atr-tag">项目</div>
+      <div class="atr-date">2024·11·20</div>
+      <div class="atr-arr">→</div>
+    </div>
+
+    <div class="atr">
+      <div class="atr-num">09</div>
+      <div>
+        <div class="atr-title">别问太多人 · <em>越问越乱</em></div>
+        <span class="atr-quote">"你们最大的毛病是问太多人——十个人十个答案。"</span>
+      </div>
+      <div class="atr-tag">决策</div>
+      <div class="atr-date">2024·11·06</div>
+      <div class="atr-arr">→</div>
+    </div>
+
+    <div class="atr">
+      <div class="atr-num">08</div>
+      <div>
+        <div class="atr-title">高单价是 <em>双向筛选</em></div>
+        <span class="atr-quote">"单价越高，双向筛选的次数就得越多。"</span>
+      </div>
+      <div class="atr-tag">高客单</div>
+      <div class="atr-date">2024·10·23</div>
+      <div class="atr-arr">→</div>
+    </div>
+
+    <div class="atr">
+      <div class="atr-num">07</div>
+      <div>
+        <div class="atr-title">命理不是迷信 · <em>是统计</em></div>
+        <span class="atr-quote">"十四年看下来，我只相信数据。"</span>
+      </div>
+      <div class="atr-tag">命理</div>
+      <div class="atr-date">2024·10·09</div>
+      <div class="atr-arr">→</div>
+    </div>
+
+    <div class="atr">
+      <div class="atr-num">06</div>
+      <div>
+        <div class="atr-title">手机一亮 · 就偷能量</div>
+        <span class="atr-quote">"加到所有好友第一件事情先把提醒关了。"</span>
+      </div>
+      <div class="atr-tag">习惯</div>
+      <div class="atr-date">2024·09·25</div>
+      <div class="atr-arr">→</div>
+    </div>
+
+    <div class="atr">
+      <div class="atr-num">05</div>
+      <div>
+        <div class="atr-title">副业 · 不要小看 3000 块</div>
+        <span class="atr-quote">"一年就是 6 万。这是很多人一年平均工资。"</span>
+      </div>
+      <div class="atr-tag">成长</div>
+      <div class="atr-date">2024·09·11</div>
+      <div class="atr-arr">→</div>
+    </div>
+
+    <div class="atr">
+      <div class="atr-num">04</div>
+      <div>
+        <div class="atr-title">流量 · <em>八访表</em>与转化</div>
+        <span class="atr-quote">"7 又 3 分之 2 次他都没答应，就成交不了他。"</span>
+      </div>
+      <div class="atr-tag">流量</div>
+      <div class="atr-date">2024·09·04</div>
+      <div class="atr-arr">→</div>
+    </div>
+
+    <div class="atr">
+      <div class="atr-num">03</div>
+      <div>
+        <div class="atr-title">把身份做成一个 <em>钩子</em></div>
+        <span class="atr-quote">"卖什么？卖小白鼠。这一句话出去就没人会忘记你。"</span>
+      </div>
+      <div class="atr-tag">自我介绍</div>
+      <div class="atr-date">2024·08·28</div>
+      <div class="atr-arr">→</div>
+    </div>
+
+    <div class="atr">
+      <div class="atr-num">02</div>
+      <div>
+        <div class="atr-title">来回 60 趟 · 没有诀窍</div>
+        <span class="atr-quote">"我就这么来来回回走了 60 趟。"</span>
+      </div>
+      <div class="atr-tag">销售</div>
+      <div class="atr-date">2024·08·21</div>
+      <div class="atr-arr">→</div>
+    </div>
+
+    <div class="atr">
+      <div class="atr-num">01</div>
+      <div>
+        <div class="atr-title">销售员的态度 · <em>是练出来的</em></div>
+        <span class="atr-quote">"骄傲只能骄傲 10 到 20 分钟。"</span>
+      </div>
+      <div class="atr-tag">销售</div>
+      <div class="atr-date">2024·08·14</div>
+      <div class="atr-arr">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ARTICLE PREVIEW ============== -->
+<section class="article-section" id="article">
+  <article class="article-page">
+    <div class="article-eyebrow">
+      <span class="num">N°19</span>
+      <span>2026 · 04 · 28</span>
+      <span>·</span>
+      <span>主题 · AI / 创业</span>
+    </div>
+    <h1 class="article-title">AI 虚拟乐队<br>合伙人 与 <em>"用什么驱动"</em></h1>
+    <p class="article-deck">七人小局，本来差点不办。结果聊出了大半年最深的一场——<em>"兴趣可以驱动你半年，但纯靠爱好支撑其实也很难"</em>，这是这场最重要的一句话。</p>
+
+    <div class="article-byline">
+      <div class="article-byline-avatar">林</div>
+      <div class="article-byline-info">
+        <div class="article-byline-name">林根源</div>
+        <div class="article-byline-meta">4.8 W 字 · 120 min · 整理 / Claude</div>
+      </div>
+      <div class="article-byline-actions">
+        <button class="byact">收藏</button>
+        <button class="byact">分享</button>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p>这一场我本来差点没办。杭州小学有春假，前天刚带一家出门玩了一趟，本想着今天就在家避两天雨。结果"巧"得很——一打开电脑发现还是有人报名，最后凑成了七个人。一个 94 年的前阿里运营、一个 89 年的前药研发、一个 90 年的前字节运营、还有摄影师、小红书运营，七个人一桌。<b>这种小局反而最容易讲到底</b>。</p>
+
+      <p>这一场最长的对话发生在大俊身上。她现在和一个浙音的小伙伴在做"全 AI 虚拟乐队 IP"——视觉建模、音乐创作、剧情创作全 AI。我认识这么多朋友里，<em>第一个做这个的</em>。这个赛道很特别，做的人很少，但她的问题不在赛道——在"用什么驱动"。</p>
+
+      <h3 class="article-h3">兴趣 vs 赚钱 · <em>第一个真相</em></h3>
+
+      <ol class="article-list">
+        <li><b>兴趣可以驱动你半年。</b>真要做项目，半年之后你就会问自己——这件事到底什么时候能赚到钱？纯靠爱好支撑其实很难。</li>
+        <li><b>"我希望又喜欢又能赚钱"是最常见的卡点。</b>大部分人卡在这一句话上三五年——既不肯放弃喜欢，也不肯接受赚钱要先做半年不赚钱的活。</li>
+        <li><b>赚钱排序的第一位，永远是变现。</b>不是产品、不是流量、不是内容——是"今天就能收到钱"的那条路。其他都排在它后面。</li>
+      </ol>
+
+      <blockquote class="article-quote">
+        你以为自己<em>卡在 5</em>，其实你卡在 3。从 0 到 3 的事还没做完，<em>就在想 5 到 10 的事</em>——这是大多数人最大的毛病。
+        <span class="article-quote-cite">— 第 19 场 · 自由职业转型</span>
+      </blockquote>
+
+      <p>大俊的赛道我看好。但我跟她讲——<b>不要直接转，用 1-2 年过渡。</b>你今天有副业能养你，就先不要把主业断掉。等 AI 虚拟乐队的现金流自己能跑起来，再断也不迟。"All in 一年，不赔不赚"——这是我看过的多数 All in 故事的真实结局，听起来体面，本质上就是一年没攒到钱。</p>
+
+      <h3 class="article-h3">合伙人 · <em>第二个真相</em></h3>
+
+      <p>大俊和她浙音的伙伴是技能互补型——她做运营和 IP，对方做音乐。这种结构理论上是对的，但合伙人最难的不是技能匹配。<em>是"用什么驱动"对得上。</em>一个人靠兴趣，另一个人靠赚钱——半年后一定散。一个人能熬 12 个月，另一个人只能熬 4 个月——也一定散。</p>
+
+      <div class="article-pull">
+        <div class="article-pull-num">1<small>年</small></div>
+        <div class="article-pull-text">合伙之前，先把"<b>能熬几个月不赚钱</b>"摊开来谈。一年的生活费各自先备着——这是合伙人协议里最该写、却几乎没人写的那一条。</div>
+      </div>
+
+      <p>下半场杜小娟、大头、孙志新依次抛出问题。杜小娟原来是做药研发的，24 年被裁，现在自由职业探索。大头是前字节运营，去年因为中度焦虑辞职，现在做小红书。<b>三个人的问题表面不一样，本质都是同一个——"我从大厂出来一年了，现在做的事到底对不对"。</b>我的回答是：先不问对不对，先问这件事今年能不能给你结到第一笔钱。结到了，这件事就是对的。结不到，再聪明的判断都没用。</p>
+    </div>
+
+    <div class="article-foot">
+      <span>← 上一篇 · N°18</span>
+      <a href="#archive">回到全部 19 场</a>
+      <span>下一篇 · N°20 →</span>
+    </div>
+  </article>
+</section>
+
+<!-- ============== PPT GALLERY ============== -->
+<section class="ppt-section" id="ppt">
+  <div class="section-head">
+    <div>
+      <div class="section-eyebrow">Slides · PPT 风格</div>
+      <h2 class="section-h2">每场对话 · 自动生成一组幻灯片</h2>
+    </div>
+    <div class="section-meta">10 – 20 张 · 16:10 · 同一个 design system</div>
+  </div>
+
+  <div class="slides">
+    <div class="slide slide--cover">
+      <span class="slide-num">01 / 12</span>
+      <div>
+        <div class="slide-cover-eyebrow">Issue 19 · Hangzhou</div>
+        <h3 class="slide-cover-h">AI 虚拟乐队<br><em>合伙人</em> 与<br>"用什么驱动"。</h3>
+        <p class="slide-cover-deck">七人小局。94 年的前阿里、89 年的前药研发、90 年的前字节——同一个问题：兴趣，还是赚钱？</p>
+      </div>
+      <div class="slide-cover-foot">
+        <span>By 林根源 · ROOT</span>
+        <span>2026 · WK 19</span>
+      </div>
+    </div>
+
+    <div class="slide slide--quote">
+      <span class="slide-num">02 / 12</span>
+      <div>
+        <div class="slide-quote-mark">"</div>
+        <p class="slide-quote-text">兴趣可以驱动你<br><em>半年。</em><br>纯靠爱好支撑，<br>其实也很难。</p>
+      </div>
+      <div class="slide-quote-cite">— 第 19 场 · AI / 创业</div>
+    </div>
+
+    <div class="slide slide--data">
+      <span class="slide-num">03 / 12</span>
+      <div>
+        <div class="slide-data-num">1<small> 年</small></div>
+        <div class="slide-data-lab">All in · 不赔不赚</div>
+      </div>
+      <p class="slide-data-cap">这是多数 All in 故事的<br>真实结局。</p>
+    </div>
+
+    <div class="slide slide--list">
+      <span class="slide-num">04 / 12</span>
+      <h4 class="slide-list-h">合伙人<em>三件事</em></h4>
+      <ul>
+        <li>技能互补<b>是基础</b></li>
+        <li>"用什么驱动"<b>要对齐</b></li>
+        <li>能熬几个月<b>先摊开</b></li>
+      </ul>
+    </div>
+
+    <div class="slide slide--two">
+      <span class="slide-num">05 / 12</span>
+      <div class="slide-two-col">
+        <div class="slide-two-tag">/ Don't</div>
+        <h4 class="slide-two-h">直接转</h4>
+        <p class="slide-two-cap">辞掉主业 All in，<br>一年不赔不赚。</p>
+      </div>
+      <div class="slide-two-col">
+        <div class="slide-two-tag">/ Do</div>
+        <h4 class="slide-two-h">用 <em>1-2 年</em> 过渡</h4>
+        <p class="slide-two-cap">主业养着副业，<br>等现金流自己跑起来。</p>
+      </div>
+    </div>
+
+    <div class="slide slide--bigtype">
+      <span class="slide-num">06 / 12</span>
+      <h3 class="slide-bigtype-h">你以为<br>卡在 5<br><em>其实卡在 3</em></h3>
+      <div class="slide-bigtype-foot">— 第 19 场 · 自由职业</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer" id="about">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo"><span class="dot"></span>Root Talk</div>
+      <div class="footer-tag">生财有术 · 线下组局 · Issue 19</div>
+      <p class="footer-mid">"不备课，不录播。<br>用最真实的状态分享。"<br><br><span style="font-style:normal;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;color:var(--accent)">— 林根源</span></p>
+    </div>
+    <div>
+      <div class="footer-list-title">浏览</div>
+      <ul class="footer-list">
+        <li>全部场次</li>
+        <li>编辑精选</li>
+        <li>金句 365</li>
+        <li>幻灯片库</li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-list-title">主题</div>
+      <ul class="footer-list">
+        <li>销售方法</li>
+        <li>AI 工具</li>
+        <li>个人成长</li>
+        <li>命理 / 八字</li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-list-title">关于</div>
+      <ul class="footer-list">
+        <li>关于根源</li>
+        <li>线下报名</li>
+        <li>付费学员</li>
+        <li>合作 Contact</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-strip">
+    <span>© 生财有术 · 根源场 · 2024–2026</span>
+    <span>由根源整理 · AI 辅助排版</span>
+    <span>Editorial · Demo · v1</span>
+  </div>
+</footer>
+
+<script src="style-switcher.js"></script>
+</body>
+</html>

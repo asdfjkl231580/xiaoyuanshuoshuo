@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生财有术 · 根源场 — 老钱图书馆版 DEMO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --linen:#EFE7D2;--linen2:#E6DBC2;--linen3:#F5EFE0;
+  --paper:#F9F3DD;
+  --ink:#1F2519;--ink2:#2C3322;
+  --green:#1A3B2A;--green2:#0F2818;--green-soft:#3F5E47;
+  --wine:#7B2C1B;--wine2:#5A1F12;--wine-soft:#A14536;
+  --gold:#A37D3A;--gold2:#7A5C2A;
+  --rule:rgba(31,37,25,0.18);--rule2:rgba(31,37,25,0.08);
+}
+html{scroll-behavior:smooth}
+body{background:var(--linen);color:var(--ink);font-family:'EB Garamond','Noto Serif SC',Georgia,serif;font-size:18px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;background-image:radial-gradient(circle at 20% 30%,rgba(122,92,42,0.04) 0%,transparent 50%),radial-gradient(circle at 80% 70%,rgba(31,37,25,0.03) 0%,transparent 50%);background-attachment:fixed}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gold);color:var(--linen3)}
+
+/* 古典纹理 */
+.texture{position:relative}
+.texture::after{content:'';position:absolute;inset:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85' numOctaves='2' /%3E%3CfeColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.14 0 0 0 0 0.10 0 0 0 0.08 0' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.55' /%3E%3C/svg%3E");mix-blend-mode:multiply;opacity:0.5}
+
+/* ============== TOP STRIP ============== */
+.tstrip{background:var(--green2);color:var(--linen3);padding:7px 0;font-family:'EB Garamond',serif;font-size:12px;font-style:italic;letter-spacing:0.06em;text-align:center;border-bottom:3px double var(--gold)}
+.tstrip span{margin:0 14px}
+.tstrip em{font-style:italic;color:var(--gold)}
+
+/* ============== NAV ============== */
+.nav{position:sticky;top:0;z-index:100;background:var(--linen);border-bottom:1px solid var(--rule);padding:18px 40px;display:flex;align-items:center;justify-content:space-between}
+.nav::after{content:'';position:absolute;left:0;right:0;bottom:-5px;height:1px;background:var(--ink);opacity:0.4}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;letter-spacing:0.02em;color:var(--ink);display:flex;align-items:center;gap:12px}
+.nav-logo .crest{width:28px;height:28px;border:1.5px solid var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--green);font-family:'EB Garamond',serif;font-style:italic}
+.nav-logo em{font-style:italic;color:var(--wine);font-weight:500}
+.nav-mid{display:flex;gap:32px}
+.nav-mid a{font-family:'EB Garamond',serif;font-size:15px;color:var(--ink2);font-weight:500;letter-spacing:0.04em;transition:color 0.2s;font-style:italic;position:relative}
+.nav-mid a::after{content:'';position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--wine);transform:scaleX(0);transition:transform 0.25s}
+.nav-mid a:hover{color:var(--wine)}
+.nav-mid a:hover::after{transform:scaleX(1)}
+.nav-cta{padding:10px 22px;background:var(--green);color:var(--linen3);border:1px solid var(--green2);font-family:'EB Garamond',serif;font-style:italic;font-size:14px;font-weight:500;cursor:pointer;letter-spacing:0.04em;transition:all 0.2s}
+.nav-cta:hover{background:var(--green2)}
+
+/* ============== HERO ============== */
+.hero{padding:90px 40px 70px;max-width:1280px;margin:0 auto;position:relative}
+.hero::before{content:'';position:absolute;top:80px;left:50%;transform:translateX(-50%);width:120px;height:1px;background:var(--ink);opacity:0.3}
+.hero-volume{font-family:'EB Garamond',serif;font-style:italic;font-size:14px;color:var(--wine);letter-spacing:0.4em;text-align:center;text-transform:uppercase;margin-bottom:24px;font-weight:500}
+.hero-volume span{display:inline-block;margin:0 14px}
+.hero-volume em{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:18px;color:var(--green);font-style:italic;letter-spacing:0}
+
+.hero-title{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(60px,8vw,128px);line-height:0.95;letter-spacing:-0.015em;text-align:center;color:var(--ink);margin-bottom:14px}
+.hero-title em{font-style:italic;color:var(--wine);font-weight:500}
+.hero-title .small{display:block;font-size:0.4em;color:var(--green-soft);margin-top:14px;font-style:italic;letter-spacing:0.02em;font-weight:400}
+
+.hero-cn{font-family:'Noto Serif SC',serif;font-weight:600;font-size:clamp(30px,3.6vw,48px);line-height:1.2;color:var(--ink);text-align:center;margin-bottom:36px;letter-spacing:-0.01em}
+.hero-cn em{font-style:normal;color:var(--wine);font-weight:600}
+
+.hero-divider{display:flex;align-items:center;justify-content:center;gap:18px;margin:36px 0}
+.hero-divider::before,.hero-divider::after{content:'';width:90px;height:1px;background:var(--ink);opacity:0.3}
+.hero-divider .ornament{font-family:'EB Garamond',serif;font-style:italic;font-size:24px;color:var(--gold);font-weight:500}
+
+.hero-deck{font-family:'EB Garamond',serif;font-size:21px;line-height:1.7;color:var(--ink2);text-align:center;max-width:680px;margin:0 auto 40px;font-weight:400}
+.hero-deck em{font-style:italic;color:var(--wine);font-weight:500}
+.hero-deck b{font-weight:600;color:var(--green2);font-style:italic}
+
+.hero-meta-row{display:flex;justify-content:center;gap:48px;margin-bottom:44px;padding:24px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.hero-meta-item{text-align:center}
+.hero-meta-num{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:42px;line-height:1;color:var(--green2);letter-spacing:-0.02em}
+.hero-meta-num em{font-style:italic;color:var(--wine)}
+.hero-meta-num small{font-size:18px;color:var(--gold);font-style:italic;font-weight:400;margin-left:2px}
+.hero-meta-lab{font-family:'EB Garamond',serif;font-style:italic;font-size:13px;color:var(--ink2);margin-top:6px;letter-spacing:0.06em}
+
+.hero-actions{display:flex;justify-content:center;gap:14px}
+.btn{padding:14px 30px;font-family:'EB Garamond',serif;font-size:15px;font-style:italic;letter-spacing:0.04em;border:1.5px solid var(--ink);cursor:pointer;transition:all 0.25s;display:inline-flex;gap:10px;align-items:center;background:transparent;color:var(--ink)}
+.btn--primary{background:var(--green);color:var(--linen3);border-color:var(--green2)}
+.btn--primary:hover{background:var(--green2)}
+.btn--ghost:hover{background:var(--ink);color:var(--linen3)}
+.btn-ar{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:18px}
+
+/* ============== INDEX TABLE OF CONTENTS ============== */
+.toc{padding:80px 40px;max-width:1280px;margin:0 auto;border-top:3px double var(--gold);border-bottom:1px solid var(--rule)}
+.section-head{text-align:center;margin-bottom:50px}
+.section-eyebrow{font-family:'EB Garamond',serif;font-style:italic;font-size:13px;color:var(--wine);letter-spacing:0.4em;text-transform:uppercase;margin-bottom:14px;font-weight:500}
+.section-h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(40px,5vw,68px);line-height:1.05;letter-spacing:-0.015em;color:var(--ink);margin-bottom:14px}
+.section-h2 em{font-style:italic;color:var(--wine)}
+.section-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:18px;color:var(--ink2);max-width:520px;margin:0 auto;font-weight:400}
+
+.toc-table{max-width:920px;margin:0 auto}
+.toc-row{display:grid;grid-template-columns:80px 1fr auto auto;gap:24px;align-items:baseline;padding:20px 0;border-bottom:1px dotted var(--rule);cursor:pointer;transition:all 0.2s;position:relative}
+.toc-row:hover{padding-left:14px}
+.toc-row:hover .toc-num{color:var(--wine)}
+.toc-num{font-family:'EB Garamond',serif;font-style:italic;font-size:24px;color:var(--green2);letter-spacing:0.02em;font-weight:500;text-align:right;padding-right:14px;border-right:1px solid var(--rule)}
+.toc-title{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:24px;line-height:1.25;color:var(--ink);letter-spacing:-0.01em}
+.toc-title em{font-style:italic;color:var(--wine);font-weight:500}
+.toc-quote{font-family:'EB Garamond',serif;font-style:italic;font-size:14px;color:var(--ink2);margin-top:4px;display:block;line-height:1.5;font-weight:400;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.toc-leader{flex:1;border-bottom:1px dotted var(--rule);height:1px;align-self:end;margin-bottom:7px;min-width:30px}
+.toc-page{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--green2);font-weight:500;letter-spacing:0.04em;text-align:right}
+.toc-tag{font-family:'EB Garamond',serif;font-style:italic;font-size:12px;color:var(--gold2);letter-spacing:0.06em;text-transform:lowercase;text-align:right;font-weight:500}
+.toc-row--latest{background:linear-gradient(90deg,rgba(123,44,27,0.06) 0%,transparent 100%)}
+.toc-row--latest .toc-num{color:var(--wine);font-weight:600}
+.toc-row--latest::before{content:'★';position:absolute;left:-22px;top:24px;color:var(--wine);font-size:12px}
+
+.toc-foot{margin-top:40px;text-align:center;font-family:'EB Garamond',serif;font-style:italic;font-size:14px;color:var(--ink2);letter-spacing:0.06em}
+.toc-foot a{color:var(--wine);border-bottom:1px solid var(--wine)}
+
+/* ============== ARTICLE PREVIEW ============== */
+.article-section{padding:90px 40px;background:var(--paper);border-top:3px double var(--gold);border-bottom:3px double var(--gold);position:relative}
+.article-page{max-width:760px;margin:0 auto;position:relative}
+.article-frame{padding:0 40px}
+.article-running{display:flex;justify-content:space-between;font-family:'EB Garamond',serif;font-style:italic;font-size:12px;color:var(--ink2);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:48px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+.article-running em{font-style:italic;color:var(--wine);letter-spacing:0.16em}
+.article-running .ornament{color:var(--gold)}
+
+.article-chapter{font-family:'EB Garamond',serif;font-style:italic;font-size:14px;color:var(--wine);letter-spacing:0.45em;text-transform:uppercase;text-align:center;margin-bottom:18px;font-weight:500}
+.article-roman{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:54px;text-align:center;color:var(--green2);font-style:italic;line-height:1;margin-bottom:18px;letter-spacing:0.02em}
+.article-title{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(40px,5.2vw,64px);line-height:1.05;letter-spacing:-0.015em;text-align:center;color:var(--ink);margin-bottom:24px}
+.article-title em{font-style:italic;color:var(--wine);font-weight:500}
+.article-deck{font-family:'EB Garamond',serif;font-style:italic;font-size:22px;line-height:1.55;color:var(--ink2);text-align:center;max-width:580px;margin:0 auto 36px;font-weight:400}
+.article-deck em{color:var(--wine);font-weight:500}
+
+.article-ornament{display:flex;align-items:center;justify-content:center;gap:16px;margin:36px 0;font-family:'EB Garamond',serif;font-style:italic;color:var(--gold);font-size:22px}
+.article-ornament::before,.article-ornament::after{content:'';width:80px;height:1px;background:var(--ink);opacity:0.3}
+
+.article-byline{font-family:'EB Garamond',serif;font-style:italic;font-size:14px;color:var(--ink2);text-align:center;margin-bottom:48px;letter-spacing:0.04em}
+.article-byline em{color:var(--wine);font-weight:500}
+
+/* 双栏正文 */
+.article-body{font-family:'EB Garamond','Noto Serif SC',Georgia,serif;font-size:17px;line-height:1.85;color:var(--ink);column-count:1;column-gap:36px;font-weight:400}
+.article-body > p{margin-bottom:18px;text-align:justify;hyphens:auto}
+.article-body > p:first-of-type::first-letter{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:88px;float:left;line-height:0.85;margin:8px 14px 0 0;color:var(--wine);font-style:italic}
+.article-body p b{font-weight:600;color:var(--green2);font-style:normal}
+.article-body p em{font-style:italic;color:var(--wine);font-weight:500}
+
+.article-h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:32px;line-height:1.15;letter-spacing:-0.01em;margin:44px 0 22px;color:var(--green2);text-align:center;position:relative;column-span:all}
+.article-h3 em{font-style:italic;color:var(--wine)}
+.article-h3::before{content:'§';display:block;font-family:'EB Garamond',serif;font-style:italic;color:var(--gold);font-size:18px;margin-bottom:6px;font-weight:400}
+
+.article-quote{margin:36px -16px;padding:32px 40px;background:linear-gradient(180deg,var(--linen3) 0%,var(--paper) 100%);border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;line-height:1.5;color:var(--green2);font-weight:500;text-align:center;position:relative;column-span:all}
+.article-quote::before,.article-quote::after{font-family:'Cormorant Garamond',serif;font-size:80px;color:var(--gold);font-style:italic;line-height:0;font-weight:600;position:absolute}
+.article-quote::before{content:'\201C';top:32px;left:14px}
+.article-quote::after{content:'\201D';bottom:-20px;right:14px}
+.article-quote em{font-style:italic;color:var(--wine);font-weight:600}
+.article-quote-cite{display:block;margin-top:18px;font-family:'EB Garamond',serif;font-style:italic;font-size:13px;color:var(--ink2);letter-spacing:0.16em;text-transform:uppercase;font-weight:500}
+.article-quote-cite::before{content:'— ';color:var(--gold)}
+
+.article-list{margin:24px 0;list-style:none;column-span:all}
+.article-list li{padding:14px 0 14px 64px;border-bottom:1px dotted var(--rule);position:relative;font-size:16px;line-height:1.7;color:var(--ink2)}
+.article-list li::before{content:counter(art-roman,upper-roman) '.';counter-increment:art-roman;position:absolute;left:0;top:14px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;color:var(--wine);font-weight:500;width:50px;text-align:right;padding-right:14px;border-right:1px solid var(--rule)}
+.article-list{counter-reset:art-roman}
+.article-list li b{color:var(--green2);font-weight:600;font-style:normal}
+
+.article-pull{margin:48px -8px;padding:40px;text-align:center;background:linear-gradient(180deg,transparent 0%,rgba(123,44,27,0.04) 50%,transparent 100%);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);position:relative;column-span:all}
+.article-pull::before,.article-pull::after{content:'❦';position:absolute;left:50%;transform:translateX(-50%);color:var(--gold);background:var(--paper);padding:0 14px;font-size:14px}
+.article-pull::before{top:-9px}
+.article-pull::after{bottom:-9px}
+.article-pull-num{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:96px;color:var(--wine);font-style:italic;letter-spacing:-0.02em;line-height:1;margin-bottom:14px}
+.article-pull-num small{font-size:30px;color:var(--green2);font-style:italic;font-weight:400;margin-left:4px}
+.article-pull-cap{font-family:'EB Garamond',serif;font-style:italic;font-size:18px;line-height:1.65;color:var(--ink2);max-width:540px;margin:0 auto;font-weight:400}
+.article-pull-cap b{color:var(--green2);font-weight:600;font-style:normal}
+
+.article-foot{margin-top:60px;padding:28px 0 14px;border-top:3px double var(--gold);display:flex;justify-content:space-between;align-items:center;font-family:'EB Garamond',serif;font-style:italic;font-size:13px;color:var(--ink2);letter-spacing:0.06em}
+.article-foot a{color:var(--wine);font-weight:500;border-bottom:1px solid var(--wine);padding-bottom:1px}
+.article-foot .pageno{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--green2);font-weight:500}
+
+/* ============== PPT GALLERY ============== */
+.ppt-section{padding:90px 40px;max-width:1280px;margin:0 auto;border-top:1px solid var(--rule)}
+.slides{display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-template-rows:repeat(2,1fr);gap:20px}
+.slide{aspect-ratio:16/10;background:var(--linen3);border:1px solid var(--ink);position:relative;overflow:hidden;padding:32px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;transition:all 0.3s}
+.slide::before{content:'';position:absolute;inset:6px;border:1px solid var(--gold);pointer-events:none}
+.slide:hover{transform:translateY(-3px);box-shadow:0 14px 36px -12px rgba(31,37,25,0.25)}
+.slide-num{position:absolute;top:18px;right:24px;font-family:'EB Garamond',serif;font-style:italic;font-size:13px;color:var(--ink2);letter-spacing:0.1em;font-weight:500;z-index:2}
+
+.slide--cover{grid-column:1/2;grid-row:1/3;background:linear-gradient(180deg,var(--green) 0%,var(--green2) 100%);color:var(--linen3);padding:48px 44px}
+.slide--cover::before{border-color:var(--gold)}
+.slide--cover .slide-num{color:rgba(245,239,224,0.6)}
+.slide-cover-volume{font-family:'EB Garamond',serif;font-style:italic;font-size:13px;letter-spacing:0.4em;color:var(--gold);text-transform:uppercase;margin-bottom:28px;font-weight:500}
+.slide-cover-h{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,4.2vw,60px);line-height:1.05;letter-spacing:-0.015em;margin-bottom:18px;color:var(--linen3)}
+.slide-cover-h em{font-style:italic;color:var(--gold);font-weight:500}
+.slide-cover-deck{font-family:'EB Garamond',serif;font-style:italic;font-size:15px;line-height:1.6;color:rgba(245,239,224,0.78);max-width:380px;margin-bottom:auto;font-weight:400}
+.slide-cover-foot{display:flex;justify-content:space-between;font-family:'EB Garamond',serif;font-style:italic;font-size:12px;color:rgba(245,239,224,0.7);letter-spacing:0.12em;border-top:1px solid rgba(245,239,224,0.2);padding-top:14px}
+
+.slide--quote{background:var(--paper)}
+.slide-quote-mark{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:80px;line-height:0.7;color:var(--gold);font-weight:500}
+.slide-quote-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;line-height:1.45;color:var(--green2);font-weight:500}
+.slide-quote-text em{color:var(--wine);font-style:italic;font-weight:600}
+.slide-quote-cite{font-family:'EB Garamond',serif;font-style:italic;font-size:11px;color:var(--ink2);letter-spacing:0.14em;text-transform:uppercase;font-weight:500}
+
+.slide--data{background:var(--linen3)}
+.slide-data-num{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:96px;color:var(--wine);line-height:0.9;letter-spacing:-0.02em;font-style:italic}
+.slide-data-num small{font-size:28px;color:var(--green2);font-weight:400;margin-left:4px}
+.slide-data-lab{font-family:'EB Garamond',serif;font-style:italic;font-size:13px;color:var(--ink2);letter-spacing:0.16em;text-transform:uppercase;margin-top:8px;font-weight:500}
+.slide-data-cap{font-family:'EB Garamond',serif;font-size:13px;color:var(--ink2);line-height:1.6;font-style:italic}
+
+.slide--list{background:var(--paper)}
+.slide-list-h{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:24px;line-height:1.15;color:var(--green2);margin-bottom:14px;letter-spacing:-0.005em}
+.slide-list-h em{font-style:italic;color:var(--wine);font-weight:500}
+.slide-list-h::before{content:'§';display:inline-block;color:var(--gold);font-style:italic;margin-right:8px;font-size:18px}
+.slide--list ul{list-style:none;counter-reset:list-r}
+.slide--list li{font-family:'EB Garamond','Noto Serif SC',serif;font-size:13px;line-height:1.6;padding:7px 0 7px 28px;position:relative;border-bottom:1px dotted var(--rule)}
+.slide--list li:last-child{border-bottom:none}
+.slide--list li::before{content:counter(list-r,upper-roman) '.';counter-increment:list-r;position:absolute;left:0;color:var(--wine);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:14px;top:7px}
+.slide--list li b{color:var(--green2);font-weight:600;font-style:italic}
+
+.slide--two{background:var(--linen3);display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:28px;align-items:stretch;position:relative}
+.slide--two::after{content:'';position:absolute;top:30px;bottom:30px;left:50%;width:1px;background:var(--gold)}
+.slide-two-col h4{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:22px;line-height:1.15;color:var(--green2);margin-bottom:8px;letter-spacing:-0.005em}
+.slide-two-col h4 em{font-style:italic;color:var(--wine);font-weight:500}
+.slide-two-tag{font-family:'EB Garamond',serif;font-style:italic;font-size:11px;color:var(--gold2);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px}
+.slide-two-cap{font-family:'EB Garamond',serif;font-size:13px;line-height:1.6;color:var(--ink2);font-style:italic}
+
+.slide--bigtype{background:var(--green2);color:var(--linen3)}
+.slide--bigtype::before{border-color:var(--gold);opacity:0.6}
+.slide--bigtype .slide-num{color:rgba(245,239,224,0.5)}
+.slide-bigtype-h{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:48px;line-height:1.05;color:var(--linen3);font-style:italic;letter-spacing:-0.01em}
+.slide-bigtype-h em{color:var(--gold);font-weight:500}
+.slide-bigtype-foot{font-family:'EB Garamond',serif;font-style:italic;font-size:13px;color:rgba(245,239,224,0.65);letter-spacing:0.1em;text-transform:uppercase}
+
+/* ============== COLOPHON / FOOTER ============== */
+.footer{padding:80px 40px 48px;background:var(--green2);color:var(--linen3);position:relative;text-align:center;margin-top:60px;border-top:6px double var(--gold)}
+.footer::before{content:'❦';position:absolute;top:-18px;left:50%;transform:translateX(-50%);background:var(--green2);padding:0 18px;color:var(--gold);font-size:24px}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:48px;letter-spacing:0.01em;margin-bottom:8px}
+.footer-logo em{font-style:italic;color:var(--gold);font-weight:500}
+.footer-tag{font-family:'EB Garamond',serif;font-style:italic;font-size:14px;color:rgba(245,239,224,0.7);letter-spacing:0.3em;text-transform:uppercase;margin-bottom:36px}
+.footer-mid{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;line-height:1.5;color:var(--linen3);font-weight:400;max-width:480px;margin:0 auto 36px}
+.footer-mid em{color:var(--gold);font-weight:500}
+.footer-cite{font-family:'EB Garamond',serif;font-style:italic;font-size:14px;color:rgba(245,239,224,0.55);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:48px;font-weight:500}
+.footer-links{display:flex;justify-content:center;gap:42px;margin-bottom:36px;font-family:'EB Garamond',serif;font-style:italic;font-size:14px;color:rgba(245,239,224,0.7);letter-spacing:0.06em;flex-wrap:wrap}
+.footer-links a:hover{color:var(--gold)}
+.footer-strip{padding-top:24px;border-top:1px solid rgba(245,239,224,0.18);display:flex;justify-content:space-between;font-family:'EB Garamond',serif;font-style:italic;font-size:12px;color:rgba(245,239,224,0.45);letter-spacing:0.08em;max-width:1080px;margin:0 auto}
+
+@media(max-width:1100px){
+  .toc-row{grid-template-columns:60px 1fr auto;gap:14px}
+  .toc-leader{display:none}
+  .toc-tag{display:none}
+  .slides{grid-template-columns:1fr 1fr}
+  .slide--cover{grid-column:1/3;grid-row:auto}
+  .article-frame{padding:0 14px}
+}
+@media(max-width:640px){
+  .nav-mid{display:none}
+  .hero,.toc,.article-section,.ppt-section,.footer{padding-left:22px;padding-right:22px}
+  .hero-meta-row{flex-direction:column;gap:18px;padding:18px 0}
+  .slides{grid-template-columns:1fr}
+  .footer-links{flex-direction:column;gap:14px}
+  .footer-strip{flex-direction:column;gap:8px;text-align:center}
+  .article-pull{padding:30px 16px}
+}
+</style>
+</head>
+<body class="texture">
+
+<!-- ============== TOP STRIP ============== -->
+<div class="tstrip">
+  <span><em>Vol.</em> 18</span>·<span>2026 · April</span>·<span><em>Hangzhou</em></span>·<span>每周一场</span>·<span><em>since</em> 2024</span>
+</div>
+
+<!-- ============== NAV ============== -->
+<nav class="nav">
+  <div class="nav-logo">
+    <span class="crest">R</span>
+    Root <em>·</em> Talk
+  </div>
+  <div class="nav-mid">
+    <a href="#toc">Index</a>
+    <a href="#article">Read</a>
+    <a href="#ppt">Plates</a>
+    <a href="#about">Colophon</a>
+  </div>
+  <button class="nav-cta">订阅 Subscribe</button>
+</nav>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="hero-volume">
+    <span>Volume</span><em>XIX</em><span>·</span><span>April</span><em>MMXXVI</em>
+  </div>
+  <h1 class="hero-title">
+    Root, <em>Talk.</em>
+    <span class="small">a weekly selected reader, hand-set in hangzhou.</span>
+  </h1>
+  <h2 class="hero-cn">每周一场 · <em>深度对话</em></h2>
+
+  <div class="hero-divider">
+    <span class="ornament">❦</span>
+  </div>
+
+  <p class="hero-deck">
+    自二〇二四年以来，根源在杭州主持每周一场的线下深度对话。<em>每一卷皆为五万字逐字稿</em>，分录于销售方法、人工智慧、个人成长、表达训练、命理思维五辑。<b>不预设讲稿，不录制影像。</b>仅以最真实之状态分享。
+  </p>
+
+  <div class="hero-meta-row">
+    <div class="hero-meta-item">
+      <div class="hero-meta-num"><em>XVIII</em><small>+1</small></div>
+      <div class="hero-meta-lab">Volumes · 卷</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-num">800K</div>
+      <div class="hero-meta-lab">Words · 字</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-num">CCCLXV</div>
+      <div class="hero-meta-lab">Quotes · 录句</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-num">V</div>
+      <div class="hero-meta-lab">Subjects · 辑</div>
+    </div>
+  </div>
+
+  <div class="hero-actions">
+    <a class="btn btn--primary" href="#toc">阅目录 Index <span class="btn-ar">→</span></a>
+    <a class="btn btn--ghost" href="#article">读最新 Latest</a>
+  </div>
+</section>
+
+<!-- ============== TABLE OF CONTENTS ============== -->
+<section class="toc" id="toc">
+  <div class="section-head">
+    <div class="section-eyebrow">Table of Contents</div>
+    <h2 class="section-h2">目录 · <em>Index</em></h2>
+    <p class="section-sub">十八卷已结集成册，第十九卷新近补入。<br>每卷之后附主题、日期与首句。</p>
+  </div>
+
+  <div class="toc-table">
+
+    <div class="toc-row toc-row--latest">
+      <div class="toc-num">XIX</div>
+      <div>
+        <div class="toc-title">AI 虚拟乐队、合伙人选择 · 与 <em>用什么驱动</em></div>
+        <span class="toc-quote">"我认识这么多朋友里面，你是第一个做这赛道的——这赛道特别好。"</span>
+      </div>
+      <div class="toc-tag">latest</div>
+      <div class="toc-page">p. 436</div>
+    </div>
+
+    <div class="toc-row">
+      <div class="toc-num">XVIII</div>
+      <div>
+        <div class="toc-title">高客单 <em>不在</em>产品 · 在你的人设</div>
+        <span class="toc-quote">"我的产品最高金额是 25 万，今年卖了 4 个。"</span>
+      </div>
+      <div class="toc-tag">高客单</div>
+      <div class="toc-page">p. 412</div>
+    </div>
+
+    <div class="toc-row">
+      <div class="toc-num">XVII</div>
+      <div>
+        <div class="toc-title">把成长当成<em>确定性</em>的资产</div>
+        <span class="toc-quote">"赚钱跟项目本身无关，而是你做事情的习惯。"</span>
+      </div>
+      <div class="toc-tag">复盘</div>
+      <div class="toc-page">p. 388</div>
+    </div>
+
+    <div class="toc-row">
+      <div class="toc-num">XVI</div>
+      <div>
+        <div class="toc-title">能少用 <em>AI</em> · 就少用 AI</div>
+        <span class="toc-quote">"AI 取代不了基本能力。"</span>
+      </div>
+      <div class="toc-tag">人工智慧</div>
+      <div class="toc-page">p. 364</div>
+    </div>
+
+    <div class="toc-row">
+      <div class="toc-num">XV</div>
+      <div>
+        <div class="toc-title">先卖才有课 · <em>不是先有课</em></div>
+        <span class="toc-quote">"做课的重点是有人买，而不是课做得多精彩。"</span>
+      </div>
+      <div class="toc-tag">知识付费</div>
+      <div class="toc-page">p. 340</div>
+    </div>
+
+    <div class="toc-row">
+      <div class="toc-num">XIV</div>
+      <div>
+        <div class="toc-title">这时代把所有<em>体验</em>都给你了</div>
+        <span class="toc-quote">"先去试、先去摸、先去感受。"</span>
+      </div>
+      <div class="toc-tag">体验</div>
+      <div class="toc-page">p. 314</div>
+    </div>
+
+    <div class="toc-row">
+      <div class="toc-num">XIII</div>
+      <div>
+        <div class="toc-title">每天不做 · <em>就不会做了</em></div>
+        <span class="toc-quote">"我们可以做得少，但不能不做。"</span>
+      </div>
+      <div class="toc-tag">习惯</div>
+      <div class="toc-page">p. 290</div>
+    </div>
+
+    <div class="toc-row">
+      <div class="toc-num">XII</div>
+      <div>
+        <div class="toc-title">先<em>向内求</em> · 再向外求</div>
+        <span class="toc-quote">"个人能力一定是时代的红利。"</span>
+      </div>
+      <div class="toc-tag">人工智慧</div>
+      <div class="toc-page">p. 266</div>
+    </div>
+
+    <div class="toc-row">
+      <div class="toc-num">XI</div>
+      <div>
+        <div class="toc-title">高客单不在产品 · <em>在人设</em></div>
+        <span class="toc-quote">"高客单一定不是着重在产品，而是着重在你的人设。"</span>
+      </div>
+      <div class="toc-tag">人设</div>
+      <div class="toc-page">p. 240</div>
+    </div>
+
+    <div class="toc-row">
+      <div class="toc-num">X</div>
+      <div>
+        <div class="toc-title">换项目 · <em>不会让你赚到钱</em></div>
+        <span class="toc-quote">"你换到下一个人群，你还是不懂他。"</span>
+      </div>
+      <div class="toc-tag">项目</div>
+      <div class="toc-page">p. 216</div>
+    </div>
+
+    <div class="toc-row">
+      <div class="toc-num">IX</div>
+      <div>
+        <div class="toc-title">别问太多人 · <em>越问越乱</em></div>
+        <span class="toc-quote">"十个人十个答案，你越问越乱。"</span>
+      </div>
+      <div class="toc-tag">决策</div>
+      <div class="toc-page">p. 192</div>
+    </div>
+
+    <div class="toc-row">
+      <div class="toc-num">VIII</div>
+      <div>
+        <div class="toc-title">高单价是<em>双向筛选</em></div>
+        <span class="toc-quote">"单价越高，双向筛选的次数就得越多。"</span>
+      </div>
+      <div class="toc-tag">高客单</div>
+      <div class="toc-page">p. 168</div>
+    </div>
+
+    <div class="toc-row">
+      <div class="toc-num">VII</div>
+      <div>
+        <div class="toc-title">命理不是迷信 · <em>是统计</em></div>
+        <span class="toc-quote">"十四年看下来，我只相信数据。"</span>
+      </div>
+      <div class="toc-tag">命理</div>
+      <div class="toc-page">p. 144</div>
+    </div>
+
+    <div class="toc-row">
+      <div class="toc-num">VI</div>
+      <div>
+        <div class="toc-title">手机一亮 · <em>就偷能量</em></div>
+        <span class="toc-quote">"加到所有好友第一件事情先把提醒关了。"</span>
+      </div>
+      <div class="toc-tag">习惯</div>
+      <div class="toc-page">p. 120</div>
+    </div>
+
+    <div class="toc-row">
+      <div class="toc-num">V</div>
+      <div>
+        <div class="toc-title">副业 · <em>不要小看</em>三千块</div>
+        <span class="toc-quote">"一年就是六万。这是很多人一年平均工资。"</span>
+      </div>
+      <div class="toc-tag">成长</div>
+      <div class="toc-page">p. 96</div>
+    </div>
+
+    <div class="toc-row">
+      <div class="toc-num">IV</div>
+      <div>
+        <div class="toc-title">流量 · <em>八访表</em>与转化</div>
+        <span class="toc-quote">"七又三分之二次他都没答应，就成交不了他。"</span>
+      </div>
+      <div class="toc-tag">流量</div>
+      <div class="toc-page">p. 72</div>
+    </div>
+
+    <div class="toc-row">
+      <div class="toc-num">III</div>
+      <div>
+        <div class="toc-title">把身份做成一个<em>钩子</em></div>
+        <span class="toc-quote">"卖什么？卖小白鼠。"</span>
+      </div>
+      <div class="toc-tag">自介</div>
+      <div class="toc-page">p. 48</div>
+    </div>
+
+    <div class="toc-row">
+      <div class="toc-num">II</div>
+      <div>
+        <div class="toc-title">来回六十趟 · <em>没有诀窍</em></div>
+        <span class="toc-quote">"我就这么来来回回走了 60 趟。"</span>
+      </div>
+      <div class="toc-tag">销售</div>
+      <div class="toc-page">p. 24</div>
+    </div>
+
+    <div class="toc-row">
+      <div class="toc-num">I</div>
+      <div>
+        <div class="toc-title">销售员的<em>态度</em> · 是练出来的</div>
+        <span class="toc-quote">"骄傲只能骄傲十到二十分钟。"</span>
+      </div>
+      <div class="toc-tag">销售</div>
+      <div class="toc-page">p. 1</div>
+    </div>
+
+  </div>
+
+  <p class="toc-foot">
+    每卷之后附人名地名索引与勘误表 — <a href="#">查看完整索引</a>
+  </p>
+</section>
+
+<!-- ============== ARTICLE PREVIEW ============== -->
+<section class="article-section" id="article">
+  <article class="article-page">
+    <div class="article-frame">
+      <div class="article-running">
+        <span><em>Root · Talk</em> · Vol. XIX</span>
+        <span class="ornament">❦</span>
+        <span>Anno · MMXXVI</span>
+      </div>
+
+      <p class="article-chapter">第 十九 卷 · Chapter the Nineteenth</p>
+      <div class="article-roman">XIX.</div>
+      <h1 class="article-title">AI 虚拟乐队 · 是<em>赛道</em><br>合伙人 才是<em>项目</em></h1>
+
+      <div class="article-ornament">❦</div>
+
+      <p class="article-deck">九四年前阿里运营 · 曾把音乐节资源一手凑齐 · 现在和浙音的小伙伴做<em>全 AI 虚拟乐队 IP</em>——根源说："我认识这么多朋友里面，你是第一个做这赛道的。"</p>
+
+      <p class="article-byline">By <em>林根源</em> · 整理 / Claude · MMXXVI · April</p>
+
+      <div class="article-body">
+        <p>原阿里运营、做过本地生活公众号、开过酒吧、办过音乐节选秀——九四年的大俊把履历倒了一遍之后，根源说了一句让全场停顿的话："这赛道挺好的——我认识这么多朋友里面，第一个做这个的。"</p>
+
+        <p>她在做的事情是<b>"AI 虚拟乐队 IP"</b>——全 AI，包括视觉建模、原创音乐、剧情创作。两人合作，她负责对外，浙音的小伙伴负责音乐。这是她从一个被疫情砍掉的"音乐节梦想"长出来的下一步。<em>"前两年想 AI，再加上音乐板块的积累，就琢磨出这条路。"</em></p>
+
+        <h3 class="article-h3">赛道选择的<em>三个判断</em></h3>
+
+        <ol class="article-list">
+          <li><b>赛道好，但门槛在专业度。</b>"你没学过音乐，AI 写出来的歌没办法手动改。所以音乐板块要找一个音乐专业的人。"</li>
+          <li><b>合伙人不是合资人，是同方向的人。</b>"他认我是大统筹这一点就可以了，其他事情我都听。"</li>
+          <li><b>低成本投入是核心优势。</b>"AI 大模型的钱要花一点，开几个会员，其他不太需要花钱。"</li>
+        </ol>
+
+        <blockquote class="article-quote">
+          那次我把所有人脉都找齐了。如果说没有疫情的关系，<em>说不定音乐节就办成了</em>。
+          <span class="article-quote-cite">第十九卷 · 自驱力</span>
+        </blockquote>
+
+        <p>她当时为了办一场音乐节，自己一个人去找了魔动天空的经纪人、西湖音乐节的主办方、上音的老师。一年时间，从零开始把所有资源凑齐了。<b>"前两年一直在想 AI 方向去靠，在想哪一个细分领域适合我。"</b>她最终选了"AI 全栈虚拟乐队"——这是她过去十年所有积累的并集。</p>
+
+        <h3 class="article-h3">兴趣 vs 赚钱<em>这道选择题</em></h3>
+
+        <p>根源问她：你现在会想要以爱好为主，还是以能不能赚钱为主？大俊回答得很干脆："肯定是以盈利为主。但是爱好它能驱动，自驱力会比较大一点。"<em>"主要是我年纪已经大了，都快四十了，所以我选的项目一定要是自己喜欢的。"</em></p>
+
+        <div class="article-pull">
+          <div class="article-pull-num">III<small>次见面</small></div>
+          <p class="article-pull-cap">跟魔动天空经纪人、西湖音乐节主办方、上音老师，<em>都是一次见面就建立深度合作</em>。<b>这就是自驱力之复利</b>——你愿意花时间去找对的人。</p>
+        </div>
+
+        <p>所以根源在第十九卷反复强调一句话：<b>赛道选择不是看哪个赚钱多，是看哪个让你愿意持续投入。</b>"你看说不定音乐这个事情搞一搞就被你搞起来了——这赛道做的人真不多。"——此即兴趣驱动之真值。</p>
+      </div>
+
+      <div class="article-foot">
+        <a href="#">← 上一卷 · XVIII</a>
+        <span class="pageno">— 436 —</span>
+        <a href="#">下一卷 · XX →</a>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ============== PPT GALLERY ============== -->
+<section class="ppt-section" id="ppt">
+  <div class="section-head">
+    <div class="section-eyebrow">Plates · 插页</div>
+    <h2 class="section-h2">每卷附 <em>幻灯</em>一组</h2>
+    <p class="section-sub">十至二十张 16:10 单页幻灯<br>同一套版式 · 同一套色板</p>
+  </div>
+
+  <div class="slides">
+
+    <div class="slide slide--cover">
+      <span class="slide-num">i / xii</span>
+      <div>
+        <div class="slide-cover-volume">Volume XIX</div>
+        <h3 class="slide-cover-h">AI 虚拟乐队<br><em>不是</em> 项目<br>合伙人 <em>才是</em>。</h3>
+        <p class="slide-cover-deck">九四年前阿里运营 · 把音乐节资源一手凑齐 · 现在做全 AI 虚拟乐队——根源说"我认识的朋友里第一个做这赛道"。</p>
+      </div>
+      <div class="slide-cover-foot">
+        <span>By 林根源</span>
+        <span>MMXXVI · WK XIX</span>
+      </div>
+    </div>
+
+    <div class="slide slide--quote">
+      <span class="slide-num">ii / xii</span>
+      <div>
+        <div class="slide-quote-mark">"</div>
+        <p class="slide-quote-text">销售就三个词：<br>第一个坚持，第二个不要脸，<br>第三个 <em>坚持不要脸。</em></p>
+      </div>
+      <div class="slide-quote-cite">第 IV 卷 · 销售方法</div>
+    </div>
+
+    <div class="slide slide--data">
+      <span class="slide-num">iii / xii</span>
+      <div>
+        <div class="slide-data-num">25<small>万</small></div>
+        <div class="slide-data-lab">Single Product Max</div>
+      </div>
+      <p class="slide-data-cap">今年卖了四个 · 无一来自一级流量。</p>
+    </div>
+
+    <div class="slide slide--list">
+      <span class="slide-num">iv / xii</span>
+      <h4 class="slide-list-h">高客单的<em>三个真相</em></h4>
+      <ul>
+        <li>低金额客户<b>天天烦你</b></li>
+        <li>高金额是<b>双向筛选</b></li>
+        <li>高质圈子<b>选出来</b>的</li>
+      </ul>
+    </div>
+
+    <div class="slide slide--two">
+      <span class="slide-num">v / xii</span>
+      <div class="slide-two-col">
+        <div class="slide-two-tag">— Don't —</div>
+        <h4>流量思维</h4>
+        <p class="slide-two-cap">把人当流量，<br>追求获客成本。</p>
+      </div>
+      <div class="slide-two-col">
+        <div class="slide-two-tag">— Do —</div>
+        <h4>人设 <em>思维</em></h4>
+        <p class="slide-two-cap">把人当长期关系，<br>追求被介绍率。</p>
+      </div>
+    </div>
+
+    <div class="slide slide--bigtype">
+      <span class="slide-num">vi / xii</span>
+      <h3 class="slide-bigtype-h">习惯<br>比能力<br><em>重要二倍</em></h3>
+      <div class="slide-bigtype-foot">第 XIII 卷 · 习惯</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== COLOPHON ============== -->
+<footer class="footer" id="about">
+  <div class="footer-logo">Root <em>·</em> Talk</div>
+  <div class="footer-tag">A Weekly Reader · Hangzhou · Since MMXXIV</div>
+  <p class="footer-mid">"不备课，<em>不录播</em>。<br>用最真实的状态分享。"</p>
+  <p class="footer-cite">— 林 根源 · ROOT —</p>
+  <div class="footer-links">
+    <a href="#toc">Index 目录</a>
+    <a href="#article">Read 阅读</a>
+    <a href="#ppt">Plates 插页</a>
+    <a href="#">Subscribe 订阅</a>
+    <a href="#">Submit 投稿</a>
+    <a href="#">Colophon 版权</a>
+  </div>
+  <div class="footer-strip">
+    <span>© 生财有术 · 根源场 · MMXXIV–MMXXVI</span>
+    <span>由根源整理 · AI 辅助排版 · Set in EB Garamond</span>
+    <span>Library Edition · Demo · v1</span>
+  </div>
+</footer>
+
+<script src="style-switcher.js"></script>
+</body>
+</html>
