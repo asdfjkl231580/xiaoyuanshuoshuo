@@ -253,6 +253,34 @@ a{color:inherit;text-decoration:none}
 </style>
 </head>
 <body class="texture">
+<!-- ═════ 全局风格切换条 · 5 选项跳转 ═════ -->
+<div class="gsb" id="gsb">
+  <a href="index.html" data-style=""><span class="gsb-icon">⌂</span><span>经典</span></a>
+  <a href="site-studio.html" data-style="studio"><span class="gsb-dot" style="background:#D97757"></span><span>工作室</span></a>
+  <a href="site-editorial.html" data-style="editorial"><span class="gsb-dot" style="background:#0E5C4F"></span><span>编辑部</span></a>
+  <a href="site-library.html" data-style="library"><span class="gsb-dot" style="background:#7B2C1B"></span><span>图书馆</span></a>
+  <a href="site-y2k.html" data-style="y2k"><span class="gsb-dot" style="background:#FF2EA0"></span><span>Y2K</span></a>
+</div>
+<style>
+.gsb{background:rgba(8,8,12,0.97);padding:9px 24px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap;font-family:-apple-system,'PingFang SC','Noto Sans SC',sans-serif;border-bottom:1px solid rgba(255,255,255,0.08);position:sticky;top:0;z-index:200}
+.gsb a{display:inline-flex;align-items:center;gap:7px;padding:6px 14px;color:rgba(255,255,255,0.7);font-size:12px;font-weight:500;letter-spacing:0.04em;border-radius:100px;text-decoration:none;transition:all 0.18s;border:1px solid transparent;font-style:normal !important;font-family:inherit !important;text-transform:none !important}
+.gsb a:hover{color:#fff;background:rgba(255,255,255,0.07)}
+.gsb a.gsb-cur{background:rgba(255,255,255,0.13);color:#fff;border-color:rgba(255,255,255,0.2)}
+.gsb a span{font-style:normal !important;text-transform:none !important;font-weight:500 !important;color:inherit !important;letter-spacing:0.04em !important;font-family:inherit !important}
+.gsb-dot{width:9px;height:9px;border-radius:50%;display:inline-block;flex-shrink:0}
+.gsb-icon{font-size:13px;opacity:0.85}
+@media(max-width:520px){.gsb{padding:7px 12px;gap:3px}.gsb a{padding:5px 9px;font-size:11px}}
+</style>
+<script>
+(function(){
+  var m=location.pathname.match(/site-([a-z0-9]+)\.html/);
+  var cur=m?m[1]:'';
+  document.querySelectorAll('#gsb a').forEach(function(a){
+    a.classList.toggle('gsb-cur',(a.dataset.style||'')===cur);
+  });
+})();
+</script>
+
 
 <!-- ============== TOP STRIP ============== -->
 <div class="tstrip">
