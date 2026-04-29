@@ -1,0 +1,405 @@
+/* ============================================================
+   themes-extra.css · 4 套整站主题皮肤
+   作用：覆盖现有 [data-theme] 配色，让主页/文章页能切换 4 套 demo 风格
+
+   用法（任意页面）：
+     <link rel="stylesheet" href="themes-extra.css"> // 主页
+     <link rel="stylesheet" href="../themes-extra.css"> // sessions 子页
+     // 切换：document.documentElement.setAttribute('data-style', 'studio')
+     // 清除：document.documentElement.removeAttribute('data-style')
+
+   字体来源：Google Fonts（已在主页/各 demo 加载，子页也通过本文件 @import 兜底）
+   ============================================================ */
+
+/* 字体兜底（页面没引时本文件保证可用） */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Manrope:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:wght@400;500;600&family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=VT323&family=Major+Mono+Display&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+/* ════════════════════════════════════════════════════════════
+   工作室版 · Studio · Zine 风（米奶油 + 软陶橙 + 鼠尾草绿）
+   字体：Fraunces 斜体衬线 + Manrope 无衬线
+   ════════════════════════════════════════════════════════════ */
+html[data-style="studio"] {
+  --bg: #FFF8EE !important;
+  --bg-bar: rgba(255,248,238,0.85) !important;
+  --bg-subtle: #FCF6E9 !important;
+  --bg-hero-a: #FFF8EE !important;
+  --bg-hero-b: #FCF6E9 !important;
+  --bg-glow: rgba(217,119,87,0.08) !important;
+  --bg-toc: #FFFFFF !important;
+  --bg-card: #FFFFFF !important;
+  --bg-info: #FCF6E9 !important;
+  --border: rgba(43,41,38,0.08) !important;
+  --rule: rgba(43,41,38,0.12) !important;
+  --footer-border: rgba(43,41,38,0.12) !important;
+  --accent: #D97757 !important;
+  --accent-bg: rgba(217,119,87,0.1) !important;
+  --accent-bg2: rgba(217,119,87,0.18) !important;
+  --accent-border: rgba(217,119,87,0.2) !important;
+  --accent-border2: rgba(217,119,87,0.35) !important;
+  --accent-dim: rgba(217,119,87,0.08) !important;
+  --text: #2B2926 !important;
+  --text-heading: #1F1D1A !important;
+  --text-sub: #2B2926 !important;
+  --text-quote: #2B2926 !important;
+  --text-muted: #6B6760 !important;
+  --text-dim: #9B9690 !important;
+  --bq-bg: rgba(107,155,143,0.06) !important;
+  --bq-border: #6B9B8F !important;
+  --pop-bg: rgba(255,255,255,0.97) !important;
+  --pop-border: rgba(217,119,87,0.35) !important;
+  --pop-shadow: 0 18px 40px rgba(43,41,38,0.18) !important;
+  --top-bar-bg: rgba(255,248,238,0.92) !important;
+}
+html[data-style="studio"] body {
+  font-family: 'Manrope','Noto Sans SC',-apple-system,sans-serif !important;
+  background: var(--bg) !important;
+  background-image: radial-gradient(circle at 12% 18%,rgba(217,119,87,0.06) 0%,transparent 42%),
+                    radial-gradient(circle at 88% 78%,rgba(107,155,143,0.08) 0%,transparent 48%) !important;
+}
+html[data-style="studio"] h1,
+html[data-style="studio"] h2,
+html[data-style="studio"] h3,
+html[data-style="studio"] .tl-title,
+html[data-style="studio"] .article-title,
+html[data-style="studio"] .hero-title,
+html[data-style="studio"] .pm-sec-title {
+  font-family: 'Fraunces','Noto Serif SC',serif !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02em !important;
+}
+html[data-style="studio"] em {
+  font-style: italic !important;
+  color: #D97757 !important;
+  font-weight: 400 !important;
+}
+html[data-style="studio"] blockquote {
+  border-left: 3px solid #6B9B8F !important;
+  background: rgba(107,155,143,0.08) !important;
+  border-radius: 0 12px 12px 0 !important;
+  font-family: 'Fraunces',serif !important;
+  font-style: italic !important;
+}
+html[data-style="studio"] .tl-card,
+html[data-style="studio"] .topic-row,
+html[data-style="studio"] .archive-card,
+html[data-style="studio"] .quote-card {
+  border-radius: 16px !important;
+}
+html[data-style="studio"] button,
+html[data-style="studio"] .btn,
+html[data-style="studio"] .nav-cta,
+html[data-style="studio"] .topic-link {
+  border-radius: 999px !important;
+}
+html[data-style="studio"] .layout-chip,
+html[data-style="studio"] .theme-chip {
+  border-radius: 999px !important;
+  font-family: 'Fraunces',serif !important;
+  font-style: italic !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   编辑部版 · Editorial · Apple/Stripe 极简（浅灰白 + 墨绿）
+   字体：Inter Tight 紧凑大写 + Inter 正文
+   ════════════════════════════════════════════════════════════ */
+html[data-style="editorial"] {
+  --bg: #FAFAF8 !important;
+  --bg-bar: rgba(250,250,248,0.84) !important;
+  --bg-subtle: #FFFFFF !important;
+  --bg-hero-a: #FAFAF8 !important;
+  --bg-hero-b: #FFFFFF !important;
+  --bg-glow: rgba(14,92,79,0.04) !important;
+  --bg-toc: #FFFFFF !important;
+  --bg-card: #FFFFFF !important;
+  --bg-info: #F1F2F4 !important;
+  --border: #E6E8EC !important;
+  --rule: #E6E8EC !important;
+  --footer-border: #E6E8EC !important;
+  --accent: #0E5C4F !important;
+  --accent-bg: rgba(14,92,79,0.08) !important;
+  --accent-bg2: rgba(14,92,79,0.14) !important;
+  --accent-border: rgba(14,92,79,0.18) !important;
+  --accent-border2: rgba(14,92,79,0.3) !important;
+  --accent-dim: rgba(14,92,79,0.06) !important;
+  --text: #1E232B !important;
+  --text-heading: #0E1116 !important;
+  --text-sub: #1E232B !important;
+  --text-quote: #1E232B !important;
+  --text-muted: #6B7280 !important;
+  --text-dim: #94A1AE !important;
+  --bq-bg: #F1F2F4 !important;
+  --bq-border: #0E5C4F !important;
+  --pop-bg: rgba(255,255,255,0.98) !important;
+  --pop-border: rgba(14,92,79,0.28) !important;
+  --pop-shadow: 0 12px 32px rgba(14,17,22,0.12) !important;
+  --top-bar-bg: rgba(250,250,248,0.92) !important;
+}
+html[data-style="editorial"] body {
+  font-family: 'Inter','Noto Sans SC',-apple-system,sans-serif !important;
+  background: var(--bg) !important;
+  font-feature-settings: 'ss01','cv11' !important;
+}
+html[data-style="editorial"] h1,
+html[data-style="editorial"] h2,
+html[data-style="editorial"] h3,
+html[data-style="editorial"] .tl-title,
+html[data-style="editorial"] .article-title,
+html[data-style="editorial"] .hero-title,
+html[data-style="editorial"] .pm-sec-title {
+  font-family: 'Inter Tight','Noto Sans SC',sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.025em !important;
+}
+html[data-style="editorial"] em {
+  font-style: normal !important;
+  background: linear-gradient(transparent 65%,rgba(255,241,112,0.55) 65%) !important;
+  font-weight: 600 !important;
+  color: #0E1116 !important;
+  padding: 0 2px !important;
+}
+html[data-style="editorial"] blockquote {
+  border-left: 3px solid #0E5C4F !important;
+  background: #F1F2F4 !important;
+  border-radius: 0 8px 8px 0 !important;
+  font-family: 'Inter','Noto Sans SC',sans-serif !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+}
+html[data-style="editorial"] .tl-card,
+html[data-style="editorial"] .topic-row,
+html[data-style="editorial"] .archive-card,
+html[data-style="editorial"] .quote-card {
+  border-radius: 12px !important;
+  border: 1px solid #E6E8EC !important;
+}
+html[data-style="editorial"] button,
+html[data-style="editorial"] .btn,
+html[data-style="editorial"] .nav-cta,
+html[data-style="editorial"] .topic-link,
+html[data-style="editorial"] .layout-chip,
+html[data-style="editorial"] .theme-chip {
+  border-radius: 8px !important;
+  font-family: 'Inter','Noto Sans SC',sans-serif !important;
+  font-weight: 600 !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   图书馆版 · Library · Penguin Classics（麻布米 + 酒红 + 古金）
+   字体：Cormorant Garamond + EB Garamond 衬线
+   ════════════════════════════════════════════════════════════ */
+html[data-style="library"] {
+  --bg: #EFE7D2 !important;
+  --bg-bar: rgba(239,231,210,0.92) !important;
+  --bg-subtle: #F5EFE0 !important;
+  --bg-hero-a: #F5EFE0 !important;
+  --bg-hero-b: #EFE7D2 !important;
+  --bg-glow: rgba(123,44,27,0.06) !important;
+  --bg-toc: #F9F3DD !important;
+  --bg-card: #F9F3DD !important;
+  --bg-info: #F5EFE0 !important;
+  --border: rgba(31,37,25,0.18) !important;
+  --rule: rgba(31,37,25,0.18) !important;
+  --footer-border: rgba(31,37,25,0.22) !important;
+  --accent: #7B2C1B !important;
+  --accent-bg: rgba(123,44,27,0.08) !important;
+  --accent-bg2: rgba(123,44,27,0.14) !important;
+  --accent-border: rgba(123,44,27,0.24) !important;
+  --accent-border2: rgba(123,44,27,0.4) !important;
+  --accent-dim: rgba(163,125,58,0.12) !important;
+  --text: #1F2519 !important;
+  --text-heading: #1F2519 !important;
+  --text-sub: #2C3322 !important;
+  --text-quote: #1F2519 !important;
+  --text-muted: #5C5440 !important;
+  --text-dim: #8C8470 !important;
+  --bq-bg: #F5EFE0 !important;
+  --bq-border: #7B2C1B !important;
+  --pop-bg: #F9F3DD !important;
+  --pop-border: #A37D3A !important;
+  --pop-shadow: 0 18px 36px rgba(31,37,25,0.18) !important;
+  --top-bar-bg: rgba(239,231,210,0.94) !important;
+}
+html[data-style="library"] body {
+  font-family: 'EB Garamond','Noto Serif SC',Georgia,serif !important;
+  background: var(--bg) !important;
+  background-image: radial-gradient(circle at 20% 30%,rgba(163,125,58,0.05) 0%,transparent 50%),
+                    radial-gradient(circle at 80% 70%,rgba(31,37,25,0.04) 0%,transparent 50%) !important;
+  font-size: 17px !important;
+  line-height: 1.85 !important;
+}
+html[data-style="library"] h1,
+html[data-style="library"] h2,
+html[data-style="library"] h3,
+html[data-style="library"] .tl-title,
+html[data-style="library"] .article-title,
+html[data-style="library"] .hero-title,
+html[data-style="library"] .pm-sec-title {
+  font-family: 'Cormorant Garamond','Noto Serif SC',serif !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.005em !important;
+}
+html[data-style="library"] em {
+  font-style: italic !important;
+  color: #7B2C1B !important;
+  font-weight: 500 !important;
+}
+html[data-style="library"] blockquote {
+  border-top: 1px solid #A37D3A !important;
+  border-bottom: 1px solid #A37D3A !important;
+  border-left: none !important;
+  border-right: none !important;
+  background: linear-gradient(180deg,#F9F3DD 0%,#F5EFE0 100%) !important;
+  font-family: 'Cormorant Garamond',serif !important;
+  font-style: italic !important;
+  font-weight: 500 !important;
+  border-radius: 0 !important;
+  padding: 24px 32px !important;
+}
+html[data-style="library"] hr,
+html[data-style="library"] .quotes-divider {
+  border: none !important;
+  border-top: 3px double #A37D3A !important;
+  margin: 36px auto !important;
+}
+html[data-style="library"] .tl-card,
+html[data-style="library"] .topic-row,
+html[data-style="library"] .archive-card,
+html[data-style="library"] .quote-card {
+  border-radius: 0 !important;
+  border-color: rgba(31,37,25,0.18) !important;
+}
+html[data-style="library"] button,
+html[data-style="library"] .btn,
+html[data-style="library"] .nav-cta,
+html[data-style="library"] .topic-link,
+html[data-style="library"] .layout-chip,
+html[data-style="library"] .theme-chip {
+  border-radius: 0 !important;
+  font-family: 'EB Garamond',serif !important;
+  font-style: italic !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   Y2K 版 · Cyber（暗黑 + 荧光青 + 品红撞色）
+   字体：Bebas Neue 巨型大写 + Space Grotesk 正文 + VT323 等宽
+   ════════════════════════════════════════════════════════════ */
+html[data-style="y2k"] {
+  --bg: #08070A !important;
+  --bg-bar: rgba(8,7,10,0.88) !important;
+  --bg-subtle: #14131A !important;
+  --bg-hero-a: #08070A !important;
+  --bg-hero-b: #14131A !important;
+  --bg-glow: rgba(255,46,160,0.1) !important;
+  --bg-toc: #0F0E14 !important;
+  --bg-card: #0F0E14 !important;
+  --bg-info: #14131A !important;
+  --border: rgba(0,255,224,0.18) !important;
+  --rule: rgba(0,255,224,0.15) !important;
+  --footer-border: rgba(0,255,224,0.18) !important;
+  --accent: #00FFE0 !important;
+  --accent-bg: rgba(0,255,224,0.1) !important;
+  --accent-bg2: rgba(0,255,224,0.18) !important;
+  --accent-border: rgba(0,255,224,0.3) !important;
+  --accent-border2: rgba(0,255,224,0.5) !important;
+  --accent-dim: rgba(255,46,160,0.12) !important;
+  --text: #F2F0EB !important;
+  --text-heading: #F2F0EB !important;
+  --text-sub: #F2F0EB !important;
+  --text-quote: #F2F0EB !important;
+  --text-muted: rgba(242,240,235,0.7) !important;
+  --text-dim: rgba(242,240,235,0.5) !important;
+  --bq-bg: rgba(255,46,160,0.06) !important;
+  --bq-border: #FF2EA0 !important;
+  --pop-bg: rgba(15,14,20,0.97) !important;
+  --pop-border: #00FFE0 !important;
+  --pop-shadow: 0 0 30px rgba(0,255,224,0.25),0 18px 40px rgba(0,0,0,0.6) !important;
+  --top-bar-bg: rgba(8,7,10,0.94) !important;
+}
+html[data-style="y2k"] body {
+  font-family: 'Space Grotesk','Noto Sans SC',sans-serif !important;
+  background: var(--bg) !important;
+  background-image: linear-gradient(rgba(0,255,224,0.05) 1px,transparent 1px),
+                    linear-gradient(90deg,rgba(0,255,224,0.05) 1px,transparent 1px) !important;
+  background-size: 48px 48px !important;
+  color: var(--text) !important;
+}
+html[data-style="y2k"] body::before {
+  content: '' !important;
+  position: fixed !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  background: repeating-linear-gradient(180deg,transparent 0,transparent 2px,rgba(0,255,224,0.03) 2px,rgba(0,255,224,0.03) 3px) !important;
+  z-index: 1 !important;
+  display: block !important;
+}
+html[data-style="y2k"] h1,
+html[data-style="y2k"] h2,
+html[data-style="y2k"] h3,
+html[data-style="y2k"] .tl-title,
+html[data-style="y2k"] .article-title,
+html[data-style="y2k"] .hero-title,
+html[data-style="y2k"] .pm-sec-title {
+  font-family: 'Bebas Neue','Noto Sans SC',sans-serif !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 0.95 !important;
+}
+html[data-style="y2k"] em {
+  font-style: normal !important;
+  color: #FF2EA0 !important;
+  font-weight: 700 !important;
+  background: rgba(255,46,160,0.08) !important;
+  padding: 0 4px !important;
+}
+html[data-style="y2k"] blockquote {
+  border-left: 3px solid #FF2EA0 !important;
+  background: rgba(255,46,160,0.06) !important;
+  border-radius: 0 4px 4px 0 !important;
+  font-family: 'Space Grotesk',sans-serif !important;
+  color: #F2F0EB !important;
+}
+html[data-style="y2k"] .tl-card,
+html[data-style="y2k"] .topic-row,
+html[data-style="y2k"] .archive-card,
+html[data-style="y2k"] .quote-card {
+  border-radius: 4px !important;
+  border: 1px solid rgba(0,255,224,0.18) !important;
+  background: #0F0E14 !important;
+  position: relative;
+  z-index: 2;
+}
+html[data-style="y2k"] button,
+html[data-style="y2k"] .btn,
+html[data-style="y2k"] .nav-cta,
+html[data-style="y2k"] .topic-link {
+  border-radius: 4px !important;
+  font-family: 'JetBrains Mono','VT323',monospace !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+}
+html[data-style="y2k"] .layout-chip,
+html[data-style="y2k"] .theme-chip {
+  border-radius: 4px !important;
+  font-family: 'JetBrains Mono',monospace !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  border-color: rgba(0,255,224,0.3) !important;
+}
+html[data-style="y2k"] code,
+html[data-style="y2k"] .mono {
+  font-family: 'VT323','JetBrains Mono',monospace !important;
+}
+html[data-style="y2k"] a {
+  color: #00FFE0 !important;
+}
+html[data-style="y2k"] a:hover {
+  color: #FF2EA0 !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   通用：让 nav 风格按钮自身根据当前 data-style 高亮
+   ════════════════════════════════════════════════════════════ */
+[data-style-btn].active {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}

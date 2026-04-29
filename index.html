@@ -2333,6 +2333,7 @@ body > * { position: relative; z-index: 1; }
   .card-share-btn:hover { color: var(--accent); border-color: var(--accent); transform: scale(1.1); }
 
 </style>
+<link rel="stylesheet" href="themes-extra.css">
 </head>
 <body>
 
@@ -2347,10 +2348,11 @@ body > * { position: relative; z-index: 1; }
       <button class="layout-chip" data-layout-chip="timeline" onclick="setLayout('timeline')" title="时间线版">时间线</button>
     </div>
     <div class="layout-switcher" role="group" aria-label="封面风格切换" style="margin-left:8px">
-      <a class="layout-chip" href="site-studio.html"    title="Zine 工作室版 · 软陶橙 + Fraunces 斜体" style="text-decoration:none;border-color:#D97757;color:inherit"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#D97757;margin-right:5px;vertical-align:1px"></span>工作室</a>
-      <a class="layout-chip" href="site-editorial.html" title="Editorial 编辑部版 · 极简墨绿 + Inter Tight" style="text-decoration:none;border-color:#0E5C4F;color:inherit"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#0E5C4F;margin-right:5px;vertical-align:1px"></span>编辑部</a>
-      <a class="layout-chip" href="site-library.html"   title="Penguin 图书馆版 · 麻布酒红 + EB Garamond" style="text-decoration:none;border-color:#7B2C1B;color:inherit"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#7B2C1B;margin-right:5px;vertical-align:1px"></span>图书馆</a>
-      <a class="layout-chip" href="site-y2k.html"       title="Y2K 版 · 荧光撞色 + Bebas Neue" style="text-decoration:none;border-color:#FF2EA0;color:inherit"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#FF2EA0;margin-right:5px;vertical-align:1px"></span>Y2K</a>
+      <button class="layout-chip" data-style-btn="" onclick="setSiteStyle('')" title="经典 · 默认配色">经典</button>
+      <button class="layout-chip" data-style-btn="studio"    onclick="setSiteStyle('studio')"    title="Zine 工作室版 · 软陶橙 + Fraunces 斜体" style="border-color:#D97757;color:#D97757"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#D97757;margin-right:5px;vertical-align:1px"></span>工作室</button>
+      <button class="layout-chip" data-style-btn="editorial" onclick="setSiteStyle('editorial')" title="Editorial 编辑部版 · 极简墨绿 + Inter Tight" style="border-color:#0E5C4F;color:#0E5C4F"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#0E5C4F;margin-right:5px;vertical-align:1px"></span>编辑部</button>
+      <button class="layout-chip" data-style-btn="library"   onclick="setSiteStyle('library')"   title="Penguin 图书馆版 · 麻布酒红 + EB Garamond" style="border-color:#7B2C1B;color:#7B2C1B"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#7B2C1B;margin-right:5px;vertical-align:1px"></span>图书馆</button>
+      <button class="layout-chip" data-style-btn="y2k"       onclick="setSiteStyle('y2k')"       title="Y2K 版 · 荧光撞色 + Bebas Neue" style="border-color:#FF2EA0;color:#FF2EA0"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#FF2EA0;margin-right:5px;vertical-align:1px"></span>Y2K</button>
     </div>
   </div>
   <div class="theme-switcher" role="group" aria-label="主题切换">
@@ -2618,6 +2620,36 @@ function setLayout(l) {
   localStorage.setItem('sc-layout', l);
   applyLayout(l);
 }
+
+// ===================================================================
+// SITE STYLE SYSTEM — 4 套整站皮肤主题（覆盖现有 dark/light/paper/ocean 配色）
+//   '' 经典 / 'studio' 工作室 / 'editorial' 编辑部 / 'library' 图书馆 / 'y2k' Y2K
+// ===================================================================
+const SITE_STYLES = ['', 'studio', 'editorial', 'library', 'y2k'];
+
+function getSiteStyle() {
+  const saved = localStorage.getItem('sc-style');
+  return SITE_STYLES.includes(saved) ? saved : '';
+}
+
+function applySiteStyle(s) {
+  if (s) {
+    document.documentElement.setAttribute('data-style', s);
+  } else {
+    document.documentElement.removeAttribute('data-style');
+  }
+  document.querySelectorAll('[data-style-btn]').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.styleBtn === s);
+  });
+}
+
+function setSiteStyle(s) {
+  if (!SITE_STYLES.includes(s)) return;
+  localStorage.setItem('sc-style', s);
+  applySiteStyle(s);
+}
+
+applySiteStyle(getSiteStyle());
 
 // ===================================================================
 // INSIGHTS — 金句洞察 marquee (A 步骤新增)

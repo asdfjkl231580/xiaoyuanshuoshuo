@@ -1,41 +1,104 @@
 /**
- * 生财活动站 · 风格切换器
- * 在 5 套 demo 之间快速切换。注入到右下角浮动胶囊。
+ * 生财活动站 · 整站风格切换器（换皮模式）
+ * 注入到任何页面后自动获得：
+ *   1. themes-extra.css 引用（自动判断相对路径）
+ *   2. 右下角浮动胶囊 UI（4 套主题 + 经典）
+ *   3. 点击切换 <html data-style="X"> → 整页换肤
+ *   4. localStorage 持久化（与主页 nav 切换器联动）
  */
-(function(){
+(function () {
+  // ════════════════════════════════════════════════
+  // 1. 自动注入 themes-extra.css（路径自适应）
+  // ════════════════════════════════════════════════
+  const cssHref = (() => {
+    const sel = document.currentScript || document.querySelector('script[src$="style-switcher.js"]');
+    const src = sel ? sel.getAttribute('src') : '';
+    // src 形如 "style-switcher.js" / "../style-switcher.js"
+    const prefix = src.replace(/style-switcher\.js$/, '');
+    return prefix + 'themes-extra.css';
+  })();
+  if (!document.querySelector(`link[href="${cssHref}"]`)) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = cssHref;
+    document.head.appendChild(link);
+  }
+
+  // ════════════════════════════════════════════════
+  // 2. 主题数据
+  // ════════════════════════════════════════════════
   const styles = [
-    { id: 'studio',    name: '工作室版',  file: 'site-studio.html',    sub: 'Zine · 软陶橙',        color: '#D97757' },
-    { id: 'editorial', name: '编辑部版',  file: 'site-editorial.html', sub: 'Editorial · 极简墨绿',  color: '#0E5C4F' },
-    { id: 'library',   name: '图书馆版',  file: 'site-library.html',   sub: 'Penguin · 麻布酒红',   color: '#7B2C1B' },
-    { id: 'y2k',       name: 'Y2K 版',    file: 'site-y2k.html',       sub: 'Cyber · 荧光撞色',     color: '#FF2EA0' },
+    { id: '',          name: '经典',     sub: '夜昼纸海 · 默认配色',  color: '#888888' },
+    { id: 'studio',    name: '工作室版', sub: 'Zine · 软陶橙',        color: '#D97757' },
+    { id: 'editorial', name: '编辑部版', sub: 'Editorial · 极简墨绿',  color: '#0E5C4F' },
+    { id: 'library',   name: '图书馆版', sub: 'Penguin · 麻布酒红',   color: '#7B2C1B' },
+    { id: 'y2k',       name: 'Y2K 版',   sub: 'Cyber · 荧光撞色',     color: '#FF2EA0' },
   ];
 
-  const current = (location.pathname.match(/site-(\w+)\.html/) || [])[1] || '';
+  // ════════════════════════════════════════════════
+  // 3. 切换逻辑
+  // ════════════════════════════════════════════════
+  function getCurrent() {
+    const saved = localStorage.getItem('sc-style');
+    return styles.some(s => s.id === saved) ? saved : '';
+  }
+  function applyStyle(s) {
+    if (s) document.documentElement.setAttribute('data-style', s);
+    else document.documentElement.removeAttribute('data-style');
+    // 同步 nav 上 data-style-btn 的高亮
+    document.querySelectorAll('[data-style-btn]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.styleBtn === s);
+    });
+    // 同步右下角胶囊上的当前色点
+    const fabDot = document.querySelector('#sx-switcher .sx-fab .sx-dot');
+    if (fabDot) {
+      const cur = styles.find(x => x.id === s) || styles[0];
+      fabDot.style.background = cur.color;
+    }
+    // 高亮菜单中当前项
+    document.querySelectorAll('#sx-switcher .sx-opt').forEach(opt => {
+      opt.classList.toggle('active', opt.dataset.styleId === s);
+    });
+  }
+  function setStyle(s) {
+    if (!styles.some(x => x.id === s)) return;
+    localStorage.setItem('sc-style', s);
+    applyStyle(s);
+  }
+  // 初始恢复
+  applyStyle(getCurrent());
+  // 跨页/跨标签同步
+  window.addEventListener('storage', e => {
+    if (e.key === 'sc-style') applyStyle(getCurrent());
+  });
 
+  // ════════════════════════════════════════════════
+  // 4. 注入右下角浮动 UI
+  // ════════════════════════════════════════════════
+  const cur = getCurrent();
   const wrap = document.createElement('div');
   wrap.id = 'sx-switcher';
   wrap.innerHTML = `
     <button class="sx-fab" aria-label="切换风格">
-      <span class="sx-dot" style="background:${(styles.find(s=>s.id===current)||styles[0]).color}"></span>
+      <span class="sx-dot" style="background:${(styles.find(s => s.id === cur) || styles[0]).color}"></span>
       <span class="sx-fab-text">风格</span>
       <span class="sx-fab-icon">⌃</span>
     </button>
     <div class="sx-menu" role="menu">
-      <div class="sx-title">4 套封面 · 第 19 场已上线</div>
+      <div class="sx-title">整站换皮 · 4 套封面风格</div>
       ${styles.map(s => `
-        <a href="${s.file}" class="sx-opt${s.id===current?' active':''}" data-id="${s.id}">
+        <a class="sx-opt${s.id === cur ? ' active' : ''}" data-style-id="${s.id}" href="javascript:void(0)">
           <span class="sx-dot" style="background:${s.color}"></span>
-          <span class="sx-name">
-            <b>${s.name}</b>
-            <small>${s.sub}</small>
-          </span>
-          ${s.id===current?'<span class="sx-tick">·当前·</span>':'<span class="sx-arrow">→</span>'}
+          <span class="sx-name"><b>${s.name}</b><small>${s.sub}</small></span>
+          ${s.id === cur ? '<span class="sx-tick">·当前·</span>' : '<span class="sx-arrow">→</span>'}
         </a>`).join('')}
-      <a href="index.html" class="sx-back">返回 18 场目录主页</a>
     </div>
   `;
   document.body.appendChild(wrap);
 
+  // ════════════════════════════════════════════════
+  // 5. UI CSS（独立于站点其他 CSS，不受换肤影响）
+  // ════════════════════════════════════════════════
   const css = `
     #sx-switcher { position: fixed; bottom: 22px; right: 22px; z-index: 99999; font-family: -apple-system, 'PingFang SC', 'Noto Sans SC', sans-serif; line-height: 1.4; }
     #sx-switcher *, #sx-switcher *::before, #sx-switcher *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,7 +111,7 @@
       transition: transform 0.2s, box-shadow 0.2s; font-family: inherit;
     }
     .sx-fab:hover { transform: translateY(-2px); box-shadow: 0 18px 40px rgba(0,0,0,0.45), 0 4px 12px rgba(0,0,0,0.3); }
-    .sx-fab .sx-dot { width: 10px; height: 10px; border-radius: 50%; box-shadow: 0 0 0 2px rgba(255,255,255,0.18); }
+    .sx-fab .sx-dot { width: 10px; height: 10px; border-radius: 50%; box-shadow: 0 0 0 2px rgba(255,255,255,0.18); transition: background 0.25s; }
     .sx-fab-icon { font-size: 11px; opacity: 0.6; transition: transform 0.25s; }
     #sx-switcher.open .sx-fab-icon { transform: rotate(180deg); }
     .sx-menu {
@@ -67,8 +130,8 @@
     }
     .sx-opt {
       display: flex; align-items: center; gap: 12px;
-      padding: 11px 12px; color: #FFF; text-decoration: none;
-      border-radius: 10px; transition: background 0.15s;
+      padding: 11px 12px; color: #FFF !important; text-decoration: none !important;
+      border-radius: 10px; transition: background 0.15s; cursor: pointer;
     }
     .sx-opt:hover { background: rgba(255,255,255,0.07); }
     .sx-opt.active { background: rgba(255,255,255,0.11); }
@@ -78,13 +141,6 @@
     .sx-name small { font-size: 11px; color: rgba(255,255,255,0.55); font-weight: 400; letter-spacing: 0.02em; }
     .sx-arrow { color: rgba(255,255,255,0.4); font-size: 14px; }
     .sx-tick { font-size: 9px; color: #00E5A0; letter-spacing: 0.18em; font-weight: 700; }
-    .sx-back {
-      display: block; padding: 10px 12px; margin-top: 6px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.6); text-decoration: none;
-      font-size: 12px; text-align: center; transition: color 0.15s;
-    }
-    .sx-back:hover { color: #FFF; }
     @media (max-width: 640px) {
       #sx-switcher { bottom: 14px; right: 14px; }
       .sx-fab-text { display: none; }
@@ -96,10 +152,31 @@
   style.textContent = css;
   document.head.appendChild(style);
 
+  // ════════════════════════════════════════════════
+  // 6. 事件
+  // ════════════════════════════════════════════════
   const fab = wrap.querySelector('.sx-fab');
   fab.addEventListener('click', e => {
     e.stopPropagation();
     wrap.classList.toggle('open');
+  });
+  wrap.querySelectorAll('.sx-opt').forEach(opt => {
+    opt.addEventListener('click', e => {
+      e.preventDefault();
+      const id = opt.dataset.styleId;
+      setStyle(id);
+      // 重新渲染菜单当前态
+      wrap.querySelectorAll('.sx-opt').forEach(o => {
+        o.classList.toggle('active', o.dataset.styleId === id);
+        const tickEl = o.querySelector('.sx-tick, .sx-arrow');
+        if (tickEl) {
+          tickEl.outerHTML = o.dataset.styleId === id
+            ? '<span class="sx-tick">·当前·</span>'
+            : '<span class="sx-arrow">→</span>';
+        }
+      });
+      wrap.classList.remove('open');
+    });
   });
   document.addEventListener('click', e => {
     if (!wrap.contains(e.target)) wrap.classList.remove('open');
@@ -107,4 +184,7 @@
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') wrap.classList.remove('open');
   });
+
+  // 暴露给页面 nav 上的 onclick="setSiteStyle('xxx')" 调用
+  window.setSiteStyle = setStyle;
 })();
