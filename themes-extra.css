@@ -479,3 +479,244 @@ html[data-style="y2k"] a:hover {
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }
+
+/* ════════════════════════════════════════════════════════════
+   全局字体收尾 · 让 4 套主题字体强制传播到所有元素
+   主页大量元素（.tl-title / .archive-card / .quote-card 等）
+   写死了 font-family，必须用更广泛的选择器 + !important 覆盖
+   ════════════════════════════════════════════════════════════ */
+
+/* —— studio · Manrope + Fraunces 斜体 —— */
+html[data-style="studio"] body,
+html[data-style="studio"] body p,
+html[data-style="studio"] body span,
+html[data-style="studio"] body div,
+html[data-style="studio"] body a,
+html[data-style="studio"] body li,
+html[data-style="studio"] body td,
+html[data-style="studio"] body th,
+html[data-style="studio"] body label,
+html[data-style="studio"] body input,
+html[data-style="studio"] body textarea,
+html[data-style="studio"] body select {
+  font-family: 'Manrope','Noto Sans SC',-apple-system,sans-serif !important;
+}
+html[data-style="studio"] body h1,
+html[data-style="studio"] body h2,
+html[data-style="studio"] body h3,
+html[data-style="studio"] body h4,
+html[data-style="studio"] body h5,
+html[data-style="studio"] body [class*="title"]:not([class*="subtitle"]),
+html[data-style="studio"] body [class*="heading"],
+html[data-style="studio"] body [class*="hero-h"],
+html[data-style="studio"] body .number,
+html[data-style="studio"] body .tl-eyebrow,
+html[data-style="studio"] body .article-title,
+html[data-style="studio"] body strong {
+  font-family: 'Fraunces','Noto Serif SC',serif !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02em !important;
+}
+html[data-style="studio"] body em,
+html[data-style="studio"] body i {
+  font-style: italic !important;
+  color: #D97757 !important;
+}
+html[data-style="studio"] body button,
+html[data-style="studio"] body .btn,
+html[data-style="studio"] body .nav-cta,
+html[data-style="studio"] body .topic-link {
+  border-radius: 999px !important;
+  font-family: 'Manrope',sans-serif !important;
+}
+html[data-style="studio"] body .layout-chip,
+html[data-style="studio"] body .theme-chip {
+  border-radius: 999px !important;
+}
+html[data-style="studio"] body [class*="card"],
+html[data-style="studio"] body [class*="-row"]:not(.tl-row),
+html[data-style="studio"] body [class*="-box"],
+html[data-style="studio"] body article {
+  border-radius: 18px !important;
+}
+
+/* —— editorial · Inter + Inter Tight —— */
+html[data-style="editorial"] body,
+html[data-style="editorial"] body p,
+html[data-style="editorial"] body span,
+html[data-style="editorial"] body div,
+html[data-style="editorial"] body a,
+html[data-style="editorial"] body li,
+html[data-style="editorial"] body td,
+html[data-style="editorial"] body th,
+html[data-style="editorial"] body label,
+html[data-style="editorial"] body input,
+html[data-style="editorial"] body textarea,
+html[data-style="editorial"] body select {
+  font-family: 'Inter','Noto Sans SC',-apple-system,sans-serif !important;
+  font-feature-settings: 'ss01','cv11' !important;
+}
+html[data-style="editorial"] body h1,
+html[data-style="editorial"] body h2,
+html[data-style="editorial"] body h3,
+html[data-style="editorial"] body h4,
+html[data-style="editorial"] body h5,
+html[data-style="editorial"] body [class*="title"]:not([class*="subtitle"]),
+html[data-style="editorial"] body [class*="heading"],
+html[data-style="editorial"] body [class*="hero-h"],
+html[data-style="editorial"] body .number,
+html[data-style="editorial"] body .tl-eyebrow,
+html[data-style="editorial"] body .article-title,
+html[data-style="editorial"] body strong {
+  font-family: 'Inter Tight','Noto Sans SC',sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.025em !important;
+}
+html[data-style="editorial"] body button,
+html[data-style="editorial"] body .btn,
+html[data-style="editorial"] body .nav-cta,
+html[data-style="editorial"] body .topic-link,
+html[data-style="editorial"] body .layout-chip,
+html[data-style="editorial"] body .theme-chip {
+  border-radius: 8px !important;
+  font-family: 'Inter',sans-serif !important;
+  font-weight: 600 !important;
+}
+html[data-style="editorial"] body [class*="card"],
+html[data-style="editorial"] body [class*="-row"]:not(.tl-row),
+html[data-style="editorial"] body [class*="-box"],
+html[data-style="editorial"] body article {
+  border-radius: 12px !important;
+}
+
+/* —— library · EB Garamond + Cormorant Garamond —— */
+html[data-style="library"] body,
+html[data-style="library"] body p,
+html[data-style="library"] body span,
+html[data-style="library"] body div,
+html[data-style="library"] body a,
+html[data-style="library"] body li,
+html[data-style="library"] body td,
+html[data-style="library"] body th,
+html[data-style="library"] body label,
+html[data-style="library"] body input,
+html[data-style="library"] body textarea,
+html[data-style="library"] body select {
+  font-family: 'EB Garamond','Noto Serif SC',Georgia,serif !important;
+  font-size: 17px !important;
+  line-height: 1.85 !important;
+}
+html[data-style="library"] body h1,
+html[data-style="library"] body h2,
+html[data-style="library"] body h3,
+html[data-style="library"] body h4,
+html[data-style="library"] body h5,
+html[data-style="library"] body [class*="title"]:not([class*="subtitle"]),
+html[data-style="library"] body [class*="heading"],
+html[data-style="library"] body [class*="hero-h"],
+html[data-style="library"] body .number,
+html[data-style="library"] body .tl-eyebrow,
+html[data-style="library"] body .article-title,
+html[data-style="library"] body strong {
+  font-family: 'Cormorant Garamond','Noto Serif SC',serif !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.005em !important;
+}
+html[data-style="library"] body em,
+html[data-style="library"] body i {
+  font-style: italic !important;
+  color: #7B2C1B !important;
+}
+html[data-style="library"] body button,
+html[data-style="library"] body .btn,
+html[data-style="library"] body .nav-cta,
+html[data-style="library"] body .topic-link,
+html[data-style="library"] body .layout-chip,
+html[data-style="library"] body .theme-chip {
+  border-radius: 0 !important;
+  font-family: 'EB Garamond',serif !important;
+  font-style: italic !important;
+}
+html[data-style="library"] body [class*="card"],
+html[data-style="library"] body [class*="-row"]:not(.tl-row),
+html[data-style="library"] body [class*="-box"],
+html[data-style="library"] body article {
+  border-radius: 0 !important;
+  border-color: rgba(31,37,25,0.18) !important;
+}
+
+/* —— y2k · Space Grotesk + Bebas Neue —— */
+html[data-style="y2k"] body,
+html[data-style="y2k"] body p,
+html[data-style="y2k"] body span,
+html[data-style="y2k"] body div,
+html[data-style="y2k"] body a,
+html[data-style="y2k"] body li,
+html[data-style="y2k"] body td,
+html[data-style="y2k"] body th,
+html[data-style="y2k"] body label,
+html[data-style="y2k"] body input,
+html[data-style="y2k"] body textarea,
+html[data-style="y2k"] body select {
+  font-family: 'Space Grotesk','Noto Sans SC',sans-serif !important;
+  color: #F2F0EB !important;
+}
+html[data-style="y2k"] body h1,
+html[data-style="y2k"] body h2,
+html[data-style="y2k"] body h3,
+html[data-style="y2k"] body h4,
+html[data-style="y2k"] body h5,
+html[data-style="y2k"] body [class*="title"]:not([class*="subtitle"]),
+html[data-style="y2k"] body [class*="heading"],
+html[data-style="y2k"] body [class*="hero-h"],
+html[data-style="y2k"] body .number,
+html[data-style="y2k"] body .tl-eyebrow,
+html[data-style="y2k"] body .article-title,
+html[data-style="y2k"] body strong {
+  font-family: 'Bebas Neue','Noto Sans SC',sans-serif !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 0.95 !important;
+  text-transform: uppercase;
+}
+html[data-style="y2k"] body em,
+html[data-style="y2k"] body i {
+  font-style: normal !important;
+  color: #FF2EA0 !important;
+  background: rgba(255,46,160,0.08) !important;
+  padding: 0 4px !important;
+  font-weight: 700 !important;
+}
+html[data-style="y2k"] body button,
+html[data-style="y2k"] body .btn,
+html[data-style="y2k"] body .nav-cta,
+html[data-style="y2k"] body .topic-link,
+html[data-style="y2k"] body .layout-chip,
+html[data-style="y2k"] body .theme-chip {
+  border-radius: 4px !important;
+  font-family: 'JetBrains Mono','VT323',monospace !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  border-color: rgba(0,255,224,0.3) !important;
+}
+html[data-style="y2k"] body [class*="card"],
+html[data-style="y2k"] body [class*="-row"]:not(.tl-row),
+html[data-style="y2k"] body [class*="-box"],
+html[data-style="y2k"] body article {
+  border-radius: 4px !important;
+  border-color: rgba(0,255,224,0.18) !important;
+  background: #0F0E14 !important;
+  position: relative;
+  z-index: 2;
+}
+html[data-style="y2k"] body code,
+html[data-style="y2k"] body .mono {
+  font-family: 'VT323','JetBrains Mono',monospace !important;
+  font-size: 1.1em !important;
+}
+html[data-style="y2k"] body a {
+  color: #00FFE0 !important;
+}
+html[data-style="y2k"] body a:hover {
+  color: #FF2EA0 !important;
+}
