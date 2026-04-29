@@ -49,6 +49,25 @@ html[data-style="studio"] {
   --pop-border: rgba(217,119,87,0.35) !important;
   --pop-shadow: 0 18px 40px rgba(43,41,38,0.18) !important;
   --top-bar-bg: rgba(255,248,238,0.92) !important;
+  --hero-gradient: linear-gradient(160deg, #FCF6E9 0%, #FFF8EE 40%, #F4E8D4 100%) !important;
+  --hero-texture: radial-gradient(ellipse at 70% 30%, rgba(217,119,87,0.1) 0%, transparent 60%) !important;
+  --number-color: rgba(217,119,87,0.07) !important;
+  --number-stroke: rgba(217,119,87,0.18) !important;
+  --card-hover: #FCF6E9 !important;
+  --input-bg: #FFFFFF !important;
+  --tag-bg: rgba(217,119,87,0.12) !important;
+  --status-ready-bg: rgba(217,119,87,0.1) !important;
+  --status-ready-border: rgba(217,119,87,0.35) !important;
+  --status-ready-text: #D97757 !important;
+  --status-pending-bg: rgba(43,41,38,0.06) !important;
+  --status-pending-text: #9B9690 !important;
+  --toggle-bg: rgba(217,119,87,0.08) !important;
+  --toggle-border: rgba(217,119,87,0.28) !important;
+  --toggle-hover: rgba(217,119,87,0.16) !important;
+  --search-focus: rgba(217,119,87,0.25) !important;
+  --topic-icon: rgba(217,119,87,0.3) !important;
+  --hero-bg-a: #FCF6E9 !important;
+  --hero-bg-b: #FFF8EE !important;
 }
 html[data-style="studio"] body {
   font-family: 'Manrope','Noto Sans SC',-apple-system,sans-serif !important;
@@ -133,6 +152,25 @@ html[data-style="editorial"] {
   --pop-border: rgba(14,92,79,0.28) !important;
   --pop-shadow: 0 12px 32px rgba(14,17,22,0.12) !important;
   --top-bar-bg: rgba(250,250,248,0.92) !important;
+  --hero-gradient: linear-gradient(160deg, #FFFFFF 0%, #FAFAF8 50%, #F1F2F4 100%) !important;
+  --hero-texture: radial-gradient(ellipse at 70% 30%, rgba(14,92,79,0.05) 0%, transparent 60%) !important;
+  --number-color: rgba(14,92,79,0.05) !important;
+  --number-stroke: rgba(14,92,79,0.18) !important;
+  --card-hover: #F1F2F4 !important;
+  --input-bg: #FFFFFF !important;
+  --tag-bg: rgba(14,92,79,0.08) !important;
+  --status-ready-bg: rgba(14,92,79,0.08) !important;
+  --status-ready-border: rgba(14,92,79,0.3) !important;
+  --status-ready-text: #0E5C4F !important;
+  --status-pending-bg: #F1F2F4 !important;
+  --status-pending-text: #94A1AE !important;
+  --toggle-bg: rgba(14,92,79,0.06) !important;
+  --toggle-border: rgba(14,92,79,0.18) !important;
+  --toggle-hover: rgba(14,92,79,0.14) !important;
+  --search-focus: rgba(14,92,79,0.25) !important;
+  --topic-icon: rgba(14,92,79,0.3) !important;
+  --hero-bg-a: #FFFFFF !important;
+  --hero-bg-b: #FAFAF8 !important;
 }
 html[data-style="editorial"] body {
   font-family: 'Inter','Noto Sans SC',-apple-system,sans-serif !important;
@@ -218,6 +256,25 @@ html[data-style="library"] {
   --pop-border: #A37D3A !important;
   --pop-shadow: 0 18px 36px rgba(31,37,25,0.18) !important;
   --top-bar-bg: rgba(239,231,210,0.94) !important;
+  --hero-gradient: linear-gradient(160deg, #F5EFE0 0%, #EFE7D2 50%, #EAD9B2 100%) !important;
+  --hero-texture: radial-gradient(ellipse at 70% 30%, rgba(123,44,27,0.07) 0%, transparent 60%) !important;
+  --number-color: rgba(163,125,58,0.08) !important;
+  --number-stroke: rgba(123,44,27,0.4) !important;
+  --card-hover: #F9F3DD !important;
+  --input-bg: #F9F3DD !important;
+  --tag-bg: rgba(163,125,58,0.16) !important;
+  --status-ready-bg: rgba(123,44,27,0.1) !important;
+  --status-ready-border: rgba(123,44,27,0.4) !important;
+  --status-ready-text: #7B2C1B !important;
+  --status-pending-bg: #F5EFE0 !important;
+  --status-pending-text: #8C8470 !important;
+  --toggle-bg: rgba(163,125,58,0.12) !important;
+  --toggle-border: rgba(163,125,58,0.35) !important;
+  --toggle-hover: rgba(123,44,27,0.18) !important;
+  --search-focus: rgba(123,44,27,0.3) !important;
+  --topic-icon: rgba(123,44,27,0.32) !important;
+  --hero-bg-a: #F5EFE0 !important;
+  --hero-bg-b: #EFE7D2 !important;
 }
 html[data-style="library"] body {
   font-family: 'EB Garamond','Noto Serif SC',Georgia,serif !important;
@@ -314,6 +371,25 @@ html[data-style="y2k"] {
   --pop-border: #00FFE0 !important;
   --pop-shadow: 0 0 30px rgba(0,255,224,0.25),0 18px 40px rgba(0,0,0,0.6) !important;
   --top-bar-bg: rgba(8,7,10,0.94) !important;
+  --hero-gradient: linear-gradient(160deg, #14131A 0%, #08070A 50%, #14131A 100%) !important;
+  --hero-texture: radial-gradient(ellipse at 70% 30%, rgba(255,46,160,0.12) 0%, transparent 60%) !important;
+  --number-color: rgba(0,255,224,0.06) !important;
+  --number-stroke: rgba(255,46,160,0.5) !important;
+  --card-hover: #14131A !important;
+  --input-bg: #0F0E14 !important;
+  --tag-bg: rgba(0,255,224,0.1) !important;
+  --status-ready-bg: rgba(0,255,224,0.1) !important;
+  --status-ready-border: rgba(0,255,224,0.4) !important;
+  --status-ready-text: #00FFE0 !important;
+  --status-pending-bg: rgba(0,255,224,0.05) !important;
+  --status-pending-text: rgba(242,240,235,0.5) !important;
+  --toggle-bg: rgba(0,255,224,0.08) !important;
+  --toggle-border: rgba(0,255,224,0.3) !important;
+  --toggle-hover: rgba(0,255,224,0.16) !important;
+  --search-focus: rgba(0,255,224,0.4) !important;
+  --topic-icon: rgba(255,46,160,0.4) !important;
+  --hero-bg-a: #14131A !important;
+  --hero-bg-b: #08070A !important;
 }
 html[data-style="y2k"] body {
   font-family: 'Space Grotesk','Noto Sans SC',sans-serif !important;
