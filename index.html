@@ -670,6 +670,28 @@ a { color: inherit; text-decoration: none; }
 .topic-tag:hover { z-index: 9999 !important; }
 .topic-tag.active { z-index: 9999 !important; }
 
+/* 边缘卡片 · 浮层位置避免超出视口 */
+/* 4 列布局 · 第 1 列（4n+1）浮层左对齐 */
+.topics-grid > .topic-tag:nth-child(4n+1) .topic-pop {
+  left: 0;
+  margin-left: 0;
+}
+.topics-grid > .topic-tag:nth-child(4n+1) .topic-pop::before {
+  left: 32px;
+  transform: translateX(0) rotate(45deg);
+}
+/* 4 列布局 · 第 4 列（4n）浮层右对齐 */
+.topics-grid > .topic-tag:nth-child(4n) .topic-pop {
+  left: auto;
+  right: 0;
+  margin-left: 0;
+}
+.topics-grid > .topic-tag:nth-child(4n) .topic-pop::before {
+  left: auto;
+  right: 32px;
+  transform: translateX(0) rotate(45deg);
+}
+
 .topic-pop::before {
   content: '';
   position: absolute;
@@ -1156,6 +1178,42 @@ a { color: inherit; text-decoration: none; }
   .topics-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem;
+  }
+
+  /* 2 列布局 · 重置 4 列边缘规则 */
+  .topics-grid > .topic-tag:nth-child(4n+1) .topic-pop,
+  .topics-grid > .topic-tag:nth-child(4n) .topic-pop {
+    left: 50%;
+    right: auto;
+    margin-left: -140px;
+  }
+  .topics-grid > .topic-tag:nth-child(4n+1) .topic-pop::before,
+  .topics-grid > .topic-tag:nth-child(4n) .topic-pop::before {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%) rotate(45deg);
+  }
+  /* 2 列 · 奇数列（第 1 列）→ 浮层左对齐 */
+  .topics-grid > .topic-tag:nth-child(2n+1) .topic-pop {
+    left: 0;
+    right: auto;
+    margin-left: 0;
+  }
+  .topics-grid > .topic-tag:nth-child(2n+1) .topic-pop::before {
+    left: 32px;
+    right: auto;
+    transform: translateX(0) rotate(45deg);
+  }
+  /* 2 列 · 偶数列（第 2 列）→ 浮层右对齐 */
+  .topics-grid > .topic-tag:nth-child(2n) .topic-pop {
+    left: auto;
+    right: 0;
+    margin-left: 0;
+  }
+  .topics-grid > .topic-tag:nth-child(2n) .topic-pop::before {
+    left: auto;
+    right: 32px;
+    transform: translateX(0) rotate(45deg);
   }
 
   .topic-tag {
@@ -3650,5 +3708,5 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
 
 </script>
 <script src="style-switcher.js"></script>
-</body>
+<a href="quotes.html" target="_blank" style="position:fixed;left:24px;bottom:24px;padding:14px 22px;background:#D4AF37;color:#fff;border-radius:28px;font-weight:600;text-decoration:none;box-shadow:0 6px 20px rgba(212,175,55,0.4);z-index:9999;font-size:14px;">💎 19 场金句精华</a></body>
 </html>
