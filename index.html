@@ -665,8 +665,10 @@ a { color: inherit; text-decoration: none; }
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.25,0.46,0.45,0.94);
-  z-index: 50;
+  z-index: 9999;
 }
+.topic-tag:hover { z-index: 9999 !important; }
+.topic-tag.active { z-index: 9999 !important; }
 
 .topic-pop::before {
   content: '';

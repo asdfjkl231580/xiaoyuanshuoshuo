@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>第19场 · AI虚拟乐队与合伙人选择 — 生财有术线下活动</title>
+<meta name="description" content="生财有术第19场线下组局 · AI虚拟乐队与合伙人选择 — PPT版精华整理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第19场 · AI虚拟乐队与合伙人选择 — PPT版">
+<meta property="og:description" content="生财有术第19场线下组局 · AI虚拟乐队与合伙人选择 — PPT版精华整理">
+<meta property="og:site_name" content="生财有术线下组局">
+<meta name="twitter:card" content="summary">
+<meta name="description" content="生财有术第19场线下活动精华：名字记忆点、数码消费观、AI vs AI编程、AI编程实战、八字识人术、销售五层信任、销售三条路径">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+
+  :root{--t:0.35s ease}
+  html{font-size:clamp(14px,0.85vw + 10px,22px)}
+
+  /* === Dark theme === */
+  [data-theme="dark"]{
+    --bg:#0a0a08;
+    --bg-bar:rgba(10,10,8,0.95);
+    --bg-tabs:rgba(18,16,12,0.95);
+    --bg-cover-a:#1a1510;--bg-cover-b:#0a0a08;
+    --bg-glow:rgba(212,160,74,0.08);
+    --bg-card:#12100c;
+    --border:#2a2218;--border-tab:#1a1510;
+    --accent:#d4a04a;
+    --accent-bg:rgba(212,160,74,0.12);
+    --accent-border:rgba(212,160,74,0.2);
+    --accent-bg2:rgba(212,160,74,0.15);
+    --accent-border2:rgba(212,160,74,0.3);
+    --text:#f0e6d6;
+    --text-quote:#d8cfc0;
+    --text-list:#c8c0b0;
+    --text-muted:#8a7d6d;
+    --text-dim:#5a5040;
+    --text-hint:#3a3020;
+    --quote-mark:rgba(212,160,74,0.2);
+    --dot-bg:#2a2218;
+    --toggle-icon:'\\263E';
+  }
+
+  /* === Light theme === */
+  [data-theme="light"]{
+    --bg:#f5faf8;
+    --bg-bar:rgba(245,250,248,0.95);
+    --bg-tabs:rgba(234,244,240,0.95);
+    --bg-cover-a:#e4f0ec;--bg-cover-b:#f5faf8;
+    --bg-glow:rgba(26,138,125,0.06);
+    --bg-card:#ffffff;
+    --border:#c8ddd6;--border-tab:#d0e0da;
+    --accent:#1a8a7d;
+    --accent-bg:rgba(26,138,125,0.08);
+    --accent-border:rgba(26,138,125,0.18);
+    --accent-bg2:rgba(26,138,125,0.1);
+    --accent-border2:rgba(26,138,125,0.25);
+    --text:#1a2e28;
+    --text-quote:#2a4a42;
+    --text-list:#3a5a52;
+    --text-muted:#7a9a90;
+    --text-dim:#a0b8b0;
+    --text-hint:#c0d4cc;
+    --quote-mark:rgba(26,138,125,0.15);
+    --dot-bg:#b8d0c8;
+    --toggle-icon:'\\2600';
+  }
+
+  /* === Paper theme (纸卷 · 朱砂) === */
+  [data-theme="paper"]{
+    --bg:#f1ead9;
+    --bg-bar:rgba(241,234,217,0.95);
+    --bg-tabs:rgba(235,227,205,0.95);
+    --bg-cover-a:#ebe3cd;--bg-cover-b:#f1ead9;
+    --bg-glow:rgba(168,50,38,0.06);
+    --bg-card:#ebe3cd;
+    --border:#d4c8a8;--border-tab:#d8ccae;
+    --accent:#a83226;
+    --accent-bg:rgba(168,50,38,0.08);
+    --accent-border:rgba(168,50,38,0.2);
+    --accent-bg2:rgba(168,50,38,0.12);
+    --accent-border2:rgba(168,50,38,0.3);
+    --text:#3a2818;
+    --text-quote:#4a3420;
+    --text-list:#5a4030;
+    --text-muted:#8a6f5a;
+    --text-dim:#a08f76;
+    --text-hint:#c8b896;
+    --quote-mark:rgba(168,50,38,0.18);
+    --dot-bg:#c8b896;
+    --toggle-icon:'\2749';
+  }
+
+  /* === Ocean theme (深海 · 青光) === */
+  [data-theme="ocean"]{
+    --bg:#0e2147;
+    --bg-bar:rgba(14,33,71,0.95);
+    --bg-tabs:rgba(19,42,85,0.95);
+    --bg-cover-a:#16305a;--bg-cover-b:#0e2147;
+    --bg-glow:rgba(79,209,197,0.08);
+    --bg-card:#132a55;
+    --border:#1e3a66;--border-tab:#254170;
+    --accent:#4fd1c5;
+    --accent-bg:rgba(79,209,197,0.1);
+    --accent-border:rgba(79,209,197,0.2);
+    --accent-bg2:rgba(79,209,197,0.15);
+    --accent-border2:rgba(79,209,197,0.3);
+    --text:#d6e6ff;
+    --text-quote:#b8cfee;
+    --text-list:#a2bde0;
+    --text-muted:#7a93b8;
+    --text-dim:#5a7290;
+    --text-hint:#3a5070;
+    --quote-mark:rgba(79,209,197,0.18);
+    --dot-bg:#1e3a66;
+    --toggle-icon:'\2693';
+  }
+
+
+  html,body{height:100%;overflow:hidden;font-family:'Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--text);transition:background var(--t),color var(--t)}
+
+  /* === Top bar === */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:var(--bg-bar);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 1.2rem;height:44px;
+    transition:background var(--t),border-color var(--t);
+  }
+  .topbar .back{color:var(--text-muted);font-size:0.82rem;text-decoration:none;display:flex;align-items:center;gap:4px;transition:color var(--t)}
+  .topbar .back:hover{color:var(--accent)}
+  .topbar .title{color:var(--text);font-size:0.82rem;font-weight:600;transition:color var(--t)}
+  .topbar .right-btns{display:flex;align-items:center;gap:8px}
+  .topbar .mode-toggle{
+    font-size:0.72rem;padding:4px 12px;border-radius:5px;
+    background:var(--accent-bg);color:var(--accent);
+    border:1px solid var(--accent-border);cursor:pointer;text-decoration:none;
+    transition:all var(--t);
+  }
+  .topbar .mode-toggle:hover{background:var(--accent-bg2)}
+  .theme-btn{
+    width:30px;height:30px;border-radius:50%;
+    background:var(--accent-bg);border:1px solid var(--accent-border);
+    color:var(--accent);font-size:0.95rem;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:all var(--t);
+  }
+  .theme-btn:hover{transform:scale(1.1)}
+
+  /* === 4-theme switcher === */
+  .theme-switcher{
+    display:inline-flex;gap:4px;padding:3px;
+    background:var(--bg-card,var(--bg));
+    border:1px solid var(--border);border-radius:14px;
+    transition:background var(--t),border-color var(--t);
+  }
+  .theme-switcher .chip{
+    width:20px;height:20px;border-radius:50%;border:1px solid transparent;
+    cursor:pointer;font-size:0;padding:0;
+    transition:all 0.2s;
+  }
+  .theme-switcher .chip[data-t="dark"]{background:#0a0a08;border-color:#2a2218}
+  .theme-switcher .chip[data-t="light"]{background:#f5faf8;border-color:#c8ddd6}
+  .theme-switcher .chip[data-t="paper"]{background:#f1ead9;border-color:#d4c8a8}
+  .theme-switcher .chip[data-t="ocean"]{background:#0e2147;border-color:#1e3a66}
+  .theme-switcher .chip:hover{transform:scale(1.15)}
+  .theme-switcher .chip.active{
+    box-shadow:0 0 0 2px var(--accent);
+  }
+
+
+  /* === Section tabs === */
+  .tabs{
+    position:fixed;top:44px;left:0;right:0;z-index:90;
+    background:var(--bg-tabs);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border-tab);
+    display:flex;overflow-x:auto;padding:0 0.8rem;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    transition:background var(--t),border-color var(--t);
+  }
+  .tabs::-webkit-scrollbar{display:none}
+  .tabs button{
+    flex-shrink:0;padding:10px 14px;font-size:0.72rem;
+    background:none;border:none;color:var(--text-dim);
+    cursor:pointer;font-family:inherit;white-space:nowrap;
+    border-bottom:2px solid transparent;transition:all 0.2s;
+  }
+  .tabs button.active{color:var(--accent);border-bottom-color:var(--accent)}
+  .tabs button:hover{color:var(--text-muted)}
+
+  /* === Slide viewport === */
+  .viewport{position:fixed;top:82px;left:0;right:0;bottom:60px;overflow:hidden}
+  .slide-track{display:flex;height:100%;transition:transform 0.4s cubic-bezier(0.25,0.1,0.25,1)}
+
+  /* === Each slide === */
+  .slide{
+    flex-shrink:0;width:100vw;height:100%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:2rem 2.5rem;text-align:center;position:relative;
+    background:var(--bg);transition:background var(--t);
+  }
+  .slide.cover{
+    background:linear-gradient(160deg,var(--bg-cover-a) 0%,var(--bg-cover-b) 60%);
+  }
+  .slide.cover::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 50% 80%,var(--bg-glow) 0%,transparent 55%);
+    pointer-events:none;
+  }
+
+  .slide-inner{max-width:min(880px,92vw);width:100%;position:relative;z-index:1}
+  .slide-num{font-size:0.65rem;color:var(--text-dim);letter-spacing:3px;margin-bottom:0.8rem;font-weight:500;transition:color var(--t)}
+  .part-label{
+    display:inline-block;font-size:0.7rem;padding:5px 16px;border-radius:20px;
+    background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent-border);
+    margin-bottom:1.2rem;letter-spacing:2px;transition:all var(--t);
+  }
+  .slide-title{font-size:1.6rem;font-weight:900;color:var(--text);line-height:1.4;margin-bottom:1rem;transition:color var(--t)}
+  @media(min-width:768px){.slide-title{font-size:2rem}}
+  .slide-title .accent{color:var(--accent);transition:color var(--t)}
+
+  .slide-quote{
+    font-size:1.15rem;line-height:1.9;color:var(--text-quote);
+    margin-bottom:1.2rem;position:relative;padding:0 0.5rem;transition:color var(--t);
+  }
+  @media(min-width:768px){.slide-quote{font-size:1.3rem}}
+  .slide-quote::before{
+    content:'\201C';position:absolute;top:-1.2rem;left:-0.3rem;
+    font-size:3rem;color:var(--quote-mark);font-family:Georgia,serif;line-height:1;transition:color var(--t);
+  }
+  .slide-quote strong{color:var(--accent);font-weight:700}
+
+  .slide-context{font-size:0.82rem;line-height:1.8;color:var(--text-muted);max-width:520px;margin:0 auto;transition:color var(--t)}
+
+  .slide-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:1.2rem}
+  .slide-tags span{font-size:0.72rem;padding:5px 14px;border-radius:6px;background:var(--bg-cover-a);color:var(--text-muted);border:1px solid var(--border);transition:all var(--t)}
+
+  .slide-products{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:1rem auto 0;max-width:520px;text-align:left}
+  .slide-products .sp{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;transition:all var(--t)}
+  .slide-products .sp .sp-name{font-size:0.82rem;font-weight:700;color:var(--accent);margin-bottom:2px;transition:color var(--t)}
+  .slide-products .sp .sp-desc{font-size:0.7rem;color:var(--text-muted);line-height:1.5;transition:color var(--t)}
+  @media(max-width:480px){.slide-products{grid-template-columns:1fr}}
+
+  .slide-list{text-align:left;max-width:480px;margin:0.8rem auto 0;list-style:none}
+  .slide-list li{font-size:0.92rem;color:var(--text-list);line-height:1.8;padding-left:1.4rem;position:relative;margin-bottom:0.3rem;transition:color var(--t)}
+  .slide-list li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-weight:700}
+  .slide-list li strong{color:var(--accent)}
+
+  .slide-steps{text-align:left;max-width:500px;margin:0.8rem auto 0}
+  .slide-steps .step{display:flex;gap:12px;margin-bottom:0.8rem;align-items:flex-start}
+  .slide-steps .step-num{
+    flex-shrink:0;width:28px;height:28px;border-radius:50%;
+    background:var(--accent-bg2);border:1px solid var(--accent-border2);
+    color:var(--accent);font-size:0.78rem;font-weight:700;
+    display:flex;align-items:center;justify-content:center;margin-top:2px;transition:all var(--t);
+  }
+  .slide-steps .step-text{font-size:0.88rem;color:var(--text-list);line-height:1.7;transition:color var(--t)}
+  .slide-steps .step-text strong{color:var(--accent)}
+
+  .questioner-badge{
+    display:inline-block;font-size:0.7rem;padding:3px 12px;border-radius:4px;
+    background:var(--accent-bg);color:var(--accent);margin-bottom:0.8rem;transition:all var(--t);
+  }
+
+  .bottombar{
+    position:fixed;bottom:0;left:0;right:0;height:64px;
+    background:var(--bg-bar);backdrop-filter:blur(8px);
+    border-top:1px solid var(--border-tab);
+    display:flex;align-items:center;justify-content:space-between;
+    gap:0.8rem;z-index:90;padding:0 1.2rem;
+    transition:background var(--t),border-color var(--t);
+  }
+  .nav-btn{
+    min-width:92px;height:40px;border-radius:20px;
+    background:var(--accent-bg);border:1px solid var(--accent-border);
+    color:var(--accent);font-size:0.82rem;font-weight:600;cursor:pointer;
+    font-family:inherit;letter-spacing:1px;
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    padding:0 18px;transition:all 0.2s;flex-shrink:0;
+  }
+  .nav-btn:hover{background:var(--accent-bg2);transform:translateY(-1px)}
+  .nav-btn:disabled{opacity:0.3;cursor:default;transform:none}
+  .nav-btn .arrow{font-size:1.05rem;line-height:1}
+  @media(max-width:520px){
+    .nav-btn{min-width:44px;padding:0 10px}
+    .nav-btn .label{display:none}
+  }
+  .dots{display:flex;gap:6px;align-items:center;overflow-x:auto;flex:1;justify-content:center;scrollbar-width:none}
+  .dots::-webkit-scrollbar{display:none}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--dot-bg);flex-shrink:0;transition:all 0.3s;cursor:pointer}
+  .dot.active{background:var(--accent);width:24px;border-radius:4px}
+  .slide-counter{font-size:0.72rem;color:var(--text-dim);flex-shrink:0;min-width:52px;text-align:center;transition:color var(--t)}
+
+  .key-hint{
+    position:fixed;bottom:76px;left:50%;transform:translateX(-50%);
+    font-size:0.68rem;color:var(--text-muted);pointer-events:none;
+    display:flex;align-items:center;gap:6px;
+    background:var(--bg-bar);padding:5px 14px;border-radius:20px;
+    border:1px solid var(--border);backdrop-filter:blur(6px);
+    opacity:0.85;transition:all var(--t);
+  }
+  .key-hint kbd{
+    font-family:'SF Mono',Monaco,monospace;font-size:0.68rem;
+    padding:1px 6px;border-radius:4px;
+    background:var(--bg-card);border:1px solid var(--border);
+    color:var(--accent);line-height:1.4;
+  }
+  @media(max-width:768px){.key-hint{display:none}}
+  @media(max-width:640px){.topbar .title{display:none}.topbar{padding:0 0.8rem}}
+
+  /* === C: 翻页动效与键位反馈 === */
+
+  /* 顶部章节进度条 */
+  .progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: transparent;
+    z-index: 110;
+    pointer-events: none;
+  }
+  .progress::after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: var(--progress, 0%);
+    background: var(--accent);
+    transition: width 0.45s cubic-bezier(0.22,1,0.36,1);
+  }
+
+  /* 更顺滑的翻页缓动 */
+  .slide-track {
+    transition: transform 0.55s cubic-bezier(0.22,1,0.36,1) !important;
+  }
+
+  /* slide 内容 stagger 淡入 */
+  .slide .slide-inner > * {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1),
+                transform 0.6s cubic-bezier(0.22,1,0.36,1);
+  }
+  .slide.current .slide-inner > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .slide.current .slide-inner > *:nth-child(1) { transition-delay: 0.05s; }
+  .slide.current .slide-inner > *:nth-child(2) { transition-delay: 0.13s; }
+  .slide.current .slide-inner > *:nth-child(3) { transition-delay: 0.21s; }
+  .slide.current .slide-inner > *:nth-child(4) { transition-delay: 0.29s; }
+  .slide.current .slide-inner > *:nth-child(5) { transition-delay: 0.37s; }
+  .slide.current .slide-inner > *:nth-child(6) { transition-delay: 0.45s; }
+  .slide.current .slide-inner > *:nth-child(7) { transition-delay: 0.53s; }
+
+  /* cover slide 标题更戏剧化 */
+  .slide.cover.current .slide-title {
+    animation: coverTitleIn 0.9s cubic-bezier(0.22,1,0.36,1) 0.15s both;
+  }
+  @keyframes coverTitleIn {
+    0%   { opacity: 0; transform: translateY(18px) scale(0.985); letter-spacing: -0.005em; }
+    100% { opacity: 1; transform: translateY(0)    scale(1);     letter-spacing: 0; }
+  }
+
+  /* 键盘按下时按钮闪一下 */
+  .nav-btn.pressed {
+    background: var(--accent) !important;
+    color: var(--bg) !important;
+    transform: scale(0.96);
+    transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  }
+
+  /* dot 涟漪 + 更紧的反馈 */
+  .dot {
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.22,1,0.36,1) !important;
+  }
+  .dot:hover { transform: scale(1.35); }
+  .dot.active:hover { transform: scale(1); }
+  .dot::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 1px solid var(--accent);
+    opacity: 0;
+    transform: scale(0.6);
+    pointer-events: none;
+  }
+  .dot.ripple::after {
+    animation: dotRipple 0.55s ease-out;
+  }
+  @keyframes dotRipple {
+    0%   { opacity: 0.7; transform: scale(0.6); }
+    100% { opacity: 0;   transform: scale(2.2); }
+  }
+
+  /* 首次交互后 hint 渐隐 */
+  .key-hint {
+    transition: opacity 0.6s ease, transform 0.6s ease !important;
+  }
+  .key-hint.hidden {
+    opacity: 0 !important;
+    transform: translateX(-50%) translateY(8px) !important;
+    pointer-events: none;
+  }
+
+  /* tab 切换时下划线滑动感 */
+  .tabs button {
+    position: relative;
+  }
+  .tabs button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 14px;
+    right: 14px;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+  }
+  .tabs button.active::after {
+    transform: scaleX(1);
+  }
+  .tabs button.active {
+    border-bottom-color: transparent !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .slide .slide-inner > * { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .slide.cover.current .slide-title { animation: none !important; }
+    .progress::after { transition: none !important; }
+  }
+
+
+  /* === D: 跨页面动效一致性 === */
+  body {
+    opacity: 0;
+    transition: opacity 0.45s cubic-bezier(0.22,1,0.36,1);
+  }
+  body.page-ready {
+    opacity: 1;
+  }
+  body.page-leaving {
+    opacity: 0;
+    transition: opacity 0.32s cubic-bezier(0.4,0,0.6,1);
+  }
+  /* 统一 focus-visible 视感 */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible {
+    outline: 2px solid var(--accent, currentColor);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    body, body.page-leaving { transition: none !important; opacity: 1 !important; }
+  }
+
+
+  /* === G: PPT 上下场浮动导航 === */
+  .ppt-session-nav { position: fixed; top: 50%; transform: translateY(-50%); z-index: 80; pointer-events: none; }
+  .ppt-session-nav a {
+    pointer-events: auto;
+    position: fixed; top: 50%;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: var(--card-bg, rgba(255,255,255,0.03));
+    border: 1px solid var(--rule, rgba(255,255,255,0.1));
+    color: var(--text-muted);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
+    opacity: 0.45;
+  }
+  .ppt-session-nav a.psn-prev { left: 18px; transform: translateY(-50%); }
+  .ppt-session-nav a.psn-next { right: 18px; transform: translateY(-50%); }
+  .ppt-session-nav a:hover { opacity: 1; border-color: var(--accent); color: var(--accent); box-shadow: 0 6px 22px -10px var(--accent); }
+  .ppt-session-nav a.psn-prev:hover { transform: translate(-3px, -50%); }
+  .ppt-session-nav a.psn-next:hover { transform: translate(3px, -50%); }
+  .ppt-session-nav a.psn-disabled { opacity: 0.15; pointer-events: none; }
+  .ppt-session-nav .psn-tip {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    white-space: nowrap;
+    background: var(--card-bg, rgba(0,0,0,0.85));
+    color: var(--text);
+    border: 1px solid var(--rule, rgba(255,255,255,0.1));
+    padding: 7px 12px; border-radius: 6px;
+    font-size: 0.72rem; letter-spacing: 0.04em;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .ppt-session-nav .psn-prev .psn-tip { left: calc(100% + 12px); }
+  .ppt-session-nav .psn-next .psn-tip { right: calc(100% + 12px); }
+  .ppt-session-nav a:hover .psn-tip { opacity: 1; transform: translate(0,-50%); }
+  .ppt-session-nav .psn-tip .psn-num { color: var(--accent); font-family: 'Playfair Display', Georgia, serif; font-weight: 700; margin-right: 6px; }
+  @media (max-width: 720px) { .ppt-session-nav a { width: 38px; height: 38px; font-size: 0.95rem; } .ppt-session-nav a.psn-prev { left: 8px; } .ppt-session-nav a.psn-next { right: 8px; } .ppt-session-nav .psn-tip { display: none; } }
+
+  /* === H: 快捷键遮罩 === */
+  .kb-hint-trigger {
+    position: fixed; bottom: 18px; left: 18px; z-index: 90;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--card-bg, rgba(255,255,255,0.03));
+    border: 1px solid var(--rule, rgba(255,255,255,0.12));
+    color: var(--text-muted);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', Georgia, serif; font-size: 0.92rem;
+    cursor: pointer; transition: all 0.3s ease;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    opacity: 0.5;
+  }
+  .kb-hint-trigger:hover { opacity: 1; border-color: var(--accent); color: var(--accent); }
+  .kb-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    display: none; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.35s cubic-bezier(0.22,1,0.36,1);
+  }
+  .kb-overlay.visible { display: flex; opacity: 1; }
+  .kb-panel {
+    background: var(--bg, #0a0a08);
+    border: 1px solid var(--rule, rgba(255,255,255,0.12));
+    border-radius: 14px;
+    padding: 2.4rem 2.6rem;
+    max-width: 520px; width: 90vw;
+    box-shadow: 0 40px 100px -30px rgba(0,0,0,0.8);
+    transform: scale(0.94); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+  }
+  .kb-overlay.visible .kb-panel { transform: scale(1); }
+  .kb-panel h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: var(--text); font-size: 1.35rem; font-weight: 600;
+    margin: 0 0 1.4rem; letter-spacing: 0.02em;
+  }
+  .kb-panel h3 span { color: var(--accent); font-style: italic; }
+  .kb-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.85rem; }
+  .kb-list li { display: flex; align-items: center; gap: 1rem; color: var(--text-muted); font-size: 0.82rem; letter-spacing: 0.03em; }
+  .kb-key {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 32px; padding: 4px 9px;
+    background: var(--card-bg, rgba(255,255,255,0.04));
+    border: 1px solid var(--rule, rgba(255,255,255,0.14));
+    border-bottom-width: 2px;
+    border-radius: 5px;
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 0.72rem; color: var(--text);
+    font-weight: 500;
+  }
+  .kb-close {
+    position: absolute; top: 16px; right: 18px;
+    background: none; border: none; color: var(--text-muted);
+    font-size: 1.5rem; cursor: pointer; font-family: 'Playfair Display', serif;
+    line-height: 1; padding: 4px 8px; border-radius: 4px;
+    transition: color 0.25s ease;
+  }
+  .kb-close:hover { color: var(--accent); }
+  .kb-panel { position: relative; }
+
+
+  /* === J: 触摸滑动手势辅助 === */
+  .viewport { touch-action: pan-y; }
+  .slide-track { will-change: transform; }
+  .swipe-hint {
+    position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
+    padding: 8px 18px; border-radius: 20px;
+    background: rgba(0,0,0,0.72); color: #fff;
+    font-size: 0.7rem; letter-spacing: 0.08em;
+    opacity: 0; pointer-events: none; z-index: 150;
+    transition: opacity 0.4s ease;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  }
+  .swipe-hint.visible { opacity: 1; }
+  @media (min-width: 768px) { .swipe-hint { display: none; } }
+
+</style>
+</head>
+<body>
+<div class="swipe-hint" id="swipeHint">&larr; 左右滑动切换 &rarr;</div>
+
+<div class="ppt-session-nav" id="pptSessionNav"><a class="psn-prev" id="psnPrev"><span class="psn-arrow">&larr;</span><span class="psn-tip"></span></a><a class="psn-next" id="psnNext"><span class="psn-arrow">&rarr;</span><span class="psn-tip"></span></a></div>
+<button class="kb-hint-trigger" id="kbHintTrigger" title="快捷键 (按 ?)">?</button>
+<div class="kb-overlay" id="kbOverlay">
+  <div class="kb-panel">
+    <button class="kb-close" id="kbClose" aria-label="关闭">&times;</button>
+    <h3>键盘 <span>快捷键</span></h3>
+    <ul class="kb-list">
+      <li><span class="kb-key">&larr;</span> / <span class="kb-key">&uarr;</span> <span>上一页</span></li>
+      <li><span class="kb-key">&rarr;</span> / <span class="kb-key">&darr;</span> <span>下一页</span></li>
+      <li><span class="kb-key">1</span> – <span class="kb-key">9</span> <span>切换章节</span></li>
+      <li><span class="kb-key">?</span> <span>显示/隐藏此面板</span></li>
+      <li><span class="kb-key">Esc</span> <span>关闭面板</span></li>
+    </ul>
+  </div>
+</div>
+
+
+
+<div class="progress" id="progress"></div>
+<div class="topbar">
+  <a href="../index.html" class="back">&larr; 目录</a>
+  <span class="title">第19场 · AI虚拟乐队与合伙人选择</span>
+  <div class="right-btns">
+    <a href="19-article.html" class="mode-toggle">精华版</a>
+    <a href="19-article.html" style="display:none" class="mode-toggle">全文版</a>
+    <div class="theme-switcher" id="themeSwitcher">
+      <button class="chip" data-t="dark" onclick="setTheme('dark')" title="夜">夜</button>
+      <button class="chip" data-t="light" onclick="setTheme('light')" title="昼">昼</button>
+      <button class="chip" data-t="paper" onclick="setTheme('paper')" title="纸">纸</button>
+      <button class="chip" data-t="ocean" onclick="setTheme('ocean')" title="海">海</button>
+    </div>
+  </div>
+</div>
+
+<div class="tabs" id="tabs"></div>
+
+<div class="viewport" id="viewport">
+  <div class="slide-track" id="track"></div>
+</div>
+
+<div class="bottombar">
+  <button class="nav-btn" id="prevBtn" onclick="go(-1)"><span class="arrow">&larr;</span><span class="label">上一页</span></button>
+  <div class="dots" id="dots"></div>
+  <span class="slide-counter" id="counter"></span>
+  <button class="nav-btn" id="nextBtn" onclick="go(1)"><span class="label">下一页</span><span class="arrow">&rarr;</span></button>
+</div>
+<div class="key-hint"><kbd>&larr;</kbd><kbd>&rarr;</kbd> 翻页 &nbsp;&middot;&nbsp; <kbd>1</kbd>-<kbd>9</kbd> 切章 &nbsp;&middot;&nbsp; 左右滑动</div>
+
+<script>
+// ====== THEME ======
+const THEMES=['dark','light','paper','ocean'];
+function getTheme(){var t=localStorage.getItem('sc-theme');if(THEMES.includes(t))return t;if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:light)').matches)return'light';return'dark'}
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  document.querySelectorAll('#themeSwitcher .chip').forEach(c=>{
+    c.classList.toggle('active',c.getAttribute('data-t')===t);
+  });
+}
+function setTheme(t){localStorage.setItem('sc-theme',t);applyTheme(t)}
+applyTheme(getTheme());
+
+// ====== SLIDE DATA ======
+const sections = [
+  {
+    id:'part01', label:'开场',
+    slides:[
+      {type:'cover',title:'第19场开场<br><span class="accent">七个人，九只猫，三个身份</span>',quote:'本来今天不办的——但开了报名一看，有人报名了，那就开。',context:'第19场 · 2026年4月28日'},
+      {title:'根源的<span class="accent">三个身份</span>',list:['<strong>主业</strong> — 旅游 · 文旅相关 · 大团/小团/定制团','<strong>第二身份</strong> — 知识付费第四年 · 教销售沟通、时间管理、爱情经营、情绪管理','<strong>第三身份</strong> — AI 编程 · 学完小白老师的课后，自己做了 AI 产品和小程序']},
+      {title:'家里有<span class="accent">九只猫</span>',quote:'我老婆有自己跟朋友帮忙的救助机构。最远的猫是从福州坐顺风车到杭州的——当时大学生救助但救不了，老婆跟兽医通了电话直接带回来。',context:'我们现在限制了，不能再随便让家里有猫了。'},
+      {title:'七个人的<span class="accent">小局</span>',quote:'前天我们去玩了，今天回来避雨——本来周日晚上要发个想法说不办了。结果打开一看：有一个人报名……那就再放着。后来三个人，加我开成。',context:'兼盟三个人就可以开。加我四个人就开成。'}
+    ]
+  },
+  {
+    id:'part02', label:'印象深刻法',
+    slides:[
+      {type:'cover',title:'自我介绍<br><span class="accent">两轮 · 印象深刻法</span>',quote:'第一次见面，最重要的事是让对方对你有印象。'},
+      {title:'第一轮<span class="accent">一分钟</span>',list:['<strong>名字</strong> — 三个：本名 / 微信名 / 别人怎么叫你','<strong>年纪</strong> — 像我87年的','<strong>老家</strong> — 具体到哪里 · 不能"安徽"，要"安徽太和"','<strong>项目</strong> — 目前主要做什么']},
+      {title:'第二轮<span class="accent">30 秒</span>',quote:'30 秒一个人，讲两件事：你别人怎么称呼你 + 一个让人第一眼印象深刻的特质（外表 / 声音 / 故事）。',context:'像今天根源说自己头发刚染了灰粉色，掉色掉得有点白；大俊讲自己音色像人形 AI；润贝今天破天荒戴了丝巾。'},
+      {title:'胡润贝<br><span class="accent">名字本身就是钩子</span>',quote:'我叫胡润贝。爸爸姓胡，妈妈姓芦，把两个姓拼一起。',context:'这种取名好——长大不会有"姓爸还是姓妈"的公平问题。第一次讲完别人就不会忘。'},
+      {title:'印象点要<span class="accent">具体</span>',quote:'不能只说"大家叫我润贝"——你得说"我今天搞了个丝巾，是过去单纯穿T恤之外多的那个特色"。',context:'今天大头讲他真名（敏石）很生僻，所以让大家叫他"大头"——名字本身就是记忆点。'}
+    ]
+  },
+  {
+    id:'part03', label:'AI虚拟乐队',
+    slides:[
+      {type:'cover',title:'AI 虚拟乐队 IP<br><span class="accent">大俊的故事</span>',quote:'我认识这么多朋友里面，你是第一个做这赛道的——这赛道好。'},
+      {title:'94 年姑娘的<span class="accent">完整履历</span>',list:['<strong>阿里国际站</strong> — 普通运营 · 2-3 年','<strong>本地生活公众号</strong> — 跟风创业 · 几年前最火时入场','<strong>开了酒吧</strong> — 城西银泰附近 · 1.5 年 · 去年关店','<strong>办过音乐节选秀</strong> — 一个人凑齐资源 · 疫情中断','<strong>AI 虚拟乐队 IP</strong> — 现在主业 · 跟浙音的小伙伴合作'],context:'根源听完："你做的事还挺丰富的——这赛道做的人真不多。"'},
+      {title:'两个人 · <span class="accent">全 AI 全栈</span>',quote:'全 AI——视觉建模、音乐创作、剧情创作，都 AI。两个人，找了一个浙音的小伙伴一起合作。',context:'初期成本很低——AI 大模型的钱要花一点，开几个会员，其他不需要花钱。'},
+      {title:'选这个赛道的<span class="accent">逻辑</span>',quote:'前两年一直在想 AI 方向去靠——什么细分领域比较适合我，再加上音乐板块也有积累。',context:'目前看到的虚拟艺人 IP，要么音乐质量不够，要么建模质量不够，要么运营不够专业——综合好的还没有。'},
+      {title:'兴趣 vs 赚钱<br><span class="accent">这道选择题</span>',quote:'我现在肯定是以盈利为主。但是爱好它能驱动，自驱力会比较大一点。',context:'根源回："纯靠爱好支撑也很难——还要面对现实。最好是能结合，用自己喜欢的方法来做。"'}
+    ]
+  },
+  {
+    id:'part04', label:'自由职业',
+    slides:[
+      {type:'cover',title:'自由职业者的<br><span class="accent">情绪与时间管理</span>',quote:'上班族不要直接转自由职业——先用副业撑过一年生活费再说。'},
+      {title:'转型<span class="accent">三个判断</span>',list:['<strong>资金</strong> — 至少能撑 1 年生活费再考虑','<strong>跑过</strong> — 副业有过实战经验，不是"想做"而是"做过"','<strong>有人盯</strong> — 找懂行的人盯进度，不是自己摸黑'],context:'纯自由职业的情绪洼地很深——一开始没收入又要面对家人质疑，扛不住的概率最高。'},
+      {title:'七代时间管理<br><span class="accent">用纸 不用 App</span>',quote:'时间管理一定要手写——没手写都没用。手写一两代就够了，不要超过两代。',context:'用粗笔的笔触粗，你会习惯把字写大；字写得越大越想回看。看小红书、看自己的便条都一样。'},
+      {title:'做得少 · 但<span class="accent">不能不做</span>',quote:'我们可以做得少，但不能不做。一年不陪孩子讲话，第二年也不会跟孩子讲话——身体已经告诉自己"不这么做也没关系"。',context:'每天挪出半小时陪另一半——这是意愿不是能力。不做没人骂你，但十天不做你就不会做了。'},
+      {title:'年利润 50 万前<br><span class="accent">不要用 AI 提效</span>',quote:'年纯利润不足 50 万之前，能不用 AI 的事就不要用 AI 做。',context:'AI 用得好的人，把 AI 拿掉他们还是很强。能力没到位之前用 AI = 把基本功外包出去——这是逃避练习。'}
+    ]
+  },
+  {
+    id:'part05', label:'被裁后',
+    slides:[
+      {type:'cover',title:'被裁后探索<br><span class="accent">杜小娟的迷茫</span>',quote:'你以为卡在 5，其实卡在 3。'},
+      {title:'四级<span class="accent">行业进阶</span>',list:['<strong>1 · 人无我有</strong> — 有别人没有的资源 / 牌照 / 关系','<strong>2 · 人有我优</strong> — 你做得更好','<strong>3 · 人有我廉</strong> — 你做得更便宜','<strong>4 · 都没有</strong> — 你看似要做项目，其实卡在前面三级'],context:'你说"卡在 5"——其实没有 5。你卡在 3 还是 4 还没分清楚。'},
+      {title:'被裁后的<br><span class="accent">三个选择</span>',list:['<strong>找工作</strong> — 最稳，不要排斥','<strong>找人</strong> — 找带你做项目的人，比项目本身重要','<strong>找项目</strong> — 没有人带容易死在路上'],context:'35+ 双双被裁的人 · 优先考虑找工作（哪怕稍微降薪），同时副业试错——别把储备一次烧光。'},
+      {title:'外贸 All in<br><span class="accent">一年不赔不赚</span>',quote:'你跟我说 All in 外贸一年，不赔不赚——这其实是高分答卷。意味着你已经过了"项目能不能跑"的关，下一步是"产值"。',context:'我经常说："任何项目，前期认真干半年——这半年不要换。半年后看是不是真适合自己。"'},
+      {title:'抖音风水类的<span class="accent">真实数据</span>',quote:'抖音上做八字风水的，月入百万的我也认识。但他们的流量带宽 70% 来自批量起号 + 50 个工作号。',context:'很多人看到"月入百万"就跟着做——但你看不到背后的 50 个号、5 个员工、3 个剪辑——那都是成本。'}
+    ]
+  },
+  {
+    id:'part06', label:'放大',
+    slides:[
+      {type:'cover',title:'关于"放大"<br><span class="accent">颖儿的创始人 IP 项目</span>',quote:'流量 ≠ 变现。你以为卡在 5，其实卡在 3。'},
+      {title:'流量不等于<span class="accent">变现</span>',quote:'颖儿做创始人短视频操盘——给老板们做线上获客，视频号采访 / 短视频。',context:'但有流量不代表有钱。你有 1000 个播放，但你不知道怎么把这 1000 人变成 10 个签单——你卡在销售。'},
+      {title:'三条<span class="accent">并行路径</span>',steps:[{n:'1',text:'<strong>稳住基本盘</strong> — 现有客户的服务质量 + 续约'},{n:'2',text:'<strong>放大现有方法</strong> — 同样一套方法找更多老板做'},{n:'3',text:'<strong>开新业务线</strong> — 做小宇宙音频 / 自己也做创始人 IP'}]},
+      {title:'销售是<span class="accent">基本功</span>',quote:'你以为卡在内容（5），其实卡在销售（3）。',context:'内容做得再好，没人付钱也没用。销售（让人愿意为你花钱）才是基本功——这能力练扎实，做什么项目都能放大。'}
+    ]
+  },
+  {
+    id:'part07', label:'延展话题',
+    slides:[
+      {type:'cover',title:'延展话题<br><span class="accent">一心多用 · 找人才 · 文旅</span>',quote:'高客单一定不是着重在产品，而是着重在你的人设。'},
+      {title:'根源<span class="accent">怎么找人才</span>',list:['<strong>看朋友圈活跃度</strong> — 持续发 + 有内容深度','<strong>看是否参加我的活动</strong> — 主动来 = 主动学','<strong>看付费意愿</strong> — 愿意为内容花钱的更靠谱','<strong>看跟我聊天的姿态</strong> — 上来就要资源的不要']},
+      {title:'文旅项目<br><span class="accent">利润率数据</span>',products:[{name:'大团',desc:'毛利 8-12% · 走量'},{name:'小团',desc:'毛利 15-20% · 服务密集'},{name:'定制团',desc:'毛利 25-40% · 高利润 · 难放大'}],context:'走"高利润 + 适度规模"路径 —— 我现在做的就是这个。'},
+      {title:'结尾 · <span class="accent">小程序试用</span>',quote:'分享的最后大家加微信 + 拍合影 + 我让大家试用一下小程序。',context:'下周二带电脑再聚——AI 编程实操场。期待。'}
+    ]
+  }
+];
+
+// ====== STATE ======
+let currentSection=0, currentSlide=0;
+
+function renderTabs(){
+  document.getElementById('tabs').innerHTML=sections.map((s,i)=>
+    `<button class="${i===currentSection?'active':''}" onclick="switchSection(${i})">${s.label}</button>`
+  ).join('');
+}
+
+function renderSlides(){
+  const s=sections[currentSection];
+  document.getElementById('track').innerHTML=s.slides.map((sl,i)=>{
+    let cls='slide '+(sl.type==='cover'?'cover':'content');
+    let h=`<div class="${cls}"><div class="slide-inner">`;
+    h+=`<div class="slide-num">${s.label} · ${i+1}/${s.slides.length}</div>`;
+    if(sl.type==='cover') h+=`<div class="part-label">PART 0${currentSection+1}</div>`;
+    if(sl.questioner) h+=`<div class="questioner-badge">${sl.questioner}</div>`;
+    if(sl.title) h+=`<h2 class="slide-title">${sl.title}</h2>`;
+    if(sl.quote) h+=`<div class="slide-quote">${sl.quote}</div>`;
+    if(sl.list) h+=`<ul class="slide-list">${sl.list.map(l=>`<li>${l}</li>`).join('')}</ul>`;
+    if(sl.steps) h+=`<div class="slide-steps">${sl.steps.map(st=>`<div class="step"><div class="step-num">${st.n}</div><div class="step-text">${st.text}</div></div>`).join('')}</div>`;
+    if(sl.products) h+=`<div class="slide-products">${sl.products.map(p=>`<div class="sp"><div class="sp-name">${p.name}</div><div class="sp-desc">${p.desc}</div></div>`).join('')}</div>`;
+    if(sl.context) h+=`<p class="slide-context">${sl.context}</p>`;
+    return h+`</div></div>`;
+  }).join('');
+  document.getElementById('dots').innerHTML=s.slides.map((_,i)=>
+    `<div class="dot ${i===currentSlide?'active':''}" onclick="goTo(${i})"></div>`
+  ).join('');
+  updatePosition(false);
+}
+
+function updatePosition(anim=true){
+  const t=document.getElementById('track');
+  t.style.transition=anim?'transform 0.55s cubic-bezier(0.22,1,0.36,1)':'none';
+  t.style.transform=`translateX(-${currentSlide*100}vw)`;
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));
+  document.querySelectorAll('.slide').forEach((s,i)=>s.classList.toggle('current',i===currentSlide));
+  const total=sections[currentSection].slides.length;
+  document.getElementById('counter').textContent=`${currentSlide+1} / ${total}`;
+  document.getElementById('prevBtn').disabled=(currentSlide===0&&currentSection===0);
+  document.getElementById('nextBtn').disabled=(currentSlide===total-1&&currentSection===sections.length-1);
+  const pct=total>1?(currentSlide/(total-1))*100:100;
+  const pb=document.getElementById('progress');if(pb)pb.style.setProperty('--progress',pct+'%');
+  const ad=document.querySelector('.dot.active');if(ad)ad.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+}
+
+function switchSection(i){currentSection=i;currentSlide=0;renderTabs();renderSlides()}
+
+function go(dir){
+  const total=sections[currentSection].slides.length, next=currentSlide+dir;
+  if(next>=0&&next<total){currentSlide=next;updatePosition()}
+  else if(dir>0&&currentSection<sections.length-1){currentSection++;currentSlide=0;renderTabs();renderSlides();const at=document.querySelector('.tabs button.active');if(at)at.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}
+  else if(dir<0&&currentSection>0){currentSection--;currentSlide=sections[currentSection].slides.length-1;renderTabs();renderSlides();const at=document.querySelector('.tabs button.active');if(at)at.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}
+}
+function goTo(i){currentSlide=i;updatePosition();const dt=document.querySelectorAll('.dot')[i];if(dt){dt.classList.remove('ripple');void dt.offsetWidth;dt.classList.add('ripple');}}
+
+document.addEventListener('keydown',e=>{
+  let btn=null;
+  if(e.key==='ArrowRight'||e.key==='ArrowDown'){go(1);btn=document.getElementById('nextBtn');}
+  else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){go(-1);btn=document.getElementById('prevBtn');}
+  else if(e.key>='1'&&e.key<='8'){switchSection(parseInt(e.key)-1);}
+  if(btn){btn.classList.add('pressed');setTimeout(()=>btn.classList.remove('pressed'),180);}
+  // 首次交互后 hint 渐隐
+  const h=document.querySelector('.key-hint');if(h&&!h.classList.contains('hidden')){h.classList.add('hidden');}
+});
+
+let touchX=0,swiping=false;
+const vp=document.getElementById('viewport');
+vp.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX;swiping=true},{passive:true});
+vp.addEventListener('touchmove',e=>{if(swiping&&Math.abs(e.touches[0].clientX-touchX)>10)e.preventDefault()},{passive:false});
+vp.addEventListener('touchend',e=>{if(!swiping)return;swiping=false;const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>50)go(dx<0?1:-1)});
+
+renderTabs();renderSlides();
+
+// === D: 页面进入/离开过渡 ===
+(function(){
+  // 进入：DOM 准备好就标 ready
+  function ready(){ document.body.classList.add('page-ready'); }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ready);
+  } else {
+    ready();
+  }
+  // 离开：拦截同站链接，淡出再跳转
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href) return;
+    // 跳过外链、锚点、新窗口、特殊协议、下载链接
+    if (href.startsWith('#')) return;
+    if (href.startsWith('http://') || href.startsWith('https://')) return;
+    if (href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+    if (a.target && a.target !== '_self') return;
+    if (a.hasAttribute('download')) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    document.body.classList.add('page-leaving');
+    setTimeout(function(){ window.location.href = href; }, 280);
+  });
+  // bfcache 回退时不要保留淡出态
+  window.addEventListener('pageshow', function(e){
+    if (e.persisted) {
+      document.body.classList.remove('page-leaving');
+      document.body.classList.add('page-ready');
+    }
+  });
+})();
+
+
+// === G: PPT 上下场导航 ===
+const PPT_SESSIONS = [
+  {n:1,  t:'私域不是流量，是关系'},
+  {n:2,  t:'主动性是最稀缺的能力'},
+  {n:3,  t:'销售是通才的生意'},
+  {n:4,  t:'私域转化与销售基本功'},
+  {n:5,  t:'个体创业与私域转化'},
+  {n:6,  t:'销售即沟通之道'},
+  {n:7,  t:'八字的科学之辩'},
+  {n:8,  t:'高客单销售术'},
+  {n:9,  t:'混圈与沉淀'},
+  {n:10, t:'成交与名单'},
+  {n:11, t:'产品定价与私域转化'},
+  {n:12, t:'私域转化与个人产品'},
+  {n:13, t:'咨询师的复合能力与人生基本功'},
+  {n:14, t:'试错与主见'},
+  {n:15, t:'直播表达与销售基本功'},
+  {n:16, t:'超级个体与销售'},
+  {n:17, t:'自由职业与AI变现'},
+  {n:18, t:'AI虚拟乐队与合伙人选择'},
+];
+(function(){
+  var m = (window.location.pathname || '').match(/(\d{1,2})\.html$/);
+  if (!m) return;
+  var curNum = parseInt(m[1], 10);
+  var pad = function(n){ return n < 10 ? '0' + n : '' + n; };
+  var prev = PPT_SESSIONS.find(function(s){ return s.n === curNum - 1; });
+  var next = PPT_SESSIONS.find(function(s){ return s.n === curNum + 1; });
+  var pEl = document.getElementById('psnPrev');
+  var nEl = document.getElementById('psnNext');
+  if (pEl) {
+    if (prev) {
+      pEl.href = pad(prev.n) + '.html';
+      var tp = pEl.querySelector('.psn-tip');
+      if (tp) tp.innerHTML = '<span class="psn-num">No.' + pad(prev.n) + '</span>' + prev.t;
+    } else {
+      pEl.classList.add('psn-disabled');
+    }
+  }
+  if (nEl) {
+    if (next) {
+      nEl.href = pad(next.n) + '.html';
+      var tn = nEl.querySelector('.psn-tip');
+      if (tn) tn.innerHTML = '<span class="psn-num">No.' + pad(next.n) + '</span>' + next.t;
+    } else {
+      nEl.classList.add('psn-disabled');
+    }
+  }
+})();
+
+// === H: 快捷键遮罩 ===
+(function(){
+  var overlay = document.getElementById('kbOverlay');
+  var trigger = document.getElementById('kbHintTrigger');
+  var closeBtn = document.getElementById('kbClose');
+  if (!overlay || !trigger) return;
+  var show = function(){ overlay.classList.add('visible'); };
+  var hide = function(){ overlay.classList.remove('visible'); };
+  var toggle = function(){ overlay.classList.toggle('visible'); };
+  trigger.addEventListener('click', toggle);
+  if (closeBtn) closeBtn.addEventListener('click', hide);
+  overlay.addEventListener('click', function(e){ if (e.target === overlay) hide(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === '?' || (e.key === '/' && e.shiftKey)) { e.preventDefault(); toggle(); }
+    else if (e.key === 'Escape' && overlay.classList.contains('visible')) { hide(); }
+  });
+})();
+
+
+// === J: PPT 触摸滑动手势 ===
+(function(){
+  if (typeof go !== 'function') return;
+  var viewport = document.getElementById('viewport') || document.querySelector('.viewport');
+  if (!viewport) return;
+  var startX = 0, startY = 0, startT = 0, locked = null;
+  viewport.addEventListener('touchstart', function(e){
+    if (!e.touches || e.touches.length !== 1) return;
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    startT = Date.now();
+    locked = null;
+  }, { passive: true });
+  viewport.addEventListener('touchmove', function(e){
+    if (!e.touches || e.touches.length !== 1 || locked === 'v') return;
+    var dx = e.touches[0].clientX - startX;
+    var dy = e.touches[0].clientY - startY;
+    if (locked === null) {
+      if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
+        locked = Math.abs(dx) > Math.abs(dy) ? 'h' : 'v';
+      }
+    }
+  }, { passive: true });
+  viewport.addEventListener('touchend', function(e){
+    if (!e.changedTouches || e.changedTouches.length === 0) return;
+    var dx = e.changedTouches[0].clientX - startX;
+    var dy = e.changedTouches[0].clientY - startY;
+    var dt = Date.now() - startT;
+    if (locked !== 'h') return;
+    // 触发条件：水平位移 > 60px 或者高速滑动 > 180px/s
+    var vx = Math.abs(dx) / Math.max(dt, 1) * 1000;
+    if (Math.abs(dx) > 60 || vx > 180) {
+      if (Math.abs(dx) > Math.abs(dy) * 1.2) {
+        go(dx < 0 ? 1 : -1);
+      }
+    }
+  }, { passive: true });
+  // 首次访问显示一次提示
+  try {
+    if (window.matchMedia && window.matchMedia('(max-width: 767px)').matches) {
+      if (!localStorage.getItem('swipeHintShown')) {
+        var hint = document.getElementById('swipeHint');
+        if (hint) {
+          setTimeout(function(){
+            hint.classList.add('visible');
+            setTimeout(function(){ hint.classList.remove('visible'); }, 2600);
+          }, 900);
+        }
+        localStorage.setItem('swipeHintShown', '1');
+      }
+    }
+  } catch(e) {}
+})();
+
+</script>
+</body>
+</html>
