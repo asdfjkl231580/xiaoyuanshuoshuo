@@ -2333,7 +2333,6 @@ body > * { position: relative; z-index: 1; }
   .card-share-btn:hover { color: var(--accent); border-color: var(--accent); transform: scale(1.1); }
 
 </style>
-<link rel="stylesheet" href="themes-extra.css">
 </head>
 <body>
 
@@ -2349,15 +2348,15 @@ body > * { position: relative; z-index: 1; }
     </div>
   </div>
   <div class="theme-switcher" role="group" aria-label="风格切换">
-    <button class="theme-chip" data-theme-chip="dark"  data-style-key="dark"  onclick="setSiteTheme('classic','dark')"  title="夜 · 暗金">夜</button>
-    <button class="theme-chip" data-theme-chip="light" data-style-key="light" onclick="setSiteTheme('classic','light')" title="昼 · 翠">昼</button>
-    <button class="theme-chip" data-theme-chip="paper" data-style-key="paper" onclick="setSiteTheme('classic','paper')" title="纸 · 墨朱">纸</button>
-    <button class="theme-chip" data-theme-chip="ocean" data-style-key="ocean" onclick="setSiteTheme('classic','ocean')" title="海 · 青瓷">海</button>
-    <span style="opacity:0.35;padding:0 4px;align-self:center;font-size:0.85em">·</span>
-    <button class="theme-chip" data-style-key="studio"    data-style-btn="studio"    onclick="setSiteTheme('style','studio')"    title="Zine 工作室 · 软陶橙 + Fraunces" style="font-size:0.78rem"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#D97757;margin-right:4px;vertical-align:1px"></span>工作室</button>
-    <button class="theme-chip" data-style-key="editorial" data-style-btn="editorial" onclick="setSiteTheme('style','editorial')" title="编辑部 · 极简墨绿 + Inter Tight" style="font-size:0.78rem"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#0E5C4F;margin-right:4px;vertical-align:1px"></span>编辑部</button>
-    <button class="theme-chip" data-style-key="library"   data-style-btn="library"   onclick="setSiteTheme('style','library')"   title="图书馆 · 麻布酒红 + Garamond" style="font-size:0.78rem"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#7B2C1B;margin-right:4px;vertical-align:1px"></span>图书馆</button>
-    <button class="theme-chip" data-style-key="y2k"       data-style-btn="y2k"       onclick="setSiteTheme('style','y2k')"       title="Y2K · 荧光撞色 + Bebas" style="font-size:0.78rem"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#FF2EA0;margin-right:4px;vertical-align:1px"></span>Y2K</button>
+    <button class="theme-chip" data-theme-chip="dark"  onclick="setTheme('dark')"  title="夜 · 暗金">夜</button>
+    <button class="theme-chip" data-theme-chip="light" onclick="setTheme('light')" title="昼 · 翠">昼</button>
+    <button class="theme-chip" data-theme-chip="paper" onclick="setTheme('paper')" title="纸 · 墨朱">纸</button>
+    <button class="theme-chip" data-theme-chip="ocean" onclick="setTheme('ocean')" title="海 · 青瓷">海</button>
+    <span style="opacity:0.35;padding:0 6px;align-self:center;font-size:0.85em">|</span>
+    <a class="theme-chip" href="site-studio.html"    title="跳转 · Zine 工作室版 完整页"    style="font-size:0.78rem;text-decoration:none"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#D97757;margin-right:4px;vertical-align:1px"></span>工作室</a>
+    <a class="theme-chip" href="site-editorial.html" title="跳转 · 编辑部版 完整页"          style="font-size:0.78rem;text-decoration:none"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#0E5C4F;margin-right:4px;vertical-align:1px"></span>编辑部</a>
+    <a class="theme-chip" href="site-library.html"   title="跳转 · 图书馆版 完整页"          style="font-size:0.78rem;text-decoration:none"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#7B2C1B;margin-right:4px;vertical-align:1px"></span>图书馆</a>
+    <a class="theme-chip" href="site-y2k.html"       title="跳转 · Y2K 版 完整页"            style="font-size:0.78rem;text-decoration:none"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#FF2EA0;margin-right:4px;vertical-align:1px"></span>Y2K</a>
   </div>
 </nav>
 
@@ -2619,70 +2618,9 @@ function setLayout(l) {
   applyLayout(l);
 }
 
-// ===================================================================
-// SITE STYLE SYSTEM — 4 套整站皮肤主题（覆盖现有 dark/light/paper/ocean 配色）
-//   '' 经典 / 'studio' 工作室 / 'editorial' 编辑部 / 'library' 图书馆 / 'y2k' Y2K
-// ===================================================================
-const SITE_STYLES = ['', 'studio', 'editorial', 'library', 'y2k'];
-
-function getSiteStyle() {
-  const saved = localStorage.getItem('sc-style');
-  return SITE_STYLES.includes(saved) ? saved : '';
-}
-
-function applySiteStyle(s) {
-  if (s) {
-    document.documentElement.setAttribute('data-style', s);
-  } else {
-    document.documentElement.removeAttribute('data-style');
-  }
-  document.querySelectorAll('[data-style-btn]').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.styleBtn === s);
-  });
-}
-
-function setSiteStyle(s) {
-  if (!SITE_STYLES.includes(s)) return;
-  localStorage.setItem('sc-style', s);
-  applySiteStyle(s);
-}
-
-applySiteStyle(getSiteStyle());
-
-// ===================================================================
-// UNIFIED THEME / STYLE SWITCHER — 8 选项一组（夜昼纸海 + 工作室/编辑部/图书馆/Y2K）
-// ===================================================================
-function setSiteTheme(kind, key) {
-  if (kind === 'classic') {
-    // 经典 4 套配色 · 清掉新风格
-    setTheme(key);
-    setSiteStyle('');
-  } else if (kind === 'style') {
-    // 4 套新风格 · 设对应基础经典色作为底
-    const base = {studio:'paper', editorial:'light', library:'paper', y2k:'dark'}[key] || 'dark';
-    setTheme(base);
-    setSiteStyle(key);
-  }
-  // 统一 8 按钮高亮（覆盖 setTheme/setSiteStyle 各自加的 active）
-  document.querySelectorAll('[data-style-key]').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.styleKey === key);
-  });
-}
-
-// 初始统一高亮（页面加载完成后跑一次）
-(function syncUnifiedHighlight() {
-  const savedStyle = localStorage.getItem('sc-style');
-  const savedTheme = localStorage.getItem('sc-theme');
-  let key;
-  if (savedStyle && ['studio','editorial','library','y2k'].includes(savedStyle)) {
-    key = savedStyle;
-  } else {
-    key = savedTheme || 'dark';
-  }
-  document.querySelectorAll('[data-style-key]').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.styleKey === key);
-  });
-})();
+// 清理可能残留的 data-style 属性（之前换皮系统遗留）
+document.documentElement.removeAttribute('data-style');
+localStorage.removeItem('sc-style');
 
 // ===================================================================
 // INSIGHTS — 金句洞察 marquee (A 步骤新增)
