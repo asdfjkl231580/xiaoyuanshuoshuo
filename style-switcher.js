@@ -4,7 +4,6 @@
  */
 (function(){
   const styles = [
-    { id: 'poster',    name: '海报版',    file: 'site-poster.html',    sub: 'Brutalist · 红黄黑',   color: '#EF3B2C' },
     { id: 'studio',    name: '工作室版',  file: 'site-studio.html',    sub: 'Zine · 软陶橙',        color: '#D97757' },
     { id: 'editorial', name: '编辑部版',  file: 'site-editorial.html', sub: 'Editorial · 极简墨绿',  color: '#0E5C4F' },
     { id: 'library',   name: '图书馆版',  file: 'site-library.html',   sub: 'Penguin · 麻布酒红',   color: '#7B2C1B' },
@@ -22,7 +21,7 @@
       <span class="sx-fab-icon">⌃</span>
     </button>
     <div class="sx-menu" role="menu">
-      <div class="sx-title">5 套风格 · 第 19 场已上线</div>
+      <div class="sx-title">4 套封面 · 第 19 场已上线</div>
       ${styles.map(s => `
         <a href="${s.file}" class="sx-opt${s.id===current?' active':''}" data-id="${s.id}">
           <span class="sx-dot" style="background:${s.color}"></span>
@@ -32,7 +31,7 @@
           </span>
           ${s.id===current?'<span class="sx-tick">·当前·</span>':'<span class="sx-arrow">→</span>'}
         </a>`).join('')}
-      <a href="index.html" class="sx-back">返回 17 场目录主页</a>
+      <a href="index.html" class="sx-back">返回 18 场目录主页</a>
     </div>
   `;
   document.body.appendChild(wrap);

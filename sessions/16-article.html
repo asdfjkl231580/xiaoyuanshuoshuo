@@ -1039,129 +1039,6 @@
   .top-bar .current-section.visible { opacity: 1; color: var(--text-muted); }
   @media (max-width: 600px) { .top-bar .current-section { max-width: 120px; font-size: 0.62rem; } }
 
-
-  /* === 左侧边栏 TOC === */
-  .page-wrapper {
-    display: flex;
-    align-items: flex-start;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .sidebar-toc {
-    width: 160px;
-    flex-shrink: 0;
-    position: sticky;
-    top: 96px;
-    padding: 1.4rem 0 1.4rem 1.2rem;
-    display: none; /* 默认隐藏，desktop 才显示 */
-  }
-  .sidebar-toc .stoc-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-bottom: 1rem;
-    padding-left: 4px;
-    transition: color var(--t);
-  }
-  .stoc-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 8px;
-    border-radius: 6px;
-    margin-bottom: 4px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    color: var(--text-dim);
-  }
-  .stoc-item:hover {
-    background: var(--accent-bg);
-    color: var(--accent);
-    text-decoration: none;
-  }
-  .stoc-item.active {
-    background: var(--accent-bg);
-    color: var(--accent);
-  }
-  .stoc-icon {
-    width: 28px;
-    height: 28px;
-    border-radius: 6px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    flex-shrink: 0;
-    transition: all 0.2s ease;
-  }
-  .stoc-item:hover .stoc-icon,
-  .stoc-item.active .stoc-icon {
-    background: var(--accent-bg2);
-    border-color: var(--accent-border2);
-    color: var(--accent);
-  }
-  .stoc-name {
-    font-size: 0.72rem;
-    line-height: 1.3;
-    transition: color 0.2s ease;
-  }
-
-  /* === Section 大字图标徽章 === */
-  .section-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-  .sec-badge {
-    width: 52px;
-    height: 52px;
-    border-radius: 12px;
-    background: var(--accent-bg2);
-    border: 1px solid var(--accent-border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    font-weight: 900;
-    color: var(--accent);
-    flex-shrink: 0;
-    margin-top: 4px;
-    transition: all var(--t);
-  }
-  .sec-header-text {
-    flex: 1;
-    padding-left: 0;
-    border-left: none;
-  }
-  /* 覆盖旧的 border-left 到 text wrapper 上 */
-  .section-header {
-    border-left: none !important;
-    padding-left: 0 !important;
-  }
-  .sec-header-text {
-    border-left: 3px solid var(--accent);
-    padding-left: 18px;
-    transition: border-color var(--t);
-  }
-
-  /* Desktop 才显示侧边栏，隐藏水平 toc-bar */
-  @media (min-width: 900px) {
-    html { scroll-padding-top: 58px; }
-    .sidebar-toc { display: block; }
-    .toc-bar { display: none; }
-    .page-wrapper .article {
-      flex: 1;
-      min-width: 0;
-      max-width: min(720px, 92vw) !important;
-    }
-  }
-
 </style>
 </head>
 <body>
@@ -1211,46 +1088,6 @@
   <a href="#part08">销售与表达</a>
 </nav>
 
-<!-- Page wrapper: sidebar + article -->
-<div class="page-wrapper">
-
-<!-- Sidebar TOC (desktop only) -->
-<nav class="sidebar-toc" aria-label="文章目录">
-  <div class="stoc-label">目录</div>
-  <a class="stoc-item" href="#part01">
-    <span class="stoc-icon">线</span>
-    <span class="stoc-name">线下社交</span>
-  </a>
-  <a class="stoc-item" href="#part02">
-    <span class="stoc-icon">基</span>
-    <span class="stoc-name">五大基本功</span>
-  </a>
-  <a class="stoc-item" href="#part03">
-    <span class="stoc-icon">影</span>
-    <span class="stoc-name">个人影响力</span>
-  </a>
-  <a class="stoc-item" href="#part04">
-    <span class="stoc-icon">智</span>
-    <span class="stoc-name">AI工具</span>
-  </a>
-  <a class="stoc-item" href="#part05">
-    <span class="stoc-icon">编</span>
-    <span class="stoc-name">AI编程</span>
-  </a>
-  <a class="stoc-item" href="#part06">
-    <span class="stoc-icon">记</span>
-    <span class="stoc-name">记录与知识库</span>
-  </a>
-  <a class="stoc-item" href="#part07">
-    <span class="stoc-icon">选</span>
-    <span class="stoc-name">选项目与赚钱</span>
-  </a>
-  <a class="stoc-item" href="#part08">
-    <span class="stoc-icon">销</span>
-    <span class="stoc-name">销售与表达</span>
-  </a>
-</nav>
-
 <!-- Article -->
 <article class="article">
 
@@ -1265,11 +1102,8 @@
 
   <!-- ==================== PART 01 ==================== -->
   <div class="section-header" id="part01">
-    <div class="sec-badge">线</div>
-    <div class="sec-header-text">
-      <div class="sec-num">PART 01</div>
-      <h2>线下活动组织与社交技巧</h2>
-    </div>
+    <div class="sec-num">PART 01</div>
+    <h2>线下活动组织与社交技巧</h2>
   </div>
 
   <h3>自我介绍的四要素</h3>
@@ -1308,11 +1142,8 @@
 
   <!-- ==================== PART 02 ==================== -->
   <div class="section-header" id="part02">
-    <div class="sec-badge">基</div>
-    <div class="sec-header-text">
-      <div class="sec-num">PART 02</div>
-      <h2>五大基本功——AI取代不了的能力</h2>
-    </div>
+    <div class="sec-num">PART 02</div>
+    <h2>五大基本功——AI取代不了的能力</h2>
   </div>
 
   <h3>五大基本功详述</h3>
@@ -1343,11 +1174,8 @@
 
   <!-- ==================== PART 03 ==================== -->
   <div class="section-header" id="part03">
-    <div class="sec-badge">影</div>
-    <div class="sec-header-text">
-      <div class="sec-num">PART 03</div>
-      <h2>个人影响力与持续办局</h2>
-    </div>
+    <div class="sec-num">PART 03</div>
+    <h2>个人影响力与持续办局</h2>
   </div>
 
   <h3>反向思考：为什么我愿意去见他</h3>
@@ -1380,11 +1208,8 @@
 
   <!-- ==================== PART 04 ==================== -->
   <div class="section-header" id="part04">
-    <div class="sec-badge">智</div>
-    <div class="sec-header-text">
-      <div class="sec-num">PART 04</div>
-      <h2>AI工具实战分享</h2>
-    </div>
+    <div class="sec-num">PART 04</div>
+    <h2>AI工具实战分享</h2>
   </div>
 
   <h3>Typeless语音输入法</h3>
@@ -1433,11 +1258,8 @@
 
   <!-- ==================== PART 05 ==================== -->
   <div class="section-header" id="part05">
-    <div class="sec-badge">编</div>
-    <div class="sec-header-text">
-      <div class="sec-num">PART 05</div>
-      <h2>AI编程与个人化AI系统</h2>
-    </div>
+    <div class="sec-num">PART 05</div>
+    <h2>AI编程与个人化AI系统</h2>
   </div>
 
   <h3>AI搜索 vs AI编程的区别</h3>
@@ -1478,11 +1300,8 @@
 
   <!-- ==================== PART 06 ==================== -->
   <div class="section-header" id="part06">
-    <div class="sec-badge">记</div>
-    <div class="sec-header-text">
-      <div class="sec-num">PART 06</div>
-      <h2>记录的习惯与知识库建设</h2>
-    </div>
+    <div class="sec-num">PART 06</div>
+    <h2>记录的习惯与知识库建设</h2>
   </div>
 
   <h3>为什么要记录</h3>
@@ -1507,11 +1326,8 @@
 
   <!-- ==================== PART 07 ==================== -->
   <div class="section-header" id="part07">
-    <div class="sec-badge">选</div>
-    <div class="sec-header-text">
-      <div class="sec-num">PART 07</div>
-      <h2>选项目、目标感与赚钱逻辑</h2>
-    </div>
+    <div class="sec-num">PART 07</div>
+    <h2>选项目、目标感与赚钱逻辑</h2>
   </div>
 
   <h3>三条路</h3>
@@ -1550,11 +1366,8 @@
 
   <!-- ==================== PART 08 ==================== -->
   <div class="section-header" id="part08">
-    <div class="sec-badge">销</div>
-    <div class="sec-header-text">
-      <div class="sec-num">PART 08</div>
-      <h2>销售差异、讨人喜欢与表达训练</h2>
-    </div>
+    <div class="sec-num">PART 08</div>
+    <h2>销售差异、讨人喜欢与表达训练</h2>
   </div>
 
   <h3>ToB vs ToC 销售区别</h3>
@@ -1612,8 +1425,6 @@
 
 </article>
 
-</div><!-- /.page-wrapper -->
-
 <nav class="session-nav" id="sessionNav"></nav>
 
 
@@ -1656,13 +1467,12 @@ window.addEventListener('scroll', () => {
   document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
 });
 
-// === I: TOC scrollspy 升级（含侧边栏） ===
+// === I: TOC scrollspy 升级 ===
 (function(){
   const sections = document.querySelectorAll('.section-header');
   const tocLinks = document.querySelectorAll('.toc-bar a');
-  const sideLinks = document.querySelectorAll('.sidebar-toc .stoc-item');
   const tocBar = document.querySelector('.toc-bar');
-  if (!sections.length) return;
+  if (!sections.length || !tocLinks.length) return;
   let lastActive = null;
   const update = function(){
     const h = document.documentElement;
@@ -1670,6 +1480,7 @@ window.addEventListener('scroll', () => {
     const nearBottom = (scrolled + h.clientHeight) >= (h.scrollHeight - 40);
     let current = '';
     if (nearBottom) {
+      // 滑到页底：最后一节强制高亮
       current = sections[sections.length - 1].id;
     } else {
       sections.forEach(function(s){
@@ -1683,15 +1494,12 @@ window.addEventListener('scroll', () => {
       const isActive = a.getAttribute('href') === '#' + current;
       a.classList.toggle('active', isActive);
       if (isActive && tocBar && tocBar.scrollWidth > tocBar.clientWidth) {
+        // 移动端横向 TOC：把激活项滚进视野
         const barRect = tocBar.getBoundingClientRect();
         const aRect = a.getBoundingClientRect();
         const offset = (aRect.left + aRect.width/2) - (barRect.left + barRect.width/2);
         tocBar.scrollBy({ left: offset, behavior: 'smooth' });
       }
-    });
-    // 同步高亮侧边栏
-    sideLinks.forEach(function(a){
-      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
     });
   };
   window.addEventListener('scroll', update, { passive: true });
@@ -1789,7 +1597,6 @@ const SESSIONS_LIST = [
   {n:14, t:'试错与主见'},
   {n:15, t:'直播表达与销售基本功'},
   {n:16, t:'超级个体与销售'},
-  {n:17, t:'自由职业与AI变现'},
 ];
 
 (function(){
@@ -2134,5 +1941,6 @@ const SESSIONS_LIST = [
     <div class="share-hint">长按图片可直接分享到微信</div>
   </div>
 </div>
+<script src="../style-switcher.js"></script>
 </body>
 </html>
