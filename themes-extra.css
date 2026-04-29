@@ -26,7 +26,7 @@ html[data-style="studio"] {
   --bg-hero-b: #FCF6E9 !important;
   --bg-glow: rgba(217,119,87,0.08) !important;
   --bg-toc: #FFFFFF !important;
-  --bg-card: #FFFFFF !important;
+  --card-bg: #FFFFFF !important;
   --bg-info: #FCF6E9 !important;
   --border: rgba(43,41,38,0.08) !important;
   --rule: rgba(43,41,38,0.12) !important;
@@ -129,7 +129,7 @@ html[data-style="editorial"] {
   --bg-hero-b: #FFFFFF !important;
   --bg-glow: rgba(14,92,79,0.04) !important;
   --bg-toc: #FFFFFF !important;
-  --bg-card: #FFFFFF !important;
+  --card-bg: #FFFFFF !important;
   --bg-info: #F1F2F4 !important;
   --border: #E6E8EC !important;
   --rule: #E6E8EC !important;
@@ -233,7 +233,7 @@ html[data-style="library"] {
   --bg-hero-b: #EFE7D2 !important;
   --bg-glow: rgba(123,44,27,0.06) !important;
   --bg-toc: #F9F3DD !important;
-  --bg-card: #F9F3DD !important;
+  --card-bg: #F9F3DD !important;
   --bg-info: #F5EFE0 !important;
   --border: rgba(31,37,25,0.18) !important;
   --rule: rgba(31,37,25,0.18) !important;
@@ -348,7 +348,7 @@ html[data-style="y2k"] {
   --bg-hero-b: #14131A !important;
   --bg-glow: rgba(255,46,160,0.1) !important;
   --bg-toc: #0F0E14 !important;
-  --bg-card: #0F0E14 !important;
+  --card-bg: #0F0E14 !important;
   --bg-info: #14131A !important;
   --border: rgba(0,255,224,0.18) !important;
   --rule: rgba(0,255,224,0.15) !important;
