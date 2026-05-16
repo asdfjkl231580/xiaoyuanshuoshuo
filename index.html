@@ -3752,7 +3752,7 @@ function toggleQuotesMenu(){
 }
 function renderQuotesMenu(){
   var list=document.getElementById('quotesMenuList');
-  if(!list || !window.events) return;
+  if(!list || typeof events==='undefined') return;
   list.innerHTML = events.map(function(e){
     var link = e.link ? e.link.replace('-article.html','.html') : '#'; // PPT 版才是金句精华
     return '<a href="'+link+'" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;text-decoration:none;color:#333;transition:background .15s" onmouseover="this.style.background=\'#FEF7E0\'" onmouseout="this.style.background=\'transparent\'">'
@@ -3787,7 +3787,7 @@ function toggleSessionJumper(e){
 }
 function renderSessionJumper(){
   var list=document.getElementById('sjList');
-  if(!list || !window.events) return;
+  if(!list || typeof events==='undefined') return;
   list.innerHTML = events.map(function(e){
     var link = e.link || '#';
     return '<a href="'+link+'" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;text-decoration:none;color:#333;transition:background .15s" onmouseover="this.style.background=\'#F0F4F8\'" onmouseout="this.style.background=\'transparent\'">'
