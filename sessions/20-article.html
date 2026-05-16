@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第20场 · AI 时代的个体创业 — 生财有术线下活动</title>
+<meta name="description" content="生财有术第20场线下组局 · AI 时代的个体创业：能力系统化与心力重建 — 文章版精华整理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第20场 · AI 时代的个体创业：能力系统化与心力重建 — 文章版">
+<meta property="og:description" content="线下链接 · 心力修复 · 创业基本盘 · 流量存量增量 · 健康项目验证 · 教育咨询定位 · B2B 代运营机制 · AI 助理 Hermes">
+<meta property="og:site_name" content="生财有术线下组局">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --t: 0.35s ease; }
+html { font-size: clamp(15px, 0.55vw + 12px, 20px); scroll-behavior: smooth; }
+
+[data-theme="dark"] {
+  --bg: #0a0a08;
+  --bg-bar: rgba(10,10,8,0.92);
+  --bg-hero-a: #1a1510;
+  --bg-hero-b: #0a0a08;
+  --bg-glow: rgba(212,160,74,0.1);
+  --bg-card: #12100c;
+  --bg-info: #14110d;
+  --border: #2a2218;
+  --accent: #d4a04a;
+  --accent-bg: rgba(212,160,74,0.12);
+  --accent-bg2: rgba(212,160,74,0.25);
+  --accent-border: rgba(212,160,74,0.2);
+  --accent-border2: rgba(212,160,74,0.3);
+  --text: #c8c0b0;
+  --text-heading: #f0e6d6;
+  --text-sub: #e8dcc8;
+  --text-quote: #d8cfc0;
+  --text-muted: #8a7d6d;
+  --text-dim: #5a5040;
+  --bq-bg: rgba(212,160,74,0.06);
+  --bq-border: rgba(212,160,74,0.4);
+  --code-bg: #14110d;
+  --code-color: #d4a04a;
+}
+
+[data-theme="light"] {
+  --bg: #f5faf8;
+  --bg-bar: rgba(245,250,248,0.92);
+  --bg-hero-a: #e4f0ec;
+  --bg-hero-b: #f5faf8;
+  --bg-glow: rgba(26,138,125,0.08);
+  --bg-card: #eaf4f0;
+  --bg-info: #eaf4f0;
+  --border: #c8ddd6;
+  --accent: #1a8a7d;
+  --accent-bg: rgba(26,138,125,0.08);
+  --accent-bg2: rgba(26,138,125,0.15);
+  --accent-border: rgba(26,138,125,0.18);
+  --accent-border2: rgba(26,138,125,0.25);
+  --text: #3a5a52;
+  --text-heading: #1a2e28;
+  --text-sub: #2a4a42;
+  --text-quote: #2a4a42;
+  --text-muted: #7a9a90;
+  --text-dim: #a0b8b0;
+  --bq-bg: rgba(26,138,125,0.05);
+  --bq-border: rgba(26,138,125,0.45);
+  --code-bg: #eaf4f0;
+  --code-color: #1a8a7d;
+}
+
+[data-theme="paper"] {
+  --bg: #f1ead9;
+  --bg-bar: rgba(241,234,217,0.92);
+  --bg-hero-a: #ebe3cd;
+  --bg-hero-b: #f1ead9;
+  --bg-glow: rgba(168,50,38,0.08);
+  --bg-card: #ebe3cd;
+  --bg-info: #ebe3cd;
+  --border: #c5b89a;
+  --accent: #a83226;
+  --accent-bg: rgba(168,50,38,0.08);
+  --accent-bg2: rgba(168,50,38,0.15);
+  --accent-border: rgba(168,50,38,0.2);
+  --accent-border2: rgba(168,50,38,0.3);
+  --text: #4a3a2e;
+  --text-heading: #2a1f15;
+  --text-sub: #3a2e22;
+  --text-quote: #3a2e22;
+  --text-muted: #8a7860;
+  --text-dim: #b0a080;
+  --bq-bg: rgba(168,50,38,0.05);
+  --bq-border: rgba(168,50,38,0.45);
+  --code-bg: #ebe3cd;
+  --code-color: #a83226;
+}
+
+body {
+  font-family: 'Noto Sans SC', -apple-system, 'PingFang SC', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.85;
+  transition: background var(--t), color var(--t);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ============== TOP BAR ============== */
+.bar {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--bg-bar); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.bar-back { font-size: 13px; color: var(--text-muted); display: inline-flex; align-items: center; gap: 8px; transition: color var(--t); }
+.bar-back:hover { color: var(--accent); }
+.bar-meta { font-size: 12px; color: var(--text-muted); letter-spacing: 0.06em; }
+.bar-meta b { color: var(--accent); font-weight: 700; }
+.theme-tabs { display: inline-flex; gap: 4px; padding: 3px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 100px; }
+.theme-btn { width: 32px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; background: transparent; color: var(--text-muted); font-size: 14px; border-radius: 100px; transition: all 0.2s; }
+.theme-btn.active { background: var(--accent-bg); color: var(--accent); }
+.theme-btn:hover:not(.active) { color: var(--text-heading); }
+
+/* ============== HERO ============== */
+.hero {
+  padding: 80px 24px 60px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--bg-hero-a) 0%, var(--bg-hero-b) 100%);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, var(--bg-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-issue {
+  display: inline-block;
+  font-family: 'Noto Sans SC', monospace;
+  font-size: 13px; color: var(--accent);
+  letter-spacing: 0.4em; text-transform: uppercase;
+  padding: 6px 18px; border: 1px solid var(--accent-border2);
+  border-radius: 100px; margin-bottom: 24px;
+  background: var(--accent-bg);
+  position: relative; z-index: 2;
+}
+.hero-num {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 900;
+  font-size: clamp(120px, 18vw, 200px);
+  line-height: 0.85;
+  color: var(--accent);
+  letter-spacing: -0.05em;
+  opacity: 0.16;
+  margin: -20px 0 -40px;
+  position: relative; z-index: 1;
+}
+.hero-title {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+  font-size: clamp(32px, 5vw, 56px);
+  color: var(--text-heading);
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+  max-width: 920px; margin-left: auto; margin-right: auto;
+  position: relative; z-index: 2;
+}
+.hero-title em { font-style: normal; color: var(--accent); }
+.hero-meta {
+  font-size: 13px; color: var(--text-muted);
+  letter-spacing: 0.1em;
+  display: inline-flex; align-items: center; gap: 16px;
+  flex-wrap: wrap; justify-content: center;
+  position: relative; z-index: 2;
+  margin-bottom: 18px;
+}
+.hero-meta span { display: inline-flex; align-items: center; gap: 6px; }
+.hero-meta b { color: var(--text-heading); font-weight: 600; }
+.hero-meta .sep { color: var(--text-dim); }
+.hero-tags {
+  display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+  margin-top: 20px; max-width: 720px; margin-left: auto; margin-right: auto;
+  position: relative; z-index: 2;
+}
+.hero-tag {
+  font-size: 12px; color: var(--text-sub);
+  padding: 4px 12px; background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 100px;
+}
+
+/* ============== TOC ============== */
+.toc-wrap {
+  max-width: 880px; margin: 40px auto 0;
+  padding: 0 24px;
+}
+.toc {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 26px 32px;
+}
+.toc-title {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+.toc-title::before { content: ''; width: 24px; height: 2px; background: var(--accent); }
+.toc-list { list-style: none; counter-reset: toc-c; }
+.toc-list li { padding: 8px 0; border-bottom: 1px dashed var(--border); position: relative; }
+.toc-list li:last-child { border-bottom: none; }
+.toc-list li a {
+  display: flex; align-items: baseline; gap: 14px;
+  font-size: 15px; color: var(--text-sub); transition: color 0.2s;
+  font-weight: 500;
+}
+.toc-list li a:hover { color: var(--accent); }
+.toc-list li a::before {
+  counter-increment: toc-c; content: counter(toc-c, decimal-leading-zero);
+  font-family: 'Noto Serif SC', serif;
+  color: var(--accent); font-weight: 600; font-size: 14px;
+  letter-spacing: 0.04em; min-width: 32px;
+}
+
+/* ============== BODY ============== */
+.article {
+  max-width: 760px; margin: 0 auto;
+  padding: 60px 24px 80px;
+  font-family: 'Noto Serif SC', 'Noto Sans SC', serif;
+  font-size: 17px; line-height: 1.95;
+  color: var(--text);
+}
+
+/* metadata block at top of md */
+.article hr {
+  border: none; border-top: 1px solid var(--border);
+  margin: 32px 0;
+}
+
+.article h1 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(28px, 4vw, 40px); font-weight: 800;
+  color: var(--text-heading); letter-spacing: -0.015em;
+  line-height: 1.2; margin: 0 0 32px;
+  text-align: center; padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+.article h1::before {
+  content: '✦'; display: block; color: var(--accent); font-size: 16px;
+  margin-bottom: 12px; letter-spacing: 0.5em;
+}
+
+.article h2 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 26px; font-weight: 700;
+  color: var(--text-heading); letter-spacing: -0.01em;
+  line-height: 1.25; margin: 56px 0 22px;
+  padding-top: 28px; border-top: 2px solid var(--accent);
+  position: relative;
+}
+.article h2::before {
+  content: ''; position: absolute; top: -6px; left: 0;
+  width: 60px; height: 10px; background: var(--accent);
+}
+
+.article h3 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 21px; font-weight: 700;
+  color: var(--text-heading); letter-spacing: -0.005em;
+  line-height: 1.35; margin: 36px 0 14px;
+  display: flex; align-items: baseline; gap: 12px;
+}
+.article h3::before {
+  content: ''; width: 6px; height: 22px; background: var(--accent);
+  flex-shrink: 0; transform: translateY(3px);
+  border-radius: 2px;
+}
+
+.article h4 {
+  font-size: 17px; font-weight: 700;
+  color: var(--text-heading); letter-spacing: -0.005em;
+  line-height: 1.45; margin: 26px 0 10px;
+}
+
+.article p {
+  margin: 0 0 18px;
+}
+.article p strong { color: var(--text-heading); font-weight: 700; }
+.article p em { color: var(--accent); font-style: italic; font-weight: 600; }
+
+.article blockquote {
+  margin: 24px 0; padding: 18px 24px;
+  background: var(--bq-bg); border-left: 3px solid var(--bq-border);
+  border-radius: 0 12px 12px 0;
+  color: var(--text-quote);
+  font-size: 16px; line-height: 1.85;
+  font-style: normal;
+}
+.article blockquote p { margin-bottom: 10px; }
+.article blockquote p:last-child { margin-bottom: 0; }
+.article blockquote strong { color: var(--text-heading); }
+.article blockquote em { color: var(--accent); font-style: normal; font-weight: 600; }
+
+.article ul, .article ol {
+  margin: 18px 0 22px 0;
+  padding-left: 0;
+  list-style: none;
+}
+.article ul li, .article ol li {
+  position: relative; padding: 6px 0 6px 30px;
+  margin-bottom: 4px;
+}
+.article ul li::before {
+  content: ''; position: absolute; left: 8px; top: 18px;
+  width: 6px; height: 6px; background: var(--accent);
+  border-radius: 50%;
+}
+.article ol { counter-reset: art-ol; }
+.article ol li { padding-left: 38px; }
+.article ol li::before {
+  counter-increment: art-ol; content: counter(art-ol, decimal-leading-zero);
+  position: absolute; left: 0; top: 6px;
+  font-family: 'Noto Serif SC', serif; font-weight: 700;
+  color: var(--accent); font-size: 16px; letter-spacing: 0.04em;
+}
+
+.article code {
+  background: var(--code-bg); color: var(--code-color);
+  padding: 2px 6px; border-radius: 4px;
+  font-family: 'JetBrains Mono', 'SF Mono', monospace;
+  font-size: 0.9em;
+}
+
+.article a {
+  color: var(--accent); border-bottom: 1px solid var(--accent-border2);
+  padding-bottom: 1px;
+}
+
+.article hr {
+  border: none;
+  display: flex; justify-content: center; align-items: center;
+  margin: 48px 0;
+  position: relative; height: 24px;
+}
+.article hr::before {
+  content: '· · ·'; color: var(--accent);
+  font-size: 18px; letter-spacing: 0.6em;
+  background: var(--bg);
+  padding: 0 24px;
+}
+
+/* ============== LOADING ============== */
+.loading {
+  text-align: center; padding: 80px 24px;
+  color: var(--text-muted); font-size: 14px;
+}
+.loading::before {
+  content: ''; display: block; width: 32px; height: 32px;
+  border: 2px solid var(--border); border-top-color: var(--accent);
+  border-radius: 50%; margin: 0 auto 18px;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ============== FOOT ============== */
+.foot {
+  max-width: 760px; margin: 0 auto;
+  padding: 40px 24px 80px;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 14px;
+  font-size: 13px; color: var(--text-muted); letter-spacing: 0.04em;
+}
+.foot a {
+  color: var(--accent); border-bottom: 1px solid var(--accent-border2);
+  padding-bottom: 1px;
+}
+.foot-center {
+  font-family: 'Noto Serif SC', serif;
+  color: var(--text-muted);
+}
+
+@media (max-width: 720px) {
+  .hero { padding: 50px 18px 40px; }
+  .article { padding: 36px 18px 60px; font-size: 16px; line-height: 1.9; }
+  .article blockquote { padding: 14px 18px; }
+  .toc-wrap { padding: 0 18px; }
+  .toc { padding: 22px 24px; }
+  .bar-meta { display: none; }
+  .foot { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <a class="bar-back" href="../index.html">← 返回主页</a>
+  <div style="display:inline-flex;gap:6px;align-items:center">
+    <a href="20-article.html" style="padding:5px 12px;background:var(--accent);color:var(--bg);border-radius:6px;font-size:12px;font-weight:600;text-decoration:none">≡ 全文版</a>
+    <a href="20.html" style="padding:5px 12px;background:transparent;color:var(--text-muted);border:1px solid var(--border);border-radius:6px;font-size:12px;font-weight:600;text-decoration:none">▣ PPT 版</a>
+  </div>
+  <div class="theme-tabs" role="tablist">
+    <button class="theme-btn" data-theme="paper" title="纸卷">☕</button>
+    <button class="theme-btn" data-theme="light" title="松石绿">☀</button>
+    <button class="theme-btn active" data-theme="dark" title="暗金">☽</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-issue">Issue 20 · Hangzhou Weekly</div>
+  <div class="hero-num">20</div>
+  <h1 class="hero-title">AI 时代的<br>个体创业：<em>能力系统化与心力重建</em></h1>
+  <div class="hero-meta">
+    <span>📅 <b>2026·05·16</b></span>
+    <span class="sep">·</span>
+    <span>👥 <b>常态周一场</b></span>
+    <span class="sep">·</span>
+    <span>📝 约 2 万字</span>
+    <span class="sep">·</span>
+    <span>⏱ 约 90 min</span>
+  </div>
+  <div class="hero-tags">
+    <span class="hero-tag">线下链接</span>
+    <span class="hero-tag">心力修复</span>
+    <span class="hero-tag">收入倒推</span>
+    <span class="hero-tag">流量·存量·增量</span>
+    <span class="hero-tag">健康项目验证</span>
+    <span class="hero-tag">教育咨询定位</span>
+    <span class="hero-tag">代运营机制</span>
+    <span class="hero-tag">Hermes 房东模型</span>
+  </div>
+</section>
+
+<nav class="toc-wrap">
+  <div class="toc">
+    <div class="toc-title">章节目录</div>
+    <ol class="toc-list">
+      <li><a href="#chap-1">一、线下链接 · 先让别人记住你</a></li>
+      <li><a href="#chap-2">二、心力修复 · 把工作和生活重新排成节律</a></li>
+      <li><a href="#chap-3">三、创业基本盘 · 先算清楚钱，再设计产品</a></li>
+      <li><a href="#chap-4">四、从 0 到 1 · 流量、存量和增量</a></li>
+      <li><a href="#chap-5">五、知识付费与健康项目 · 先验证，再放大</a></li>
+      <li><a href="#chap-6">六、教育咨询与个人定位 · 避开竞争最卷的场景</a></li>
+      <li><a href="#chap-7">七、B2B 代运营与团队机制 · 用 AI 重构成本</a></li>
+      <li><a href="#chap-8">八、AI 助理与 Hermes · 把个人能力封装成系统</a></li>
+    </ol>
+  </div>
+</nav>
+
+<script id="md-content" type="text/plain">
+
+# 第 20 场 · AI 时代的个体创业：能力系统化与心力重建
+
+> <b>本场速记</b>：第 20 场是常态周一场的延续。开场根源做了一段完整的自我介绍和"自我介绍方法论"——这一直是他场场必讲的基本功。
+>
+> 这一场的提问横跨好几个方向：从女生姨妈调理类健康产品怎么验证、到把孩子送进清华北大的家长咨询要怎么切入、到 B2B 代运营公司团队机制怎么改、再到根源最近做出的 Hermes AI 助理系统——这是他自己嘴里"上周五做出来的很有突破性的产品"。
+>
+> 全文按八章拆分。前两章是基础——线下链接和心力修复，是创业之前你要先解决的"人"的问题；中间四章是真刀真枪的业务诊断；最后一章是 Hermes，根源把自己 14 个早期用户、第一周赚到 5000 块的实战路径全部说清楚了。
+
+---
+
+# 一、线下链接，先让别人记住你
+
+线下的见面，尤其第一次见面，很难当场就发生业务链接——彼此还不熟悉。所以线下链接最核心的不是"促成合作"，而是<b>至少让对方对你有不错的印象</b>。
+
+## 1.1 第一次见面，先留下可被记住的点
+
+> 我们可能会加微信，你回到家之后用微信跟他打招呼，他得能够想起你是谁。
+
+根源把自我介绍要讲的四件事拆得很清楚：
+
+> <b>名字、年纪、老家、目前在做什么。</b>
+
+为什么这四件事？
+
+> <b>年纪</b>是一个能够快速拉近共鸣感的东西——同年纪的人天然对彼此有印象。
+>
+> <b>老家</b>是更有共鸣的。我开的一场活动，18 位现场来了 3 个西安老乡，他们三个后来就链接在一起了。再来你会发现南方人跟北方人的性格不一样，口音不一样——这些都是天然话题。
+>
+> <b>项目</b>一定要快速说明"我是干嘛的"。<b>最怕的是有人花了 20 分钟讲完项目之后，发现别人不知道他是干嘛的。</b>
+
+## 1.2 名字要成为清晰的记忆点
+
+> 自我介绍里面，既有效率又可以让别人对你快速有印象的，最核心的其实是名字。
+
+根源讲自己名字的方式是这样的：
+
+> 你好，我是根源。<b>根是树根的根，源是水源的源——万恶根源的那个根源。</b>
+
+为什么名字必须讲清楚？
+
+> 如果你连名字都不好意思去告诉别人，或者别人见到你之后不知道该怎么称呼你——这件事情很可怕。<b>那代表你很难在别人世界里产生印象。</b>
+>
+> 在一个活动会场，<b>谁的名字讲越多次，别人就会记住他越深刻</b>。越深刻他会很好奇——你一定很优秀，或者你一定跟别人不一样。
+
+所以名字要做到三件事：
+
+1. 微信名 / 本名 / 别人怎么称呼你 三者最好一致
+2. 名字本身就是钩子——能讲出来源、出处、谐音
+3. 在场反复被叫到——主局官就要一直叫别人的名字
+
+---
+
+# 二、心力修复：把工作和生活重新排成节律
+
+## 2.1 真正让人烦的，不一定是事情本身
+
+根源开场就抛了一个让全场愣住的问题：
+
+> 现在我让你每一天有六个小时的休息时间，你会突然发现——<b>那我要干嘛呢？</b>
+
+这正是当下很多创业者的真实状态——把工作和生活搅在一起，看似在拼命，其实是在消耗心力。
+
+根源描述了他自己的一天：
+
+> 我一般 7 点起来送孩子上学，回家。<b>8:30 进入早上工作 · 一直到 11:00。到了 11:00 我不管有没有做完，都会停止手上的事。</b>
+>
+> 11:00 到 19:00 中间，我会看手机、看小说、吃午饭、睡午觉、健身、或者下午跟别人见面。<b>如果你 11 点给我发消息一直到晚上 7 点，我回复的可能性是不大的——因为这是我的时间。</b>
+>
+> 19:00 到 22:00 是我的晚上工作时间——处理讯息、讲课、直播。10 点结束。
+
+这样做最关键的好处是什么？
+
+> 这样我不会因为这个，导致我对微信是有反感的。
+>
+> 现在之所以你一看到讯息就烦，是因为你每天回消息，你觉得烦。<b>晚上 7 点我开始回消息时是有兴奋感的——今天累计的一堆没回的，我可以一次性的全部回复完。</b>
+
+> <b>烦躁是心力不足的来源。</b>
+
+## 2.2 固定作息会形成身体记忆
+
+根源的工作时间一天 6 小时左右——但他今年的收入目标比去年要再多一倍。
+
+> 收入多一倍，一种就是工作时间多一倍——但这件事是不合逻辑的。难道我多三倍就工作时间多三倍？那代表收入到了一个设定点的时候，一天我就不能睡觉了。
+>
+> 所以我就思考——能不能在固定 6 小时不增加工作时间的情况下，调整节奏、增加效率、新增工具，让我同样 6 小时可以做出更多的产值。
+
+为什么固定时段很重要？因为身体会形成肌肉记忆：
+
+> <b>8 点半一到电脑桌前面，我就很有灵感。因为我每天都告诉自己的身体——工作到了，我要上工了。11 点一到，我就知道我要睡了。</b>
+>
+> 周六周日一到，早上我就会从 7 点起床变成 8 点半起来，眼睛睁开就 8 点半——因为我知道这时间我不需要工作。
+
+> 固定运动的时间、固定工作的时间、固定陪孩子的时间、固定陪老婆的时间、固定休闲的时间——我们尽量都固定下来。<b>不要有太大变动，你就会发现，我的心力会常常保持在一个很充足的情况。</b>
+
+## 2.3 退休不是不工作，是换一种形态
+
+根源给自己设定 40 岁退休——他的梦想还有两年半。
+
+> 退休后我难道就不工作吗？可能不是，我会换一种不一样的形态。我可能不会再为了金钱担心，但我会换一种不同的形态来面对事情。
+>
+> <b>男生会在工作中得到成就感——当你不做事的时候，我们的人生就少了一个成就感的获取来源。</b>
+
+他正在尝试的目标：
+
+> 明年开始让我每天工作时间变成 4 小时，周四晚上一过就休息，每年暑假我不做事，冬天我不做事。
+>
+> 因为我老师讲过一个笑话——<b>冬天狗都知道在屋檐底下休息不做事，我们人怎么连狗都不如呢？</b>
+>
+> 所以我希望我一年做半年休半年——五一别人休 7 天，我休两周；十一别人休一周，我休三周。
+
+## 2.4 上班族 vs 个体的根本差异
+
+根源对"上班族"这个角色有一个非常直接的判断：
+
+> 我不喜欢带上班族——我个人对这个角色是很排斥的。就像我的助理，他是有做事产生利润才会有钱拿。
+>
+> <b>当一个人领了固定薪水，他就瞬间变智障——他就不是一个要为自己的人生负责的想法了。</b>上班族叫做老板让我干嘛我就干嘛。
+
+他自己一直走的是"代理型"的生意：
+
+> 我的好处就是<b>我没有成本</b>——保险公司合作训练我的业务员，业务员的钱公司给。我一直做代理型生意，所以不用为成本发愁。
+
+---
+
+# 三、创业基本盘：先算清楚钱，再设计产品
+
+## 3.1 先算生活成本，再倒推收入目标
+
+根源讲了一个让他印象深刻的现场案例——一个第十六场来咨询的女生，八字身强格，执行力强：
+
+> 她跟我说她今年想做 GMV 一个亿的事业。我就知道她脑袋不清楚了。我看过很多公司 GMV 到了一个亿，但公司没赚钱。<b>除非她真有一个好的运气、机缘打下来、她刚好接了大的福报——有可能。但大多数人做不到，我知道做不到。</b>
+
+不同的年收入目标对应完全不同的建议：
+
+> <b>一年想赚 20 万</b> · 我不推荐你做项目——会亏钱。去找一份工作。
+>
+> <b>一年想赚 100 万</b> · 如果过去没有副业经验，我会推荐你先有一份稳定的工作，每天挪 4 小时去干副业。
+>
+> <b>不知道想赚多少</b> · 就不要快速定义你的生活模式想变成什么。
+
+为什么必须先算？
+
+> 因为有些人想赚大钱，但是要付出代价的——我一个很好的朋友做电商，一年纯利大概 400 万。今年初他去做手术（胆结石）。因为他长期熬夜，7 点到公司、回到家 12 点，老婆已经怀孕了，他没有时间陪伴家人。
+>
+> <b>这次开完刀之后，并发了肺栓塞——他差点就死了，ICU 住了两周。</b>
+
+## 3.2 杭州一个人一年 20 万的明细
+
+根源现场算了一笔账：
+
+> <b>住</b> · 杭州想住的有质感，一个人 LOFT 房租大概 3000/月
+>
+> <b>吃</b> · 一餐 80~100 · 一天三餐 150 · 一个月 4500
+>
+> <b>穿戴</b> · 每月 2500
+>
+> 住 + 吃 + 穿戴 = 一个月 1 万 · <b>一年 12 万</b>
+>
+> <b>旅行</b> · 一个季度去一次 · 一年 4 次 · 东南亚 1 万/趟 · <b>一年 4 万</b>
+>
+> <b>存款</b> · 一年存 5 万
+>
+> <b>合计 ≈ 20 万/年 · 1.5 万/月</b>
+
+这是一线城市过上还不错生活的基础线。
+
+> 如果你设定一年赚 40 万——你就可以做两年休一年。
+
+## 3.3 创业者必须同时具备多项能力
+
+> <b>上班族只需要专才——一项能力强公司就用你。</b>
+>
+> 但创业时代比较卷——你可能得有双才。一个很强，一个 50 分的能力，公司才会觉得不淘汰你。
+
+> <b>99% 的项目都一定要具备一种能力——叫销售能力。</b>但凡不会销售，我可以保证你创死——你一定赚不到钱。
+
+为什么？
+
+> 因为你都不知道怎么跟别人沟通，你怎么会知道市场上要什么呢？
+
+---
+
+# 四、从 0 到 1：流量、存量和增量
+
+## 4.1 项目能不能跑通，看三种增长
+
+根源把所有创业者的事业拆成三个阶段——<b>这三件事但凡你能懂两个，事业一定能起来</b>：
+
+> <b>1. 流量</b> · 能不能让人不断流进来——可以是自己的号，也可以是别人转介绍。
+>
+> <b>2. 存量</b> · 人进到微信之后，怎么让他们为你付费——纯销售能力。
+>
+> <b>3. 增量</b> · 他买了一次之后，怎么让他再付第二次费——或者让他帮你做转介绍。
+
+> 增量分两条线：一条叫<b>个人增量</b>，一条叫<b>转介绍增量</b>。
+
+> <b>但这三个里面如果你只会一个，你出来做项目稳死——保证做不起来。因为里面最关键的其实是中间的存量能力。</b>
+
+## 4.2 知识 vs 智慧——卖不出去的纯理论博主
+
+根源观察到 2025 下半年开始知识付费"不好做"——但他认为淘汰的是特定一批人：
+
+> 一类叫<b>知识老师</b>——我看书、学别人的课、扒起来、用 GPT 弄成一堂课。这叫理论派。
+>
+> 一类叫<b>智慧老师</b>——我教的东西是我用的，是我实践的。
+
+> <b>销售里最怕什么？最怕空降的理论主管。</b>这主管没干过销售，他学历高，被派来管销售团队——他会被销售骂死。因为销售跟他讲市场情况，他都会说"不可能"。
+
+> 知识付费的博主被淘汰的，是只会理论的那一批。
+
+## 4.3 卖知识必须辅佐一个产品
+
+> 你纯卖知识，AI 就可以搞定了——AI 可以给你出一大堆相关内容。
+>
+> 但是如果你没有一个辅佐的产品，他们就会说"那行，我要健康"——那你卖什么呢？
+
+> <b>你一定要辅佐一个产品来承接你的理论，事业模式才能行。</b>
+
+举瑜伽老师的例子——光卖瑜伽课不行，至少要搭配一个瑜伽垫，或者做减肥要搭配健康餐。
+
+---
+
+# 五、知识付费与健康项目：先验证，再放大
+
+## 5.1 低客单价先卖给熟人验证反馈
+
+> <b>初期卖的时候是为了让我对于产品增加信心。</b>
+>
+> 你卖十个八个跟你买，过了一周之后，6 个跟你说效果好——你会有什么感觉？你会越卖越得劲，它有用。
+
+> 如果你卖了 10 个人没有人给你反馈，你就会发现——这产品要么没用，要么只刚好对我有用。<b>那这项目我就认为不适合做。</b>
+
+## 5.2 卖品 vs 卖人
+
+> <b>卖品吸引人</b>——会因为你的品换了底下的人就跑了。
+>
+> <b>卖人吸引人</b>——他不会因为你卖什么品就跑，而是你卖什么品他们就买什么品。
+
+但是这条路很难：
+
+> 100 个博主里能做成卖人的，<b>不到 1 个</b>。
+
+## 5.3 健康产品要快速见效
+
+根源讲了 2016 年他做团队最大项目的经验——苹果干细胞：
+
+> 那产品是这样——你喝完之后 12 小时之内，90% 的人会有很明显的上厕所的反应。我们就给他试喝，喝完 12 小时他一定会给我打电话。<b>那品的效率有多快？我们团队一天翻两次。</b>
+>
+> 我不太喜欢做护肤类产品——因为皮肤代谢 21 天，你 21 天才有效果。
+>
+> <b>你的团队就 21 天倍增一次——但当时我们做的是一天倍增两次。这个逻辑能理解吗？</b>
+
+> 既然要卖，你就卖一个快速有效果的——所以现在减肥什么卖得最好？胰岛素，一打就瘦。
+
+## 5.4 信任的五个阶段
+
+根源从销售底层逻辑讲信任建立的五个阶段：
+
+> <b>第一阶段 · 仪表</b> · 我的样子，至少不要讨人厌——身上的味道、头皮屑、穿黑衣服肩上全是白的，这些都会让人不想跟你聊天。
+>
+> <b>第二阶段 · 专业</b> · 你不能一问三不知。但是仪表优先——你仪表很差，别人连专业都听不到。
+>
+> <b>第三阶段 · 讨人喜欢</b> · 朋友把闺蜜介绍给你认识，你不能怼她。
+>
+> <b>第四阶段 · 价值观</b> · 你跟别人哪里不一样。
+>
+> <b>第五阶段 · 经验</b> · 我过去经验越丰富，可以聊的越多。
+
+> <b>一个能够把销售做起来的人，他去干什么都可以做得不错。</b>
+
+---
+
+# 六、教育咨询与个人定位：避开竞争最卷的场景
+
+## 6.1 用一条具体产品线做突破
+
+提问的是一位有"把孩子规划到清华北大"专业能力的咨询师。根源给的方向不是上来卖咨询，而是先用一个低门槛产品筛人：
+
+> 你可以做一份 9.9 的<b>"清华北大几率评估表"</b>——给我一小时，我可以做出 20 道题。
+
+完整路径是这样的：
+
+> 1. 家长花 9.9 测一次——拿到一个分数（比如 40%）
+> 2. 家长来问"怎么提升"——你升级到训练营
+> 3. 一个月后再测一次——分数从 40% 变 80%
+> 4. <b>实际效果出来了，家长就会愿意继续付费</b>
+
+> <b>选择细分市场，比一上来抢大盘更现实。</b>
+
+## 6.2 三个月必修期 · 网感不是天生的
+
+> 我的设定是<b>最少播 20 天 · 每天 2 小时打底 · 时间到就播</b>——可能 7 点到 9 点，可能 10 点到 12 点。
+>
+> 你的时间不能改——你一改，那些已经知道这时间会进来的客户就不出现了。
+
+> <b>没有哪一个有数据的博主是没走过半年没人看的阶段的。</b>
+
+为什么三个月很关键？
+
+> <b>这三个月有一个很大的价值，是我能够同时去调整我的语言结构。</b>因为有些时候，一个越厉害的人，他说的话别人越不爱听——因为他说的东西太专业了。
+>
+> 别人会说"我连你的直播都听不懂了"——那要做的是，把我的东西变成市场能接受的。
+
+## 6.3 一线城市的圈子是封闭的
+
+根源讲了他每周四下午给三个姐姐做八字咨询的现场：
+
+> 那房子大概 450 方，5000 万一套。她的朋友约她去看，她说没空——结果当天她朋友全款买了两套。
+>
+> <b>她们选的老师都是圈子里很红的——她们不会去相信别的圈子。</b>她们孩子上的家教，一节数学课 1600~2000 元 · 老师还要筛选学生——意志力不行的学生老师还不收。
+
+> 所以<b>一线城市真打不进去</b>——她们的圈子是很封闭的，老师不会随便介绍给别人。
+
+## 6.4 不要走低价路线
+
+> 今天我卖你一个课，可以让你一年赚 100 万——你问我多少钱？39800 你才信。
+>
+> 如果我说"只要 99"——你就觉得"才 99 还能信？我脑子也有问题"。
+
+> <b>赛道在一开始绝对不能走低价 · 宁愿不收也不要走低价。</b>
+
+实操方法：
+
+> 你可以收 99 的测评——这 99 我就决定了你能不能找我咨询。<b>如果你连 99 的表格数据都过不了关，那可能你孩子的天赋就不行。筛选角色你就得嚣张。</b>
+
+---
+
+# 七、B2B 代运营与团队机制：用 AI 重构成本
+
+提问的是一家做代运营的小公司，团队稳定但增长卡住。根源的诊断核心是——<b>问题不在客户、不在产品，在制度。</b>
+
+## 7.1 修改团队机制
+
+> 你现在的问题，很可能不是单个人能力不行——而是<b>制度本身没有给人盼头</b>。
+>
+> 工作最怕什么？最怕没有盼头。一个人这个月领 5000，一年之后还是领 5000——他会觉得人生没有变化，也会慢慢失去主动性。
+
+代运营行业的本质是绑定客户 KPI：
+
+> 既然要绑定客户 KPI，就代表每一个做项目的人，<b>都不能只是"执行型运营"——他们必须对生意有基本理解</b>。
+
+> 如果一个人不懂市场，不懂转化，不懂客户为什么买单——他做的所有动作，都只是在猜：小红书上有人说这样做有效，他就试试看。<b>他不知道，什么样的动作是真的对业绩有帮助。</b>
+
+所以要找的人：
+
+> 不能只是纯运营岗，而是要既懂一点运营，也懂一点销售。这个人的销售能力不一定要很强，但他必须知道一线市场到底发生了什么。
+
+> 你必须让自己持续面人，每个月都要留出面试的空间。<b>每个月至少要面 10~20 个人。先面着，把名单留好，当团队里有人不适合，你手上才有选择。</b>
+
+## 7.2 重新设计分润结构
+
+> 你需要推动公司修改分润机制——底薪降低都可以，但一定要让他们看到："我多做事，我多完成结果，我的提成就会更高。"
+
+> 因为对于这些员工来说，<b>你现在其实是用"上班族薪水"，去留住一批你希望他们具备"独当一面能力"的人——这本身就不合理。</b>
+
+根源用自己举例：
+
+> 像我自己，如果我去一家公司做业务岗，<b>我一定不会优先挑高底薪的公司</b>。高底薪往往意味着低提成，这是必然的。我一定会选底薪不用太高、但提成足够高的公司——因为我知道自己能做出结果。
+
+> 所以公司的分配机制，会决定你吸引到什么样的人。
+
+## 7.3 对外合作模式也必须变
+
+> 代运营项目，<b>如果没有办法绑定业绩提成，这个项目就很难真正做大</b>。如果只是收固定服务费，你就没有足够的上升空间。
+>
+> 没有上升空间 → 公司没有足够利润 → 找不到更优秀的人 → 最后就会变成<b>低价接单、低效交付、员工疲惫、客户不满</b>。
+
+> 你要想象一下，今天我是一家公司——如果我公司产品很强，业务也有增长空间，我会找什么样的代运营团队？大概率不会找只领固定服务费的团队——<b>因为只拿固定钱的团队，对结果的责任感往往不够强。</b>
+
+## 7.4 AI 重构成本不等于"用 AI 替人"
+
+> <b>成本不是靠压低工资解决的——成本是靠更高效率、更强结果、更好的分润结构来解决的。</b>
+
+> 如果用 AI 来重构这个行业，它不是简单地把人替掉——它应该是<b>让原本需要很多人重复执行的部分被系统接住，真正懂运营、懂销售、懂市场的人，应该把精力放在策略、转化、客户关系和结果负责上</b>。
+
+> 否则，你只是继续用旧团队、旧制度、旧合作模式，去做一个越来越卷的市场——那就不会是 AI 重构成本，而只是把原来的问题换了一种方式继续消耗。
+
+---
+
+# 八、AI 助理与 Hermes：把个人能力封装成系统
+
+这是根源在分享中最兴奋讲的一段——上周五他做出了一个"很有突破性的产品"，到现在测试了一周，14 个用户全部说好用，第一周就赚到接近 5000 块。
+
+## 8.1 Hermes 是小龙虾的升级版
+
+事情起因是根源老婆觉得他用电脑用太久了：
+
+> 我那段时间一直在用 AI 编程，有点上瘾，觉得很好玩。她提醒我之后，我就开始想——<b>能不能少用电脑，但还是达到我要的效果？</b>
+
+那时候他看到一个叫 Hermes Agent 的东西——理解成"小龙虾的升级版"：
+
+> 我把那个网页丢给 Codex，我说"你帮我装一下"——<b>过了大概 5 分钟，它就帮我装好了</b>。装好之后，我把 Hermes 挪到了飞书端口去用。
+
+接到飞书之后，他可以用飞书远程操作 Hermes 改自己的小程序——改完飞书还会直接截图告诉他哪里改好了。
+
+> 我当时就意识到——<b>这东西是可行的。</b>
+
+接下来他做的事就是——把 Hermes 接到微信：
+
+> 那天在航海家的群里聊天，小凯老师说"你直接跟它讲话就可以进了"。我把那句话发给我的 Hermes，它就生成了一个码——我用微信一扫，就出现了一个二维码。
+>
+> <b>从 Hermes 装好到接入我的微信，总共只花了大概 20 分钟。</b>
+
+这个智能体根源把它取名叫"<b>爱马仕 Hermes 孙女士</b>"——所以它一直叫他"老公"，他可以像使唤老婆一样使唤它做事。
+
+> 我老婆看到之后，就说："老公，你也帮我装一个。"
+
+## 8.2 第一次商业测试：10 个学生
+
+接下来他做了一件非常关键的事——<b>找 10 个学生测试付费意愿</b>：
+
+> 我问他们："如果有一个助理在你的微信里，它拥有全世界很聪明的大脑，可以帮你做图、做 PPT、整理资料，还可以用顶级模型给你建议——你愿意一个月花多少钱买这个助理？"
+
+> 一个月付 400 块能不能接受？他们<b>直接就给我打钱了</b>。我在线上给他们出码，扫码之后一分钟就能装好。
+
+更好笑的是：
+
+> 我的助理后来也付了月租费——每次我给他资料，他先把资料发给他跟我购买的超级助理，再把超级助理生成的文案发给我。<b>这就变成了一个套娃。</b>
+
+每个 Hermes 都有轻度训练能力：
+
+> 我有一个学生跟她的助理说："从今天开始，你要叫我世界无敌超级大美女。"——结果她每次打开助理，助理就真的叫她"世界无敌超级大美女"。
+>
+> 还有人说："从今天开始，我要把你改名叫猛男。"——助理就回答："是的，猛男。"
+
+## 8.3 房东模型：把个人 AI 能力租给别人
+
+根源给这个模式起的名字叫"<b>房东模型</b>"：
+
+> 目前我大概有 14 个用户——我把他们理解成租客。<b>今天我是房东，我把流量和能力租给这些租客使用——他们用的是我的系统能力。</b>
+
+成本和单价的账：
+
+> 一般小白用户一个月的纯消耗，<b>大概在 100 元人民币左右</b>。如果走更好的 API 渠道，其实一张图的成本并没有想象中那么高。
+>
+> 一台电脑大概能承接 <b>15 个租户</b>——再多就要再准备一台电脑或者再装一个 Hermes。
+
+为什么这个模型成立？根源讲了一个很关键的洞察：
+
+> 很多人不是不想用国外的大模型——而是觉得太麻烦了。<b>充值是一个问题，账号是一个问题，网络环境也是一个问题——这些门槛加起来，就把很多人挡在外面了。</b>
+>
+> 但如果有一件事情可以把这些问题全部解决掉呢？我老婆的手机不需要翻墙——她只要在微信里使用，就可以调用背后的模型能力。它的生图可以直接调用 GPT Image，背后的大脑还可以接 Claude Code。
+
+> <b>只要我家里的电脑保持在线，并且网络通道是开的，我这边就可以把资料发给她的分身。她真正使用的时候，入口就在微信里。</b>
+
+接下来还可以训练房东：
+
+> 如果我用线上操作的方式教，可能两天就能教会。那这件事就不只是我自己能用——而是可以变成一个生意。
+>
+> 我除了自己收租户，还可以训练房东，让房东去收租户。<b>我中间收佣金——比如我收 20%，未来所有的钱先进入我的账，我再分给我的房东。也就是说，我是大房东，我是房主——我的房子底下，可以有二房东去出租。</b>
+
+## 8.4 三种商业路径
+
+根源把这件事分成三种打法：
+
+> <b>第一种 · 喜欢玩 AI 的深度玩家</b> · 我自己 GPT 一个月 100 刀、Claude 一个月 100 刀——加起来折人民币大概 2000 块。<b>但如果我只要收 4 个租户，4 个租户的费用就足够 cover 我的账号成本——我自己玩 AI 的钱就有人帮我付了。</b>
+>
+> <b>第二种 · 想做小副业的人</b> · 收 40 个租户，每个 399——你就有一个月 4000 元左右的稳定被动收入。
+>
+> <b>第三种 · 企业主</b> · 大企业主愿意一个月花 2000 请助理——这不是很正常吗？对他们来说，不在乎用量，只在乎你能不能帮他们解决问题。<b>用量需求更大的客户，就给他装飞书</b>——飞书可以承接更大的工作量，也更适合团队场景。
+
+## 8.5 不只是"AI 使用权"，是"AI 助理"
+
+根源对未来定价的设计：
+
+> 我目前测试人员收 399。<b>正式版本第二阶段我会提到 699——因为我卖的不是"AI 使用权"，而是"AI 助理"，这是两个完全不一样的概念。</b>
+>
+> 第二阶段我会把它变成流量计费——你用多少 API 我就扣多少钱。比如设定 200 元的额度，快到 200 时 Hermes 会自动发消息提醒。
+
+为什么粘性会很强？
+
+> <b>一旦用户在微信里每天用你的 AI——他跟你的粘性会非常强。</b>用户会天天跟它讲话，也会不断反馈问题。这个粘性不是普通软件可以比的。
+
+为什么不担心大厂下场？
+
+> 大厂下场我不担心——<b>API 这一块我也已经有合作资源</b>。前天我还跟相关朋友吃饭，所以 API 稳定性的问题基本可以处理。
+
+## 8.6 重点不是 AI，是用 AI 的人
+
+最后根源回到一个很本质的问题：
+
+> 我常常说，我脑子好——<b>这不是在讲 AI，而是在讲用 AI 的人。我要懂业务、懂市场、懂培训、懂人——这些才是核心能力。</b>有了这些底层能力，我再用 AI，就可以解决很多问题。
+
+> 如果你真的玩过很多 AI，你会发现——有些 AI 并没有别人说得那么好用。<b>但问题不一定在 AI，而在使用者怎么用它。同一个 AI，给不同的人使用，结果会完全不一样。</b>
+
+他举了一个朋友的例子——一个 1000 万纯利的女创业者：
+
+> 前天我们碰了一下，她说："根源，我们今天一定要打进 AI 赛道，但我不知道怎么打。"
+>
+> 她先把 Codex 装好，跟 Codex 聊了一个晚上，跟我说："这东西不如你们说的好用，它不能做所有的事情。"
+>
+> 我就跟她说——<b>你不能这么想。你一定要先默认 AI 可以处理全世界大部分任务，你要先认为它无所不能。因为如果你一开始就怀疑它，它给你的结果也会被你的提问方式限制住。</b>
+>
+> 我告诉她："你要跟它讲——如果这个东西你再不能搞定，我就让 Claude Code 搞定了。"<b>结果她连续问了三轮，Codex 就给出了不一样的答案，甚至开始帮她执行。</b>
+
+> <b>所以我一直觉得，所有 AI 都会看使用者怎么使用它，最后决定它呈现出来的结果。</b>
+
+---
+
+> 这一场到这里。下一场五一长假之后见。
+
+
+</script>
+
+<article class="article" id="article">
+  <div class="loading">文章加载中…</div>
+</article>
+
+<footer class="foot">
+  <a href="19-article.html">← 上一场 · 第 19 场</a>
+  <span class="foot-center">生财有术 · 根源场 · Vol. 20</span>
+  <span style="color:var(--text-dim)">下一场 · 第 21 场（5 月底）</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+// 主题切换
+const html = document.documentElement;
+const saved = localStorage.getItem('theme') || 'dark';
+html.setAttribute('data-theme', saved);
+document.querySelectorAll('.theme-btn').forEach(btn => {
+  if (btn.dataset.theme === saved) btn.classList.add('active');
+  else btn.classList.remove('active');
+  btn.addEventListener('click', () => {
+    const t = btn.dataset.theme;
+    html.setAttribute('data-theme', t);
+    localStorage.setItem('theme', t);
+    document.querySelectorAll('.theme-btn').forEach(b => b.classList.toggle('active', b.dataset.theme === t));
+  });
+});
+
+// inline markdown content 渲染
+(function(){
+  let md = document.getElementById('md-content').textContent;
+  md = md.replace(/^# 一、/m, '<a id="chap-1"></a>\n# 一、')
+          .replace(/^# 二、/m, '<a id="chap-2"></a>\n# 二、')
+          .replace(/^# 三、/m, '<a id="chap-3"></a>\n# 三、')
+          .replace(/^# 四、/m, '<a id="chap-4"></a>\n# 四、')
+          .replace(/^# 五、/m, '<a id="chap-5"></a>\n# 五、')
+          .replace(/^# 六、/m, '<a id="chap-6"></a>\n# 六、')
+          .replace(/^# 七、/m, '<a id="chap-7"></a>\n# 七、')
+          .replace(/^# 八、/m, '<a id="chap-8"></a>\n# 八、')
+          .replace(/^# 九、/m, '<a id="chap-9"></a>\n# 九、');
+  marked.setOptions({ gfm: true, breaks: false });
+  document.getElementById('article').innerHTML = marked.parse(md);
+})();
+</script>
+</body>
+</html>
