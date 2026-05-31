@@ -119,10 +119,12 @@ button { cursor: pointer; }
   pointer-events: none;
   opacity: 1;
   background:
-    linear-gradient(180deg, rgba(5, 19, 15, 0.88) 0%, rgba(5, 19, 15, 0.08) 28%, rgba(5, 19, 15, 0.32) 100%),
-    linear-gradient(90deg, rgba(3, 15, 12, 0.08) 0%, rgba(3, 15, 12, 0.64) 100%),
-    url("archive/decoration/xiaoyuan-p11-archive-curator.png") left bottom / 285px auto no-repeat;
-  background-blend-mode: normal, multiply, normal;
+    linear-gradient(180deg, rgba(5, 19, 15, 0.96) 0%, rgba(5, 19, 15, 0.62) 34%, rgba(5, 19, 15, 0.44) 100%),
+    radial-gradient(circle at 22% 77%, rgba(231, 192, 112, 0.18), transparent 34%),
+    linear-gradient(90deg, rgba(3, 15, 12, 0.04) 0%, rgba(3, 15, 12, 0.58) 100%),
+    url("archive/decoration/xiaoyuan-p11-archive-curator.png") left bottom / 302px auto no-repeat,
+    url("archive/background/bg-dark-ink.png") center bottom / cover no-repeat;
+  background-blend-mode: normal, normal, multiply, multiply, normal;
   mask-image: linear-gradient(to top, #000 0 76%, transparent 100%);
 }
 
