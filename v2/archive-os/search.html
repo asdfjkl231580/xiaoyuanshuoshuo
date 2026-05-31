@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>搜索 · 生财根源场档案库</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="assets/archive-os.css?v=20260531-1">
+</head>
+<body data-page="search">
+  <div id="app">
+    <div class="page page-wide">
+      <section class="section-head">
+        <div>
+          <h1>不用翻文章，直接找答案</h1>
+          <p class="subtitle">输入问题或关键词，系统会帮你定位相关场次、重点与答案片段。</p>
+        </div>
+        <span class="seal">检索</span>
+      </section>
+
+      <form class="search-box" id="filterForm">
+        <svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+        <input id="searchInput" type="search" placeholder="销售 / 副业 / AI">
+        <button class="button primary" type="submit">运行搜索</button>
+      </form>
+
+      <div class="hot-words">
+        <span>热门搜索：</span>
+        <a>AI</a><a>副业</a><a>销售</a><a>私域</a><a>项目判断</a><a>定价</a><a>交付</a><a>个人成长</a>
+      </div>
+
+      <section class="section">
+        <div class="filter-row">
+          <button class="chip active">全部</button>
+          <button class="chip">销售与成交</button>
+          <button class="chip">AI 与工具</button>
+          <button class="chip">副业与个体创业</button>
+          <button class="chip">心力与个人成长</button>
+          <button class="chip">表达与内容</button>
+        </div>
+      </section>
+
+      <section class="search-layout section">
+        <div>
+          <p class="subtitle">为你找到 <b style="color:#0d4d3c;">22</b> 场相关结果</p>
+          <div class="result-list" id="resultList"></div>
+        </div>
+        <aside class="faq-panel panel">
+          <h2 style="font-family:var(--serif);margin:0;">常见问题路径</h2>
+          <p class="subtitle" style="font-size:14px;">点击直达，为你推荐相关路径</p>
+          <div class="faq-list">
+            <a class="faq-item" href="search.html?q=销售"><span class="faq-badge">销</span><span><b>销售如何提升成交</b><small>从信任建立到促成决策的全流程方法</small></span><span>›</span></a>
+            <a class="faq-item" href="search.html?q=AI"><span class="faq-badge">AI</span><span><b>AI 怎么落地到项目</b><small>工具组合、项目判断与定价交付实践</small></span><span>›</span></a>
+            <a class="faq-item" href="search.html?q=副业"><span class="faq-badge">副</span><span><b>副业怎么从 0 到 1</b><small>方向选择、验证方法与第一批付费</small></span><span>›</span></a>
+            <a class="faq-item" href="search.html?q=表达"><span class="faq-badge">表</span><span><b>如何建立个人表达系统</b><small>定位、内容结构与持续输出的方法论</small></span><span>›</span></a>
+          </div>
+        </aside>
+      </section>
+    </div>
+  </div>
+  <script src="assets/archive-os.js?v=20260531-1"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>单场档案 · 生财根源场档案库</title>
+  <meta name="description" content="生财根源场单场活动档案页，包含重点整理、金句 PPT 和飞书原文入口。">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="assets/archive-os.css?v=20260531-1">
+</head>
+<body data-page="session">
+  <div id="app">
+    <div class="page page-wide">
+      <section class="session-labels" id="sessionLabels"></section>
+
+      <section class="session-hero">
+        <div>
+          <h1 class="page-title" id="sessionTitle"></h1>
+          <p class="subtitle" id="sessionSummary"></p>
+          <div class="chip-row" id="sessionTags"></div>
+        </div>
+        <aside class="session-cover-panel panel" id="sessionCover"></aside>
+      </section>
+
+      <section class="detail-entry-grid section" id="detailEntries"></section>
+
+      <section class="content-grid section">
+        <div class="panel question-panel">
+          <div class="kicker">本场导读</div>
+          <h2>先判断这场跟你有没有关系。</h2>
+          <p class="subtitle">这里不是替代完整文章，而是把长内容先整理成可检索、可判断、可跳转的重点结构。</p>
+          <h2>适合搜索的问题</h2>
+          <ul class="question-list" id="questionList"></ul>
+        </div>
+        <aside class="panel entry-panel" id="entryPanel"></aside>
+      </section>
+
+      <section class="section" id="points">
+        <div class="section-head">
+          <div>
+            <div class="kicker">网页重点整理</div>
+            <h2>先看筛选后的重点，再进入全文。</h2>
+          </div>
+          <p class="section-note">单场档案页先帮助用户判断价值，再引导阅读 PPT 或飞书原文。</p>
+        </div>
+        <div class="point-grid" id="pointGrid"></div>
+      </section>
+    </div>
+  </div>
+  <script src="assets/archive-os.js?v=20260531-1"></script>
+</body>
+</html>

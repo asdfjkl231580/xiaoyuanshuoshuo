@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>金句 PPT · 生财根源场档案库</title>
+  <meta name="description" content="生财根源场金句 PPT 阅读器，一页一个重点，支持翻页与保存图片。">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="assets/archive-os.css?v=20260531-1">
+</head>
+<body data-page="ppt">
+  <div id="app">
+    <div class="page page-wide">
+      <section class="section-head ppt-head">
+        <div>
+          <div class="kicker">金句 PPT</div>
+          <h1 id="pptTitle">这一场的 50 页大字版</h1>
+          <p class="subtitle" id="pptSubtitle">一页一个重点，快速提炼核心观点。</p>
+        </div>
+        <div class="ppt-top-actions">
+          <a class="button" id="backToSession" href="session.html?id=22">返回本场档案</a>
+          <a class="button primary" id="savePptImage" href="#" download>保存当前图片</a>
+        </div>
+      </section>
+
+      <section class="ppt-layout">
+        <div>
+          <article class="ppt-stage" id="pptStage"></article>
+          <div class="ppt-controls">
+            <button class="button" id="pptPrev" type="button">上一页</button>
+            <div class="ppt-page-number" id="pptCount"><strong>01</strong><span> / 50</span></div>
+            <button class="button primary" id="pptNext" type="button">下一页</button>
+          </div>
+        </div>
+        <aside class="ppt-side panel">
+          <h2>本场目录</h2>
+          <div class="ppt-menu" id="pptMenu"></div>
+          <p class="ppt-save-note" id="pptSaveNote">生成 Image2 成品图后，这里可直接保存当前 PPT 图片。</p>
+        </aside>
+      </section>
+    </div>
+  </div>
+  <script src="assets/archive-os.js?v=20260531-1"></script>
+</body>
+</html>
