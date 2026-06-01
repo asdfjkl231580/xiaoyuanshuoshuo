@@ -20,7 +20,7 @@
     { id: 21, number: 21, date: "2024.05.11", title: "AI 赋能创业要从工具走向长期主义", summary: "讨论 AI 工具如何真正进入创业系统，从短期提效走向长期资产与稳定交付。", tags: ["AI", "长期主义", "创业", "工具", "交付"], keyPointCount: 16, pptPageCount: 42, feishuStatus: "飞书已接入", detailUrl: "session.html?id=21", pptUrl: "ppt.html?id=21", feishuUrl: "https://oee5lr7gsk.feishu.cn/docx/QSTQdsNGooXkzGxiMSYcyN11n4f" },
     { id: 20, number: 20, date: "2024.05.04", title: "AI 时代个体创业的能力系统化", summary: "围绕个体创业者如何用 AI 重建能力系统，讨论项目判断、效率、表达和交付。", tags: ["AI", "个体创业", "能力系统", "项目判断", "交付"], keyPointCount: 15, pptPageCount: 40, feishuStatus: "飞书已接入", detailUrl: "session.html?id=20", pptUrl: "ppt.html?id=20", feishuUrl: "https://oee5lr7gsk.feishu.cn/docx/AWlZdoH0po1YugxAKvPcXw7inwf" },
     { id: 19, number: 19, date: "2024.04.27", title: "稳定现金流支撑长期成长", summary: "围绕长期成长背后的现金流、项目节奏和风险控制，整理稳定推进的方法。", tags: ["现金流", "长期成长", "项目", "风险", "节奏"], keyPointCount: 14, pptPageCount: 40, feishuStatus: "飞书已接入", detailUrl: "session.html?id=19", pptUrl: "ppt.html?id=19", feishuUrl: "https://oee5lr7gsk.feishu.cn/docx/JW2ddGEXIocXdLxZJB9cVngVnYg" },
-    { id: 18, number: 18, date: "2024.04.20", title: "线下关系决定后续私域连接", summary: "把线下信任延伸到私域连接，理解复购、转介绍和长期关系的真正来源。", tags: ["线下关系", "私域", "信任", "复购", "连接"], keyPointCount: 14, pptPageCount: 40, feishuStatus: "飞书已接入", detailUrl: "session.html?id=18", pptUrl: "ppt.html?id=18", feishuUrl: "https://oee5lr7gsk.feishu.cn/docx/L7DMdc1bCo1aDjxdIULc4qjRngh" },
+    { id: 18, number: 18, date: "2024.04.20", title: "AI 编程与副业发展", summary: "围绕 AI 编程如何进入副业实践，讨论工具使用、项目验证、交付路径和个人能力升级。", tags: ["AI 编程", "副业", "工具", "项目验证", "交付"], keyPointCount: 14, pptPageCount: 40, feishuStatus: "飞书已接入", detailUrl: "session.html?id=18", pptUrl: "ppt.html?id=18", feishuUrl: "https://oee5lr7gsk.feishu.cn/docx/L7DMdc1bCo1aDjxdIULc4qjRngh" },
     { id: 17, number: 17, date: "2024.04.13", title: "项目能不能做先看路径和现金流", summary: "判断项目是否值得推进，先看路径、现金流、资源条件和可持续交付能力。", tags: ["项目判断", "现金流", "路径", "资源", "交付"], keyPointCount: 15, pptPageCount: 40, feishuStatus: "飞书已接入", detailUrl: "session.html?id=17", pptUrl: "ppt.html?id=17", feishuUrl: "https://oee5lr7gsk.feishu.cn/docx/TGtHddtsTogW58xa6AjcFzQln8g" },
     { id: 16, number: 16, date: "2024.04.06", title: "销售成交要靠系统化练习", summary: "把成交能力从临场发挥变成可训练、可复盘、可复制的行动系统。", tags: ["销售", "成交", "练习", "系统化", "复盘"], keyPointCount: 16, pptPageCount: 40, feishuStatus: "飞书已接入", detailUrl: "session.html?id=16", pptUrl: "ppt.html?id=16", feishuUrl: "https://oee5lr7gsk.feishu.cn/docx/MSKSdbTA0o6cbbxfYkpc9lNynsf" },
     { id: 15, number: 15, date: "2024.03.30", title: "内容表达要回到客户听得懂", summary: "表达不是自我展示，而是让客户听得懂、愿意信、知道下一步怎么做。", tags: ["内容", "表达", "客户", "转化", "沟通"], keyPointCount: 16, pptPageCount: 40, feishuStatus: "飞书已接入", detailUrl: "session.html?id=15", pptUrl: "ppt.html?id=15", feishuUrl: "https://oee5lr7gsk.feishu.cn/docx/DojVdYdEsou4xLx6Xyic2YZRn1b" },
@@ -36,7 +36,7 @@
     { id: 5, number: 5, date: "2024.01.13", title: "加微信之后才是真正的私域经营", summary: "私域不是加上微信就结束，而是关系维护、内容触达和持续信任。", tags: ["私域", "微信", "关系", "复购", "信任"], keyPointCount: 13, pptPageCount: 40, feishuStatus: "飞书已接入", detailUrl: "session.html?id=5", pptUrl: "ppt.html?id=5", feishuUrl: "https://oee5lr7gsk.feishu.cn/docx/SalxdSucDo9eDJxNmtecfs13nOH" },
     { id: 4, number: 4, date: "2024.01.06", title: "一场活动同时解决内容和关系", summary: "线下活动既是内容来源，也是关系场域，能同时沉淀表达和信任。", tags: ["活动", "内容", "关系", "线下", "信任"], keyPointCount: 12, pptPageCount: 40, feishuStatus: "飞书已接入", detailUrl: "session.html?id=4", pptUrl: "ppt.html?id=4", feishuUrl: "https://oee5lr7gsk.feishu.cn/docx/OqU3d8qvcovJV9xz09qcJuApnQg" },
     { id: 3, number: 3, date: "2023.12.30", title: "高客单成交先经营关系", summary: "高客单成交的关键不是话术，而是关系、信任、需求识别和交付承诺。", tags: ["高客单", "成交", "关系", "信任", "需求"], keyPointCount: 12, pptPageCount: 40, feishuStatus: "飞书已接入", detailUrl: "session.html?id=3", pptUrl: "ppt.html?id=3", feishuUrl: "https://oee5lr7gsk.feishu.cn/docx/L0gldXFuWo1BoexchVqc6GbBnhf" },
-    { id: 2, number: 2, date: "2023.12.23", title: "线下关系与销售能力：从活动座位到生活模式", summary: "从线下座位、关系建立到销售能力，理解长期经营和生活节奏的关系。", tags: ["线下关系", "销售", "生活模式", "链接", "信任"], keyPointCount: 12, pptPageCount: 40, feishuStatus: "飞书已接入", detailUrl: "session.html?id=2", pptUrl: "ppt.html?id=2", feishuUrl: "https://oee5lr7gsk.feishu.cn/docx/GnP0d4mE0oL9S3xBrIpcBy7JnDb" },
+    { id: 2, number: 2, date: "2023.12.23", title: "线下关系与项目成交", summary: "从线下关系建立到项目成交推进，理解信任、表达、需求识别和长期连接。", tags: ["线下关系", "项目成交", "销售", "链接", "信任"], keyPointCount: 12, pptPageCount: 40, feishuStatus: "飞书已接入", detailUrl: "session.html?id=2", pptUrl: "ppt.html?id=2", feishuUrl: "https://oee5lr7gsk.feishu.cn/docx/GnP0d4mE0oL9S3xBrIpcBy7JnDb" },
     { id: 1, number: 1, date: "2023.12.16", title: "私域关系经营：先让别人记住你", summary: "第一场从自我介绍、记忆点和关系经营开始，建立线下档案库的根基。", tags: ["私域", "关系经营", "自我介绍", "记忆点", "信任"], keyPointCount: 12, pptPageCount: 40, feishuStatus: "飞书已接入", detailUrl: "session.html?id=1", pptUrl: "ppt.html?id=1", feishuUrl: "https://oee5lr7gsk.feishu.cn/docx/APZUdrZhIoVthqxdME6cca4WnQc" }
   ];
 
@@ -249,9 +249,9 @@
       totalCount: 22,
       pendingOrganize: 3,
       published: 22,
-      pendingFeishu: 2,
-      pendingPpt: 1,
-      todoList: ["补充第 21 场飞书链接", "复核第 22 场关键词", "上传大字版 50 页", "检查搜索索引"]
+      pendingFeishu: 0,
+      pendingPpt: 0,
+      todoList: ["复核第 22 场关键词", "更新最新场次封面", "上传大字版成品图", "检查搜索索引"]
     }
   };
 
@@ -337,6 +337,10 @@
   function $$(selector) { return Array.prototype.slice.call(document.querySelectorAll(selector)); }
 
   function icon(name) { return icons[name] || icons.file; }
+
+  function externalAttrs(url) {
+    return /^https?:\/\//.test(url || "") ? ' target="_blank" rel="noopener noreferrer"' : "";
+  }
 
   function nav() {
     var active = document.body.dataset.page || "home";
@@ -549,7 +553,7 @@
       ["金句 PPT", "精选金句与结构化 PPT，快速把握全场精华", "立即查看", "ppt.html?id=" + item.id, "ppt"],
       ["飞书原文", "查看本场完整原文记录，细节与上下文更完整", item.feishuUrl === "#" ? "链接待补" : "打开原文", item.feishuUrl, "box"]
     ].map(function (entry) {
-      return '<a class="detail-entry ' + (entry[3] === "#" ? "is-disabled" : "") + '" href="' + entry[3] + '"><div class="detail-icon">' + icon(entry[4]) + '</div><h3>' + entry[0] + '</h3><p>' + entry[1] + '</p><span class="button primary small-button">' + entry[2] + ' ' + icon("arrow") + '</span></a>';
+      return '<a class="detail-entry ' + (entry[3] === "#" ? "is-disabled" : "") + '" href="' + entry[3] + '"' + externalAttrs(entry[3]) + '><div class="detail-icon">' + icon(entry[4]) + '</div><h3>' + entry[0] + '</h3><p>' + entry[1] + '</p><span class="button primary small-button">' + entry[2] + ' ' + icon("arrow") + '</span></a>';
     }).join("");
     $("#pointGrid").innerHTML = (item.points || data.sessions[0].points).map(function (point, index) {
       return '<article class="point-card"><h3><b>' + String(index + 1).padStart(2, "0") + '</b>' + point[0] + '</h3><p>' + point[1] + '</p></article>';
@@ -557,7 +561,7 @@
     $("#questionList").innerHTML = (item.questions || data.sessions[0].questions).map(function (q) {
       return '<li><span>' + q + '</span><span>→</span></li>';
     }).join("");
-    $("#entryPanel").innerHTML = '<a class="button primary" href="#points">阅读重点整理 ' + icon("arrow") + '</a><a class="button primary ' + (item.feishuUrl === "#" ? "is-disabled" : "") + '" href="' + item.feishuUrl + '">' + (item.feishuUrl === "#" ? "飞书链接待补" : "打开飞书完整原文") + ' ' + icon("arrow") + '</a><a class="button" href="ppt.html?id=' + item.id + '">查看金句 PPT ' + icon("arrow") + '</a>';
+    $("#entryPanel").innerHTML = '<a class="button primary" href="#points">阅读重点整理 ' + icon("arrow") + '</a><a class="button primary ' + (item.feishuUrl === "#" ? "is-disabled" : "") + '" href="' + item.feishuUrl + '"' + externalAttrs(item.feishuUrl) + '>' + (item.feishuUrl === "#" ? "飞书链接待补" : "打开飞书完整原文") + ' ' + icon("arrow") + '</a><a class="button" href="ppt.html?id=' + item.id + '">查看金句 PPT ' + icon("arrow") + '</a>';
   }
 
   function renderPpt() {
