@@ -512,6 +512,49 @@
     return data.sessions.find(function (item) { return item.id === id; }) || data.sessions[0];
   }
 
+  function buildSessionPoints(item) {
+    var base = (item.points || []).map(function (point) { return [point[0], point[1]]; });
+    var primaryTag = item.tags && item.tags[0] ? item.tags[0] : "本场主题";
+    var secondaryTag = item.tags && item.tags[1] ? item.tags[1] : "关键路径";
+    var title = item.title || "本场活动";
+    var summary = item.summary || "把现场讨论整理为可搜索、可复盘、可行动的知识结构。";
+    var additions = [
+      ["本场主题", summary],
+      [primaryTag, "先抓住本场最核心的主题，再回到自己的项目或关系里判断可用之处。"],
+      [secondaryTag, "不要只看观点本身，要看它背后的路径、顺序和可执行条件。"],
+      ["问题入口", "先判断这场内容解决什么问题，再决定要看重点、翻 PPT，还是进入飞书全文。"],
+      ["真实案例", "现场案例的价值在于提供判断参照，让你知道类似场景下应该先看哪里。"],
+      ["行动顺序", "先做低成本验证，再逐步放大投入，避免一开始就把问题做重。"],
+      ["长期复盘", "每一场活动都不是孤立内容，而是可以沉淀到长期项目判断里的经验。"],
+      ["关系视角", "涉及成交、私域和交付时，先回到信任、承诺和后续服务，而不是只看技巧。"],
+      ["交付判断", "一个想法能不能变成项目，关键看能不能稳定交付，以及交付后能否持续复购。"],
+      ["工具使用", "工具不是为了显得高级，而是为了缩短路径、提高效率、减少重复动作。"],
+      ["搜索线索", "如果你只想快速找答案，可以用关键词搜索本场标题、标签、问题和重点整理。"],
+      ["下一步", "看完这一场后，至少带走一个可以马上验证的小动作，不要只停留在收藏。"],
+      ["完整上下文", "重点整理适合快速判断，真正需要细节时，再进入飞书原文查看完整上下文。"],
+      ["复用方式", title + " 的内容可以拆成问题、案例、方法和行动清单，方便下次继续复盘。"]
+    ];
+    additions.forEach(function (point) {
+      var exists = base.some(function (itemPoint) { return itemPoint[0] === point[0]; });
+      if (!exists && base.length < 12) base.push(point);
+    });
+    return base.slice(0, 12);
+  }
+
+  function feishuPreview(item) {
+    var disabled = item.feishuUrl === "#";
+    var href = disabled ? "#" : item.feishuUrl;
+    return '<a class="feishu-preview ' + (disabled ? "is-disabled" : "") + '" href="' + href + '"' + externalAttrs(href) + '>' +
+      '<div class="feishu-shot" aria-hidden="true">' +
+        '<div class="feishu-shot-bar"><i></i><i></i><i></i></div>' +
+        '<div class="feishu-shot-title">第 ' + item.number + ' 场完整飞书原文</div>' +
+        '<div class="feishu-shot-line wide"></div><div class="feishu-shot-line"></div><div class="feishu-shot-line short"></div>' +
+        '<div class="feishu-shot-block"><span>重点</span><span>PPT</span><span>原文</span></div>' +
+      '</div>' +
+      '<div><strong>飞书原文预览</strong><span>点开后会进入完整记录，适合查看上下文、案例和原始讨论。</span></div>' +
+      '</a>';
+  }
+
   function makePptPages(item) {
     var seeds = [
       ["项目判断", "先判断需求、场景与交付难度。", "好需求加好项目，关键看可交付性与可持续性。"],
@@ -555,13 +598,13 @@
     ].map(function (entry) {
       return '<a class="detail-entry ' + (entry[3] === "#" ? "is-disabled" : "") + '" href="' + entry[3] + '"' + externalAttrs(entry[3]) + '><div class="detail-icon">' + icon(entry[4]) + '</div><h3>' + entry[0] + '</h3><p>' + entry[1] + '</p><span class="button primary small-button">' + entry[2] + ' ' + icon("arrow") + '</span></a>';
     }).join("");
-    $("#pointGrid").innerHTML = (item.points || data.sessions[0].points).map(function (point, index) {
+    $("#pointGrid").innerHTML = buildSessionPoints(item).map(function (point, index) {
       return '<article class="point-card"><h3><b>' + String(index + 1).padStart(2, "0") + '</b>' + point[0] + '</h3><p>' + point[1] + '</p></article>';
     }).join("");
     $("#questionList").innerHTML = (item.questions || data.sessions[0].questions).map(function (q) {
       return '<li><span>' + q + '</span><span>→</span></li>';
     }).join("");
-    $("#entryPanel").innerHTML = '<a class="button primary" href="#points">阅读重点整理 ' + icon("arrow") + '</a><a class="button primary ' + (item.feishuUrl === "#" ? "is-disabled" : "") + '" href="' + item.feishuUrl + '"' + externalAttrs(item.feishuUrl) + '>' + (item.feishuUrl === "#" ? "飞书链接待补" : "打开飞书完整原文") + ' ' + icon("arrow") + '</a><a class="button" href="ppt.html?id=' + item.id + '">查看金句 PPT ' + icon("arrow") + '</a>';
+    $("#entryPanel").innerHTML = '<a class="button primary" href="#points">阅读重点整理 ' + icon("arrow") + '</a><a class="button primary ' + (item.feishuUrl === "#" ? "is-disabled" : "") + '" href="' + item.feishuUrl + '"' + externalAttrs(item.feishuUrl) + '>' + (item.feishuUrl === "#" ? "飞书链接待补" : "打开飞书完整原文") + ' ' + icon("arrow") + '</a><a class="button" href="ppt.html?id=' + item.id + '">查看金句 PPT ' + icon("arrow") + '</a>' + feishuPreview(item);
   }
 
   function renderPpt() {

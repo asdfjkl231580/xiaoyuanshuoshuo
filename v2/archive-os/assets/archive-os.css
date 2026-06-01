@@ -1134,7 +1134,7 @@ button { cursor: pointer; }
 }
 
 .point-card {
-  min-height: 170px;
+  min-height: 176px;
   padding: 20px;
   border: 1px solid var(--line);
   border-radius: 9px;
@@ -1158,6 +1158,10 @@ button { cursor: pointer; }
   background: #0d4d3c;
   font-family: var(--sans);
   font-size: 13px;
+}
+
+.point-card p {
+  line-height: 1.82;
 }
 
 .question-panel,
@@ -1189,6 +1193,97 @@ button { cursor: pointer; }
   gap: 12px;
 }
 
+.feishu-preview {
+  display: grid;
+  grid-template-columns: 118px 1fr;
+  gap: 14px;
+  align-items: center;
+  margin-top: 6px;
+  padding: 12px;
+  border: 1px solid rgba(197,154,67,0.48);
+  border-radius: 9px;
+  background: rgba(255,255,255,0.5);
+  transition: 160ms ease;
+}
+
+.feishu-preview:hover {
+  border-color: rgba(13,77,60,0.48);
+  box-shadow: 0 12px 26px rgba(13,77,60,0.12);
+}
+
+.feishu-preview strong {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--serif);
+  font-size: 18px;
+}
+
+.feishu-preview span {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.feishu-shot {
+  min-height: 88px;
+  padding: 9px;
+  border-radius: 7px;
+  color: var(--ink);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.88), rgba(246,240,228,0.8)),
+    url("archive/decoration/mountain-line-ink.png") center / cover;
+  border: 1px solid var(--line);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.4);
+}
+
+.feishu-shot-bar {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.feishu-shot-bar i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(13,77,60,0.35);
+}
+
+.feishu-shot-title {
+  margin-bottom: 8px;
+  color: #0d4d3c;
+  font-weight: 900;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.feishu-shot-line {
+  height: 5px;
+  width: 74%;
+  margin-top: 5px;
+  border-radius: 999px;
+  background: rgba(117,111,98,0.16);
+}
+
+.feishu-shot-line.wide { width: 92%; }
+.feishu-shot-line.short { width: 48%; }
+
+.feishu-shot-block {
+  display: flex;
+  gap: 5px;
+  margin-top: 9px;
+}
+
+.feishu-shot-block span {
+  min-height: 17px;
+  padding: 0 5px;
+  border-radius: 4px;
+  color: #0d4d3c;
+  background: rgba(120,217,182,0.22);
+  font-size: 10px;
+  font-weight: 800;
+}
+
 .ppt-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 330px;
@@ -1212,7 +1307,7 @@ button { cursor: pointer; }
 .ppt-stage {
   position: relative;
   aspect-ratio: 16 / 9;
-  padding: 48px 58px;
+  padding: 48px 58px 62px;
   border-radius: 12px;
   color: #fff7e7;
   background:
@@ -1272,16 +1367,20 @@ button { cursor: pointer; }
   position: absolute;
   left: 70px;
   right: 70px;
-  top: 170px;
+  top: 118px;
+  bottom: 96px;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
 }
 
 .ppt-main h2 {
   margin: 0;
   font-family: var(--serif);
-  font-size: 58px;
-  line-height: 1.42;
+  font-size: clamp(42px, 3.6vw, 62px);
+  line-height: 1.34;
   letter-spacing: 0.04em;
 }
 
@@ -1291,9 +1390,11 @@ button { cursor: pointer; }
 }
 
 .ppt-main p {
-  margin: 34px 0 0;
+  max-width: 860px;
+  margin: 26px auto 0;
   font-family: var(--serif);
-  font-size: 28px;
+  font-size: clamp(19px, 1.55vw, 26px);
+  line-height: 1.5;
   letter-spacing: 0.08em;
 }
 
@@ -1824,6 +1925,14 @@ button { cursor: pointer; }
 
   .entry-panel {
     margin-top: 0;
+  }
+
+  .feishu-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .feishu-shot {
+    min-height: 110px;
   }
 
   .ppt-top-actions {
