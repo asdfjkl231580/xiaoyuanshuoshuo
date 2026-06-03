@@ -16,7 +16,8 @@
   };
 
   var preloadedSessions = [
-    { id: 22, number: 22, date: "2024.05.18", title: "AI 赋能下的创业与个人成长", summary: "围绕 AI 如何落地到创业与个人成长，深入讨论项目判断、私域经营、云房东模式、定价策略与交付方式。", tags: ["AI", "项目判断", "私域经营", "定价与交付", "个人 IP"], keyPointCount: 18, pptPageCount: 50, feishuStatus: "飞书已接入", latest: true, detailUrl: "session.html?id=22", pptUrl: "ppt.html?id=22", coverImage: "assets/archive/covers/session-cover-22.png", pptImageDir: "assets/archive/ppt/session-22", feishuUrl: "https://oee5lr7gsk.feishu.cn/docx/JIuBdd1rzoE4WUxI0xKcXSVznWe", bigIdea: "本场围绕 AI 落地与个人成长，结合项目判断、私域经营、定价与交付，帮助你在复杂环境中做出更清晰的决策。", points: [["项目判断", "先判断需求、场景与交付难度。好需求加好项目，关键看可交付性与可持续性。"], ["云房东", "不是做更多，而是做更高复用的连接。通过资源整合与连接能力，构建可复用的业务网络与信任模型。"], ["定价策略", "价格背后是结构与交付承诺。定价不是拍脑袋，而是价值结构、交付标准与风险共担的体现。"], ["私域经营", "长期关系决定复购与转介绍。内容、服务与信任的复利，才是私域真正的护城河。"], ["AI 使用", "不要学概念，先找具体落地场景。从具体场景切入，小步快跑，建立自己的 AI 工作流。"], ["销售与交付", "销售不是两件事，而是一条价值链的不同环节。成交前说清楚，交付中做稳定。"]], questions: ["AI 怎么落地到项目？", "如何判断项目值不值得做？", "私域如何形成长期复购？", "定价为什么总是卡住？", "云房东模式如何建立信任与连接？", "个人如何用 AI 提升生产力与交付力？"] },
+    { id: 23, number: 23, date: "2024.05.25", title: "AI时代核心竞争力与商业模式", summary: "围绕AI时代个体真正的核心竞争力，讨论AI如何进入私域、内容、编程、成交和云房东式服务，从工具使用走向可收费、可交付、可复用的商业模式。", tags: ["AI", "核心竞争力", "商业模式", "私域", "Hermes"], keyPointCount: 18, pptPageCount: 50, feishuStatus: "飞书已接入", latest: true, detailUrl: "session.html?id=23", pptUrl: "ppt.html?id=23", feishuUrl: "https://oee5lr7gsk.feishu.cn/docx/FT4tdVDw6oikgrxvVSvcSHgHnEc", bigIdea: "本场不是单纯讲AI工具，而是把AI放回业务场景里：先判断自己要提升学习力、影响力还是赚钱能力，再把AI用于私域、内容、编程、销售和交付，最终沉淀成可收费、可复制、可租用的能力系统。", points: [["AI定位", "AI不是单独拿来赚钱的魔法，而是要先放进自己的业务，让内容、私域、交付和销售效率变高。"], ["能力放大", "AI时代的核心竞争力不是AI本身，而是使用AI的人。个人能力越高，AI能发挥的上限越高。"], ["私域结合", "AI加私域要先判断到底是提升学习力、影响力，还是赚钱能力，不同目标会决定不同的使用路径。"], ["商业模式", "纯AI赚钱通常只有两条路：接商单，或把能力产品化。更稳的方式，是把AI接进已有业务。"], ["AI编程", "AI编程不是程序员专属，它更像执行工具。你要学会把需求说清楚，让工具直接帮你做结果。"], ["成交起点", "第一批客户通常来自已经信任你的人。敢开口、会判断需求，比盲目找陌生流量更重要。"], ["复购经营", "好的项目不能只接新客，还要经营老客、复购、转介绍和可持续的关系池。"], ["云房东模型", "当AI能力被训练好之后，就可以像房子一样租出去，让别人使用你的系统和额度。"], ["Hermes", "Hermes的价值不是酷，而是能把个人经验、工具、文件和执行流程变成一个可交付的AI助手。"], ["长期判断", "工具会变化，但判断力、表达力、销售力和交付力会持续决定一个人能不能抓住AI红利。"]], questions: ["AI到底是拿来学习、提升影响力，还是直接赚钱？", "普通人想用AI赚钱，应该从哪里切入？", "AI加私域到底可以解决哪些真实问题？", "为什么AI时代真正重要的是个人能力？", "不会编程的人，能不能用AI做出产品或网页？", "第一批客户应该从哪里来？", "为什么要先卖给已经信任你的人？", "冲锋衣洗护这种小项目，为什么也能做成长期生意？", "什么是云房东模式？AI能力怎么租给别人？", "Hermes、Codex、Claude Code 这些工具分别适合做什么？"], pptSlides: [["AI定位", "AI不是单独拿来赚钱的魔法。", "先放进业务里，看它能不能提高效率。"], ["先问目标", "你要先判断自己到底想提升什么。", "学习力、影响力、赚钱能力，路径完全不同。"], ["AI加私域", "AI加私域不是一句口号。", "它要解决真实的用户沟通、承接和转化问题。"], ["业务优先", "大多数人靠AI赚钱，是因为原本就有业务。", "AI只是把原有业务的效率放大。"], ["纯AI赚钱", "如果只靠AI赚钱，通常只有两条路。", "要么接商单，要么把能力产品化。"], ["内容自动化", "内容自动化不是为了偷懒。", "而是把素材、脚本、图片和视频变成稳定流程。"], ["面试竞争力", "AI能力也可以变成简历里的真实案例。", "重点不是你学过，而是你做出过结果。"], ["工具成本", "工具有成本，但能力也有成本。", "要先证明自己能用工具解决问题。"], ["核心竞争力", "AI时代的核心竞争力不是AI。", "而是使用AI的人本身。"], ["个人能力", "你的能力只有十分，AI也只能放大到十分。", "人的认知决定工具能发挥到哪里。"], ["国产模型", "模型之间有差异，但更大的差异在使用者。", "会不会提需求，决定结果能不能出来。"], ["别复杂化", "很多AI用法没有网上讲得那么复杂。", "把需求讲清楚，它就能直接帮你做。"], ["直接执行", "不要每件事都先反推方法。", "很多时候直接把任务丢给AI就行。"], ["图片网页", "改图、改页面、改数字，都可以先让AI试。", "先拿到结果，再决定要不要优化。"], ["AI编程", "AI编程不是程序员专属。", "它更像一个会执行的工具。"], ["需求表达", "不会写代码的人，也要学会说清楚需求。", "需求越清楚，AI越容易交付。"], ["Codex", "Codex适合处理代码和网页。", "它能把想法推进成可运行的东西。"], ["Hermes", "Hermes更像一个个人AI助理。", "它能把你的文件、经验和工具接成流程。"], ["Claude Code", "不同工具有不同分工。", "不要迷信某一个工具，要看它适合做什么。"], ["商业模式", "工具不是商业模式。", "能收费、能交付、能复购，才是商业模式。"], ["第一批客户", "第一批客户往往来自已经信任你的人。", "不要一开始就迷信陌生流量。"], ["敢开口", "冷启动最难的不是产品，而是敢开口。", "先向信任你的人测试需求。"], ["现金投票", "不要只问别人喜不喜欢。", "愿不愿意付钱，才是真实反馈。"], ["课程验证", "课程还没完全做完，也可以先问十个人。", "先验证需求，再决定投入多少。"], ["定价交付", "价格不是随便定的。", "它背后是交付方式、周期和承诺。"], ["高客单", "高客单不是多收钱。", "而是你能不能给出更明确的规划和结果。"], ["销售能力", "销售不是话术，而是判断需求。", "知道谁需要什么，才敢开口。"], ["关系经营", "经营客户不是为了立刻成交。", "朋友越多，人生反馈也越多。"], ["不是所有人都要成交", "有些人适合买产品，有些人适合做朋友。", "关系本身也是长期资产。"], ["复购", "好项目不能只接新客。", "复购、转介绍和老客关系，决定长期收入。"], ["冲锋衣案例", "洗冲锋衣也可以成为一个长期项目。", "关键是信任、服务和复购。"], ["信任卖家", "客户真正信任的不是流程，而是卖家。", "信任掌握在你手上，就不用太怕竞争。"], ["前端获客", "前端获客不要太早完全交给别人。", "入口被别人拿走，关系也可能被拿走。"], ["私域池", "要把客户重新找得到。", "社群、微信和内容，都是长期复购的入口。"], ["投流判断", "投流不是不能做，而是要算得过来。", "投产比能回正，才值得继续放大。"], ["找人承接", "当流量变大，一个人承接不了。", "你需要找人接住咨询、服务和交付。"], ["AI产品化", "AI能力可以变成产品。", "但前提是它真的解决一个具体问题。"], ["从小工具开始", "不要一开始就做大平台。", "先从自己的资料、流程和场景开始。"], ["八字小程序", "自己的专业资料可以先变成自己的AI大脑。", "再往工具、产品和交付延伸。"], ["云房东", "训练好的AI能力，可以像房子一样租出去。", "别人使用你的系统，你收使用费。"], ["额度成本", "生图和聊天花不了多少TOKEN。", "真正贵的是写代码和复杂执行。"], ["后台监测", "能不能收费，先要算清楚成本。", "额度、调用量和使用频次都要看。"], ["微信限制", "微信生态天然限制AI接入。", "有些复杂工作更适合飞书或网页端。"], ["小白用户", "小白用户不在乎工具名。", "他只在乎能不能在微信里顺手使用。"], ["AI助理", "AI助理的价值不是酷。", "而是让别人不用学工具，也能用你的能力。"], ["工具组合", "Codex、Hermes、Claude Code 要分工。", "一个负责执行，一个负责助理，一个负责代码。"], ["不要省效率钱", "生产力工具不要只看便宜。", "每天省下来的时间，会长期复利。"], ["长期能力", "工具会变，但能力不会消失。", "判断力、表达力、销售力、交付力会一直有用。"], ["AI红利", "AI红利不是抢工具，而是重建能力系统。", "谁能把能力系统化，谁更容易留下来。"], ["行动", "先找一个具体场景，让AI帮你做出结果。", "从一个真实问题开始，而不是从学工具开始。"]] },
+    { id: 22, number: 22, date: "2024.05.18", title: "AI 赋能下的创业与个人成长", summary: "围绕 AI 如何落地到创业与个人成长，深入讨论项目判断、私域经营、云房东模式、定价策略与交付方式。", tags: ["AI", "项目判断", "私域经营", "定价与交付", "个人 IP"], keyPointCount: 18, pptPageCount: 50, feishuStatus: "飞书已接入", detailUrl: "session.html?id=22", pptUrl: "ppt.html?id=22", coverImage: "assets/archive/covers/session-cover-22.png", pptImageDir: "assets/archive/ppt/session-22", feishuUrl: "https://oee5lr7gsk.feishu.cn/docx/JIuBdd1rzoE4WUxI0xKcXSVznWe", bigIdea: "本场围绕 AI 落地与个人成长，结合项目判断、私域经营、定价与交付，帮助你在复杂环境中做出更清晰的决策。", points: [["项目判断", "先判断需求、场景与交付难度。好需求加好项目，关键看可交付性与可持续性。"], ["云房东", "不是做更多，而是做更高复用的连接。通过资源整合与连接能力，构建可复用的业务网络与信任模型。"], ["定价策略", "价格背后是结构与交付承诺。定价不是拍脑袋，而是价值结构、交付标准与风险共担的体现。"], ["私域经营", "长期关系决定复购与转介绍。内容、服务与信任的复利，才是私域真正的护城河。"], ["AI 使用", "不要学概念，先找具体落地场景。从具体场景切入，小步快跑，建立自己的 AI 工作流。"], ["销售与交付", "销售不是两件事，而是一条价值链的不同环节。成交前说清楚，交付中做稳定。"]], questions: ["AI 怎么落地到项目？", "如何判断项目值不值得做？", "私域如何形成长期复购？", "定价为什么总是卡住？", "云房东模式如何建立信任与连接？", "个人如何用 AI 提升生产力与交付力？"] },
     { id: 21, number: 21, date: "2024.05.11", title: "AI 赋能创业要从工具走向长期主义", summary: "讨论 AI 工具如何真正进入创业系统，从短期提效走向长期资产与稳定交付。", tags: ["AI", "长期主义", "创业", "工具", "交付"], keyPointCount: 16, pptPageCount: 42, feishuStatus: "飞书已接入", detailUrl: "session.html?id=21", pptUrl: "ppt.html?id=21", feishuUrl: "https://oee5lr7gsk.feishu.cn/docx/QSTQdsNGooXkzGxiMSYcyN11n4f" },
     { id: 20, number: 20, date: "2024.05.04", title: "AI 时代个体创业的能力系统化", summary: "围绕个体创业者如何用 AI 重建能力系统，讨论项目判断、效率、表达和交付。", tags: ["AI", "个体创业", "能力系统", "项目判断", "交付"], keyPointCount: 15, pptPageCount: 40, feishuStatus: "飞书已接入", detailUrl: "session.html?id=20", pptUrl: "ppt.html?id=20", feishuUrl: "https://oee5lr7gsk.feishu.cn/docx/AWlZdoH0po1YugxAKvPcXw7inwf" },
     { id: 19, number: 19, date: "2024.04.27", title: "稳定现金流支撑长期成长", summary: "围绕长期成长背后的现金流、项目节奏和风险控制，整理稳定推进的方法。", tags: ["现金流", "长期成长", "项目", "风险", "节奏"], keyPointCount: 14, pptPageCount: 40, feishuStatus: "飞书已接入", detailUrl: "session.html?id=19", pptUrl: "ppt.html?id=19", feishuUrl: "https://oee5lr7gsk.feishu.cn/docx/JW2ddGEXIocXdLxZJB9cVngVnYg" },
@@ -41,7 +42,7 @@
   ];
 
   var preloadedSearchResults = preloadedSessions.filter(function (session) {
-    return [22, 16, 12, 10, 7].indexOf(session.number) >= 0;
+    return [23, 22, 16, 12, 10, 7].indexOf(session.number) >= 0;
   }).map(function (session) {
     return {
       sessionNumber: session.number,
@@ -246,12 +247,12 @@
       ["10", "长期主义"]
     ],
     updates: {
-      totalCount: 22,
+      totalCount: 23,
       pendingOrganize: 3,
-      published: 22,
+      published: 23,
       pendingFeishu: 0,
       pendingPpt: 0,
-      todoList: ["复核第 22 场关键词", "更新最新场次封面", "上传大字版成品图", "检查搜索索引"]
+      todoList: ["复核第 23 场关键词", "检查第 23 场飞书跳转", "检查第 23 场 PPT 展示", "检查搜索索引"]
     }
   };
 
@@ -357,7 +358,7 @@
   }
 
   function topbar() {
-    return '<header class="topbar"><div class="system-name"><span class="system-mark">档</span><span>生财根源场档案库</span></div><div class="status-pills"><span class="status-pill">' + icon("box") + '已索引 22 场 <i class="status-dot"></i></span><span class="status-pill">' + icon("calendar") + '支持每周更新</span></div></header>';
+    return '<header class="topbar"><div class="system-name"><span class="system-mark">档</span><span>生财根源场档案库</span></div><div class="status-pills"><span class="status-pill">' + icon("box") + '已索引 ' + data.sessions.length + ' 场 <i class="status-dot"></i></span><span class="status-pill">' + icon("calendar") + '支持每周更新</span></div></header>';
   }
 
   function shell() {
@@ -390,7 +391,11 @@
 
   function renderHome() {
     var latest = data.sessions[0];
-    $("#homeLatest").innerHTML = '<article class="latest-card panel">' + ticket(latest) + '<div><div class="latest-header"><span>最新上架</span><a href="sessions.html">查看全部场次</a></div><h2>第 22 场<br>' + latest.title + '</h2><p>' + latest.summary + '</p><div class="chip-row">' + tags(latest.tags.slice(0, 4)) + '</div><p><a class="button primary" href="session.html?id=22">进入本场档案 ' + icon("arrow") + '</a></p></div></article>';
+    var stat = $(".stat-number");
+    var latestCard = document.querySelector('.quick-card[href^="session.html?id="]');
+    if (stat) stat.textContent = data.sessions.length;
+    if (latestCard) latestCard.href = "session.html?id=" + latest.id;
+    $("#homeLatest").innerHTML = '<article class="latest-card panel">' + ticket(latest) + '<div><div class="latest-header"><span>最新上架</span><a href="sessions.html">查看全部场次</a></div><h2>第 ' + latest.number + ' 场<br>' + latest.title + '</h2><p>' + latest.summary + '</p><div class="chip-row">' + tags(latest.tags.slice(0, 4)) + '</div><p><a class="button primary" href="session.html?id=' + latest.id + '">进入本场档案 ' + icon("arrow") + '</a></p></div></article>';
     $("#homeSearch").addEventListener("submit", function (event) {
       event.preventDefault();
       var q = $("#homeQuery").value.trim() || "销售";
